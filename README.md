@@ -21,4 +21,4 @@ This directory includes the script `compile_c3mech.py` and instructions on creat
 4. **PRESELECTION**  
 This directory contains frequently used sub-model combinations that have already been compiled in CHEMKIN and Cantera YAML formats. They can be used directly without the additional compilation step and are provided for convenience.
 
-For questions or suggestions, please open an issue or reach out to [Luna Pratali Maffei](luna.pratali@polimi.it) or [Raymond Langer](mailto:r.langer@itv.rwth-aachen.de) directly.
+For questions or suggestions, please open an issue or reach out to [Luna Pratali Maffei](mailto:luna.pratali@polimi.it) or [Raymond Langer](mailto:r.langer@itv.rwth-aachen.de) directly.
