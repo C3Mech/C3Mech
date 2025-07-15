@@ -517,31 +517,225 @@ class ChemicalReaction:
         return f"{reactant_str}=>{product_str}", f"{product_str}?{reactant_str}"
 
 
+def _process_reaction_line(line, species_dict, normalized_reactions,
+                           normalized_reactions_check, total_species,
+                           total_reactions):
+  """
+    Handles the logic for lines that contain a reaction definition (i.e., 
+    lines that contain '=').
+    Extracts the reaction, updates species and reaction dictionaries.
+    """
+
+  reaction = ChemicalReaction(line, species_dict)
+
+  n_spec = 0
+  # Insert species from reactants/products into species_dict and total_species
+  for coeff, spc in (reaction.reactants + reaction.products):
+    total_species.add(spc)
+    # If species is not yet used, set to 1
+    if species_dict.get(spc, 0) == 0:
+      species_dict[spc] = 1
+      n_spec += 1
+
+  # Get canonical representation
+  canon_str, canon_check = reaction.canonical_representation()
+
+  # Update normalized_reactions
+  if canon_str not in normalized_reactions:
+    normalized_reactions[canon_str] = []
+  normalized_reactions[canon_str].append(reaction)
+  total_reactions.add(canon_str)
+
+  # Update normalized_reactions_check
+  if canon_check in normalized_reactions_check:
+    # Optional logic verifying if the newly added reaction conflicts, etc.
+    # For clarity, this is left mostly as the original logic
+    _, old_reaction = normalized_reactions_check[canon_check]
+    # You might handle conflicts or duplicates here
+    if False and ('irreversible' != reaction.reaction_type
+                  or 'irreversible' != old_reaction.reaction_type):
+      print("#warning: found '" + last_canon_str + "' and '" +
+            old_reaction.canonical_representation()[0] + "'")
+      print("reaction string 1:", old_reaction.reaction_definition)
+      print("reaction string 2:", reaction.reaction_definition)
+  else:
+    normalized_reactions_check[canon_check] = (canon_str, reaction)
+
+  return canon_str, n_spec
+
+
+def _handle_rev_keyword(line, match, species_dict, normalized_reactions,
+                        normalized_reactions_check, total_reactions,
+                        last_canon_str, cantera_count):
+  """
+    Processes a line that has 'REV /.../' 
+    """
+  if not last_canon_str or last_canon_str not in normalized_reactions:
+    raise Exception(f"Encountered a REV line with no preceding reaction. "
+                    f"Line causing error: '{line}'")
+
+  old_reaction_list = normalized_reactions[last_canon_str]
+  if not old_reaction_list:
+    raise Exception(
+        f"Encountered a REV line but look up of the canonical reaction string '"
+        + last_canon_str + "' failed" + f"Line causing error: '{line}'")
+
+  # Grab the last reaction from that list
+  old_reaction = copy.copy(old_reaction_list[-1])
+  if old_reaction.reaction_type == "irreversible":
+    raise Exception(
+        f"REV keyword incompatible with irreversible reaction in '{line}'")
+
+  # Remove the old reaction from the dictionary
+  old_reaction_list.pop()
+  if not old_reaction_list:
+    del normalized_reactions[last_canon_str]
+    total_reactions.discard(last_canon_str)
+
+  # Make the existing reaction 'irreversible' and re-store it under its new canonical string
+  old_reaction.make_irreversible()
+  canon_old, _ = old_reaction.canonical_representation()
+  if canon_old not in normalized_reactions:
+    normalized_reactions[canon_old] = []
+  normalized_reactions[canon_old].append(old_reaction)
+  total_reactions.add(canon_old)
+
+  # Check for numeric data in REV line (e.g. Arrhenius parameters)
+  numbers_part = match.group(1).strip()  # e.g., "1.0 2.0 3.0"
+  number_strings = [num for num in numbers_part.split() if num]
+
+  # Convert to float and limit to up to three numbers
+  number_array = []
+  for num_str in number_strings[:3]:  # Limit to first three numbers only
+    try:
+      number_array.append(float(num_str))  # Convert string to float
+    except ValueError:
+      print(f"Could not convert '{num_str}' to float in REV //.")
+
+  # If the first number != 0, then add the reverse rate coefficient
+  if number_array[0] != 0.0:
+    cantera_count += 1
+    new_reaction = copy.copy(old_reaction)
+    new_reaction.invert()
+    canon_new, _ = new_reaction.canonical_representation()
+    if canon_new not in normalized_reactions:
+      normalized_reactions[canon_new] = []
+    normalized_reactions[canon_new].append(new_reaction)
+    total_reactions.add(canon_new)
+
+  return cantera_count
+
+
+def _handle_unrecognized_line(line):
+  """
+    This is your fallback handling for lines that don't match any known pattern or mode.
+    """
+  raise ValueError(f"Unrecognized line: {line}")
+
+
+def _process_special_keywords(line, patterns, species_dict,
+                              normalized_reactions, normalized_reactions_check,
+                              total_reactions, last_canon_str, cantera_count):
+  """
+    Handles lines that might match special keywords, like REV, LOW, HIGH, TROE, etc.
+    If the line is recognized, modifies the data structures accordingly. 
+    """
+  # Try each important pattern
+  match_rev = patterns['rev'].match(line)
+  if match_rev:
+    cantera_count = _handle_rev_keyword(line, match_rev, species_dict,
+                                        normalized_reactions,
+                                        normalized_reactions_check,
+                                        total_reactions, last_canon_str,
+                                        cantera_count)
+    return cantera_count
+
+  # If not REV, check the others in turn
+  for key in ['low', 'high', 'troe', 'plog', 'tcheb', 'pcheb', 'cheb']:
+    if patterns[key].match(line):
+      # You might do special handling for each one if needed
+      return cantera_count
+
+  # Maybe parse the unknown pattern.
+  match_tb = patterns['tb'].findall(line)
+  if match_tb:
+    err = _handle_tb_pattern(match_tb, species_dict)
+    if err:
+      raise Exception(f"Error in TB pattern in '{line}'")
+    return cantera_count
+
+  # If no recognized patterns matched, we handle as an unknown line.
+  _handle_unrecognized_line(line)
+
+
+def _handle_tb_pattern(matches_tb, species_dict):
+  """
+    Handles the third body pattern lines like "N2/ 1.0/"
+    """
+  error = False
+  for (species, value_str) in matches_tb:
+    try:
+      float_val = float(value_str)
+    except ValueError:
+      print(f"Error converting {value_str} to float in TB pattern.")
+      error = True
+      continue
+
+    if species in species_dict:
+      # If you want to record the third body efficiency you could
+      # do this here
+      pass
+    else:
+      print(f"Unknown keyword or species in TB pattern: {species}")
+      error = True
+  return error
+
+
 def count_reactions(lines, species_dict, normalized_reactions,
                     normalized_reactions_check):
+  """
+  Reads lines of input, identifies new reactions (and some keywords to detect 
+  potential errors), updates data structures accordingly, and returns the number 
+  of new reactions, the reaction count used by Cantera systems, updated dicts, etc.
+
+  :param lines:                  List of input lines (strings).
+  :param species_dict:           Dictionary of species, with species name as the key; 0 or 1 as the value.
+  :param normalized_reactions:   Dict mapping a canonical reaction string to a list of ChemicalReaction objects.
+  :param normalized_reactions_check: Dict mapping a check-string to a tuple (canonical_str, ChemicalReaction).
+  :return: A 5-tuple:
+           (num_new_reactions, cantera_count, normalized_reactions, normalized_reactions_check, species_dict)
+  """
+
+  # 1) Preprocess and store only the main content (strip comments, uppercase).
   cleaned_lines = [line.split('!', 1)[0].strip().upper() for line in lines]
 
+  # 2) Counters and data structures.
   n_new_species = 0
   total_species = set()
   total_reactions = set()
   n_reactions_start = len(normalized_reactions)
   cantera_count = 0
 
-  pattern_rev = r'REV\s*/([-+\d\.eE\s]+)/'
-  pattern_low = r'LOW\s*/([-+\d\.eE\s]+)/'
-  pattern_high = r'HIGH\s*/([-+\d\.eE\s]+)/'
-  pattern_troe = r'TROE\s*/([-+\d\.eE\s]+)/'
-  pattern_plog = r'PLOG\s*/([-+\d\.eE\s]+)/'
-  pattern_tcheb = r'TCHEB\s*/([-+\d\.eE\s]+)/'
-  pattern_pcheb = r'PCHEB\s*/([-+\d\.eE\s]+)/'
-  pattern_cheb = r'CHEB\s*/([-+\d\.eE\s]+)/'
-  pattern_tb = r'([\w\-\(\),\#]+)\s*/([-+\d\.eE\s]+)/'
-  pattern_unknown = r'([^\s]+)\s*/([-+\d\.eE\s]+)/'
-  pattern_dup = r'(DUP|DUPLICATE)'
-  pattern_elem = r'(ELEM|ELEMENTS)'
-  pattern_spec = r'(SPEC|SPECIES)'
-  pattern_reac = r'(REAC|REACTIONS)'
-  pattern_end = r'(END)'
+  # 3) Compile regular expressions for clarity and easy maintenance.
+  #    This dictionary approach keeps them organized in one place.
+  patterns = {
+      'rev': re.compile(r'REV\s*/([-+\d\.eE\s]+)/', re.IGNORECASE),
+      'low': re.compile(r'LOW\s*/([-+\d\.eE\s]+)/', re.IGNORECASE),
+      'high': re.compile(r'HIGH\s*/([-+\d\.eE\s]+)/', re.IGNORECASE),
+      'troe': re.compile(r'TROE\s*/([-+\d\.eE\s]+)/', re.IGNORECASE),
+      'plog': re.compile(r'PLOG\s*/([-+\d\.eE\s]+)/', re.IGNORECASE),
+      'tcheb': re.compile(r'TCHEB\s*/([-+\d\.eE\s]+)/', re.IGNORECASE),
+      'pcheb': re.compile(r'PCHEB\s*/([-+\d\.eE\s]+)/', re.IGNORECASE),
+      'cheb': re.compile(r'CHEB\s*/([-+\d\.eE\s]+)/', re.IGNORECASE),
+      'tb': re.compile(r'([\w\-\(\),\#]+)\s*/([-+\d\.eE\s]+)/', re.IGNORECASE),
+      'unknown': re.compile(r'([^\s]+)\s*/([-+\d\.eE\s]+)/', re.IGNORECASE),
+      'dup': re.compile(r'(DUP|DUPLICATE)', re.IGNORECASE),
+      'elem': re.compile(r'(ELEM|ELEMENTS)', re.IGNORECASE),
+      'spec': re.compile(r'(SPEC|SPECIES)', re.IGNORECASE),
+      'reac': re.compile(r'(REAC|REACTIONS)', re.IGNORECASE),
+      'end': re.compile(r'(END)', re.IGNORECASE),
+  }
+
   element_mode = False
   species_mode = False
   reaction_mode = False
@@ -551,158 +745,29 @@ def count_reactions(lines, species_dict, normalized_reactions,
     if l == "":
       continue
 
-    match_rev = re.match(pattern_rev, l, re.IGNORECASE)
-    match_low = re.match(pattern_low, l, re.IGNORECASE)
-    match_high = re.match(pattern_high, l, re.IGNORECASE)
-    match_troe = re.match(pattern_troe, l, re.IGNORECASE)
-    match_plog = re.match(pattern_plog, l, re.IGNORECASE)
-    match_tcheb = re.match(pattern_tcheb, l, re.IGNORECASE)
-    match_pcheb = re.match(pattern_pcheb, l, re.IGNORECASE)
-    match_cheb = re.match(pattern_cheb, l, re.IGNORECASE)
-    match_unknown = re.match(pattern_unknown, l, re.IGNORECASE)
-    match_dup = re.match(pattern_dup, l, re.IGNORECASE)
-    match_elem = re.match(pattern_elem, l, re.IGNORECASE)
-    match_species = re.match(pattern_spec, l, re.IGNORECASE)
-    match_reac = re.match(pattern_reac, l, re.IGNORECASE)
-    match_end = re.match(pattern_end, l, re.IGNORECASE)
     if "=" in l:
       cantera_count += 1
-      #print(l)
-      reaction = ChemicalReaction(l, species_dict)
-      for nu, s in reaction.reactants:
-        if species_dict[s] == 0:
-          species_dict[s] = 1
-          n_new_species += 1
-        total_species.add(s)
-      for nu, s in reaction.products:
-        if species_dict[s] == 0:
-          species_dict[s] = 1
-          n_new_species += 1
-        total_species.add(s)
 
-      last_canon_str, last_canon_str_check = reaction.canonical_representation(
-      )
-      if last_canon_str in normalized_reactions:
-        normalized_reactions[last_canon_str].append(reaction)
-        #print(last_canon_str + ": " + reaction.reaction_definition)
-      else:
-        normalized_reactions[last_canon_str] = [reaction]
-        #print("new reaction" + ": " + reaction.reaction_definition)
-      total_reactions.add(last_canon_str)
-
-      if last_canon_str_check in normalized_reactions_check:
-        if last_canon_str != normalized_reactions_check[last_canon_str_check][
-            0]:
-          old_reaction = normalized_reactions_check[last_canon_str_check][1]
-          if False and ('irreversible' != reaction.reaction_type
-                        or 'irreversible' != old_reaction.reaction_type):
-            print("#warning: found '" + last_canon_str + "' and '" +
-                  old_reaction.canonical_representation()[0] + "'")
-            print("reaction string 1:", old_reaction.reaction_definition)
-            print("reaction string 2:", reaction.reaction_definition)
-      else:
-        normalized_reactions_check[last_canon_str_check] = (last_canon_str,
-                                                            reaction)
-      #reactants, products, reaction_type = extract_reaction(l, species_dict)
-      #print(canonical_reaction(reactants, products, reaction_type))
-    elif match_unknown:
-      found = False
-      if match_rev:
-        #print("FOUND REV in '" + l + "'")
-        #print("reaction is '" + normalized_reactions[last_canon_str][-1].reaction_string + "'")
-        found = True
-        old_reaction = copy.copy(normalized_reactions[last_canon_str][-1])
-        if old_reaction.reaction_type == "irreversible":
-          raise Exception(
-              "REV keyword incompatible with irreversible reaction in '" + l +
-              "'")
-        normalized_reactions[last_canon_str].pop()
-        if len(normalized_reactions[last_canon_str]) == 0:
-          del normalized_reactions[last_canon_str]
-          total_reactions.remove(last_canon_str)
-
-        old_reaction.make_irreversible()
-        canon_old, canon_old_check = old_reaction.canonical_representation()
-        if canon_old in normalized_reactions:
-          normalized_reactions[old_reaction.canonical_representation()].append(
-              old_reaction)
-        else:
-          normalized_reactions[old_reaction.canonical_representation()] = [
-              old_reaction
-          ]
-        total_reactions.add(old_reaction.canonical_representation())
-
-        numbers_part = match_rev.group(1).strip()
-        # Split by whitespace and filter out empty strings
-        number_strings = [num for num in numbers_part.split() if num]
-
-        # Convert to float and limit to up to three numbers
-        number_array = []
-        for num_str in number_strings[:3]:  # Limit to first three numbers only
-          try:
-            number_array.append(float(num_str))  # Convert string to float
-          except ValueError:
-            print(f"Could not convert '{num_str}' to float in REV //.")
-        if number_array[0] != 0.0:
-          cantera_count += 1
-          new_reaction = copy.copy(old_reaction)
-          new_reaction.invert()
-          canon_new, canon_new_check = new_reaction.canonical_representation()
-          if canon_new in normalized_reactions:
-            normalized_reactions[
-                new_reaction.canonical_representation()].append(new_reaction)
-          else:
-            normalized_reactions[new_reaction.canonical_representation()] = [
-                new_reaction
-            ]
-          total_reactions.add(new_reaction.canonical_representation())
-        #print("after:", canon_old)
-        #print("after:", canon_new)
-        #quit()
-      if match_low:
-        found = True
-      if match_high:
-        found = True
-      if match_troe:
-        found = True
-      if match_plog:
-        found = True
-      if match_tcheb:
-        found = True
-      if match_pcheb:
-        found = True
-      if match_cheb:
-        found = True
-
-      if not found:
-        # Find all matches
-        matches_tb = re.findall(pattern_tb, l)
-        parsed_data_tb = [(match[0], float(match[1])) for match in matches_tb]
-        ok = 0
-        for tb, val in parsed_data_tb:
-          if tb in species_dict:
-            ok += 1
-          else:
-            print("unknown keyword '" + tb + "'")
-        if len(parsed_data_tb) == ok:
-          found = True
-        if not found:
-          print("no match for:")
-          print("'" + l + "'")
-          quit()
-      if not found:
-        print("no match for //:")
-        print("'" + l + "'")
-        quit()
-    elif match_dup:
+      last_canon_str, n_spec = _process_reaction_line(
+          l, species_dict, normalized_reactions, normalized_reactions_check,
+          total_species, total_reactions)
+      n_new_species += n_spec
+    elif patterns['unknown'].match(l):
+      # Step through relevant matches
+      cantera_count = _process_special_keywords(l, patterns, species_dict,
+                                                normalized_reactions,
+                                                normalized_reactions_check,
+                                                total_reactions,
+                                                last_canon_str, cantera_count)
+    elif patterns['dup'].match(l):
       pass
-    elif match_elem:
+    elif patterns['elem'].match(l):
       element_mode = True
-    elif match_species:
+    elif patterns['spec'].match(l):
       species_mode = True
-    elif match_reac:
+    elif patterns['reac'].match(l):
       reaction_mode = True
-    elif match_end:
+    elif patterns['end'].match(l):
       element_mode = False
       reaction_mode = False
       species_mode = False
@@ -711,9 +776,8 @@ def count_reactions(lines, species_dict, normalized_reactions,
     elif species_mode:
       pass
     else:
-      print("no match for:")
-      print("'" + l + "'")
-      quit()
+      # If no recognized patterns matched, we handle as an unknown line.
+      _handle_unrecognized_line(line)
 
   print("    new species in sub-module:", n_new_species)
   print("  total species in sub-module:", len(total_species))
@@ -731,7 +795,7 @@ def merge_models(species_list, submodules_files, output_filename, datetime):
   species_section_str = write_species_list(species_list, '')
   new_lines = []
 
-  header_path = os.path.join(DIR, YAML)
+  header_path = os.path.join(DIR, HEADER)
   with open(header_path, 'r') as f:
     for line in f:
       new_lines.append(line)
