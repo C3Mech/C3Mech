@@ -1,11 +1,11 @@
 # Mechanism compilation
 
-This directory provides the workflow to compile sub-models into a single file in CHEMKIN format.
+This directory provides the workflow to compile sub-modules into a single file in CHEMKIN format.
 
 ## How to use
 
-1. **Select sub-models**  
- Open and edit `submodels.yaml` to specify the sub-models you want to include in the final mechanism.
+1. **Select sub-modules**  
+ Open and edit `submodules.yaml` to specify the sub-modules you want to include in the final mechanism.
 
 2. **Compile the mechanism**  
  Run the following command in the terminal:
@@ -24,7 +24,7 @@ pip3 install pyyaml --user
 
 ## Notes and recommendations
 
-- **Selecting necessary blocks:** Selecting only the necessary module blocks facilitates and speeds up kinetic simulations. 
-- **User responsibility:** The user must select an appropriate model subset for a simulation case. 
+- **Selecting necessary sub-modules:** Selecting only the necessary sub-modules facilitates and speeds up kinetic simulations. 
+- **User responsibility:** The user must select an appropriate sub-modules for a simulation case. 
 
 If you have further questions or need additional help, please feel free to open an issue or [contact us](r.langer@itv.rwth-aachen.de).
