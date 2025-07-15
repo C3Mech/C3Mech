@@ -110,8 +110,10 @@ def clean_therm(therm_file, therm_output, species_list, datetime):
 
   print("writing '" + therm_output + "'")
   with open(therm_output, 'w') as thermfile:
-    thermfile.write('! Thermodynamic data for C3MechV' + VERSION +
-                    ', generated on {0:%d/%m/%Y %H:%M:%S}.\n'.format(datetime))
+
+    thermfile.writelines(
+        insert_boiler_plate("Thermodynamic", submodules_files, datetime))
+
     thermfile.write('THERMO ALL\n')
     thermfile.write('300.   1000.   5000.\n')
 
@@ -145,8 +147,9 @@ def clean_tran(tran_file, tran_output, species_list, datetime):
   species_dict = {s.upper(): 0 for s in species_list}
   print("writing '" + tran_output + "'")
   with open(tran_output, 'w') as tranfile:
-    tranfile.write('! Transport data for C3MechV' + VERSION +
-                   ', generated on {0:%d/%m/%Y %H:%M:%S}.\n'.format(datetime))
+    tranfile.writelines(
+        insert_boiler_plate("Transport", submodules_files, datetime))
+
     for i in range(len(tranlines)):
       wrk_line = tranlines[i].split("!")[0]
       wrk_line = wrk_line.rstrip()
@@ -791,26 +794,41 @@ def count_reactions(lines, species_dict, normalized_reactions,
   ) - n_reactions_start, cantera_count, normalized_reactions, normalized_reactions_check, species_dict
 
 
-def merge_models(species_list, submodules_files, output_filename, datetime):
-  species_section_str = write_species_list(species_list, '')
-  new_lines = []
-
+def insert_header(lines):
   header_path = os.path.join(DIR, HEADER)
   with open(header_path, 'r') as f:
     for line in f:
-      new_lines.append(line)
-    new_lines.append("\n")
-    new_lines.append("\n")
+      lines.append(line)
+    lines.append("\n")
+    lines.append("\n")
 
-  new_lines.append('! Kinetics data for C3MechV' + VERSION +
-                   ', generated on {0:%d/%m/%Y %H:%M:%S}.\n'.format(datetime) +
-                   '\n')
-  new_lines.append(
-      '! The following sub-modules were considered in this file:\n')
-  new_lines.append('! - ' + os.path.basename(submodules_files.core) + '\n')
+
+def insert_time(lines, filetype, datetime):
+  lines.append('! ' + filetype + ' data for C3MechV' + VERSION +
+               ', generated on {0:%d/%m/%Y %H:%M:%S}.\n'.format(datetime) +
+               '\n')
+
+
+def insert_submodule_list(lines, submodules_files):
+  lines.append('! The following sub-modules were considered in this file:\n')
+  lines.append('! - ' + os.path.basename(submodules_files.core) + '\n')
   for file_path in submodules_files.submodules:
-    new_lines.append('! - ' + os.path.basename(file_path) + '\n')
-  new_lines.append("\n")
+    lines.append('! - ' + os.path.basename(file_path) + '\n')
+  lines.append("\n")
+
+
+def insert_boiler_plate(filetype, submodules_files, datetime):
+  lines = []
+  insert_header(lines)
+  insert_time(lines, filetype, datetime)
+  insert_submodule_list(lines, submodules_files)
+  return lines
+
+
+def merge_models(species_list, submodules_files, output_filename, datetime):
+  species_section_str = write_species_list(species_list, '')
+
+  new_lines = insert_boiler_plate("Kinetics", submodules_files, datetime)
 
   species_dict = {s: 0 for s in species_list}
   for s in species_dict:
@@ -823,6 +841,7 @@ def merge_models(species_list, submodules_files, output_filename, datetime):
                       "' does not match the species pattern")
 
   new_lines.append("! number of species: " + str(len(species_list)) + "\n")
+  insert_reaction_count = len(new_lines)
 
   print("processing: '" + os.path.basename(submodules_files.core) + "'")
   new_lines, n_reaction, cantera_count, normalized_reactions, normalized_reactions_check, species_dict = insert_species_list(
@@ -861,8 +880,15 @@ def merge_models(species_list, submodules_files, output_filename, datetime):
     for s in insert_species:
       print(s)
 
-  new_lines.append("! number of reactions: " + str(len(normalized_reactions)) +
-                   "\n")
+  new_lines.insert(
+      insert_reaction_count,
+      "! number of reactions: " + str(len(normalized_reactions)) +
+      " (defined by the number of unique combinations of reactants and products, independent of rate coefficient details and the specified forward direction)\n"
+  )
+  new_lines.insert(
+      insert_reaction_count + 1, "! number of reactions: " +
+      str(cantera_count) + " (number of reactions given by cantera)\n\n")
+
   print("merged model contains " + str(len(species_list)) + " species and " +
         str(cantera_count) + " (cantera count) / " +
         str(len(normalized_reactions)) + " (normal count) reactions")
