@@ -1,0 +1,55 @@
+! ================================================================================================== !
+!                                                                                                    !
+!            Modeling Combustion Chemistry using C3MechV4.0: an extension to mixtures of             !
+!                            hydrogen, ammonia, alkanes, and cycloalkanes                            !
+!                                                                                                    !
+! ================================================================================================== !
+!                                                                                                    !
+! This work was performed by the Computational Chemistry Consortium (C3), a collaborative research   !
+! organization including the University of Galway, Politecnico di Milano, RWTH Aachen University,    !
+! Lawrence Livermore National Laboratory, Argonne National Laboratory, and Convergent Science.       !
+!                                                                                                    !
+! C3MechV4.0 is available from the github repository:                                                !
+! https://github.com/C3Mech/C3MechV4.0                                                               !
+!                                                                                                    !
+! For more information, please visit fuelmech.org.                                                   !
+!                                                                                                    !
+! ================================= Working Groups For C3MechV4.0 ================================== !
+!                                                                                                    !
+! Author                  | Institution                                                              !
+! -------------------------------------------------------------------------------------------------- !
+! Luna Pratali Maffei     | Dipartimento di Chimica, Materiali ed Ingegneria Chimica "G. Natta,"     !
+!                         | Politecnico di Milano, Italy                                             !
+! Raymond Langer          | Institute for Combustion Technology,                                     !
+!                         | RWTH Aachen University, Germany                                          !
+! Yuki Murakami           | Combustion Chemistry Centre, School of Chemistry, Ryan Institute, MaREI, !
+!                         | University of Galway, Ireland                                            !
+! Scott W. Wagnon         | Lawrence Livermore National Laboratory, United States of America         !
+!                         |                                                                          !
+! Pengzhi Wang            | Combustion Chemistry Centre, School of Chemistry, Ryan Institute, MaREI, !
+!                         | University of Galway, Ireland                                            !
+! Jiaxin Liu              | Combustion Chemistry Centre, School of Chemistry, Ryan Institute, MaREI, !
+!                         | University of Galway, Ireland                                            !
+! Mohsin Raza             | Combustion Chemistry Centre, School of Chemistry, Ryan Institute, MaREI, !
+!                         | University of Galway, Ireland                                            !
+! Yuxiang Zhu             | Combustion Chemistry Centre, School of Chemistry, Ryan Institute, MaREI, !
+!                         | University of Galway, Ireland                                            !
+! Sanket Girhe            | Institute for Combustion Technology,                                     !
+!                         | RWTH Aachen University, Germany                                          !
+! Christian Schwenzer     | Institute for Combustion Technology,                                     !
+!                         | RWTH Aachen University, Germany                                          !
+! Joachim Beeckmann       | Institute for Combustion Technology,                                     !
+!                         | RWTH Aachen University, Germany                                          !
+! Stephen J. Klippenstein | Chemical Sciences and Engineering Division,                              !
+!                         | Argonne National Laboratory, United States of America                    !
+! Tiziano Faravelli       | Dipartimento di Chimica, Materiali ed Ingegneria Chimica "G. Natta,"     !
+!                         | Politecnico di Milano, Italy                                             !
+! Heinz Pitsch            | Institute for Combustion Technology,                                     !
+!                         | RWTH Aachen University, Germany                                          !
+! Peter Kelly Senecal     | Convergent Science, United States of America                             !
+!                         |                                                                          !
+! Henry J. Curran         | Combustion Chemistry Centre, School of Chemistry, Ryan Institute, MaREI, !
+!                         | University of Galway, Ireland                                            !
+! ================================================================================================== !
+!                              !!! Please do not remove this header !!!                              !
+! ================================================================================================== !

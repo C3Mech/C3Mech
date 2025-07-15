@@ -1,9 +1,9 @@
-# Preselection of sub-model combination
+# Precompiled of sub-modules 
 
-This directory provides four prepared subsets of sub-models, each tailored to specific ranges of fuels and conditions. 
+This directory provides four precompiled chemical kinetic models, each tailored to specific ranges of fuels and conditions. 
 
 ## 1. Complete Model
-Includes all sub-models of C3MechV4.0. Use this option if you need the full scope of available reactions and fuels.
+Includes all sub-modules of C3MechV4.0. Use this option if you need the full scope of available reactions and fuels.
 
 ## 2. C0_CYC6_HT_PAH
 Targets high-temperature oxidation of C0–C6 fuel components, including mono- and polycyclic aromatic hydrocarbons (PAHs). Suited for simulations of unstretched premixed and counterflow flames, high-temperature flow reactors, and shock tubes.
@@ -12,6 +12,6 @@ Targets high-temperature oxidation of C0–C6 fuel components, including mono- a
 It covers the oxidation chemistry of C0–C6 fuel components with PAHs and is intended for low- and high-temperature applications. This subset can be used to simulate jet-stirred reactors, flow reactors under lower-temperature conditions, and rapid compression machine (RCM) experiments.
 
 ## 4. TPRF
-This sub-model combination focuses on Toluene Primary Reference Fuel (TPRF) mixtures and includes PAH chemistry.
+This sub-module combination focuses on Toluene Primary Reference Fuel (TPRF) mixtures and includes PAH chemistry.
 
 For questions or suggestions, please open an issue or [contact us](mailto:r.langer@itv.rwth-aachen.de).
