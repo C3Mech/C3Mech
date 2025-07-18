@@ -14,7 +14,7 @@ from shutil import copyfile
 from pathlib import Path
 
 sys.path.append("..")
-write_species = importlib.import_module("PREPROCESSOR.write-modulesandspecies")
+write_species = importlib.import_module("COMPILER.compile_c3mech")
 
 from rdkit import Chem
 from rdkit.Chem import AllChem
@@ -23,8 +23,7 @@ from rdkit.Chem import rdmolops
 from rdkit.ML.Descriptors import MoleculeDescriptors
 from rdkit import RDLogger
 from rdkit.Chem import Draw
-from rdkit.Chem.Draw import DrawingOptions
-
+from rdkit.Chem.Draw.MolDrawing import DrawingOptions
 
 def print_not_found(what, dir_or_file, path):
   print(what + " " + dir_or_file + " '" + path + "' does not exist")
@@ -90,76 +89,29 @@ def make_submodelfiles_from_yaml(filename, cmd_output_directory,
     print_not_found("yaml input", "file", filename)
     quit()
   print("reading yaml file \'" + filename + "'")
-  submodels = read_yaml_input(filename)
+  submodules = read_yaml_input(filename)
 
   if (cmd_output_directory != ''):
-    if (submodels.output_directory != ''):
+    if (submodules.output_directory != ''):
       print("using output directory '" + cmd_output_directory +
             "' provided from the command line")
-    submodels.output_directory = cmd_output_directory
+    submodules.output_directory = cmd_output_directory
 
   if (cmd_species_dictionary != ''):
-    if (submodels.species_dictionary != ''):
+    if (submodules.species_dictionary != ''):
       print("using species dictionary '" + cmd_species_dictionary +
             "' provided from the command line")
-    submodels.species_dictionary = cmd_species_dictionary
+    submodules.species_dictionary = cmd_species_dictionary
 
-  if (not submodels.check()):
-    print("error: invalid input")
+  if (not submodules.check()):
+    print("error: invalid input from input file '" + filename + "'")
     quit()
 
-  return submodels
+  return submodules
 
 
 def print_success():
   print("Success!\n")
-
-
-def parse_composition(composition, elements):
-  cur_compo = {}
-  count_nothing = 0
-  for i in range(4):
-    c = i * 5
-    if re.match("[\\s0]+", composition[c:c + 5]):
-      count_nothing += 1
-    elif composition[c + 1] != ' ':
-      if composition[c:c + 2] in elements:
-        n = re.match("[a-zA-Z]+\\s*(\\d+)", composition[c:c + 5])
-        if not n:
-          print("ERROR: in ", composition[c:])
-          quit()
-        if composition[c:c + 2] in cur_compo:
-          print("ERROR: element", composition[c:c + 2],
-                "cannot be specified twice")
-          quit()
-        cur_compo[composition[c:c + 2]] = int(n.group(1))
-      else:
-        print("current characters: '" + composition[c:c + 5] + "'")
-        print("composition: '" + composition + "'")
-        raise Exception("ERROR: unknown element '" + composition[c:c + 2] +
-                        "'")
-        quit()
-    else:
-      if composition[c:c + 1] in elements:
-        n = re.match("[a-zA-Z]+\\s*(\\d+)", composition[c:c + 5])
-        if not n:
-          print("ERROR: in ", composition[c:])
-          quit()
-        if composition[c:c + 1] in cur_compo:
-          print("ERROR: element", composition[c:c + 1],
-                "cannot be specified twice")
-        cur_compo[composition[c:c + 1]] = int(n.group(1))
-      else:
-        print("current characters: '" + composition[c:c + 5] + "'")
-        print("composition: '" + composition + "'")
-        raise Exception("ERROR: unknown element '" + composition[c:c + 1] +
-                        "'")
-        quit()
-  if (count_nothing == 4):
-    print("composition: '" + composition + "'")
-    print("ERROR: empty composition")
-    quit()
-  return cur_compo
 
 
 def get_sum_formula(composition):
@@ -172,7 +124,7 @@ def get_sum_formula(composition):
   if not len(composition) == 20:
     print("composition:", composition)
     raise Exception("ERROR: the composition string has the wrong length")
-  cur_compo = parse_composition(composition, elements)
+  cur_compo = write_species.parse_composition(composition, elements)
   sum_formula = ""
   for elem in elements:
     if (elem in cur_compo):
@@ -209,7 +161,7 @@ def print_python_elements(name, composition):
     print("composition:", composition)
     raise Exception("ERROR: the composition string has the wrong length")
   elements = {'C': 1, 'H': 1, 'O': 1, 'N': 1, 'HE': 1, 'AR': 1}
-  cur_compo = parse_composition(composition, elements)
+  cur_compo = write_species.parse_composition(composition, elements)
   py_info = "\"" + name + "\" : " + "[[], {"
   for elem in elements:
     if (elem in cur_compo):
@@ -1980,7 +1932,7 @@ def set_RDKit_drawing_option():
   DrawingOptions.atomLabelFontSize = 75
   DrawingOptions.dotsPerAngstrom = 100
   DrawingOptions.bondLineWidth = 3.0
-
+  return
 
 def get_tex_begin_and_end(title, authors, sha, tex_opts):
   species_dict_begin = [
@@ -2147,7 +2099,7 @@ if __name__ == "__main__":
   RDLogger.DisableLog('rdApp.*')
 
   preprocessor = os.path.join("..", "PREPROCESSOR")
-  submechanisms = os.path.join("..", "SUBMECHANISMS")
+  submechanisms = os.path.join("..", "SUBMODULES")
   parser = argparse.ArgumentParser(
       description='Generates figures and latex inputs')
   parser.add_argument(
