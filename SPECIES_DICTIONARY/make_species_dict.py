@@ -115,53 +115,6 @@ def print_success():
   print("Success!\n")
 
 
-def parse_composition(composition, elements):
-  cur_compo = {}
-  count_nothing = 0
-  for i in range(4):
-    c = i * 5
-    if re.match("[\\s0]+", composition[c:c + 5]):
-      count_nothing += 1
-    elif composition[c + 1] != ' ':
-      if composition[c:c + 2] in elements:
-        n = re.match("[a-zA-Z]+\\s*(\\d+)", composition[c:c + 5])
-        if not n:
-          print("ERROR: in ", composition[c:])
-          quit()
-        if composition[c:c + 2] in cur_compo:
-          print("ERROR: element", composition[c:c + 2],
-                "cannot be specified twice")
-          quit()
-        cur_compo[composition[c:c + 2]] = int(n.group(1))
-      else:
-        print("current characters: '" + composition[c:c + 5] + "'")
-        print("composition: '" + composition + "'")
-        raise Exception("ERROR: unknown element '" + composition[c:c + 2] +
-                        "'")
-        quit()
-    else:
-      if composition[c:c + 1] in elements:
-        n = re.match("[a-zA-Z]+\\s*(\\d+)", composition[c:c + 5])
-        if not n:
-          print("ERROR: in ", composition[c:])
-          quit()
-        if composition[c:c + 1] in cur_compo:
-          print("ERROR: element", composition[c:c + 1],
-                "cannot be specified twice")
-        cur_compo[composition[c:c + 1]] = int(n.group(1))
-      else:
-        print("current characters: '" + composition[c:c + 5] + "'")
-        print("composition: '" + composition + "'")
-        raise Exception("ERROR: unknown element '" + composition[c:c + 1] +
-                        "'")
-        quit()
-  if (count_nothing == 4):
-    print("composition: '" + composition + "'")
-    print("ERROR: empty composition")
-    quit()
-  return cur_compo
-
-
 def get_sum_formula(composition):
   #
   # This is used for a sanitity check for the provided InChI's
@@ -172,7 +125,7 @@ def get_sum_formula(composition):
   if not len(composition) == 20:
     print("composition:", composition)
     raise Exception("ERROR: the composition string has the wrong length")
-  cur_compo = parse_composition(composition, elements)
+  cur_compo = write_species.parse_composition(composition, elements)
   sum_formula = ""
   for elem in elements:
     if (elem in cur_compo):
@@ -209,7 +162,7 @@ def print_python_elements(name, composition):
     print("composition:", composition)
     raise Exception("ERROR: the composition string has the wrong length")
   elements = {'C': 1, 'H': 1, 'O': 1, 'N': 1, 'HE': 1, 'AR': 1}
-  cur_compo = parse_composition(composition, elements)
+  cur_compo = write_species.parse_composition(composition, elements)
   py_info = "\"" + name + "\" : " + "[[], {"
   for elem in elements:
     if (elem in cur_compo):

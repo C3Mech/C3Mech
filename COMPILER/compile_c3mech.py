@@ -15,7 +15,9 @@ DIR = os.path.dirname(os.path.abspath(__file__))
 HEADER = "C3MechV4.0_header.txt"
 YAML = "submodules.yaml"
 OUTPUT = "output"
-
+PRUNE = True
+elements = {'C': 1, 'H': 1, 'F': 1, 'N': 1, 'O': 1, 'HE': 1, 'AR': 1}
+pruned_comment = "! AUTOMATIC PRUNING ! "
 
 def make_species_list(directory, files_list):
   # start reading from first "kinetic_module" you find
@@ -81,7 +83,56 @@ def make_species_list(directory, files_list):
   return species_list
 
 
-def write_species_list(species_list, filename):
+
+
+def parse_composition(composition, elements):
+  cur_compo = {}
+  count_nothing = 0
+  for i in range(4):
+    c = i * 5
+    if re.match("[\\s0]+", composition[c:c + 5]):
+      count_nothing += 1
+    elif composition[c + 1] != ' ':
+      if composition[c:c + 2] in elements:
+        n = re.match("[a-zA-Z]+\\s*(\\d+)", composition[c:c + 5])
+        if not n:
+          print("ERROR: in ", composition[c:])
+          quit()
+        if composition[c:c + 2] in cur_compo:
+          print("ERROR: element", composition[c:c + 2],
+                "cannot be specified twice")
+          quit()
+        cur_compo[composition[c:c + 2]] = int(n.group(1))
+      else:
+        print("current characters: '" + composition[c:c + 5] + "'")
+        print("composition: '" + composition + "'")
+        raise Exception("ERROR: unknown element '" + composition[c:c + 2] +
+                        "'")
+        quit()
+    else:
+      if composition[c:c + 1] in elements:
+        n = re.match("[a-zA-Z]+\\s*(\\d+)", composition[c:c + 5])
+        if not n:
+          print("ERROR: in ", composition[c:])
+          quit()
+        if composition[c:c + 1] in cur_compo:
+          print("ERROR: element", composition[c:c + 1],
+                "cannot be specified twice")
+        cur_compo[composition[c:c + 1]] = int(n.group(1))
+      else:
+        print("current characters: '" + composition[c:c + 5] + "'")
+        print("composition: '" + composition + "'")
+        raise Exception("ERROR: unknown element '" + composition[c:c + 1] +
+                        "'")
+        quit()
+  if (count_nothing == 4):
+    print("composition: '" + composition + "'")
+    print("ERROR: empty composition")
+    quit()
+  return cur_compo
+
+
+def write_species_list(species_list, species_pruned, filename):
   # write spc str
   commentstr = '\n!+++++++++++++++++++++ '
   speciesallstr = '\n!\SPECIES_MODULE: ALL '
@@ -90,11 +141,23 @@ def write_species_list(species_list, filename):
   count = 0
   spcsperline = 3
   for spc in species_list:
+    if spc in species_pruned:
+      continue
     count += 1
     allspcstr += spc
     allspcstr += ' ' * (30 - len(spc))
     if count % spcsperline == 0:
       allspcstr += '\n'
+
+  if len(species_pruned):
+    allspcstr += '\n' + pruned_comment
+  count = 0
+  for spc in species_pruned:
+    count += 1
+    allspcstr += spc
+    allspcstr += ' ' * (30 - len(spc))
+    if count % spcsperline == 0:
+      allspcstr += '\n' + pruned_comment
 
   total_str = commentstr + speciesallstr + commentstr + allspcstr + commentstr + speciesendstr + commentstr
   if filename:
@@ -103,11 +166,33 @@ def write_species_list(species_list, filename):
   return total_str
 
 
-def clean_therm(therm_file, therm_output, species_list, datetime):
+def process_therm(therm_file, species_list):
   therm = open(therm_file, 'r', encoding="utf-8")
   thermlines = therm.readlines()
   therm.close()
 
+  species_composition = {}
+  species_output = {}
+
+  species_dict = {s.upper(): 0 for s in species_list}
+
+  for i in range(len(thermlines)):
+    wrk_line = thermlines[i].split("!")[0]
+    wrk_line = wrk_line.rstrip()
+    if len(wrk_line) >= 80 and wrk_line[79] == '1':
+      sp_name = wrk_line[0:25].split()[0].upper()
+      if sp_name in species_dict and not species_dict[
+          sp_name] and i + 3 < len(thermlines):
+        species_composition[sp_name] = parse_composition(thermlines[i][24:44], elements)
+        species_dict[sp_name] = 1
+        species_output[sp_name] = [l for l in thermlines[i:i+4]]
+  for s, v in species_dict.items():
+    if v == 0:
+      print('{0} : thermochemistry data not found...'.format(s))
+
+  return species_composition, species_output
+
+def clean_therm(therm_output, species_list, species_pruned, species_output, datetime):
   print("writing '" + therm_output + "'")
   with open(therm_output, 'w') as thermfile:
 
@@ -117,29 +202,20 @@ def clean_therm(therm_file, therm_output, species_list, datetime):
     thermfile.write('THERMO ALL\n')
     thermfile.write('300.   1000.   5000.\n')
 
-    species_dict = {s.upper(): 0 for s in species_list}
+    for s in species_list:
+      addition = ""
+      if s in species_pruned:
+        addition = pruned_comment
 
-    for i in range(len(thermlines)):
-      wrk_line = thermlines[i].split("!")[0]
-      wrk_line = wrk_line.rstrip()
-      if len(wrk_line) >= 80 and wrk_line[79] == '1':
-        sp_name = wrk_line[0:25].split()[0].upper()
-        if sp_name in species_dict and not species_dict[
-            sp_name] and i + 3 < len(thermlines):
-          thermfile.write(thermlines[i])
-          thermfile.write(thermlines[i + 1])
-          thermfile.write(thermlines[i + 2])
-          thermfile.write(thermlines[i + 3])
-          species_dict[sp_name] = 1
-
-    for s, v in species_dict.items():
-      if v == 0:
-        print('{0} : thermochemistry data not found...'.format(s))
+      thermfile.write(addition + species_output[s][0])
+      thermfile.write(addition + species_output[s][1])
+      thermfile.write(addition + species_output[s][2])
+      thermfile.write(addition + species_output[s][3])
 
     thermfile.write('END\n')
 
 
-def clean_tran(tran_file, tran_output, species_list, datetime):
+def clean_tran(tran_file, tran_output, species_list, species_pruned, datetime):
   tran = open(tran_file, 'r', encoding="utf-8")
   tranlines = tran.readlines()
   tran.close()
@@ -167,7 +243,10 @@ def clean_tran(tran_file, tran_output, species_list, datetime):
                       float(tran_component[4]), float(tran_component[5]),
                       float(tran_component[6]), ' '.join(tran_component[7:])))
         else:
-          tranfile.write(
+          addition = ""
+          if sp_name in species_pruned:
+            addition = pruned_comment
+          tranfile.write(addition +
               '{0:18}    {1}    {2:8.2f}    {3:6.2f}    {4:6.2f}    {5:6.2f}    {6:6.2f}\n'
               .format(tran_component[0], tran_component[1],
                       float(tran_component[2]), float(tran_component[3]),
@@ -270,13 +349,9 @@ def get_absolute_path(relative_path):
   return absolute_path
 
 
-def insert_species_list(species_list, species_dict, file_path, new_lines):
+def insert_species_list(species_list, file_path, new_lines):
   with open(file_path, 'r') as file:
     lines = file.readlines()
-
-  normalized_reactions, normalized_reactions_check = {}, {}
-  n_reaction, cantera_count, normalized_reactions, normalized_reactions_check, species_dict = count_reactions(
-      lines, species_dict, normalized_reactions, normalized_reactions_check)
 
   species_found = False
   end_found = False
@@ -294,7 +369,7 @@ def insert_species_list(species_list, species_dict, file_path, new_lines):
         end_found = True
         new_lines.append(species_list + "\n")  # Insert species_list before END
         new_lines.append(line)  # Copy the END line
-        continue
+        break
 
       # If we're in between SPECIES and END, skip these lines (to be replaced)
       continue
@@ -302,7 +377,7 @@ def insert_species_list(species_list, species_dict, file_path, new_lines):
     # If we haven't found SPECIES or after END, copy other lines as is
     new_lines.append(line)
 
-  return new_lines, n_reaction, cantera_count, normalized_reactions, normalized_reactions_check, species_dict
+  return new_lines
 
 
 def remove_trailing_numbers(line):
@@ -374,13 +449,20 @@ def convert_to_float_or_int(value):
 
 class ChemicalReaction:
 
-  def __init__(self, reaction_string, species_dict):
+  def __init__(self, reaction_string, reaction_string_orig, species_dict):
     self.species_dict = species_dict
     self.reaction_string = reaction_string
+    self.reaction_string_orig = reaction_string_orig
+    self.empty_chemkin = False
+    self.reaction_intro = []
+    self.reaction_string_aux = []
     self.reaction_definition = ""
     self.inverted = False
     self.reactants = []
     self.products = []
+    # A+Ar=B+Ar adds an explicit dependence on Ar
+    self.explicit_dependence = set()
+    self.tb_efficiencies = {}
     self.reaction_type = ""
 
     # Extract information from the provided reaction string
@@ -388,16 +470,53 @@ class ChemicalReaction:
 
   def __copy__(self):
     # Create a new ChemicalReaction object with copied attributes
-    new_instance = ChemicalReaction(self.reaction_string,
-                                    copy.copy(self.species_dict))
+    new_instance = ChemicalReaction(self.reaction_string, 
+                                    self.reaction_string_orig, 
+                                    self.species_dict)
 
     # Copy other attributes explicitly
     new_instance.inverted = self.inverted
     new_instance.reactants = copy.deepcopy(self.reactants)
     new_instance.products = copy.deepcopy(self.products)
-    new_instance.reaction_type = self.reaction_type
+    new_instance.reaction_type = copy.deepcopy(self.reaction_type)
+    new_instance.reaction_string_orig = copy.deepcopy(self.reaction_string_orig)
+    new_instance.reaction_string_aux = copy.deepcopy(self.reaction_string_aux)
+    new_instance.reaction_intro = copy.deepcopy(self.reaction_intro)
+    new_instance.explicit_dependence = copy.deepcopy(self.explicit_dependence)
+    new_instance.empty_chemkin = self.empty_chemkin
 
     return new_instance
+
+  def add_reaction_info(self, line):
+    self.reaction_string_aux.append(line)
+
+  def add_intro(self, line):
+    self.reaction_intro.append(line)
+
+  def with_rev_keyword(self):
+    CHEMKIN_text = self.reaction_intro + [self.reaction_string_orig] + self.reaction_string_aux
+    has_rev = False
+    rev_match = re.compile(r'REV\s*/([-+\d\.eE\s]+)/', re.IGNORECASE)
+    for test_line in CHEMKIN_text:
+      if rev_match.match(test_line):
+        has_rev = True
+        break
+    return has_rev
+
+  def get_orignal_CHEMKIN_text(self):
+    CHEMKIN_text = self.reaction_intro + [self.reaction_string_orig] + self.reaction_string_aux
+    #has_rev = self.with_rev_keyword()
+
+    #if has_rev:
+    #  print("REV reaction:")
+    #  for test_line in CHEMKIN_text:
+    #    print(test_line.strip())
+    if self.empty_chemkin:
+      #print("return nothing!!")
+      return [""]
+    #elif has_rev:
+    #  print("return full model")
+    return CHEMKIN_text
 
   def make_irreversible(self):
     self.reaction_type = 'irreversible'
@@ -456,7 +575,40 @@ class ChemicalReaction:
 
     return species
 
+  def check_elem_conservation(self, species_compo_dict, tol=1.0e-3):
+    def compute_elem(reac_prod):
+      atoms = {}
+      for nu, spc in reac_prod:
+        #print(species_compo_dict[spc])
+        for elem, count in species_compo_dict[spc].items():
+          if elem not in atoms and count != 0.0:
+            atoms[elem] = 0.0
+          if count != 0.0:
+            atoms[elem] += count*nu
+      return atoms
+
+    # Compute elemental compositions for reactants and products separately
+    reac_atoms = compute_elem(self.reactants)
+    prod_atoms = compute_elem(self.products)
+
+    # Gather all elements appearing in either reactants or products
+    all_elems = set(reac_atoms.keys()).union(prod_atoms.keys())
+    
+    # Compare element counts within the tolerance
+    for elem in all_elems:
+        reac_val = reac_atoms.get(elem, 0.0)
+        prod_val = prod_atoms.get(elem, 0.0)
+        if abs(reac_val - prod_val) > tol:
+            # If difference is too large, print details and return True
+            print(self.pretty() + ":")
+            # Print sorted dictionaries by element name
+            print("Reactants:", dict(sorted(reac_atoms.items())))
+            print("Products:", dict(sorted(prod_atoms.items())))
+            return True
+    return False
+
   def extract_reaction(self, line):
+
     # Remove special species M
     line = remove_trailing_numbers(line.strip())
     self.reaction_definition = line
@@ -487,12 +639,23 @@ class ChemicalReaction:
           substract = min(nu_r, nu_p)
           self.reactants[i_r][0] -= substract
           self.products[i_p][0] -= substract
-    self.reactants = [
-        reactant for reactant in self.reactants if reactant[0] > 1.0e-10
-    ]
-    self.products = [
-        product for product in self.products if product[0] > 1.0e-10
-    ]
+    
+    pruned_reactants = []
+    for reactant in self.reactants:
+      if reactant[0] > 1.0e-10:
+        pruned_reactants.append(reactant)
+      else:
+        self.explicit_dependence.add(reactant[1])
+    self.reactants = pruned_reactants
+
+    pruned_products = []
+    for product in self.products:
+      if product[0] > 1.0e-10:
+        pruned_products.append(product)
+      else:
+        self.explicit_dependence.add(product[1])
+    self.products = pruned_products
+
 
   def canonical_representation(self):
     """Generates a canonical representation of a chemical reaction."""
@@ -518,9 +681,66 @@ class ChemicalReaction:
         return f"{reactant_str}=>{product_str}", f"{reactant_str}?{product_str}"
       else:
         return f"{reactant_str}=>{product_str}", f"{product_str}?{reactant_str}"
+    else:
+      raise Exception("reaction_type must be 'reversible' or 'irreversible'")
 
+  def set_consumed(self, consumed, species2reaction, increment):
+    affected = set()
+    for nu, s in self.reactants:
+      if s not in consumed:
+        consumed[s] = 0
+      consumed[s] += increment
+      affected.add(s)
+      #if increment < 0:
+      #  print("deactivating consumption:", s, consumed[s])
+      if increment > 0:
+        if s not in species2reaction:
+          species2reaction[s] = set()
+        species2reaction[s].add(self.canonical_representation()[0])
+    if self.reaction_type == 'reversible':
+      for nu, s in self.products:
+        if s not in consumed:
+          consumed[s] = 0
+        consumed[s] += increment
+        affected.add(s)
+        #if increment < 0:
+        #  print("deactivating consumption:", s, consumed[s])
+    if increment > 0:
+      for nu, s in self.products:
+        if s not in species2reaction:
+          species2reaction[s] = set()
+        species2reaction[s].add(self.canonical_representation()[0])
+    return affected
 
-def _process_reaction_line(line, species_dict, normalized_reactions,
+  def set_produced(self, produced, species2reaction, increment):
+    affected = set()
+    for nu, s in self.products:
+      if s not in produced:
+        produced[s] = 0
+      produced[s] += increment
+      affected.add(s)
+      #if increment < 0:
+      #  print("deactivating production:", s, produced[s])
+      if increment > 0:
+        if s not in species2reaction:
+          species2reaction[s] = set()
+        species2reaction[s].add(self.canonical_representation()[0])
+    if self.reaction_type == 'reversible':
+      for nu, s in self.reactants:
+        if s not in produced:
+          produced[s] = 0
+        produced[s] += increment
+        affected.add(s)
+        #if increment < 0:
+        #  print("deactivating production:", s, produced[s])
+    if increment > 0:
+      for nu, s in self.products:
+        if s not in species2reaction:
+          species2reaction[s] = set()
+        species2reaction[s].add(self.canonical_representation()[0])
+    return affected
+
+def _process_reaction_line(line, line_orig, species_dict, normalized_reactions,
                            normalized_reactions_check, total_species,
                            total_reactions):
   """
@@ -529,7 +749,7 @@ def _process_reaction_line(line, species_dict, normalized_reactions,
     Extracts the reaction, updates species and reaction dictionaries.
     """
 
-  reaction = ChemicalReaction(line, species_dict)
+  reaction = ChemicalReaction(line, line_orig, species_dict)
 
   n_spec = 0
   # Insert species from reactants/products into species_dict and total_species
@@ -547,6 +767,7 @@ def _process_reaction_line(line, species_dict, normalized_reactions,
   if canon_str not in normalized_reactions:
     normalized_reactions[canon_str] = []
   normalized_reactions[canon_str].append(reaction)
+
   total_reactions.add(canon_str)
 
   # Update normalized_reactions_check
@@ -585,6 +806,8 @@ def _handle_rev_keyword(line, match, species_dict, normalized_reactions,
 
   # Grab the last reaction from that list
   old_reaction = copy.copy(old_reaction_list[-1])
+  #print("stop")
+  #quit()
   if old_reaction.reaction_type == "irreversible":
     raise Exception(
         f"REV keyword incompatible with irreversible reaction in '{line}'")
@@ -620,13 +843,14 @@ def _handle_rev_keyword(line, match, species_dict, normalized_reactions,
     cantera_count += 1
     new_reaction = copy.copy(old_reaction)
     new_reaction.invert()
+    new_reaction.empty_chemkin = True
     canon_new, _ = new_reaction.canonical_representation()
     if canon_new not in normalized_reactions:
       normalized_reactions[canon_new] = []
     normalized_reactions[canon_new].append(new_reaction)
     total_reactions.add(canon_new)
 
-  return cantera_count
+  return cantera_count, canon_old
 
 
 def _handle_unrecognized_line(line):
@@ -646,32 +870,32 @@ def _process_special_keywords(line, patterns, species_dict,
   # Try each important pattern
   match_rev = patterns['rev'].match(line)
   if match_rev:
-    cantera_count = _handle_rev_keyword(line, match_rev, species_dict,
+    cantera_count, last_canon_str = _handle_rev_keyword(line, match_rev, species_dict,
                                         normalized_reactions,
                                         normalized_reactions_check,
                                         total_reactions, last_canon_str,
                                         cantera_count)
-    return cantera_count
+    return cantera_count, last_canon_str
 
   # If not REV, check the others in turn
   for key in ['low', 'high', 'troe', 'plog', 'tcheb', 'pcheb', 'cheb']:
     if patterns[key].match(line):
       # You might do special handling for each one if needed
-      return cantera_count
+      return cantera_count, last_canon_str
 
   # Maybe parse the unknown pattern.
   match_tb = patterns['tb'].findall(line)
   if match_tb:
-    err = _handle_tb_pattern(match_tb, species_dict)
+    err = _handle_tb_pattern(match_tb, species_dict, normalized_reactions, last_canon_str)
     if err:
       raise Exception(f"Error in TB pattern in '{line}'")
-    return cantera_count
+    return cantera_count, last_canon_str
 
   # If no recognized patterns matched, we handle as an unknown line.
   _handle_unrecognized_line(line)
 
 
-def _handle_tb_pattern(matches_tb, species_dict):
+def _handle_tb_pattern(matches_tb, species_dict, normalized_reactions, last_canon_str):
   """
     Handles the third body pattern lines like "N2/ 1.0/"
     """
@@ -685,9 +909,12 @@ def _handle_tb_pattern(matches_tb, species_dict):
       continue
 
     if species in species_dict:
-      # If you want to record the third body efficiency you could
-      # do this here
-      pass
+      if species in normalized_reactions[last_canon_str][-1].tb_efficiencies:
+        old_val = normalized_reactions[last_canon_str][-1].tb_efficiencies[s]
+        print(f"Duplicate third body efficiencies for {species} ({value_str} and {old_val})")
+        error = True
+        continue
+      normalized_reactions[last_canon_str][-1].tb_efficiencies[species] = float_val
     else:
       print(f"Unknown keyword or species in TB pattern: {species}")
       error = True
@@ -697,16 +924,6 @@ def _handle_tb_pattern(matches_tb, species_dict):
 def count_reactions(lines, species_dict, normalized_reactions,
                     normalized_reactions_check):
   """
-  Reads lines of input, identifies new reactions (and some keywords to detect 
-  potential errors), updates data structures accordingly, and returns the number 
-  of new reactions, the reaction count used by Cantera systems, updated dicts, etc.
-
-  :param lines:                  List of input lines (strings).
-  :param species_dict:           Dictionary of species, with species name as the key; 0 or 1 as the value.
-  :param normalized_reactions:   Dict mapping a canonical reaction string to a list of ChemicalReaction objects.
-  :param normalized_reactions_check: Dict mapping a check-string to a tuple (canonical_str, ChemicalReaction).
-  :return: A 5-tuple:
-           (num_new_reactions, cantera_count, normalized_reactions, normalized_reactions_check, species_dict)
   """
 
   # 1) Preprocess and store only the main content (strip comments, uppercase).
@@ -742,45 +959,86 @@ def count_reactions(lines, species_dict, normalized_reactions,
   element_mode = False
   species_mode = False
   reaction_mode = False
+  reaction_only = True
   last_canon_str = ""
-  for l in cleaned_lines:
 
-    if l == "":
+  idx_line = -1
+  intro = []
+  for l in cleaned_lines:
+    idx_line += 1
+    #print(lines[idx_line])
+
+    if l not in lines[idx_line].strip().upper():
+      raise Exception("l = '" + l + "' line = '" + lines[idx_line].strip().upper()  + "'")
+
+    if patterns['elem'].match(l):
+      element_mode = True
+      reaction_only = False
       continue
+    elif patterns['spec'].match(l):
+      species_mode = True
+      reaction_only = False
+      continue
+    elif patterns['reac'].match(l):
+      reaction_mode = True
+      continue
+    elif patterns['end'].match(l):
+      element_mode = False
+      reaction_mode = False
+      species_mode = False
+      continue
+
+    if (reaction_mode or reaction_only) and not "=" in l and last_canon_str == "":
+      intro.append(lines[idx_line])
+
+    if not "=" in l and last_canon_str != "":
+      if last_canon_str not in normalized_reactions:
+        print(l)
+      #print("")
+      #print(idx_line)
+      #print("appending: '" + lines[idx_line].strip() + "' to " + last_canon_str)
+      #if n_new_species == 1 and len(normalized_reactions[last_canon_str]) == 1:
+      normalized_reactions[last_canon_str][-1].add_reaction_info(lines[idx_line])
 
     if "=" in l:
       cantera_count += 1
 
       last_canon_str, n_spec = _process_reaction_line(
-          l, species_dict, normalized_reactions, normalized_reactions_check,
+          l, lines[idx_line], species_dict, normalized_reactions, normalized_reactions_check,
           total_species, total_reactions)
+
+      if n_new_species == 0 and len(normalized_reactions[last_canon_str]) == 1:
+        for intro_line in intro:
+          normalized_reactions[last_canon_str][-1].add_intro(intro_line)
+        intro_line = []
+
       n_new_species += n_spec
     elif patterns['unknown'].match(l):
       # Step through relevant matches
-      cantera_count = _process_special_keywords(l, patterns, species_dict,
+      cantera_count, last_canon_str = _process_special_keywords(l, patterns, species_dict,
                                                 normalized_reactions,
                                                 normalized_reactions_check,
                                                 total_reactions,
                                                 last_canon_str, cantera_count)
     elif patterns['dup'].match(l):
       pass
-    elif patterns['elem'].match(l):
-      element_mode = True
-    elif patterns['spec'].match(l):
-      species_mode = True
-    elif patterns['reac'].match(l):
-      reaction_mode = True
-    elif patterns['end'].match(l):
-      element_mode = False
-      reaction_mode = False
-      species_mode = False
     elif element_mode:
       pass
     elif species_mode:
       pass
     else:
+      if l == "":
+        continue
       # If no recognized patterns matched, we handle as an unknown line.
-      _handle_unrecognized_line(line)
+      _handle_unrecognized_line(l)
+
+
+  # for r in normalized_reactions:
+  #   for rr in normalized_reactions[r]:
+  #     print("\n\n\n")
+  #     print(rr.pretty() + ":")
+  #     for p_line in rr.get_orignal_CHEMKIN_text():
+  #       print(p_line.strip())
 
   print("    new species in sub-module:", n_new_species)
   print("  total species in sub-module:", len(total_species))
@@ -824,11 +1082,46 @@ def insert_boiler_plate(filetype, submodules_files, datetime):
   insert_submodule_list(lines, submodules_files)
   return lines
 
-
-def merge_models(species_list, submodules_files, output_filename, datetime):
-  species_section_str = write_species_list(species_list, '')
-
+def print_kinetics_file(species_list, species_pruned, submodules_files, output_filename, 
+                        datetime, reactions, reactions_pruned):
+  species_section_str = write_species_list(species_list, species_pruned, '')
   new_lines = insert_boiler_plate("Kinetics", submodules_files, datetime)
+  n_species = len(species_list)
+  # no pruned species (my be empty)
+  n_species -= len(species_pruned)
+  new_lines.append("! number of species: " + str(n_species) + "\n")
+  new_lines.append("! number of species: " + str(n_species) + "\n")
+  insert_reaction_count = len(new_lines)
+
+  new_lines = insert_species_list(species_section_str, submodules_files.core, new_lines)
+
+  new_lines.append("REACTIONS\n")
+  n_reaction = len(reactions)
+  n_reaction -= len(reactions_pruned)
+
+  #this does not account for pruning
+  # new_lines.insert(
+  #    insert_reaction_count + 1, "! number of reactions: " +
+  #    str(cantera_count) + " (number of reactions given by cantera)\n\n")
+
+
+  for r in reactions:
+    for rr in reactions[r]:
+      #print("\n\n\n")
+      #print(rr.pretty() + ":")
+      for p_line in rr.get_orignal_CHEMKIN_text():
+        if r in reactions_pruned and p_line != "":
+          new_lines.append(pruned_comment + p_line)
+        else:
+          new_lines.append(p_line)
+
+  new_lines.append("END\n\n")
+  
+  print("writing '" + output_filename + "'")
+  with open(output_filename, 'w', encoding="utf-8") as file:
+    file.writelines(new_lines)
+
+def merge_models(species_list, submodules_files):
 
   species_dict = {s: 0 for s in species_list}
   for s in species_dict:
@@ -840,12 +1133,14 @@ def merge_models(species_list, submodules_files, output_filename, datetime):
       raise Exception("species name '" + s +
                       "' does not match the species pattern")
 
-  new_lines.append("! number of species: " + str(len(species_list)) + "\n")
-  insert_reaction_count = len(new_lines)
 
   print("processing: '" + os.path.basename(submodules_files.core) + "'")
-  new_lines, n_reaction, cantera_count, normalized_reactions, normalized_reactions_check, species_dict = insert_species_list(
-      species_section_str, species_dict, submodules_files.core, new_lines)
+
+  with open(submodules_files.core, 'r') as file:
+    lines = file.readlines()
+  normalized_reactions, normalized_reactions_check = {}, {}
+  n_reaction, cantera_count, normalized_reactions, normalized_reactions_check, species_dict = count_reactions(
+      lines, species_dict, normalized_reactions, normalized_reactions_check)
 
   #base_names = sorted([os.path.basename(file_path) for file_path in submodules_files.submodules])
   aux_path = {
@@ -862,7 +1157,6 @@ def merge_models(species_list, submodules_files, output_filename, datetime):
           normalized_reactions_check)
       n_reaction += n_reaction_i
       cantera_count += cantera_count_i
-      new_lines += lines
 
   print_reactions = False
   if print_reactions:
@@ -880,25 +1174,88 @@ def merge_models(species_list, submodules_files, output_filename, datetime):
     for s in insert_species:
       print(s)
 
-  new_lines.insert(
-      insert_reaction_count,
-      "! number of reactions: " + str(len(normalized_reactions)) +
-      " (defined by the number of unique combinations of reactants and products, independent of rate coefficient details and the specified forward direction)\n"
-  )
-  new_lines.insert(
-      insert_reaction_count + 1, "! number of reactions: " +
-      str(cantera_count) + " (number of reactions given by cantera)\n\n")
-
   print("merged model contains " + str(len(species_list)) + " species and " +
         str(cantera_count) + " (cantera count) / " +
         str(len(normalized_reactions)) + " (normal count) reactions")
 
-  new_lines.append("END\n\n")
+  return normalized_reactions
 
-  print("writing '" + output_filename + "'")
-  with open(output_filename, 'w', encoding="utf-8") as file:
-    file.writelines(new_lines)
+def get_cons_prod_counter(reactions, increment):
+    consumed = {}
+    produced = {}
+    species2reaction = {}
+    for r in reactions:
+      for rr in reactions[r]:
+        rr.set_consumed(consumed, species2reaction, increment)
+        rr.set_produced(produced, species2reaction, increment)
+    return consumed, produced, species2reaction
 
+def prune_model(reactions):
+  never_consumed = set()
+  never_produced = set()
+  count = 1
+  consumed, produced, species2reaction = get_cons_prod_counter(reactions, 1)
+  removed_reaction = set()
+  active_species = set([s for s in species2reaction])
+  if PRUNE:
+    print("start pruning...")
+  while PRUNE:
+    print("round " + str(count) + " with " + str(len(active_species)) + " species")
+    #if len(active_species) < 100:
+    #  print("active_species:", active_species)
+    new_never_consumed = set()
+    new_never_produced = set()
+
+    for s in active_species:
+      if s not in consumed and s in produced and s not in never_consumed:
+        new_never_consumed.add(s)
+      if s not in produced and s in consumed and s not in never_produced:
+        new_never_produced.add(s)
+
+    remove_species = new_never_consumed.union(new_never_produced)
+    #print("remove_species:", remove_species)
+    active_species = set()
+    for s in remove_species:
+      for r in species2reaction[s]:
+        if r in removed_reaction:
+          continue
+        removed_reaction.add(r)
+        for rr in reactions[r]:
+
+          affected = rr.set_consumed(consumed, species2reaction, -1)
+          for s_remove in affected:
+            if abs(consumed[s_remove]) < 1.0e-5:
+              del consumed[s_remove]
+              if s_remove not in remove_species:
+                #print("new removal (previously consumed):", s_remove)
+                active_species.add(s_remove)
+
+          affected = rr.set_produced(produced, species2reaction, -1)
+          for s_remove in affected:
+            if abs(produced[s_remove]) < 1.0e-5:
+              del produced[s_remove]
+              if s_remove not in remove_species:
+                #print("new removal (previously produced):", s_remove)
+                active_species.add(s_remove)
+          #print("removing:", rr.pretty())
+        
+    never_consumed = never_consumed.union(new_never_consumed)
+    never_produced = never_produced.union(new_never_produced)
+
+    # debug code
+    for s, v in consumed.items():
+      if v <= 0.00001:
+        raise Exception("consumed is " + str(v) + " for " + s)
+    for s, v in produced.items():
+      if v <= 0.00001:
+        raise Exception("produced is " + str(v) + " for " + s)
+    count += 1
+
+    if len(new_never_consumed) == 0 and len(new_never_produced) == 0:
+      print("identified species and reactions to prune")
+      break
+  
+  return never_consumed, never_produced, removed_reaction
 
 if __name__ == "__main__":
 
@@ -906,12 +1263,47 @@ if __name__ == "__main__":
   DATETIME = datetime.datetime.now()
   yaml_file_path = os.path.join(DIR, YAML)
   species_list, submodules_files = get_species_list_submodule(yaml_file_path)
-  print("\ngenerate output...")
-  merge_models(species_list, submodules_files,
-               os.path.join(DIR, OUTPUT, "C3Mech.CKI"), DATETIME)
+  print("\nprocess input...")
+  reactions = merge_models(species_list, submodules_files)
+
   therm_input = os.path.join(get_submodules_dir(), "SOURCE-C3Mech.THERM")
-  clean_therm(therm_input, os.path.join(DIR, OUTPUT, "C3Mech.THERM"),
-              species_list, DATETIME)
+  species_compo_dict, species_nasa_output = process_therm(therm_input, species_list)
+
+  for r in reactions:
+    for rr in reactions[r]:
+      rr.check_elem_conservation(species_compo_dict)
+
+  never_consumed, never_produced, removed_reaction = prune_model(reactions)
+  if len(never_consumed) or len(never_produced):
+    print("\n")
+  if len(never_consumed):
+    print("\n")
+    print(len(never_consumed), "species are produced but never consumed:")
+    for s in never_consumed:
+      print(s)
+  if len(never_produced):
+    print("\n")
+    print(len(never_produced), "species are consumed but never produced:")
+    for s in never_produced:
+      print(s)
+
+  count = 1
+  if len(removed_reaction):
+    print("\n")
+    print(len(removed_reaction), "pruned reactions:")
+    for r in removed_reaction:
+      for rr in reactions[r]:
+        print(f"{rr.reaction_definition}")
+        count += 1
+    print("\n")
+
+  print("\ngenerate output...")
+  species_pruned = never_consumed.union(never_produced)
+  output_filename = os.path.join(DIR, OUTPUT, "C3Mech.CKI") 
+  print_kinetics_file(species_list, species_pruned, 
+                      submodules_files, output_filename, DATETIME, 
+                      reactions, removed_reaction)
+  clean_therm(os.path.join(DIR, OUTPUT, "C3Mech.THERM"), species_list, species_pruned, species_nasa_output, DATETIME)
   trans_input = os.path.join(get_submodules_dir(), "SOURCE-C3Mech.TRAN")
   clean_tran(trans_input, os.path.join(DIR, OUTPUT, "C3Mech.TRAN"),
-             species_list, DATETIME)
+             species_list, species_pruned, DATETIME)
