@@ -14,7 +14,7 @@ from shutil import copyfile
 from pathlib import Path
 
 sys.path.append("..")
-write_species = importlib.import_module("PREPROCESSOR.compile_c3mech")
+write_species = importlib.import_module("COMPILER.compile_c3mech")
 
 from rdkit import Chem
 from rdkit.Chem import AllChem
@@ -23,8 +23,7 @@ from rdkit.Chem import rdmolops
 from rdkit.ML.Descriptors import MoleculeDescriptors
 from rdkit import RDLogger
 from rdkit.Chem import Draw
-from rdkit.Chem.Draw import DrawingOptions
-
+from rdkit.Chem.Draw.MolDrawing import DrawingOptions
 
 def print_not_found(what, dir_or_file, path):
   print(what + " " + dir_or_file + " '" + path + "' does not exist")
@@ -90,25 +89,25 @@ def make_submodelfiles_from_yaml(filename, cmd_output_directory,
     print_not_found("yaml input", "file", filename)
     quit()
   print("reading yaml file \'" + filename + "'")
-  submodels = read_yaml_input(filename)
+  submodules = read_yaml_input(filename)
 
   if (cmd_output_directory != ''):
-    if (submodels.output_directory != ''):
+    if (submodules.output_directory != ''):
       print("using output directory '" + cmd_output_directory +
             "' provided from the command line")
-    submodels.output_directory = cmd_output_directory
+    submodules.output_directory = cmd_output_directory
 
   if (cmd_species_dictionary != ''):
-    if (submodels.species_dictionary != ''):
+    if (submodules.species_dictionary != ''):
       print("using species dictionary '" + cmd_species_dictionary +
             "' provided from the command line")
-    submodels.species_dictionary = cmd_species_dictionary
+    submodules.species_dictionary = cmd_species_dictionary
 
-  if (not submodels.check()):
-    print("error: invalid input")
+  if (not submodules.check()):
+    print("error: invalid input from input file '" + filename + "'")
     quit()
 
-  return submodels
+  return submodules
 
 
 def print_success():
@@ -1933,7 +1932,7 @@ def set_RDKit_drawing_option():
   DrawingOptions.atomLabelFontSize = 75
   DrawingOptions.dotsPerAngstrom = 100
   DrawingOptions.bondLineWidth = 3.0
-
+  return
 
 def get_tex_begin_and_end(title, authors, sha, tex_opts):
   species_dict_begin = [
@@ -2100,7 +2099,7 @@ if __name__ == "__main__":
   RDLogger.DisableLog('rdApp.*')
 
   preprocessor = os.path.join("..", "PREPROCESSOR")
-  submechanisms = os.path.join("..", "SUBMECHANISMS")
+  submechanisms = os.path.join("..", "SUBMODULES")
   parser = argparse.ArgumentParser(
       description='Generates figures and latex inputs')
   parser.add_argument(
