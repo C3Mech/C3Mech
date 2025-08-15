@@ -16,7 +16,7 @@ This directory contains sub-modules with kinetic data organized by the research 
 This directory provides a CSV file with plain species data and a PDF generated from these, which serves as an overview. The Python script `make_species_dict.py` implements the C3Mech species model and checks constraints on the data in the CSV file. It can optionally generate LaTeX code and plots of species structures, which can then be compiled into a PDF. The script can also be adapted to manage species data in other chemical kinetic models. Refer to the `README.md` for more details on the species model, the data in the CSV file, and the script's usage. 
 
 3. **[`COMPILER`](COMPILER/)**  
-This directory includes the script `compile_c3mech.py` and instructions on creating a single CHEMKIN-format mechanism from user-selected sub-models. For details on usage, refer to `README.md`.
+This directory includes the script `compile_c3mech.py` and instructions on creating CHEMKIN-format mechanisms from user-selected sub-modules. For details on usage, refer to `README.md`.
 
 4. **[`PRECOMPILED`](PRECOMPILED/)**  
 This directory contains frequently used sub-models that have already been compiled in CHEMKIN and Cantera YAML formats. They can be used directly without the additional compilation step and are provided for convenience.
