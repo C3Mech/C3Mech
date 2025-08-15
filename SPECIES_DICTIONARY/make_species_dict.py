@@ -13,7 +13,8 @@ import numpy as np
 from shutil import copyfile
 from pathlib import Path
 
-sys.path.append("..")
+DIR = os.path.dirname(os.path.abspath(__file__))
+sys.path.append(os.path.join(DIR, ".."))
 write_species = importlib.import_module("COMPILER.chemmodkit.input")
 
 from rdkit import Chem
@@ -24,6 +25,7 @@ from rdkit.ML.Descriptors import MoleculeDescriptors
 from rdkit import RDLogger
 from rdkit.Chem import Draw
 from rdkit.Chem.Draw.MolDrawing import DrawingOptions
+
 
 def print_not_found(what, dir_or_file, path):
   print(what + " " + dir_or_file + " '" + path + "' does not exist")
@@ -37,34 +39,39 @@ class SubModulesFiles(yaml.YAMLObject):
   yaml_loader = yaml.SafeLoader
   yaml_tag = u'!SubModulesFiles'
 
-  def __init__(self, files, output_directory, species_dictionary):
+  def __init__(self, files, species_dictionary, submodule_directory):
     self.files = copy.copy(files)
     if (files is None):
       self.files = []
-
-    self.output_directory = copy.copy(output_directory)
-    if (output_directory is None):
-      self.output_directory = ''
 
     self.species_dictionary = copy.copy(species_dictionary)
     if (species_dictionary is None):
       self.species_dictionary = ''
 
+    self.submodule_directory = copy.copy(submodule_directory)
+    if (submodule_directory is None):
+      self.submodule_directory = ''
+
   def check(self):
     ok = True
+
+    if (not os.path.isdir(self.submodule_directory)):
+      print_not_found("submodule", "directory", self.submodule_directory)
+      ok = False
+
+    for i in range(len(self.files)):
+      if not os.path.isabs(self.files[i]):
+        self.files[i] = os.path.join(self.submodule_directory, self.files[i])
+
     for filename in self.files:
       if (not os.path.isfile(filename)):
         print_not_found("submodule", "file", filename)
         ok = False
 
-    if (not os.path.isdir(self.output_directory)):
-      print_not_found("species dictionary output", "directory",
-                      self.output_directory)
-      ok = False
-
     if (not os.path.isfile(self.species_dictionary)):
       print_not_found("species dictionary", "file", self.species_dictionary)
       ok = False
+
     return ok
 
 
@@ -79,8 +86,8 @@ def read_yaml_input(filename):
   return yaml_input_options
 
 
-def make_submodulesfiles_from_yaml(filename, cmd_output_directory,
-                                 cmd_species_dictionary):
+def make_submodulefiles_from_yaml(filename, cmd_submodule_dir,
+                                  cmd_species_dictionary):
   """ 
       This routine returns a checked SubModulesFiles object if successful.
       Note: the routine may quit the script. 
@@ -91,17 +98,15 @@ def make_submodulesfiles_from_yaml(filename, cmd_output_directory,
   print("reading yaml file \'" + filename + "'")
   submodules = read_yaml_input(filename)
 
-  if (cmd_output_directory != ''):
-    if (submodules.output_directory != ''):
-      print("using output directory '" + cmd_output_directory +
-            "' provided from the command line")
-    submodules.output_directory = cmd_output_directory
-
   if (cmd_species_dictionary != ''):
     if (submodules.species_dictionary != ''):
       print("using species dictionary '" + cmd_species_dictionary +
             "' provided from the command line")
     submodules.species_dictionary = cmd_species_dictionary
+
+  if (cmd_submodule_dir != ''):
+    print("using sub-module directory '" + cmd_submodule_dir + "'")
+    submodules.submodule_directory = cmd_submodule_dir
 
   if (not submodules.check()):
     print("error: invalid input from input file '" + filename + "'")
@@ -827,17 +832,19 @@ class FallBack:
 class Input:
   csv_filename = ""
   yaml_filename = ""
+  submodule_dir = ""
   mech_filename = ""
   thermo_filename = ""
   style_file_dir = ""
 
-  def __init__(self, csv_filename, yaml_filename, mech_filename,
+  def __init__(self, csv_filename, yaml_filename, submodule_dir, mech_filename,
                thermo_filename, style_file_dir):
-    self.csv_filename = csv_filename
-    self.yaml_filename = yaml_filename
-    self.mech_filename = mech_filename
-    self.thermo_filename = thermo_filename
-    self.style_file_dir = style_file_dir
+    self.csv_filename = os.path.abspath(os.path.normpath(csv_filename))
+    self.yaml_filename = os.path.abspath(os.path.normpath(yaml_filename))
+    self.submodule_dir = os.path.abspath(os.path.normpath(submodule_dir))
+    self.mech_filename = os.path.abspath(os.path.normpath(mech_filename))
+    self.thermo_filename = os.path.abspath(os.path.normpath(thermo_filename))
+    self.style_file_dir = os.path.abspath(os.path.normpath(style_file_dir))
 
 
 class Output:
@@ -1934,6 +1941,7 @@ def set_RDKit_drawing_option():
   DrawingOptions.bondLineWidth = 3.0
   return
 
+
 def get_tex_begin_and_end(title, authors, sha, tex_opts):
   species_dict_begin = [
       "\\let\\mypdfximage\\pdfximage\n",
@@ -1991,11 +1999,11 @@ def write_dict(title, authors, sha, classification, tex_opts,
   tex_file.close()
 
 
-def get_species_list_submodules(yaml_filename, cmd_output_directory,
-                              cmd_species_dictionary):
-  submodules_files = make_submodulesfiles_from_yaml(yaml_filename,
-                                                cmd_output_directory,
-                                                cmd_species_dictionary)
+def get_species_list_submodules(yaml_filename, cmd_submodule_dir,
+                                cmd_species_dictionary):
+  submodules_files = make_submodulefiles_from_yaml(yaml_filename,
+                                                   cmd_submodule_dir,
+                                                   cmd_species_dictionary)
   species_list = write_species.make_species_list('', submodules_files.files)
 
   species_dict = {k.upper(): 0 for k in species_list}
@@ -2042,17 +2050,16 @@ def write_species_dict(inp,
     # construct species list from submodule(s) specified in the
     # yaml file
     species_list, submodules_files = get_species_list_submodules(
-        inp.yaml_filename, out.output_dir, inp.csv_filename)
-    output_dir = submodules_files.output_directory
+        inp.yaml_filename, inp.submodule_dir, inp.csv_filename)
     inp.csv_filename = submodules_files.species_dictionary
   else:
     species_list = get_species_list(inp.mech_filename, silent)
-    check_output_dir = Path(out.output_dir)
-    if (not check_output_dir.is_dir()):
-      print("output directory '" + out.output_dir + "' does not exist.")
-      quit()
-    output_dir = out.output_dir
 
+  output_dir = out.output_dir
+  check_output_dir = Path(output_dir)
+  if (not check_output_dir.is_dir()):
+    print("output directory '" + output_dir + "' does not exist.")
+    quit()
   print("found " + str(len(species_list)) +
         " species from the selected kinetic (sub)model(s)")
   if (not silent):
@@ -2091,7 +2098,8 @@ def write_species_dict(inp,
   ##       end_write_dict - start_write_dict)
   print_success()
 
-  print("compile species_dict.pdf with: 'cd \"" + output_dir +
+  rel_output_dir = os.path.relpath(output_dir, os.getcwd())
+  print("compile species_dict.pdf with: 'cd \"" + rel_output_dir +
         "\" && pdflatex species_dict.tex'")
 
 
@@ -2099,7 +2107,7 @@ if __name__ == "__main__":
   RDLogger.DisableLog('rdApp.*')
 
   preprocessor = os.path.join("..", "PREPROCESSOR")
-  submechanisms = os.path.join("..", "SUBMODULES")
+  submechanisms = os.path.join(DIR, "..", "SUBMODULES")
   parser = argparse.ArgumentParser(
       description='Generates figures and latex inputs')
   parser.add_argument(
@@ -2119,13 +2127,19 @@ if __name__ == "__main__":
       '--yaml',
       help=
       'yaml file listing submodules considered in the species dictionary generation',
-      default="submodules.yaml")
+      default=os.path.join(DIR, "submodules.yaml"))
+  parser.add_argument(
+      '-s',
+      '--submodule-dir',
+      help=
+      'submodule directory which will be combined with relative filepaths in the input',
+      default=submechanisms)
   parser.add_argument(
       '-o',
       '--output_dir',
       help=
       'output directory which will be used to generate the species dictionary',
-      default="")
+      default=os.path.join(DIR, "output"))
   parser.add_argument(
       '-c',
       '--csv',
@@ -2175,8 +2189,9 @@ if __name__ == "__main__":
       help="perform only checks without output generation (runs faster)")
   args = vars(parser.parse_args())
 
-  inp = Input(args['csv'], args['yaml'], args['kinetics'], args['thermo'],
-              "style_files_spec_dict")
+  inp = Input(args['csv'], args['yaml'], args['submodule_dir'],
+              args['kinetics'], args['thermo'],
+              os.path.join(DIR, "style_files_spec_dict"))
 
   check_git = Path(args['git'])
   if (not check_git.is_dir()):

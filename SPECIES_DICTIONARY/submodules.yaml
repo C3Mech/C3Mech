@@ -18,6 +18,4 @@ files:
 
   - ../SUBMODULES/LLNL/LLNL_BLOCK.CKI
 
-output_directory: ../SPECIES_DICTIONARY/output
-
 species_dictionary: ../SPECIES_DICTIONARY/species_dict.csv
