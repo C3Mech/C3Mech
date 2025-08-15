@@ -14,7 +14,7 @@ from shutil import copyfile
 from pathlib import Path
 
 sys.path.append("..")
-write_species = importlib.import_module("COMPILER.compile_c3mech")
+write_species = importlib.import_module("COMPILER.chemmodkit.input")
 
 from rdkit import Chem
 from rdkit.Chem import AllChem
