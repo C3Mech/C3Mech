@@ -839,7 +839,9 @@ class Input:
 
   def __init__(self, csv_filename, yaml_filename, submodule_dir, mech_filename,
                thermo_filename, style_file_dir):
-    self.csv_filename = os.path.abspath(os.path.normpath(csv_filename))
+    self.csv_filename = csv_filename 
+    if csv_filename != "":
+      self.csv_filename = os.path.abspath(os.path.normpath(csv_filename))
     self.yaml_filename = os.path.abspath(os.path.normpath(yaml_filename))
     self.submodule_dir = os.path.abspath(os.path.normpath(submodule_dir))
     self.mech_filename = os.path.abspath(os.path.normpath(mech_filename))
