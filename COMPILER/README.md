@@ -1,6 +1,6 @@
 # Mechanism compilation
 
-This directory provides the workflow to compile sub-modules into a single file in CHEMKIN format.
+This directory provides the workflow to compile sub-modules into CHEMKIN and Cantera YAML format.
 
 ## How to use
 
@@ -9,18 +9,26 @@ This directory provides the workflow to compile sub-modules into a single file i
 
 2. **Compile the mechanism**  
  Run the following command in the terminal:
+
  ```sh
  ./compile_c3mech.py
-   ```
-The command writes the files `C3Mech.CKI,` `C3Mech.THERM,` and `C3Mech.TRAN` to the `output/` directory.
+ ```
+
+The command writes `.CKI,` `.THERM,` and `.TRAN` files to the `output/` directory. For more information, use:
+
+```sh
+./compile_c3mech.py -h
+```
 
 ## Installing dependencies
 
 You can install the dependencies, for example, with:
 
 ```sh
-pip3 install pyyaml --user
+pip3 install pyyaml cantera --user
 ```
+
+The dependency on Cantera is optional.
 
 ## Notes and recommendations
 
