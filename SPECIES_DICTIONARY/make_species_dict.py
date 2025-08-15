@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-# Copyright (c) Raymond Langer 2024
+# Copyright (c) Raymond Langer 2025
 
 # Please read the README.md for instructions on how to run the script.
 
@@ -33,9 +33,9 @@ def print_error(msg):
   print("\n#error: " + msg)
 
 
-class SubModelFiles(yaml.YAMLObject):
+class SubModulesFiles(yaml.YAMLObject):
   yaml_loader = yaml.SafeLoader
-  yaml_tag = u'!SubModelFiles'
+  yaml_tag = u'!SubModulesFiles'
 
   def __init__(self, files, output_directory, species_dictionary):
     self.files = copy.copy(files)
@@ -54,7 +54,7 @@ class SubModelFiles(yaml.YAMLObject):
     ok = True
     for filename in self.files:
       if (not os.path.isfile(filename)):
-        print_not_found("submodel", "file", filename)
+        print_not_found("submodule", "file", filename)
         ok = False
 
     if (not os.path.isdir(self.output_directory)):
@@ -69,7 +69,7 @@ class SubModelFiles(yaml.YAMLObject):
 
 
 def read_yaml_input(filename):
-  """ returns a SubModelFiles """
+  """ returns a SubModulesFiles """
   yaml_input_options = None
   with open(filename) as inp:
     try:
@@ -79,10 +79,10 @@ def read_yaml_input(filename):
   return yaml_input_options
 
 
-def make_submodelfiles_from_yaml(filename, cmd_output_directory,
+def make_submodulesfiles_from_yaml(filename, cmd_output_directory,
                                  cmd_species_dictionary):
   """ 
-      This routine returns a checked SubModelFiles object if successful.
+      This routine returns a checked SubModulesFiles object if successful.
       Note: the routine may quit the script. 
   """
   if (not os.path.isfile(filename)):
@@ -1991,17 +1991,17 @@ def write_dict(title, authors, sha, classification, tex_opts,
   tex_file.close()
 
 
-def get_species_list_submodel(yaml_filename, cmd_output_directory,
+def get_species_list_submodules(yaml_filename, cmd_output_directory,
                               cmd_species_dictionary):
-  submodel_files = make_submodelfiles_from_yaml(yaml_filename,
+  submodules_files = make_submodulesfiles_from_yaml(yaml_filename,
                                                 cmd_output_directory,
                                                 cmd_species_dictionary)
-  species_list = write_species.make_species_list('', submodel_files.files)
+  species_list = write_species.make_species_list('', submodules_files.files)
 
   species_dict = {k.upper(): 0 for k in species_list}
   for s in species_dict:
     species_dict[s] = 0
-  return species_dict, submodel_files
+  return species_dict, submodules_files
 
 
 def get_species_list(kinetics_filename, silent=True):
@@ -2041,10 +2041,10 @@ def write_species_dict(inp,
   if (inp.yaml_filename != ''):
     # construct species list from submodule(s) specified in the
     # yaml file
-    species_list, submodel_files = get_species_list_submodel(
+    species_list, submodules_files = get_species_list_submodules(
         inp.yaml_filename, out.output_dir, inp.csv_filename)
-    output_dir = submodel_files.output_directory
-    inp.csv_filename = submodel_files.species_dictionary
+    output_dir = submodules_files.output_directory
+    inp.csv_filename = submodules_files.species_dictionary
   else:
     species_list = get_species_list(inp.mech_filename, silent)
     check_output_dir = Path(out.output_dir)
@@ -2118,8 +2118,8 @@ if __name__ == "__main__":
       '-y',
       '--yaml',
       help=
-      'yaml file listing submodels considered in the species dictionary generation',
-      default="submodels.yaml")
+      'yaml file listing submodules considered in the species dictionary generation',
+      default="submodules.yaml")
   parser.add_argument(
       '-o',
       '--output_dir',

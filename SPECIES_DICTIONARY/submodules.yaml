@@ -1,5 +1,5 @@
 # needs to match the yaml_tag in the python implementation
-!SubModelFiles
+!SubModulesFiles
 
 files:
   - ../SUBMODULES/NUIG/LT-HT/NUIG_C0_LT-HT.MECH
