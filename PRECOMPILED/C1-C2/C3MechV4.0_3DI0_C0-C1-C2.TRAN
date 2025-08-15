@@ -1,0 +1,171 @@
+! ================================================================================================== !
+!                                                                                                    !
+!            Modeling Combustion Chemistry using C3MechV4.0: an extension to mixtures of             !
+!                            hydrogen, ammonia, alkanes, and cycloalkanes                            !
+!                                                                                                    !
+! ================================================================================================== !
+!                                                                                                    !
+! This work was performed by the Computational Chemistry Consortium (C3), a collaborative research   !
+! organization including the University of Galway, Politecnico di Milano, RWTH Aachen University,    !
+! Lawrence Livermore National Laboratory, Argonne National Laboratory, and Convergent Science.       !
+!                                                                                                    !
+! C3MechV4.0 is available from the github repository:                                                !
+! https://github.com/C3Mech/C3MechV4.0                                                               !
+!                                                                                                    !
+! For more information, please visit fuelmech.org.                                                   !
+!                                                                                                    !
+! ================================= Working Groups For C3MechV4.0 ================================== !
+!                                                                                                    !
+! Author                  | Institution                                                              !
+! -------------------------------------------------------------------------------------------------- !
+! Luna Pratali Maffei     | Dipartimento di Chimica, Materiali ed Ingegneria Chimica "G. Natta,"     !
+!                         | Politecnico di Milano, Italy                                             !
+! Raymond Langer          | Institute for Combustion Technology,                                     !
+!                         | RWTH Aachen University, Germany                                          !
+! Yuki Murakami           | Combustion Chemistry Centre, School of Chemistry, Ryan Institute, MaREI, !
+!                         | University of Galway, Ireland                                            !
+! Scott W. Wagnon         | Lawrence Livermore National Laboratory, United States of America         !
+!                         |                                                                          !
+! Pengzhi Wang            | Combustion Chemistry Centre, School of Chemistry, Ryan Institute, MaREI, !
+!                         | University of Galway, Ireland                                            !
+! Jiaxin Liu              | Combustion Chemistry Centre, School of Chemistry, Ryan Institute, MaREI, !
+!                         | University of Galway, Ireland                                            !
+! Mohsin Raza             | Combustion Chemistry Centre, School of Chemistry, Ryan Institute, MaREI, !
+!                         | University of Galway, Ireland                                            !
+! Yuxiang Zhu             | Combustion Chemistry Centre, School of Chemistry, Ryan Institute, MaREI, !
+!                         | University of Galway, Ireland                                            !
+! Sanket Girhe            | Institute for Combustion Technology,                                     !
+!                         | RWTH Aachen University, Germany                                          !
+! Christian Schwenzer     | Institute for Combustion Technology,                                     !
+!                         | RWTH Aachen University, Germany                                          !
+! Joachim Beeckmann       | Institute for Combustion Technology,                                     !
+!                         | RWTH Aachen University, Germany                                          !
+! Stephen J. Klippenstein | Chemical Sciences and Engineering Division,                              !
+!                         | Argonne National Laboratory, United States of America                    !
+! Tiziano Faravelli       | Dipartimento di Chimica, Materiali ed Ingegneria Chimica "G. Natta,"     !
+!                         | Politecnico di Milano, Italy                                             !
+! Heinz Pitsch            | Institute for Combustion Technology,                                     !
+!                         | RWTH Aachen University, Germany                                          !
+! Peter Kelly Senecal     | Convergent Science, United States of America                             !
+!                         |                                                                          !
+! Henry J. Curran         | Combustion Chemistry Centre, School of Chemistry, Ryan Institute, MaREI, !
+!                         | University of Galway, Ireland                                            !
+! ================================================================================================== !
+!                              !!! Please do not remove this header !!!                              !
+! ================================================================================================== !
+
+! Transport data for C3MechV4.0, generated on 13/08/2025 19:28:13.
+
+! The following sub-modules were considered in this file:
+! - NUIG_C0_LT-HT.MECH
+! - NUIG_C1-C2_LT-HT.MECH
+
+! MID: 3DI0
+HE                    0       11.44      2.71      0.00      0.20      2.00
+H2                    1      304.69      2.19      0.00      0.78    280.00
+H                     0      541.67      1.84      0.00      0.67      0.00
+O                     0      235.69      2.48      0.00      0.74      0.00
+OH                    1      514.60      2.58      1.64      1.08      0.00
+H2O                   2      637.06      2.94      1.85      1.41      4.00
+O2                    1      676.42      3.07      0.00      1.49      3.80
+OHV                   1       80.00      2.75      0.00      0.00      0.00
+N2                    1       97.84      3.61      0.00      1.76      4.00
+AR                    0      127.70      3.46      0.00      1.61      2.00
+CO2                   1      244.00      3.76      0.00      2.65      2.10
+CO                    1       98.10      3.65      0.00      1.95      1.80
+CH4                   2      141.40      3.75      0.00      2.60     13.00
+H2O2                  2     1361.15      3.18      1.70      2.24      3.80
+HO2                   2      963.00      3.13      2.15      1.96      3.80
+HOCO                  2      498.00      3.59      0.00      0.00      2.00
+OCHO                  2      498.00      3.59      0.00      0.00      2.00
+CH3                   1      144.00      3.80      0.00      0.00      0.00
+CH2CO                 2      436.00      3.97      0.00      0.00      2.00
+O2CHO                 2      436.00      3.97      0.00      0.00      2.00
+HO2CHO                2      436.00      3.97      0.00      0.00      2.00
+CH3O2                 2      481.80      3.63      0.00      0.00      1.00
+CH3O2H                2      481.80      3.63      0.00      0.00      1.00
+CH2                   1      144.00      3.80      0.00      0.00      0.00
+CH2(S)                1      144.00      3.80      0.00      0.00      0.00
+HCO                   2      498.00      3.59      0.00      0.00      0.00
+CH                    1       80.00      2.75      0.00      0.00      0.00
+CH2O                  2      498.00      3.59      0.00      0.00      2.00
+C2H2                  1      265.30      3.72      0.00      0.00      2.50
+C2H4                  2      238.40      3.50      0.00      0.00      1.50
+C3H3                  1      324.80      4.29      0.00      0.00      1.00
+CHV                   1       80.00      2.75      0.00      0.00      0.00
+C                     0       71.40      3.30      0.00      0.00      0.00
+CH3O                  2      417.00      3.69      1.70      0.00      2.00
+CH2O2H                2      238.40      3.50      0.00      0.00      1.50
+CH2OH                 2      417.00      3.69      1.70      0.00      2.00
+HCOH                  2      498.00      3.59      0.00      0.00      1.00
+CH3OH                 2      481.80      3.63      0.00      0.00      1.00
+CH3OOCH3              2      360.00      4.60      0.00      0.00      1.00
+HOCHO                 2      436.00      3.97      0.00      0.00      2.00
+HOCH2O                2      470.60      4.41      0.00      0.00      1.50
+OCH2O2H               2      481.80      3.63      1.70      0.00      1.00
+HOCH2O2               2      481.80      3.63      1.70      0.00      1.00
+HOCH2O2H              2      481.80      3.63      1.70      0.00      1.00
+C2H5                  2      247.50      4.35      0.00      0.00      1.50
+C2H6                  2      247.50      4.35      0.00      0.00      1.50
+C2H5O2                2      470.60      4.41      0.00      0.00      1.50
+C2H5O2H               2      470.60      4.41      0.00      0.00      1.50
+C2H3                  2      265.30      3.72      0.00      0.00      1.00
+C2H5O                 2      470.60      4.41      0.00      0.00      1.50
+C2H4O2H               2      470.60      4.41      0.00      0.00      1.50
+C2H4O1-2              2      436.00      3.97      0.00      0.00      2.00
+C2-OOQOOH             2      503.90      4.90      0.00      0.00      1.00
+! AUTOMATIC PRUNING ! HO2CH2CHO             2      275.05      5.43      0.00      0.00      1.00
+NC3H7O2H              2      481.50      5.00      1.70      0.00      1.00
+NC3H7O2               2      481.50      5.00      1.70      0.00      1.00
+IC3H7O2H              2      459.50      5.04      1.70      0.00      1.00
+IC3H7O2               2      459.50      5.04      1.70      0.00      1.00
+C2H5OH                2      470.60      4.41      0.00      0.00      1.50
+CH3CHO                2      436.00      3.97      0.00      0.00      2.00
+! AUTOMATIC PRUNING ! NC3H7O                2      481.50      5.00      1.70      0.00      1.00
+! AUTOMATIC PRUNING ! NC3H7OH               2      481.50      5.00      1.70      0.00      1.00
+! AUTOMATIC PRUNING ! C2H5CHO               2      435.20      4.66      2.70      0.00      1.00
+! AUTOMATIC PRUNING ! IC3H7O                2      459.50      5.04      1.70      0.00      1.00
+! AUTOMATIC PRUNING ! IC3H7OH               2      481.50      5.00      1.70      0.00      1.00
+! AUTOMATIC PRUNING ! CH3COCH3              2      435.50      4.86      0.00      0.00      1.00
+CH3CHOOH              2      415.20      4.60      0.00      0.00      1.00
+C2H3O1-2              2      436.00      3.97      0.00      0.00      2.00
+CH3CO                 2      436.00      3.97      0.00      0.00      2.00
+CH2CHO                2      436.00      3.97      0.00      0.00      2.00
+H2CC                  2      209.00      4.10      0.00      0.00      2.50
+CH3CO3                2      436.00      3.97      0.00      0.00      2.00
+CH3CO3H               2      436.00      3.97      0.00      0.00      2.00
+C2H3OO                2      436.00      3.97      0.00      0.00      2.00
+C2H3OOH               2      436.00      3.97      0.00      0.00      2.00
+C2H3OH                2      470.60      4.41      0.00      0.00      1.50
+PC2H4OH               2      470.60      4.41      0.00      0.00      1.50
+CHCHO                 2      436.00      3.97      0.00      0.00      2.00
+CHOCHO                1      440.20      4.01      0.00      0.00      2.00
+C2H                   1      265.30      3.72      0.00      0.00      2.50
+HCCOH                 2      436.00      3.97      0.00      0.00      2.00
+C2H2OH                2      224.70      4.16      0.00      0.00      1.00
+HCCO                  2      150.00      2.50      0.00      0.00      1.00
+C2                    1       97.53      3.62      0.00      1.76      4.00
+C2O                   1      232.40      3.83      0.00      0.00      1.00
+CH3CHOHOJ             2      470.30      4.60      0.00      0.00      1.00
+CH3COOH               2      470.60      4.41      0.00      0.00      1.50
+CH2CO2                2      899.00      5.64      0.00      0.00      0.00
+O2CH2CHO              2      275.05      5.43      0.00      0.00      1.00
+HO2CH2CO              2      279.01      5.50      1.30      0.00      1.00
+CH3CO2                2      436.00      3.97      0.00      0.00      2.00
+CH2COOH               2      784.95      4.04      1.30      0.00      1.00
+SC2H4OH               2      470.60      4.41      0.00      0.00      1.50
+O2C2H4OH              2      523.20      5.66      1.70      0.00      1.00
+CH3OCH3               2      395.00      4.04      1.30      0.00      1.00
+CH3OCH2               2      395.00      4.04      1.30      0.00      1.00
+CH3OCH2O2             2      395.00      4.04      1.30      0.00      1.00
+CH3OCH2O2H            2      395.00      4.04      1.30      0.00      1.00
+CH2OCHO               2      395.00      4.04      1.30      0.00      1.00
+CH3OCHO               2      395.00      4.04      1.30      0.00      1.00
+CH3OCO                2      395.00      4.04      1.30      0.00      1.00
+CH2OCH2O2H            2      395.00      4.04      1.30      0.00      1.00
+O2CH2OCH2O2H          2      395.00      4.04      1.30      0.00      1.00
+HO2CH2OCHO            2      395.00      4.04      1.30      0.00      1.00
+CH3OCH2O              2      395.00      4.04      1.30      0.00      1.00
+OCH2OCHO              2      395.00      4.04      1.30      0.00      1.00
+CH2OO                 2      436.00      3.97      0.00      0.00      2.00
+HOCH2OCO              2      395.00      4.04      1.30      0.00      1.00

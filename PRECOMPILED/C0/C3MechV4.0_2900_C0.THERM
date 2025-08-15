@@ -1,0 +1,129 @@
+! ================================================================================================== !
+!                                                                                                    !
+!            Modeling Combustion Chemistry using C3MechV4.0: an extension to mixtures of             !
+!                            hydrogen, ammonia, alkanes, and cycloalkanes                            !
+!                                                                                                    !
+! ================================================================================================== !
+!                                                                                                    !
+! This work was performed by the Computational Chemistry Consortium (C3), a collaborative research   !
+! organization including the University of Galway, Politecnico di Milano, RWTH Aachen University,    !
+! Lawrence Livermore National Laboratory, Argonne National Laboratory, and Convergent Science.       !
+!                                                                                                    !
+! C3MechV4.0 is available from the github repository:                                                !
+! https://github.com/C3Mech/C3MechV4.0                                                               !
+!                                                                                                    !
+! For more information, please visit fuelmech.org.                                                   !
+!                                                                                                    !
+! ================================= Working Groups For C3MechV4.0 ================================== !
+!                                                                                                    !
+! Author                  | Institution                                                              !
+! -------------------------------------------------------------------------------------------------- !
+! Luna Pratali Maffei     | Dipartimento di Chimica, Materiali ed Ingegneria Chimica "G. Natta,"     !
+!                         | Politecnico di Milano, Italy                                             !
+! Raymond Langer          | Institute for Combustion Technology,                                     !
+!                         | RWTH Aachen University, Germany                                          !
+! Yuki Murakami           | Combustion Chemistry Centre, School of Chemistry, Ryan Institute, MaREI, !
+!                         | University of Galway, Ireland                                            !
+! Scott W. Wagnon         | Lawrence Livermore National Laboratory, United States of America         !
+!                         |                                                                          !
+! Pengzhi Wang            | Combustion Chemistry Centre, School of Chemistry, Ryan Institute, MaREI, !
+!                         | University of Galway, Ireland                                            !
+! Jiaxin Liu              | Combustion Chemistry Centre, School of Chemistry, Ryan Institute, MaREI, !
+!                         | University of Galway, Ireland                                            !
+! Mohsin Raza             | Combustion Chemistry Centre, School of Chemistry, Ryan Institute, MaREI, !
+!                         | University of Galway, Ireland                                            !
+! Yuxiang Zhu             | Combustion Chemistry Centre, School of Chemistry, Ryan Institute, MaREI, !
+!                         | University of Galway, Ireland                                            !
+! Sanket Girhe            | Institute for Combustion Technology,                                     !
+!                         | RWTH Aachen University, Germany                                          !
+! Christian Schwenzer     | Institute for Combustion Technology,                                     !
+!                         | RWTH Aachen University, Germany                                          !
+! Joachim Beeckmann       | Institute for Combustion Technology,                                     !
+!                         | RWTH Aachen University, Germany                                          !
+! Stephen J. Klippenstein | Chemical Sciences and Engineering Division,                              !
+!                         | Argonne National Laboratory, United States of America                    !
+! Tiziano Faravelli       | Dipartimento di Chimica, Materiali ed Ingegneria Chimica "G. Natta,"     !
+!                         | Politecnico di Milano, Italy                                             !
+! Heinz Pitsch            | Institute for Combustion Technology,                                     !
+!                         | RWTH Aachen University, Germany                                          !
+! Peter Kelly Senecal     | Convergent Science, United States of America                             !
+!                         |                                                                          !
+! Henry J. Curran         | Combustion Chemistry Centre, School of Chemistry, Ryan Institute, MaREI, !
+!                         | University of Galway, Ireland                                            !
+! ================================================================================================== !
+!                              !!! Please do not remove this header !!!                              !
+! ================================================================================================== !
+
+! Thermodynamic data for C3MechV4.0, generated on 13/08/2025 19:28:13.
+
+! The following sub-modules were considered in this file:
+! - NUIG_C0_LT-HT.MECH
+
+! MID: 2900
+THERMO ALL
+300.   1000.   5000.
+C2H6                    H   6C   2          G    200.00   6000.00 1000.00      1
+ 4.04666411E+00 1.53538802E-02-5.47039485E-06 8.77826544E-10-5.23167531E-14    2
+-1.24473499E+04-9.68698313E-01 4.29142572E+00-5.50154901E-03 5.99438458E-05    3
+-7.08466469E-08 2.68685836E-11-1.15222056E+04 2.66678994E+00                   4
+HE                      HE  1               G    200.00   6000.00 1000.00      1
+ 2.50000000E+00 0.00000000E+00 0.00000000E+00 0.00000000E+00 0.00000000E+00    2
+-7.45375000E+02 9.28723974E-01 2.50000000E+00 0.00000000E+00 0.00000000E+00    3
+ 0.00000000E+00 0.00000000E+00-7.45375000E+02 9.28723974E-01                   4
+H2                      H   2               G    200.00   6000.00 1000.00      1
+ 2.93286575E+00 8.26608026E-04-1.46402364E-07 1.54100414E-11-6.88804800E-16    2
+-8.13065581E+02-1.02432865E+00 2.34433112E+00 7.98052075E-03-1.94781510E-05    3
+ 2.01572094E-08-7.37611761E-12-9.17935173E+02 6.83010238E-01                   4
+H                       H   1               G    200.00   6000.00 1000.00      1
+ 2.50000000E+00 0.00000000E+00 0.00000000E+00 0.00000000E+00 0.00000000E+00    2
+ 2.54736600E+04-4.46682850E-01 2.50000000E+00 0.00000000E+00 0.00000000E+00    3
+ 0.00000000E+00 0.00000000E+00 2.54736600E+04-4.46682850E-01                   4
+O                       O   1               G    200.00   6000.00 1000.00      1
+ 2.54363697E+00-2.73162486E-05-4.19029520E-09 4.95481845E-12-4.79553694E-16    2
+ 2.92260120E+04 4.92229457E+00 3.16826710E+00-3.27931884E-03 6.64306396E-06    3
+-6.12806624E-09 2.11265971E-12 2.91222592E+04 2.05193346E+00                   4
+OH                      H   1O   1          G    200.00   6000.00 1000.00      1
+ 2.83853033E+00 1.10741289E-03-2.94000209E-07 4.20698729E-11-2.42289890E-15    2
+ 3.69780808E+03 5.84494652E+00 3.99198424E+00-2.40106655E-03 4.61664033E-06    3
+-3.87916306E-09 1.36319502E-12 3.36889836E+03-1.03998477E-01                   4
+H2O                     H   2O   1          G    200.00   6000.00 1000.00      1
+ 2.67703890E+00 2.97318160E-03-7.73768890E-07 9.44335140E-11-4.26899910E-15    2
+-2.98858940E+04 6.88255000E+00 4.19863520E+00-2.03640170E-03 6.52034160E-06    3
+-5.48792690E-09 1.77196800E-12-3.02937260E+04-8.49009010E-01                   4
+O2                      O   2               G    200.00   6000.00 1000.00      1
+ 3.66096065E+00 6.56365811E-04-1.41149627E-07 2.05797935E-11-1.29913436E-15    2
+-1.21597718E+03 3.41536279E+00 3.78245636E+00-2.99673416E-03 9.84730201E-06    3
+-9.68129509E-09 3.24372837E-12-1.06394356E+03 3.65767573E+00                   4
+OHV                     H   1O   1          G    300.00   5000.00 1710.00      1
+ 2.85376040E+00 1.02994334E-03-2.32666477E-07 1.93750704E-11-3.15759847E-16    2
+ 5.03225473E+04 5.76240468E+00 3.41896226E+00 3.19255801E-04-3.08292717E-07    3
+ 3.64407494E-10-1.00195479E-13 5.00756946E+04 2.51917016E+00                   4
+N2                      N   2               G    200.00   6000.00 1000.00      1
+ 2.95257637E+00 1.39690040E-03-4.92631603E-07 7.86010195E-11-4.60755204E-15    2
+-9.23948688E+02 5.87188762E+00 3.53100528E+00-1.23660988E-04-5.02999433E-07    3
+ 2.43530612E-09-1.40881235E-12-1.04697628E+03 2.96747038E+00                   4
+AR                      AR  1               G    200.00   6000.00 1000.00      1
+ 2.50000000E+00 0.00000000E+00 0.00000000E+00 0.00000000E+00 0.00000000E+00    2
+-7.45375000E+02 4.37967491E+00 2.50000000E+00 0.00000000E+00 0.00000000E+00    3
+ 0.00000000E+00 0.00000000E+00-7.45375000E+02 4.37967491E+00                   4
+CO2                     O   2C   1          G    200.00   6000.00 1000.00      1
+ 4.63651110E+00 2.74145690E-03-9.95897590E-07 1.60386660E-10-9.16198570E-15    2
+-4.90249040E+04-1.93489550E+00 2.35681300E+00 8.98412990E-03-7.12206320E-06    3
+ 2.45730080E-09-1.42885480E-13-4.83719710E+04 9.90090350E+00                   4
+CO                      O   1C   1          G    200.00   6000.00 1000.00      1
+ 3.04848590E+00 1.35172810E-03-4.85794050E-07 7.88536440E-11-4.69807460E-15    2
+-1.42661170E+04 6.01709770E+00 3.57953350E+00-6.10353690E-04 1.01681430E-06    3
+ 9.07005860E-10-9.04424490E-13-1.43440860E+04 3.50840930E+00                   4
+CH4                     H   4C   1          G    200.00   6000.00 1000.00      1
+ 1.65326226E+00 1.00263099E-02-3.31661238E-06 5.36483138E-10-3.14696758E-14    2
+-1.00095936E+04 9.90506283E+00 5.14911468E+00-1.36622009E-02 4.91453921E-05    3
+-4.84246767E-08 1.66603441E-11-1.02465983E+04-4.63848842E+00                   4
+H2O2                    H   2O   2          G    200.00   6000.00 1000.00      1
+ 4.57977305E+00 4.05326003E-03-1.29844730E-06 1.98211400E-10-1.13968792E-14    2
+-1.80071775E+04 6.64970694E-01 4.31515149E+00-8.47390622E-04 1.76404323E-05    3
+-2.26762944E-08 9.08950158E-12-1.77067437E+04 3.27373319E+00                   4
+HO2                     H   1O   2          G    200.00   5000.00 1000.00      1
+ 4.17228741E+00 1.88117627E-03-3.46277286E-07 1.94657549E-11 1.76256905E-16    2
+ 3.10206839E+01 2.95767672E+00 4.30179807E+00-4.74912097E-03 2.11582905E-05    3
+-2.42763914E-08 9.29225225E-12 2.64018485E+02 3.71666220E+00                   4
+END

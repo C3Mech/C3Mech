@@ -1,0 +1,78 @@
+! ================================================================================================== !
+!                                                                                                    !
+!            Modeling Combustion Chemistry using C3MechV4.0: an extension to mixtures of             !
+!                            hydrogen, ammonia, alkanes, and cycloalkanes                            !
+!                                                                                                    !
+! ================================================================================================== !
+!                                                                                                    !
+! This work was performed by the Computational Chemistry Consortium (C3), a collaborative research   !
+! organization including the University of Galway, Politecnico di Milano, RWTH Aachen University,    !
+! Lawrence Livermore National Laboratory, Argonne National Laboratory, and Convergent Science.       !
+!                                                                                                    !
+! C3MechV4.0 is available from the github repository:                                                !
+! https://github.com/C3Mech/C3MechV4.0                                                               !
+!                                                                                                    !
+! For more information, please visit fuelmech.org.                                                   !
+!                                                                                                    !
+! ================================= Working Groups For C3MechV4.0 ================================== !
+!                                                                                                    !
+! Author                  | Institution                                                              !
+! -------------------------------------------------------------------------------------------------- !
+! Luna Pratali Maffei     | Dipartimento di Chimica, Materiali ed Ingegneria Chimica "G. Natta,"     !
+!                         | Politecnico di Milano, Italy                                             !
+! Raymond Langer          | Institute for Combustion Technology,                                     !
+!                         | RWTH Aachen University, Germany                                          !
+! Yuki Murakami           | Combustion Chemistry Centre, School of Chemistry, Ryan Institute, MaREI, !
+!                         | University of Galway, Ireland                                            !
+! Scott W. Wagnon         | Lawrence Livermore National Laboratory, United States of America         !
+!                         |                                                                          !
+! Pengzhi Wang            | Combustion Chemistry Centre, School of Chemistry, Ryan Institute, MaREI, !
+!                         | University of Galway, Ireland                                            !
+! Jiaxin Liu              | Combustion Chemistry Centre, School of Chemistry, Ryan Institute, MaREI, !
+!                         | University of Galway, Ireland                                            !
+! Mohsin Raza             | Combustion Chemistry Centre, School of Chemistry, Ryan Institute, MaREI, !
+!                         | University of Galway, Ireland                                            !
+! Yuxiang Zhu             | Combustion Chemistry Centre, School of Chemistry, Ryan Institute, MaREI, !
+!                         | University of Galway, Ireland                                            !
+! Sanket Girhe            | Institute for Combustion Technology,                                     !
+!                         | RWTH Aachen University, Germany                                          !
+! Christian Schwenzer     | Institute for Combustion Technology,                                     !
+!                         | RWTH Aachen University, Germany                                          !
+! Joachim Beeckmann       | Institute for Combustion Technology,                                     !
+!                         | RWTH Aachen University, Germany                                          !
+! Stephen J. Klippenstein | Chemical Sciences and Engineering Division,                              !
+!                         | Argonne National Laboratory, United States of America                    !
+! Tiziano Faravelli       | Dipartimento di Chimica, Materiali ed Ingegneria Chimica "G. Natta,"     !
+!                         | Politecnico di Milano, Italy                                             !
+! Heinz Pitsch            | Institute for Combustion Technology,                                     !
+!                         | RWTH Aachen University, Germany                                          !
+! Peter Kelly Senecal     | Convergent Science, United States of America                             !
+!                         |                                                                          !
+! Henry J. Curran         | Combustion Chemistry Centre, School of Chemistry, Ryan Institute, MaREI, !
+!                         | University of Galway, Ireland                                            !
+! ================================================================================================== !
+!                              !!! Please do not remove this header !!!                              !
+! ================================================================================================== !
+
+! Transport data for C3MechV4.0, generated on 13/08/2025 19:28:13.
+
+! The following sub-modules were considered in this file:
+! - NUIG_C0_LT-HT.MECH
+
+! MID: 2900
+HE                    0       11.44      2.71      0.00      0.20      2.00
+H2                    1      304.69      2.19      0.00      0.78    280.00
+H                     0      541.67      1.84      0.00      0.67      0.00
+O                     0      235.69      2.48      0.00      0.74      0.00
+OH                    1      514.60      2.58      1.64      1.08      0.00
+H2O                   2      637.06      2.94      1.85      1.41      4.00
+O2                    1      676.42      3.07      0.00      1.49      3.80
+OHV                   1       80.00      2.75      0.00      0.00      0.00
+N2                    1       97.84      3.61      0.00      1.76      4.00
+AR                    0      127.70      3.46      0.00      1.61      2.00
+CO2                   1      244.00      3.76      0.00      2.65      2.10
+CO                    1       98.10      3.65      0.00      1.95      1.80
+CH4                   2      141.40      3.75      0.00      2.60     13.00
+H2O2                  2     1361.15      3.18      1.70      2.24      3.80
+HO2                   2      963.00      3.13      2.15      1.96      3.80
+C2H6                  2      247.50      4.35      0.00      0.00      1.50
