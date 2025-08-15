@@ -2995,24 +2995,70 @@ C6H5CCH2+OH=C6H5C2H+H2O                                    2.00E+13    0.000    
 !!                                                                          !
 !!=========================================================================!
 
+!#[REACTIONCLASS][C5-RSR][ENLARGE_C2.T-M] 
+!C5H4CH3+C2H2 = RXYLENE	4.41e+60	-14.22	41634	! /1.3 !REALIGNED FROM C5H5+C2H2 /1.25 FOR SYMM
+!PLOG/0.1	2.66E+60	-14.22	41634	/ ! R2_adj = 0.99 , T RANGE = 800 - 2000 K	
+!PLOG/1.0	8.55E+39	-8.19	30660	/ ! R2_adj = 0.99 , T RANGE = 800 - 2000 K	
+!PLOG/10.0	9.98E+22	-3.27	20739	/ ! R2_adj = 1.00 , T RANGE = 800 - 2000 K	
+!PLOG/100.0	4.76E+17	-1.71	17923	/ ! R2_adj = 1.00 , T RANGE = 800 - 2000 K	
+!#[ENDREACTIONCLASS][C5-RSR][ENLARGE_C2.T-M]
+
+!FORMATION
+!HOW TO CLASSIFY? C4+C2 , C3+C3? FOR C3: ANALOGUE FOR BENZENE IS C2+C4 (C3H6+C3H5-S?, C4H5+C2H4?, C4H6+C2H3?)	
+C4H5-N+C4H6=>XYLENE+H                      1.00E+011 0.00 7000. !LPM PRODS CHANGED WAS TOL+CH3
+
+!#[REACTIONCLASS][C3.D-M][ADD_C3.D-RSR]
+IC4H7+IC4H8=>.6XYLENE+.4C6H5C2H5+H+2.H2                                                   +3.00000E+009 +0.00000E+000 +1.90000E+004 
+!#[ENDREACTIONCLASS][C3.D-M][ADD_C3.D-RSR]
+!#[REACTIONCLASS][C3.D-RSR][REC_C3.D-RSR] ! INCONSISTENT
+IC4H7+IC4H7=>XYLENE+2H+H2                                                                 +1.00000E+010 +0.00000E+000 +6.00000E+003 
+C4H71-3+C4H71-3=>H+H+XYLENE+H2                                                            +1.00000E+011 +0.00000E+000 +1.00000E+003 
+!#[ENDREACTIONCLASS][C3.D-RSR][REC_C3.D-RSR]
+
 !! Xylene
 
-XYLENE(+M)=RXYLENE+H(+M)                             7.0E+15   0.17   91168.0   ! LPM as tol ; tol is 5.6 !would be 2.78           !S.J. Klippenstein Proceedings of the Combustion Institute 31.1 (2007): 221-229.
-    LOW/  1.00E+98 -22.855 9.9882E+04 /
-    TROE/ 6.547194E-02  1.511253E+01  9.999996E+09  7.596123E+07  / 
- H2 / 2.0 / H2O / 6.0 / CH4 / 2.0 / CO / 1.5 / CO2 / 2.0 / C2H6 / 3.0 / !
-XYLENE(+M)=CH3+C6H4CH3(+M)                           4.00E+27  -3.16  1.07447E+05             ! LPM as tol, x2 (N of sites)   !S.J. Klippenstein Proceedings of the Combustion Institute 31.1 (2007): 221-229.
-    LOW/  2.00E+98 -22.966 1.2208E+05/
-    TROE/ 7.054562E-01  9.999989E+09  4.599180E+02  8.213938E+09  /
-H2 / 2.0 / H2O / 6.0 / CH4 / 2.0 / CO / 1.5 / CO2 / 2.0 / C2H6 / 3.0 / !
+!_________ decomposition
+!#[REACTIONCLASS][A1,CH3-M][BONDFISSION_CH]
+XYLENE(+M)=RXYLENE+H(+M)                                                                  11.0000E+015 +1.70000E-001 +9.11680E+004 !LPM tol*2, dup. N of sites ; tol is 5.6 but would be 2.78           !S.J. Klippenstein Proceedings of the Combustion Institute 31.1 (2007): 221-229.
+LOW /                                                                                     +2.00000E+098 -2.28550E+001 +9.98820E+004/
+TROE /                                                                      +6.547194E-02 +1.511253E+01 +9.999996E+09  7.596123E+07/ 
+!#[ENDREACTIONCLASS][A1,CH3-M][BONDFISSION_CH]
+!#[REACTIONCLASS][A1,CH3-M][BONDFISSION_CC] 
+XYLENE (+M) = CH3 + C6H4CH3 (+M)                                       3.900E+27    -3.160   107447  !AUTOALIGN; ref: C7H8 (+M) = CH3 + C6H5 (+M), scale: Aref*2.0, EA+0
+  LOW  /                                                               2.000E+98   -22.966   122080  /
+  TROE /   7.055E-01   1.000E+10   4.599E+02   8.214E+09 /
+!#[ENDREACTIONCLASS][A1,CH3-M][BONDFISSION_CC] 
+
+!#[REACTIONCLASS][A1CH2-RSR][REC_H_EL_CH3] 		
+RXYLENE + H = C6H4CH3 + CH3                                            2.915E+67   -14.150    68330  !AUTOALIGN; ref: C7H7 + H = C6H5 + CH3, scale: Aref*0.5, EA+0
+  PLOG /                                                   3.950E-02   2.250E+58   -11.900    51860 /
+  PLOG /                                                   1.320E-01   1.015E+64   -13.370    59520 /
+  PLOG /                                                   1.000E+00   2.915E+67   -14.150    68330 /
+  PLOG /                                                   1.000E+01   4.425E+68   -14.230    78410 /
+!#[ENDREACTIONCLASS][A1CH2-RSR][REC_H_EL_CH3]
 
 !HABS
-XYLENE+H=RXYLENE+H2                               6.0E+04 	2.76	3992  			! LPM TOL is 4.7
-XYLENE+O=RXYLENE+OH                               9.8E+07   1.635   3795.670     	! LPM TOL X2
-XYLENE+OH=RXYLENE+H2O                             8.42E+07	1.70	1063  			! LPM TOL X2
-XYLENE+O2=RXYLENE+HO2                             4.36E+07  2.50   4.6045E+04 		! LPM TOL X2
-XYLENE+HO2=RXYLENE+H2O2                           6.79500   3.546   11323.604 	    ! LPM TOL X2
-XYLENE+CH3=RXYLENE+CH4                            4.20E+01 	3.4    	7298.9     	    ! LPM TOL X2
+
+
+!#[REACTIONCLASS][A1,CH3-M][HABS_H] 
+XYLENE + H = RXYLENE + H2                                              8.000E+04     2.760     3992  !AUTOALIGN; ref: H + C7H8 => C7H7 + H2, scale: Aref*2.5, EA+0
+!#[ENDREACTIONCLASS][A1,CH3-M][HABS_H] 		
+!#[REACTIONCLASS][A1,CH3-M][HABS_CH3] 
+XYLENE + CH3 = RXYLENE + CH4                                           4.200E+01     3.380     7299  !AUTOALIGN; ref: CH3 + C7H8 = C7H7 + CH4, scale: Aref*2.0, EA+0
+!#[ENDREACTIONCLASS][A1,CH3-M][HABS_CH3] 	
+!#[REACTIONCLASS][A1,CH3-M][HABS_O]
+XYLENE + O = RXYLENE + OH                                              9.828E+07     1.635     3796  !AUTOALIGN; ref: O + C7H8 = C7H7 + OH, scale: Aref*2.0, EA+0
+!#[ENDREACTIONCLASS][A1,CH3-M][HABS_O]
+!#[REACTIONCLASS][A1,CH3-M][HABS_OH]
+XYLENE + OH = RXYLENE + H2O                                            1.052E+08     1.700     1063  !AUTOALIGN; ref: OH + C7H8 = C7H7 + H2O, scale: Aref*2.5, EA+0
+!#[ENDREACTIONCLASS][A1,CH3-M][HABS_OH]
+!#[REACTIONCLASS][A1,CH3-M][HABS_O2]
+XYLENE + O2 = RXYLENE + HO2                                            7.0E+07     2.500    47045  !  WAS 3.27, ea 46045 AUTOALIGN; ref: O2 + C7H8 = C7H7 + HO2, scale: Aref*1.5, EA+0
+!#[ENDREACTIONCLASS][A1,CH3-M][HABS_O2]
+!#[REACTIONCLASS][A1,CH3-M][HABS_HO2]
+XYLENE + HO2 = RXYLENE + H2O2                                          1.359E+01     3.546    11324  !AUTOALIGN; ref: HO2 + C7H8 = C7H7 + H2O2, scale: Aref*2.0, EA+0
+!#[ENDREACTIONCLASS][A1,CH3-M][HABS_HO2]
+
 XYLENE+C6H5CH2=RXYLENE+C6H5CH3    	              2.56    3.80712  10395.75  !LPM RELEVANT IN SUN 2022, EA+3000  (WAS TAKEN BY ANALOGY WITH CH3)
 
 ! LPM SOME HABS ADDED FROM TOLUENE
@@ -3023,60 +3069,297 @@ C2H5+XYLENE=>C2H6+RXYLENE                                    6.0000e+04    2.000
 C5H5+XYLENE=>C5H6+RXYLENE                                    1.0200e+05    2.000     14000.00
 
 !IPSO
-XYLENE+H=C6H5CH3+CH3                                 .1200E+14    .000   5100.0 ! LPM as tol, x2 (N of sites) 
-XYLENE+OH=HOC6H4CH3+CH3                              7.829E+02   2.884   3221.0 ! LPM as tol, x2 (N of sites) 
-!ADD/DECO
 
-!\REACTIONCLASS: \PIPSO_O - LLNL
-XYLENE+O=>C6H5CH3+CO+2H                              1.99E+07    1.800    3974 ! LPM AS TOLUENE, ONLY WELLSKIPPING KEPT
-PLOG /  1.00E+01  1.99E+07    1.800    3974 /
-PLOG /  5.00E+01  3.55E+10    0.910    6323 /
-PLOG /  5.00E+02  1.32E+12    0.470    8436 /
-!\REACTIONCLASS: \PADD_O_ISO - LLNL
+!#[REACTIONCLASS][A1,CH3-M][IPSO_H]
+H + XYLENE = C6H5CH3 + CH3                                9.86e+7     	1.71    	4046         !calc, para! 1.056E+08     1.710     4387  !AUTOALIGN; ref: H + C7H8 = C6H6 + CH3, scale: Aref*2.0, EA+0
+!#[ENDREACTIONCLASS][A1,CH3-M][IPSO_H]
+!#[REACTIONCLASS][A1,CH3-M][IPSO_OH] 
+XYLENE + OH = HOC6H4CH3 + CH3                                             1.957E+03     2.884     3221  !AUTOALIGN; ref: OH + C7H8 = C6H5OH + CH3, scale: Aref*2.5, EA+0
+!#[ENDREACTIONCLASS][A1,CH3-M][IPSO_OH]
 
-RXYLENE=>C6H5C2H3+H                              1.5E+13   0.128 70300 ! LPM AS IN SUN 2022 / 2, SHOULD FORM XYLYL (C8H8), THEN GOES TO C6H5C2H3 !da Silva et al. JPCA 113(2009) 10264-10278! WAS 6H6H+H+C2H2 8.200E+14    0.000  80676.39 !\REF: !\COMMENT:!REF: Path from Bournaceur et al. 2005
-RXYLENE=>C6H6+C2H2+H                             1.5E+13   0.128 70300 ! LPM AS ABOVE , DIFFERENT PRODUCTS; SIMILAR TO GAIL DAGAUT CST 2007 (6E13 0 70000)
-RXYLENE = C5H6+C3H3                              0.3E+13 0.0 71000  !LPM FROM SUN 2022 / 10 (META ISOMER) Gail and Dagaut Combust. Sci. and Tech., 179: 813-844, 2007, A/3  1.00E+14									   
+
+!_____ deco RXYL- ORTHO ONLY
+!#[REACTIONCLASS][A1CH2,CH3-RSR][BSCISS_CH]
+RXYLENE=>C6H5C2H3+H                              1.5E+13   0.128 70300 !LPM FROM C7H7=>C7H6+H, EA-11000, K0/7 BASED ON C8H8+H/C7H6+CH3 RATIO IN XYLYL DECOMPOSITION DA SILVA 2009 
+PLOG	/	1.00E-02	1.42E+53	-11.64	89729	/
+PLOG	/	1.00E-01	1.56E+34	-6.01	79985	/
+PLOG	/	1.00E+00	3.06E+17	-1.09	71086	/
+PLOG	/	1.00E+01	2.16E-05	5.23	56154	/
+PLOG	/	1.00E+02	2.09E-22	10.09	44894	/
+!RXYLENE=>C6H5C2H3+H                              1.5E+13   0.128 70300 ! LPM AS IN SUN 2022 / 2, SHOULD FORM CH2C6H4CH2, THEN GOES TO C6H5C2H3 !da Silva et al. JPCA 113(2009) 10264-10278! WAS 6H6H+H+C2H2 8.200E+14    0.000  80676.39 !\REF: !\COMMENT:!REF: Path from Bournaceur et al. 2005
+!RXYLENE=>C6H6+C2H2+H                             1.5E+13   0.128 70300 ! LPM AS ABOVE , DIFFERENT PRODUCTS; SIMILAR TO GAIL DAGAUT CST 2007 (6E13 0 70000)
+!RXYLENE=>CYC6H4+C2H4+H                             0.5E+13   0.128 70300 ! LPM AS ABOVE , prod from ortho-CH2C6H4CH2 + H
+!RXYLENE = C5H6+C3H3                              0.3E+13 0.0 71000  !LPM FROM SUN 2022 / 10 (META ISOMER) Gail and Dagaut Combust. Sci. and Tech., 179: 813–844, 2007, A/3  1.00E+14									   
+!#[ENDREACTIONCLASS][A1CH2,CH3-RSR][BSCISS_CH]
+
+
+!#[REACTIONCLASS][A1CH2-RSR][BSCISS_CH]
+!RXYLENE=>C7H6+CH3                               9.8E+15	0	90713   !LPM PATH FROM YUAN 2021 PXYL DECO CNF; SEEMS MINOR but in Yuan it depends on isomer (prevails in para). RATE FROM C7H7=>CYC6H4+CH3, 2 PAR FIT AT 1 ATM
+RXYLENE => C7H6 + CH3                                                   2.350E+18    -1.090    80086  !AUTOALIGN; ref: C7H7 => C7H6 + H, scale: Aref*1.0, EA+-2000
+  PLOG /                                                   1.000E-02   1.090E+54   -11.640    98729 /
+  PLOG /                                                   1.000E-01   1.200E+35    -6.010    88985 /
+  PLOG /                                                   1.000E+00   2.350E+18    -1.090    80086 /
+  PLOG /                                                   1.000E+01   1.660E-04     5.230    65154 /
+  PLOG /                                                   1.000E+02   1.610E-21    10.090    53894 /
+!#[ENDREACTIONCLASS][A1CH2-RSR][BSCISS_CH]
+
+RXYLENE=>FULVENE+H+C2H2   9.50e+48        -9.99   98605.00 !should be C5H4CH3, don't have in the mech. from CRECK with new thermo
+PLOG/   0.1     2.95e+69        -16.02  109579.00       /
+PLOG/   1.0     9.50e+48        -9.99   98605.00        /
+PLOG/   10.0    1.11e+32        -5.07   88684.00        /
+PLOG/   100.0   5.29e+26        -3.51   85868.00        /
 
 !WELLSKIPPING - IRRELEVANT, REMOVED !RXYLENE+H=C6H4CH3+CH3                           5.830E+67  -14.150  68329.35
 
 !RXYL OXIDATION
-RXYLENE+O=C6H4CH3CHO+H                            4.370E+18   -1.340   1591.78 !\REF: !\COMMENT:!REF: Branching ratio from A1CH2O decomposition
+!#[REACTIONCLASS][A1,CH3-M][IPSO_O]	
+XYLENE + O = OC6H4CH3 + CH3                                            1.900E+07     1.910     3409  !AUTOALIGN; ref: C7H8 + O = OC6H4CH3 + H, scale: Aref*1.0, EA+0
+  PLOG /                                                   1.000E+00   1.900E+07     1.910     3409 /
+  PLOG /                                                   1.000E+02   1.020E+09     1.410     4678 /
+!DUP
+!#[ENDREACTIONCLASS][A1,CH3-M][IPSO_O]
 
-RXYLENE+O=C6H4CH3+CH2O                              5.990E+23   -2.470  16192.64
-RXYLENE+O=C6H5CH3+HCO                                 1.970E+22   -2.360   8152.49
+!#[REACTIONCLASS][A1CH2-RSR][REC_O_EL_HCO]
+RXYLENE + O = C6H5CH3 + HCO                                               0.80E+12     0.329      686  !/1.5 !AUTOALIGN; ref: C7H7 + O = C6H6 + HCO, scale: Aref*0.5, EA+0
+!#[ENDREACTIONCLASS][A1CH2-RSR][REC_O_EL_HCO]
+!#[REACTIONCLASS][A1CH2-RSR][REC_O_EL_H]
+RXYLENE + O = C6H4CH3CHO + H                                           4.5E+12     0.072      732  !AUTOALIGN; ref: C7H7 + O = C6H5CHO + H, scale: Aref*0.5, EA+0
+!#[ENDREACTIONCLASS][A1CH2-RSR][REC_O_EL_H]
 
-RXYLENE+OH=>C6H4CH3CHO+H2                             2.000E+13    0.000      0.00
-RXYLENE+O2=C6H4CH3CHO+OH                              1.380E+02    2.420   7440.25
-RXYLENE+O2=OC6H4CH3+CH2O                              6.570E+03    1.870   5002.39
-RXYLENE+HO2=>C6H4CH3CHO+H+OH                          2.280E+13   -0.310   -657.27!\REF: !\COMMENT:!REF: Branching ratio from A1CH2O decomposition
-RXYLENE+HO2=>C6H4CH3+CH2O+OH                        3.130E+18   -1.440  13943.59 !\REF: !\COMMENT:!REF: Branching ratio from A1CH2O decomposition
-RXYLENE+HO2=>C6H5CH3+HCO+OH                           1.030E+17   -1.330   5903.44 !\REF: !\COMMENT:!REF: Branching ratio from A1CH2O decomposition
+
+!#[REACTIONCLASS][A1CH2-RSR][REC_O2_EL_OH] 
+RXYLENE + O2 = C6H4CH3CHO + OH                                         1.768E+06     1.483    16508  !AUTOALIGN; ref: C7H7 + O2 = C6H5CHO + OH, scale: Aref*0.5, EA+0
+  PLOG /                                                   1.000E-01   1.448E+03     2.341    14200 /
+  PLOG /                                                   1.000E+00   1.768E+06     1.483    16508 /
+  PLOG /                                                   1.000E+01   4.749E+10     0.275    20457 /
+  PLOG /                                                   1.000E+02   1.251E+15    -0.880    25937 /
+  PLOG /                                                   1.000E+03   1.289E+06     1.754    24024 /
+!#[ENDREACTIONCLASS][A1CH2-RSR][REC_O2_EL_OH] 
+!#[REACTIONCLASS][A1CH2-RSR][REC_O2_ISOM_O] 
+RXYLENE + O2 = OC6H4CH3 + CH2O                                         1.290E+09     0.416    20714  !AUTOALIGN; ref: C7H7 + O2 = C6H5O + CH2O, scale: Aref*0.5, EA+0
+  PLOG /                                                   1.000E-01   2.308E+08     0.623    20111 /
+  PLOG /                                                   1.000E+00   1.290E+09     0.416    20714 /
+  PLOG /                                                   1.000E+01   2.180E+13    -0.741    24378 /
+  PLOG /                                                   1.000E+02   7.365E+20    -2.756    32305 /
+  PLOG /                                                   1.000E+03   6.520E+16    -1.475    34868 /
+!#[ENDREACTIONCLASS][A1CH2-RSR][REC_O2_ISOM_O] 
+
+!to update with P dependent values?
+RXYLENE+HO2=>C6H4CH3CHO+H+OH	6.67E+19	-2.00	3515.9
+RXYLENE+HO2=>C6H4CH3+CH2O+OH	8.74E+24	-3.13	18104.6
+RXYLENE+HO2=>C6H5CH3+HCO+OH	3.30E+23	-3.03	10101.4
+
 
 ! GROWTH
 RXYLENE+C3H3=>C10H7CH3-A+2H                             3.575E+09	0	-5090	! LPM, MATSUGI MIYOSHI 2016 IJCK LPL
 RXYLENE+C3H3=>C10H7CH3-B+2H                             3.575E+09	0	-5090	! LPM, MATSUGI MIYOSHI 2016 IJCK LPL
-                	          
+!#[REACTIONCLASS][A1CH2-RSR][ADD_C2.T-M]  	 	 	 	 
+RXYLENE+C2H2=>C10H10+H			 	 3.80E+11	0	9650	! LPM 08-16-23 NEW RR ! RIGHT PRODUCT: MEINDENE C9H7CH3+H
+!#[ENDREACTIONCLASS][A1CH2-RSR][ADD_C2.T-M]
+
+!#[REACTIONCLASS][A1CH2-RSR][REC_C3.D-R]
+C4H5-N+RXYLENE=>.666666667PHNTHRN+.16666667NAPH+H2+CH3+H                                    +5.00000E+012 +0.00000E+000 +4.00000E+003 
+!#[ENDREACTIONCLASS][A1CH2-RSR][REC_C3.D-R]
+
+!!!!!!!!!!!!!!!!!!!REACTIVITY FROM RADICAL ON RING
+!#[REACTIONCLASS][A1-M][HABS_H]       
+H + XYLENE => CH3C6H3CH3 + H2                                          3.320E+07     2.120    13821  !AUTOALIGN; ref: H + C7H8 = CH3C6H4 + H2, scale: Aref*0.8, EA+0
+CH3C6H3CH3 + H2 => H + XYLENE                                          3.610E+03     2.770     4422  !AUTOALIGN; ref: CH3C6H4 + H2 = H + C7H8, scale: Aref*1.0, EA+0
+!#[ENDREACTIONCLASS][A1-M][HABS_H] 		
+
+!#[REACTIONCLASS][A1-M][HABS_CH3]
+CH3 + XYLENE => CH3C6H3CH3 + CH4                                       1.752E+02     3.260    13433  !AUTOALIGN; ref: CH3 + C7H8 = CH3C6H4 + CH4, scale: Aref*0.8, EA+0
+CH3C6H3CH3 + CH4 => CH3 + XYLENE                                       1.260E+01     3.590     5303  !AUTOALIGN; ref: CH3C6H4 + CH4 = CH3 + C7H8, scale: Aref*1.0, EA+0
+!#[ENDREACTIONCLASS][A1-M][HABS_CH3]
+
+!#[REACTIONCLASS][A1-M][HABS_O2] 
+O2 + XYLENE => CH3C6H3CH3 + HO2                                        1.760E+09     1.650    58904  !AUTOALIGN; ref: O2 + C7H8 = CH3C6H4 + HO2, scale: Aref*0.8, EA+0
+CH3C6H3CH3 + HO2 => O2 + XYLENE                                        2.060E+06     1.870    -4707  !AUTOALIGN; ref: CH3C6H4 + HO2 = O2 + C7H8, scale: Aref*1.0, EA+0
+!#[ENDREACTIONCLASS][A1-M][HABS_O2] 		
+
+!#[REACTIONCLASS][A1-M][HABS_OH] 
+OH + XYLENE => CH3C6H3CH3 + H2O                                        1.976E+05     2.430     2079  !AUTOALIGN; ref: OH + C7H8 = CH3C6H4 + H2O, scale: Aref*0.8, EA+0
+CH3C6H3CH3 + H2O => OH + XYLENE                                        2.710E+02     2.930     7318  !AUTOALIGN; ref: CH3C6H4 + H2O = OH + C7H8, scale: Aref*1.0, EA+0
+!#[ENDREACTIONCLASS][A1-M][HABS_OH] 		
+
+!#[REACTIONCLASS][A1-M][HABS_O] 
+O + XYLENE => CH3C6H3CH3 + OH                                          5.193E+06     2.151     9202  !AUTOALIGN; ref: O + C7H8 = CH3C6H4 + OH, scale: Aref*0.8, EA+0
+CH3C6H3CH3 + OH => O + XYLENE                                          9.850E+02     2.482    -3215  !AUTOALIGN; ref: CH3C6H4 + OH = O + C7H8, scale: Aref*1.0, EA+0
+!#[ENDREACTIONCLASS][A1-M][HABS_O] 		
+
+!#[REACTIONCLASS][A1-M][HABS_HO2] 
+HO2 + XYLENE = CH3C6H3CH3 + H2O2                                       1.150E+02     3.384    22595  !AUTOALIGN; ref: HO2 + C7H8 = CH3C6H4 + H2O2, scale: Aref*0.8, EA+0
+!#[ENDREACTIONCLASS][A1-M][HABS_HO2]
+
+!#[REACTIONCLASS][A1-R][REC_H_WELL] 
+CH3C6H3CH3 + H (+M) = XYLENE (+M)                                      4.200E+13     0.150        0  !AUTOALIGN; ref: H + C6H5 (+M) = C6H6 (+M), scale: Aref*1.0, EA+0
+  LOW  /                                                               6.600E+75   -16.300     7000  /
+  TROE /   1.000E+00   1.000E-01   5.849E+02   6.113E+03 /
+!#[ENDREACTIONCLASS][A1-R][REC_H_WELL] 		
+
+
+!!!!!!!!!!!!!!REACTIVITY OF CH3C6H3CH3
+!#[REACTIONCLASS][A1,CH3-R][ISOM_CC]
+RXYLENE => CH3C6H3CH3                                                  5.781E+48   -10.367    83054  !*2 AUTOALIGN; ref: C7H7 = CH3C6H4, scale: Aref*1.0, EA+0
+PLOG	/	0.01	2.68E+72	-17.73	90387	/
+PLOG	/	0.10	1.35E+62	-14.40	88013	/
+PLOG	/	1	1.16E+49	-10.37	83054	/
+PLOG	/	10	2.23E+35	-6.27	76468	/
+PLOG	/	100	8.94E+19	-1.79	67672	/
+
+CH3C6H3CH3 => RXYLENE                                                  6.560E+45    -9.690    61051  !AUTOALIGN; ref: CH3C6H4 = C7H7, scale: Aref*2.0, EA+0
+  PLOG /                                                   1.000E-02   7.360E+68   -16.960    68208 /
+  PLOG /                                                   1.000E-01   6.720E+58   -13.700    65987 /
+  PLOG /                                                   1.000E+00   6.560E+45    -9.690    61051 /
+  PLOG /                                                   1.000E+01   1.530E+32    -5.610    54520 /
+  PLOG /                                                   1.000E+02   8.960E+16    -1.170    45840 /
+
+!#[ENDREACTIONCLASS][A1,CH3-R][ISOM_CC]
+
+!#[REACTIONCLASS][A1-R][ROPEN]
+CH3C6H3CH3=C4H3-I+C4H6	1.42E+15	0	94597	! X2 !LPM 02-05-2024 FIT FROM MADDEN 1997 JPCA 10.1021/JP970723D
+PLOG/ 0.5	1.64E+16	0	88395	/
+PLOG/ 10	7.50E+16	0	90868	/
+PLOG/ 300	1.53E+17	0	92071	/
+!#[ENDREACTIONCLASS][A1-R][ROPEN]
+
+!OXIDATION
+!#[REACTIONCLASS][A1-R][REC_O2_EL_O] 
+O2 + CH3C6H3CH3 => FULVENE + CH3 + CO + O                              5.250E+24    -3.400    11757  !*1.5 AUTOALIGN; ref: O2 + CH3C6H4 = OC6H4CH3 + O, scale: Aref*0.5, EA+0
+PLOG	/	0.1	2.47E+19	-1.9	6179	/
+PLOG	/	1	7.88E+24	-3.4	11757	/
+PLOG	/	10	1.13E+25	-3.3	14968	/
+PLOG	/	100	1.25E+14	0.0	12374	/
+!#[ENDREACTIONCLASS][A1-R][REC_O2_EL_O] 
+
+!#[REACTIONCLASS][A1-R][REC_O2_INSERTION] 
+!REC-INSERTION-ROPEN-RCLOSE-BSCISS 	 	 	 	 
+CH3C6H3CH3 + O2 => C5H4O + CO + CH3 + 0.5C2H4                          7.500E+25    -3.800    12700  !AUTOALIGN; ref: CH3C6H4 + O2 => C5H4O + CO + CH3, scale: Aref*0.5, EA+0
+  PLOG /                                                   1.000E-02   5.750E+21    -2.900     5680 /
+  PLOG /                                                   1.000E-01   3.435E+22    -3.000     8140 /
+  PLOG /                                                   1.000E+00   7.500E+25    -3.800    12700 /
+  PLOG /                                                   1.000E+01   6.050E+25    -3.700    15800 /
+  PLOG /                                                   1.000E+02   2.480E+15    -0.600    13600 /
+CH3C6H3CH3 + O2 => P-C6H4O2 + CH3 + 0.5C2H4                              1.875E+25    -3.800    12700  !AUTOALIGN; ref: CH3C6H4 + O2 = C6H4O2 + CH3, scale: Aref*0.5, EA+0
+  PLOG /                                                   1.000E-02   1.440E+21    -2.900     5680 /
+  PLOG /                                                   1.000E-01   8.600E+21    -3.000     8140 /
+  PLOG /                                                   1.000E+00   1.875E+25    -3.800    12700 /
+  PLOG /                                                   1.000E+01   1.515E+25    -3.700    15800 /
+  PLOG /                                                   1.000E+02   6.200E+14    -0.600    13600 /
+!#[ENDREACTIONCLASS][A1-R][REC_O2_INSERTION] 
+
+!#[REACTIONCLASS][A1,CH3-R][REC_O2_EL_OH]
+!PROD SHOULD BE CH2,O,C6H3CH3; CAN'T DECOMPOSE IT EASILY..
+!OPTIONS OC6H4CH2+0.5C2H4+OH; :
+CH3C6H3CH3 + O2 => C6H5CH3 + CO + OH                                      1.784E+32    -5.700    13409  !AUTOALIGN; ref: CH3C6H4 + O2 = OC6H4CH2 + OH, scale: Aref*2.0, EA+0
+  PLOG /                                                   1.000E-01   3.800E+25    -3.880     7465 /
+  PLOG /                                                   1.000E+00   1.784E+32    -5.700    13409 /
+  PLOG /                                                   1.000E+01   8.940E+31    -5.490    16580 /
+  PLOG /                                                   1.000E+02   3.000E+21    -2.340    15208 /
+!#[ENDREACTIONCLASS][A1,CH3-R][REC_O2_EL_OH]
+
+!#[REACTIONCLASS][A1-R][REC_O_DECO] 
+CH3C6H3CH3 + O => FULVENE+H + 0.5C2H4 + CO                               3.070E+16    -0.910      760  !AUTOALIGN; ref: CH3C6H4 + O = C5H4CH3 + CO, scale: Aref*1.0, EA+0
+  PLOG /                                                   1.000E-02   4.350E+14    -0.330      112 /
+  PLOG /                                                   1.000E-01   1.330E+16    -0.770      850 /
+  PLOG /                                                   1.000E+00   3.070E+16    -0.910      760 /
+  PLOG /                                                   1.000E+01   2.750E+18    -1.500     1585 /
+  PLOG /                                                   1.000E+02   8.530E+20    -2.250     2687 /
+!#[ENDREACTIONCLASS][A1-R][REC_O_DECO]
+
+
+!#[REACTIONCLASS][A1-R][REC_OH_EL_H]
+CH3C6H3CH3 + OH => OC6H4CH3 + CH3                                       8.900E+17    -0.960    19846  !AUTOALIGN; ref: C6H5 + OH => C6H5O + H, scale: Aref*0.5, EA+0
+  PLOG /                                                   1.000E-02   9.900E+37    -6.840    22960 /
+  PLOG /                                                   1.000E-01   1.335E+33    -5.330    24650 /
+  PLOG /                                                   1.000E+00   8.900E+17    -0.960    19846 /
+  PLOG /                                                   1.000E+01   1.780E-03     4.890    10743 /
+  PLOG /                                                   1.000E+02   2.980E-21     9.800     2228 /
+!#[ENDREACTIONCLASS][A1-R][REC_OH_EL_H]
+!#[REACTIONCLASS][A1-R][REC_OH_DECO]
+CH3C6H3CH3 + OH => FULVENE + CH4 + CO                                  2.100E+27    -3.910    27447  !AUTOALIGN; ref: C6H5 + OH = C5H6 + CO, scale: Aref*0.5, EA+0
+  PLOG /                                                   1.000E-02   7.550E+38    -7.470    22659 /
+  PLOG /                                                   1.000E-01   1.755E+36    -6.580    26465 /
+  PLOG /                                                   1.000E+00   2.100E+27    -3.910    27447 /
+  PLOG /                                                   1.000E+01   1.720E+09     1.290    23082 /
+  PLOG /                                                   1.000E+02   2.430E-16     8.290    14028 /
+!#[ENDREACTIONCLASS][A1-R][REC_OH_DECO]
+
+!#[REACTIONCLASS][A1-R][REC_HO2_EL_OH]
+!OC6H4CH3+C2H2+OH
+CH3C6H3CH3 + HO2 => FULVENE + CH3 + CO + OH                            1.500E+13     0.000        0  !AUTOALIGN; ref: C6H5 + HO2 = C6H5O + OH, scale: Aref*0.5, EA+0
+!#[ENDREACTIONCLASS][A1-R][REC_HO2_EL_OH]
+
+!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!   C6H4CH3CHO SUBMECHANISM - ONLY A1CHO REACTIONS
+!!! PERHAPS CONSIDER ADDING HABS AND DECO TO BENZYL+CO (HCOC6H4CH2 ALREADY DECOMPOSED)
+!!! WILL MATTER AT HIGH TEMPERATURES
+!#[REACTIONCLASS][A1,CHO-M][BONDFISSION_CC]	
+C6H4CH3CHO = C6H4CH3 + HCO                                             5.000E+15     0.000    98900  !AUTOALIGN; ref: C6H5CHO = C6H5 + HCO, scale: Aref*1.0, EA+0
+!#[ENDREACTIONCLASS][A1,CHO-M][BONDFISSION_CC]
+!#[REACTIONCLASS][A1,CHO-M][BONDFISSION_CH]	
+C6H4CH3CHO => H + C6H4CH3 + CO                                         3.000E+15     0.000    89300  !AUTOALIGN; ref: C6H5CHO = H + C6H5CO, scale: Aref*1.0, EA+0
+!#[ENDREACTIONCLASS][A1,CHO-M][BONDFISSION_CH]
+
+
+! PROPAGATION: HABSTRACTIONS
+!#[REACTIONCLASS][A1,CHO-M][HABS_H]	
+H + C6H4CH3CHO => H2 + C6H4CH3 + CO                                    1.500E+06     2.300     1792  !AUTOALIGN; ref: H + C6H5CHO = H2 + C6H5CO, scale: Aref*1.0, EA+0
+!#[ENDREACTIONCLASS][A1,CHO-M][HABS_H]
+!#[REACTIONCLASS][A1,CHO-M][HABS_CH3]	
+CH3 + C6H4CH3CHO => CH4 + C6H4CH3 + CO                                 8.370E+00     3.440     4471  !AUTOALIGN; ref: CH3 + C6H5CHO = CH4 + C6H5CO, scale: Aref*1.0, EA+0
+!#[ENDREACTIONCLASS][A1,CHO-M][HABS_CH3]
+!#[REACTIONCLASS][A1,CHO-M][HABS_OH]	
+OH + C6H4CH3CHO => H2O + C6H4CH3 + CO                                  5.110E+05     2.150    -2412  !AUTOALIGN; ref: OH + C6H5CHO = H2O + C6H5CO, scale: Aref*1.0, EA+0
+!#[ENDREACTIONCLASS][A1,CHO-M][HABS_OH]
+!#[REACTIONCLASS][A1,CHO-M][HABS_O2]	
+O2 + C6H4CH3CHO => HO2 + C6H4CH3 + CO                                  7.300E+06     2.050    37428  !AUTOALIGN; ref: O2 + C6H5CHO = HO2 + C6H5CO, scale: Aref*1.0, EA+0
+!#[ENDREACTIONCLASS][A1,CHO-M][HABS_O2]
+!#[REACTIONCLASS][A1,CHO-M][HABS_HO2]	
+HO2 + C6H4CH3CHO => H2O2 + C6H4CH3 + CO                                2.400E-01     4.070     6188  !AUTOALIGN; ref: HO2 + C6H5CHO = H2O2 + C6H5CO, scale: Aref*1.0, EA+0
+!#[ENDREACTIONCLASS][A1,CHO-M][HABS_HO2]
+!#[REACTIONCLASS][A1,CHO-M][HABS_O]	
+O+C6H4CH3CHO=>OH+C6H4CH3 + CO         1.84E+07	1.68	1593  !CCSD(T)/CBS LPM/NF, VARIES A LOT IN MECH. 2 PAR FIT IS 1E+13 0 4750
+!#[ENDREACTIONCLASS][A1,CHO-M][HABS_O]
+!#[REACTIONCLASS][A1,CHO-M][HABS_C5-RSR]	
+C5H5 + C6H4CH3CHO => C5H6 + C6H4CH3 + CO                               2.720E+05     2.000    12130  !AUTOALIGN; ref: C5H5 + C6H5CHO = C5H6 + C6H5CO, scale: Aref*1.0, EA+0
+!#[ENDREACTIONCLASS][A1,CHO-M][HABS_C5-RSR]
+
+!#[REACTIONCLASS][A1,CHO-M][HABS_A1CH2-RSR]	
+C6H5CH2 + C6H4CH3CHO => C6H5CH3 + C6H4CH3 + CO                               1.080E+05     2.000    14063  !AUTOALIGN; ref: C7H7 + C6H5CHO = C6H5CH3 + C6H5CO, scale: Aref*1.0, EA+0
+RXYLENE + C6H4CH3CHO => XYLENE + C6H4CH3 + CO                          1.080E+05     2.000    14063  !AUTOALIGN; ref: C7H7 + C6H5CHO = C6H5CH3 + C6H5CO, scale: Aref*1.0, EA+0
+!#[ENDREACTIONCLASS][A1,CHO-M][HABS_A1CH2-RSR]
+!#[REACTIONCLASS][A1,CHO-M][HABS_A1O-RSR]	
+C6H5O + C6H4CH3CHO => C6H5OH + C6H4CH3 + CO                            7.700E+04     2.000    10683  !AUTOALIGN; ref: C6H5O + C6H5CHO = C6H5OH + C6H5CO, scale: Aref*1.0, EA+0
+OC6H4CH3 + C6H4CH3CHO => HOC6H4CH3 + C6H4CH3 + CO                         7.700E+04     2.000    10683  !AUTOALIGN; ref: C6H5O + C6H5CHO = C6H5OH + C6H5CO, scale: Aref*1.0, EA+0
+!#[ENDREACTIONCLASS][A1,CHO-M][HABS_A1O-RSR]
+
+
+! PROPAGATION: IPSO ADDITIONS
+!#[REACTIONCLASS][A1,CHO-M][IPSO_H]	
+H + C6H4CH3CHO = HCO + C6H5CH3                                            7.500E+07     1.710     4699  !AUTOALIGN; ref: H + C6H5CHO = HCO + C6H6, scale: Aref*1.0, EA+0
+!#[ENDREACTIONCLASS][A1,CHO-M][IPSO_H]
+!#[REACTIONCLASS][A1,CHO-M][IPSO_CH3]	
+CH3 + C6H4CH3CHO = HCO + XYLENE                                        1.200E+12     0.000    15200  !AUTOALIGN; ref: CH3 + C6H5CHO = HCO + C6H5CH3, scale: Aref*1.0, EA+0
+!#[ENDREACTIONCLASS][A1,CHO-M][IPSO_CH3]
+!#[REACTIONCLASS][A1,CHO-M][IPSO_OH]	
+OH + C6H4CH3CHO = HCO + HOC6H4CH3                                         4.700E+12     0.000     8600  !AUTOALIGN; ref: OH + C6H5CHO = HCO + C6H5OH, scale: Aref*1.0, EA+0
+!#[ENDREACTIONCLASS][A1,CHO-M][IPSO_OH]
+!#[REACTIONCLASS][A1,CHO-M][IPSO_O]	
+O + C6H4CH3CHO = HCO + OC6H4CH3                                        1.000E+12     0.000     5000  !AUTOALIGN; ref: O + C6H5CHO = HCO + C6H5O, scale: Aref*1.0, EA+0
+!#[ENDREACTIONCLASS][A1,CHO-M][IPSO_O]
+
 
 !! Tolualdehyde
 C6H4CH3CHO=C6H4CHOCH2+H                                  1.250E+18   -0.600  94787.28!\REF: !\COMMENT:!REF: From C6H5CH3 & A1CHO decomposition
-C6H4CH3CHO=>C6H5+CO+CH3                                  2.160E+29   -3.580 110164.91
-C6H4CH3CHO=>C6H4CH3+CO+H                               2.100E+16    0.000  81739.96
 C6H4CH3CHO+H=C6H4CHOCH2+H2                               6.470E+00    3.980   3384.32!\REF: !\COMMENT:!REF: From C6H5CH3+R
 C6H4CH3CHO+O=C6H4CHOCH2+OH                               1.180E+00    4.090   2545.41!\REF: !\COMMENT:!REF: From C6H5CH3+R
 C6H4CH3CHO+OH=C6H4CHOCH2+H2O                             1.770E+05    2.390   -602.29!\REF: !\COMMENT:!REF: From C6H5CH3+R
 C6H4CH3CHO+O2=C6H4CHOCH2+HO2                             2.180E+07    2.500  46044.46!\REF: !\COMMENT:!REF: From C6H5CH3+R
 C6H4CH3CHO+HO2=C6H4CHOCH2+H2O2                           9.330E+04    2.500  14684.51!\REF: !\COMMENT:!REF:From C6H5CH3+R
 C6H4CH3CHO+CH3=C6H4CHOCH2+CH4                            4.220E+14    0.000  22256.21!\REF: !\COMMENT:!REF:From C6H5CH3+R
-C6H4CH3CHO+H=>C6H4CH3+CO+H2                            4.090E+09    1.160   2404.40!\REF: !\COMMENT:!REF:From A1CHO+R
-C6H4CH3CHO+O=>C6H4CH3+CO+OH                            5.840E+12    0.000   1809.27!\REF: !\COMMENT:!REF: From A1CHO+R
-C6H4CH3CHO+OH=>C6H4CH3+CO+H2O                          2.890E+08    1.350  -1572.66!\REF: !\COMMENT:!REF:From A1CHO+R
-C6H4CH3CHO+O2=>C6H4CH3+CO+HO2                          1.200E+05    2.500  37554.97!\REF: !\COMMENT:!REF: From A1CHO+R
-C6H4CH3CHO+HO2=>C6H4CH3+CO+H2O2                        4.090E+04    2.500  10203.15!\REF: !\COMMENT:!REF: From A1CHO+R
-C6H4CH3CHO+CH3=>C6H4CH3+CO+CH4                         3.490E-08    6.210   1630.02!\REF: !\COMMENT:!REF:From A1CHO+R
-C6H4CH3CHO+H=C6H5CH3+HCO                                 2.310E+06    2.170   4163.48 !\REF: !\COMMENT:!REF: From C6H5CH3+H - substitution
+
 C6H4CH3CHO+H=C6H5CHO+CH3                                 2.310E+06    2.170   4163.48!\REF: !\COMMENT:!REF: From C6H5CH3+H - substitution
-C6H4CH3CHO+OH=HOC6H4CH3+HCO                              7.830E+02    2.880   3221.80!\REF: !\COMMENT:!REF: From C6H5CH3+OH - substitution
 C6H4CH3CHO+OH=>C6H5O+H+CO+CH3                            7.830E+02    2.880   3221.80!\REF: !\COMMENT:!REF: From C6H5CH3+OH - substitution
 !! Tolualdehyde radical
 !! Branching ratio from A1CH2O decomposition

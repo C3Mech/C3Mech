@@ -89,36 +89,47 @@ HOCO+CH3<=>CH2CO+H2O                              +2.13000000E+013 +0.00000000E+
 !___________________________________________________________________________________________________________ 
 !\REACTIONCLASS: RH<=>PRODUCTS
 !___________________________________________________________________________________________________________ 
-CH3+H(+M)<=>CH4(+M)         +6.47000000E+013 +1.85000000E-001 -5.40000000E+001 !J.TROE, V.G. USHAKOV, J. CHEM. PHYS. 136(2012) 214309 !\Comment: WARNING 
-LOW /                       +8.54000000E+032 -4.69000000E+000 +2.20000000E+003 /
-TROE /     +5.16194000E-001 +3.63784820E+003 +1.00000000E+000 +1.00000000E+030 /
-    H2   /4.0/
-    O2   /1.5/
-    H2O  /8.0/ !Pengzhi Wang
-    CO   /2.3/
-    CO2  /4.0/
-    CH4  /5.0/
-    CH3OH/6.0/
-    C2H6 /4.0/
-    AR   /1.0/
-    HE   /0.9/ !/0.7/ !Yuki Murakami, Mohsin Raza, 6 March 2024, to make alkane LBVs slower
-    N2   /0.0/
-    !! N2   /1.5/
-
-!! 1 atm increase GRI2.0 rate by 15%
-!! >=10 atm REFITTED TO MATCH TROE 2012 RATES FOR CH4 IN AIR
-!! Yuki Murakami, Yuxiang Zhu, 03/10/2023
-CH3+H+N2=CH4+N2         1.0 0.0 0.0         
-PLOG    / 1.00E+00    8.464E+30 -4.100E+00 2.960E+03 /  !7.36E+30 -4.100E+00 2.960E+03 /
-PLOG    / 1.00E+00    8.878E+42 -7.500E+00 1.090E+04 /  !7.72E+42 -7.500E+00 1.090E+04 /
-PLOG    / 1.00E+01    2.48E+31 -4.560E+00 4.050E+03 /
-PLOG    / 1.00E+01    1.16E+39 -6.340E+00 1.238E+04 /
-PLOG    / 5.00E+01    1.15E+41 -8.160E+00 5.950E+03 /
-PLOG    / 5.00E+01    3.27E+30 -4.000E+00 7.145E+03 /
-PLOG    / 1.00E+02    7.80E+25 -3.092E+00 2.686E+03 /
-PLOG    / 1.00E+02    1.09E+32 -4.447E+00 9.072E+03 /
-PLOG    / 3.00E+02    1.98E+33 -4.827E+00 1.145E+04 /
-PLOG    / 3.00E+02    1.08E+23 -2.272E+00 2.366E+03 /
+! High P limit from LB Harding, Y Georgievskii, SJ Klippenstein, JPCA 109: 4646 (2005).
+! Low P from  NJ Labbe 2/2016 (improvement at high and low T)
+! Falloff in Ar (alpha=115*(T/300)^.75) from trajectories of AW Jasper, JA Miller, unpublished (2010).
+! Very good agreement with the empirical alpha of JA Miller, SJ Klippenstein, C Raffy, JPCA 106: 4904 (2002).
+! DH = -103.4
+! Email communication between SJK - MR
+!Helium third-body efficiency changed from 1.0 to 0.7 (Meeting with CSI 25-07-2025)
+CH3+H(+M)<=>CH4(+M)  6.93E+13 0.180 0.
+LOW / +1.134000000E+031 -4.11500000E+000 +2.23800000E+003 /
+TROE / 7.00E-001 1.0063E+04  4.5610E+02 /
+H2 / +2.86 / HE / +0.7 / H2O / +8.57 / CO / +2.14 / CO2 / +2.86 / CH4 / +2.86 / C2H6 /+4.29 / N2 / +1.43 /
+!!CH3+H(+M)<=>CH4(+M)         +6.47000000E+013 +1.85000000E-001 -5.40000000E+001 !J.TROE, V.G. USHAKOV, J. CHEM. PHYS. 136(2012) 214309 !\Comment: WARNING 
+!!LOW /                       +8.54000000E+032 -4.69000000E+000 +2.20000000E+003 /
+!!TROE /     +5.16194000E-001 +3.63784820E+003 +1.00000000E+000 +1.00000000E+030 /
+!!    H2   /4.0/
+!!    O2   /1.5/
+!!    H2O  /8.0/ !Pengzhi Wang
+!!    CO   /2.3/
+!!    CO2  /4.0/
+!!    CH4  /5.0/
+!!    CH3OH/6.0/
+!!    C2H6 /4.0/
+!!    AR   /1.0/
+!!    HE   /0.9/ !/0.7/ !Yuki Murakami, Mohsin Raza, 6 March 2024, to make alkane LBVs slower
+!!    N2   /0.0/
+!!    !! N2   /1.5/
+!!
+!!!! 1 atm increase GRI2.0 rate by 15%
+!!!! >=10 atm REFITTED TO MATCH TROE 2012 RATES FOR CH4 IN AIR
+!!!! Yuki Murakami, Yuxiang Zhu, 03/10/2023
+!!CH3+H+N2=CH4+N2         1.0 0.0 0.0         
+!!PLOG    / 1.00E+00    8.464E+30 -4.100E+00 2.960E+03 /  !7.36E+30 -4.100E+00 2.960E+03 /
+!!PLOG    / 1.00E+00    8.878E+42 -7.500E+00 1.090E+04 /  !7.72E+42 -7.500E+00 1.090E+04 /
+!!PLOG    / 1.00E+01    2.48E+31 -4.560E+00 4.050E+03 /
+!!PLOG    / 1.00E+01    1.16E+39 -6.340E+00 1.238E+04 /
+!!PLOG    / 5.00E+01    1.15E+41 -8.160E+00 5.950E+03 /
+!!PLOG    / 5.00E+01    3.27E+30 -4.000E+00 7.145E+03 /
+!!PLOG    / 1.00E+02    7.80E+25 -3.092E+00 2.686E+03 /
+!!PLOG    / 1.00E+02    1.09E+32 -4.447E+00 9.072E+03 /
+!!PLOG    / 3.00E+02    1.98E+33 -4.827E+00 1.145E+04 /
+!!PLOG    / 3.00E+02    1.08E+23 -2.272E+00 2.366E+03 /
 
 !___________________________________________________________________________________________________________ 
 !\REACTIONCLASS: RH+R_ABSTRACTION
