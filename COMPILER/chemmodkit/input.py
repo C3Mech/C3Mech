@@ -309,8 +309,6 @@ def _process_reaction_line(submodule_filename, line, line_orig, species_dict,
   if canon_str not in new_canon_str:
     new_canon_str.add(canon_str)
     if canon_str in normalized_reactions:
-      #print("something wrong:")
-      #print(normalized_reactions)
       prev = normalized_reactions[canon_str][-1].get_submodule_file()
       print("canonical string '" + canon_str +
             "' found in previous sub-module file '" + prev +

@@ -1,4 +1,5 @@
 import os
+import re
 from itertools import combinations
 from collections import defaultdict
 import string
@@ -64,13 +65,15 @@ columns = [
 key_to_display = dict(columns)
 cyclic_keys = ['C5cy', 'C6cy']
 
+
 def print_not_found(what, dir_or_file, path):
   print(what + " " + dir_or_file + " '" + path + "' does not exist")
 
+
 def get_submodules_dir(abs_dir):
   return os.path.normcase(
-      os.path.normpath(
-          os.path.join(abs_dir, os.path.join("..", "SUBMODULES"))))
+      os.path.normpath(os.path.join(abs_dir, os.path.join("..",
+                                                          "SUBMODULES"))))
 
 
 # Helper to get max carbon in a combination
@@ -83,6 +86,10 @@ def get_base_modules():
 
 
 def get_ht_htlt_modules(abs_dir):
+  """
+  returns the sub-module filesnames in an unspecified order;
+  file paths are absolute and normalized
+  """
   base_moduldes_NUIG_HTLT = [
       os.path.join("NUIG", "LT-HT", "NUIG_" + "C0" + "_LT-HT_Cantera.MECH")
   ] + [
@@ -116,24 +123,30 @@ def get_ht_htlt_modules(abs_dir):
       os.path.join("NUIG", "LT-HT", "NUIG_" + "C-N" + "_LT-HT.MECH")
   ]
 
-  modules_ht = base_moduldes_NUIG_HT + LLNL_base_modules_HT + optional_modules + required_extension_HT # + optional_modules_HT 
-  modules_htlt = base_moduldes_NUIG_HTLT + LLNL_base_modules_HTLT + optional_modules + required_extension_HTLT #  + optional_modules_HTLT
+  modules_ht = base_moduldes_NUIG_HT + LLNL_base_modules_HT + optional_modules + required_extension_HT  # + optional_modules_HT
+  modules_htlt = base_moduldes_NUIG_HTLT + LLNL_base_modules_HTLT + optional_modules + required_extension_HTLT  #  + optional_modules_HTLT
 
   ok = True
+  modules_ht_final = []
   for f in modules_ht:
     cur_path = os.path.join(get_submodules_dir(abs_dir), f)
     if (not os.path.isfile(cur_path)):
       print_not_found("", "file", cur_path)
       ok = False
-
+    modules_ht_final.append(
+        os.path.normcase(os.path.abspath(os.path.normpath(cur_path))))
+  modules_htlt_final = []
   for f in modules_htlt:
     cur_path = os.path.join("..", get_submodules_dir(abs_dir), f)
     if (not os.path.isfile(cur_path)):
       print_not_found("", "file", cur_path)
       ok = False
+    modules_htlt_final.append(
+        os.path.normcase(os.path.abspath(os.path.normpath(cur_path))))
   if not ok:
     raise Exception("could not find all files")
-  return modules_ht, modules_htlt
+
+  return modules_ht_final, modules_htlt_final
 
 
 def lump_main_chain(combo):
@@ -249,8 +262,12 @@ def match_submodules(submodules, modules_ht, modules_htlt):
 
 
 def get_submodule_filenames(abs_dir):
+  """
+  returns a map from sub-modules to filenames in the order
+  of ORDERED_KEYS
+  """
   submodules = {}
-  for dep in DEPENDENCIES:
+  for dep in ORDERED_KEYS:
     for base in DEPENDENCIES[dep]:
       if base not in DEPENDENCIES:
         raise Exception("base:" + base)
@@ -265,18 +282,22 @@ def get_submodule_filenames(abs_dir):
   return submodules_filenames
 
 
-def is_ht(filenames, abs_dir):
-  submodules_filenames = get_submodule_filenames(abs_dir)
+def is_ht(filenames, submodules_dir):
+  submodules_filenames = get_submodule_filenames(submodules_dir)
   ht_files = set(list(submodules_filenames["HT"].values()))
+  filenames = get_relative_submodule_paths(filenames, submodules_dir)
+  ht_files = get_relative_submodule_paths(ht_files, submodules_dir)
   for f in filenames:
     if f not in ht_files:
       return False
   return True
 
 
-def is_ltht(filenames, abs_dir):
-  submodules_filenames = get_submodule_filenames(abs_dir)
+def is_ltht(filenames, submodules_dir):
+  submodules_filenames = get_submodule_filenames(submodules_dir)
   ltht_files = set(list(submodules_filenames["LT-HT"].values()))
+  filenames = get_relative_submodule_paths(filenames, submodules_dir)
+  ltht_files = get_relative_submodule_paths(ltht_files, submodules_dir)
   for f in filenames:
     if f not in ltht_files:
       return False
@@ -472,6 +493,9 @@ class MID:
     if self.START and id_str[0] != self.START:
       raise ValueError(f"first character in id_str='{id_str}' must be '" +
                        self.START + "'")
+    if not re.fullmatch(r'[a-z0-9]+', id_str.lower()):
+      print("#error: MID '" + id_str.lower() + "' contains invalid characters")
+      quit()
     if self.START:
       id_str = id_str[1:]
     try:
@@ -512,6 +536,194 @@ class MID:
     return selection
 
 
+def get_grouped_combos_mid(options):
+  print("Generating model from MID '" + options.mid + "'")
+  midgen = MID(ORDERED_KEYS, BINARY_KEYS, version=VERSION)
+  selection = midgen.id_to_combo(options.mid)
+
+  print("MID '" + options.mid + "' decoded as:")
+  for key, temp in selection.items():
+    print(f"{key:<20} {temp}")
+  if 'C0' not in selection:
+    print(
+        "Required sub-module 'C0' is missing. Please double check the provided MID '"
+        + options.mid + "'")
+    quit()
+
+  if "NUIG_C-N" in selection:
+    if not "NUIG_N" in selection:
+      print("#warning: using NUIG_C-N sub-module without NUIG_N")
+    if max_carbon(selection.keys()) == 0:
+      print(
+          "#warning: using NUIG_C-N sub-module without carbon containing sub-module"
+      )
+
+  if "PAH_BLOCK" in selection:
+    min_PAH = ["C0", "C1-C2", "C3-C4"]
+    for dep in min_PAH:
+      if dep not in selection:
+        print("#warning: using PAH_BLOCK without '" + dep +
+              "' is not recommended.")
+
+  all_ht = True
+  all_lt_ht = True
+  n_temp_independent = 0
+
+  submodules_filenames = get_submodule_filenames(options.submodules_dir)
+
+  ht_files = set(list(submodules_filenames["HT"].values()))
+  ltht_files = set(list(submodules_filenames["LT-HT"].values()))
+  temp_independent = ht_files & ltht_files
+
+  for key, temp in selection.items():
+    if temp == "HT" and submodules_filenames["HT"][key] not in temp_independent:
+      #print(key, "NOT LT-HT")
+      all_lt_ht = False
+    elif temp == "LT-HT" and submodules_filenames["LT-HT"][
+        key] not in temp_independent:
+      #print(key, "NOT HT")
+      all_ht = False
+    elif temp != "HT" and temp != "LT-HT":
+      raise Exception("Unexpected key '" + temp + "'")
+    else:
+      #print(key, "temperature-independent")
+      n_temp_independent += 1
+
+  if n_temp_independent == len(selection):
+    all_ht = False
+    all_lt_ht = False
+  elif all_lt_ht and all_ht:
+    raise Exception("all HT and all LT-HT is impossible. There is a bug here.")
+
+  grouped_combos = defaultdict(dict)
+  cnum = max_carbon(selection.keys())
+  grouped_combos[cnum]["modules"] = [selection]
+  grouped_combos[cnum]["mid"] = [options.mid]
+  temp_str = ""
+  if all_ht:
+    temp_str = "_HT"
+    print("MID '" + options.mid + "' is a HT model")
+    grouped_combos[cnum]["temperature"] = ["HT"]
+  elif all_lt_ht:
+    temp_str = "_LT-HT"
+    print("MID '" + options.mid + "' is a LT-HT model")
+    grouped_combos[cnum]["temperature"] = ["LT-HT"]
+  else:
+    if n_temp_independent == len(selection):
+      print("MID '" + options.mid +
+            "' combines temperature-independent sub-modules")
+    else:
+      print("MID '" + options.mid + "' combines HT and LT-HT sub-modules")
+    grouped_combos[cnum]["temperature"] = [""]
+
+  grouped_combos[cnum]["output_chunks"] = [
+      sanitize_filename(list(selection.keys())) + temp_str
+  ]
+
+  #print("output_chunks", grouped_combos[cnum]["output_chunks"])
+  grouped_combos[cnum]["output_dir"] = options.output_dir
+  return grouped_combos
+
+
+def check_duplicate(used_paths):
+  # Find duplicates
+  seen = set()
+  duplicates = set()
+  for path in used_paths:
+    if path in seen:
+      duplicates.add(path)
+    else:
+      seen.add(path)
+
+  if duplicates:
+    print("duplicate paths found:")
+    for dup in duplicates:
+      print(dup)
+    quit(f"#error: duplicate file paths detected in yaml input")
+
+
+def get_relative_submodule_paths(used_paths, submodules_dir):
+  if submodules_dir[-1] != os.sep:
+    submodules_dir += os.sep
+  used_paths_rel = {}
+  # Remove the prefix to get the short (relative) path
+  for p_abs in used_paths:
+    if not p_abs.startswith(submodules_dir):
+      raise Exception(
+          f"Used path {p_abs} does not start with submodules dir {submodules_dir}"
+      )
+    p_rel = p_abs[len(submodules_dir):]
+    if p_rel in used_paths_rel:
+      raise Exception("Unexpected duplicate '" + p_rel + "'")
+    used_paths_rel[p_rel] = p_abs
+  return used_paths_rel
+
+
+def construct_path_to_key_temp(submodules_filenames, submodules_dir):
+  # --- Build mapping of file paths to keys and temperatures ---
+  path_to_key_temp = {}
+  # IMPORTANT: submodules_filenames is ORDERED!
+  for temp in submodules_filenames:
+    for key, p in submodules_filenames[temp].items():
+      p_rel = get_relative_submodule_paths([p], submodules_dir)
+      path_to_key_temp[list(p_rel.keys())[0]] = (key, temp)
+  return path_to_key_temp
+
+
+def check_HT_and_LT_HT_combi(used_paths_rel, path_to_key_temp, options):
+  seen_keys = {}
+  for p in used_paths_rel:
+    if p not in path_to_key_temp:
+      quit("unknown sub-module '" + used_paths_rel[p] +
+           "'. Check your input or update the compiler script.")
+    smod = path_to_key_temp[p][0]
+    if smod in seen_keys:
+      print("#error: HT and LT-HT version of the sub-module '" + smod +
+            "' must not not be combined.")
+      print("        Conflicting files:")
+      print("        '" + used_paths_rel[p] + "'")
+      print("        '" + seen_keys[path_to_key_temp[p][0]] + "'")
+      print("check your YAML input file '" + options.yaml_file_path + "'")
+      quit()
+    seen_keys[path_to_key_temp[p][0]] = used_paths_rel[p]
+
+
+def normalize_and_check_submodule_paths(submodules_files, submodules_dir):
+  submodules_dir_copy = os.path.normcase(
+      os.path.abspath(os.path.normpath(submodules_dir)))
+  submodules_filenames = get_submodule_filenames(submodules_dir_copy)
+
+  submodules_files.core = os.path.normcase(
+      os.path.abspath(os.path.normpath(submodules_files.core)))
+  for i in range(len(submodules_files.submodules)):
+    submodules_files.submodules[i] = os.path.normcase(
+        os.path.abspath(os.path.normpath(submodules_files.submodules[i])))
+
+  used_paths = [submodules_files.core] + submodules_files.submodules
+  check_duplicate(used_paths)
+
+  path_to_key_temp = construct_path_to_key_temp(submodules_filenames,
+                                                submodules_dir_copy)
+  used_paths_rel = get_relative_submodule_paths(used_paths,
+                                                submodules_dir_copy)
+  check_HT_and_LT_HT_combi(used_paths_rel, path_to_key_temp, options)
+
+  selection = {}
+  sorted_submodules_files = []
+  for smod in ORDERED_KEYS:
+    for temp in submodules_filenames:
+      p_abs = submodules_filenames[temp][smod]
+      p_rel = list(
+          get_relative_submodule_paths([p_abs], submodules_dir_copy).keys())[0]
+      if p_rel in used_paths_rel and smod not in selection:
+        selection[smod] = temp
+        if smod != "C0":
+          sorted_submodules_files.append(used_paths_rel[p_rel])
+
+  submodules_files.submodules = sorted_submodules_files
+  return submodules_files
+
+
 def get_grouped_combos(options):
   try:
     from chemmodkit.input import make_submodulefiles_from_yaml
@@ -522,49 +734,10 @@ def get_grouped_combos(options):
         "ERROR: Could not find chemmodkit.input.make_submodulefiles_from_yaml."
     )
     sys.exit(1)
-  used_paths = submodules_files.submodules + [submodules_files.core]
-  modules_ht, modules_htlt = get_ht_htlt_modules(options.submodules_dir)
-  submodules = {}
-  dependencies = DEPENDENCIES
-  for dep in dependencies:
-    for base in dependencies[dep]:
-      if base not in dependencies:
-        raise Exception("base:" + base)
-    submodules[dep] = ""
-  submodules_ht, submodules_htlt = match_submodules(submodules, modules_ht,
-                                                    modules_htlt)
-  # --- Build mapping of file paths to keys and temperatures ---
-  path_to_key_temp = {}
-  for key, p in submodules_ht.items():
-    if p:  # non-empty string means file exists
-      path_to_key_temp[p] = (key, "HT")
-  for key, p in submodules_htlt.items():
-    if p and p not in path_to_key_temp:
-      # Only add as LT-HT if it's not already mapped as HT
-      path_to_key_temp[p] = (key, "LT-HT")
 
-  submodules_dir_copy = options.submodules_dir
-  if submodules_dir_copy[-1] != os.sep:
-    submodules_dir_copy += os.sep
-
-  selection = {}
-  used_paths_rel = set()
-  for p_abs in used_paths:
-    # Remove the prefix to get the short (relative) path
-    if not p_abs.startswith(submodules_dir_copy):
-      raise Exception(
-          f"Used path {p_abs} does not start with submodules dir {submodules_dir_copy}"
-      )
-    p_rel = p_abs[len(submodules_dir_copy):]
-    if p_rel not in path_to_key_temp:
-      raise Exception(
-          f"Relative path '{p_rel}' (from '{p_abs}') not found in HT/LT-HT mappings!"
-      )
-    used_paths_rel.add(p_rel)
-    key, temp = path_to_key_temp[p_rel]
-    selection[key] = temp
-
-  #print("selection", selection)
+  submodules_files = normalize_and_check_submodule_paths(
+      options.submodules_dir)
+  used_paths = [submodules_files.core] + submodules_files.submodules
 
   midgen = MID(ORDERED_KEYS, BINARY_KEYS, version=VERSION)
   id_str = midgen.combo_to_id(selection)
@@ -575,10 +748,10 @@ def get_grouped_combos(options):
   grouped_combos[cnum]["modules"] = [selection]
   grouped_combos[cnum]["mid"] = [id_str]
   temp_str = ""
-  if is_ht(used_paths_rel, options.submodules_dir):
+  if is_ht(used_paths, submodules_dir_copy):
     temp_str = "_HT"
     grouped_combos[cnum]["temperature"] = ["HT"]
-  elif is_ltht(used_paths_rel, options.submodules_dir):
+  elif is_ltht(used_paths, submodules_dir_copy):
     temp_str = "_LT-HT"
     grouped_combos[cnum]["temperature"] = ["LT-HT"]
   else:
@@ -588,11 +761,6 @@ def get_grouped_combos(options):
       sanitize_filename(list(selection.keys())) + temp_str
   ]
 
-  #print("output_chunks", grouped_combos[cnum]["output_chunks"])
   grouped_combos[cnum]["output_dir"] = options.output_dir
-
-  # --- Set output directory and filenames ---
-  #output_dir = OUTPUT  # Or use a more specific path if desired
-  #output_chunk = c3mech.sanitize_filename(combo)
 
   return grouped_combos

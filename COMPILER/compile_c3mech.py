@@ -13,13 +13,14 @@ DIR = os.path.dirname(os.path.abspath(__file__))
 HEADER = "C3MechV4.0_header.txt"
 YAML = "submodules.yaml"
 OUTPUT = "output"
+default_yaml_file_path = os.path.join(DIR, YAML)
 
 
 class Options:
 
   def __init__(self, generate_all, max_c, prune, process_cantera, max_threads,
-               model_name, yaml_file_path, submodules_dir, thermfile,
-               transfile, header, output_dir):
+               model_name, yaml_file_path, submodules_dir, mid, mid_cantera,
+               thermfile, transfile, header, output_dir):
     self.generate_all = generate_all
     self.max_c = max_c
     self.prune = prune
@@ -28,6 +29,8 @@ class Options:
     self.model_name = model_name
     self.yaml_file_path = yaml_file_path
     self.submodules_dir = submodules_dir
+    self.mid = mid
+    self.mid_cantera = mid_cantera
     self.thermfile = thermfile
     self.transfile = transfile
     self.header = header
@@ -42,6 +45,8 @@ class Options:
             f"  model_name='{self.model_name}',\n"
             f"  yaml_file_path='{self.yaml_file_path}',\n"
             f"  submodules_dir='{self.submodules_dir}',\n"
+            f"  mid='{self.mid}',\n"
+            f"  mid_cantera='{self.mid_cantera}',\n"
             f"  thermfile='{self.thermfile}',\n"
             f"  transfile='{self.transfile}',\n"
             f"  header='{self.header}',\n"
@@ -89,7 +94,25 @@ def parse_args():
                       default=default_model_name,
                       help="Model name to use in output files (default: " +
                       default_model_name + ")")
-  default_yaml_file_path = os.path.join(DIR, YAML)
+  parser.add_argument(
+      '--mid',
+      type=str,
+      default="",
+      help="model ID (MID) that is used to generate a sub-model")
+  parser.add_argument(
+      '--mid-cantera',
+      dest='mid_cantera',
+      action='store_true',
+      help=
+      "Cantera-compatible sub-modules are used (default: True, only relevant when decoding an MID)"
+  )
+  parser.add_argument(
+      '--no-mid-cantera',
+      dest='mid_cantera',
+      action='store_false',
+      help=
+      "Cantera-compatible sub-modules are not used (only relevant when decoding an MID)"
+  )
   parser.add_argument(
       '--yaml-file-path',
       type=str,
@@ -136,6 +159,7 @@ def parse_args():
                       ")")
 
   parser.set_defaults(process_cantera=True)
+  parser.set_defaults(mid_cantera=True)
 
   parser.add_argument('--version',
                       action='version',
@@ -173,6 +197,8 @@ def parse_args():
                  model_name=args.model_name,
                  yaml_file_path=args.yaml_file_path,
                  submodules_dir=args.submodules_dir,
+                 mid=args.mid,
+                 mid_cantera=args.mid_cantera,
                  thermfile=args.thermfile,
                  transfile=args.transfile,
                  header=args.header,
@@ -183,12 +209,21 @@ def main():
   options = parse_args()
   # debug
   print(f"[chemmodkit] Running with options: {options}")
-
-  if options.generate_all:
+  if options.mid != "" and options.generate_all:
     submodules_filenames, grouped_combos = c3mech.generate_submodels(options)
   else:
-    submodules_filenames = c3mech.get_submodule_filenames(options.submodules_dir)
-    grouped_combos = c3mech.get_grouped_combos(options)
+    if options.mid != "":
+      if options.generate_all:
+        print("#warning: MID overrides \"--generate-all\"")
+      if default_yaml_file_path != options.yaml_file_path:
+        print("#warning: MID '" + options.mid +
+              "' overrides yaml input from '" + options.yaml_file_path + "'")
+      grouped_combos = c3mech.get_grouped_combos_mid(options)
+    else:
+      grouped_combos = c3mech.get_grouped_combos(options)
+
+    submodules_filenames = c3mech.get_submodule_filenames(
+        options.submodules_dir)
 
   try:
     from chemmodkit.output import run

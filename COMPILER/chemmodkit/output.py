@@ -30,12 +30,13 @@ def write_species_list(species_list, species_pruned, filename):
   if len(species_pruned):
     allspcstr += '\n' + pruned_comment
   count = 0
-  for spc in species_pruned:
-    count += 1
-    allspcstr += spc
-    allspcstr += ' ' * (30 - len(spc))
-    if count % spcsperline == 0:
-      allspcstr += '\n' + pruned_comment
+  for spc in species_list:
+    if spc in species_pruned:
+      count += 1
+      allspcstr += spc
+      allspcstr += ' ' * (30 - len(spc))
+      if count % spcsperline == 0:
+        allspcstr += '\n' + pruned_comment
 
   total_str = commentstr + speciesallstr + commentstr + allspcstr + commentstr + speciesendstr + commentstr
   if filename:
@@ -78,8 +79,8 @@ def generate_readme(grouped_selections, columns, counters):
       +
       "below list all precompiled sub-models, where in this subdirectory \"N\" refers to the "
       + "combined N- and N-C sub-modules " +
-      "if a sub-model contains carbon atoms.\n "
-      + "\nMany sub-models are available as smaller high-temperature (HT) versions, which "
+      "if a sub-model contains carbon atoms.\n " +
+      "\nMany sub-models are available as smaller high-temperature (HT) versions, which "
       +
       "are suitable for simulations of unstretched premixed and counterflow flames, "
       +
@@ -90,15 +91,13 @@ def generate_readme(grouped_selections, columns, counters):
       "lower-temperature conditions, and rapid compression machine (RCM) experiments. "
       +
       "The columns NS(HT/LT-HT) and NR(HT/LT-HT) in the tables below refer to the number "
-      +
-      "of species and reactions in the respective sub-models.\n "
-      + "\nEach HT and LT-HT version is assigned a unique model ID (MID(HT/LT-HT)) that encodes "
+      + "of species and reactions in the respective sub-models.\n " +
+      "\nEach HT and LT-HT version is assigned a unique model ID (MID(HT/LT-HT)) that encodes "
       " the sub-module combination used to compile a sub-model. The two counts and MIDs "
       + "are the same if a single sub-model is used for all temperatures. " +
-      "If you need a combination not listed here, see "
-      +
-      "[`COMPILER/`](../COMPILER/) directory for an easy-to-use script "
-      + "to create custom sub-models. ")
+      "If you need a combination not listed here, see " +
+      "[`COMPILER/`](../COMPILER/) directory for an easy-to-use script " +
+      "to create custom sub-models. ")
   readme.append("")
   readme.append("## Notes and recommendations ")
   readme.append(
@@ -910,9 +909,19 @@ def run(options, submodules_filenames, grouped_selections, columns):
 
     generated_combinations_single = {}
     for cnum, data_dict in grouped_selections.items():
-      generated_combinations_single = one_carbon_number(
-          options, submodules_filenames, DATETIME, cnum, data_dict,
-          generated_combinations_single)
+      if options.mid != "":
+        generated_combinations_single = one_carbon_number(
+            options,
+            submodules_filenames,
+            DATETIME,
+            cnum,
+            data_dict,
+            generated_combinations_single,
+            cantera=options.mid_cantera)
+      else:
+        generated_combinations_single = one_carbon_number(
+            options, submodules_filenames, DATETIME, cnum, data_dict,
+            generated_combinations_single)
 
     for identifier in generated_combinations_single:
       if "mid" in identifier:
