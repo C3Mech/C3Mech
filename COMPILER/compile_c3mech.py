@@ -209,12 +209,13 @@ def main():
   options = parse_args()
   # debug
   print(f"[chemmodkit] Running with options: {options}")
-  if options.mid != "" and options.generate_all:
+  if options.mid == "" and options.generate_all:
     submodules_filenames, grouped_combos = c3mech.generate_submodels(options)
   else:
     if options.mid != "":
       if options.generate_all:
         print("#warning: MID overrides \"--generate-all\"")
+        options.generate_all = False
       if default_yaml_file_path != options.yaml_file_path:
         print("#warning: MID '" + options.mid +
               "' overrides yaml input from '" + options.yaml_file_path + "'")

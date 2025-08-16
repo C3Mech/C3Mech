@@ -670,7 +670,7 @@ def construct_path_to_key_temp(submodules_filenames, submodules_dir):
   return path_to_key_temp
 
 
-def check_HT_and_LT_HT_combi(used_paths_rel, path_to_key_temp, options):
+def check_HT_and_LT_HT_combi(used_paths_rel, path_to_key_temp, yaml_file_path):
   seen_keys = {}
   for p in used_paths_rel:
     if p not in path_to_key_temp:
@@ -683,12 +683,12 @@ def check_HT_and_LT_HT_combi(used_paths_rel, path_to_key_temp, options):
       print("        Conflicting files:")
       print("        '" + used_paths_rel[p] + "'")
       print("        '" + seen_keys[path_to_key_temp[p][0]] + "'")
-      print("check your YAML input file '" + options.yaml_file_path + "'")
+      print("check your YAML input file '" + yaml_file_path + "'")
       quit()
     seen_keys[path_to_key_temp[p][0]] = used_paths_rel[p]
 
 
-def normalize_and_check_submodule_paths(submodules_files, submodules_dir):
+def normalize_and_check_submodule_paths(submodules_files, submodules_dir, yaml_file_path):
   submodules_dir_copy = os.path.normcase(
       os.path.abspath(os.path.normpath(submodules_dir)))
   submodules_filenames = get_submodule_filenames(submodules_dir_copy)
@@ -706,7 +706,7 @@ def normalize_and_check_submodule_paths(submodules_files, submodules_dir):
                                                 submodules_dir_copy)
   used_paths_rel = get_relative_submodule_paths(used_paths,
                                                 submodules_dir_copy)
-  check_HT_and_LT_HT_combi(used_paths_rel, path_to_key_temp, options)
+  check_HT_and_LT_HT_combi(used_paths_rel, path_to_key_temp, yaml_file_path)
 
   selection = {}
   sorted_submodules_files = []
@@ -721,7 +721,7 @@ def normalize_and_check_submodule_paths(submodules_files, submodules_dir):
           sorted_submodules_files.append(used_paths_rel[p_rel])
 
   submodules_files.submodules = sorted_submodules_files
-  return submodules_files
+  return submodules_files, selection
 
 
 def get_grouped_combos(options):
@@ -735,8 +735,8 @@ def get_grouped_combos(options):
     )
     sys.exit(1)
 
-  submodules_files = normalize_and_check_submodule_paths(
-      options.submodules_dir)
+  submodules_files, selection = normalize_and_check_submodule_paths(submodules_files, 
+      options.submodules_dir, options.yaml_file_path)
   used_paths = [submodules_files.core] + submodules_files.submodules
 
   midgen = MID(ORDERED_KEYS, BINARY_KEYS, version=VERSION)
@@ -748,10 +748,10 @@ def get_grouped_combos(options):
   grouped_combos[cnum]["modules"] = [selection]
   grouped_combos[cnum]["mid"] = [id_str]
   temp_str = ""
-  if is_ht(used_paths, submodules_dir_copy):
+  if is_ht(used_paths, options.submodules_dir):
     temp_str = "_HT"
     grouped_combos[cnum]["temperature"] = ["HT"]
-  elif is_ltht(used_paths, submodules_dir_copy):
+  elif is_ltht(used_paths, options.submodules_dir):
     temp_str = "_LT-HT"
     grouped_combos[cnum]["temperature"] = ["LT-HT"]
   else:
