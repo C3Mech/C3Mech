@@ -60,18 +60,20 @@ def generate_readme(grouped_selections, columns, counters):
   readme.append("# Precompiled models ")
   readme.append("")
   readme.append(
-      "This directory provides precompiled chemical kinetic sub-models of C3MechV4.0, "
+      "This directory contains precompiled chemical kinetic sub-models of C3MechV4.0, "
       +
       "tailored to specific fuel compositions and conditions, and the full " +
       "version of C3MechV4.0. The sub-models were compiled from the sub-modules "
       +
-      "in the directory `SUBMODULES/`. The reactions in the sub-modules are grouped "
+      "in the directory [`SUBMODULES/`](../SUBMODULES/). The reactions in the "
+      + 
+      "sub-modules are grouped "
       +
       "based on the number of carbon atoms in the species (C0, C1-C2, C3-C4, C5, "
       +
       "C6, C7, C8+, C5CY, C6CY), with aromatic species being managed separately. "
       +
-      "'CY' refers to non-aromatic, cyclic fuel components. Additionally, sub-modules "
+      "Here, 'CY' refers to non-aromatic, cyclic fuel components. Additionally, sub-modules "
       +
       "for dimethyl carbonate and ethylene carbonate (DMC+EC), nitrogen-containing "
       +
@@ -91,13 +93,12 @@ def generate_readme(grouped_selections, columns, counters):
       "lower-temperature conditions, and rapid compression machine (RCM) experiments. "
       +
       "The columns NS(HT/LT-HT) and NR(HT/LT-HT) in the tables below refer to the number "
-      + "of species and reactions in the respective sub-models.\n " +
-      "\nEach HT and LT-HT version is assigned a unique model ID (MID(HT/LT-HT)) that encodes "
-      " the sub-module combination used to compile a sub-model. The two counts and MIDs "
-      + "are the same if a single sub-model is used for all temperatures. " +
-      "If you need a combination not listed here, see " +
-      "[`COMPILER/`](../COMPILER/) directory for an easy-to-use script " +
-      "to create custom sub-models. ")
+      + "of species and reactions in the respective sub-models.\n " 
+      + "\nEach HT and LT-HT version is assigned a unique model ID (MID(HT/LT-HT)) that encodes "
+      + "the specific sub-module combination; if a single model is used across all temperatures, "
+      + "the counts (NS and NR) and MIDs are the same. If you need a combination not listed here, "
+      + "see [`COMPILER/`](../COMPILER/) directory for an easy-to-use script to create "
+      + "custom sub-models.")
   readme.append("")
   readme.append("## Notes and recommendations ")
   readme.append(
