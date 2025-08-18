@@ -54,7 +54,7 @@
 !                              !!! Please do not remove this header !!!                              !
 ! ================================================================================================== !
 
-! Kinetics data for C3MechV4.0, generated on 13/08/2025 19:28:13.
+! Kinetics data for C3MechV4.0, generated on 17/08/2025 17:13:58.
 
 ! The following sub-modules were considered in this file:
 ! - NUIG_C0_LT-HT_Cantera.MECH
@@ -386,9 +386,9 @@ C6D2Y1Q6-4QJ                  C6D2Y16Q4                     CYHX1N3QJ
 CYHX1N4QJ                     CYC6H724-OJ                   CYC6H725-OJ                   
 CYC6H724-OOH                  CYC6H725-OOH                  C6H6O-24                      
 C6H6O-25                      
-! AUTOMATIC PRUNING ! C3Y3Q2-1J                     C6Y156-4Q                     COCHO                         
-! AUTOMATIC PRUNING ! C4H7O23-1                     C4H7O13-4                     C4H7O12-4                     
-! AUTOMATIC PRUNING ! OCH2CHO                       
+! AUTOMATIC PRUNING ! OCH2CHO                       C4H7O12-4                     C4H7O13-4                     
+! AUTOMATIC PRUNING ! C4H7O23-1                     C6Y156-4Q                     COCHO                         
+! AUTOMATIC PRUNING ! C3Y3Q2-1J                     
 !+++++++++++++++++++++ 
 !\END_SPECIES_MODULE: ALL 
 !+++++++++++++++++++++ 

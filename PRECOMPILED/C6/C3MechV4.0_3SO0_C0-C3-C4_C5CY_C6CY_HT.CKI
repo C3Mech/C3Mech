@@ -54,7 +54,7 @@
 !                              !!! Please do not remove this header !!!                              !
 ! ================================================================================================== !
 
-! Kinetics data for C3MechV4.0, generated on 13/08/2025 19:28:13.
+! Kinetics data for C3MechV4.0, generated on 17/08/2025 17:13:58.
 
 ! The following sub-modules were considered in this file:
 ! - NUIG_C0_LT-HT.MECH
@@ -236,8 +236,8 @@ C6H9-13-6                     CYHX1N3OJ                     HX2N1AL6J
 C6D2Y1-1R                     C5H91-1                       CYC6H724-OJ                   
 CYC6H725-OJ                   C6H6O-24                      C6H6O-25                      
 
-! AUTOMATIC PRUNING ! C6Y2-1J                       CJVCC(C)VO                    NC3H7COCH2                    
-! AUTOMATIC PRUNING ! HO2CH2CHO                     CHOCOHCH3                     
+! AUTOMATIC PRUNING ! HO2CH2CHO                     CHOCOHCH3                     NC3H7COCH2                    
+! AUTOMATIC PRUNING ! C6Y2-1J                       CJVCC(C)VO                    
 !+++++++++++++++++++++ 
 !\END_SPECIES_MODULE: ALL 
 !+++++++++++++++++++++ 
