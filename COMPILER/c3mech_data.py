@@ -329,6 +329,7 @@ def generate_submodels(options):
 
   def generate_valid_combinations(dependencies):
     keys = list(dependencies)
+    ORDER_IDX     = {k: i for i, k in enumerate(ORDERED_KEYS)}  # O(1) lookup
 
     valid_combos = []
 
@@ -337,8 +338,9 @@ def generate_submodels(options):
       for combo in combinations(keys, i):
         s = set(combo)
         if all(dependencies[k].issubset(s) for k in s):
-          valid_combos.append(sorted(s))
-
+          # sort by ORDERED_KEYS instead of simple sorted()
+          ordered_combo = sorted(s, key=ORDER_IDX.get)
+          valid_combos.append(ordered_combo)
     return valid_combos
 
   combinations_list = generate_valid_combinations(DEPENDENCIES)
