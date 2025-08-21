@@ -55,7 +55,7 @@ description: |2-
                                 !!! Please do not remove this header !!!                              !
    ================================================================================================== !
 
-   Kinetics data for C3MechV4.0, generated on 17/08/2025 17:13:58.
+   Kinetics data for C3MechV4.0, generated on 21/08/2025 14:35:30.
 
    The following sub-modules were considered in this file:
    - NUIG_C0_LT-HT_Cantera.MECH
@@ -128,7 +128,7 @@ description: |2-
                                !!! Please do not remove this header !!!                              !
   ================================================================================================== !
 
-  Thermodynamic data for C3MechV4.0, generated on 17/08/2025 17:13:58.
+  Thermodynamic data for C3MechV4.0, generated on 21/08/2025 14:35:30.
 
   The following sub-modules were considered in this file:
   - NUIG_C0_LT-HT.MECH
@@ -148,7 +148,7 @@ input-files: [
     C3MechV4.0_47UB_C0-C3-C4_C5CY_C6CY_N_PAH_LT-HT.THERM, 
     C3MechV4.0_47UB_C0-C3-C4_C5CY_C6CY_N_PAH_LT-HT.TRAN]
 cantera-version: 3.1.0
-date: Sun, 17 Aug 2025 17:26:41 +0200
+date: Thu, 21 Aug 2025 14:44:38 +0200
 
 units: {length: cm, time: s, quantity: mol, activation-energy: cal/mol}
 
@@ -344,7 +344,7 @@ phases:
     FC10H10, C9H7, MEINDENE, NAPHO-A, NAPHO-B, NAPHOH-A, NAPHOH-B, 
       C9H6O, IND, C5H6-L, NC5D124-5R, C5H5OH, C5H4OH, C5H3O-3, 
       C5H3O-3O, CVCCVCCOH, C6H4CH3, C6H5CH3, C6H4OH, C9H7O, C6H5CO, 
-      C9H7C3H3, C9H6C3H3, A2HR5H, A2R5H, C12H8, C6H5C3H3, C6H5C3H2, 
+      C9H7C3H3, C9H6C3H3, A2HR5H, A2R5H, A2R5, C6H5C3H3, C6H5C3H2, 
       C10H10, FLUORENE, PHNTHRN, C6H5CHO, C6H5C2H3, C7H6, C9H7C2H, 
       BIPHENYL, C12H9, A2C2HA, A2C2HB, C18H14, C6H5C2H5, C6H5CHCH3, 
       C6H5CH2CH2, C6H4C2H5, OC6H4CH3, HOC6H4CH3, HOC6H4CH2, 
@@ -18477,7 +18477,7 @@ species:
     diameter: 7.63
     polarizability: 20.0
     rotational-relaxation: 1.0
-- name: C12H8
+- name: A2R5
   composition: {H: 8, C: 12}
   thermo:
     model: NASA7
@@ -20269,7 +20269,7 @@ reactions:
     ___________________________________________________________________________________________________________ 
     \REACTIONCLASS: RADICAL_ALPHA_SCISSION
     ___________________________________________________________________________________________________________ 
-    ! =========== For Chemkin/OpenSMOKE++ users ===========
+    ! =========== For Chemkin-PRO/OpenSMOKE++ users ===========
     !H+O2(+M)=HO2(+M)    4.66E12 0.44 0.0E0  !\Author: SP !\Ref: TROE, PROCI Volume 28, Issue 2, 2000, 1463-1469 / PCCP FERNANDES 2008
     !    HE/1.0/
     !    AR/0.0/
@@ -20286,8 +20286,8 @@ reactions:
     !    TROESP / N2 5.0E-1     1.0E0     1.0E10    1.0E30   /
     !    LOWSP  / HE 1.216E+19 -1.23     +0.00               / !Yuki Murakami 17 May 2024, From AramcoMech3.0 He 0.64 -> 0.70
     !    TROESP / HE 6.70E-1    1.0E-30   1.0E30    1.0E30   /
-    ! =========== Chemkin/OpenSMOKE++ format END ==========
-    ! =========== For Cantera users ===========
+    ! =========== Chemkin-PRO/OpenSMOKE++ format END ==========
+    ! =========== For Cantera/FlameMaster users ===========
     \Author: SP !\Ref: TROE, PROCI Volume 28, Issue 2, 2000, 1463-1469 / PCCP FERNANDES 2008
 - equation: H + O2 (+N2) <=> HO2 (+N2)  # Reaction 41
   type: falloff
@@ -20314,7 +20314,7 @@ reactions:
   - {P: 100.0 atm, A: 8.71701e+20, b: -1.8195, Ea: 1191.9876}
   - {P: 300.0 atm, A: 2.90584e+20, b: -1.6631, Ea: 1493.4906}
   note: |
-    ! =========== Cantera format END ==========
+    ! =========== Cantera/FlameMaster format END ==========
      Yuki Murakami 27 July 2023 PLOG re-fitting
 - equation: CO + O (+M) <=> CO2 (+M)  # Reaction 44
   type: falloff
@@ -60089,63 +60089,6 @@ reactions:
     \END_KINETICS_MODULE: NH3+NOX
     ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     \KINETICS_MODULE: PAH
-    ! RL TODO
-    ! [X] Why not use C6H6+O from Cavalotti et al, J. Phys. Chem. Lett. 2020, 11, 22, 9621-9628?
-    ! [X] Ask YM to add intermediate temperature to the NASA polynomial coefficients of CH2OO
-    ! [ ] Ask LPM about the of these reactions
-    !     IC4H7+IC4H8=>C6H5CH3+CH3+2.H2    
-    !     IC4H7+IC4H7=>C6H5CH3+H+CH3+H2    
-    !     C4H71-3+C4H6=>C6H5CH3+H2+CH3     
-    !     C4H71-3+C4H71-3=>CH3+H+C6H5CH3+H2
-    ! [ ] Ask LPM about plans for C4H4+C3H3. From Marti et al. (https://doi.org/10.1021/acs.jpca.2c08035) 
-    !     and from what I've seen, C3H3+C4H4 should produce C7H6+H, C5H5+C2H2, or, at lower temperatures
-    !     (<1000K) VINYLCPDYL. It should never produce C6H5CH2. The update would also affect C/L-C6H4+CH3
-    ! [ ] What's the source of C4H3-I+C3H4-P=C6H4CH3
-    ! Check:
-    ! [ ] C3H3+C6H4CH3
-    ! [ ] C4H5-I+C6H4CH3
-    ! [ ] C2H2+C6H4CH3
-    ! [ ] C3H4-A+C6H4CH3
-    ! [ ] C3H4-P+C6H4CH3
-    ! 
-    ! [ ] What's the source for "C-C6H4=C2H2+C4H2 UPDATED FROM MILANO"?
-    ! [X] Introduce A2-A and A2-B
-    ! [ ] Introduce detailed C12H8
-    ! 
-    !     Check:
-    ! [X] HO2CH2CHO is never consumed
-    ! [X] CHOCOHCH3 is never produced
-    ! [X] C6Y2-1J is never produced
-    ! [X] C5H6-L is never consumed
-    ! [X] CJVCC(C)VO is never consumed
-    ! [X] CH2CH2OCH2CH2CHO is never produced
-    ! [X] CH3COCH2OCH2CH2 is never produced
-    ! [X] C5H81KET34O is never produced
-    ! [X] C5H81KET35O is never produced
-    ! [X] C5H81KET43O is never produced
-    ! [X] C5H81KET45O is never produced
-    ! [X] C5H81KET54O is never produced
-    ! [X] C5H82KET41O is never produced
-    ! [X] C5H82KET51O is never produced
-    ! [X] NC52ONE-4 is never produced
-    ! [X] C5H9OH1-3 is never produced
-    ! [X] C5H9OH1-4 is never produced
-    ! [X] C5H9OH2-3 is never produced
-    ! [X] C5H9OH3-2 is never produced
-    ! [X] C5H9OH3-1 is never produced
-    ! [X] CH3COCOHCH2 is never produced
-    ! [X] C6H101-5 is never produced
-    ! [X] CYC6H12 is never produced
-    ! [X] CYC6H11 is never consumed
-    ! [X] I24C7D13 is never produced
-    ! [X] C10H16 is never consumed
-    ! [X] RMCYC6 is never consumed
-    ! [X] MCYC6 is never consumed
-    ! [X] CYC6H10 is never consumed
-    ! 
-    ! [X] Remove duplicates from C3Mech23.TRAN
-    ! [X] kb's of C9H7+OH=C9H7O+H exceeds the collision limit 
-    ! [X] Should we use C2H2+C7H5 from Matsugi?
     ************************ ITV CRECK SUBMODULE  **************************************************************************************************************************
     !==========================================================================!
     !                                                                          !
@@ -63521,14 +63464,14 @@ reactions:
   - {P: 10.0 atm, A: 8.166e+53, b: -11.947, Ea: 2.16865e+04}
   - {P: 100.0 atm, A: 3.365e+36, b: -6.8711, Ea: 1.20211e+04}
   note: |
-    ! C9H7+C3H3=>C12H8+2H                                7.15E+09	0	-5090 ! LPM UPDATED NEW RR
+    ! C9H7+C3H3=>A2R5+2H                                7.15E+09	0	-5090 ! LPM UPDATED NEW RR
     ! Matsugi & Suzuki 2024 BEGIN 
     !
     ! C12H10 
     ! C9H7C3H3 C9H6C3H4 A2C2H3A A2C2H3B A1R5HR5CH3 A2HHR5 A2HR5H
     ! C12H9
     ! A1R5R5CH3 C9H6C3H3 A2R5H
-    ! C12H8
+    ! A2R5
     ! C9H6C3H2 A1R5R5CH2 A2R5 
     !
     ! Combustion and Flame
@@ -63587,7 +63530,7 @@ reactions:
   - {P: 1.0 atm, A: 1.721e+58, b: -12.6291, Ea: 8.97248e+04}
   - {P: 10.0 atm, A: 6.919e+43, b: -8.385, Ea: 8.23194e+04}
   - {P: 100.0 atm, A: 3.414e+33, b: -5.3745, Ea: 7.67304e+04}
-- equation: A2HR5H <=> C12H8 + H2  # Reaction 6222
+- equation: A2HR5H <=> A2R5 + H2  # Reaction 6222
   type: pressure-dependent-Arrhenius
   rate-constants:
   - {P: 0.1 atm, A: 2.903e+57, b: -13.1161, Ea: 7.88925e+04}
@@ -63596,14 +63539,14 @@ reactions:
   - {P: 100.0 atm, A: 2.777e+23, b: -3.0877, Ea: 6.13756e+04}
 - equation: A2HR5H + H <=> A2R5H + H2  # Reaction 6223
   rate-constant: {A: 1.786e+07, b: 2.1148, Ea: 1810.8}
-- equation: A2R5H <=> C12H8 + H  # Reaction 6224
+- equation: A2R5H <=> A2R5 + H  # Reaction 6224
   type: pressure-dependent-Arrhenius
   rate-constants:
   - {P: 0.1 atm, A: 7.962e+65, b: -15.5168, Ea: 6.95551e+04}
   - {P: 1.0 atm, A: 8.804e+60, b: -13.8052, Ea: 6.93726e+04}
   - {P: 10.0 atm, A: 1.819e+51, b: -10.7966, Ea: 6.5884e+04}
   - {P: 100.0 atm, A: 2.424e+38, b: -6.9411, Ea: 5.98556e+04}
-- equation: C9H6C3H3 <=> C12H8 + H  # Reaction 6225
+- equation: C9H6C3H3 <=> A2R5 + H  # Reaction 6225
   type: pressure-dependent-Arrhenius
   rate-constants:
   - {P: 0.1 atm, A: 1.285e+52, b: -11.8197, Ea: 6.38681e+04}
@@ -67897,7 +67840,7 @@ reactions:
   note: |
     \REACTIONCLASS: \PGROW-RAD_RSR-RSR_C5H5                                                  \A            \N            \EA            
     !!!! ****LUMPED****
-- equation: C5H5 + C6H5CH2 => C12H8 + H2 + H + H  # Reaction 6984
+- equation: C5H5 + C6H5CH2 => A2R5 + H2 + H + H  # Reaction 6984
   rate-constant: {A: 2.0e+12, b: 0.0, Ea: 6000.0}
   note: |
     KS 1800  !!!!! ****LUMPED****
@@ -68305,7 +68248,7 @@ reactions:
     !
     !
     ! FROM TABLE 3, MILLER ET AL.
-- equation: C9H6-C2H + CH3 <=> C12H8 + H2  # Reaction 7034
+- equation: C9H6-C2H + CH3 <=> A2R5 + H2  # Reaction 7034
   duplicate: true
   type: pressure-dependent-Arrhenius
   rate-constants:
@@ -68322,7 +68265,7 @@ reactions:
     !
     !
     ! rates from C9H7+CH3=METHYLINDENE-1; assumes immediate conversion to A2R5
-- equation: C9H6-C2H + CH3 <=> C12H8 + H2  # Reaction 7035
+- equation: C9H6-C2H + CH3 <=> A2R5 + H2  # Reaction 7035
   duplicate: true
   type: pressure-dependent-Arrhenius
   rate-constants:
@@ -68346,7 +68289,7 @@ reactions:
     !
     !
     ! rates from C9H7+CH3=METHYLINDENE-1; assumes immediate conversion to A2R5
-- equation: C9H6-C2H + CH3 <=> C12H8 + H2  # Reaction 7036
+- equation: C9H6-C2H + CH3 <=> A2R5 + H2  # Reaction 7036
   duplicate: true
   type: pressure-dependent-Arrhenius
   rate-constants:
@@ -68368,7 +68311,7 @@ reactions:
     !
     !
     ! rates from C9H7+CH3=METHYLINDENYL-2+H; assumes immediate conversion to A2R5
-- equation: C9H6-C2H + CH3 <=> C12H8 + H2  # Reaction 7037
+- equation: C9H6-C2H + CH3 <=> A2R5 + H2  # Reaction 7037
   duplicate: true
   type: pressure-dependent-Arrhenius
   rate-constants:
@@ -69889,73 +69832,73 @@ reactions:
   rate-constant: {A: 1.3e+06, b: 2.0, Ea: 1.188773e+04}
 - equation: H + TETRALIN <=> H2 + RTETRALIN  # Reaction 7388
   rate-constant: {A: 3.0e+07, b: 2.0, Ea: 3950.57}
-- equation: H + DIBZFUR => CO + 0.75 C12H8 + 0.1 BIN1B + H2  # Reaction 7389
+- equation: H + DIBZFUR => CO + 0.75 A2R5 + 0.1 BIN1B + H2  # Reaction 7389
   rate-constant: {A: 5.4e+07, b: 2.0, Ea: 8733.525}
   note: |
-    ABSTRACTION REACTION: R + DIBZFUR=>CO + 0.750000C12H8 + 0.100000BIN1B + RH 
+    ABSTRACTION REACTION: R + DIBZFUR=>CO + 0.750000A2R5 + 0.100000BIN1B + RH 
     Number of H abstracted: 9.00
     Type of H abstracted:   [7] 
-- equation: CH3 + DIBZFUR => CO + 0.75 C12H8 + 0.1 BIN1B + CH4  # Reaction 7390
+- equation: CH3 + DIBZFUR => CO + 0.75 A2R5 + 0.1 BIN1B + CH4  # Reaction 7390
   rate-constant: {A: 5.4e+05, b: 2.0, Ea: 1.0098998e+04}
-- equation: C2H3 + DIBZFUR => CO + 0.75 C12H8 + 0.1 BIN1B + C2H4  # Reaction 7391
+- equation: C2H3 + DIBZFUR => CO + 0.75 A2R5 + 0.1 BIN1B + C2H4  # Reaction 7391
   rate-constant: {A: 1.2204e+06, b: 2.0, Ea: 8593.75}
-- equation: C2H5 + DIBZFUR => CO + 0.75 C12H8 + 0.1 BIN1B + C2H6  # Reaction 7392
+- equation: C2H5 + DIBZFUR => CO + 0.75 A2R5 + 0.1 BIN1B + C2H6  # Reaction 7392
   rate-constant: {A: 3.6e+05, b: 2.0, Ea: 1.2321456e+04}
-- equation: C3H5-S + DIBZFUR => CO + 0.75 C12H8 + 0.1 BIN1B + C3H6  # Reaction 7393
+- equation: C3H5-S + DIBZFUR => CO + 0.75 A2R5 + 0.1 BIN1B + C3H6  # Reaction 7393
   rate-constant: {A: 4.86e+05, b: 2.0, Ea: 9423.045}
-- equation: C3H5-T + DIBZFUR => CO + 0.75 C12H8 + 0.1 BIN1B + C3H6  # Reaction 7394
+- equation: C3H5-T + DIBZFUR => CO + 0.75 A2R5 + 0.1 BIN1B + C3H6  # Reaction 7394
   rate-constant: {A: 4.86e+05, b: 2.0, Ea: 9423.045}
-- equation: C3H5-A + DIBZFUR => CO + 0.75 C12H8 + 0.1 BIN1B + C3H6  # Reaction 7395
+- equation: C3H5-A + DIBZFUR => CO + 0.75 A2R5 + 0.1 BIN1B + C3H6  # Reaction 7395
   rate-constant: {A: 9.702e+05, b: 2.0, Ea: 1.9775112e+04}
-- equation: C4H71-4 + DIBZFUR => CO + 0.75 C12H8 + 0.1 BIN1B + C4H8-1  # Reaction 7396
+- equation: C4H71-4 + DIBZFUR => CO + 0.75 A2R5 + 0.1 BIN1B + C4H8-1  # Reaction 7396
   rate-constant: {A: 2.43e+05, b: 2.0, Ea: 1.2193351e+04}
-- equation: C4H71-3 + DIBZFUR => CO + 0.75 C12H8 + 0.1 BIN1B + C4H8-2  # Reaction 7397
+- equation: C4H71-3 + DIBZFUR => CO + 0.75 A2R5 + 0.1 BIN1B + C4H8-2  # Reaction 7397
   rate-constant: {A: 6.12e+05, b: 2.0, Ea: 2.0834886e+04}
-- equation: IC4H7 + DIBZFUR => CO + 0.75 C12H8 + 0.1 BIN1B + IC4H8  # Reaction 7398
+- equation: IC4H7 + DIBZFUR => CO + 0.75 A2R5 + 0.1 BIN1B + IC4H8  # Reaction 7398
   rate-constant: {A: 4.86e+05, b: 2.0, Ea: 2.0834886e+04}
-- equation: C4H3-I + DIBZFUR => CO + 0.75 C12H8 + 0.1 BIN1B + C4H4  # Reaction 7399
+- equation: C4H3-I + DIBZFUR => CO + 0.75 A2R5 + 0.1 BIN1B + C4H4  # Reaction 7399
   rate-constant: {A: 7.362e+05, b: 2.0, Ea: 1.0366091e+04}
-- equation: C6H5 + DIBZFUR => CO + 0.75 C12H8 + 0.1 BIN1B + C6H6  # Reaction 7400
+- equation: C6H5 + DIBZFUR => CO + 0.75 A2R5 + 0.1 BIN1B + C6H6  # Reaction 7400
   rate-constant: {A: 6.66e+08, b: 1.0, Ea: 5757.088}
-- equation: C5H5 + DIBZFUR => CO + 0.75 C12H8 + 0.1 BIN1B + C5H6  # Reaction 7401
+- equation: C5H5 + DIBZFUR => CO + 0.75 A2R5 + 0.1 BIN1B + C5H6  # Reaction 7401
   rate-constant: {A: 6.12e+05, b: 2.0, Ea: 2.1186585e+04}
-- equation: O + DIBZFUR => CO + 0.75 C12H8 + 0.1 BIN1B + OH  # Reaction 7402
+- equation: O + DIBZFUR => CO + 0.75 A2R5 + 0.1 BIN1B + OH  # Reaction 7402
   rate-constant: {A: 4.23e+07, b: 2.0, Ea: 6547.171}
-- equation: O2 + DIBZFUR => CO + 0.75 C12H8 + 0.1 BIN1B + HO2  # Reaction 7403
+- equation: O2 + DIBZFUR => CO + 0.75 A2R5 + 0.1 BIN1B + HO2  # Reaction 7403
   rate-constant: {A: 3.06e+07, b: 2.0, Ea: 5.4526425e+04}
-- equation: OH + DIBZFUR => CO + 0.75 C12H8 + 0.1 BIN1B + H2O  # Reaction 7404
+- equation: OH + DIBZFUR => CO + 0.75 A2R5 + 0.1 BIN1B + H2O  # Reaction 7404
   rate-constant: {A: 2.7e+10, b: 1.0, Ea: 1148.714}
-- equation: HO2 + DIBZFUR => CO + 0.75 C12H8 + 0.1 BIN1B + H2O2  # Reaction 7405
+- equation: HO2 + DIBZFUR => CO + 0.75 A2R5 + 0.1 BIN1B + H2O2  # Reaction 7405
   rate-constant: {A: 1.44e+07, b: 2.0, Ea: 2.3513656e+04}
-- equation: C3H3 + DIBZFUR => CO + 0.75 C12H8 + 0.1 BIN1B + C3H4-A  # Reaction 7406
+- equation: C3H3 + DIBZFUR => CO + 0.75 A2R5 + 0.1 BIN1B + C3H4-A  # Reaction 7406
   rate-constant: {A: 4.86e+05, b: 2.0, Ea: 2.1186585e+04}
-- equation: C6H5O + DIBZFUR => CO + 0.75 C12H8 + 0.1 BIN1B + C6H5OH  # Reaction 7407
+- equation: C6H5O + DIBZFUR => CO + 0.75 A2R5 + 0.1 BIN1B + C6H5OH  # Reaction 7407
   rate-constant: {A: 9.72e+05, b: 2.0, Ea: 1.9420193e+04}
-- equation: C6H4OH + DIBZFUR => CO + 0.75 C12H8 + 0.1 BIN1B + C6H5OH  # Reaction 7408
+- equation: C6H4OH + DIBZFUR => CO + 0.75 A2R5 + 0.1 BIN1B + C6H5OH  # Reaction 7408
   rate-constant: {A: 6.66e+08, b: 1.0, Ea: 5757.088}
-- equation: C6H5CH2 + DIBZFUR => CO + 0.75 C12H8 + 0.1 BIN1B + C6H5CH3  # Reaction 7409
+- equation: C6H5CH2 + DIBZFUR => CO + 0.75 A2R5 + 0.1 BIN1B + C6H5CH3  # Reaction 7409
   rate-constant: {A: 2.43e+05, b: 2.0, Ea: 2.3513656e+04}
-- equation: C6H4CH3 + DIBZFUR => CO + 0.75 C12H8 + 0.1 BIN1B + C6H5CH3  # Reaction 7410
+- equation: C6H4CH3 + DIBZFUR => CO + 0.75 A2R5 + 0.1 BIN1B + C6H5CH3  # Reaction 7410
   rate-constant: {A: 6.66e+08, b: 1.0, Ea: 5757.088}
-- equation: OC6H4CH3 + DIBZFUR => CO + 0.75 C12H8 + 0.1 BIN1B + 
+- equation: OC6H4CH3 + DIBZFUR => CO + 0.75 A2R5 + 0.1 BIN1B + 
     HOC6H4CH3  # Reaction 7411
   rate-constant: {A: 4.86e+05, b: 2.0, Ea: 1.9775112e+04}
-- equation: NAPH-A + DIBZFUR => CO + 0.75 C12H8 + 0.1 BIN1B + NAPH  # Reaction 7412
+- equation: NAPH-A + DIBZFUR => CO + 0.75 A2R5 + 0.1 BIN1B + NAPH  # Reaction 7412
   rate-constant: {A: 6.66e+08, b: 1.0, Ea: 5757.088}
-- equation: NAPH-B + DIBZFUR => CO + 0.75 C12H8 + 0.1 BIN1B + NAPH  # Reaction 7413
+- equation: NAPH-B + DIBZFUR => CO + 0.75 A2R5 + 0.1 BIN1B + NAPH  # Reaction 7413
   rate-constant: {A: 6.66e+08, b: 1.0, Ea: 5757.088}
-- equation: C6H5CH2CH2 + DIBZFUR => CO + 0.75 C12H8 + 0.1 BIN1B + 
+- equation: C6H5CH2CH2 + DIBZFUR => CO + 0.75 A2R5 + 0.1 BIN1B + 
     C6H5C2H5  # Reaction 7414
   rate-constant: {A: 4.5e+05, b: 2.0, Ea: 1.9420193e+04}
-- equation: C6H5CHCH3 + DIBZFUR => CO + 0.75 C12H8 + 0.1 BIN1B + 
+- equation: C6H5CHCH3 + DIBZFUR => CO + 0.75 A2R5 + 0.1 BIN1B + 
     C6H5C2H5  # Reaction 7415
   rate-constant: {A: 3.24e+05, b: 2.0, Ea: 2.3513656e+04}
-- equation: C9H7 + DIBZFUR => CO + 0.75 C12H8 + 0.1 BIN1B + IND  # Reaction 7416
+- equation: C9H7 + DIBZFUR => CO + 0.75 A2R5 + 0.1 BIN1B + IND  # Reaction 7416
   rate-constant: {A: 2.34e+05, b: 2.0, Ea: 2.3513656e+04}
-- equation: C10H6CH3-A + DIBZFUR => CO + 0.75 C12H8 + 0.1 BIN1B + 
+- equation: C10H6CH3-A + DIBZFUR => CO + 0.75 A2R5 + 0.1 BIN1B + 
     C10H7CH3-A  # Reaction 7417
   rate-constant: {A: 6.66e+08, b: 1.0, Ea: 5757.088}
-- equation: C10H6CH3-B + DIBZFUR => CO + 0.75 C12H8 + 0.1 BIN1B + 
+- equation: C10H6CH3-B + DIBZFUR => CO + 0.75 A2R5 + 0.1 BIN1B + 
     C10H7CH3-B  # Reaction 7418
   rate-constant: {A: 6.66e+08, b: 1.0, Ea: 5757.088}
 - equation: H + DECALIN => RDECALIN + H2  # Reaction 7419
@@ -70390,7 +70333,7 @@ reactions:
     _______________________________________________________________________________________________________________________________________________ 
 - equation: O2 + NAPH-B => C6H5C2H + HCO + CO  # Reaction 7516
   rate-constant: {A: 1.0e+12, b: 0.0, Ea: 3000.0}
-- equation: O2 + C14H9 => C12H8 + HCO + CO  # Reaction 7517
+- equation: O2 + C14H9 => A2R5 + HCO + CO  # Reaction 7517
   rate-constant: {A: 1.0e+12, b: 0.0, Ea: 9000.0}
 - equation: O2 + C14H9 => NAPH + CO + CO + C2H  # Reaction 7518
   rate-constant: {A: 2.0e+12, b: 0.0, Ea: 3000.0}
@@ -70468,26 +70411,26 @@ reactions:
   rate-constant: {A: 2.0e+12, b: 0.0, Ea: 5000.0}
 - equation: OH + NAPH => IND + CO + H  # Reaction 7533
   rate-constant: {A: 2.0e+12, b: 0.0, Ea: 5000.0}
-- equation: C12H8 + OH <=> C12H7 + H2O  # Reaction 7534
+- equation: A2R5 + OH <=> C12H7 + H2O  # Reaction 7534
   duplicate: true
   rate-constant: {A: 1.84e+05, b: 2.585, Ea: 3.92e+04}
   note: |
-    ! OH+C12H8=>NAPH-A+CH2CO                                                                    +1.09000E-004 +4.50000E+000 -1.00000E+003 
-    ! OH+C12H8=>NAPH-B+CH2CO                                                                    +1.09000E-004 +4.50000E+000 -1.00000E+003 
-    ! OH+C12H8=>C10H7CH2-A+CO                                                                     +0.50000E+013 +0.00000E+000 +7.00000E+003 
-    ! OH+C12H8=>C10H7CH2-B+CO                                                                     +0.50000E+013 +0.00000E+000 +7.00000E+003 
+    ! OH+A2R5=>NAPH-A+CH2CO                                                                    +1.09000E-004 +4.50000E+000 -1.00000E+003 
+    ! OH+A2R5=>NAPH-B+CH2CO                                                                    +1.09000E-004 +4.50000E+000 -1.00000E+003 
+    ! OH+A2R5=>C10H7CH2-A+CO                                                                     +0.50000E+013 +0.00000E+000 +7.00000E+003 
+    ! OH+A2R5=>C10H7CH2-B+CO                                                                     +0.50000E+013 +0.00000E+000 +7.00000E+003 
     ! ref. Liu, Li, Roberts, Combustion and Flame 230 (2021) 111449
-- equation: C12H8 + OH <=> C12H7 + H2O  # Reaction 7535
+- equation: A2R5 + OH <=> C12H7 + H2O  # Reaction 7535
   duplicate: true
   rate-constant: {A: 1640.0, b: 3.045, Ea: 2460.0}
   note: |
     ! ref. Liu, Li, Roberts, Combustion and Flame 230 (2021) 111449
-- equation: C12H8 + OH <=> C12H7 + H2O  # Reaction 7536
+- equation: A2R5 + OH <=> C12H7 + H2O  # Reaction 7536
   duplicate: true
   rate-constant: {A: 1310.0, b: 3.07, Ea: 2600.0}
   note: |
     ! ref. Liu, Li, Roberts, Combustion and Flame 230 (2021) 111449
-- equation: C12H8 + OH <=> C12H7 + H2O  # Reaction 7537
+- equation: A2R5 + OH <=> C12H7 + H2O  # Reaction 7537
   duplicate: true
   rate-constant: {A: 640.0, b: 3.127, Ea: 1840.0}
   note: |
@@ -71002,7 +70945,7 @@ reactions:
     \REACTIONCLASS: \PGROW-MOL_MOL-MOL_C2H2                                                  \A            \N            \EA            
     \REACTIONCOMMENT: 
     _______________________________________________________________________________________________________________________________________________ 
-- equation: C2H2 + C12H8 => PHNTHRN  # Reaction 7737
+- equation: C2H2 + A2R5 => PHNTHRN  # Reaction 7737
   rate-constant: {A: 2.0e+11, b: 0.0, Ea: 2.4e+04}
 - equation: C2H2 + IND => C10H7CH3-A  # Reaction 7738
   rate-constant: {A: 1.5e+11, b: 0.0, Ea: 3.0e+04}
@@ -71038,7 +70981,7 @@ reactions:
      KS 1800
 - equation: C5H6 + IND => PHNTHRN + 2 H2  # Reaction 7746
   rate-constant: {A: 5.0e+11, b: 0.0, Ea: 3.0e+04}
-- equation: C5H6 + C12H8 => C16H10 + CH3 + H  # Reaction 7747
+- equation: C5H6 + A2R5 => C16H10 + CH3 + H  # Reaction 7747
   rate-constant: {A: 2.5e+11, b: 0.0, Ea: 3.1e+04}
 - equation: C5H6 + NAPH => PHNTHRN + CH3 + H  # Reaction 7748
   rate-constant: {A: 2.5e+11, b: 0.0, Ea: 4.1e+04}
@@ -71295,7 +71238,7 @@ reactions:
   rate-constant: {A: 2.0e+12, b: 0.0, Ea: 3000.0}
 - equation: NAPH-A + C10H7CH2-B => BIN1B + H + CH3 + H2  # Reaction 7821
   rate-constant: {A: 2.0e+12, b: 0.0, Ea: 3000.0}
-- equation: C6H4C2H + C3H3 => 0.5 NAPH + 0.5 C12H8  # Reaction 7822
+- equation: C6H4C2H + C3H3 => 0.5 NAPH + 0.5 A2R5  # Reaction 7822
   type: pressure-dependent-Arrhenius
   rate-constants:
   - {P: 0.0395 atm, A: 2.142e+103, b: -25.8, Ea: 5.74e+04}
@@ -71319,7 +71262,7 @@ reactions:
     \REACTIONCLASS: \PGROW-RAD_NRS-RSR_C3H3                                                  \A            \N            \EA            
     \REACTIONCOMMENT: 
     _______________________________________________________________________________________________________________________________________________ 
-    ! C3H3+C6H4C2H=>.5NAPH+.5C12H8                                                             +5.00000E+012 +0.00000E+000 +3.00000E+003    !AN x10 to increase PAH
+    ! C3H3+C6H4C2H=>.5NAPH+.5A2R5                                                             +5.00000E+012 +0.00000E+000 +3.00000E+003    !AN x10 to increase PAH
     ! analogy A1-+C3H3=A1CH2CCH (RL: this is an important one among the A1-+C3H3 reactions)
 - equation: C3H3 + C6H5CHCH => C10H7CH3-A  # Reaction 7823
   rate-constant: {A: 5.0e+12, b: 0.0, Ea: 3000.0}
@@ -71340,7 +71283,7 @@ reactions:
     ! A*0.7
     ! A*0.7
     ! A*0.7
-    ! C6H4C2H+C3H3=>.5NAPH+.5C12H8                                   9.64E+19   -1.940    2460  !! analogy A1-+C3H3=A1CHCCH2 (RL: this is an important one among the A1-+C3H3 reactions)
+    ! C6H4C2H+C3H3=>.5NAPH+.5A2R5                                   9.64E+19   -1.940    2460  !! analogy A1-+C3H3=A1CHCCH2 (RL: this is an important one among the A1-+C3H3 reactions)
     ! PLOG /  3.95E-02 3.06E+103  -25.800   57400 / !!
     ! PLOG /  3.95E-02  2.67E+48  -10.700   12800 / !!
     ! PLOG /  3.95E-02 1.06E+106  -26.600   57900 / !!
@@ -71812,7 +71755,7 @@ reactions:
     \REACTIONCOMMENT: 
     _______________________________________________________________________________________________________________________________________________ 
     C5H5+C6H5CH2=>BIPHENYL+H+H                                                                   +5.00000E+011 +0.00000E+000 +6.00000E+003 
-- equation: C5H5 + C6H5CHCH3 => C12H8 + H2 + H + CH3  # Reaction 7943
+- equation: C5H5 + C6H5CHCH3 => A2R5 + H2 + H + CH3  # Reaction 7943
   rate-constant: {A: 1.0e+12, b: 0.0, Ea: 6000.0}
 - equation: C5H5 + RXYLENE => BIPHENYL + CH3 + H  # Reaction 7944
   rate-constant: {A: 2.0e+12, b: 0.0, Ea: 6000.0}
@@ -71839,7 +71782,7 @@ reactions:
 - equation: C6H5CHCH3 + C10H7CH2-B => 0.5 C16H10 + 0.5 C18H10 + CH3 + 
     H2 + CH3  # Reaction 7951
   rate-constant: {A: 1.0e+12, b: 0.0, Ea: 6000.0}
-- equation: C7H5 + C5H5 => C12H8 + 2 H  # Reaction 7952
+- equation: C7H5 + C5H5 => A2R5 + 2 H  # Reaction 7952
   rate-constant: {A: 2.408856e+12, b: 0.0, Ea: 0.0}
   note: |
     _______________________________________________________________________________________________________________________________________________ 
@@ -71899,7 +71842,7 @@ reactions:
   rate-constant: {A: 1.0e+12, b: 0.0, Ea: 8000.0}
   note: |
     CONNECTION_TO_SOOT
-- equation: C10H6CH3-A + C12H8 => 0.6 BIN1B + 0.5 BIN1A + CH3  # Reaction 7965
+- equation: C10H6CH3-A + A2R5 => 0.6 BIN1B + 0.5 BIN1A + CH3  # Reaction 7965
   rate-constant: {A: 1.0e+12, b: 0.0, Ea: 8000.0}
   note: |
     CONNECTION_TO_SOOT
@@ -71934,7 +71877,7 @@ reactions:
   rate-constant: {A: 1.0e+12, b: 0.0, Ea: 8000.0}
   note: |
     CONNECTION_TO_SOOT
-- equation: C10H6CH3-B + C12H8 => 0.6 BIN1B + 0.5 BIN1A + CH3  # Reaction 7973
+- equation: C10H6CH3-B + A2R5 => 0.6 BIN1B + 0.5 BIN1A + CH3  # Reaction 7973
   rate-constant: {A: 1.0e+12, b: 0.0, Ea: 8000.0}
   note: |
     CONNECTION_TO_SOOT
@@ -71976,11 +71919,11 @@ reactions:
   rate-constant: {A: 1.0e+12, b: 0.0, Ea: 8000.0}
 - equation: NAPH-B + C10H7CH3-B => BIN1B + 2 H2 + CH3  # Reaction 7983
   rate-constant: {A: 1.0e+12, b: 0.0, Ea: 8000.0}
-- equation: NAPH-A + C12H8 => 0.6 BIN1B + 0.5 BIN1A + H  # Reaction 7984
+- equation: NAPH-A + A2R5 => 0.6 BIN1B + 0.5 BIN1A + H  # Reaction 7984
   rate-constant: {A: 1.0e+12, b: 0.0, Ea: 8000.0}
   note: |
     CONNECTION_TO_SOOT
-- equation: NAPH-B + C12H8 => 0.6 BIN1B + 0.5 BIN1A + H  # Reaction 7985
+- equation: NAPH-B + A2R5 => 0.6 BIN1B + 0.5 BIN1A + H  # Reaction 7985
   rate-constant: {A: 1.0e+12, b: 0.0, Ea: 8000.0}
   note: |
     CONNECTION_TO_SOOT
@@ -72091,7 +72034,7 @@ reactions:
   rate-constant: {A: 1.0e+12, b: 0.0, Ea: 8000.0}
   note: |
     CONNECTION_TO_SOOT
-- equation: C12H7 + C12H8 => 0.866667 BIN1B + 0.33333375 BIN1A + H  # Reaction 8011
+- equation: C12H7 + A2R5 => 0.866667 BIN1B + 0.33333375 BIN1A + H  # Reaction 8011
   rate-constant: {A: 1.0e+12, b: 0.0, Ea: 8000.0}
   note: |
     _______________________________________________________________________________________________________________________________________________ 
@@ -72111,7 +72054,7 @@ reactions:
   rate-constant: {A: 1.0e+12, b: 0.0, Ea: 8000.0}
   note: |
     CONNECTION_TO_SOOT
-- equation: A2C2HA- + C12H8 => 0.866667 BIN1B + 0.33333375 BIN1A + H  # Reaction 8015
+- equation: A2C2HA- + A2R5 => 0.866667 BIN1B + 0.33333375 BIN1A + H  # Reaction 8015
   rate-constant: {A: 1.0e+12, b: 0.0, Ea: 8000.0}
   note: |
     CONNECTION_TO_SOOT
@@ -72128,7 +72071,7 @@ reactions:
   rate-constant: {A: 1.0e+12, b: 0.0, Ea: 8000.0}
   note: |
     CONNECTION_TO_SOOT
-- equation: A2C2HB- + C12H8 => 0.866667 BIN1B + 0.33333375 BIN1A + H  # Reaction 8019
+- equation: A2C2HB- + A2R5 => 0.866667 BIN1B + 0.33333375 BIN1A + H  # Reaction 8019
   rate-constant: {A: 1.0e+12, b: 0.0, Ea: 8000.0}
   note: |
     CONNECTION_TO_SOOT
@@ -72145,11 +72088,11 @@ reactions:
   rate-constant: {A: 1.0e+12, b: 0.0, Ea: 8000.0}
   note: |
     CONNECTION_TO_SOOT
-- equation: C12H8 + C12H9 => 0.533333 BIN1B + 0.66666625 BIN1A + H  # Reaction 8023
+- equation: A2R5 + C12H9 => 0.533333 BIN1B + 0.66666625 BIN1A + H  # Reaction 8023
   rate-constant: {A: 1.0e+12, b: 0.0, Ea: 8000.0}
   note: |
     _______________________________________________________________________________________________________________________________________________ 
-    \REACTIONCLASS: \PGROW-RAD-MOL_NRS-MOL_C12H8                                             \A            \N            \EA            
+    \REACTIONCLASS: \PGROW-RAD-MOL_NRS-MOL_A2R5                                             \A            \N            \EA            
     \REACTIONCOMMENT: 
     _______________________________________________________________________________________________________________________________________________ 
      CONNECTION_TO_SOOT
@@ -72178,7 +72121,7 @@ reactions:
     _______________________________________________________________________________________________________________________________________________ 
 - equation: C2H + NAPH => H + A2C2HB  # Reaction 8028
   rate-constant: {A: 1.5e+11, b: 0.0, Ea: 8000.0}
-- equation: C2H + C12H8 => C14H9  # Reaction 8029
+- equation: C2H + A2R5 => C14H9  # Reaction 8029
   rate-constant: {A: 3.0e+11, b: 0.0, Ea: 8000.0}
 - equation: C2H + A2C2HA => C14H9  # Reaction 8030
   rate-constant: {A: 3.0e+11, b: 0.0, Ea: 8000.0}
@@ -72213,7 +72156,7 @@ reactions:
     \REACTIONCLASS: \PGROW-RAD-MOL_NRS-MOL_C2H2                                              \A            \N            \EA            
     \REACTIONCOMMENT: 
     _______________________________________________________________________________________________________________________________________________ 
-    ! C2H2+NAPH-=C12H8+H                                                                        +5.00000E+012 +0.00000E+000 +5.00000E+003 ! era .1000E+13 KIK for Manion
+    ! C2H2+NAPH-=A2R5+H                                                                        +5.00000E+012 +0.00000E+000 +5.00000E+003 ! era .1000E+13 KIK for Manion
     ! PLOG /                                                                      +4.00000E-002 +8.56000E+017 -1.33000E+000 +1.26900E+004 /! C6H5+C2H2=C6H5C2H+H Mebel KIK
     ! PLOG /                                                                      +1.00000E+000 +1.10000E+031 -4.83000E+000 +2.66200E+004 / 
     ! PLOG /                                                                      +1.00000E+001 +3.38000E+033 -5.39000E+000 +3.26900E+004 /
@@ -72240,7 +72183,7 @@ reactions:
      Reaction index: Chemkin #17; RMG #17
      Library reaction: Naphthyl_HACA/C12H9_Pdep
     ! A2C2H2A
-- equation: NAPH-A + C2H2 <=> C12H8 + H  # Reaction 8039
+- equation: NAPH-A + C2H2 <=> A2R5 + H  # Reaction 8039
   duplicate: true
   type: pressure-dependent-Arrhenius
   rate-constants:
@@ -72258,7 +72201,7 @@ reactions:
      Reaction index: Chemkin #104; RMG #104
      Library reaction: Naphthyl_HACA/C12H9_Pdep
     ! A2R5H
-- equation: NAPH-A + C2H2 <=> C12H8 + H  # Reaction 8040
+- equation: NAPH-A + C2H2 <=> A2R5 + H  # Reaction 8040
   duplicate: true
   type: pressure-dependent-Arrhenius
   rate-constants:
@@ -73014,11 +72957,11 @@ reactions:
     \REACTIONCLASS: \PGROW-RAD-MOL_NRS-MOL_C5H6                                              \A            \N            \EA            
     \REACTIONCOMMENT: 
     _______________________________________________________________________________________________________________________________________________ 
-- equation: C5H6 + C6H4C2H => C12H8 + CH3  # Reaction 8091
+- equation: C5H6 + C6H4C2H => A2R5 + CH3  # Reaction 8091
   rate-constant: {A: 1.0e+12, b: 0.0, Ea: 8000.0}
   note: |
     C5H6+C6H4CH3=>BIPHENYL+H2+H                                                               +1.00000E+012 +0.00000E+000 +8.00000E+003 
-- equation: C5H6 + C6H5CHCH => C12H8 + H2 + CH3  # Reaction 8092
+- equation: C5H6 + C6H5CHCH => A2R5 + H2 + CH3  # Reaction 8092
   rate-constant: {A: 1.0e+12, b: 0.0, Ea: 8000.0}
 - equation: C5H6 + NAPH-A => PHNTHRN + CH3  # Reaction 8093
   rate-constant: {A: 1.0e+12, b: 0.0, Ea: 8000.0}
@@ -73068,7 +73011,7 @@ reactions:
   rate-constant: {A: 1.0e+12, b: 0.0, Ea: 8000.0}
 - equation: C6H4C2H + C10H7CH3-B => C18H10 + H2 + CH3  # Reaction 8111
   rate-constant: {A: 1.0e+12, b: 0.0, Ea: 8000.0}
-- equation: C6H4C2H + C12H8 => 0.666667 BIN1B + 0.33333375 BIN1A + H  # Reaction 8112
+- equation: C6H4C2H + A2R5 => 0.666667 BIN1B + 0.33333375 BIN1A + H  # Reaction 8112
   rate-constant: {A: 1.0e+12, b: 0.0, Ea: 8000.0}
 - equation: C6H4C2H + A2C2HA => 0.666667 BIN1B + 0.33333375 BIN1A + H  # Reaction 8113
   rate-constant: {A: 1.0e+12, b: 0.0, Ea: 8000.0}
@@ -73130,7 +73073,7 @@ reactions:
   rate-constant: {A: 1.0e+12, b: 0.0, Ea: 8000.0}
 - equation: C6H5 + C10H7CH3-B => C16H10 + CH3 + H2  # Reaction 8130
   rate-constant: {A: 1.0e+12, b: 0.0, Ea: 8000.0}
-- equation: C6H5 + C12H8 => 0.5 C18H10 + 0.5 C18H14 + H  # Reaction 8131
+- equation: C6H5 + A2R5 => 0.5 C18H10 + 0.5 C18H14 + H  # Reaction 8131
   rate-constant: {A: 1.0e+12, b: 0.0, Ea: 8000.0}
 - equation: C6H5 + A2C2HA => 0.5 C18H10 + 0.5 C18H14 + H  # Reaction 8132
   rate-constant: {A: 1.0e+12, b: 0.0, Ea: 8000.0}
@@ -73199,7 +73142,7 @@ reactions:
   rate-constant: {A: 1.0e+12, b: 0.0, Ea: 8000.0}
 - equation: C6H5CHCH + C10H7CH3-B => C18H10 + 2 H2 + CH3  # Reaction 8156
   rate-constant: {A: 1.0e+12, b: 0.0, Ea: 8000.0}
-- equation: C6H5CHCH + C12H8 => 0.666667 BIN1B + 0.33333375 BIN1A + H2
+- equation: C6H5CHCH + A2R5 => 0.666667 BIN1B + 0.33333375 BIN1A + H2 
     + H  # Reaction 8157
   rate-constant: {A: 1.0e+12, b: 0.0, Ea: 8000.0}
 - equation: C6H5CHCH + A2C2HA => 0.666667 BIN1B + 0.33333375 BIN1A + 
@@ -73399,7 +73342,7 @@ reactions:
   rate-constant: {A: 1.0e+12, b: 0.0, Ea: 8000.0}
 - equation: C6H4CH3 + C10H7CH3-B => C18H10 + 3 H2 + H  # Reaction 8218
   rate-constant: {A: 1.0e+12, b: 0.0, Ea: 8000.0}
-- equation: C6H4CH3 + C12H8 => 0.5 C18H14 + 0.166666666856036 BIN1B + 
+- equation: C6H4CH3 + A2R5 => 0.5 C18H14 + 0.166666666856036 BIN1B + 
     0.333333333979624 BIN1A + H  # Reaction 8219
   rate-constant: {A: 1.0e+12, b: 0.0, Ea: 8000.0}
 - equation: C6H4CH3 + A2C2HA => 0.5 C18H14 + 0.166666666856036 BIN1B +
@@ -73502,7 +73445,7 @@ reactions:
   rate-constant: {A: 4.0e+11, b: 0.0, Ea: 1.9e+04}
   note: |
     CONNECTION_TO_SOOT
-- equation: C10H7CH2-A + C12H8 => 0.6 BIN1B + 0.5 BIN1A + CH3  # Reaction 8249
+- equation: C10H7CH2-A + A2R5 => 0.6 BIN1B + 0.5 BIN1A + CH3  # Reaction 8249
   rate-constant: {A: 4.0e+11, b: 0.0, Ea: 1.9e+04}
   note: |
     CONNECTION_TO_SOOT
@@ -73545,7 +73488,7 @@ reactions:
   rate-constant: {A: 4.0e+11, b: 0.0, Ea: 1.9e+04}
   note: |
     CONNECTION_TO_SOOT
-- equation: C10H7CH2-B + C12H8 => 0.6 BIN1B + 0.5 BIN1A + CH3  # Reaction 8259
+- equation: C10H7CH2-B + A2R5 => 0.6 BIN1B + 0.5 BIN1A + CH3  # Reaction 8259
   rate-constant: {A: 4.0e+11, b: 0.0, Ea: 1.9e+04}
   note: |
     CONNECTION_TO_SOOT
@@ -73600,7 +73543,7 @@ reactions:
     _______________________________________________________________________________________________________________________________________________ 
 - equation: C2H2 + C10H7CH2-B => A2C2HB + CH3  # Reaction 8270
   rate-constant: {A: 1.0e+12, b: 0.0, Ea: 2.0e+04}
-- equation: C2H3 + C12H8 => PHNTHRN + H  # Reaction 8271
+- equation: C2H3 + A2R5 => PHNTHRN + H  # Reaction 8271
   rate-constant: {A: 1.0e+12, b: 0.0, Ea: 6000.0}
   note: |
     C2H2+C7H5=>C9H7                                                                        +1.10000E+086 -2.12590E+001 +6.58620E+004 ! Akira Matsugi and Akira Miyoshi 2012 PCCP,14.
@@ -73655,7 +73598,7 @@ reactions:
   rate-constant: {A: 4.0e+11, b: 0.0, Ea: 1.9e+04}
 - equation: C3H3 + C10H7CH3-B => PHNTHRN + H2 + H  # Reaction 8286
   rate-constant: {A: 4.0e+11, b: 0.0, Ea: 1.9e+04}
-- equation: C3H3 + C12H8 => 0.5 PHNTHRN + 0.5 C16H10 + H  # Reaction 8287
+- equation: C3H3 + A2R5 => 0.5 PHNTHRN + 0.5 C16H10 + H  # Reaction 8287
   rate-constant: {A: 4.0e+11, b: 0.0, Ea: 1.9e+04}
 - equation: C3H3 + A2C2HA => 0.5 PHNTHRN + 0.5 C16H10 + H  # Reaction 8288
   rate-constant: {A: 4.0e+11, b: 0.0, Ea: 1.9e+04}
@@ -73705,7 +73648,7 @@ reactions:
     C3H4-P+C9H7=>NAPH+C2H3                                                                +3.00000E+012 +0.00000E+000 +1.80000E+004 
 - equation: C3H4-P + C10H7CH2-B => PHNTHRN + H2 + H  # Reaction 8303
   rate-constant: {A: 3.0e+12, b: 0.0, Ea: 1.8e+04}
-- equation: C3H5-A + C12H8 => PHNTHRN + CH3  # Reaction 8304
+- equation: C3H5-A + A2R5 => PHNTHRN + CH3  # Reaction 8304
   rate-constant: {A: 5.0e+11, b: 0.0, Ea: 1.8e+04}
   note: |
     _______________________________________________________________________________________________________________________________________________ 
@@ -73781,7 +73724,7 @@ reactions:
   rate-constant: {A: 4.0e+11, b: 0.0, Ea: 1.9e+04}
 - equation: C5H5 + C10H7CH3-B => C16H10 + 2 H2 + H  # Reaction 8324
   rate-constant: {A: 4.0e+11, b: 0.0, Ea: 1.9e+04}
-- equation: C5H5 + C12H8 => 0.5 C16H10 + 0.5 C18H10 + H2 + H  # Reaction 8325
+- equation: C5H5 + A2R5 => 0.5 C16H10 + 0.5 C18H10 + H2 + H  # Reaction 8325
   rate-constant: {A: 4.0e+11, b: 0.0, Ea: 1.9e+04}
 - equation: C5H5 + A2C2HA => 0.5 C16H10 + 0.5 C18H10 + H2 + H  # Reaction 8326
   rate-constant: {A: 4.0e+11, b: 0.0, Ea: 1.9e+04}
@@ -73811,7 +73754,7 @@ reactions:
     \REACTIONCOMMENT: 
     _______________________________________________________________________________________________________________________________________________ 
      LPM /2 TO BE CONSISTENT WITH BELOW
-- equation: C5H6 + RXYLENE => C12H8 + 2 H2 + CH3  # Reaction 8335
+- equation: C5H6 + RXYLENE => A2R5 + 2 H2 + CH3  # Reaction 8335
   rate-constant: {A: 4.0e+11, b: 0.0, Ea: 1.9e+04}
 - equation: C5H6 + C9H7 => PHNTHRN + H2 + H  # Reaction 8336
   rate-constant: {A: 2.0e+11, b: 0.0, Ea: 1.9e+04}
@@ -73900,7 +73843,7 @@ reactions:
   rate-constant: {A: 4.0e+11, b: 0.0, Ea: 1.9e+04}
 - equation: C6H5CH2 + C10H7CH3-B => C18H10 + 3 H2 + H  # Reaction 8361
   rate-constant: {A: 4.0e+11, b: 0.0, Ea: 1.9e+04}
-- equation: C6H5CH2 + C12H8 => 0.5 C18H14 + 0.166666666856036 BIN1B + 
+- equation: C6H5CH2 + A2R5 => 0.5 C18H14 + 0.166666666856036 BIN1B + 
     0.333333333979624 BIN1A + H  # Reaction 8362
   rate-constant: {A: 4.0e+11, b: 0.0, Ea: 1.9e+04}
 - equation: C6H5CH2 + A2C2HA => 0.5 C18H14 + 0.166666666856036 BIN1B +
@@ -73940,7 +73883,7 @@ reactions:
   rate-constant: {A: 4.0e+11, b: 0.0, Ea: 1.9e+04}
 - equation: C6H5CH3 + C10H7CH2-B => 0.5 C16H10 + 0.5 C18H14 + CH3 + H2  # Reaction 8374
   rate-constant: {A: 4.0e+11, b: 0.0, Ea: 1.9e+04}
-- equation: IC4H7 + C12H8 => C16H10 + H2 + H2 + H  # Reaction 8375
+- equation: IC4H7 + A2R5 => C16H10 + H2 + H2 + H  # Reaction 8375
   rate-constant: {A: 1.0e+12, b: 0.0, Ea: 1.6e+04}
   note: |
     _______________________________________________________________________________________________________________________________________________ 
@@ -73977,7 +73920,7 @@ reactions:
   rate-constant: {A: 4.0e+11, b: 0.0, Ea: 1.9e+04}
 - equation: C9H7 + C10H7CH3-B => 0.5 C18H10 + 0.5 BIN1B + 2 H2 + CH3  # Reaction 8383
   rate-constant: {A: 4.0e+11, b: 0.0, Ea: 1.9e+04}
-- equation: C9H7 + C12H8 => 0.466667 BIN1B + 0.58333375 BIN1A + H  # Reaction 8384
+- equation: C9H7 + A2R5 => 0.466667 BIN1B + 0.58333375 BIN1A + H  # Reaction 8384
   rate-constant: {A: 4.0e+11, b: 0.0, Ea: 1.9e+04}
   note: |
     CONNECTION_TO_SOOT
@@ -74029,8 +73972,8 @@ reactions:
   rate-constant: {A: 4.0e+11, b: 0.0, Ea: 1.9e+04}
 - equation: RXYLENE + C10H7CH3-B => C18H10 + 3 H2 + CH3  # Reaction 8397
   rate-constant: {A: 4.0e+11, b: 0.0, Ea: 1.9e+04}
-- equation: RXYLENE + C12H8 => 0.666667 BIN1B + 0.33333375 BIN1A + 2 
-    H2 + H  # Reaction 8398
+- equation: RXYLENE + A2R5 => 0.666667 BIN1B + 0.33333375 BIN1A + 2 H2
+    + H  # Reaction 8398
   rate-constant: {A: 4.0e+11, b: 0.0, Ea: 1.9e+04}
 - equation: RXYLENE + A2C2HA => 0.666667 BIN1B + 0.33333375 BIN1A + 2 
     H2 + H  # Reaction 8399
@@ -74435,69 +74378,69 @@ reactions:
   rate-constant: {A: 1.82e+05, b: 2.0, Ea: 2.3513656e+04}
 - equation: C10H6CH3-A + C10H7CH3-B => C10H6CH3-B + C10H7CH3-A  # Reaction 8564
   rate-constant: {A: 5.18e+08, b: 1.0, Ea: 5757.088}
-- equation: CH3 + C12H8 => C12H7 + CH4  # Reaction 8565
+- equation: CH3 + A2R5 => C12H7 + CH4  # Reaction 8565
   rate-constant: {A: 4.8e+05, b: 2.0, Ea: 1.0098998e+04}
   note: |
     !C10H6CH3-B+ C10H7CH3-B=>C10H6CH3-B + C10H7CH3-B   5.18000e+08       1.000    5757.088    DUMMY 
-     ABSTRACTION REACTION: R + C12H8=>C12H7 + RH 
+     ABSTRACTION REACTION: R + A2R5=>C12H7 + RH 
      Number of H abstracted: 8.00
      Type of H abstracted:   [7] 
-     H         + C12H8=>C12H7 + H2           4.80000e+07       2.000    8733.525    OVERWRITTEN
-- equation: C2H3 + C12H8 => C12H7 + C2H4  # Reaction 8566
+     H         + A2R5=>C12H7 + H2           4.80000e+07       2.000    8733.525    OVERWRITTEN
+- equation: C2H3 + A2R5 => C12H7 + C2H4  # Reaction 8566
   rate-constant: {A: 1.0848e+06, b: 2.0, Ea: 8593.75}
-- equation: C2H5 + C12H8 => C12H7 + C2H6  # Reaction 8567
+- equation: C2H5 + A2R5 => C12H7 + C2H6  # Reaction 8567
   rate-constant: {A: 3.2e+05, b: 2.0, Ea: 1.2321456e+04}
-- equation: C3H5-S + C12H8 => C12H7 + C3H6  # Reaction 8568
+- equation: C3H5-S + A2R5 => C12H7 + C3H6  # Reaction 8568
   rate-constant: {A: 4.32e+05, b: 2.0, Ea: 9423.045}
-- equation: C3H5-T + C12H8 => C12H7 + C3H6  # Reaction 8569
+- equation: C3H5-T + A2R5 => C12H7 + C3H6  # Reaction 8569
   rate-constant: {A: 4.32e+05, b: 2.0, Ea: 9423.045}
-- equation: C3H5-A + C12H8 => C12H7 + C3H6  # Reaction 8570
+- equation: C3H5-A + A2R5 => C12H7 + C3H6  # Reaction 8570
   rate-constant: {A: 8.624e+05, b: 2.0, Ea: 1.9775112e+04}
-- equation: C4H71-4 + C12H8 => C12H7 + C4H8-1  # Reaction 8571
+- equation: C4H71-4 + A2R5 => C12H7 + C4H8-1  # Reaction 8571
   rate-constant: {A: 2.16e+05, b: 2.0, Ea: 1.2193351e+04}
-- equation: C4H71-3 + C12H8 => C12H7 + C4H8-2  # Reaction 8572
+- equation: C4H71-3 + A2R5 => C12H7 + C4H8-2  # Reaction 8572
   rate-constant: {A: 5.44e+05, b: 2.0, Ea: 2.0834886e+04}
-- equation: IC4H7 + C12H8 => C12H7 + IC4H8  # Reaction 8573
+- equation: IC4H7 + A2R5 => C12H7 + IC4H8  # Reaction 8573
   rate-constant: {A: 4.32e+05, b: 2.0, Ea: 2.0834886e+04}
-- equation: C4H3-I + C12H8 => C12H7 + C4H4  # Reaction 8574
+- equation: C4H3-I + A2R5 => C12H7 + C4H4  # Reaction 8574
   rate-constant: {A: 6.544e+05, b: 2.0, Ea: 1.0366091e+04}
-- equation: C6H5 + C12H8 => C12H7 + C6H6  # Reaction 8575
+- equation: C6H5 + A2R5 => C12H7 + C6H6  # Reaction 8575
   rate-constant: {A: 5.92e+08, b: 1.0, Ea: 5757.088}
-- equation: C5H5 + C12H8 => C12H7 + C5H6  # Reaction 8576
+- equation: C5H5 + A2R5 => C12H7 + C5H6  # Reaction 8576
   rate-constant: {A: 5.44e+05, b: 2.0, Ea: 2.1186585e+04}
-- equation: O + C12H8 => C12H7 + OH  # Reaction 8577
+- equation: O + A2R5 => C12H7 + OH  # Reaction 8577
   rate-constant: {A: 3.76e+07, b: 2.0, Ea: 6547.171}
-- equation: O2 + C12H8 => C12H7 + HO2  # Reaction 8578
+- equation: O2 + A2R5 => C12H7 + HO2  # Reaction 8578
   rate-constant: {A: 2.72e+07, b: 2.0, Ea: 5.4526425e+04}
-- equation: HO2 + C12H8 => C12H7 + H2O2  # Reaction 8579
+- equation: HO2 + A2R5 => C12H7 + H2O2  # Reaction 8579
   rate-constant: {A: 1.28e+07, b: 2.0, Ea: 2.3513656e+04}
   note: |
-    OH        + C12H8=>C12H7 + H2O          2.40000e+10       1.000    1148.714    OVERWRITTEN
-- equation: C3H3 + C12H8 => C12H7 + C3H4-A  # Reaction 8580
+    OH        + A2R5=>C12H7 + H2O          2.40000e+10       1.000    1148.714    OVERWRITTEN
+- equation: C3H3 + A2R5 => C12H7 + C3H4-A  # Reaction 8580
   rate-constant: {A: 4.32e+05, b: 2.0, Ea: 2.1186585e+04}
-- equation: C6H5O + C12H8 => C12H7 + C6H5OH  # Reaction 8581
+- equation: C6H5O + A2R5 => C12H7 + C6H5OH  # Reaction 8581
   rate-constant: {A: 8.64e+05, b: 2.0, Ea: 1.9420193e+04}
-- equation: C6H4OH + C12H8 => C12H7 + C6H5OH  # Reaction 8582
+- equation: C6H4OH + A2R5 => C12H7 + C6H5OH  # Reaction 8582
   rate-constant: {A: 5.92e+08, b: 1.0, Ea: 5757.088}
-- equation: C6H5CH2 + C12H8 => C12H7 + C6H5CH3  # Reaction 8583
+- equation: C6H5CH2 + A2R5 => C12H7 + C6H5CH3  # Reaction 8583
   rate-constant: {A: 2.16e+05, b: 2.0, Ea: 2.3513656e+04}
-- equation: C6H4CH3 + C12H8 => C12H7 + C6H5CH3  # Reaction 8584
+- equation: C6H4CH3 + A2R5 => C12H7 + C6H5CH3  # Reaction 8584
   rate-constant: {A: 5.92e+08, b: 1.0, Ea: 5757.088}
-- equation: OC6H4CH3 + C12H8 => C12H7 + HOC6H4CH3  # Reaction 8585
+- equation: OC6H4CH3 + A2R5 => C12H7 + HOC6H4CH3  # Reaction 8585
   rate-constant: {A: 4.32e+05, b: 2.0, Ea: 1.9775112e+04}
-- equation: NAPH-A + C12H8 => C12H7 + NAPH  # Reaction 8586
+- equation: NAPH-A + A2R5 => C12H7 + NAPH  # Reaction 8586
   rate-constant: {A: 5.92e+08, b: 1.0, Ea: 5757.088}
-- equation: NAPH-B + C12H8 => C12H7 + NAPH  # Reaction 8587
+- equation: NAPH-B + A2R5 => C12H7 + NAPH  # Reaction 8587
   rate-constant: {A: 5.92e+08, b: 1.0, Ea: 5757.088}
-- equation: C6H5CH2CH2 + C12H8 => C12H7 + C6H5C2H5  # Reaction 8588
+- equation: C6H5CH2CH2 + A2R5 => C12H7 + C6H5C2H5  # Reaction 8588
   rate-constant: {A: 4.0e+05, b: 2.0, Ea: 1.9420193e+04}
-- equation: C6H5CHCH3 + C12H8 => C12H7 + C6H5C2H5  # Reaction 8589
+- equation: C6H5CHCH3 + A2R5 => C12H7 + C6H5C2H5  # Reaction 8589
   rate-constant: {A: 2.88e+05, b: 2.0, Ea: 2.3513656e+04}
-- equation: C9H7 + C12H8 => C12H7 + IND  # Reaction 8590
+- equation: C9H7 + A2R5 => C12H7 + IND  # Reaction 8590
   rate-constant: {A: 2.08e+05, b: 2.0, Ea: 2.3513656e+04}
-- equation: C10H6CH3-A + C12H8 => C12H7 + C10H7CH3-A  # Reaction 8591
+- equation: C10H6CH3-A + A2R5 => C12H7 + C10H7CH3-A  # Reaction 8591
   rate-constant: {A: 5.92e+08, b: 1.0, Ea: 5757.088}
-- equation: C10H6CH3-B + C12H8 => C12H7 + C10H7CH3-B  # Reaction 8592
+- equation: C10H6CH3-B + A2R5 => C12H7 + C10H7CH3-B  # Reaction 8592
   rate-constant: {A: 5.92e+08, b: 1.0, Ea: 5757.088}
 - equation: CH3 + A2C2HA => A2C2HA- + CH4  # Reaction 8593
   rate-constant: {A: 4.8e+05, b: 2.0, Ea: 1.0098998e+04}
@@ -74932,16 +74875,16 @@ reactions:
   rate-constant: {A: 1.036e+09, b: 1.0, Ea: 5757.088}
 - equation: C10H6CH3-B + C18H10 => C18H9 + C10H7CH3-B  # Reaction 8782
   rate-constant: {A: 1.036e+09, b: 1.0, Ea: 5757.088}
-- equation: C12H8 + H <=> C12H7 + H2  # Reaction 8783
+- equation: A2R5 + H <=> C12H7 + H2  # Reaction 8783
   duplicate: true
   rate-constant: {A: 5.13e+07, b: 1.995, Ea: 1.7874e+04}
-- equation: C12H8 + H <=> C12H7 + H2  # Reaction 8784
+- equation: A2R5 + H <=> C12H7 + H2  # Reaction 8784
   duplicate: true
   rate-constant: {A: 4.481e+07, b: 2.011, Ea: 1.5773e+04}
-- equation: C12H8 + H <=> C12H7 + H2  # Reaction 8785
+- equation: A2R5 + H <=> C12H7 + H2  # Reaction 8785
   duplicate: true
   rate-constant: {A: 4.111e+07, b: 2.017, Ea: 1.6985e+04}
-- equation: C12H8 + H <=> C12H7 + H2  # Reaction 8786
+- equation: A2R5 + H <=> C12H7 + H2  # Reaction 8786
   duplicate: true
   rate-constant: {A: 1.833e+08, b: 1.888, Ea: 1.9152e+04}
 - equation: A2C2HA + H <=> A2C2HA- + H2  # Reaction 8787
@@ -74980,8 +74923,8 @@ reactions:
 - equation: H + PHNTHRN => H2 + C14H9  # Reaction 8798
   rate-constant: {A: 4.813e+07, b: 2.0, Ea: 1.048003e+04}
   note: |
-    ! H       +C12H8=>H2     +C12H7   .3851E+08 2.0  10480.03
-    ! OH      +C12H8=>H2O    +C12H7   .6390E+07 2.0   2267.44 
+    ! H       +A2R5=>H2     +C12H7   .3851E+08 2.0  10480.03
+    ! OH      +A2R5=>H2O    +C12H7   .6390E+07 2.0   2267.44 
 - equation: OH + PHNTHRN => H2O + C14H9  # Reaction 8799
   rate-constant: {A: 7.988e+06, b: 2.0, Ea: 2267.44}
 - equation: H + C16H10 => H2 + C16H9  # Reaction 8800
@@ -75166,7 +75109,7 @@ reactions:
      R2_adj=1.00 , T RANGE=500 - 2000 K
     #[ENDREACTIONCLASS][C5-RSR][REC_H_WELL]
      03-24-2024 back to this for LP indene pyr (30 torr unavailable in fit above)  !LPM high P lim from mebel, P dependence from USC mech. high p lim similar to Harding klippenstein
-- equation: H + C12H7 <=> C12H8  # Reaction 8865
+- equation: H + C12H7 <=> A2R5  # Reaction 8865
   rate-constant: {A: 4.17e+13, b: 0.15, Ea: 0.0}
   note: |2
      H2/2.0/ H2O/6.0/ CH4/2.0/ CO/1.5/ CO2/2.0/ !small colliders almost no effect on PAHs  

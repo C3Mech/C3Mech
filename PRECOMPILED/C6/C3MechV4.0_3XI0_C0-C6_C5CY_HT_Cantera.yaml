@@ -55,7 +55,7 @@ description: |2-
                                 !!! Please do not remove this header !!!                              !
    ================================================================================================== !
 
-   Kinetics data for C3MechV4.0, generated on 17/08/2025 17:13:58.
+   Kinetics data for C3MechV4.0, generated on 21/08/2025 14:35:30.
 
    The following sub-modules were considered in this file:
    - NUIG_C0_LT-HT_Cantera.MECH
@@ -126,7 +126,7 @@ description: |2-
                                !!! Please do not remove this header !!!                              !
   ================================================================================================== !
 
-  Thermodynamic data for C3MechV4.0, generated on 17/08/2025 17:13:58.
+  Thermodynamic data for C3MechV4.0, generated on 21/08/2025 14:35:30.
 
   The following sub-modules were considered in this file:
   - NUIG_C0_LT-HT.MECH
@@ -143,7 +143,7 @@ input-files: [C3MechV4.0_3XI0_C0-C6_C5CY_HT_Cantera.CKI,
     C3MechV4.0_3XI0_C0-C6_C5CY_HT.THERM, 
     C3MechV4.0_3XI0_C0-C6_C5CY_HT.TRAN]
 cantera-version: 3.1.0
-date: Sun, 17 Aug 2025 17:21:07 +0200
+date: Thu, 21 Aug 2025 14:41:27 +0200
 
 units: {length: cm, time: s, quantity: mol, activation-energy: cal/mol}
 
@@ -14401,7 +14401,7 @@ reactions:
     ___________________________________________________________________________________________________________ 
     \REACTIONCLASS: RADICAL_ALPHA_SCISSION
     ___________________________________________________________________________________________________________ 
-    ! =========== For Chemkin/OpenSMOKE++ users ===========
+    ! =========== For Chemkin-PRO/OpenSMOKE++ users ===========
     !H+O2(+M)=HO2(+M)    4.66E12 0.44 0.0E0  !\Author: SP !\Ref: TROE, PROCI Volume 28, Issue 2, 2000, 1463-1469 / PCCP FERNANDES 2008
     !    HE/1.0/
     !    AR/0.0/
@@ -14418,8 +14418,8 @@ reactions:
     !    TROESP / N2 5.0E-1     1.0E0     1.0E10    1.0E30   /
     !    LOWSP  / HE 1.216E+19 -1.23     +0.00               / !Yuki Murakami 17 May 2024, From AramcoMech3.0 He 0.64 -> 0.70
     !    TROESP / HE 6.70E-1    1.0E-30   1.0E30    1.0E30   /
-    ! =========== Chemkin/OpenSMOKE++ format END ==========
-    ! =========== For Cantera users ===========
+    ! =========== Chemkin-PRO/OpenSMOKE++ format END ==========
+    ! =========== For Cantera/FlameMaster users ===========
     \Author: SP !\Ref: TROE, PROCI Volume 28, Issue 2, 2000, 1463-1469 / PCCP FERNANDES 2008
 - equation: H + O2 (+N2) <=> HO2 (+N2)  # Reaction 41
   type: falloff
@@ -14446,7 +14446,7 @@ reactions:
   - {P: 100.0 atm, A: 8.71701e+20, b: -1.8195, Ea: 1191.9876}
   - {P: 300.0 atm, A: 2.90584e+20, b: -1.6631, Ea: 1493.4906}
   note: |
-    ! =========== Cantera format END ==========
+    ! =========== Cantera/FlameMaster format END ==========
      Yuki Murakami 27 July 2023 PLOG re-fitting
 - equation: CO + O (+M) <=> CO2 (+M)  # Reaction 44
   type: falloff

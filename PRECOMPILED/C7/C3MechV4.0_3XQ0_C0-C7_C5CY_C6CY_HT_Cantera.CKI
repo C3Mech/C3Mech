@@ -54,7 +54,7 @@
 !                              !!! Please do not remove this header !!!                              !
 ! ================================================================================================== !
 
-! Kinetics data for C3MechV4.0, generated on 17/08/2025 17:13:58.
+! Kinetics data for C3MechV4.0, generated on 21/08/2025 14:35:30.
 
 ! The following sub-modules were considered in this file:
 ! - NUIG_C0_LT-HT_Cantera.MECH
@@ -572,7 +572,7 @@ HO2+HO2=OH+OH+O2   6.41E+17	-1.54E+00	8.54E+03!\Author: SP !\Ref: S.J. KLIPPENST
 !\REACTIONCLASS: RADICAL_ALPHA_SCISSION
 !___________________________________________________________________________________________________________ 
 
-!! =========== For Chemkin/OpenSMOKE++ users ===========
+!! =========== For Chemkin-PRO/OpenSMOKE++ users ===========
 !!H+O2(+M)=HO2(+M)    4.66E12 0.44 0.0E0  !\Author: SP !\Ref: TROE, PROCI Volume 28, Issue 2, 2000, 1463-1469 / PCCP FERNANDES 2008
 !!    HE/1.0/
 !!    AR/0.0/
@@ -589,9 +589,9 @@ HO2+HO2=OH+OH+O2   6.41E+17	-1.54E+00	8.54E+03!\Author: SP !\Ref: S.J. KLIPPENST
 !!    TROESP / N2 5.0E-1     1.0E0     1.0E10    1.0E30   /
 !!    LOWSP  / HE 1.216E+19 -1.23     +0.00               / !Yuki Murakami 17 May 2024, From AramcoMech3.0 He 0.64 -> 0.70
 !!    TROESP / HE 6.70E-1    1.0E-30   1.0E30    1.0E30   /
-!! =========== Chemkin/OpenSMOKE++ format END ==========
+!! =========== Chemkin-PRO/OpenSMOKE++ format END ==========
 
-!! =========== For Cantera users ===========
+!! =========== For Cantera/FlameMaster users ===========
 H+O2(+M)=HO2(+M)    4.66E12 0.44 0.0E0  !\Author: SP !\Ref: TROE, PROCI Volume 28, Issue 2, 2000, 1463-1469 / PCCP FERNANDES 2008
     HE/0.0/
     AR/0.0/
@@ -613,7 +613,7 @@ H+O2(+HE)=HO2(+HE)    4.66E12 0.44 0.0E0
     LOW  / 1.216E+19 -1.23     +0.00              / 
     TROE / 6.70E-1    1.0E-030  1.0E+030 1.0E+030 /
 
-!! =========== Cantera format END ==========
+!! =========== Cantera/FlameMaster format END ==========
 
 H+O2+AR=HO2+AR    2.90584E20 -1.6631 1.4934906E3 ! Yuki Murakami 27 July 2023 PLOG re-fitting
 PLOG/ 1.0E-2 6.93702E18 -1.1912E0 1.14078E1 /

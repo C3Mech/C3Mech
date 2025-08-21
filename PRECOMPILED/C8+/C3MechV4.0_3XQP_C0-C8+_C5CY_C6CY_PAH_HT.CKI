@@ -54,7 +54,7 @@
 !                              !!! Please do not remove this header !!!                              !
 ! ================================================================================================== !
 
-! Kinetics data for C3MechV4.0, generated on 17/08/2025 17:13:58.
+! Kinetics data for C3MechV4.0, generated on 21/08/2025 14:35:30.
 
 ! The following sub-modules were considered in this file:
 ! - NUIG_C0_LT-HT.MECH
@@ -557,7 +557,7 @@ C5H6-L                        C5H5OH                        C5H4OH
 C5H3O-3                       C5H3O-3O                      C6H4CH3                       
 C6H4OH                        C9H7O                         C6H5CO                        
 C9H7C3H3                      C9H6C3H3                      A2HR5H                        
-A2R5H                         C12H8                         C6H5C3H3                      
+A2R5H                         A2R5                          C6H5C3H3                      
 C6H5C3H2                      C10H10                        FLUORENE                      
 PHNTHRN                       C6H5CHO                       C6H5C2H3                      
 C7H6                          C9H7C2H                       BIPHENYL                      
@@ -779,7 +779,7 @@ HO2+HO2=OH+OH+O2   6.41E+17	-1.54E+00	8.54E+03!\Author: SP !\Ref: S.J. KLIPPENST
 !\REACTIONCLASS: RADICAL_ALPHA_SCISSION
 !___________________________________________________________________________________________________________ 
 
-!! =========== For Chemkin/OpenSMOKE++ users ===========
+!! =========== For Chemkin-PRO/OpenSMOKE++ users ===========
 H+O2(+M)=HO2(+M)    4.66E12 0.44 0.0E0  !\Author: SP !\Ref: TROE, PROCI Volume 28, Issue 2, 2000, 1463-1469 / PCCP FERNANDES 2008
     HE/1.0/
     AR/0.0/
@@ -796,9 +796,9 @@ H+O2(+M)=HO2(+M)    4.66E12 0.44 0.0E0  !\Author: SP !\Ref: TROE, PROCI Volume 2
     TROESP / N2 5.0E-1     1.0E0     1.0E10    1.0E30   /
     LOWSP  / HE 1.216E+19 -1.23     +0.00               / !Yuki Murakami 17 May 2024, From AramcoMech3.0 He 0.64 -> 0.70
     TROESP / HE 6.70E-1    1.0E-30   1.0E30    1.0E30   /
-!! =========== Chemkin/OpenSMOKE++ format END ==========
+!! =========== Chemkin-PRO/OpenSMOKE++ format END ==========
 
-!! =========== For Cantera users ===========
+!! =========== For Cantera/FlameMaster users ===========
 !! H+O2(+M)=HO2(+M)    4.66E12 0.44 0.0E0  !\Author: SP !\Ref: TROE, PROCI Volume 28, Issue 2, 2000, 1463-1469 / PCCP FERNANDES 2008
 !!     HE/0.0/
 !!     AR/0.0/
@@ -820,7 +820,7 @@ H+O2(+M)=HO2(+M)    4.66E12 0.44 0.0E0  !\Author: SP !\Ref: TROE, PROCI Volume 2
 !!     LOW  / 1.216E+19 -1.23     +0.00              / 
 !!     TROE / 6.70E-1    1.0E-030  1.0E+030 1.0E+030 /
 !! 
-!! =========== Cantera format END ==========
+!! =========== Cantera/FlameMaster format END ==========
 
 H+O2+AR=HO2+AR    2.90584E20 -1.6631 1.4934906E3 ! Yuki Murakami 27 July 2023 PLOG re-fitting
 PLOG/ 1.0E-2 6.93702E18 -1.1912E0 1.14078E1 /
@@ -31150,65 +31150,6 @@ CH2CO+C11H23-1=NC12H25CO    3.3E2 2.73 1.4E4
 !\END_KINETICS_MODULE: C8-C12
 !++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 !\KINETICS_MODULE: PAH
-
-!! RL TODO
-!! [X] Why not use C6H6+O from Cavalotti et al, J. Phys. Chem. Lett. 2020, 11, 22, 9621-9628?
-!! [X] Ask YM to add intermediate temperature to the NASA polynomial coefficients of CH2OO
-!! [ ] Ask LPM about the of these reactions
-!!     IC4H7+IC4H8=>C6H5CH3+CH3+2.H2    
-!!     IC4H7+IC4H7=>C6H5CH3+H+CH3+H2    
-!!     C4H71-3+C4H6=>C6H5CH3+H2+CH3     
-!!     C4H71-3+C4H71-3=>CH3+H+C6H5CH3+H2
-!! [ ] Ask LPM about plans for C4H4+C3H3. From Marti et al. (https://doi.org/10.1021/acs.jpca.2c08035) 
-!!     and from what I've seen, C3H3+C4H4 should produce C7H6+H, C5H5+C2H2, or, at lower temperatures
-!!     (<1000K) VINYLCPDYL. It should never produce C6H5CH2. The update would also affect C/L-C6H4+CH3
-!! [ ] What's the source of C4H3-I+C3H4-P=C6H4CH3
-!! Check:
-!! [ ] C3H3+C6H4CH3
-!! [ ] C4H5-I+C6H4CH3
-!! [ ] C2H2+C6H4CH3
-!! [ ] C3H4-A+C6H4CH3
-!! [ ] C3H4-P+C6H4CH3
-!! 
-!! [ ] What's the source for "C-C6H4=C2H2+C4H2 UPDATED FROM MILANO"?
-!! [X] Introduce A2-A and A2-B
-!! [ ] Introduce detailed C12H8
-!! 
-!!     Check:
-!! [X] HO2CH2CHO is never consumed
-!! [X] CHOCOHCH3 is never produced
-!! [X] C6Y2-1J is never produced
-!! [X] C5H6-L is never consumed
-!! [X] CJVCC(C)VO is never consumed
-!! [X] CH2CH2OCH2CH2CHO is never produced
-!! [X] CH3COCH2OCH2CH2 is never produced
-!! [X] C5H81KET34O is never produced
-!! [X] C5H81KET35O is never produced
-!! [X] C5H81KET43O is never produced
-!! [X] C5H81KET45O is never produced
-!! [X] C5H81KET54O is never produced
-!! [X] C5H82KET41O is never produced
-!! [X] C5H82KET51O is never produced
-!! [X] NC52ONE-4 is never produced
-!! [X] C5H9OH1-3 is never produced
-!! [X] C5H9OH1-4 is never produced
-!! [X] C5H9OH2-3 is never produced
-!! [X] C5H9OH3-2 is never produced
-!! [X] C5H9OH3-1 is never produced
-!! [X] CH3COCOHCH2 is never produced
-!! [X] C6H101-5 is never produced
-!! [X] CYC6H12 is never produced
-!! [X] CYC6H11 is never consumed
-!! [X] I24C7D13 is never produced
-!! [X] C10H16 is never consumed
-!! [X] RMCYC6 is never consumed
-!! [X] MCYC6 is never consumed
-!! [X] CYC6H10 is never consumed
-!! 
-!! [X] Remove duplicates from C3Mech23.TRAN
-!! [X] kb's of C9H7+OH=C9H7O+H exceeds the collision limit 
-!! [X] Should we use C2H2+C7H5 from Matsugi?
-
 !************************ ITV CRECK SUBMODULE  **************************************************************************************************************************
 !!==========================================================================!
 !!                                                                          !
@@ -33055,7 +32996,7 @@ C9H7O+H=>C9H6O+H2	1.33E+12	0	0		! SAME AS C5H5O
 C9H7O+O2=>C9H6O+HO2	2.60E+07	1.02	-2033.94		! SAME AS C5H5O
 
 !
-!! C9H7+C3H3=>C12H8+2H                                7.15E+09	0	-5090 ! LPM UPDATED NEW RR
+!! C9H7+C3H3=>A2R5+2H                                7.15E+09	0	-5090 ! LPM UPDATED NEW RR
 
 
 !! Matsugi & Suzuki 2024 BEGIN 
@@ -33064,7 +33005,7 @@ C9H7O+O2=>C9H6O+HO2	2.60E+07	1.02	-2033.94		! SAME AS C5H5O
 !! C9H7C3H3 C9H6C3H4 A2C2H3A A2C2H3B A1R5HR5CH3 A2HHR5 A2HR5H
 !! C12H9
 !! A1R5R5CH3 C9H6C3H3 A2R5H
-!! C12H8
+!! A2R5
 !! C9H6C3H2 A1R5R5CH2 A2R5 
 !!
 !! Combustion and Flame
@@ -33110,18 +33051,18 @@ A2HR5H=A2R5H+H              1.721e+58   -12.6291    89724.8
             PLOG / 1.0e+00  1.721e+58   -12.6291    89724.8 /
             PLOG / 1.0e+01  6.919e+43    -8.3850    82319.4 /
             PLOG / 1.0e+02  3.414e+33    -5.3745    76730.4 /
-A2HR5H=C12H8+H2              4.403e+44    -9.2981    72685.5
+A2HR5H=A2R5+H2              4.403e+44    -9.2981    72685.5
             PLOG / 1.0e-01  2.903e+57   -13.1161    78892.5 /
             PLOG / 1.0e+00  4.403e+44    -9.2981    72685.5 /
             PLOG / 1.0e+01  1.543e+32    -5.6376    66162.6 /
             PLOG / 1.0e+02  2.777e+23    -3.0877    61375.6 /
 A2HR5H+H=A2R5H+H2           1.786e+07     2.1148     1810.8
-A2R5H=C12H8+H                8.804e+60   -13.8052    69372.6
+A2R5H=A2R5+H                8.804e+60   -13.8052    69372.6
             PLOG / 1.0e-01  7.962e+65   -15.5168    69555.1 /
             PLOG / 1.0e+00  8.804e+60   -13.8052    69372.6 /
             PLOG / 1.0e+01  1.819e+51   -10.7966    65884.0 /
             PLOG / 1.0e+02  2.424e+38    -6.9411    59855.6 /
-C9H6C3H3=C12H8+H             1.128e+43    -9.0735    59959.0
+C9H6C3H3=A2R5+H             1.128e+43    -9.0735    59959.0
             PLOG / 1.0e-01  1.285e+52   -11.8197    63868.1 /
             PLOG / 1.0e+00  1.128e+43    -9.0735    59959.0 /
             PLOG / 1.0e+01  4.977e+32    -6.0006    54830.9 /
@@ -35740,7 +35681,7 @@ C4H5-I+C6H5CH2=>C10H7CH3-B+H+H                                                  
 
 !\REACTIONCLASS: \PGROW-RAD_RSR-RSR_C5H5                                                  \A            \N            \EA            
 C5H5+C6H5CH2=>BIPHENYL+H+H                                                                   +5.00000E+011 +0.00000E+000 +6.00000E+003   !!!!! ****LUMPED****
-C5H5+C6H5CH2=>C12H8+H2+H+H                                                                   +2.00000E+012 +0.00000E+000 +6.00000E+003 ! KS 1800  !!!!! ****LUMPED****
+C5H5+C6H5CH2=>A2R5+H2+H+H                                                                   +2.00000E+012 +0.00000E+000 +6.00000E+003 ! KS 1800  !!!!! ****LUMPED****
 
 !\REACTIONCLASS: \PGROW-RAD_RSR-RSR_C6H5CH2                                                  \A            \N            \EA            
 
@@ -35968,7 +35909,7 @@ PLOG /  1.00E+01  7.96E+29   -5.500    4670 / !!
 DUP
 
 
-C9H6-C2H+CH3=C12H8+H2                                     2.46E+105  -27.028   47902 !! rates from C9H7+CH3=METHYLINDENE-1; assumes immediate conversion to A2R5
+C9H6-C2H+CH3=A2R5+H2                                     2.46E+105  -27.028   47902 !! rates from C9H7+CH3=METHYLINDENE-1; assumes immediate conversion to A2R5
 PLOG /  3.95E-02  3.90E+61  -14.649   19657 / !REFIT, 500-1500K; REFIT ABS ERROR: MEDIAN=17%, MEAN=18%, MAX=79% @500K
 PLOG /  1.00E+00  7.83E+60  -14.216   21679 / !REFIT, 500-1750K; REFIT ABS ERROR: MEDIAN=33%, MEAN=48%, MAX=341% @500K
 !REFIT!PLOG /  1.00E+00  1.19E+12    0.410   -1170 / !!
@@ -35980,7 +35921,7 @@ PLOG /  1.00E+02  1.46E+77  -18.000   47500 / !!
 PLOG /  1.00E+02  2.51E+28   -4.640    5010 / !!
 DUPLICATE
 !!
-C9H6-C2H+CH3=C12H8+H2                                    9.40E+30   -5.434    9371 !! rates from C9H7+CH3=METHYLINDENE-1; assumes immediate conversion to A2R5
+C9H6-C2H+CH3=A2R5+H2                                    9.40E+30   -5.434    9371 !! rates from C9H7+CH3=METHYLINDENE-1; assumes immediate conversion to A2R5
 PLOG /  4.00E-02 1.72E+113  -29.110   60250 / !!
 PLOG /  4.00E-02  3.13E+46  -10.610   10730 / !!
 PLOG /  1.00E+00  5.86E+95  -23.610   56760 / !!
@@ -35990,7 +35931,7 @@ PLOG /  1.00E+01  1.15E+32   -5.918    7179 / !!
 PLOG /  1.00E+02  3.54E+58  -12.740   37220 / !!
 PLOG /  1.00E+02  9.40E+30   -5.434    9371 / !!
 DUPLICATE
-C9H6-C2H+CH3=C12H8+H2                                1.6645E+114 3.5775 18344.9775 !! rates from C9H7+CH3=METHYLINDENYL-2+H; assumes immediate conversion to A2R5
+C9H6-C2H+CH3=A2R5+H2                                1.6645E+114 3.5775 18344.9775 !! rates from C9H7+CH3=METHYLINDENYL-2+H; assumes immediate conversion to A2R5
 PLOG/ 4.00E-02 2.554E+35 -5.983E+00 3.796E+04 / !!
 PLOG/ 4.00E-02 6.023E-37 0.000E+00 0.000E+00 / !!
 PLOG/ 1.00E+00 7.348E-05 4.954E+00 1.343E+04 / !!
@@ -36000,7 +35941,7 @@ PLOG/ 1.00E+01 1.500E-02 4.303E+00 1.507E+04 / !!
 PLOG/ 1.00E+02 1.331E+39 -6.683E+00 5.660E+04 / !!
 PLOG/ 1.00E+02 9.697E+00 3.578E+00 1.834E+04 / !!
 DUPLICATE
-C9H6-C2H+CH3=C12H8+H2      5.40E+44   -8.266   44134 !! rates from  C9H7+CH3=METHYLINDENYL-1+H; assumes immediate conversion to A2R5
+C9H6-C2H+CH3=A2R5+H2      5.40E+44   -8.266   44134 !! rates from  C9H7+CH3=METHYLINDENYL-1+H; assumes immediate conversion to A2R5
 PLOG/ 4.00E-02 7.288E+39 -7.568E+00 3.336E+04 / !!
 PLOG/ 4.00E-02 9.546E+126 -2.971E+01 1.672E+05 / !!
 PLOG/ 1.00E+00 7.348E+43 -8.407E+00 4.308E+04 / !!
@@ -36949,39 +36890,39 @@ HO2+RODECA=>OH+CH3+CYC6H10+C2H4+CO      1.00E+13   .000   0.0
       HO2   +TETRALIN=H2O2    +RTETRALIN  .1300E+07 2.0  11887.73        
       H     +TETRALIN=H2      +RTETRALIN  .3000E+08 2.0   3950.57        
 
-! ABSTRACTION REACTION: R + DIBZFUR=>CO + 0.750000C12H8 + 0.100000BIN1B + RH 
+! ABSTRACTION REACTION: R + DIBZFUR=>CO + 0.750000A2R5 + 0.100000BIN1B + RH 
 ! Number of H abstracted: 9.00
 ! Type of H abstracted:   [7] 
-  H         + DIBZFUR=>CO + 0.750000C12H8 + 0.100000BIN1B + H2           5.40000e+07       2.000    8733.525
-  CH3       + DIBZFUR=>CO + 0.750000C12H8 + 0.100000BIN1B + CH4          5.40000e+05       2.000   10098.998
-  C2H3      + DIBZFUR=>CO + 0.750000C12H8 + 0.100000BIN1B + C2H4         1.22040e+06       2.000    8593.750
-  C2H5      + DIBZFUR=>CO + 0.750000C12H8 + 0.100000BIN1B + C2H6         3.60000e+05       2.000   12321.456
-  C3H5-S    + DIBZFUR=>CO + 0.750000C12H8 + 0.100000BIN1B + C3H6         4.86000e+05       2.000    9423.045
-  C3H5-T    + DIBZFUR=>CO + 0.750000C12H8 + 0.100000BIN1B + C3H6         4.86000e+05       2.000    9423.045
-  C3H5-A    + DIBZFUR=>CO + 0.750000C12H8 + 0.100000BIN1B + C3H6         9.70200e+05       2.000   19775.112
-  C4H71-4   + DIBZFUR=>CO + 0.750000C12H8 + 0.100000BIN1B + C4H8-1       2.43000e+05       2.000   12193.351
-  C4H71-3   + DIBZFUR=>CO + 0.750000C12H8 + 0.100000BIN1B + C4H8-2       6.12000e+05       2.000   20834.886
-  IC4H7     + DIBZFUR=>CO + 0.750000C12H8 + 0.100000BIN1B + IC4H8        4.86000e+05       2.000   20834.886
-  C4H3-I      + DIBZFUR=>CO + 0.750000C12H8 + 0.100000BIN1B + C4H4         7.36200e+05       2.000   10366.091
-  C6H5      + DIBZFUR=>CO + 0.750000C12H8 + 0.100000BIN1B + C6H6         6.66000e+08       1.000    5757.088
-  C5H5      + DIBZFUR=>CO + 0.750000C12H8 + 0.100000BIN1B + C5H6         6.12000e+05       2.000   21186.585
-  O         + DIBZFUR=>CO + 0.750000C12H8 + 0.100000BIN1B + OH           4.23000e+07       2.000    6547.171
-  O2        + DIBZFUR=>CO + 0.750000C12H8 + 0.100000BIN1B + HO2          3.06000e+07       2.000   54526.425
-  OH        + DIBZFUR=>CO + 0.750000C12H8 + 0.100000BIN1B + H2O          2.70000e+10       1.000    1148.714
-  HO2       + DIBZFUR=>CO + 0.750000C12H8 + 0.100000BIN1B + H2O2         1.44000e+07       2.000   23513.656
-  C3H3      + DIBZFUR=>CO + 0.750000C12H8 + 0.100000BIN1B + C3H4-A       4.86000e+05       2.000   21186.585
-  C6H5O     + DIBZFUR=>CO + 0.750000C12H8 + 0.100000BIN1B + C6H5OH       9.72000e+05       2.000   19420.193
-  C6H4OH    + DIBZFUR=>CO + 0.750000C12H8 + 0.100000BIN1B + C6H5OH       6.66000e+08       1.000    5757.088
-   C6H5CH2      + DIBZFUR=>CO + 0.750000C12H8 + 0.100000BIN1B + C6H5CH3         2.43000e+05       2.000   23513.656
-  C6H4CH3   + DIBZFUR=>CO + 0.750000C12H8 + 0.100000BIN1B + C6H5CH3         6.66000e+08       1.000    5757.088
-  OC6H4CH3  + DIBZFUR=>CO + 0.750000C12H8 + 0.100000BIN1B + HOC6H4CH3       4.86000e+05       2.000   19775.112
-  NAPH-A    + DIBZFUR=>CO + 0.750000C12H8 + 0.100000BIN1B + NAPH        6.66000e+08       1.000    5757.088
-  NAPH-B    + DIBZFUR=>CO + 0.750000C12H8 + 0.100000BIN1B + NAPH        6.66000e+08       1.000    5757.088
-  C6H5CH2CH2  + DIBZFUR=>CO + 0.750000C12H8 + 0.100000BIN1B + C6H5C2H5     4.50000e+05       2.000   19420.193
-  C6H5CHCH3 + DIBZFUR=>CO + 0.750000C12H8 + 0.100000BIN1B + C6H5C2H5     3.24000e+05       2.000   23513.656
-  C9H7   + DIBZFUR=>CO + 0.750000C12H8 + 0.100000BIN1B + IND       2.34000e+05       2.000   23513.656
-  C10H6CH3-A + DIBZFUR=>CO + 0.750000C12H8 + 0.100000BIN1B + C10H7CH3-A    6.66000e+08       1.000    5757.088
-  C10H6CH3-B + DIBZFUR=>CO + 0.750000C12H8 + 0.100000BIN1B + C10H7CH3-B    6.66000e+08       1.000    5757.088
+  H         + DIBZFUR=>CO + 0.750000A2R5 + 0.100000BIN1B + H2           5.40000e+07       2.000    8733.525
+  CH3       + DIBZFUR=>CO + 0.750000A2R5 + 0.100000BIN1B + CH4          5.40000e+05       2.000   10098.998
+  C2H3      + DIBZFUR=>CO + 0.750000A2R5 + 0.100000BIN1B + C2H4         1.22040e+06       2.000    8593.750
+  C2H5      + DIBZFUR=>CO + 0.750000A2R5 + 0.100000BIN1B + C2H6         3.60000e+05       2.000   12321.456
+  C3H5-S    + DIBZFUR=>CO + 0.750000A2R5 + 0.100000BIN1B + C3H6         4.86000e+05       2.000    9423.045
+  C3H5-T    + DIBZFUR=>CO + 0.750000A2R5 + 0.100000BIN1B + C3H6         4.86000e+05       2.000    9423.045
+  C3H5-A    + DIBZFUR=>CO + 0.750000A2R5 + 0.100000BIN1B + C3H6         9.70200e+05       2.000   19775.112
+  C4H71-4   + DIBZFUR=>CO + 0.750000A2R5 + 0.100000BIN1B + C4H8-1       2.43000e+05       2.000   12193.351
+  C4H71-3   + DIBZFUR=>CO + 0.750000A2R5 + 0.100000BIN1B + C4H8-2       6.12000e+05       2.000   20834.886
+  IC4H7     + DIBZFUR=>CO + 0.750000A2R5 + 0.100000BIN1B + IC4H8        4.86000e+05       2.000   20834.886
+  C4H3-I      + DIBZFUR=>CO + 0.750000A2R5 + 0.100000BIN1B + C4H4         7.36200e+05       2.000   10366.091
+  C6H5      + DIBZFUR=>CO + 0.750000A2R5 + 0.100000BIN1B + C6H6         6.66000e+08       1.000    5757.088
+  C5H5      + DIBZFUR=>CO + 0.750000A2R5 + 0.100000BIN1B + C5H6         6.12000e+05       2.000   21186.585
+  O         + DIBZFUR=>CO + 0.750000A2R5 + 0.100000BIN1B + OH           4.23000e+07       2.000    6547.171
+  O2        + DIBZFUR=>CO + 0.750000A2R5 + 0.100000BIN1B + HO2          3.06000e+07       2.000   54526.425
+  OH        + DIBZFUR=>CO + 0.750000A2R5 + 0.100000BIN1B + H2O          2.70000e+10       1.000    1148.714
+  HO2       + DIBZFUR=>CO + 0.750000A2R5 + 0.100000BIN1B + H2O2         1.44000e+07       2.000   23513.656
+  C3H3      + DIBZFUR=>CO + 0.750000A2R5 + 0.100000BIN1B + C3H4-A       4.86000e+05       2.000   21186.585
+  C6H5O     + DIBZFUR=>CO + 0.750000A2R5 + 0.100000BIN1B + C6H5OH       9.72000e+05       2.000   19420.193
+  C6H4OH    + DIBZFUR=>CO + 0.750000A2R5 + 0.100000BIN1B + C6H5OH       6.66000e+08       1.000    5757.088
+   C6H5CH2      + DIBZFUR=>CO + 0.750000A2R5 + 0.100000BIN1B + C6H5CH3         2.43000e+05       2.000   23513.656
+  C6H4CH3   + DIBZFUR=>CO + 0.750000A2R5 + 0.100000BIN1B + C6H5CH3         6.66000e+08       1.000    5757.088
+  OC6H4CH3  + DIBZFUR=>CO + 0.750000A2R5 + 0.100000BIN1B + HOC6H4CH3       4.86000e+05       2.000   19775.112
+  NAPH-A    + DIBZFUR=>CO + 0.750000A2R5 + 0.100000BIN1B + NAPH        6.66000e+08       1.000    5757.088
+  NAPH-B    + DIBZFUR=>CO + 0.750000A2R5 + 0.100000BIN1B + NAPH        6.66000e+08       1.000    5757.088
+  C6H5CH2CH2  + DIBZFUR=>CO + 0.750000A2R5 + 0.100000BIN1B + C6H5C2H5     4.50000e+05       2.000   19420.193
+  C6H5CHCH3 + DIBZFUR=>CO + 0.750000A2R5 + 0.100000BIN1B + C6H5C2H5     3.24000e+05       2.000   23513.656
+  C9H7   + DIBZFUR=>CO + 0.750000A2R5 + 0.100000BIN1B + IND       2.34000e+05       2.000   23513.656
+  C10H6CH3-A + DIBZFUR=>CO + 0.750000A2R5 + 0.100000BIN1B + C10H7CH3-A    6.66000e+08       1.000    5757.088
+  C10H6CH3-B + DIBZFUR=>CO + 0.750000A2R5 + 0.100000BIN1B + C10H7CH3-B    6.66000e+08       1.000    5757.088
 
 
 ! ABSTRACTION REACTION: R + DECALIN=>RDECALIN + RH 
@@ -37275,7 +37216,7 @@ CH3C10H6O-B=>NAPH+H+CO                                                          
 !_______________________________________________________________________________________________________________________________________________ 
 O2+NAPH-A=>C6H5C2H+HCO+CO                                                                 +1.00000E+012 +0.00000E+000 +3.00000E+003 
 O2+NAPH-B=>C6H5C2H+HCO+CO                                                                 +1.00000E+012 +0.00000E+000 +3.00000E+003 
-O2+C14H9=>C12H8+HCO+CO                                                                    +1.00000E+012 +0.00000E+000 +9.00000E+003 
+O2+C14H9=>A2R5+HCO+CO                                                                    +1.00000E+012 +0.00000E+000 +9.00000E+003 
 O2+C14H9=>NAPH+CO+CO+C2H                                                                 +2.00000E+012 +0.00000E+000 +3.00000E+003 
 !! O2+C12H7=>NAPH-A+CO+CO                                                                    +1.00000E+012 +0.00000E+000 +3.00000E+003 
 !! O2+C12H7=>NAPH-B+CO+CO                                                                    +1.00000E+012 +0.00000E+000 +3.00000E+003 
@@ -37325,17 +37266,17 @@ OH+IND=>RXYLENE+CO                                                              
 OH+NAPH=>CO+.5C3H4-P+.5C3H4-A+C6H5                                                       +4.00000E+012 +0.00000E+000 +5.00000E+003 
 OH+NAPH=>C6H5O+2C2H2                                                                     +2.00000E+012 +0.00000E+000 +5.00000E+003 
 OH+NAPH=>IND+CO+H                                                                     +2.00000E+012 +0.00000E+000 +5.00000E+003 
-!! OH+C12H8=>NAPH-A+CH2CO                                                                    +1.09000E-004 +4.50000E+000 -1.00000E+003 
-!! OH+C12H8=>NAPH-B+CH2CO                                                                    +1.09000E-004 +4.50000E+000 -1.00000E+003 
-!! OH+C12H8=>C10H7CH2-A+CO                                                                     +0.50000E+013 +0.00000E+000 +7.00000E+003 
-!! OH+C12H8=>C10H7CH2-B+CO                                                                     +0.50000E+013 +0.00000E+000 +7.00000E+003 
-C12H8+OH=C12H7+H2O  1.84E+5  2.585 39.20e+03  !! ref. Liu, Li, Roberts, Combustion and Flame 230 (2021) 111449
+!! OH+A2R5=>NAPH-A+CH2CO                                                                    +1.09000E-004 +4.50000E+000 -1.00000E+003 
+!! OH+A2R5=>NAPH-B+CH2CO                                                                    +1.09000E-004 +4.50000E+000 -1.00000E+003 
+!! OH+A2R5=>C10H7CH2-A+CO                                                                     +0.50000E+013 +0.00000E+000 +7.00000E+003 
+!! OH+A2R5=>C10H7CH2-B+CO                                                                     +0.50000E+013 +0.00000E+000 +7.00000E+003 
+A2R5+OH=C12H7+H2O  1.84E+5  2.585 39.20e+03  !! ref. Liu, Li, Roberts, Combustion and Flame 230 (2021) 111449
 DUP
-C12H8+OH=C12H7+H2O  1.64E+3  3.045  2.46e+03  !! ref. Liu, Li, Roberts, Combustion and Flame 230 (2021) 111449
+A2R5+OH=C12H7+H2O  1.64E+3  3.045  2.46e+03  !! ref. Liu, Li, Roberts, Combustion and Flame 230 (2021) 111449
 DUP
-C12H8+OH=C12H7+H2O  1.31E+3  3.070  2.60e+03  !! ref. Liu, Li, Roberts, Combustion and Flame 230 (2021) 111449
+A2R5+OH=C12H7+H2O  1.31E+3  3.070  2.60e+03  !! ref. Liu, Li, Roberts, Combustion and Flame 230 (2021) 111449
 DUP
-C12H8+OH=C12H7+H2O  6.40E+2  3.127  1.84e+03  !! ref. Liu, Li, Roberts, Combustion and Flame 230 (2021) 111449
+A2R5+OH=C12H7+H2O  6.40E+2  3.127  1.84e+03  !! ref. Liu, Li, Roberts, Combustion and Flame 230 (2021) 111449
 DUP
 
 A2C2HA+O2=A2C2HA-+HO2                  4.200E+13   0.000  63900.0 !! A*4/6 AS C6H6+O2=>C6H5+HO2!
@@ -37617,7 +37558,7 @@ C6H5CH2C6H5=FLUORENE+H2                                                         
 !\REACTIONCOMMENT: 
 !_______________________________________________________________________________________________________________________________________________ 
 C2H2+C6H5C2H=>NAPH                                                                       +2.00000E+011 +0.00000E+000 +2.55000E+004 
-C2H2+C12H8=>PHNTHRN                                                                        +2.00000E+011 +0.00000E+000 +2.40000E+004 
+C2H2+A2R5=>PHNTHRN                                                                        +2.00000E+011 +0.00000E+000 +2.40000E+004 
 C2H2+IND=>C10H7CH3-A                                                                    +1.50000E+011 +0.00000E+000 +3.00000E+004 
 C2H2+IND=>C10H7CH3-B                                                                    +1.50000E+011 +0.00000E+000 +3.00000E+004 
 !_______________________________________________________________________________________________________________________________________________ 
@@ -37639,7 +37580,7 @@ C4H6+IND=>FLUORENE+2H2                                                          
 !_______________________________________________________________________________________________________________________________________________ 
 C5H6+IND=>FLUORENE+CH3+H                                                               +5.00000E+011 +0.00000E+000 +3.00000E+004 ! KS 1800
 C5H6+IND=>PHNTHRN+2H2                                                                   +5.00000E+011 +0.00000E+000 +3.00000E+004 
-C5H6+C12H8=>C16H10+CH3+H                                                                  +2.50000E+011 +0.00000E+000 +3.10000E+004 
+C5H6+A2R5=>C16H10+CH3+H                                                                  +2.50000E+011 +0.00000E+000 +3.10000E+004 
 C5H6+NAPH=>PHNTHRN+CH3+H                                                                  +2.50000E+011 +0.00000E+000 +4.10000E+004 
 C5H6+PHNTHRN=>0.5C18H10+0.5C18H14+CH3+H                                                    +2.50000E+011 +0.00000E+000 +4.10000E+004 
 C5H6+C16H10=>.3333333BIN1A+.6666667BIN1B+CH3+H                                            +2.50000E+011 +0.00000E+000 +4.10000E+004 
@@ -37759,8 +37700,8 @@ NAPH-A+C10H7CH2-B=>BIN1B+H+CH3+H2                                               
 !\REACTIONCLASS: \PGROW-RAD_NRS-RSR_C3H3                                                  \A            \N            \EA            
 !\REACTIONCOMMENT: 
 !_______________________________________________________________________________________________________________________________________________ 
-!! C3H3+C6H4C2H=>.5NAPH+.5C12H8                                                             +5.00000E+012 +0.00000E+000 +3.00000E+003    !AN x10 to increase PAH
-C6H4C2H+C3H3=>.5NAPH+.5C12H8                                 9.64E+19   -1.940    2460  !! analogy A1-+C3H3=A1CH2CCH (RL: this is an important one among the A1-+C3H3 reactions)
+!! C3H3+C6H4C2H=>.5NAPH+.5A2R5                                                             +5.00000E+012 +0.00000E+000 +3.00000E+003    !AN x10 to increase PAH
+C6H4C2H+C3H3=>.5NAPH+.5A2R5                                 9.64E+19   -1.940    2460  !! analogy A1-+C3H3=A1CH2CCH (RL: this is an important one among the A1-+C3H3 reactions)
 
 PLOG /  3.95E-02 2.142E+103  -25.800   57400 / !! A*0.7
 PLOG /  3.95E-02 1.869E+48  -10.700   12800  / !! A*0.7
@@ -37779,7 +37720,7 @@ PLOG /  1.00E+02 1.015E+20   -1.940    2460  / !! A*0.7
 PLOG /  1.00E+02 5.579E+66  -14.600   47400  / !! A*0.7
 PLOG /  1.00E+02 6.489E+23   -3.120    4320  / !! A*0.7
 
-!! C6H4C2H+C3H3=>.5NAPH+.5C12H8                                   9.64E+19   -1.940    2460  !! analogy A1-+C3H3=A1CHCCH2 (RL: this is an important one among the A1-+C3H3 reactions)
+!! C6H4C2H+C3H3=>.5NAPH+.5A2R5                                   9.64E+19   -1.940    2460  !! analogy A1-+C3H3=A1CHCCH2 (RL: this is an important one among the A1-+C3H3 reactions)
 !! PLOG /  3.95E-02 3.06E+103  -25.800   57400 / !!
 !! PLOG /  3.95E-02  2.67E+48  -10.700   12800 / !!
 !! PLOG /  3.95E-02 1.06E+106  -26.600   57900 / !!
@@ -38036,7 +37977,7 @@ C4H5-I+C10H7CH2-B=>.5PHNTHRN+.5C16H10+H2+H+H                                    
 !_______________________________________________________________________________________________________________________________________________ 
 !C5H5+C6H5CH2=>BIPHENYL+H+H                                                                   +5.00000E+011 +0.00000E+000 +6.00000E+003 
 C5H5+C6H5CHCH3=>BIPHENYL+H+CH3                                                            +5.00000E+011 +0.00000E+000 +6.00000E+003
-C5H5+C6H5CHCH3=>C12H8+H2+H+CH3                                                            +1.00000E+012 +0.00000E+000 +6.00000E+003 
+C5H5+C6H5CHCH3=>A2R5+H2+H+CH3                                                            +1.00000E+012 +0.00000E+000 +6.00000E+003 
 C5H5+RXYLENE=>BIPHENYL+CH3+H                                                              +2.00000E+012 +0.00000E+000 +6.00000E+003 
 C5H5+C9H7=>PHNTHRN+H+H                                                                  +5.00000E+011 +0.00000E+000 +6.00000E+003 ! ERA 2E+12. LPM TO LOWER PHNTHRN IN PHENOL HYDROGENOLYSIS. SAME AS C5H5+C6H5CH2
 C5H5+C10H7CH2-A=>C16H10+H2+H+H                                                              +2.00000E+012 +0.00000E+000 +6.00000E+003 
@@ -38053,7 +37994,7 @@ C6H5CHCH3+C10H7CH2-B=>0.5C16H10+0.5C18H10+CH3+H2+CH3                            
 !\REACTIONCLASS: \PGROW-RAD_RSR-RSR_C7H5                                                  \A            \N            \EA            
 !\REACTIONCOMMENT: 
 !_______________________________________________________________________________________________________________________________________________ 
-C7H5+C5H5=>C12H8+2H                                                                         +2.408856e+12 0.0 0.0 ! J. Phys. Chem. A 2024, 128, 7, 1327-1338
+C7H5+C5H5=>A2R5+2H                                                                         +2.408856e+12 0.0 0.0 ! J. Phys. Chem. A 2024, 128, 7, 1327-1338
 !_______________________________________________________________________________________________________________________________________________ 
 !\REACTIONCLASS: \PGROW-RAD_RSR-RSR_C6H5CH2                                                  \A            \N            \EA            
 !\REACTIONCOMMENT: 
@@ -38085,7 +38026,7 @@ RXYLENE+C10H7CH2-B=>0.5C16H10+0.5C18H10+H2+2CH3                                 
 !_______________________________________________________________________________________________________________________________________________ 
 C10H6CH3-A+C10H7CH3-A=>1.1BIN1A+.2H2+H                                                        +1.00000E+012 +0.00000E+000 +8.00000E+003 ! CONNECTION_TO_SOOT
 C10H6CH3-A+C10H7CH3-B=>1.1BIN1A+.2H2+H                                                        +1.00000E+012 +0.00000E+000 +8.00000E+003 ! CONNECTION_TO_SOOT
-C10H6CH3-A+C12H8=>0.6BIN1B+0.5BIN1A+CH3                                                     +1.00000E+012 +0.00000E+000 +8.00000E+003 ! CONNECTION_TO_SOOT
+C10H6CH3-A+A2R5=>0.6BIN1B+0.5BIN1A+CH3                                                     +1.00000E+012 +0.00000E+000 +8.00000E+003 ! CONNECTION_TO_SOOT
 C10H6CH3-A+BIPHENYL=>0.266667BIN1B+0.8333375BIN1A+CH3                                       +1.00000E+012 +0.00000E+000 +8.00000E+003 ! CONNECTION_TO_SOOT
 C10H6CH3-A+FLUORENE=>0.4BIN1B+0.75BIN1A+CH3                                                 +1.00000E+012 +0.00000E+000 +8.00000E+003 ! CONNECTION_TO_SOOT
 C10H6CH3-A+C6H5CH2C6H5=>0.06667BIN1B+1.083375BIN1A+CH3                                      +1.00000E+012 +0.00000E+000 +8.00000E+003 ! CONNECTION_TO_SOOT
@@ -38094,7 +38035,7 @@ C10H6CH3-A+C14H14=>1.25BIN1A+H2+H                                               
 
 C10H6CH3-B+C10H7CH3-A=>1.1BIN1A+.2H2+H                                                        +1.00000E+012 +0.00000E+000 +8.00000E+003 ! CONNECTION_TO_SOOT
 C10H6CH3-B+C10H7CH3-B=>1.1BIN1A+.2H2+H                                                        +1.00000E+012 +0.00000E+000 +8.00000E+003 ! CONNECTION_TO_SOOT
-C10H6CH3-B+C12H8=>0.6BIN1B+0.5BIN1A+CH3                                                     +1.00000E+012 +0.00000E+000 +8.00000E+003 ! CONNECTION_TO_SOOT
+C10H6CH3-B+A2R5=>0.6BIN1B+0.5BIN1A+CH3                                                     +1.00000E+012 +0.00000E+000 +8.00000E+003 ! CONNECTION_TO_SOOT
 C10H6CH3-B+BIPHENYL=>0.266667BIN1B+0.8333375BIN1A+CH3                                       +1.00000E+012 +0.00000E+000 +8.00000E+003 ! CONNECTION_TO_SOOT
 C10H6CH3-B+FLUORENE=>0.4BIN1B+0.75BIN1A+CH3                                                 +1.00000E+012 +0.00000E+000 +8.00000E+003 ! CONNECTION_TO_SOOT
 C10H6CH3-B+C6H5CH2C6H5=>0.06667BIN1B+1.083375BIN1A+CH3                                      +1.00000E+012 +0.00000E+000 +8.00000E+003 ! CONNECTION_TO_SOOT
@@ -38109,8 +38050,8 @@ NAPH-B+NAPH=>0.333333BIN1B+0.66666625BIN1A+H                                    
 NAPH-A+C10H7CH3-A=>BIN1B+2H2+CH3                                                             +1.00000E+012 +0.00000E+000 +8.00000E+003 
 NAPH-A+C10H7CH3-B=>BIN1B+2H2+CH3                                                             +1.00000E+012 +0.00000E+000 +8.00000E+003 
 NAPH-B+C10H7CH3-B=>BIN1B+2H2+CH3                                                             +1.00000E+012 +0.00000E+000 +8.00000E+003 
-NAPH-A+C12H8=>0.6BIN1B+0.5BIN1A+H                                                          +1.00000E+012 +0.00000E+000 +8.00000E+003 ! CONNECTION_TO_SOOT
-NAPH-B+C12H8=>0.6BIN1B+0.5BIN1A+H                                                          +1.00000E+012 +0.00000E+000 +8.00000E+003 ! CONNECTION_TO_SOOT
+NAPH-A+A2R5=>0.6BIN1B+0.5BIN1A+H                                                          +1.00000E+012 +0.00000E+000 +8.00000E+003 ! CONNECTION_TO_SOOT
+NAPH-B+A2R5=>0.6BIN1B+0.5BIN1A+H                                                          +1.00000E+012 +0.00000E+000 +8.00000E+003 ! CONNECTION_TO_SOOT
 NAPH-A+BIPHENYL=>0.266667BIN1B+0.8333375BIN1A+H                                            +1.00000E+012 +0.00000E+000 +8.00000E+003 ! CONNECTION_TO_SOOT
 NAPH-B+BIPHENYL=>0.266667BIN1B+0.8333375BIN1A+H                                            +1.00000E+012 +0.00000E+000 +8.00000E+003 ! CONNECTION_TO_SOOT
 NAPH-A+FLUORENE=>0.4BIN1B+0.75BIN1A+H                                                      +1.00000E+012 +0.00000E+000 +8.00000E+003 ! CONNECTION_TO_SOOT
@@ -38148,23 +38089,23 @@ NAPH+C14H9=>0.533333BIN1B+0.66666625BIN1A+H                                     
 !\REACTIONCLASS: \PGROW-RAD-MOL_NRS-MOL_C12H7                                             \A            \N            \EA            
 !\REACTIONCOMMENT: 
 !_______________________________________________________________________________________________________________________________________________ 
-C12H7+C12H8=>0.866667BIN1B+0.33333375BIN1A+H                                              +1.00000E+012 +0.00000E+000 +8.00000E+003 ! CONNECTION_TO_SOOT
+C12H7+A2R5=>0.866667BIN1B+0.33333375BIN1A+H                                              +1.00000E+012 +0.00000E+000 +8.00000E+003 ! CONNECTION_TO_SOOT
 C12H7+A2C2HA=>0.866667BIN1B+0.33333375BIN1A+H                                              +1.00000E+012 +0.00000E+000 +8.00000E+003 ! CONNECTION_TO_SOOT
 C12H7+A2C2HB=>0.866667BIN1B+0.33333375BIN1A+H                                              +1.00000E+012 +0.00000E+000 +8.00000E+003 ! CONNECTION_TO_SOOT
 C12H7+BIPHENYL=>0.533333BIN1B+0.66666625BIN1A+H                                           +1.00000E+012 +0.00000E+000 +8.00000E+003 ! CONNECTION_TO_SOOT
-A2C2HA-+C12H8=>0.866667BIN1B+0.33333375BIN1A+H                                              +1.00000E+012 +0.00000E+000 +8.00000E+003 ! CONNECTION_TO_SOOT
+A2C2HA-+A2R5=>0.866667BIN1B+0.33333375BIN1A+H                                              +1.00000E+012 +0.00000E+000 +8.00000E+003 ! CONNECTION_TO_SOOT
 A2C2HA-+A2C2HA=>0.866667BIN1B+0.33333375BIN1A+H                                              +1.00000E+012 +0.00000E+000 +8.00000E+003 ! CONNECTION_TO_SOOT
 A2C2HA-+A2C2HB=>0.866667BIN1B+0.33333375BIN1A+H                                              +1.00000E+012 +0.00000E+000 +8.00000E+003 ! CONNECTION_TO_SOOT
 A2C2HA-+BIPHENYL=>0.533333BIN1B+0.66666625BIN1A+H                                           +1.00000E+012 +0.00000E+000 +8.00000E+003 ! CONNECTION_TO_SOOT
-A2C2HB-+C12H8=>0.866667BIN1B+0.33333375BIN1A+H                                              +1.00000E+012 +0.00000E+000 +8.00000E+003 ! CONNECTION_TO_SOOT
+A2C2HB-+A2R5=>0.866667BIN1B+0.33333375BIN1A+H                                              +1.00000E+012 +0.00000E+000 +8.00000E+003 ! CONNECTION_TO_SOOT
 A2C2HB-+A2C2HA=>0.866667BIN1B+0.33333375BIN1A+H                                              +1.00000E+012 +0.00000E+000 +8.00000E+003 ! CONNECTION_TO_SOOT
 A2C2HB-+A2C2HB=>0.866667BIN1B+0.33333375BIN1A+H                                              +1.00000E+012 +0.00000E+000 +8.00000E+003 ! CONNECTION_TO_SOOT
 A2C2HB-+BIPHENYL=>0.533333BIN1B+0.66666625BIN1A+H                                           +1.00000E+012 +0.00000E+000 +8.00000E+003 ! CONNECTION_TO_SOOT
 !_______________________________________________________________________________________________________________________________________________ 
-!\REACTIONCLASS: \PGROW-RAD-MOL_NRS-MOL_C12H8                                             \A            \N            \EA            
+!\REACTIONCLASS: \PGROW-RAD-MOL_NRS-MOL_A2R5                                             \A            \N            \EA            
 !\REACTIONCOMMENT: 
 !_______________________________________________________________________________________________________________________________________________ 
-C12H8+C12H9=>0.533333BIN1B+0.66666625BIN1A+H                                              +1.00000E+012 +0.00000E+000 +8.00000E+003 ! CONNECTION_TO_SOOT
+A2R5+C12H9=>0.533333BIN1B+0.66666625BIN1A+H                                              +1.00000E+012 +0.00000E+000 +8.00000E+003 ! CONNECTION_TO_SOOT
 A2C2HA+C12H9=>0.533333BIN1B+0.66666625BIN1A+H                                              +1.00000E+012 +0.00000E+000 +8.00000E+003 ! CONNECTION_TO_SOOT
 A2C2HB+C12H9=>0.533333BIN1B+0.66666625BIN1A+H                                              +1.00000E+012 +0.00000E+000 +8.00000E+003 ! CONNECTION_TO_SOOT
 !_______________________________________________________________________________________________________________________________________________ 
@@ -38178,7 +38119,7 @@ C12H9+BIPHENYL=>0.2BIN1B+BIN1A+H                                                
 !_______________________________________________________________________________________________________________________________________________ 
 C2H+NAPH=>H+A2C2HA                                                                        +1.50000E+011 +0.00000E+000 +8.00000E+003 
 C2H+NAPH=>H+A2C2HB                                                                        +1.50000E+011 +0.00000E+000 +8.00000E+003
-C2H+C12H8=>C14H9                                                                          +3.00000E+011 +0.00000E+000 +8.00000E+003 
+C2H+A2R5=>C14H9                                                                          +3.00000E+011 +0.00000E+000 +8.00000E+003 
 C2H+A2C2HA=>C14H9                                                                          +3.00000E+011 +0.00000E+000 +8.00000E+003
 C2H+A2C2HB=>C14H9                                                                          +3.00000E+011 +0.00000E+000 +8.00000E+003
 C2H+C6H5C2H=>NAPH-A                                                                        +1.50000E+011 +0.00000E+000 +8.00000E+003 
@@ -38190,7 +38131,7 @@ C2H+C16H10=H+C18H10                                                             
 !\REACTIONCLASS: \PGROW-RAD-MOL_NRS-MOL_C2H2                                              \A            \N            \EA            
 !\REACTIONCOMMENT: 
 !_______________________________________________________________________________________________________________________________________________ 
-!! C2H2+NAPH-=C12H8+H                                                                        +5.00000E+012 +0.00000E+000 +5.00000E+003 ! era .1000E+13 KIK for Manion
+!! C2H2+NAPH-=A2R5+H                                                                        +5.00000E+012 +0.00000E+000 +5.00000E+003 ! era .1000E+13 KIK for Manion
 !! PLOG /                                                                      +4.00000E-002 +8.56000E+017 -1.33000E+000 +1.26900E+004 /! C6H5+C2H2=C6H5C2H+H Mebel KIK
 !! PLOG /                                                                      +1.00000E+000 +1.10000E+031 -4.83000E+000 +2.66200E+004 / 
 !! PLOG /                                                                      +1.00000E+001 +3.38000E+033 -5.39000E+000 +3.26900E+004 /
@@ -38229,7 +38170,7 @@ DUPLICATE
 
 ! Reaction index: Chemkin #104; RMG #104
 ! Library reaction: Naphthyl_HACA/C12H9_Pdep
-NAPH-A+C2H2=C12H8+H                             1.000e+00 0.000     0.000    !! A2R5H
+NAPH-A+C2H2=A2R5+H                             1.000e+00 0.000     0.000    !! A2R5H
 PLOG /   1.0000e-02  1.2533e+29  -6.08     7159.47 /
 PLOG /   2.7785e-02  6.0411e+31  -6.71     8964.28 /
 PLOG /   7.7200e-02  2.6333e+33  -7.01    10739.82 /
@@ -38244,7 +38185,7 @@ DUPLICATE
 
 ! Reaction index: Chemkin #189; RMG #189
 ! Library reaction: Naphthyl_HACA/C12H9_Pdep
-NAPH-A+C2H2=C12H8+H                             1.000e+00 0.000     0.000    !! A2R5+H
+NAPH-A+C2H2=A2R5+H                             1.000e+00 0.000     0.000    !! A2R5+H
 PLOG /   1.0000e-02  6.5123e+16  -1.23     7998.43 /
 PLOG /   2.7785e-02  1.1656e+19  -1.86     9649.72 /
 PLOG /   7.7200e-02  3.3198e+20  -2.24    11313.28 /
@@ -38840,8 +38781,8 @@ C3H5-S+C6H5C2H=>NAPH+CH3                                                        
 !_______________________________________________________________________________________________________________________________________________ 
 C5H6+C6H5=>NAPH+CH3                                                                      +1.00000E+012 +0.00000E+000 +8.00000E+003 
 !C5H6+C6H4CH3=>BIPHENYL+H2+H                                                               +1.00000E+012 +0.00000E+000 +8.00000E+003 
-C5H6+C6H4C2H=>C12H8+CH3                                                                   +1.00000E+012 +0.00000E+000 +8.00000E+003 
-C5H6+C6H5CHCH=>C12H8+H2+CH3                                                               +1.00000E+012 +0.00000E+000 +8.00000E+003 
+C5H6+C6H4C2H=>A2R5+CH3                                                                   +1.00000E+012 +0.00000E+000 +8.00000E+003 
+C5H6+C6H5CHCH=>A2R5+H2+CH3                                                               +1.00000E+012 +0.00000E+000 +8.00000E+003 
 C5H6+NAPH-A=>PHNTHRN+CH3                                                                  +1.00000E+012 +0.00000E+000 +8.00000E+003 
 C5H6+NAPH-B=>PHNTHRN+CH3                                                                  +1.00000E+012 +0.00000E+000 +8.00000E+003 
 C5H6+C10H6CH3-A=>.5PHNTHRN+.5C16H10+H2+CH3                                                  +1.00000E+012 +0.00000E+000 +8.00000E+003 
@@ -38865,7 +38806,7 @@ C6H4C2H+IND=>C16H10+CH3                                                         
 C6H4C2H+NAPH=>0.5C16H10+0.5C18H10+CH3                                                    +1.00000E+012 +0.00000E+000 +8.00000E+003 
 C6H4C2H+C10H7CH3-A=>C18H10+H2+CH3                                                           +1.00000E+012 +0.00000E+000 +8.00000E+003 
 C6H4C2H+C10H7CH3-B=>C18H10+H2+CH3                                                           +1.00000E+012 +0.00000E+000 +8.00000E+003 
-C6H4C2H+C12H8=>0.666667BIN1B+0.33333375BIN1A+H                                            +1.00000E+012 +0.00000E+000 +8.00000E+003 
+C6H4C2H+A2R5=>0.666667BIN1B+0.33333375BIN1A+H                                            +1.00000E+012 +0.00000E+000 +8.00000E+003 
 C6H4C2H+A2C2HA=>0.666667BIN1B+0.33333375BIN1A+H                                            +1.00000E+012 +0.00000E+000 +8.00000E+003
 C6H4C2H+A2C2HB=>0.666667BIN1B+0.33333375BIN1A+H                                            +1.00000E+012 +0.00000E+000 +8.00000E+003
 C6H4C2H+BIPHENYL=>0.333333BIN1B+0.666666625BIN1A+H                                        +1.00000E+012 +0.00000E+000 +8.00000E+003 
@@ -38892,7 +38833,7 @@ C6H5+IND=>PHNTHRN+CH3                                                           
 C6H5+NAPH=>C16H10+H+H2                                                                   +1.00000E+012 +0.00000E+000 +8.00000E+003 
 C6H5+C10H7CH3-A=>C16H10+CH3+H2                                                              +1.00000E+012 +0.00000E+000 +8.00000E+003 
 C6H5+C10H7CH3-B=>C16H10+CH3+H2                                                              +1.00000E+012 +0.00000E+000 +8.00000E+003 
-C6H5+C12H8=>0.5C18H10+0.5C18H14+H                                                         +1.00000E+012 +0.00000E+000 +8.00000E+003 
+C6H5+A2R5=>0.5C18H10+0.5C18H14+H                                                         +1.00000E+012 +0.00000E+000 +8.00000E+003 
 C6H5+A2C2HA=>0.5C18H10+0.5C18H14+H                                                         +1.00000E+012 +0.00000E+000 +8.00000E+003
 C6H5+A2C2HB=>0.5C18H10+0.5C18H14+H                                                         +1.00000E+012 +0.00000E+000 +8.00000E+003
 C6H5+BIPHENYL=>C18H14+H                                                                   +1.00000E+012 +0.00000E+000 +8.00000E+003 
@@ -38926,7 +38867,7 @@ C6H5CHCH+IND=>C16H10+H2+CH3                                                     
 C6H5CHCH+NAPH=>0.5C16H10+0.5C18H10+H2+CH3                                                +1.00000E+012 +0.00000E+000 +8.00000E+003 
 C6H5CHCH+C10H7CH3-A=>C18H10+2H2+CH3                                                         +1.00000E+012 +0.00000E+000 +8.00000E+003 
 C6H5CHCH+C10H7CH3-B=>C18H10+2H2+CH3                                                         +1.00000E+012 +0.00000E+000 +8.00000E+003 
-C6H5CHCH+C12H8=>0.666667BIN1B+0.33333375BIN1A+H2+H                                        +1.00000E+012 +0.00000E+000 +8.00000E+003 
+C6H5CHCH+A2R5=>0.666667BIN1B+0.33333375BIN1A+H2+H                                        +1.00000E+012 +0.00000E+000 +8.00000E+003 
 C6H5CHCH+A2C2HA=>0.666667BIN1B+0.33333375BIN1A+H2+H                                        +1.00000E+012 +0.00000E+000 +8.00000E+003
 C6H5CHCH+A2C2HB=>0.666667BIN1B+0.33333375BIN1A+H2+H                                        +1.00000E+012 +0.00000E+000 +8.00000E+003
 C6H5CHCH+BIPHENYL=>0.333333BIN1B+0.666666625BIN1A+H2+H                                    +1.00000E+012 +0.00000E+000 +8.00000E+003 
@@ -39015,7 +38956,7 @@ C6H4CH3+IND=>0.181818181818271C16H10+0.727272727274474C18H14+H2+H               
 C6H4CH3+NAPH=>0.181818181818271C16H10+0.727272727274474C18H14+CH3                        +1.00000E+012 +0.00000E+000 +8.00000E+003 
 C6H4CH3+C10H7CH3-A=>C18H10+3H2+H                                                            +1.00000E+012 +0.00000E+000 +8.00000E+003 
 C6H4CH3+C10H7CH3-B=>C18H10+3H2+H                                                            +1.00000E+012 +0.00000E+000 +8.00000E+003 
-C6H4CH3+C12H8=>0.5C18H14+0.166666666856036BIN1B+0.333333333979624BIN1A+H                  +1.00000E+012 +0.00000E+000 +8.00000E+003 
+C6H4CH3+A2R5=>0.5C18H14+0.166666666856036BIN1B+0.333333333979624BIN1A+H                  +1.00000E+012 +0.00000E+000 +8.00000E+003 
 C6H4CH3+A2C2HA=>0.5C18H14+0.166666666856036BIN1B+0.333333333979624BIN1A+H                  +1.00000E+012 +0.00000E+000 +8.00000E+003
 C6H4CH3+A2C2HB=>0.5C18H14+0.166666666856036BIN1B+0.333333333979624BIN1A+H                  +1.00000E+012 +0.00000E+000 +8.00000E+003
 C6H4CH3+BIPHENYL=>C18H14+CH3                                                              +1.00000E+012 +0.00000E+000 +8.00000E+003 
@@ -39057,7 +38998,7 @@ XYLENE+C14H9=>CH3+0.133333BIN1B+0.91666625BIN1A                                 
 !_______________________________________________________________________________________________________________________________________________ 
 C10H7CH2-A+C10H7CH3-A=>1.1BIN1A+.2H2+H                                                        +4.00000E+011 +0.00000E+000 +1.90000E+004 ! CONNECTION_TO_SOOT
 C10H7CH2-A+C10H7CH3-B=>1.1BIN1A+.2H2+H                                                        +4.00000E+011 +0.00000E+000 +1.90000E+004 ! CONNECTION_TO_SOOT
-C10H7CH2-A+C12H8=>0.6BIN1B+0.5BIN1A+CH3                                                     +4.00000E+011 +0.00000E+000 +1.90000E+004 ! CONNECTION_TO_SOOT
+C10H7CH2-A+A2R5=>0.6BIN1B+0.5BIN1A+CH3                                                     +4.00000E+011 +0.00000E+000 +1.90000E+004 ! CONNECTION_TO_SOOT
 C10H7CH2-A+A2C2HA=>0.6BIN1B+0.5BIN1A+CH3                                                     +4.00000E+011 +0.00000E+000 +1.90000E+004 ! CONNECTION_TO_SOOT
 C10H7CH2-A+A2C2HB=>0.6BIN1B+0.5BIN1A+CH3                                                     +4.00000E+011 +0.00000E+000 +1.90000E+004 ! CONNECTION_TO_SOOT
 C10H7CH2-A+BIPHENYL=>0.266667BIN1B+0.8333375BIN1A+CH3                                       +4.00000E+011 +0.00000E+000 +1.90000E+004 ! CONNECTION_TO_SOOT
@@ -39068,7 +39009,7 @@ C10H7CH2-A+C14H14=>1.25BIN1A+H2+H                                               
 
 C10H7CH2-B+C10H7CH3-A=>1.1BIN1A+.2H2+H                                                        +4.00000E+011 +0.00000E+000 +1.90000E+004 ! CONNECTION_TO_SOOT
 C10H7CH2-B+C10H7CH3-B=>1.1BIN1A+.2H2+H                                                        +4.00000E+011 +0.00000E+000 +1.90000E+004 ! CONNECTION_TO_SOOT
-C10H7CH2-B+C12H8=>0.6BIN1B+0.5BIN1A+CH3                                                     +4.00000E+011 +0.00000E+000 +1.90000E+004 ! CONNECTION_TO_SOOT
+C10H7CH2-B+A2R5=>0.6BIN1B+0.5BIN1A+CH3                                                     +4.00000E+011 +0.00000E+000 +1.90000E+004 ! CONNECTION_TO_SOOT
 C10H7CH2-B+A2C2HA=>0.6BIN1B+0.5BIN1A+CH3                                                     +4.00000E+011 +0.00000E+000 +1.90000E+004 ! CONNECTION_TO_SOOT
 C10H7CH2-B+A2C2HB=>0.6BIN1B+0.5BIN1A+CH3                                                     +4.00000E+011 +0.00000E+000 +1.90000E+004 ! CONNECTION_TO_SOOT
 C10H7CH2-B+BIPHENYL=>0.266667BIN1B+0.8333375BIN1A+CH3                                       +4.00000E+011 +0.00000E+000 +1.90000E+004 ! CONNECTION_TO_SOOT
@@ -39105,7 +39046,7 @@ C2H2+C10H7CH2-B=>A2C2HB+CH3                                                     
 !\REACTIONCLASS: \PGROW-RAD-MOL_RSR-MOL_C2H3                                              \A            \N            \EA            
 !\REACTIONCOMMENT: 
 !_______________________________________________________________________________________________________________________________________________ 
-C2H3+C12H8=>PHNTHRN+H                                                                      +1.00000E+012 +0.00000E+000 +6.00000E+003 
+C2H3+A2R5=>PHNTHRN+H                                                                      +1.00000E+012 +0.00000E+000 +6.00000E+003 
 C2H3+A2C2HA=>PHNTHRN+H                                                                      +1.00000E+012 +0.00000E+000 +6.00000E+003
 C2H3+A2C2HB=>PHNTHRN+H                                                                      +1.00000E+012 +0.00000E+000 +6.00000E+003
 !_______________________________________________________________________________________________________________________________________________ 
@@ -39126,7 +39067,7 @@ C3H3+IND=>BIPHENYL+H                                                            
 C3H3+NAPH=>FLUORENE+H                                                                    +4.00000E+011 +0.00000E+000 +1.90000E+004 
 C3H3+C10H7CH3-A=>PHNTHRN+H2+H                                                                +4.00000E+011 +0.00000E+000 +1.90000E+004 
 C3H3+C10H7CH3-B=>PHNTHRN+H2+H                                                                +4.00000E+011 +0.00000E+000 +1.90000E+004 
-C3H3+C12H8=>.5PHNTHRN+.5C16H10+H                                                           +4.00000E+011 +0.00000E+000 +1.90000E+004 
+C3H3+A2R5=>.5PHNTHRN+.5C16H10+H                                                           +4.00000E+011 +0.00000E+000 +1.90000E+004 
 C3H3+A2C2HA=>.5PHNTHRN+.5C16H10+H                                                           +4.00000E+011 +0.00000E+000 +1.90000E+004
 C3H3+A2C2HB=>.5PHNTHRN+.5C16H10+H                                                           +4.00000E+011 +0.00000E+000 +1.90000E+004
 C3H3+BIPHENYL=>.5PHNTHRN+.5C16H10+H2+H                                                     +4.00000E+011 +0.00000E+000 +1.90000E+004 
@@ -39159,7 +39100,7 @@ C3H4-P+C10H7CH2-B=>PHNTHRN+H2+H                                                 
 !\REACTIONCLASS: \PGROW-RAD-MOL_RSR-MOL_C3H5-A                                            \A            \N            \EA            
 !\REACTIONCOMMENT: 
 !_______________________________________________________________________________________________________________________________________________ 
-C3H5-A+C12H8=>PHNTHRN+CH3                                                                  +5.00000E+011 +0.00000E+000 +1.80000E+004 
+C3H5-A+A2R5=>PHNTHRN+CH3                                                                  +5.00000E+011 +0.00000E+000 +1.80000E+004 
 C3H5-A+A2C2HA=>PHNTHRN+CH3                                                                  +5.00000E+011 +0.00000E+000 +1.80000E+004
 C3H5-A+A2C2HB=>PHNTHRN+CH3                                                                  +5.00000E+011 +0.00000E+000 +1.80000E+004
 C3H5-A+C6H5C2H=>NAPH+CH3                                                                 +5.00000E+011 +0.00000E+000 +1.80000E+004 
@@ -39203,7 +39144,7 @@ C5H5+IND=>PHNTHRN+H+H2                                                          
 C5H5+NAPH=>PHNTHRN+CH3                                                                    +4.00000E+011 +0.00000E+000 +1.90000E+004 
 C5H5+C10H7CH3-A=>C16H10+2H2+H                                                               +4.00000E+011 +0.00000E+000 +1.90000E+004 
 C5H5+C10H7CH3-B=>C16H10+2H2+H                                                               +4.00000E+011 +0.00000E+000 +1.90000E+004 
-C5H5+C12H8=>0.5C16H10+0.5C18H10+H2+H                                                      +4.00000E+011 +0.00000E+000 +1.90000E+004 
+C5H5+A2R5=>0.5C16H10+0.5C18H10+H2+H                                                      +4.00000E+011 +0.00000E+000 +1.90000E+004 
 C5H5+A2C2HA=>0.5C16H10+0.5C18H10+H2+H                                                      +4.00000E+011 +0.00000E+000 +1.90000E+004
 C5H5+A2C2HB=>0.5C16H10+0.5C18H10+H2+H                                                      +4.00000E+011 +0.00000E+000 +1.90000E+004
 C5H5+BIPHENYL=>0.181818181818271C16H10+0.727272727274474C18H14+CH3                        +4.00000E+011 +0.00000E+000 +1.90000E+004 
@@ -39217,7 +39158,7 @@ C5H5+C16H10=>0.466667BIN1B+0.58333375BIN1A+H                                    
 !\REACTIONCOMMENT: 
 !_______________________________________________________________________________________________________________________________________________ 
 C5H6+C6H5CH2=>BIPHENYL+H2+H                                                                  +2.00000E+011 +0.00000E+000 +1.90000E+004   ! LPM /2 TO BE CONSISTENT WITH BELOW
-C5H6+RXYLENE=>C12H8+2H2+CH3                                                               +4.00000E+011 +0.00000E+000 +1.90000E+004 
+C5H6+RXYLENE=>A2R5+2H2+CH3                                                               +4.00000E+011 +0.00000E+000 +1.90000E+004 
 C5H6+C9H7=>PHNTHRN+H2+H                                                                 +2.00000E+011 +0.00000E+000 +1.90000E+004   ! LPM /2 TO LOWER PRODUCTION OF PHNTHRN IN PHENOL HYDROGENOLYSIS
 C5H6+C10H7CH2-A=>.5PHNTHRN+.5C16H10+H2+CH3                                                   +4.00000E+011 +0.00000E+000 +1.90000E+004 
 C5H6+C10H7CH2-B=>.5PHNTHRN+.5C16H10+H2+CH3                                                   +4.00000E+011 +0.00000E+000 +1.90000E+004 
@@ -39268,7 +39209,7 @@ C6H5CH2+IND=>0.181818181818271C16H10+0.727272727274474C18H14+H2+H               
 C6H5CH2+NAPH=>0.181818181818271C16H10+0.727272727274474C18H14+CH3                           +4.00000E+011 +0.00000E+000 +1.90000E+004 
 C6H5CH2+C10H7CH3-A=>C18H10+3H2+H                                                               +4.00000E+011 +0.00000E+000 +1.90000E+004 
 C6H5CH2+C10H7CH3-B=>C18H10+3H2+H                                                               +4.00000E+011 +0.00000E+000 +1.90000E+004 
-C6H5CH2+C12H8=>0.5C18H14+0.166666666856036BIN1B+0.333333333979624BIN1A+H                     +4.00000E+011 +0.00000E+000 +1.90000E+004 
+C6H5CH2+A2R5=>0.5C18H14+0.166666666856036BIN1B+0.333333333979624BIN1A+H                     +4.00000E+011 +0.00000E+000 +1.90000E+004 
 C6H5CH2+A2C2HA=>0.5C18H14+0.166666666856036BIN1B+0.333333333979624BIN1A+H                     +4.00000E+011 +0.00000E+000 +1.90000E+004
 C6H5CH2+A2C2HB=>0.5C18H14+0.166666666856036BIN1B+0.333333333979624BIN1A+H                     +4.00000E+011 +0.00000E+000 +1.90000E+004
 C6H5CH2+BIPHENYL=>C18H14+CH3                                                                 +4.00000E+011 +0.00000E+000 +1.90000E+004 
@@ -39290,7 +39231,7 @@ C6H5CH3+C10H7CH2-B=>0.5C16H10+0.5C18H14+CH3+H2                                  
 !\REACTIONCLASS: \PGROW-RAD-MOL_RSR-MOL_IC4H7                                             \A            \N            \EA            
 !\REACTIONCOMMENT: 
 !_______________________________________________________________________________________________________________________________________________ 
-IC4H7+C12H8=>C16H10+H2+H2+H                                                               +1.00000E+012 +0.00000E+000 +1.60000E+004 
+IC4H7+A2R5=>C16H10+H2+H2+H                                                               +1.00000E+012 +0.00000E+000 +1.60000E+004 
 IC4H7+A2C2HA=>C16H10+H2+H2+H                                                               +1.00000E+012 +0.00000E+000 +1.60000E+004
 IC4H7+A2C2HB=>C16H10+H2+H2+H                                                               +1.00000E+012 +0.00000E+000 +1.60000E+004
 !_______________________________________________________________________________________________________________________________________________ 
@@ -39307,7 +39248,7 @@ C9H7+IND=>C18H14+H                                                              
 C9H7+NAPH=>0.5C18H14+0.166666666856036BIN1B+0.333333333979624BIN1A+H                  +4.00000E+011 +0.00000E+000 +1.90000E+004 
 C9H7+C10H7CH3-A=>0.5C18H10+0.5BIN1B+2H2+CH3                                              +4.00000E+011 +0.00000E+000 +1.90000E+004 
 C9H7+C10H7CH3-B=>0.5C18H10+0.5BIN1B+2H2+CH3                                              +4.00000E+011 +0.00000E+000 +1.90000E+004 
-C9H7+C12H8=>0.466667BIN1B+0.58333375BIN1A+H                                            +4.00000E+011 +0.00000E+000 +1.90000E+004 ! CONNECTION_TO_SOOT
+C9H7+A2R5=>0.466667BIN1B+0.58333375BIN1A+H                                            +4.00000E+011 +0.00000E+000 +1.90000E+004 ! CONNECTION_TO_SOOT
 C9H7+A2C2HA=>0.466667BIN1B+0.58333375BIN1A+H                                            +4.00000E+011 +0.00000E+000 +1.90000E+004 ! CONNECTION_TO_SOOT
 C9H7+A2C2HB=>0.466667BIN1B+0.58333375BIN1A+H                                            +4.00000E+011 +0.00000E+000 +1.90000E+004 ! CONNECTION_TO_SOOT
 C9H7+BIPHENYL=>0.133333BIN1B+0.91666625BIN1A+H                                         +4.00000E+011 +0.00000E+000 +1.90000E+004 ! CONNECTION_TO_SOOT
@@ -39325,7 +39266,7 @@ RXYLENE+IND=>C16H10+2H2+CH3                                                     
 RXYLENE+NAPH=>0.5C16H10+0.5C18H10+2H2+CH3                                                +4.00000E+011 +0.00000E+000 +1.90000E+004 
 RXYLENE+C10H7CH3-A=>C18H10+3H2+CH3                                                          +4.00000E+011 +0.00000E+000 +1.90000E+004 
 RXYLENE+C10H7CH3-B=>C18H10+3H2+CH3                                                          +4.00000E+011 +0.00000E+000 +1.90000E+004 
-RXYLENE+C12H8=>0.666667BIN1B+0.33333375BIN1A+2H2+H                                        +4.00000E+011 +0.00000E+000 +1.90000E+004 
+RXYLENE+A2R5=>0.666667BIN1B+0.33333375BIN1A+2H2+H                                        +4.00000E+011 +0.00000E+000 +1.90000E+004 
 RXYLENE+A2C2HA=>0.666667BIN1B+0.33333375BIN1A+2H2+H                                        +4.00000E+011 +0.00000E+000 +1.90000E+004
 RXYLENE+A2C2HB=>0.666667BIN1B+0.33333375BIN1A+2H2+H                                        +4.00000E+011 +0.00000E+000 +1.90000E+004
 RXYLENE+BIPHENYL=>0.333333BIN1B+0.666666625BIN1A+2H2+H                                    +4.00000E+011 +0.00000E+000 +1.90000E+004 
@@ -39543,39 +39484,39 @@ H+BIPHENYL=H2+C12H9                                                             
   C10H6CH3-A+ C10H7CH3-B=>C10H6CH3-B + C10H7CH3-A     5.18000e+08       1.000    5757.088    
 !!C10H6CH3-B+ C10H7CH3-B=>C10H6CH3-B + C10H7CH3-B   5.18000e+08       1.000    5757.088    DUMMY 
 
-! ABSTRACTION REACTION: R + C12H8=>C12H7 + RH 
+! ABSTRACTION REACTION: R + A2R5=>C12H7 + RH 
 ! Number of H abstracted: 8.00
 ! Type of H abstracted:   [7] 
-! H         + C12H8=>C12H7 + H2           4.80000e+07       2.000    8733.525    OVERWRITTEN
-  CH3       + C12H8=>C12H7 + CH4          4.80000e+05       2.000   10098.998
-  C2H3      + C12H8=>C12H7 + C2H4         1.08480e+06       2.000    8593.750
-  C2H5      + C12H8=>C12H7 + C2H6         3.20000e+05       2.000   12321.456
-  C3H5-S    + C12H8=>C12H7 + C3H6         4.32000e+05       2.000    9423.045
-  C3H5-T    + C12H8=>C12H7 + C3H6         4.32000e+05       2.000    9423.045
-  C3H5-A    + C12H8=>C12H7 + C3H6         8.62400e+05       2.000   19775.112
-  C4H71-4   + C12H8=>C12H7 + C4H8-1       2.16000e+05       2.000   12193.351
-  C4H71-3   + C12H8=>C12H7 + C4H8-2       5.44000e+05       2.000   20834.886
-  IC4H7     + C12H8=>C12H7 + IC4H8        4.32000e+05       2.000   20834.886
-  C4H3-I      + C12H8=>C12H7 + C4H4         6.54400e+05       2.000   10366.091
-  C6H5      + C12H8=>C12H7 + C6H6         5.92000e+08       1.000    5757.088
-  C5H5      + C12H8=>C12H7 + C5H6         5.44000e+05       2.000   21186.585
-  O         + C12H8=>C12H7 + OH           3.76000e+07       2.000    6547.171
-  O2        + C12H8=>C12H7 + HO2          2.72000e+07       2.000   54526.425
-! OH        + C12H8=>C12H7 + H2O          2.40000e+10       1.000    1148.714    OVERWRITTEN
-  HO2       + C12H8=>C12H7 + H2O2         1.28000e+07       2.000   23513.656
-  C3H3      + C12H8=>C12H7 + C3H4-A       4.32000e+05       2.000   21186.585
-  C6H5O     + C12H8=>C12H7 + C6H5OH       8.64000e+05       2.000   19420.193
-  C6H4OH    + C12H8=>C12H7 + C6H5OH       5.92000e+08       1.000    5757.088
-  C6H5CH2      + C12H8=>C12H7 + C6H5CH3         2.16000e+05       2.000   23513.656
-  C6H4CH3   + C12H8=>C12H7 + C6H5CH3         5.92000e+08       1.000    5757.088
-  OC6H4CH3  + C12H8=>C12H7 + HOC6H4CH3       4.32000e+05       2.000   19775.112
-  NAPH-A    + C12H8=>C12H7 + NAPH        5.92000e+08       1.000    5757.088
-  NAPH-B    + C12H8=>C12H7 + NAPH        5.92000e+08       1.000    5757.088
-  C6H5CH2CH2  + C12H8=>C12H7 + C6H5C2H5     4.00000e+05       2.000   19420.193
-  C6H5CHCH3 + C12H8=>C12H7 + C6H5C2H5     2.88000e+05       2.000   23513.656
-  C9H7   + C12H8=>C12H7 + IND       2.08000e+05       2.000   23513.656
-  C10H6CH3-A + C12H8=>C12H7 + C10H7CH3-A    5.92000e+08       1.000    5757.088
-  C10H6CH3-B + C12H8=>C12H7 + C10H7CH3-B    5.92000e+08       1.000    5757.088
+! H         + A2R5=>C12H7 + H2           4.80000e+07       2.000    8733.525    OVERWRITTEN
+  CH3       + A2R5=>C12H7 + CH4          4.80000e+05       2.000   10098.998
+  C2H3      + A2R5=>C12H7 + C2H4         1.08480e+06       2.000    8593.750
+  C2H5      + A2R5=>C12H7 + C2H6         3.20000e+05       2.000   12321.456
+  C3H5-S    + A2R5=>C12H7 + C3H6         4.32000e+05       2.000    9423.045
+  C3H5-T    + A2R5=>C12H7 + C3H6         4.32000e+05       2.000    9423.045
+  C3H5-A    + A2R5=>C12H7 + C3H6         8.62400e+05       2.000   19775.112
+  C4H71-4   + A2R5=>C12H7 + C4H8-1       2.16000e+05       2.000   12193.351
+  C4H71-3   + A2R5=>C12H7 + C4H8-2       5.44000e+05       2.000   20834.886
+  IC4H7     + A2R5=>C12H7 + IC4H8        4.32000e+05       2.000   20834.886
+  C4H3-I      + A2R5=>C12H7 + C4H4         6.54400e+05       2.000   10366.091
+  C6H5      + A2R5=>C12H7 + C6H6         5.92000e+08       1.000    5757.088
+  C5H5      + A2R5=>C12H7 + C5H6         5.44000e+05       2.000   21186.585
+  O         + A2R5=>C12H7 + OH           3.76000e+07       2.000    6547.171
+  O2        + A2R5=>C12H7 + HO2          2.72000e+07       2.000   54526.425
+! OH        + A2R5=>C12H7 + H2O          2.40000e+10       1.000    1148.714    OVERWRITTEN
+  HO2       + A2R5=>C12H7 + H2O2         1.28000e+07       2.000   23513.656
+  C3H3      + A2R5=>C12H7 + C3H4-A       4.32000e+05       2.000   21186.585
+  C6H5O     + A2R5=>C12H7 + C6H5OH       8.64000e+05       2.000   19420.193
+  C6H4OH    + A2R5=>C12H7 + C6H5OH       5.92000e+08       1.000    5757.088
+  C6H5CH2      + A2R5=>C12H7 + C6H5CH3         2.16000e+05       2.000   23513.656
+  C6H4CH3   + A2R5=>C12H7 + C6H5CH3         5.92000e+08       1.000    5757.088
+  OC6H4CH3  + A2R5=>C12H7 + HOC6H4CH3       4.32000e+05       2.000   19775.112
+  NAPH-A    + A2R5=>C12H7 + NAPH        5.92000e+08       1.000    5757.088
+  NAPH-B    + A2R5=>C12H7 + NAPH        5.92000e+08       1.000    5757.088
+  C6H5CH2CH2  + A2R5=>C12H7 + C6H5C2H5     4.00000e+05       2.000   19420.193
+  C6H5CHCH3 + A2R5=>C12H7 + C6H5C2H5     2.88000e+05       2.000   23513.656
+  C9H7   + A2R5=>C12H7 + IND       2.08000e+05       2.000   23513.656
+  C10H6CH3-A + A2R5=>C12H7 + C10H7CH3-A    5.92000e+08       1.000    5757.088
+  C10H6CH3-B + A2R5=>C12H7 + C10H7CH3-B    5.92000e+08       1.000    5757.088
 
 ! ABSTRACTION REACTION: R + A2C2HA=>A2C2HA- + RH
 ! Number of H abstracted: 8.00
@@ -39819,13 +39760,13 @@ H+BIPHENYL=H2+C12H9                                                             
   C10H6CH3-A + C18H10=>C18H9 + C10H7CH3-A    1.03600e+09       1.000    5757.088
   C10H6CH3-B + C18H10=>C18H9 + C10H7CH3-B    1.03600e+09       1.000    5757.088
 
-C12H8+H=C12H7+H2                                    5.130000e+07 1.995     17.874e+03  
+A2R5+H=C12H7+H2                                    5.130000e+07 1.995     17.874e+03  
 DUPLICATE 
-C12H8+H=C12H7+H2                                    4.481000e+07 2.011     15.773e+03   
+A2R5+H=C12H7+H2                                    4.481000e+07 2.011     15.773e+03   
 DUPLICATE
-C12H8+H=C12H7+H2                                    4.111000e+07 2.017     16.985e+03   
+A2R5+H=C12H7+H2                                    4.111000e+07 2.017     16.985e+03   
 DUPLICATE
-C12H8+H=C12H7+H2                                    1.833000e+08 1.888     19.152e+03   
+A2R5+H=C12H7+H2                                    1.833000e+08 1.888     19.152e+03   
 DUPLICATE
 
 A2C2HA+H=A2C2HA-+H2                                   3.042000e+07 1.988     15.855e+03  
@@ -39852,8 +39793,8 @@ DUPLICATE
 A2C2HB+H=A2C2HB-+H2                                  3.344000e+07 1.968     16.342e+03
 DUPLICATE   
 
-!! H       +C12H8=>H2     +C12H7   .3851E+08 2.0  10480.03
-!! OH      +C12H8=>H2O    +C12H7   .6390E+07 2.0   2267.44 
+!! H       +A2R5=>H2     +C12H7   .3851E+08 2.0  10480.03
+!! OH      +A2R5=>H2O    +C12H7   .6390E+07 2.0   2267.44 
 H       +PHNTHRN=>H2    +C14H9   .4813E+08 2.0  10480.03 
 OH      +PHNTHRN=>H2O   +C14H9   .7988E+07 2.0   2267.44  
 H       +C16H10=>H2    +C16H9   .6739E+08 2.0  10480.03  
@@ -39972,7 +39913,7 @@ C9H7+H(+M)=IND(+M)        2.07E+13	0.32	-461.03     ! 03-24-2024 back to this fo
 !\KEEP IND=H+C9H7                                                                          +1.14055E+016 +0.00000E+000 +8.43049E+004 ! ER1902 AFTER IND PYROLYSIS
 !\KEEP PLOG /                                                                      +4.00000E-002 +1.00000E+012 +0.00000E+000 +6.50000E+004 
 !\KEEP PLOG /                                                                      +1.00000E+000 +1.00000E+013 +0.00000E+000 +7.00000E+004 
-H+C12H7=C12H8                                                                             4.170000e+13 0.150     0.000 !! ITV 
+H+C12H7=A2R5                                                                             4.170000e+13 0.150     0.000 !! ITV 
 H+A2C2HA-=A2C2HA                                                                          +1.00000E+014 +0.00000E+000 +0.00000E+000
 H+A2C2HB-=A2C2HB                                                                          +1.00000E+014 +0.00000E+000 +0.00000E+000
 H+C12H9=BIPHENYL                                                                          +1.00000E+014 +0.00000E+000 +0.00000E+000 
