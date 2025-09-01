@@ -259,7 +259,7 @@ class ChemicalReaction:
 
     return " + ".join(reactant_parts) + separator + " + ".join(product_parts)
 
-  def extract_species(self, species_part):
+  def extract_species(self, species_part, line):
     """Extracts species (reactants or products) from a given part of the reaction."""
     species = []
     species_2_idx = {}
@@ -282,10 +282,10 @@ class ChemicalReaction:
               species.append([stoichiometric_coefficient, name])
           else:
             raise Exception("Invalid species: " + name + " in '" +
-                            species_part + "'")
+                            species_part + "' from the line '" + line + "'")
         else:
           raise Exception("Could not match the species regex with '" +
-                          stripped_species + "'")
+                          stripped_species + "' from the line '" + line + "'")
 
     return species
 
@@ -326,7 +326,7 @@ class ChemicalReaction:
     line = inp.remove_trailing_numbers(line.strip())
     self.reaction_definition = line
     line = re.sub(r'\s*\(\s*\+\s*M\s*\)\s*', '', line)  # Matches "(+ M)"
-    line = re.sub(r'\s*\+\s*M\s*', '', line)  # Matches "+ M" or "+   M"
+    line = re.sub(r'\s*\+\s*M(?=\s*(?:[+<=]|$))', '', line)  # Matches "+ M" or "+   M"
     line = re.sub(r'\s*\(\s*\+\s*([\w\-\(\),\#]+)\s*\)\s*', r'+\1',
                   line)  # Replace "(+N2)" with " + N2 "
     # Determine reaction type and split into reactants and products
@@ -342,8 +342,8 @@ class ChemicalReaction:
     else:
       raise Exception("No valid separator found for the reaction.")
     # Extract reactants and products using the new subroutine
-    self.reactants = self.extract_species(reactants_part)
-    self.products = self.extract_species(products_part)
+    self.reactants = self.extract_species(reactants_part, line)
+    self.products = self.extract_species(products_part, line)
 
     for i_r in range(len(self.reactants)):
       nu_r, s_r = self.reactants[i_r]

@@ -114,8 +114,7 @@ def generate_readme(grouped_selections, columns, counters):
   readme.append("## Available precompiled models ")
   readme.append("")
   readme.append(
-      "You can download individual files in your web browser or install " +
-      "[Git Large File Storage](https://git-lfs.com/) to clone all files. " +
+      "You can download individual files in your web browser or clone all files. " +
       "For each sub-model, there are CHEMKIN (.CKI, .THERM, and .TRAN) " +
       "and Cantera (.yaml) files. The .CKI files are provided as CHEMKIN-PRO/"
       + "OpenSMOKE++-compatible versions " +
@@ -408,7 +407,7 @@ def print_kinetics_file(species_list, species_pruned, header_filename,
         else:
           new_lines.append(p_line)
 
-  new_lines.append("END\n\n")
+  new_lines.append("\nEND\n\n")
 
   print("writing '" + output_filename + "'")
   with open(output_filename, 'w', encoding="utf-8") as file:
@@ -587,7 +586,7 @@ def clean_therm(therm_output, species_list, species_pruned, header_filename,
       thermfile.write(addition + species_output[s][2])
       thermfile.write(addition + species_output[s][3])
 
-    thermfile.write('END\n')
+    thermfile.write('\nEND\n\n')
 
 
 def clean_tran(tran_file, tran_output, species_list, species_pruned,
@@ -776,7 +775,7 @@ def _generate_identifer(submodules_filenames, selection, cantera):
     core_filename = submodules_filenames[selection[c0]][c0]
     if not cantera:
       print("removing cantera from filename")
-      core_filename = core_filename.replace("_Cantera", "")
+      core_filename = re.sub(r'(?i)_Cantera', '', core_filename)
     identifier_list.append(core_filename)
   else:
     raise Exception("could not find '" + c0 +
@@ -855,7 +854,6 @@ def one_carbon_number(options,
 
   return generated_combinations
 
-
 def run(options, submodules_filenames, grouped_selections, columns):
 
   print("read input...")
@@ -910,19 +908,9 @@ def run(options, submodules_filenames, grouped_selections, columns):
 
     generated_combinations_single = {}
     for cnum, data_dict in grouped_selections.items():
-      if options.mid != "":
-        generated_combinations_single = one_carbon_number(
-            options,
-            submodules_filenames,
-            DATETIME,
-            cnum,
-            data_dict,
-            generated_combinations_single,
-            cantera=options.mid_cantera)
-      else:
-        generated_combinations_single = one_carbon_number(
-            options, submodules_filenames, DATETIME, cnum, data_dict,
-            generated_combinations_single)
+      generated_combinations_single = one_carbon_number(
+          options, submodules_filenames, DATETIME, cnum, data_dict,
+          generated_combinations_single, cantera=options.mid_cantera)
 
     for identifier in generated_combinations_single:
       if "mid" in identifier:

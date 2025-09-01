@@ -1,0 +1,92 @@
+name: C3Mech Continuous Integration
+
+on: [push, pull_request]
+
+jobs:
+  # ----------------------------------------------------
+  # 1)  Species-dictionary job
+  # ----------------------------------------------------
+  species-dict:
+    # run the same steps on Ubuntu and Windows
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up micromamba for species dictionary
+        uses: mamba-org/setup-micromamba@v1
+        with:
+          environment-file: SPECIES_DICTIONARY/environment.yaml
+          cache-downloads: true
+          cache-env: true
+
+      - name: Build species dictionary
+        shell: bash -l {0}
+        run: |
+          cd SPECIES_DICTIONARY
+          python make_species_dict.py
+
+  # ----------------------------------------------------
+  # 2)  Compiler job
+  # ----------------------------------------------------
+  compile-mechanism:
+    #needs: species-dict          # run only after step 1 succeeds
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up micromamba for compiler
+        uses: mamba-org/setup-micromamba@v1
+        with:
+          environment-file: COMPILER/environment.yaml
+          environment-name: c3-compiler
+          cache-downloads: true
+          cache-env: true
+
+      # 1.1) default invocation
+      - name: Compile C3Mech (from YAML file)    
+        shell: bash -l {0}
+        run: |
+          cd COMPILER
+          python compile_c3mech.py
+
+      # 1.2) Same YAML, but core line rewritten to the non-Cantera file
+      - name: Compile C3Mech (non-Cantera core)
+        shell: bash -l {0}
+        run: |
+          cd COMPILER
+          cp submodules.yaml submodules_non-cantera.yaml
+          # replace the core line
+          sed -i 's#NUIG_C0_LT-HT_Cantera.MECH#NUIG_C0_LT-HT.MECH#' submodules_non-cantera.yaml
+          python compile_c3mech.py --yaml-file-path submodules_non-cantera.yaml
+
+      # 2) same script with --mid 3XR9, which generates the HT version
+      #    Note that the generated model is inconsistent because the 
+      #    input files used by compile_c3mech.py default to the most recent
+      #    WIP sub-modules, THERM file, and TRAN file. This just a quick 
+      #    test legacy MIDs.
+      - name: Compile C3Mech (mid 3XR9)
+        shell: bash -l {0}
+        run: |
+          cd COMPILER
+          python compile_c3mech.py --mid 3XR9
+
+      # 3) same script with --mid 4HZZ, which generates the LT-HT version
+      #    Note that the generated model is inconsistent because the 
+      #    input files used by compile_c3mech.py default to the most recent
+      #    WIP sub-modules, THERM file, and TRAN file. This just a quick 
+      #    test legacy MIDs.
+      - name: Compile C3Mech (mid 4HZZ)
+        shell: bash -l {0}
+        run: |
+          cd COMPILER
+          python compile_c3mech.py --mid 4HZZ

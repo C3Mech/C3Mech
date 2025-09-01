@@ -1278,7 +1278,7 @@ def get_species_name2sum_formula(lines, species_list_or_dict, thermo_filename,
     print(
         "Thermochemistry data are expected to be available for each of the species. Is the thermochemistry file '"
         + thermo_filename +
-        "' intended for the provided kinetic (sub)model(s)?\n")
+        "' intended for the provided kinetic submodule(s)?\n")
   return identifier2sum_formula, found_nasa
 
 
@@ -2063,7 +2063,7 @@ def write_species_dict(inp,
     print("output directory '" + output_dir + "' does not exist.")
     quit()
   print("found " + str(len(species_list)) +
-        " species from the selected kinetic (sub)model(s)")
+        " species from the selected kinetic submodule(s)")
   if (not silent):
     print_success()
   set_RDKit_drawing_option()
@@ -2160,7 +2160,7 @@ if __name__ == "__main__":
       '-f',
       '--fatal_error_only',
       help=
-      'only species currently used in the (sub)model(s) are considered in the checks',
+      'only species currently used in the submodule(s) are considered in the checks',
       action='store_false')
   parser.add_argument('-n',
                       '--name',
