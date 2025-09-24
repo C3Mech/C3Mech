@@ -1,6 +1,6 @@
 # C3MechV4.0
 
-**C3MechV4.0** is a universal chemical kinetic model developed for both conventional and renewable fuels (e.g., alkanes, hydrogen, ammonia, dimethyl ether, dimethyl carbonate/ethylene carbonate). It has been validated for a wide range of conditions and uses a hierarchical structure that allows the targeted compilation of sub-models. This repository is linked to the publication ["Modeling Combustion Chemistry using C3MechV4.0: an extension to mixtures of hydrogen, ammonia, alkanes, and cycloalkanes (link will be fixed after publication)"]() and provides the following data and resources:
+**C3MechV4.0** is a universal chemical kinetic model developed for both conventional and renewable fuels (e.g., alkanes, hydrogen, ammonia, dimethyl ether, dimethyl carbonate/ethylene carbonate). It has been validated for a wide range of conditions and uses a hierarchical structure that allows the targeted compilation of sub-models. This repository is linked to the publication ["Modeling Combustion Chemistry using C3MechV4.0: an extension to mixtures of hydrogen, ammonia, alkanes, and cycloalkanes"](https://doi.org/10.1016/j.jaecs.2025.100385) and provides the following data and resources:
 
 - All sub-modules maintained by the C3 consortium in `CHEMKIN` format 
 - A species directory (CSV & PDF), along with a Python script for checking species data and converting them from CSV format to a PDF  
