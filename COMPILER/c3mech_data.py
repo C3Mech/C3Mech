@@ -23,8 +23,8 @@ DEPENDENCIES = {
     "C7": set(["C0", "C1-C2", "C3-C4", "C5", "C6"]),
     "LLNL_BLOCK": set(["C0", "C1-C2", "C3-C4", "C5", "C6", "C7"]),
     "LLNL_BLOCK_DMC_EC": set(["C0", "C1-C2"]),
-    "NUIG_N": set(["C0"]),
-    "NUIG_C-N": set(["C0", "C1-C2", "NUIG_N"]),
+    "UOG_N": set(["C0"]),
+    "UOG_C-N": set(["C0", "C1-C2", "UOG_N"]),
     "PAH_BLOCK": set(["C0", "C1-C2", "C3-C4", "C5cy", "C6cy"]),  # , "C5"
 }
 
@@ -35,7 +35,7 @@ def init_identifier_max(dependencies):
 
 # If a key was binary (or ternary), keep its base fixed forever.
 ORDERED_KEYS = init_identifier_max(DEPENDENCIES)
-BINARY_KEYS = {'LLNL_BLOCK_DMC_EC', 'C1-C2', 'PAH_BLOCK', 'C0', 'NUIG_N'}
+BINARY_KEYS = {'LLNL_BLOCK_DMC_EC', 'C1-C2', 'PAH_BLOCK', 'C0', 'UOG_N'}
 
 carbon_map = {
     'C0': 0,
@@ -60,8 +60,8 @@ columns = [
     ('C5cy', 'C5CY'),
     ('C6cy', 'C6CY'),
     ('LLNL_BLOCK_DMC_EC', 'DMC+EC'),
-    #('NUIG_C-N', ''), # handled separately
-    ('NUIG_N', 'N'),
+    #('UOG_C-N', ''), # handled separately
+    ('UOG_N', 'N'),
     ('PAH_BLOCK', 'PAH')
 ]
 
@@ -93,41 +93,41 @@ def get_ht_htlt_modules(abs_dir):
   returns the sub-module filesnames in an unspecified order;
   file paths are absolute and normalized
   """
-  base_moduldes_NUIG_HTLT = [
-      os.path.join("NUIG", "LT-HT", "NUIG_" + "C0" + "_LT-HT_Cantera.MECH")
+  base_moduldes_UOG_HTLT = [
+      os.path.join("UOG", "LT-HT", "UOG_" + "C0" + "_LT-HT_Cantera.MECH")
   ] + [
-      os.path.join("NUIG", "LT-HT", "NUIG_" + b + "_LT-HT.MECH")
+      os.path.join("UOG", "LT-HT", "UOG_" + b + "_LT-HT.MECH")
       for b in get_base_modules()
   ]
-  base_moduldes_NUIG_HT = base_moduldes_NUIG_HTLT[:2] + [
-      os.path.join("NUIG", "HT", "NUIG_" + b + "_HT.MECH")
+  base_moduldes_UOG_HT = base_moduldes_UOG_HTLT[:2] + [
+      os.path.join("UOG", "HT", "UOG_" + b + "_HT.MECH")
       for b in get_base_modules()[1:]
   ]
   LLNL_base_modules_HT = [os.path.join("LLNL", "LLNL_BLOCK_HT.CKI")]
   LLNL_base_modules_HTLT = [os.path.join("LLNL", "LLNL_BLOCK.CKI")]
 
   #optional_modules_HT = [
-  #    os.path.join("NUIG", "HT", "NUIG_" + "N" + "_HT.MECH")
+  #    os.path.join("UOG", "HT", "UOG_" + "N" + "_HT.MECH")
   #]
 
   #optional_modules_HTLT = [
-  #    os.path.join("NUIG", "LT-HT", "NUIG_" + "N" + "_LT-HT.MECH")
+  #    os.path.join("UOG", "LT-HT", "UOG_" + "N" + "_LT-HT.MECH")
   #]
   optional_modules = [
-      os.path.join("NUIG", "LT-HT", "NUIG_N_LT-HT.MECH"),
+      os.path.join("UOG", "LT-HT", "UOG_N_LT-HT.MECH"),
       os.path.join("ITV_POLIMI", "PAH_BLOCK.CKI"),
       os.path.join("LLNL", "LLNL_BLOCK_DMC_EC.CKI")
   ]
 
   required_extension_HT = [
-      os.path.join("NUIG", "HT", "NUIG_" + "C-N" + "_HT.MECH")
+      os.path.join("UOG", "HT", "UOG_" + "C-N" + "_HT.MECH")
   ]
   required_extension_HTLT = [
-      os.path.join("NUIG", "LT-HT", "NUIG_" + "C-N" + "_LT-HT.MECH")
+      os.path.join("UOG", "LT-HT", "UOG_" + "C-N" + "_LT-HT.MECH")
   ]
 
-  modules_ht = base_moduldes_NUIG_HT + LLNL_base_modules_HT + optional_modules + required_extension_HT  # + optional_modules_HT
-  modules_htlt = base_moduldes_NUIG_HTLT + LLNL_base_modules_HTLT + optional_modules + required_extension_HTLT  #  + optional_modules_HTLT
+  modules_ht = base_moduldes_UOG_HT + LLNL_base_modules_HT + optional_modules + required_extension_HT  # + optional_modules_HT
+  modules_htlt = base_moduldes_UOG_HTLT + LLNL_base_modules_HTLT + optional_modules + required_extension_HTLT  #  + optional_modules_HTLT
 
   ok = True
   modules_ht_final = []
@@ -204,8 +204,8 @@ def sort_key(combo):
   s = set(combo)
   return (
       max_carbon(s),
-      ('NUIG_N' in s),
-      ('NUIG_C-N' in s),
+      ('UOG_N' in s),
+      ('UOG_C-N' in s),
       ('LLNL_BLOCK_DMC_EC' in s),
       ('PAH_BLOCK' in s),
       sorted(s)  # To break ties lexicographically
@@ -245,7 +245,7 @@ def match_submodules(submodules, modules_ht, modules_htlt):
 
     else:
       # ---------- generic two-pass search --------------------------------
-      # 1) Prefer NUIG_<smod>_
+      # 1) Prefer UOG_<smod>_
       matches = [
           m for m in modules_list
           if f"{smod_l}_" in m.lower() and "nuig" in m.lower()
@@ -384,10 +384,10 @@ def generate_submodels(options):
         or set(["LLNL_BLOCK", "LLNL_BLOCK_DMC_EC", "PAH_BLOCK"]) & set(combo)):
       has_carbon = True
 
-    if (has_carbon and "NUIG_N" in combo) and not "NUIG_C-N" in combo:
+    if (has_carbon and "UOG_N" in combo) and not "UOG_C-N" in combo:
       continue
     if DMC_EC_FEW and ((
-        (max_carbon(combo) > 2 or "NUIG_N" in combo) and max_carbon(combo) < 8)
+        (max_carbon(combo) > 2 or "UOG_N" in combo) and max_carbon(combo) < 8)
                        and "LLNL_BLOCK_DMC_EC" in combo):
       continue
 
@@ -583,12 +583,12 @@ def get_grouped_combos_mid(options):
         "Required sub-module 'C0' is missing. Please double check the provided MID '"
         + options.mid + "'")
 
-  if "NUIG_C-N" in selection:
-    if not "NUIG_N" in selection:
-      print("#warning: using NUIG_C-N sub-module without NUIG_N")
+  if "UOG_C-N" in selection:
+    if not "UOG_N" in selection:
+      print("#warning: using UOG_C-N sub-module without UOG_N")
     if max_carbon(selection.keys()) == 0:
       print(
-          "#warning: using NUIG_C-N sub-module without carbon containing sub-module"
+          "#warning: using UOG_C-N sub-module without carbon containing sub-module"
       )
 
   if "PAH_BLOCK" in selection:

@@ -3,23 +3,23 @@
 
 # A core mechanism is required. The choice depends only on the employed 
 # simulation code. The following version works with Cantera or FlameMaster:
-core: NUIG/LT-HT/NUIG_C0_LT-HT_Cantera.MECH
+core: UOG/LT-HT/UOG_C0_LT-HT_Cantera.MECH
 # The following option can be used with CHEMKIN-PRO or OpenSMOKE++:
-#core: NUIG/LT-HT/NUIG_C0_LT-HT.MECH
+#core: UOG/LT-HT/UOG_C0_LT-HT.MECH
 
 submodules:
 ## 
 ## C3MechV4.0 (all sub-modules):
 
-  - NUIG/LT-HT/NUIG_C1-C2_LT-HT.MECH 
-  - NUIG/LT-HT/NUIG_C3-C4_LT-HT.MECH
-  - NUIG/LT-HT/NUIG_C5_LT-HT.MECH
-  - NUIG/LT-HT/NUIG_C5cy_LT-HT.MECH
-  - NUIG/LT-HT/NUIG_C6_LT-HT.MECH
-  - NUIG/LT-HT/NUIG_C6cy_LT-HT.MECH
-  - NUIG/LT-HT/NUIG_C7_LT-HT.MECH
-  - NUIG/LT-HT/NUIG_N_LT-HT.MECH
-  - NUIG/LT-HT/NUIG_C-N_LT-HT.MECH
+  - UOG/LT-HT/UOG_C1-C2_LT-HT.MECH 
+  - UOG/LT-HT/UOG_C3-C4_LT-HT.MECH
+  - UOG/LT-HT/UOG_C5_LT-HT.MECH
+  - UOG/LT-HT/UOG_C5cy_LT-HT.MECH
+  - UOG/LT-HT/UOG_C6_LT-HT.MECH
+  - UOG/LT-HT/UOG_C6cy_LT-HT.MECH
+  - UOG/LT-HT/UOG_C7_LT-HT.MECH
+  - UOG/LT-HT/UOG_N_LT-HT.MECH
+  - UOG/LT-HT/UOG_C-N_LT-HT.MECH
 
   - ITV_POLIMI/PAH_BLOCK.CKI
 
@@ -32,11 +32,11 @@ submodules:
 ##  for unstretched premixed flames and counterflow flames,
 ##  LBVs + high-temperature flow reactors and shock tube
  
-##  - NUIG/LT-HT/NUIG_C1-C2_LT-HT.MECH  
-##  - NUIG/HT/NUIG_C3-C4_HT.MECH   
-##  - NUIG/HT/NUIG_C5cy_HT.MECH  
-##  - NUIG/HT/NUIG_C5_HT.MECH  
-##  - NUIG/HT/NUIG_C6cy_HT.MECH  
+##  - UOG/LT-HT/UOG_C1-C2_LT-HT.MECH  
+##  - UOG/HT/UOG_C3-C4_HT.MECH   
+##  - UOG/HT/UOG_C5cy_HT.MECH  
+##  - UOG/HT/UOG_C5_HT.MECH  
+##  - UOG/HT/UOG_C6cy_HT.MECH  
 ##  - ITV_POLIMI/PAH_BLOCK.CKI 
 
 ## C0_C6_PAH (oxidation chemistry of C0-C6 fuel 
@@ -45,23 +45,23 @@ submodules:
 ## for low-temperature jet-stirred and flow reactor oxidation cases and 
 ## simulations of rapid compression machine (RCM) experiments
 
-##  - NUIG/LT-HT/NUIG_C1-C2_LT-HT.MECH  
-##  - NUIG/LT-HT/NUIG_C3-C4_LT-HT.MECH  
-##  - NUIG/LT-HT/NUIG_C5cy_LT-HT.MECH  
-##  - NUIG/LT-HT/NUIG_C5_LT-HT.MECH  
-##  - NUIG/LT-HT/NUIG_C6cy_LT-HT.MECH  
+##  - UOG/LT-HT/UOG_C1-C2_LT-HT.MECH  
+##  - UOG/LT-HT/UOG_C3-C4_LT-HT.MECH  
+##  - UOG/LT-HT/UOG_C5cy_LT-HT.MECH  
+##  - UOG/LT-HT/UOG_C5_LT-HT.MECH  
+##  - UOG/LT-HT/UOG_C6cy_LT-HT.MECH  
 ##  - ITV_POLIMI/PAH_BLOCK.CKI  
 
 
 ## TPRF 
 ## Toluene Primary Reference Fuel mixtures (flow reactors and RCM)
 
-##  - NUIG/LT-HT/NUIG_C1-C2_LT-HT.MECH  
-##  - NUIG/LT-HT/NUIG_C3-C4_LT-HT.MECH  
-##  - NUIG/LT-HT/NUIG_C5cy_LT-HT.MECH  
-##  - NUIG/LT-HT/NUIG_C5_LT-HT.MECH  
-##  - NUIG/LT-HT/NUIG_C6cy_LT-HT.MECH  
-##  - NUIG/LT-HT/NUIG_C6_LT-HT.MECH  
-##  - NUIG/LT-HT/NUIG_C7_LT-HT.MECH  
+##  - UOG/LT-HT/UOG_C1-C2_LT-HT.MECH  
+##  - UOG/LT-HT/UOG_C3-C4_LT-HT.MECH  
+##  - UOG/LT-HT/UOG_C5cy_LT-HT.MECH  
+##  - UOG/LT-HT/UOG_C5_LT-HT.MECH  
+##  - UOG/LT-HT/UOG_C6cy_LT-HT.MECH  
+##  - UOG/LT-HT/UOG_C6_LT-HT.MECH  
+##  - UOG/LT-HT/UOG_C7_LT-HT.MECH  
 ##  - ITV_POLIMI/PAH_BLOCK.CKI  
 ##  - LLNL/LLNL_BLOCK.CKI
