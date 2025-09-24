@@ -58,11 +58,11 @@ description: |2-
    Kinetics data for C3MechV4.0, generated on 21/08/2025 21:54:45.
 
    The following sub-modules were considered in this file:
-   - NUIG_C0_LT-HT_Cantera.MECH
-   - NUIG_C1-C2_LT-HT.MECH
-   - NUIG_C3-C4_HT.MECH
-   - NUIG_N_LT-HT.MECH
-   - NUIG_C-N_HT.MECH
+   - UOG_C0_LT-HT_Cantera.MECH
+   - UOG_C1-C2_LT-HT.MECH
+   - UOG_C3-C4_HT.MECH
+   - UOG_N_LT-HT.MECH
+   - UOG_C-N_HT.MECH
 
    MID: 3R08
    number of species: 495
@@ -128,11 +128,11 @@ description: |2-
   Thermodynamic data for C3MechV4.0, generated on 21/08/2025 21:54:45.
 
   The following sub-modules were considered in this file:
-  - NUIG_C0_LT-HT.MECH
-  - NUIG_C1-C2_LT-HT.MECH
-  - NUIG_C3-C4_HT.MECH
-  - NUIG_N_LT-HT.MECH
-  - NUIG_C-N_HT.MECH
+  - UOG_C0_LT-HT.MECH
+  - UOG_C1-C2_LT-HT.MECH
+  - UOG_C3-C4_HT.MECH
+  - UOG_N_LT-HT.MECH
+  - UOG_C-N_HT.MECH
 
   MID: 3R08
 
@@ -10619,7 +10619,7 @@ reactions:
 - equation: C2H4 + HO2 <=> C2H3 + H2O2  # Reaction 332
   rate-constant: {A: 1914.0, b: 3.059, Ea: 2.07986e+04}
   note: |
-    \Author: UB !\Ref: C3 NUIG CALCULATION J.M !\Comment: ADDED AS ANALOGY TO ABSTRACTION FROM PROPENE VINYL SITE INCREASED AX2 TO ACCOUNT FOR NO. H-ATOMS 
+    \Author: UB !\Ref: C3 UOG CALCULATION J.M !\Comment: ADDED AS ANALOGY TO ABSTRACTION FROM PROPENE VINYL SITE INCREASED AX2 TO ACCOUNT FOR NO. H-ATOMS 
 - equation: C2H4 + CH3O <=> C2H3 + CH3OH  # Reaction 333
   rate-constant: {A: 1.2e+11, b: 0.0, Ea: 6750.0}
   note: |
@@ -14453,11 +14453,11 @@ reactions:
 - equation: C3H6 + HO2 <=> C3H5-T + H2O2  # Reaction 802
   rate-constant: {A: 1.56e+04, b: 2.82, Ea: 2.44279e+04}
   note: |
-    \Author: WARNING !\Ref: C3 NUIG CALCULATION J.M !\Comment: WARNING
+    \Author: WARNING !\Ref: C3 UOG CALCULATION J.M !\Comment: WARNING
 - equation: C3H6 + O2 <=> C3H5-T + HO2  # Reaction 803
   rate-constant: {A: 1.0e+13, b: 0.0, Ea: 5.877e+04}
   note: |
-    \Author: WARNING !\Ref: ESTIMATE C3 NUIG S. M. BURKE !\Comment: WARNING
+    \Author: WARNING !\Ref: ESTIMATE C3 UOG S. M. BURKE !\Comment: WARNING
 - equation: C3H6 + CH3 <=> C3H5-T + CH4  # Reaction 804
   rate-constant: {A: 89.0, b: 3.29, Ea: 1.46e+04}
   note: |
@@ -14469,7 +14469,7 @@ reactions:
 - equation: C3H6 + O2 <=> C3H5-S + HO2  # Reaction 806
   rate-constant: {A: 2.0e+13, b: 0.0, Ea: 6.227e+04}
   note: |
-    \Author: WARNING !\Ref: ESTIMATE C3 NUIG S. M. BURKE !\Comment: WARNING
+    \Author: WARNING !\Ref: ESTIMATE C3 UOG S. M. BURKE !\Comment: WARNING
 - equation: C3H6 + O <=> C3H5-S + OH  # Reaction 807
   rate-constant: {A: 1.2e+11, b: 0.7, Ea: 8959.1}
   note: |
@@ -14477,7 +14477,7 @@ reactions:
 - equation: C3H6 + HO2 <=> C3H5-S + H2O2  # Reaction 808
   rate-constant: {A: 957.0, b: 3.059, Ea: 2.07986e+04}
   note: |
-    \Author: WARNING !\Ref: C3 NUIG CALCULATION J.M !\Comment: WARNING
+    \Author: WARNING !\Ref: C3 UOG CALCULATION J.M !\Comment: WARNING
 - equation: C3H6 + CH3 <=> C3H5-S + CH4  # Reaction 809
   rate-constant: {A: 719.0, b: 2.938, Ea: 1.3913e+04}
   note: |

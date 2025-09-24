@@ -66,7 +66,7 @@ jobs:
           cd COMPILER
           cp submodules.yaml submodules_non-cantera.yaml
           # replace the core line
-          sed -i 's#NUIG_C0_LT-HT_Cantera.MECH#NUIG_C0_LT-HT.MECH#' submodules_non-cantera.yaml
+          sed -i 's#UOG_C0_LT-HT_Cantera.MECH#UOG_C0_LT-HT.MECH#' submodules_non-cantera.yaml
           python compile_c3mech.py --yaml-file-path submodules_non-cantera.yaml
 
       # 2) same script with --mid 3XR9, which generates the HT version

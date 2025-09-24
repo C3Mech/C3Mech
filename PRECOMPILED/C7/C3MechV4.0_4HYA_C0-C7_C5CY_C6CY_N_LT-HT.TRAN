@@ -57,16 +57,16 @@
 ! Transport data for C3MechV4.0, generated on 21/08/2025 21:54:45.
 
 ! The following sub-modules were considered in this file:
-! - NUIG_C0_LT-HT.MECH
-! - NUIG_C1-C2_LT-HT.MECH
-! - NUIG_C3-C4_LT-HT.MECH
-! - NUIG_C5_LT-HT.MECH
-! - NUIG_C5cy_LT-HT.MECH
-! - NUIG_C6_LT-HT.MECH
-! - NUIG_C6cy_LT-HT.MECH
-! - NUIG_C7_LT-HT.MECH
-! - NUIG_N_LT-HT.MECH
-! - NUIG_C-N_LT-HT.MECH
+! - UOG_C0_LT-HT.MECH
+! - UOG_C1-C2_LT-HT.MECH
+! - UOG_C3-C4_LT-HT.MECH
+! - UOG_C5_LT-HT.MECH
+! - UOG_C5cy_LT-HT.MECH
+! - UOG_C6_LT-HT.MECH
+! - UOG_C6cy_LT-HT.MECH
+! - UOG_C7_LT-HT.MECH
+! - UOG_N_LT-HT.MECH
+! - UOG_C-N_LT-HT.MECH
 
 ! MID: 4HYA
 HE                    0       11.44      2.71      0.00      0.20      2.00

@@ -58,12 +58,12 @@ description: |2-
    Kinetics data for C3MechV4.0, generated on 21/08/2025 21:54:45.
 
    The following sub-modules were considered in this file:
-   - NUIG_C0_LT-HT_Cantera.MECH
-   - NUIG_C1-C2_LT-HT.MECH
-   - NUIG_C3-C4_HT.MECH
-   - NUIG_C5_HT.MECH
-   - NUIG_C5cy_HT.MECH
-   - NUIG_C6cy_HT.MECH
+   - UOG_C0_LT-HT_Cantera.MECH
+   - UOG_C1-C2_LT-HT.MECH
+   - UOG_C3-C4_HT.MECH
+   - UOG_C5_HT.MECH
+   - UOG_C5cy_HT.MECH
+   - UOG_C6cy_HT.MECH
 
    MID: 3X60
    number of species: 606
@@ -129,12 +129,12 @@ description: |2-
   Thermodynamic data for C3MechV4.0, generated on 21/08/2025 21:54:45.
 
   The following sub-modules were considered in this file:
-  - NUIG_C0_LT-HT.MECH
-  - NUIG_C1-C2_LT-HT.MECH
-  - NUIG_C3-C4_HT.MECH
-  - NUIG_C5_HT.MECH
-  - NUIG_C5cy_HT.MECH
-  - NUIG_C6cy_HT.MECH
+  - UOG_C0_LT-HT.MECH
+  - UOG_C1-C2_LT-HT.MECH
+  - UOG_C3-C4_HT.MECH
+  - UOG_C5_HT.MECH
+  - UOG_C5cy_HT.MECH
+  - UOG_C6cy_HT.MECH
 
   MID: 3X60
 
@@ -12635,7 +12635,7 @@ reactions:
 - equation: C2H4 + HO2 <=> C2H3 + H2O2  # Reaction 331
   rate-constant: {A: 1914.0, b: 3.059, Ea: 2.07986e+04}
   note: |
-    \Author: UB !\Ref: C3 NUIG CALCULATION J.M !\Comment: ADDED AS ANALOGY TO ABSTRACTION FROM PROPENE VINYL SITE INCREASED AX2 TO ACCOUNT FOR NO. H-ATOMS 
+    \Author: UB !\Ref: C3 UOG CALCULATION J.M !\Comment: ADDED AS ANALOGY TO ABSTRACTION FROM PROPENE VINYL SITE INCREASED AX2 TO ACCOUNT FOR NO. H-ATOMS 
 - equation: C2H4 + CH3O <=> C2H3 + CH3OH  # Reaction 332
   rate-constant: {A: 1.2e+11, b: 0.0, Ea: 6750.0}
   note: |
@@ -16469,11 +16469,11 @@ reactions:
 - equation: C3H6 + HO2 <=> C3H5-T + H2O2  # Reaction 801
   rate-constant: {A: 1.56e+04, b: 2.82, Ea: 2.44279e+04}
   note: |
-    \Author: WARNING !\Ref: C3 NUIG CALCULATION J.M !\Comment: WARNING
+    \Author: WARNING !\Ref: C3 UOG CALCULATION J.M !\Comment: WARNING
 - equation: C3H6 + O2 <=> C3H5-T + HO2  # Reaction 802
   rate-constant: {A: 1.0e+13, b: 0.0, Ea: 5.877e+04}
   note: |
-    \Author: WARNING !\Ref: ESTIMATE C3 NUIG S. M. BURKE !\Comment: WARNING
+    \Author: WARNING !\Ref: ESTIMATE C3 UOG S. M. BURKE !\Comment: WARNING
 - equation: C3H6 + CH3 <=> C3H5-T + CH4  # Reaction 803
   rate-constant: {A: 89.0, b: 3.29, Ea: 1.46e+04}
   note: |
@@ -16485,7 +16485,7 @@ reactions:
 - equation: C3H6 + O2 <=> C3H5-S + HO2  # Reaction 805
   rate-constant: {A: 2.0e+13, b: 0.0, Ea: 6.227e+04}
   note: |
-    \Author: WARNING !\Ref: ESTIMATE C3 NUIG S. M. BURKE !\Comment: WARNING
+    \Author: WARNING !\Ref: ESTIMATE C3 UOG S. M. BURKE !\Comment: WARNING
 - equation: C3H6 + O <=> C3H5-S + OH  # Reaction 806
   rate-constant: {A: 1.2e+11, b: 0.7, Ea: 8959.1}
   note: |
@@ -16493,7 +16493,7 @@ reactions:
 - equation: C3H6 + HO2 <=> C3H5-S + H2O2  # Reaction 807
   rate-constant: {A: 957.0, b: 3.059, Ea: 2.07986e+04}
   note: |
-    \Author: WARNING !\Ref: C3 NUIG CALCULATION J.M !\Comment: WARNING
+    \Author: WARNING !\Ref: C3 UOG CALCULATION J.M !\Comment: WARNING
 - equation: C3H6 + CH3 <=> C3H5-S + CH4  # Reaction 808
   rate-constant: {A: 719.0, b: 2.938, Ea: 1.3913e+04}
   note: |
@@ -37581,7 +37581,7 @@ reactions:
   - {P: 100.0 atm, A: 6.47e+24, b: -3.383, Ea: 3.4388e+04}
   - {P: 1000.0 atm, A: 2.34e+17, b: -1.123, Ea: 3.1176e+04}
   note: |
-    WAGNON1@LLNL.GOV! AS C5H11-1=NC3H7+C2H4 NUIG PLOG FOR COMANDINI CHEM.PHYS.LETT. 552 (2012) 20-26
+    WAGNON1@LLNL.GOV! AS C5H11-1=NC3H7+C2H4 UOG PLOG FOR COMANDINI CHEM.PHYS.LETT. 552 (2012) 20-26
 - equation: C3H5-A + HCO <=> AC3H5CHO  # Reaction 3389
   rate-constant: {A: 1.81e+13, b: 0.0, Ea: 0.0}
   note: |
@@ -38359,7 +38359,7 @@ reactions:
   - {P: 100.0 atm, A: 1.64e+25, b: -3.51, Ea: 8145.0}
   note: |
     FH_VINYLIC_H-ADDITION__________________________________________________________
-    WAGNON1@LLNL.GOV! A/2(DEG) AS C4H8-2+H=SC4H9 NUIG MODEL ARAMCO2.0
+    WAGNON1@LLNL.GOV! A/2(DEG) AS C4H8-2+H=SC4H9 UOG MODEL ARAMCO2.0
      FIT FROM 500-2000 K ERROR IN FIT 25%
      FIT FROM 500-2000 K ERROR IN FIT 26%
      FIT FROM 500-2000 K ERROR IN FIT 28%
@@ -38376,7 +38376,7 @@ reactions:
   - {P: 10.0 atm, A: 1.17e+33, b: -6.11, Ea: 9893.0}
   - {P: 100.0 atm, A: 1.64e+25, b: -3.51, Ea: 8145.0}
   note: |
-    WAGNON1@LLNL.GOV! A/2(DEG) AS C4H8-2+H=SC4H9 NUIG MODEL ARAMCO2.0
+    WAGNON1@LLNL.GOV! A/2(DEG) AS C4H8-2+H=SC4H9 UOG MODEL ARAMCO2.0
      FIT FROM 500-2000 K ERROR IN FIT 25%
      FIT FROM 500-2000 K ERROR IN FIT 26%
      FIT FROM 500-2000 K ERROR IN FIT 28%
@@ -38393,7 +38393,7 @@ reactions:
   - {P: 10.0 atm, A: 3.07e+23, b: -2.53, Ea: 1.4463e+04}
   - {P: 100.0 atm, A: 6.15e+19, b: -1.35, Ea: 1.5762e+04}
   note: |
-    WAGNON1@LLNL.GOV! A/2(DEG) AS C4H8-2+H=C3H6+CH3 NUIG ARAMCO2.0
+    WAGNON1@LLNL.GOV! A/2(DEG) AS C4H8-2+H=C3H6+CH3 UOG ARAMCO2.0
      FIT FROM 500-2000 K ERROR IN FIT 0%
      FIT FROM 500-2000 K ERROR IN FIT 1%
      FIT FROM 500-2000 K ERROR IN FIT 3%
@@ -38410,7 +38410,7 @@ reactions:
   - {P: 10.0 atm, A: 3.07e+23, b: -2.53, Ea: 1.4463e+04}
   - {P: 100.0 atm, A: 6.15e+19, b: -1.35, Ea: 1.5762e+04}
   note: |
-    WAGNON1@LLNL.GOV! A/2(DEG) AS C4H8-2+H=C3H6+CH3 NUIG ARAMCO2.0
+    WAGNON1@LLNL.GOV! A/2(DEG) AS C4H8-2+H=C3H6+CH3 UOG ARAMCO2.0
      FIT FROM 500-2000 K ERROR IN FIT 0%
      FIT FROM 500-2000 K ERROR IN FIT 1%
      FIT FROM 500-2000 K ERROR IN FIT 3%
@@ -39123,19 +39123,19 @@ reactions:
     !YM!!C5H6+C6H5=C5H5+C6H6                               +3.00000000E+10 +0.00000000E+00 +0.00000000E+00 !\Author: WARNING !\Ref: !WAGNON1@LLNL.GOV !ESTIMATE !\Comment: WARNING
     !YM!!C5H6+C6H5O=C5H5+C6H5OH                            +7.80000000E+11 +0.00000000E+00 +1.35440000E+04 !\Author: WARNING !\Ref: !WAGNON1@LLNL.GOV !ESTIMATE !\Comment: WARNING
     !YM!!C5H6+O2=C5H5-1+HO2                                +1.80000000E+14 +0.00000000E+00 +6.88740000E+04 !\Author: WARNING !\Ref: !WAGNON1@LLNL.GOV !A=DEG*9E+13, E=DH+2RT, T=1000K !\Comment: WARNING
-    !YM!!C5H6+H=C5H5-1+H2                                  +3.10000000E+06 +2.31000000E+00 +1.28300000E+04 !\Author: WARNING !\Ref: !WAGNON1@LLNL.GOV !A*0.5(DEG) AS C2H4+H=C2H3+H2 FROM NUIG BASE K.P.SOMERS PERSONAL COMMUNICATION WB97XD /CC-PVTZ //QCISD-T !\Comme
+    !YM!!C5H6+H=C5H5-1+H2                                  +3.10000000E+06 +2.31000000E+00 +1.28300000E+04 !\Author: WARNING !\Ref: !WAGNON1@LLNL.GOV !A*0.5(DEG) AS C2H4+H=C2H3+H2 FROM UOG BASE K.P.SOMERS PERSONAL COMMUNICATION WB97XD /CC-PVTZ //QCISD-T !\Comme
     !YM!!C5H6+O=C5H5-1+OH                                  +7.53000000E+06 +1.91000000E+00 +3.73600000E+03 !\Author: WARNING !\Ref: !WAGNON1@LLNL.GOV !A*0.5(DEG) AS C2H4+O=C2H3+OH #12 MAHMUD J.PHYS.CHEM. 91(1987) 1568-1573 !\Comment: WARNINGV
     !YM!!C5H6+OH=C5H5-1+H2O                                +6.75000000E-02 +4.20000000E+00 +8.60000000E+02 !\Author: WARNING !\Ref: !WAGNON1@LLNL.GOV !A*0.5(DEG) AS C2H4+OH=C2H3+H2O SENOSIAIN J.PHYS.CHEM.A 110(2006) 6960-6970 !\Comment: WARNING
-    !YM!!C5H6+HO2=C5H5-1+H2O2                              +9.57000000E+02 +3.05900000E+00 +2.07990000E+04 !\Author: WARNING !\Ref: !WAGNON1@LLNL.GOV !AS C3H6+HO2=C3H5-S+H2O2 NUIG BASE CALC !\Comment: WARNING
+    !YM!!C5H6+HO2=C5H5-1+H2O2                              +9.57000000E+02 +3.05900000E+00 +2.07990000E+04 !\Author: WARNING !\Ref: !WAGNON1@LLNL.GOV !AS C3H6+HO2=C3H5-S+H2O2 UOG BASE CALC !\Comment: WARNING
     !YM!!C5H6+CH3=C5H5-1+CH4                               +4.88000000E+02 +2.94700000E+00 +1.51480000E+04 !\Author: WARNING !\Ref: !WAGNON1@LLNL.GOV !A*0.5(DEG) AS C2H4+CH3=C2H3+CH4 MILLER J.PHYS.CHEM.A 117(2013) 2718-2727 !\Comment: WARNINGN
     !YM!!DUP
     !YM!!C5H6+CH3=C5H5-1+CH4                               +8.13000000E-05 +4.41700000E+00 +8.83600000E+03 !\Author: WARNING !\Ref: !WAGNON1@LLNL.GOV !A*0.5(DEG) AS C2H4+CH3=C2H3+CH4 MILLER J.PHYS.CHEM.A 117(2013) 2718-2727 !\Comment: WARNINGN
     !YM!!DUP
     !YM!!C5H6+O2=C5H5-2+HO2                                +1.80000000E+14 +0.00000000E+00 +6.88740000E+04 !\Author: WARNING !\Ref: !WAGNON1@LLNL.GOV !A=DEG*9E+13, E=DH+2RT, T=1000K !\Comment: WARNING
-    !YM!!C5H6+H=C5H5-2+H2                                  +3.10000000E+06 +2.31000000E+00 +1.28300000E+04 !\Author: WARNING !\Ref: !WAGNON1@LLNL.GOV !A*0.5(DEG) AS C2H4+H=C2H3+H2 FROM NUIG BASE K.P.SOMERS PERSONAL COMMUNICATION WB97XD /CC-PVTZ //QCISD-T !\Comme
+    !YM!!C5H6+H=C5H5-2+H2                                  +3.10000000E+06 +2.31000000E+00 +1.28300000E+04 !\Author: WARNING !\Ref: !WAGNON1@LLNL.GOV !A*0.5(DEG) AS C2H4+H=C2H3+H2 FROM UOG BASE K.P.SOMERS PERSONAL COMMUNICATION WB97XD /CC-PVTZ //QCISD-T !\Comme
     !YM!!C5H6+O=C5H5-2+OH                                  +7.53000000E+06 +1.91000000E+00 +3.73600000E+03 !\Author: WARNING !\Ref: !WAGNON1@LLNL.GOV !A*0.5(DEG) AS C2H4+O=C2H3+OH #12 MAHMUD J.PHYS.CHEM. 91(1987) 1568-1573 !\Comment: WARNINGV
     !YM!!C5H6+OH=C5H5-2+H2O                                +6.75000000E-02 +4.20000000E+00 +8.60000000E+02 !\Author: WARNING !\Ref: !WAGNON1@LLNL.GOV !A*0.5(DEG) AS C2H4+OH=C2H3+H2O SENOSIAIN J.PHYS.CHEM.A 110(2006) 6960-6970 !\Comment: WARNING
-    !YM!!C5H6+HO2=C5H5-2+H2O2                              +9.57000000E+02 +3.05900000E+00 +2.07990000E+04 !\Author: WARNING !\Ref: !WAGNON1@LLNL.GOV !AS C3H6+HO2=C3H5-S+H2O2 NUIG BASE CALC !\Comment: WARNING
+    !YM!!C5H6+HO2=C5H5-2+H2O2                              +9.57000000E+02 +3.05900000E+00 +2.07990000E+04 !\Author: WARNING !\Ref: !WAGNON1@LLNL.GOV !AS C3H6+HO2=C3H5-S+H2O2 UOG BASE CALC !\Comment: WARNING
     !YM!!C5H6+CH3=C5H5-2+CH4                               +4.88000000E+02 +2.94700000E+00 +1.51480000E+04 !\Author: WARNING !\Ref: !WAGNON1@LLNL.GOV !A*0.5(DEG) AS C2H4+CH3=C2H3+CH4 MILLER J.PHYS.CHEM.A 117(2013) 2718-2727 !\Comment: WARNINGN
     !YM!!DUP
     !YM!!C5H6+CH3=C5H5-2+CH4                               +8.13000000E-05 +4.41700000E+00 +8.83600000E+03 !\Author: WARNING !\Ref: !WAGNON1@LLNL.GOV !A*0.5(DEG) AS C2H4+CH3=C2H3+CH4 MILLER J.PHYS.CHEM.A 117(2013) 2718-2727 !\Comment: WARNINGN

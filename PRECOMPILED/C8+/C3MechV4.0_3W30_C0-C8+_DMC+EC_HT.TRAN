@@ -57,12 +57,12 @@
 ! Transport data for C3MechV4.0, generated on 21/08/2025 21:54:45.
 
 ! The following sub-modules were considered in this file:
-! - NUIG_C0_LT-HT.MECH
-! - NUIG_C1-C2_LT-HT.MECH
-! - NUIG_C3-C4_HT.MECH
-! - NUIG_C5_HT.MECH
-! - NUIG_C6_HT.MECH
-! - NUIG_C7_HT.MECH
+! - UOG_C0_LT-HT.MECH
+! - UOG_C1-C2_LT-HT.MECH
+! - UOG_C3-C4_HT.MECH
+! - UOG_C5_HT.MECH
+! - UOG_C6_HT.MECH
+! - UOG_C7_HT.MECH
 ! - LLNL_BLOCK_HT.CKI
 ! - LLNL_BLOCK_DMC_EC.CKI
 

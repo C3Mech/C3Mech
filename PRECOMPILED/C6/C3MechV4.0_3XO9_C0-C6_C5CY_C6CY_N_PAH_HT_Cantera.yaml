@@ -58,15 +58,15 @@ description: |2-
    Kinetics data for C3MechV4.0, generated on 21/08/2025 21:54:45.
 
    The following sub-modules were considered in this file:
-   - NUIG_C0_LT-HT_Cantera.MECH
-   - NUIG_C1-C2_LT-HT.MECH
-   - NUIG_C3-C4_HT.MECH
-   - NUIG_C5_HT.MECH
-   - NUIG_C5cy_HT.MECH
-   - NUIG_C6_HT.MECH
-   - NUIG_C6cy_HT.MECH
-   - NUIG_N_LT-HT.MECH
-   - NUIG_C-N_HT.MECH
+   - UOG_C0_LT-HT_Cantera.MECH
+   - UOG_C1-C2_LT-HT.MECH
+   - UOG_C3-C4_HT.MECH
+   - UOG_C5_HT.MECH
+   - UOG_C5cy_HT.MECH
+   - UOG_C6_HT.MECH
+   - UOG_C6cy_HT.MECH
+   - UOG_N_LT-HT.MECH
+   - UOG_C-N_HT.MECH
    - PAH_BLOCK.CKI
 
    MID: 3XO9
@@ -133,15 +133,15 @@ description: |2-
   Thermodynamic data for C3MechV4.0, generated on 21/08/2025 21:54:45.
 
   The following sub-modules were considered in this file:
-  - NUIG_C0_LT-HT.MECH
-  - NUIG_C1-C2_LT-HT.MECH
-  - NUIG_C3-C4_HT.MECH
-  - NUIG_C5_HT.MECH
-  - NUIG_C5cy_HT.MECH
-  - NUIG_C6_HT.MECH
-  - NUIG_C6cy_HT.MECH
-  - NUIG_N_LT-HT.MECH
-  - NUIG_C-N_HT.MECH
+  - UOG_C0_LT-HT.MECH
+  - UOG_C1-C2_LT-HT.MECH
+  - UOG_C3-C4_HT.MECH
+  - UOG_C5_HT.MECH
+  - UOG_C5cy_HT.MECH
+  - UOG_C6_HT.MECH
+  - UOG_C6cy_HT.MECH
+  - UOG_N_LT-HT.MECH
+  - UOG_C-N_HT.MECH
   - PAH_BLOCK.CKI
 
   MID: 3XO9
@@ -21181,7 +21181,7 @@ reactions:
 - equation: C2H4 + HO2 <=> C2H3 + H2O2  # Reaction 332
   rate-constant: {A: 1914.0, b: 3.059, Ea: 2.07986e+04}
   note: |
-    \Author: UB !\Ref: C3 NUIG CALCULATION J.M !\Comment: ADDED AS ANALOGY TO ABSTRACTION FROM PROPENE VINYL SITE INCREASED AX2 TO ACCOUNT FOR NO. H-ATOMS 
+    \Author: UB !\Ref: C3 UOG CALCULATION J.M !\Comment: ADDED AS ANALOGY TO ABSTRACTION FROM PROPENE VINYL SITE INCREASED AX2 TO ACCOUNT FOR NO. H-ATOMS 
 - equation: C2H4 + CH3O <=> C2H3 + CH3OH  # Reaction 333
   rate-constant: {A: 1.2e+11, b: 0.0, Ea: 6750.0}
   note: |
@@ -25015,11 +25015,11 @@ reactions:
 - equation: C3H6 + HO2 <=> C3H5-T + H2O2  # Reaction 802
   rate-constant: {A: 1.56e+04, b: 2.82, Ea: 2.44279e+04}
   note: |
-    \Author: WARNING !\Ref: C3 NUIG CALCULATION J.M !\Comment: WARNING
+    \Author: WARNING !\Ref: C3 UOG CALCULATION J.M !\Comment: WARNING
 - equation: C3H6 + O2 <=> C3H5-T + HO2  # Reaction 803
   rate-constant: {A: 1.0e+13, b: 0.0, Ea: 5.877e+04}
   note: |
-    \Author: WARNING !\Ref: ESTIMATE C3 NUIG S. M. BURKE !\Comment: WARNING
+    \Author: WARNING !\Ref: ESTIMATE C3 UOG S. M. BURKE !\Comment: WARNING
 - equation: C3H6 + CH3 <=> C3H5-T + CH4  # Reaction 804
   rate-constant: {A: 89.0, b: 3.29, Ea: 1.46e+04}
   note: |
@@ -25031,7 +25031,7 @@ reactions:
 - equation: C3H6 + O2 <=> C3H5-S + HO2  # Reaction 806
   rate-constant: {A: 2.0e+13, b: 0.0, Ea: 6.227e+04}
   note: |
-    \Author: WARNING !\Ref: ESTIMATE C3 NUIG S. M. BURKE !\Comment: WARNING
+    \Author: WARNING !\Ref: ESTIMATE C3 UOG S. M. BURKE !\Comment: WARNING
 - equation: C3H6 + O <=> C3H5-S + OH  # Reaction 807
   rate-constant: {A: 1.2e+11, b: 0.7, Ea: 8959.1}
   note: |
@@ -25039,7 +25039,7 @@ reactions:
 - equation: C3H6 + HO2 <=> C3H5-S + H2O2  # Reaction 808
   rate-constant: {A: 957.0, b: 3.059, Ea: 2.07986e+04}
   note: |
-    \Author: WARNING !\Ref: C3 NUIG CALCULATION J.M !\Comment: WARNING
+    \Author: WARNING !\Ref: C3 UOG CALCULATION J.M !\Comment: WARNING
 - equation: C3H6 + CH3 <=> C3H5-S + CH4  # Reaction 809
   rate-constant: {A: 719.0, b: 2.938, Ea: 1.3913e+04}
   note: |
@@ -46129,7 +46129,7 @@ reactions:
   - {P: 100.0 atm, A: 6.47e+24, b: -3.383, Ea: 3.4388e+04}
   - {P: 1000.0 atm, A: 2.34e+17, b: -1.123, Ea: 3.1176e+04}
   note: |
-    WAGNON1@LLNL.GOV! AS C5H11-1=NC3H7+C2H4 NUIG PLOG FOR COMANDINI CHEM.PHYS.LETT. 552 (2012) 20-26
+    WAGNON1@LLNL.GOV! AS C5H11-1=NC3H7+C2H4 UOG PLOG FOR COMANDINI CHEM.PHYS.LETT. 552 (2012) 20-26
 - equation: C3H5-A + HCO <=> AC3H5CHO  # Reaction 3391
   rate-constant: {A: 1.81e+13, b: 0.0, Ea: 0.0}
   note: |
@@ -46907,7 +46907,7 @@ reactions:
   - {P: 100.0 atm, A: 1.64e+25, b: -3.51, Ea: 8145.0}
   note: |
     FH_VINYLIC_H-ADDITION__________________________________________________________
-    WAGNON1@LLNL.GOV! A/2(DEG) AS C4H8-2+H=SC4H9 NUIG MODEL ARAMCO2.0
+    WAGNON1@LLNL.GOV! A/2(DEG) AS C4H8-2+H=SC4H9 UOG MODEL ARAMCO2.0
      FIT FROM 500-2000 K ERROR IN FIT 25%
      FIT FROM 500-2000 K ERROR IN FIT 26%
      FIT FROM 500-2000 K ERROR IN FIT 28%
@@ -46924,7 +46924,7 @@ reactions:
   - {P: 10.0 atm, A: 1.17e+33, b: -6.11, Ea: 9893.0}
   - {P: 100.0 atm, A: 1.64e+25, b: -3.51, Ea: 8145.0}
   note: |
-    WAGNON1@LLNL.GOV! A/2(DEG) AS C4H8-2+H=SC4H9 NUIG MODEL ARAMCO2.0
+    WAGNON1@LLNL.GOV! A/2(DEG) AS C4H8-2+H=SC4H9 UOG MODEL ARAMCO2.0
      FIT FROM 500-2000 K ERROR IN FIT 25%
      FIT FROM 500-2000 K ERROR IN FIT 26%
      FIT FROM 500-2000 K ERROR IN FIT 28%
@@ -46941,7 +46941,7 @@ reactions:
   - {P: 10.0 atm, A: 3.07e+23, b: -2.53, Ea: 1.4463e+04}
   - {P: 100.0 atm, A: 6.15e+19, b: -1.35, Ea: 1.5762e+04}
   note: |
-    WAGNON1@LLNL.GOV! A/2(DEG) AS C4H8-2+H=C3H6+CH3 NUIG ARAMCO2.0
+    WAGNON1@LLNL.GOV! A/2(DEG) AS C4H8-2+H=C3H6+CH3 UOG ARAMCO2.0
      FIT FROM 500-2000 K ERROR IN FIT 0%
      FIT FROM 500-2000 K ERROR IN FIT 1%
      FIT FROM 500-2000 K ERROR IN FIT 3%
@@ -46958,7 +46958,7 @@ reactions:
   - {P: 10.0 atm, A: 3.07e+23, b: -2.53, Ea: 1.4463e+04}
   - {P: 100.0 atm, A: 6.15e+19, b: -1.35, Ea: 1.5762e+04}
   note: |
-    WAGNON1@LLNL.GOV! A/2(DEG) AS C4H8-2+H=C3H6+CH3 NUIG ARAMCO2.0
+    WAGNON1@LLNL.GOV! A/2(DEG) AS C4H8-2+H=C3H6+CH3 UOG ARAMCO2.0
      FIT FROM 500-2000 K ERROR IN FIT 0%
      FIT FROM 500-2000 K ERROR IN FIT 1%
      FIT FROM 500-2000 K ERROR IN FIT 3%
@@ -47671,19 +47671,19 @@ reactions:
     !YM!!C5H6+C6H5=C5H5+C6H6                               +3.00000000E+10 +0.00000000E+00 +0.00000000E+00 !\Author: WARNING !\Ref: !WAGNON1@LLNL.GOV !ESTIMATE !\Comment: WARNING
     !YM!!C5H6+C6H5O=C5H5+C6H5OH                            +7.80000000E+11 +0.00000000E+00 +1.35440000E+04 !\Author: WARNING !\Ref: !WAGNON1@LLNL.GOV !ESTIMATE !\Comment: WARNING
     !YM!!C5H6+O2=C5H5-1+HO2                                +1.80000000E+14 +0.00000000E+00 +6.88740000E+04 !\Author: WARNING !\Ref: !WAGNON1@LLNL.GOV !A=DEG*9E+13, E=DH+2RT, T=1000K !\Comment: WARNING
-    !YM!!C5H6+H=C5H5-1+H2                                  +3.10000000E+06 +2.31000000E+00 +1.28300000E+04 !\Author: WARNING !\Ref: !WAGNON1@LLNL.GOV !A*0.5(DEG) AS C2H4+H=C2H3+H2 FROM NUIG BASE K.P.SOMERS PERSONAL COMMUNICATION WB97XD /CC-PVTZ //QCISD-T !\Comme
+    !YM!!C5H6+H=C5H5-1+H2                                  +3.10000000E+06 +2.31000000E+00 +1.28300000E+04 !\Author: WARNING !\Ref: !WAGNON1@LLNL.GOV !A*0.5(DEG) AS C2H4+H=C2H3+H2 FROM UOG BASE K.P.SOMERS PERSONAL COMMUNICATION WB97XD /CC-PVTZ //QCISD-T !\Comme
     !YM!!C5H6+O=C5H5-1+OH                                  +7.53000000E+06 +1.91000000E+00 +3.73600000E+03 !\Author: WARNING !\Ref: !WAGNON1@LLNL.GOV !A*0.5(DEG) AS C2H4+O=C2H3+OH #12 MAHMUD J.PHYS.CHEM. 91(1987) 1568-1573 !\Comment: WARNINGV
     !YM!!C5H6+OH=C5H5-1+H2O                                +6.75000000E-02 +4.20000000E+00 +8.60000000E+02 !\Author: WARNING !\Ref: !WAGNON1@LLNL.GOV !A*0.5(DEG) AS C2H4+OH=C2H3+H2O SENOSIAIN J.PHYS.CHEM.A 110(2006) 6960-6970 !\Comment: WARNING
-    !YM!!C5H6+HO2=C5H5-1+H2O2                              +9.57000000E+02 +3.05900000E+00 +2.07990000E+04 !\Author: WARNING !\Ref: !WAGNON1@LLNL.GOV !AS C3H6+HO2=C3H5-S+H2O2 NUIG BASE CALC !\Comment: WARNING
+    !YM!!C5H6+HO2=C5H5-1+H2O2                              +9.57000000E+02 +3.05900000E+00 +2.07990000E+04 !\Author: WARNING !\Ref: !WAGNON1@LLNL.GOV !AS C3H6+HO2=C3H5-S+H2O2 UOG BASE CALC !\Comment: WARNING
     !YM!!C5H6+CH3=C5H5-1+CH4                               +4.88000000E+02 +2.94700000E+00 +1.51480000E+04 !\Author: WARNING !\Ref: !WAGNON1@LLNL.GOV !A*0.5(DEG) AS C2H4+CH3=C2H3+CH4 MILLER J.PHYS.CHEM.A 117(2013) 2718-2727 !\Comment: WARNINGN
     !YM!!DUP
     !YM!!C5H6+CH3=C5H5-1+CH4                               +8.13000000E-05 +4.41700000E+00 +8.83600000E+03 !\Author: WARNING !\Ref: !WAGNON1@LLNL.GOV !A*0.5(DEG) AS C2H4+CH3=C2H3+CH4 MILLER J.PHYS.CHEM.A 117(2013) 2718-2727 !\Comment: WARNINGN
     !YM!!DUP
     !YM!!C5H6+O2=C5H5-2+HO2                                +1.80000000E+14 +0.00000000E+00 +6.88740000E+04 !\Author: WARNING !\Ref: !WAGNON1@LLNL.GOV !A=DEG*9E+13, E=DH+2RT, T=1000K !\Comment: WARNING
-    !YM!!C5H6+H=C5H5-2+H2                                  +3.10000000E+06 +2.31000000E+00 +1.28300000E+04 !\Author: WARNING !\Ref: !WAGNON1@LLNL.GOV !A*0.5(DEG) AS C2H4+H=C2H3+H2 FROM NUIG BASE K.P.SOMERS PERSONAL COMMUNICATION WB97XD /CC-PVTZ //QCISD-T !\Comme
+    !YM!!C5H6+H=C5H5-2+H2                                  +3.10000000E+06 +2.31000000E+00 +1.28300000E+04 !\Author: WARNING !\Ref: !WAGNON1@LLNL.GOV !A*0.5(DEG) AS C2H4+H=C2H3+H2 FROM UOG BASE K.P.SOMERS PERSONAL COMMUNICATION WB97XD /CC-PVTZ //QCISD-T !\Comme
     !YM!!C5H6+O=C5H5-2+OH                                  +7.53000000E+06 +1.91000000E+00 +3.73600000E+03 !\Author: WARNING !\Ref: !WAGNON1@LLNL.GOV !A*0.5(DEG) AS C2H4+O=C2H3+OH #12 MAHMUD J.PHYS.CHEM. 91(1987) 1568-1573 !\Comment: WARNINGV
     !YM!!C5H6+OH=C5H5-2+H2O                                +6.75000000E-02 +4.20000000E+00 +8.60000000E+02 !\Author: WARNING !\Ref: !WAGNON1@LLNL.GOV !A*0.5(DEG) AS C2H4+OH=C2H3+H2O SENOSIAIN J.PHYS.CHEM.A 110(2006) 6960-6970 !\Comment: WARNING
-    !YM!!C5H6+HO2=C5H5-2+H2O2                              +9.57000000E+02 +3.05900000E+00 +2.07990000E+04 !\Author: WARNING !\Ref: !WAGNON1@LLNL.GOV !AS C3H6+HO2=C3H5-S+H2O2 NUIG BASE CALC !\Comment: WARNING
+    !YM!!C5H6+HO2=C5H5-2+H2O2                              +9.57000000E+02 +3.05900000E+00 +2.07990000E+04 !\Author: WARNING !\Ref: !WAGNON1@LLNL.GOV !AS C3H6+HO2=C3H5-S+H2O2 UOG BASE CALC !\Comment: WARNING
     !YM!!C5H6+CH3=C5H5-2+CH4                               +4.88000000E+02 +2.94700000E+00 +1.51480000E+04 !\Author: WARNING !\Ref: !WAGNON1@LLNL.GOV !A*0.5(DEG) AS C2H4+CH3=C2H3+CH4 MILLER J.PHYS.CHEM.A 117(2013) 2718-2727 !\Comment: WARNINGN
     !YM!!DUP
     !YM!!C5H6+CH3=C5H5-2+CH4                               +8.13000000E-05 +4.41700000E+00 +8.83600000E+03 !\Author: WARNING !\Ref: !WAGNON1@LLNL.GOV !A*0.5(DEG) AS C2H4+CH3=C2H3+CH4 MILLER J.PHYS.CHEM.A 117(2013) 2718-2727 !\Comment: WARNINGN
@@ -59005,8 +59005,8 @@ reactions:
   - {P: 10.0 atm, A: 1.69e+16, b: -1.03, Ea: 8967.0}
   - {P: 100.0 atm, A: 1.65e+16, b: -1.01, Ea: 9480.0}
   note: |
-    C4H5-2+C2H=C3H3+C3H3                            +4.00000000E+012 +0.00000000E+000 +0.00000000E+000 ! NUIG \Author: WARNING !\Ref: WARNING !\Comment: WARNING 
-    C4H5-2+C2H2=C6H6+H                                +8.12000000E+019 -3.02900000E+000 +1.35850000E+004 ! NUIG \Author: SN !\Ref: WARNING !\Comment: WARNING 
+    C4H5-2+C2H=C3H3+C3H3                            +4.00000000E+012 +0.00000000E+000 +0.00000000E+000 ! UOG \Author: WARNING !\Ref: WARNING !\Comment: WARNING 
+    C4H5-2+C2H2=C6H6+H                                +8.12000000E+019 -3.02900000E+000 +1.35850000E+004 ! UOG \Author: SN !\Ref: WARNING !\Comment: WARNING 
     \REF: !\COMMENT: !REF: SENOSIAIN J. P., AND MILLER, J. A., JPCA, 2007, 111, 3740-3747.
 - equation: C4H5-I + C2H2 <=> C6H6 + H  # Reaction 5970
   type: pressure-dependent-Arrhenius
@@ -59068,7 +59068,7 @@ reactions:
 - equation: C5H6 + C5H5 => C4H5-I + C6H6  # Reaction 5977
   rate-constant: {A: 1.2e+13, b: 0.0, Ea: 2.55e+04}
   note: |2
-     other formation reactions - NUIG
+     other formation reactions - UOG
     \REACTIONCLASS: AROMATIC_GROWTH
     C3H3+C3H3=FULVENE                                 +2.81000000E+060 -1.39000000E+001 +2.71000000E+004 !\Author: WARNING !\Ref: WARNING !\Comment: WARNING 
     PLOG /                           +3.95000000E-002 +1.17000000E+069 -1.70000000E+001 +2.59000000E+004 /
@@ -59354,24 +59354,24 @@ reactions:
   note: |
     C-C6H4+C4H2=C10H6/C6H4(C2H)2 MISSING PRODS
     ****************************************************
-     C-C6H4 L-C6H4 NUIG
-     FROM NUIG \Author: WARNING !\Ref: LASKIN ET AL. IJCK 32 589-614 2000 !\Comment: WARNING 
+     C-C6H4 L-C6H4 UOG
+     FROM UOG \Author: WARNING !\Ref: LASKIN ET AL. IJCK 32 589-614 2000 !\Comment: WARNING 
 - equation: C4H3-N + C2H2 <=> L-C6H4 + H  # Reaction 6017
   rate-constant: {A: 2.5e+14, b: -0.56, Ea: 1.06e+04}
   note: |
-    FROM NUIG \Author: WARNING !\Ref: LASKIN ET AL. IJCK 32 589-614 2000 !\Comment: WARNING 
+    FROM UOG \Author: WARNING !\Ref: LASKIN ET AL. IJCK 32 589-614 2000 !\Comment: WARNING 
 - equation: C4H3-N + C2H2 <=> C-C6H4 + H  # Reaction 6018
   rate-constant: {A: 6.9e+46, b: -10.01, Ea: 3.01e+04}
   note: |
-    FROM NUIG \Author: MADDEN ET AL., JPCA, 101(1997), 6790-6797
+    FROM UOG \Author: MADDEN ET AL., JPCA, 101(1997), 6790-6797
 - equation: C4H2 + C2H <=> C6H2 + H  # Reaction 6019
   rate-constant: {A: 9.6e+13, b: 0.0, Ea: 0.0}
   note: |
-    FROM NUIG \Author: WARNING !\Ref: LASKIN ET AL. IJCK 32 589-614 2000 !\Comment: WARNING 
+    FROM UOG \Author: WARNING !\Ref: LASKIN ET AL. IJCK 32 589-614 2000 !\Comment: WARNING 
 - equation: C4H2 + C2H <=> C6H3  # Reaction 6020
   rate-constant: {A: 4.5e+37, b: -7.68, Ea: 7100.0}
   note: |
-    FROM NUIG \Author: WARNING !\Ref: LASKIN ET AL. IJCK 32 589-614 2000 !\Comment: WARNING 
+    FROM UOG \Author: WARNING !\Ref: LASKIN ET AL. IJCK 32 589-614 2000 !\Comment: WARNING 
 - equation: L-C6H4 + H <=> C-C6H4 + H  # Reaction 6021
   rate-constant: {A: 1.4e+54, b: -11.7, Ea: 3.45e+04}
   note: |
@@ -60508,7 +60508,7 @@ reactions:
 - equation: C3H5-A + C2H3 => C5H6 + H + H  # Reaction 6181
   rate-constant: {A: 1.6e+35, b: -14.0, Ea: 6.11e+04}
   note: |
-    FROM NUIG \Author: WARNING !\Ref: CURRAN ESTIMATE !\Comment: WARNING 
+    FROM UOG \Author: WARNING !\Ref: CURRAN ESTIMATE !\Comment: WARNING 
 - equation: C5H6 + O2 <=> C5H5 + HO2  # Reaction 6182
   rate-constant: {A: 8.0e+13, b: 0.0, Ea: 3.715e+04}
   note: |2
@@ -61388,7 +61388,7 @@ reactions:
 - equation: C5H3O-3 => C4H3-N + CO  # Reaction 6281
   rate-constant: {A: 3.6e+10, b: 1.15, Ea: 2.37e+04}
   note: |
-    FROM NUIG
+    FROM UOG
     \Author: WARNING !\Ref: !WAGNON1@LLNL.GOV ![ASSUME C#CCVCCJVO=C4H3-N+CO] TABLE 9 HPL YOMMEE J.PHYS.CHEM.A 120(2016) 433-451 !\Comment: WARNING 
 - equation: C5H3O-3 + O2 <=> C5H3O-3O + O  # Reaction 6282
   type: pressure-dependent-Arrhenius
@@ -61465,11 +61465,11 @@ reactions:
     !LPM REMOVED, BELONGS TO C5 BLOCK!!C5H8D14+H=C3H5-A+C2H4                  1.600e+22   -2.390  11179.97
     !LPM REMOVED, BELONGS TO C5 BLOCK!!C5H8D14+H=C4H6+CH3                     2.000e+12    0.000   7000.00
      ITV
-    DUP, BW IN NUIG_BLOCK!CVCCJCVC+H(+M)=C5H81-3(+M)             2.000e+14    0.000      0.00
+    DUP, BW IN UOG_BLOCK!CVCCJCVC+H(+M)=C5H81-3(+M)             2.000e+14    0.000      0.00
     AR/0.70/ H2/2.00/ H2O/6.00/ CO/1.50/ CO2/2.00/ CH4/2.00/ C2H6/3.00/ 
          LOW  /  1.330e+60  -12.000   5967.97 /
          TROE/    0.02     1097      1097      6860 /
-    _______________________ CYC5H7 PES - LPM UPDATED WITH MOST RECENT NUIG MECH - ALSO INCLUDES CYC5H71-4
+    _______________________ CYC5H7 PES - LPM UPDATED WITH MOST RECENT UOG MECH - ALSO INCLUDES CYC5H71-4
     LPM ALL ENTRANCE CHANNELS /2 TO FIX JSR; TO WELLS /2.5
     !	Q.	Mao,	L.	Cai,	H.	Pitsch,	Combustion	and	Flame	222	-2020	423-433
 - equation: C5H6 + H <=> CYC5H71-4  # Reaction 6297
@@ -61717,14 +61717,14 @@ reactions:
 - equation: C3H5-A + C4H8-1 <=> C2H5 + CYC5H8  # Reaction 6320
   rate-constant: {A: 2.0e+10, b: 0.0, Ea: 1.5e+04}
   note: |
-    !LPM REPLACED WITH NUIG PDEP PATHS SEE BELOW!!C2H3+C3H6=>H+CYC5H8                                     6.0000e+10    0.000      6000.00
+    !LPM REPLACED WITH UOG PDEP PATHS SEE BELOW!!C2H3+C3H6=>H+CYC5H8                                     6.0000e+10    0.000      6000.00
 - equation: CYC5H71-4 + H <=> CYC5H8  # Reaction 6321
   rate-constant: {A: 1.0e+14, b: 0.0, Ea: 0.0}
   note: |
     _____________ UNIMOLECULAR DECOMPOSITION
-    !LPM REPLACE WITH NUIG SEE BELOW!!CYC5H8=>H+CYC5H71-3                                     3.0000e+15    0.000     86000.00
-    !LPM MOVED TO NUIG!!CYC5H8=>C5H8D14                                         5.0000e+15    0.000     86000.00 !WARNING NOT IN NUIG ORIGINALLY
-    !LPM REPLACE WITH NUIG SEE BELOW!!CYC5H8=H2+C5H6                                          5.0000e+12    0.000     58000.00
+    !LPM REPLACE WITH UOG SEE BELOW!!CYC5H8=>H+CYC5H71-3                                     3.0000e+15    0.000     86000.00
+    !LPM MOVED TO UOG!!CYC5H8=>C5H8D14                                         5.0000e+15    0.000     86000.00 !WARNING NOT IN UOG ORIGINALLY
+    !LPM REPLACE WITH UOG SEE BELOW!!CYC5H8=H2+C5H6                                          5.0000e+12    0.000     58000.00
     \Author: WARNING !\Ref: !WAGNON1@LLNL.GOV !ALKYL ESTIMATE !\Comment: WARNING 
 - equation: CYC5H71-3 + H <=> CYC5H8  # Reaction 6322
   rate-constant: {A: 2.0e+14, b: 0.0, Ea: 0.0}
@@ -61745,9 +61745,9 @@ reactions:
   - {P: 100.0 atm, A: 4.08e+68, b: -15.225, Ea: 6.6454e+04}
   note: |
     ______________ ADD - DECOMPOSITION
-    !LPM PUT WS CHNL FROM NUIG FOR CONSISTENCY!!H+CYC5H8=>C2H4+C3H5-A                                   5.0000e+13    0.000      3000.00
+    !LPM PUT WS CHNL FROM UOG FOR CONSISTENCY!!H+CYC5H8=>C2H4+C3H5-A                                   5.0000e+13    0.000      3000.00
     !LPM REMOVED - OVERLAPS WITH LT REACTIVITY, BUT AT LT MUCH SLOWER!!OH+CYC5H8=>H+C2H4+C2H3CHO                               1.0000e+13    0.000         0.00
-    WELLSKIPPING CHANNELS FROM NUIG BLOCK
+    WELLSKIPPING CHANNELS FROM UOG BLOCK
     \Author: WARNING !\Ref: !WAGNON1@LLNL.GOV !AS FIT TO CHEB IN SUPP.MAT. WANG COMBUST.FLAME 162(2015) 4456-4470 !\Comment: WARNING 
 - equation: CYC5H8 + H <=> C2H5 + C3H4-P  # Reaction 6325
   type: pressure-dependent-Arrhenius
@@ -61814,7 +61814,7 @@ reactions:
   rate-constant: {A: 1.8e+14, b: 0.0, Ea: 5.2904e+04}
   note: |
     _______________ H ABSTRACTIONS
-     FROM NUIG
+     FROM UOG
     \Author: WARNING !\Ref: !WAGNON1@LLNL.GOV !A=DEG*9E+13, E=DH298+2RT, T=1000K !\Comment: WARNING 
 - equation: CYC5H8 + H <=> CYC5H71-4 + H2  # Reaction 6333
   rate-constant: {A: 3.52e+06, b: 2.0, Ea: 4600.0}
@@ -61879,15 +61879,15 @@ reactions:
 - equation: 2 CYC5H8 => C2H4 + C3H5-A + CYC5H71-3  # Reaction 6348
   rate-constant: {A: 2.5e+14, b: 0.0, Ea: 4.5e+04}
   note: |
-    !LPM MAIN ABSTRACTORS REPLACED WITH NUIG!!O2+CYC5H8=>HO2+CYC5H71-3                                     2.3850e+07    2.000     40722.49
-    !LPM MAIN ABSTRACTORS REPLACED WITH NUIG!!H+CYC5H8=>H2+CYC5H71-3                                       3.3690e+07    2.000      3950.57
-    !LPM MAIN ABSTRACTORS REPLACED WITH NUIG!!O+CYC5H8=>OH+CYC5H71-3                                       1.8950e+07    2.000      2579.54
-    !LPM MAIN ABSTRACTORS REPLACED WITH NUIG!!OH+CYC5H8=>H2O+CYC5H71-3                                     5.5920e+06    2.000     -2259.83
-    !LPM MAIN ABSTRACTORS REPLACED WITH NUIG!!HO2+CYC5H8=>H2O2+CYC5H71-3                                   7.5430e+05    2.000     11887.73
-    !LPM MAIN ABSTRACTORS REPLACED WITH NUIG!!CH3+CYC5H8=>CH4+CYC5H71-3                                    5.4640e+05    2.000      4871.29
-    !LPM MAIN ABSTRACTORS REPLACED WITH NUIG!!C2H3+CYC5H8=>C2H4+CYC5H71-3                                  9.4960e+05    2.000      4871.29
-    !LPM MAIN ABSTRACTORS REPLACED WITH NUIG!!C3H5-A+CYC5H8=>C3H6+CYC5H71-3                                7.5430e+05    2.000     12833.61
-    !LPM MAIN ABSTRACTORS REPLACED WITH NUIG!!CH3O2+CYC5H8=>CH3O2H+CYC5H71-3                               1.0650e+06    2.000     12360.44
+    !LPM MAIN ABSTRACTORS REPLACED WITH UOG!!O2+CYC5H8=>HO2+CYC5H71-3                                     2.3850e+07    2.000     40722.49
+    !LPM MAIN ABSTRACTORS REPLACED WITH UOG!!H+CYC5H8=>H2+CYC5H71-3                                       3.3690e+07    2.000      3950.57
+    !LPM MAIN ABSTRACTORS REPLACED WITH UOG!!O+CYC5H8=>OH+CYC5H71-3                                       1.8950e+07    2.000      2579.54
+    !LPM MAIN ABSTRACTORS REPLACED WITH UOG!!OH+CYC5H8=>H2O+CYC5H71-3                                     5.5920e+06    2.000     -2259.83
+    !LPM MAIN ABSTRACTORS REPLACED WITH UOG!!HO2+CYC5H8=>H2O2+CYC5H71-3                                   7.5430e+05    2.000     11887.73
+    !LPM MAIN ABSTRACTORS REPLACED WITH UOG!!CH3+CYC5H8=>CH4+CYC5H71-3                                    5.4640e+05    2.000      4871.29
+    !LPM MAIN ABSTRACTORS REPLACED WITH UOG!!C2H3+CYC5H8=>C2H4+CYC5H71-3                                  9.4960e+05    2.000      4871.29
+    !LPM MAIN ABSTRACTORS REPLACED WITH UOG!!C3H5-A+CYC5H8=>C3H6+CYC5H71-3                                7.5430e+05    2.000     12833.61
+    !LPM MAIN ABSTRACTORS REPLACED WITH UOG!!CH3O2+CYC5H8=>CH3O2H+CYC5H71-3                               1.0650e+06    2.000     12360.44
     other Habs rxns - keep only for more stable radical
 - equation: C2H5 + CYC5H8 => C2H6 + CYC5H71-3  # Reaction 6349
   rate-constant: {A: 3.218e+05, b: 2.0, Ea: 7658.07}
@@ -63642,7 +63642,7 @@ reactions:
   note: |
     ! From C2H4 (x0.5)
     ! Full rate for O-addition
-    LPM *2 from NUIG tuning of toluene LBV
+    LPM *2 from UOG tuning of toluene LBV
 - equation: C6H5C2H3 + O <=> C6H5CHCH + OH  # Reaction 6587
   rate-constant: {A: 1.2e+11, b: 0.7, Ea: 8960.0}
   note: |
@@ -64992,7 +64992,7 @@ reactions:
     \REACTIONCLASS: \HABS                      !!! Abstractions, generated R+ !!!!   NB ONLY RADICALS ABSTRACTING DIRECTLY ON PHENOL/PHENOXY
      ***************************** R+C6H5OH=>RH+C6H4OH   ********* 
     \REACTIONCLASS: \HABS
-    C0C4  abstracting radicals  NUIG
+    C0C4  abstracting radicals  UOG
         ****computed*******
     meta
 - equation: C6H5OH + H <=> C6H4OH + H2  # Reaction 6814
@@ -65292,7 +65292,7 @@ reactions:
   rate-constant: {A: 1.08e+05, b: 2.0, Ea: 2.0087125e+04}
   note: |
     \REACTIONCLASS: \HABS
-    To be connected with NUIG
+    To be connected with UOG
     C6H5O AS ABSTRACTOR ON C0-C4
 - equation: C6H5O + C3H4-A => C3H3 + C6H5OH  # Reaction 6894
   rate-constant: {A: 3.24e+06, b: 2.0, Ea: 1.9916952e+04}
@@ -66183,7 +66183,7 @@ reactions:
     \REACTIONCLASS: \HABS                      !!! Abstractions, generated R+ !!!!
      *R+C6H5CH3=>RH+C6H4CH3                         HNUMBER=5   HTYPE=7                              ! Only abstracting radicals that are/might be relevant according to me, and cross reactions with other modules
     \REACTIONCLASS: \HABS
-    C0C4  abstracting radicals  NUIG
+    C0C4  abstracting radicals  UOG
 - equation: C2H5 + C6H5CH3 => C2H6 + C6H4CH3  # Reaction 7096
   rate-constant: {A: 2.0e+05, b: 2.0, Ea: 1.233009e+04}
 - equation: C3H5-S + C6H5CH3 => C3H6 + C6H4CH3  # Reaction 7097
@@ -66243,7 +66243,7 @@ reactions:
     \REACTIONCLASS: \HABS
      *R+C6H5CH3=>RH+C6H5CH2                            HNUMBER=3   HTYPE=1
     \REACTIONCLASS: \HABS
-    C0C4 abstracting radicals   NUIG
+    C0C4 abstracting radicals   UOG
 - equation: C2H5 + C6H5CH3 => C2H6 + C6H5CH2  # Reaction 7117
   rate-constant: {A: 6.0e+04, b: 2.0, Ea: 7090.53}
 - equation: C3H5-S + C6H5CH3 => C3H6 + C6H5CH2  # Reaction 7118
@@ -66381,7 +66381,7 @@ reactions:
      For the moment I leave those H-abstractions by C6H5CH2 here below commented. Only those that might be relevant for us (HT species, for example no H-abstractions on LT species or oxygenated fuels, or e-fuels like Liming calls them :) 
      some ****LUMPED**** reactions
     \REACTIONCLASS: \HABS
-    To be connected with NUIG
+    To be connected with UOG
 - equation: HOCHO + C6H5CH2 => OH + CO + C6H5CH3  # Reaction 7151
   rate-constant: {A: 6750.0, b: 2.0, Ea: 1.919053e+04}
 - equation: HOCHO + C6H5CH2 => H + CO2 + C6H5CH3  # Reaction 7152
@@ -67666,7 +67666,7 @@ reactions:
 - equation: C3H5-A + C4H2 => C6H5CH2  # Reaction 7341
   rate-constant: {A: 2.0e+11, b: 0.0, Ea: 1.5e+04}
   note: |
-    !!!!!!! To be connected with C0C4 from NUIG!!!!!!!!!!!!!!!!!!!!! 
+    !!!!!!! To be connected with C0C4 from UOG!!!!!!!!!!!!!!!!!!!!! 
 - equation: C4H4 + C3H3 <=> C7H6 + H  # Reaction 7342
   type: pressure-dependent-Arrhenius
   rate-constants:
@@ -68116,7 +68116,7 @@ reactions:
 - equation: IC4H7 + IC4H8 => C6H5CH3 + CH3 + 2.0 H2  # Reaction 7429
   rate-constant: {A: 1.2e+09, b: 0.0, Ea: 2.05e+04}
   note: |
-    !!!!!!! To be connected with C0C4 from NUIG!!!!!!!!!!!!!!!!!!!!!
+    !!!!!!! To be connected with C0C4 from UOG!!!!!!!!!!!!!!!!!!!!!
     ! RL A*0.1            !!!!! ****LUMPED****
 - equation: IC4H7 + IC4H7 => C6H5CH3 + H + CH3 + H2  # Reaction 7430
   rate-constant: {A: 1.0e+09, b: 0.0, Ea: 6000.0}

@@ -58,8 +58,8 @@ description: |2-
    Kinetics data for C3MechV4.0, generated on 21/08/2025 21:54:45.
 
    The following sub-modules were considered in this file:
-   - NUIG_C0_LT-HT_Cantera.MECH
-   - NUIG_C1-C2_LT-HT.MECH
+   - UOG_C0_LT-HT_Cantera.MECH
+   - UOG_C1-C2_LT-HT.MECH
 
    MID: 3DI0
    number of species: 101
@@ -125,8 +125,8 @@ description: |2-
   Thermodynamic data for C3MechV4.0, generated on 21/08/2025 21:54:45.
 
   The following sub-modules were considered in this file:
-  - NUIG_C0_LT-HT.MECH
-  - NUIG_C1-C2_LT-HT.MECH
+  - UOG_C0_LT-HT.MECH
+  - UOG_C1-C2_LT-HT.MECH
 
   MID: 3DI0
 
@@ -4156,7 +4156,7 @@ reactions:
 - equation: C2H4 + HO2 <=> C2H3 + H2O2  # Reaction 327
   rate-constant: {A: 1914.0, b: 3.059, Ea: 2.07986e+04}
   note: |
-    \Author: UB !\Ref: C3 NUIG CALCULATION J.M !\Comment: ADDED AS ANALOGY TO ABSTRACTION FROM PROPENE VINYL SITE INCREASED AX2 TO ACCOUNT FOR NO. H-ATOMS 
+    \Author: UB !\Ref: C3 UOG CALCULATION J.M !\Comment: ADDED AS ANALOGY TO ABSTRACTION FROM PROPENE VINYL SITE INCREASED AX2 TO ACCOUNT FOR NO. H-ATOMS 
 - equation: C2H4 + CH3O <=> C2H3 + CH3OH  # Reaction 328
   rate-constant: {A: 1.2e+11, b: 0.0, Ea: 6750.0}
   note: |

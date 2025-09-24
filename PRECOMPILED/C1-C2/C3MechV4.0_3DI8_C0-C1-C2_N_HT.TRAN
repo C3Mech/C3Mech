@@ -57,10 +57,10 @@
 ! Transport data for C3MechV4.0, generated on 21/08/2025 21:54:45.
 
 ! The following sub-modules were considered in this file:
-! - NUIG_C0_LT-HT.MECH
-! - NUIG_C1-C2_LT-HT.MECH
-! - NUIG_N_LT-HT.MECH
-! - NUIG_C-N_HT.MECH
+! - UOG_C0_LT-HT.MECH
+! - UOG_C1-C2_LT-HT.MECH
+! - UOG_N_LT-HT.MECH
+! - UOG_C-N_HT.MECH
 
 ! MID: 3DI8
 HE                    0       11.44      2.71      0.00      0.20      2.00

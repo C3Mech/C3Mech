@@ -242,7 +242,7 @@ def print_markdown_table(readme,
   count = 0
   for combo in sorted_combos:
     s = set(combo)
-    n_col_check = (YES if "NUIG_N" in s else NO)
+    n_col_check = (YES if "UOG_N" in s else NO)
 
     row_cells = []
     for i, (key, _) in enumerate(columns_aux):
@@ -256,7 +256,7 @@ def print_markdown_table(readme,
         tmp = sorted_mid[count]
         row_cells.append(f"{tmp:^{col_widths[i]}}")  # center align
       else:
-        if key == "NUIG_N":
+        if key == "UOG_N":
           cell = n_col_check
         else:
           cell = YES if key in s else NO
@@ -277,7 +277,7 @@ def print_markdown_table(readme,
   # count = 0
   # for combo in combos:
   #   s = set(combo)
-  #   n_col_check = (YES if "NUIG_N" in s else NO)
+  #   n_col_check = (YES if "UOG_N" in s else NO)
 
   #   row_cells = []
   #   for i, (key, _) in enumerate(columns_aux):
@@ -288,7 +288,7 @@ def print_markdown_table(readme,
   #       tmp = counters["NR"][count]
   #       row_cells.append(f"{tmp:^{col_widths[i]}}")  # center align
   #     else:
-  #       if key == "NUIG_N":
+  #       if key == "UOG_N":
   #         cell = n_col_check
   #       else:
   #         cell = YES if key in s else NO

@@ -58,7 +58,7 @@ description: |2-
    Kinetics data for C3MechV4.0, generated on 21/08/2025 21:54:45.
 
    The following sub-modules were considered in this file:
-   - NUIG_C0_LT-HT_Cantera.MECH
+   - UOG_C0_LT-HT_Cantera.MECH
 
    MID: 2900
    number of species: 16
@@ -124,7 +124,7 @@ description: |2-
   Thermodynamic data for C3MechV4.0, generated on 21/08/2025 21:54:45.
 
   The following sub-modules were considered in this file:
-  - NUIG_C0_LT-HT.MECH
+  - UOG_C0_LT-HT.MECH
 
   MID: 2900
 

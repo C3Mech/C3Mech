@@ -57,8 +57,8 @@
 ! Kinetics data for C3MechV4.0, generated on 21/08/2025 21:54:45.
 
 ! The following sub-modules were considered in this file:
-! - NUIG_C0_LT-HT.MECH
-! - NUIG_N_LT-HT.MECH
+! - UOG_C0_LT-HT.MECH
+! - UOG_N_LT-HT.MECH
 
 ! MID: 2906
 ! number of species: 43
