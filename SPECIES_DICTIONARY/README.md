@@ -1,5 +1,7 @@
 # Species dictionary
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 All species in the C3MechV4.0 are defined in `species_dict.csv`. This CSV file has
 seven columns with the following meanings:
 - `model_name`: name used in the CHEMKIN files (upper case ASCII string)
