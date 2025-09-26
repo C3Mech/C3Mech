@@ -1,5 +1,7 @@
 # Mechanism compilation
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 This directory provides the workflow to compile sub-modules into CHEMKIN and Cantera YAML format.
 
 ## How to use
