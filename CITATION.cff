@@ -1,0 +1,48 @@
+cff-version: 1.2.0
+message: "If you use this work, please cite the following article."
+title: "Modeling combustion chemistry using C3MechV4.0: An extension to mixtures of hydrogen, ammonia, alkanes, and cycloalkanes"
+preferred-citation:
+  type: article
+  title: "Modeling combustion chemistry using C3MechV4.0: An extension to mixtures of hydrogen, ammonia, alkanes, and cycloalkanes"
+  authors:
+    - family-names: Pratali Maffei
+      given-names: Luna
+    - family-names: Langer
+      given-names: Raymond
+    - family-names: Murakami
+      given-names: Yuki
+    - family-names: Wagnon
+      given-names: Scott W.
+    - family-names: Wang
+      given-names: Pengzhi
+    - family-names: Liu
+      given-names: Jiaxin
+    - family-names: Raza
+      given-names: Mohsin
+    - family-names: Zhu
+      given-names: Yuxiang
+    - family-names: Girhe
+      given-names: Sanket
+    - family-names: Schwenzer
+      given-names: Christian
+    - family-names: Beeckmann
+      given-names: Joachim
+    - family-names: Klippenstein
+      given-names: Stephen J.
+    - family-names: Faravelli
+      given-names: Tiziano
+    - family-names: Pitsch
+      given-names: Heinz
+    - family-names: Senecal
+      given-names: Peter Kelly
+    - family-names: Curran
+      given-names: Henry J.
+  year: 2025
+  journal: Applications in Energy and Combustion Science
+  volume: 24
+  start: 100385
+  doi: 10.1016/j.jaecs.2025.100385
+  url: https://www.sciencedirect.com/science/article/pii/S2666352X25000664
+  identifiers:
+    - type: issn
+      value: 2666-352X
