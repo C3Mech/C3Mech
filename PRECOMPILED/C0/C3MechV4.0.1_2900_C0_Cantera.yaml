@@ -1,0 +1,760 @@
+description: |2-
+   ================================================================================================== !
+                                                                                                      !
+              Modeling Combustion Chemistry using C3MechV4.0.1: an extension to mixtures of           !
+                              hydrogen, ammonia, alkanes, and cycloalkanes                            !
+                                                                                                      !
+   ================================================================================================== !
+                                                                                                      !
+   This work was performed by the Computational Chemistry Consortium (C3), a collaborative research   !
+   organization including the University of Galway, Politecnico di Milano, RWTH Aachen University,    !
+   Lawrence Livermore National Laboratory, Argonne National Laboratory, and Convergent Science.       !
+                                                                                                      !
+   C3MechV4.0.1 is available from the github repository:                                              !
+   https://github.com/C3Mech/C3MechV4.0                                                               !
+                                                                                                      !
+   For more information, please visit fuelmech.org.                                                   !
+                                                                                                      !
+   ================================ Working Groups For C3MechV4.0.1 ================================= !
+
+                                                                                                      !
+   Author                  | Institution                                                              !
+   -------------------------------------------------------------------------------------------------- !
+   Luna Pratali Maffei     | Dipartimento di Chimica, Materiali ed Ingegneria Chimica "G. Natta,"     !
+                           | Politecnico di Milano, Italy                                             !
+   Raymond Langer          | Institute for Combustion Technology,                                     !
+                           | RWTH Aachen University, Germany                                          !
+   Yuki Murakami           | Combustion Chemistry Centre, School of Chemistry, Ryan Institute, MaREI, !
+                           | University of Galway, Ireland                                            !
+   Scott W. Wagnon         | Lawrence Livermore National Laboratory, United States of America         !
+                           |                                                                          !
+   Pengzhi Wang            | Combustion Chemistry Centre, School of Chemistry, Ryan Institute, MaREI, !
+                           | University of Galway, Ireland                                            !
+   Jiaxin Liu              | Combustion Chemistry Centre, School of Chemistry, Ryan Institute, MaREI, !
+                           | University of Galway, Ireland                                            !
+   Mohsin Raza             | Combustion Chemistry Centre, School of Chemistry, Ryan Institute, MaREI, !
+                           | University of Galway, Ireland                                            !
+   Yuxiang Zhu             | Combustion Chemistry Centre, School of Chemistry, Ryan Institute, MaREI, !
+                           | University of Galway, Ireland                                            !
+   Sanket Girhe            | Institute for Combustion Technology,                                     !
+                           | RWTH Aachen University, Germany                                          !
+   Christian Schwenzer     | Institute for Combustion Technology,                                     !
+                           | RWTH Aachen University, Germany                                          !
+   Joachim Beeckmann       | Institute for Combustion Technology,                                     !
+                           | RWTH Aachen University, Germany                                          !
+   Stephen J. Klippenstein | Chemical Sciences and Engineering Division,                              !
+                           | Argonne National Laboratory, United States of America                    !
+   Tiziano Faravelli       | Dipartimento di Chimica, Materiali ed Ingegneria Chimica "G. Natta,"     !
+                           | Politecnico di Milano, Italy                                             !
+   Heinz Pitsch            | Institute for Combustion Technology,                                     !
+                           | RWTH Aachen University, Germany                                          !
+   Peter Kelly Senecal     | Convergent Science, United States of America                             !
+                           |                                                                          !
+   Henry J. Curran         | Combustion Chemistry Centre, School of Chemistry, Ryan Institute, MaREI, !
+                           | University of Galway, Ireland                                            !
+   ================================================================================================== !
+                                !!! Please do not remove this header !!!                              !
+   ================================================================================================== !
+
+
+   Kinetics data for C3MechV4.0.1, generated on 10/12/2025 16:00:57.
+
+   The following sub-modules were considered in this file:
+   - UOG_C0_LT-HT_Cantera.MECH
+
+   MID: 2900
+   number of species: 16
+   number of reactions: 23
+
+   REVISION FOR C3MechV4.0.1:
+   SEARCH FOR "YZ_251026"
+    1) H2+O=H+OH
+    2) H2+OH=H+H2O
+    3) H+O2(+M)=HO2(+M)
+    4) CH3+H(+M)=CH4(+M)
+    5) CH2+O2=>CO2+H+H
+    6) HCO+M=H+CO+M
+
+    SEARCH FOR "JL_251029"
+    1) C2H3+H=C2H2+H2
+    2) HCCO+OH=>H+CO+CO+H
+
+  \START_ELEMENTS_LIST
+  ================================================================================================== !
+                                                                                                     !
+             Modeling Combustion Chemistry using C3MechV4.0.1: an extension to mixtures of           !
+                             hydrogen, ammonia, alkanes, and cycloalkanes                            !
+                                                                                                     !
+  ================================================================================================== !
+                                                                                                     !
+  This work was performed by the Computational Chemistry Consortium (C3), a collaborative research   !
+  organization including the University of Galway, Politecnico di Milano, RWTH Aachen University,    !
+  Lawrence Livermore National Laboratory, Argonne National Laboratory, and Convergent Science.       !
+                                                                                                     !
+  C3MechV4.0.1 is available from the github repository:                                              !
+  https://github.com/C3Mech/C3MechV4.0                                                               !
+                                                                                                     !
+  For more information, please visit fuelmech.org.                                                   !
+                                                                                                     !
+  ================================ Working Groups For C3MechV4.0.1 ================================= !
+
+                                                                                                     !
+  Author                  | Institution                                                              !
+  -------------------------------------------------------------------------------------------------- !
+  Luna Pratali Maffei     | Dipartimento di Chimica, Materiali ed Ingegneria Chimica "G. Natta,"     !
+                          | Politecnico di Milano, Italy                                             !
+  Raymond Langer          | Institute for Combustion Technology,                                     !
+                          | RWTH Aachen University, Germany                                          !
+  Yuki Murakami           | Combustion Chemistry Centre, School of Chemistry, Ryan Institute, MaREI, !
+                          | University of Galway, Ireland                                            !
+  Scott W. Wagnon         | Lawrence Livermore National Laboratory, United States of America         !
+                          |                                                                          !
+  Pengzhi Wang            | Combustion Chemistry Centre, School of Chemistry, Ryan Institute, MaREI, !
+                          | University of Galway, Ireland                                            !
+  Jiaxin Liu              | Combustion Chemistry Centre, School of Chemistry, Ryan Institute, MaREI, !
+                          | University of Galway, Ireland                                            !
+  Mohsin Raza             | Combustion Chemistry Centre, School of Chemistry, Ryan Institute, MaREI, !
+                          | University of Galway, Ireland                                            !
+  Yuxiang Zhu             | Combustion Chemistry Centre, School of Chemistry, Ryan Institute, MaREI, !
+                          | University of Galway, Ireland                                            !
+  Sanket Girhe            | Institute for Combustion Technology,                                     !
+                          | RWTH Aachen University, Germany                                          !
+  Christian Schwenzer     | Institute for Combustion Technology,                                     !
+                          | RWTH Aachen University, Germany                                          !
+  Joachim Beeckmann       | Institute for Combustion Technology,                                     !
+                          | RWTH Aachen University, Germany                                          !
+  Stephen J. Klippenstein | Chemical Sciences and Engineering Division,                              !
+                          | Argonne National Laboratory, United States of America                    !
+  Tiziano Faravelli       | Dipartimento di Chimica, Materiali ed Ingegneria Chimica "G. Natta,"     !
+                          | Politecnico di Milano, Italy                                             !
+  Heinz Pitsch            | Institute for Combustion Technology,                                     !
+                          | RWTH Aachen University, Germany                                          !
+  Peter Kelly Senecal     | Convergent Science, United States of America                             !
+                          |                                                                          !
+  Henry J. Curran         | Combustion Chemistry Centre, School of Chemistry, Ryan Institute, MaREI, !
+                          | University of Galway, Ireland                                            !
+  ================================================================================================== !
+                               !!! Please do not remove this header !!!                              !
+  ================================================================================================== !
+
+
+  Thermodynamic data for C3MechV4.0.1, generated on 10/12/2025 16:00:57.
+
+  The following sub-modules were considered in this file:
+  - UOG_C0_LT-HT.MECH
+
+  MID: 2900
+
+generator: ck2yaml
+input-files: [C3MechV4.0.1_2900_C0_Cantera.CKI, 
+    C3MechV4.0.1_2900_C0.THERM, C3MechV4.0.1_2900_C0.TRAN]
+cantera-version: 3.1.0
+date: Wed, 10 Dec 2025 16:06:02 +0100
+
+units: {length: cm, time: s, quantity: mol, activation-energy: cal/mol}
+
+phases:
+- name: gas
+  thermo: ideal-gas
+  elements: [C, H, N, O, Ar, He]
+  species: [C2H6, H2, H, O2, O, OH, H2O, OHV, N2, AR, CO2, CO, CH4, 
+      H2O2, HO2, HE]
+  kinetics: gas
+  transport: mixture-averaged
+  state: {T: 300.0, P: 1 atm}
+
+species:
+- name: C2H6
+  composition: {H: 6, C: 2}
+  thermo:
+    model: NASA7
+    temperature-ranges: [200.0, 1000.0, 6000.0]
+    data:
+    - [4.29142572, -5.50154901e-03, 5.99438458e-05, -7.08466469e-08, 
+        2.68685836e-11, -1.15222056e+04, 2.66678994]
+    - [4.04666411, 0.0153538802, -5.47039485e-06, 8.77826544e-10, 
+        -5.23167531e-14, -1.24473499e+04, -0.968698313]
+  transport:
+    model: gas
+    geometry: nonlinear
+    well-depth: 247.5
+    diameter: 4.35
+    rotational-relaxation: 1.5
+- name: H2
+  composition: {H: 2}
+  thermo:
+    model: NASA7
+    temperature-ranges: [200.0, 1000.0, 6000.0]
+    data:
+    - [2.34433112, 7.98052075e-03, -1.9478151e-05, 2.01572094e-08, 
+        -7.37611761e-12, -917.935173, 0.683010238]
+    - [2.93286575, 8.26608026e-04, -1.46402364e-07, 1.54100414e-11, 
+        -6.888048e-16, -813.065581, -1.02432865]
+  transport:
+    model: gas
+    geometry: linear
+    well-depth: 38.0
+    diameter: 2.92
+    polarizability: 0.79
+    rotational-relaxation: 280.0
+- name: H
+  composition: {H: 1}
+  thermo:
+    model: NASA7
+    temperature-ranges: [200.0, 6000.0]
+    data:
+    - [2.5, 0.0, 0.0, 0.0, 0.0, 2.547366e+04, -0.44668285]
+  transport:
+    model: gas
+    geometry: atom
+    well-depth: 145.0
+    diameter: 2.05
+- name: O2
+  composition: {O: 2}
+  thermo:
+    model: NASA7
+    temperature-ranges: [200.0, 1000.0, 6000.0]
+    data:
+    - [3.78245636, -2.99673416e-03, 9.84730201e-06, -9.68129509e-09, 
+        3.24372837e-12, -1063.94356, 3.65767573]
+    - [3.66096065, 6.56365811e-04, -1.41149627e-07, 2.05797935e-11, 
+        -1.29913436e-15, -1215.97718, 3.41536279]
+  transport:
+    model: gas
+    geometry: linear
+    well-depth: 107.4
+    diameter: 3.45
+    polarizability: 1.6
+    rotational-relaxation: 3.8
+- name: O
+  composition: {O: 1}
+  thermo:
+    model: NASA7
+    temperature-ranges: [200.0, 1000.0, 6000.0]
+    data:
+    - [3.1682671, -3.27931884e-03, 6.64306396e-06, -6.12806624e-09, 
+        2.11265971e-12, 2.91222592e+04, 2.05193346]
+    - [2.54363697, -2.73162486e-05, -4.1902952e-09, 4.95481845e-12, 
+        -4.79553694e-16, 2.9226012e+04, 4.92229457]
+  transport:
+    model: gas
+    geometry: atom
+    well-depth: 80.0
+    diameter: 2.75
+- name: OH
+  composition: {H: 1, O: 1}
+  thermo:
+    model: NASA7
+    temperature-ranges: [200.0, 1000.0, 6000.0]
+    data:
+    - [3.99198424, -2.40106655e-03, 4.61664033e-06, -3.87916306e-09, 
+        1.36319502e-12, 3368.89836, -0.103998477]
+    - [2.83853033, 1.10741289e-03, -2.94000209e-07, 4.20698729e-11, 
+        -2.4228989e-15, 3697.80808, 5.84494652]
+  transport:
+    model: gas
+    geometry: linear
+    well-depth: 80.0
+    diameter: 2.75
+- name: H2O
+  composition: {H: 2, O: 1}
+  thermo:
+    model: NASA7
+    temperature-ranges: [200.0, 1000.0, 6000.0]
+    data:
+    - [4.1986352, -2.0364017e-03, 6.5203416e-06, -5.4879269e-09, 
+        1.771968e-12, -3.0293726e+04, -0.84900901]
+    - [2.6770389, 2.9731816e-03, -7.7376889e-07, 9.4433514e-11, 
+        -4.2689991e-15, -2.9885894e+04, 6.88255]
+  transport:
+    model: gas
+    geometry: nonlinear
+    well-depth: 572.4
+    diameter: 2.6
+    dipole: 1.84
+    rotational-relaxation: 4.0
+- name: OHV
+  composition: {H: 1, O: 1}
+  thermo:
+    model: NASA7
+    temperature-ranges: [300.0, 1710.0, 5000.0]
+    data:
+    - [3.41896226, 3.19255801e-04, -3.08292717e-07, 3.64407494e-10, 
+        -1.00195479e-13, 5.00756946e+04, 2.51917016]
+    - [2.8537604, 1.02994334e-03, -2.32666477e-07, 1.93750704e-11, 
+        -3.15759847e-16, 5.03225473e+04, 5.76240468]
+  transport:
+    model: gas
+    geometry: linear
+    well-depth: 80.0
+    diameter: 2.75
+- name: N2
+  composition: {N: 2}
+  thermo:
+    model: NASA7
+    temperature-ranges: [200.0, 1000.0, 6000.0]
+    data:
+    - [3.53100528, -1.23660988e-04, -5.02999433e-07, 2.43530612e-09, 
+        -1.40881235e-12, -1046.97628, 2.96747038]
+    - [2.95257637, 1.3969004e-03, -4.92631603e-07, 7.86010195e-11, 
+        -4.60755204e-15, -923.948688, 5.87188762]
+  transport:
+    model: gas
+    geometry: linear
+    well-depth: 97.53
+    diameter: 3.62
+    polarizability: 1.76
+    rotational-relaxation: 4.0
+- name: AR
+  composition: {Ar: 1}
+  thermo:
+    model: NASA7
+    temperature-ranges: [200.0, 6000.0]
+    data:
+    - [2.5, 0.0, 0.0, 0.0, 0.0, -745.375, 4.37967491]
+  transport:
+    model: gas
+    geometry: atom
+    well-depth: 136.5
+    diameter: 3.33
+- name: CO2
+  composition: {O: 2, C: 1}
+  thermo:
+    model: NASA7
+    temperature-ranges: [200.0, 1000.0, 6000.0]
+    data:
+    - [2.356813, 8.9841299e-03, -7.1220632e-06, 2.4573008e-09, 
+        -1.4288548e-13, -4.8371971e+04, 9.9009035]
+    - [4.6365111, 2.7414569e-03, -9.9589759e-07, 1.6038666e-10, 
+        -9.1619857e-15, -4.9024904e+04, -1.9348955]
+  transport:
+    model: gas
+    geometry: linear
+    well-depth: 244.0
+    diameter: 3.76
+    polarizability: 2.65
+    rotational-relaxation: 2.1
+- name: CO
+  composition: {O: 1, C: 1}
+  thermo:
+    model: NASA7
+    temperature-ranges: [200.0, 1000.0, 6000.0]
+    data:
+    - [3.5795335, -6.1035369e-04, 1.0168143e-06, 9.0700586e-10, 
+        -9.0442449e-13, -1.4344086e+04, 3.5084093]
+    - [3.0484859, 1.3517281e-03, -4.8579405e-07, 7.8853644e-11, 
+        -4.6980746e-15, -1.4266117e+04, 6.0170977]
+  transport:
+    model: gas
+    geometry: linear
+    well-depth: 98.1
+    diameter: 3.65
+    polarizability: 1.95
+    rotational-relaxation: 1.8
+- name: CH4
+  composition: {H: 4, C: 1}
+  thermo:
+    model: NASA7
+    temperature-ranges: [200.0, 1000.0, 6000.0]
+    data:
+    - [5.14911468, -0.0136622009, 4.91453921e-05, -4.84246767e-08, 
+        1.66603441e-11, -1.02465983e+04, -4.63848842]
+    - [1.65326226, 0.0100263099, -3.31661238e-06, 5.36483138e-10, 
+        -3.14696758e-14, -1.00095936e+04, 9.90506283]
+  transport:
+    model: gas
+    geometry: nonlinear
+    well-depth: 141.4
+    diameter: 3.75
+    polarizability: 2.6
+    rotational-relaxation: 13.0
+- name: H2O2
+  composition: {H: 2, O: 2}
+  thermo:
+    model: NASA7
+    temperature-ranges: [200.0, 1000.0, 6000.0]
+    data:
+    - [4.31515149, -8.47390622e-04, 1.76404323e-05, -2.26762944e-08, 
+        9.08950158e-12, -1.77067437e+04, 3.27373319]
+    - [4.57977305, 4.05326003e-03, -1.2984473e-06, 1.982114e-10, 
+        -1.13968792e-14, -1.80071775e+04, 0.664970694]
+  transport:
+    model: gas
+    geometry: nonlinear
+    well-depth: 107.4
+    diameter: 3.45
+    rotational-relaxation: 3.8
+- name: HO2
+  composition: {H: 1, O: 2}
+  thermo:
+    model: NASA7
+    temperature-ranges: [200.0, 1000.0, 5000.0]
+    data:
+    - [4.30179807, -4.74912097e-03, 2.11582905e-05, -2.42763914e-08, 
+        9.29225225e-12, 264.018485, 3.7166622]
+    - [4.17228741, 1.88117627e-03, -3.46277286e-07, 1.94657549e-11, 
+        1.76256905e-16, 31.0206839, 2.95767672]
+  transport:
+    model: gas
+    geometry: nonlinear
+    well-depth: 107.4
+    diameter: 3.45
+    rotational-relaxation: 1.0
+- name: HE
+  composition: {He: 1}
+  thermo:
+    model: NASA7
+    temperature-ranges: [200.0, 6000.0]
+    data:
+    - [2.5, 0.0, 0.0, 0.0, 0.0, -745.375, 0.928723974]
+  transport:
+    model: gas
+    geometry: atom
+    well-depth: 10.2
+    diameter: 2.57
+
+reactions:
+- equation: H2 + M <=> H + H + M  # Reaction 1
+  type: three-body
+  rate-constant: {A: 4.577e+19, b: -1.4, Ea: 1.044e+05}
+  efficiencies: {HE: 0.83, CO: 1.9, CH4: 2.0, H2: 2.5, C2H6: 3.0, CO2: 
+      3.8, H2O: 12.0, O2: 0.0}
+  note: |2
+     REVISION FOR C3MechV4.0.1:
+     SEARCH FOR "YZ_251026"
+      1) H2+O=H+OH
+      2) H2+OH=H+H2O
+      3) H+O2(+M)=HO2(+M)
+      4) CH3+H(+M)=CH4(+M)
+      5) CH2+O2=>CO2+H+H
+      6) HCO+M=H+CO+M
+      SEARCH FOR "JL_251029"
+      1) C2H3+H=C2H2+H2
+      2) HCCO+OH=>H+CO+CO+H
+    \START_ELEMENTS_LIST
+    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    \KINETICS_MODULE: H2_O2
+    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    ----------------------------------------------------------------------------------------------------------------------------------
+    \SUBMECH: H2
+    ----------------------------------------------------------------------------------------------------------------------------------
+    ___________________________________________________________________________________________________________ 
+    \REACTIONCLASS: RH<=>PRODUCTS
+    ___________________________________________________________________________________________________________ 
+    \Author: AK !\Ref: TSANG AND HAMPSON, J. PHYS. CHEM. REF. DATA, 15 !\Comment: WARNING
+- equation: H + O2 + H <=> H2 + O2  # Reaction 2
+  rate-constant: {A: 8.8e+22, b: -1.835, Ea: 800.0}
+  note: |
+    ___________________________________________________________________________________________________________ 
+    \REACTIONCLASS: RH+R_ABSTRACTION
+    ___________________________________________________________________________________________________________ 
+    \Author: SP !\Ref: Michael P. Burke & Stephen J. Klippenstein, Nature Chemistry volume 9, pages1078 1082 (2017) !\Comment: (Ref added, YM) 
+- equation: H2 + O <=> H + OH  # Reaction 3
+  duplicate: true
+  rate-constant: {A: 3.8e+12, b: 0.0, Ea: 7948.0}
+  note: |
+    YZ_251026
+    H2+O=H+OH    1.24E+08    1.686    8033 !! Yuki Murakami, 20 September 2023, Scott Wagnon @LLNL suggests rate parameters. !REFIT, 500-3000K; REFIT ABS ERROR: MEDIAN = 0%, MEAN = 0%, MAX = 2% @500K
+    DUP
+    H2+O=H+OH    4.38E+16   -0.340   35603 !! Yuki Murakami, 20 September 2023, Scott Wagnon @LLNL suggests rate parameters. !REFIT, 500-3000K; REFIT ABS ERROR: MEDIAN = 0%, MEAN = 0%, MAX = 2% @500K
+    DUP
+    V3.3
+- equation: H2 + O <=> H + OH  # Reaction 4
+  duplicate: true
+  rate-constant: {A: 8.8e+14, b: 0.0, Ea: 1.9175e+04}
+- equation: H2 + OH <=> H + H2O  # Reaction 5
+  rate-constant: {A: 2.2e+08, b: 1.51, Ea: 3430.0}
+  note: |
+    \Author: UB !\Ref: J.V.MICHAEL SUTHERLAND, J.PHYS.CHEM. 92(1988) 3853 !\Comment: WARNING 
+- equation: H + O2 + H <=> OH + OH  # Reaction 6
+  rate-constant: {A: 4.0e+22, b: -1.835, Ea: 800.0}
+  note: |
+    ___________________________________________________________________________________________________________ 
+    \REACTIONCLASS: TERMOLECULARREACTIONH+O2+R<=>RH+O2!!AUTHOR
+    ___________________________________________________________________________________________________________ 
+    \Author: SP !\Ref: Michael P. Burke & Stephen J. Klippenstein, Nature Chemistry volume 9, pages1078 1082 (2017) !\Comment: (Ref added, YM) 
+- equation: H + O2 + O <=> OH + O2  # Reaction 7
+  rate-constant: {A: 7.35e+22, b: -1.835, Ea: 800.0}
+  note: |
+    \Author: SP !\Ref: Michael P. Burke & Stephen J. Klippenstein, Nature Chemistry volume 9, pages1078 1082 (2017) !\Comment: (Ref added, YM) 
+- equation: O + H + M <=> OH + M  # Reaction 8
+  type: three-body
+  rate-constant: {A: 4.714e+18, b: -1.0, Ea: 0.0}
+  efficiencies: {AR: 0.75, O2: 0.0, HE: 0.75, CO: 1.5, CH4: 2.0, CO2: 
+      2.0, H2: 2.5, C2H6: 3.0, H2O: 12.0}
+  note: |
+    \Author: AK !\Ref: TSANG AND HAMPSON, J. PHYS. CHEM. REF. DATA, 15 !\Comment: WARNING 
+- equation: H + O2 + OH <=> H2O + O2  # Reaction 9
+  rate-constant: {A: 2.56e+22, b: -1.835, Ea: 800.0}
+  note: |
+    ! Yuki Murakami, 20 Septemeber 2023
+    ===========================================================================================================
+    \SUBSPECIES: OHV
+    ===========================================================================================================
+    ___________________________________________________________________________________________________________ 
+    \REACTIONCLASS: RADICAL_ALPHA_SCISSION
+    ___________________________________________________________________________________________________________ 
+    \Author: SP !\Ref: Michael P. Burke & Stephen J. Klippenstein, Nature Chemistry volume 9, pages1078 1082 (2017) !\Comment: (Ref added, YM) 
+- equation: H + OH (+M) <=> H2O (+M)  # Reaction 10
+  type: falloff
+  low-P-rate-constant: {A: 4.53e+21, b: -1.81, Ea: 492.0}
+  high-P-rate-constant: {A: 2.5e+13, b: 0.234, Ea: -114.0}
+  Troe: {A: 0.73, T3: 1.0e-30, T1: 1.0e+30, T2: 1.0e+30}
+  efficiencies: {AR: 0.4, HE: 0.57, O2: 0.0, N2: 1.0, H2: 1.5, H2O: 
+      13.0}
+  note: |
+    ----------------------------------------------------------------------------------------------------------------------------------
+    \ENDSUBMECH: H2
+    ----------------------------------------------------------------------------------------------------------------------------------
+    ----------------------------------------------------------------------------------------------------------------------------------
+    \SUBMECH: O2
+    ----------------------------------------------------------------------------------------------------------------------------------
+    ___________________________________________________________________________________________________________ 
+    \REACTIONCLASS: RH<=>PRODUCTS
+    ___________________________________________________________________________________________________________ 
+    \Author: ABS_TEST SP !\Ref: SELLEVAG, S. R.;J. PHYS. CHEM. A 2008, 112, 50855095 ! !\Comment: WARNING 
+- equation: O + O + M <=> O2 + M  # Reaction 11
+  type: three-body
+  rate-constant: {A: 6.165e+15, b: -0.5, Ea: 0.0}
+  efficiencies: {HE: 0.83, AR: 0.83, CO: 1.9, CH4: 2.0, H2: 2.5, C2H6: 
+      3.0, CO2: 3.8, H2O: 12.0}
+  note: |
+    ___________________________________________________________________________________________________________ 
+    \REACTIONCLASS: RH+R_ABSTRACTION
+    ___________________________________________________________________________________________________________ 
+    \Author: AK !\Ref: TSANG AND HAMPSON, J. PHYS. CHEM. REF. DATA, 15 !\Comment: WARNING 
+- equation: O2 + H <=> O + OH  # Reaction 12
+  rate-constant: {A: 1.04e+14, b: 0.0, Ea: 1.5286e+04}
+  note: |
+    ___________________________________________________________________________________________________________ 
+    \REACTIONCLASS: RADICAL_ADDITIONH
+    ___________________________________________________________________________________________________________ 
+    \Author: AK !\Ref: HONG ET AL. PROC. OF THE COMB. INST. 33(2011) 309-16 !\Comment: 2 PARAMETER FIT 
+- equation: OH + OH <=> H2O + O  # Reaction 13
+  rate-constant: {A: 2.88e+06, b: 1.79, Ea: -1750.0}
+  note: |
+    ----------------------------------------------------------------------------------------------------------------------------------
+    \ENDSUBMECH: O2
+    ----------------------------------------------------------------------------------------------------------------------------------
+    ----------------------------------------------------------------------------------------------------------------------------------
+    \SUBMECH: H2O
+    ----------------------------------------------------------------------------------------------------------------------------------
+    ___________________________________________________________________________________________________________ 
+    \REACTIONCLASS: RH<=>PRODUCTS
+    ___________________________________________________________________________________________________________ 
+    \Author: WARNING !\Ref: G. ALTINAY, J. PHYS. CHEM. A, 118(2014), PP. 38-54 !\Comment: WARNING 
+- equation: H + O + M <=> OHV + M  # Reaction 14
+  type: three-body
+  rate-constant: {A: 4.43e+14, b: 0.0, Ea: 1.0e+04}
+  efficiencies: {AR: 0.4, O2: 0.8, CO2: 2.0, H2: 2.0, CH4: 2.0, H2O: 
+      12.0}
+  note: |
+    ___________________________________________________________________________________________________________ 
+    \REACTIONCLASS: RADICAL_ALPHA_SCISSION
+    ___________________________________________________________________________________________________________ 
+    \Author: ABS !\Ref: HALL AND PETERSEN IJCK 2006, 38, 714 !\Comment: WARNING 
+- equation: OHV + H2O <=> OH + H2O  # Reaction 15
+  rate-constant: {A: 5.92e+12, b: 0.5, Ea: -860.0}
+  note: |
+    ___________________________________________________________________________________________________________ 
+    \REACTIONCLASS: THIRD_BODY_DEACTIVATION
+    ___________________________________________________________________________________________________________ 
+    \Author: ABS !\Ref: HALL AND PETERSEN IJCK 2006, 38, 714 !\Comment: WARNING 
+- equation: OHV + H2 <=> OH + H2  # Reaction 16
+  rate-constant: {A: 2.95e+12, b: 0.5, Ea: -444.0}
+  note: |
+    \Author: ABS !\Ref: HALL AND PETERSEN IJCK 2006, 38, 714 !\Comment: WARNING 
+- equation: OHV + N2 <=> OH + N2  # Reaction 17
+  rate-constant: {A: 2.1e+12, b: 0.5, Ea: -482.0}
+  note: |
+    \Author: ABS !\Ref: WARNING !\Comment: Set as same as O2? (YM)
+- equation: OHV + OH <=> OH + OH  # Reaction 18
+  rate-constant: {A: 1.5e+12, b: 0.5, Ea: 0.0}
+  note: |
+    OHV+N2<=>OH+N2       +1.08000000E+011  +5.0000000E-001 -1.24200000E+003 !\AUTHOR: AK !\REF: M. Tamura et al, Combust. Flame 114 (1998) 502 514 (Ref added, YM)
+    \Author: ABS !\Ref: HALL AND PETERSEN IJCK 2006, 38, 714 !\Comment: WARNING 
+- equation: OHV + H <=> OH + H  # Reaction 19
+  rate-constant: {A: 1.5e+12, b: 0.5, Ea: 0.0}
+  note: |
+    \Author: ABS !\Ref: HALL AND PETERSEN IJCK 2006, 38, 714 !\Comment: WARNING 
+- equation: OHV + AR <=> OH + AR  # Reaction 20
+  rate-constant: {A: 2.17e+10, b: 0.5, Ea: 2060.0}
+  note: |
+    \Author: ABS !\Ref: HALL AND PETERSEN IJCK 2006, 38, 714 !\Comment: WARNING 
+- equation: OHV <=> OH  # Reaction 21
+  rate-constant: {A: 1.4e+06, b: 0.0, Ea: 0.0}
+  note: |
+    \Author: ABS !\Ref: HALL AND PETERSEN IJCK 2006, 38, 714 !\Comment: WARNING 
+- equation: OHV + O2 <=> OH + O2  # Reaction 22
+  rate-constant: {A: 2.1e+12, b: 0.5, Ea: -482.0}
+  note: |
+    \Author: ABS !\Ref: HALL AND PETERSEN IJCK 2006, 38, 714 !\Comment: WARNING 
+- equation: OHV + CO2 <=> OH + CO2  # Reaction 23
+  rate-constant: {A: 2.75e+12, b: 0.5, Ea: -968.0}
+  note: |
+    \Author: ABS !\Ref: HALL AND PETERSEN IJCK 2006, 38, 714 !\Comment: WARNING 
+- equation: OHV + CO <=> OH + CO  # Reaction 24
+  rate-constant: {A: 3.23e+12, b: 0.5, Ea: -787.0}
+  note: |
+    \Author: ABS !\Ref: HALL AND PETERSEN IJCK 2006, 38, 714 !\Comment: WARNING 
+- equation: OHV + CH4 <=> OH + CH4  # Reaction 25
+  rate-constant: {A: 3.36e+12, b: 0.5, Ea: -635.0}
+  note: |
+    \Author: ABS !\Ref: HALL AND PETERSEN IJCK 2006, 38, 714 !\Comment: WARNING 
+- equation: OHV + O <=> OH + O  # Reaction 26
+  rate-constant: {A: 1.5e+12, b: 0.5, Ea: 0.0}
+  note: |
+    \Author: ABS !\Ref: HALL AND PETERSEN IJCK 2006, 38, 714 !\Comment: WARNING 
+- equation: H2O2 (+M) <=> OH + OH (+M)  # Reaction 27
+  type: falloff
+  low-P-rate-constant: {A: 2.3530181e+24, b: -2.2929358, Ea: 
+      4.8743405e+04}
+  high-P-rate-constant: {A: 2.0e+12, b: 0.9, Ea: 4.8749e+04}
+  Troe: {A: 0.43, T3: 1.0e-30, T1: 1.0e+30}
+  efficiencies: {HE: 0.88, O2: 1.5, CO2: 1.86, N2: 1.5, CO: 2.4, H2: 
+      2.0, H2O: 9.0, H2O2: 9.9}
+  note: |
+    ===========================================================================================================
+    \ENDSUBSPECIES: OHV
+    ===========================================================================================================
+    ----------------------------------------------------------------------------------------------------------------------------------
+    \ENDSUBMECH: H2O
+    ----------------------------------------------------------------------------------------------------------------------------------
+    ----------------------------------------------------------------------------------------------------------------------------------
+    \SUBMECH: H2O2
+    ----------------------------------------------------------------------------------------------------------------------------------
+    ___________________________________________________________________________________________________________ 
+    \REACTIONCLASS: RH<=>PRODUCTS
+    ___________________________________________________________________________________________________________ 
+    \Author: UB !\Ref: TROE, COMBUST. FLAME, 158, Issue 4, April 2011, Pages 594-601 !\Comment: RATE CONSTANT IS FOR N2, 
+- equation: H2O2 + H <=> H2O + OH  # Reaction 28
+  rate-constant: {A: 2.41e+13, b: 0.0, Ea: 3970.0}
+  note: |
+    ___________________________________________________________________________________________________________ 
+    \REACTIONCLASS: RH+R_ABSTRACTION
+    ___________________________________________________________________________________________________________ 
+    \Author: AK !\Ref: TSANG AND HAMPSON, J. PHYS. CHEM. REF. DATA, 15 !\Comment: WARNING 
+- equation: H2O2 + H <=> HO2 + H2  # Reaction 29
+  rate-constant: {A: 1.65e+10, b: 1.0, Ea: 6000.0}
+  note: |
+    \Author: SP, PW  !\Ref: Ellingson et al., J. Phys. Chem. A 2007, 111, 13554-13566 !\Comment: Decrease by 25% PW (Ref added, Yuki Murakami)
+- equation: H2O2 + O <=> OH + HO2  # Reaction 30
+  rate-constant: {A: 9.55e+06, b: 2.0, Ea: 3970.0}
+  note: |
+    \Author: AK !\Ref: TSANG AND HAMPSON, J. PHYS. CHEM. REF. DATA, 15 !\Comment: WARNING 
+- equation: H2O2 + OH <=> H2O + HO2  # Reaction 31
+  duplicate: true
+  rate-constant: {A: 1.74e+12, b: 0.0, Ea: 318.0}
+  note: |
+    \Author: AK !\Ref: HONG ET AL. J. PHYS. CHEM. A 114(2010) 5718-5727 !\Comment: WARNING 
+- equation: H2O2 + OH <=> H2O + HO2  # Reaction 32
+  duplicate: true
+  rate-constant: {A: 7.59e+13, b: 0.0, Ea: 7269.0}
+  note: |
+    \Author: AK !\Ref: HONG ET AL. J. PHYS. CHEM. A 114(2010) 5718-5727 !\Comment: WARNING 
+- equation: HO2 + H <=> H2 + O2  # Reaction 33
+  rate-constant: {A: 2.8e+06, b: 2.09, Ea: -1451.0}
+  note: |
+    ___________________________________________________________________________________________________________ 
+    \REACTIONCLASS: R+R<=>PRODUCTS
+    ___________________________________________________________________________________________________________ 
+    \Author: WARNING !\Ref: CURRAN? !\Comment: WARNING 
+- equation: HO2 + H <=> OH + OH  # Reaction 34
+  rate-constant: {A: 7.079e+13, b: 0.0, Ea: 295.0}
+  note: |
+    \Author: AK !\Ref: MUELLER ET AL., INT. J. CHEM. KINET. 31(10)(1999) 705724. !\Comment: WARNING 
+- equation: HO2 + O <=> OH + O2  # Reaction 35
+  rate-constant: {A: 3.25e+13, b: 0.0, Ea: 0.0}
+  note: |
+    \Author: AK !\Ref: BAULCH ET AL., J. PHYS. CHEM. REF DATA, 21 !\Comment: WARNING 
+- equation: OH + HO2 <=> H2O + O2  # Reaction 36
+  duplicate: true
+  rate-constant: {A: 1.93e+20, b: -2.49, Ea: 584.24}
+  note: |
+    \Author: UB !\Ref: M.P. BURKE, S.J. KLIPPENSTEIN, L.B. HARDING, PROC. COMBUST. INST. 34(2013) 547-555 !\Comment: WARNING 
+- equation: OH + HO2 <=> H2O + O2  # Reaction 37
+  duplicate: true
+  rate-constant: {A: 1.21e+09, b: 1.24, Ea: -1307.58}
+  note: |
+    \Author: UB !\Ref: M.P. BURKE, S.J. KLIPPENSTEIN, L.B. HARDING, PROC. COMBUST. INST. 34(2013) 547-555 !\Comment: WARNING 
+- equation: HO2 + HO2 <=> H2O2 + O2  # Reaction 38
+  rate-constant: {A: 0.0193, b: 4.12, Ea: -4960.0}
+  note: |
+    \Author: SP !\Ref: S.J. KLIPPENSTEIN, M.P. BURKE, K.P. SOMERS, 11th U.S. NAT.COMB.MEETING (2019) !\Comment: WARNING 
+- equation: HO2 + HO2 <=> OH + OH + O2  # Reaction 39
+  rate-constant: {A: 6.41e+17, b: -1.54, Ea: 8540.0}
+  note: |
+    \Author: SP !\Ref: S.J. KLIPPENSTEIN, M.P. BURKE, K.P. SOMERS, 11th U.S. NAT.COMB.MEETING (2019) !\Comment: WARNING 
+- equation: H + O2 (+M) <=> HO2 (+M)  # Reaction 40
+  type: falloff
+  low-P-rate-constant: {A: 4.0662e+19, b: -1.4, Ea: -180.537}
+  high-P-rate-constant: {A: 4.66e+12, b: 0.44, Ea: 0.0}
+  Troe: {A: 0.5, T3: 1.0, T1: 1.0e+10, T2: 1.0e+30}
+  efficiencies: {HE: 0.0, AR: 0.0, N2: 0.0, O2: 1.0, H2: 2.0, CH4: 2.0,
+    CO2: 3.25, H2O: 17.6, CO: 4.0}
+  note: |
+    ___________________________________________________________________________________________________________ 
+    \REACTIONCLASS: RADICAL_ALPHA_SCISSION
+    ___________________________________________________________________________________________________________ 
+    ! =========== For Chemkin-PRO/OpenSMOKE++ users ===========
+    !H+O2(+M)=HO2(+M)    4.66E12 0.44 0.0E0  !\Author: SP !\Ref: TROE, PROCI Volume 28, Issue 2, 2000, 1463-1469 / PCCP FERNANDES 2008
+    !    HE/1.0/
+    !    AR/0.0/
+    !    N2/1.0/
+    !    O2/1.0/
+    !    H2/2.0/
+    !    CH4/2.0/
+    !    CO2/3.25/
+    !    H2O/17.6/
+    !    CO/4.0/
+    !    LOWMX  /    4.0662E19 -1.4E0    -1.80537E2          /
+    !    TROEMX /    5.0E-1     1.0E0     1.0E10    1.0E30   /
+    !    LOWSP  / N2 1.91E+20  -1.5568    253.86             / !Yuki Murakami 28 July 2023 H2 project recommended
+    !    TROESP / N2 5.0E-1     1.0E0     1.0E10    1.0E30   /
+    !    LOWSP  / HE 1.52E+19 -1.23     +0.00               / !k0x1.25 !YZ_251026
+    !    TROESP / HE 6.70E-1    1.0E-30   1.0E30    1.0E30   /
+    !    !LOWSP  / HE 1.216E+19 -1.23     +0.00               / !Yuki Murakami 17 May 2024, From AramcoMech3.0 He 0.64 -> 0.70
+    !    !TROESP / HE 6.70E-1    1.0E-30   1.0E30    1.0E30   /
+    ! =========== Chemkin-PRO/OpenSMOKE++ format END ==========
+    ! =========== For Cantera/FlameMaster users ===========
+    \Author: SP !\Ref: TROE, PROCI Volume 28, Issue 2, 2000, 1463-1469 / PCCP FERNANDES 2008
+- equation: H + O2 (+N2) <=> HO2 (+N2)  # Reaction 41
+  type: falloff
+  low-P-rate-constant: {A: 1.91e+20, b: -1.5568, Ea: 253.86}
+  high-P-rate-constant: {A: 4.66e+12, b: 0.44, Ea: 0.0}
+  Troe: {A: 0.5, T3: 1.0, T1: 1.0e+10, T2: 1.0e+30}
+- equation: H + O2 (+HE) <=> HO2 (+HE)  # Reaction 42
+  type: falloff
+  low-P-rate-constant: {A: 1.52e+19, b: -1.23, Ea: 0.0}
+  high-P-rate-constant: {A: 4.66e+12, b: 0.44, Ea: 0.0}
+  Troe: {A: 0.67, T3: 1.0e-30, T1: 1.0e+30, T2: 1.0e+30}
+  note: |
+    YZ_251026
+    H+O2(+HE)=HO2(+HE)    4.66E12 0.44 0.0E0
+        LOW  / 1.216E+19 -1.23     +0.00              / 
+        TROE / 6.70E-1    1.0E-030  1.0E+030 1.0E+030 /
+    k0x1.25
+- equation: H + O2 + AR <=> HO2 + AR  # Reaction 43
+  type: pressure-dependent-Arrhenius
+  rate-constants:
+  - {P: 0.01 atm, A: 6.93702e+18, b: -1.1912, Ea: 11.4078}
+  - {P: 0.1 atm, A: 6.77914e+18, b: -1.1893, Ea: 23.5054}
+  - {P: 1.0 atm, A: 6.88521e+18, b: -1.1925, Ea: 61.3437}
+  - {P: 5.0 atm, A: 8.11474e+18, b: -1.2141, Ea: 148.419}
+  - {P: 10.0 atm, A: 9.85241e+18, b: -1.2389, Ea: 228.9929}
+  - {P: 20.0 atm, A: 1.37451e+19, b: -1.2808, Ea: 358.9709}
+  - {P: 30.0 atm, A: 2.66805e+20, b: -1.6788, Ea: 610.4862}
+  - {P: 40.0 atm, A: 3.88385e+20, b: -1.7252, Ea: 746.2754}
+  - {P: 50.0 atm, A: 5.11621e+20, b: -1.7589, Ea: 857.089}
+  - {P: 100.0 atm, A: 8.71701e+20, b: -1.8195, Ea: 1191.9876}
+  - {P: 300.0 atm, A: 2.90584e+20, b: -1.6631, Ea: 1493.4906}
+  note: |
+    ! =========== Cantera/FlameMaster format END ==========
+     Yuki Murakami 27 July 2023 PLOG re-fitting
+
+    ----------------------------------------------------------------------------------------------------------------------------------
+    \ENDSUBMECH: H2O2
+    ----------------------------------------------------------------------------------------------------------------------------------
+    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    \END_KINETICS_MODULE: H2_O2
+    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
