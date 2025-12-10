@@ -2165,7 +2165,7 @@ if __name__ == "__main__":
   parser.add_argument('-n',
                       '--name',
                       help='name (title) of species dictionary',
-                      default="C3MechV4.0 species dictionary")
+                      default="C3MechV4.0.1 species dictionary")
   parser.add_argument(
       '-a',
       '--authors',
