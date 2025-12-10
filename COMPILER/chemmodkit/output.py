@@ -2,6 +2,7 @@ import datetime
 import os
 import re
 import subprocess
+import sys
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
 pruned_comment = "! AUTOMATIC PRUNING ! "
@@ -45,6 +46,18 @@ def write_species_list(species_list, species_pruned, filename):
   return total_str
 
 
+def detect_cantera_mode(submodules_filenames):
+  """
+  Prefer 'LT-HT' entry; fall back to 'HT' if needed.
+  Returns True if the core_path basename contains 'cantera', else False.
+  """
+  for temp in ("LT-HT", "HT"):
+    if temp in submodules_filenames and "C0" in submodules_filenames[temp]:
+      core_path = submodules_filenames[temp]["C0"]
+      return "cantera" in os.path.basename(core_path).lower()
+  return False
+
+
 def get_subtitel_with_directory(prev_cnum, cnum, directory):
   label = " [" + directory + "/](" + directory + "/) "
   if prev_cnum + 1 != cnum:
@@ -60,10 +73,10 @@ def generate_readme(grouped_selections, columns, counters):
   readme.append("# Precompiled models ")
   readme.append("")
   readme.append(
-      "This directory contains precompiled chemical kinetic sub-models of C3MechV4.0, "
+      "This directory provides precompiled chemical kinetic sub-models of C3MechV4.0.1, "
       +
       "tailored to specific fuel compositions and conditions, and the full " +
-      "version of C3MechV4.0. The sub-models were compiled from the sub-modules "
+      "version of C3MechV4.0.1. The sub-models were compiled from the sub-modules "
       +
       "in the directory [`SUBMODULES/`](../SUBMODULES/). The reactions in the "
       + 
@@ -122,7 +135,7 @@ def generate_readme(grouped_selections, columns, counters):
       "(filename contains the string 'Cantera'). " +
       "Once you found a suitable sub-model, you can use its MID to " +
       "find the corresponding files. It is recommended to refer to a " +
-      " model's MID when using a sub-model of C3MechV4.0. " + "")
+      " model's MID when using a sub-model of C3MechV4.0.1. " + "")
 
   prev_cnum = -1
   for cnum, group_combos in grouped_selections.items():
@@ -766,21 +779,38 @@ def process_ck2yaml(identifier, generated_combinations):
 
 def _generate_identifer(submodules_filenames, selection, cantera):
   c0 = 'C0'
-  identifier_list = [
-      submodules_filenames[temp][smod] for smod, temp in selection.items()
-      if smod.upper() != c0
-  ]
-  core_filename = ""
-  if c0 in selection:
-    core_filename = submodules_filenames[selection[c0]][c0]
-    if not cantera:
-      print("removing cantera from filename")
-      core_filename = re.sub(r'(?i)_Cantera', '', core_filename)
-    identifier_list.append(core_filename)
-  else:
-    raise Exception("could not find '" + c0 +
-                    "' (points to the path of the core module)")
+  identifier_list = []
+  for smod, temp in selection.items():
+    if smod.upper() == c0:
+      continue
+    path = submodules_filenames[temp][smod]
+    if smod == 'C1-C2':
+      if cantera:
+        # ensure we point to the Cantera-compatible file
+        cand = path.replace("UOG_C1-C2_LT-HT.MECH",
+                            "UOG_C1-C2_LT-HT_Cantera.MECH")
+        if os.path.isfile(cand):
+          path = cand
+      else:
+        # ensure we point to the non-Cantera file
+        cand = path.replace("UOG_C1-C2_LT-HT_Cantera.MECH",
+                            "UOG_C1-C2_LT-HT.MECH")
+        if os.path.isfile(cand):
+          path = cand
+    identifier_list.append(path)
 
+  core_filename = submodules_filenames[selection[c0]][c0]
+  if not cantera:
+    # switch core to non-Cantera variant (as before, but more robust)
+    cand_core = core_filename.replace("UOG_C0_LT-HT_Cantera.MECH",
+                                      "UOG_C0_LT-HT.MECH")
+    if os.path.isfile(cand_core):
+      core_filename = cand_core
+    else:
+      print("#error: expected non-Cantera C0 core not found: " + cand_core)
+      quit()
+
+  identifier_list.append(core_filename)
   return tuple(sorted(identifier_list)), core_filename
 
 
@@ -796,10 +826,24 @@ def one_carbon_number(options,
     identifier, core_filename = _generate_identifer(submodules_filenames,
                                                     selection, cantera)
 
-    submodules_list = [
-        submodules_filenames[temp][smod] for smod, temp in selection.items()
-        if smod.upper() != "C0"
-    ]
+    submodules_list = []
+    for smod, temp in selection.items():
+      if smod.upper() == "C0":
+        continue
+      path = submodules_filenames[temp][smod]
+      if smod == "C1-C2":
+        if cantera:
+          cand = path.replace("UOG_C1-C2_LT-HT.MECH",
+                              "UOG_C1-C2_LT-HT_Cantera.MECH")
+          if os.path.isfile(cand):
+            path = cand
+        else:
+          cand = path.replace("UOG_C1-C2_LT-HT_Cantera.MECH",
+                              "UOG_C1-C2_LT-HT.MECH")
+          if os.path.isfile(cand):
+            path = cand
+      submodules_list.append(path)
+
     submodules_files = inp.SubModulesFiles(core_filename, submodules_list)
     submodules_files.insert_model_path(options.submodules_dir)
 
@@ -853,6 +897,7 @@ def one_carbon_number(options,
                 ", fname: " + fname + ")")
 
   return generated_combinations
+
 
 def run(options, submodules_filenames, grouped_selections, columns):
 
@@ -908,9 +953,20 @@ def run(options, submodules_filenames, grouped_selections, columns):
 
     generated_combinations_single = {}
     for cnum, data_dict in grouped_selections.items():
-      generated_combinations_single = one_carbon_number(
-          options, submodules_filenames, DATETIME, cnum, data_dict,
-          generated_combinations_single, cantera=options.mid_cantera)
+      if options.mid != "":
+        cantera_mode = detect_cantera_mode(submodules_filenames)
+        generated_combinations_single = one_carbon_number(
+            options,
+            submodules_filenames,
+            DATETIME,
+            cnum,
+            data_dict,
+            generated_combinations_single,
+            cantera=cantera_mode)
+      else:
+        generated_combinations_single = one_carbon_number(
+            options, submodules_filenames, DATETIME, cnum, data_dict,
+            generated_combinations_single)
 
     for identifier in generated_combinations_single:
       if "mid" in identifier:

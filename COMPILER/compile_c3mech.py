@@ -10,7 +10,7 @@ import c3mech_data as c3mech
 from chemmodkit import __version__
 
 DIR = os.path.dirname(os.path.abspath(__file__))
-HEADER = "C3MechV4.0_header.txt"
+HEADER = "C3MechV4.0.1_header.txt"
 YAML = "submodules.yaml"
 OUTPUT = "output"
 default_yaml_file_path = os.path.join(DIR, YAML)
@@ -167,9 +167,14 @@ def parse_args():
 
   args = parser.parse_args()
 
-  paths = [("yaml_file_path", True), ("submodules_dir", False),
-           ("thermfile", True), ("transfile", True), ("header", True),
-           ("output_dir", False)]
+  # Determine whether a YAML file will be used for this run
+  needs_yaml = (args.mid == "" and not args.generate_all)
+
+  paths = []
+  if needs_yaml:
+    paths.append(("yaml_file_path", True))
+  paths += [("submodules_dir", False), ("thermfile", True),
+            ("transfile", True), ("header", True), ("output_dir", False)]
 
   for attr, is_file in paths:
     path = getattr(args, attr)

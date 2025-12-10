@@ -1,7 +1,7 @@
-# C3MechV4.0
+# C3MechV4.0.1
 [![License: CC BY 4.0](https://img.shields.io/badge/License-CC_BY_4.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
 
-**C3MechV4.0** is a universal chemical kinetic model developed for both conventional and renewable fuels (e.g., alkanes, hydrogen, ammonia, dimethyl ether, dimethyl carbonate/ethylene carbonate). It has been validated for a wide range of conditions and uses a hierarchical structure that allows the targeted compilation of sub-models. This repository is linked to the publication ["Modeling Combustion Chemistry using C3MechV4.0: an extension to mixtures of hydrogen, ammonia, alkanes, and cycloalkanes"](https://doi.org/10.1016/j.jaecs.2025.100385) and provides the following data and resources:
+**C3MechV4.0.1** is a universal chemical kinetic model developed for both conventional and renewable fuels (e.g., alkanes, hydrogen, ammonia, dimethyl ether, dimethyl carbonate/ethylene carbonate). It has been validated for a wide range of conditions and uses a hierarchical structure that allows the targeted compilation of sub-models. This repository is linked to the publication ["Modeling Combustion Chemistry using C3MechV4.0.1: an extension to mixtures of hydrogen, ammonia, alkanes, and cycloalkanes"](https://doi.org/10.1016/j.jaecs.2025.100385) and and its ["forthcoming Corrigendum"](link-to-be-added-upon-publication). It provides the following data and resources:
 
 - All sub-modules maintained by the C3 consortium in `CHEMKIN` format 
 - A species directory (CSV & PDF), along with a Python script for checking species data and converting them from CSV format to a PDF  
@@ -11,7 +11,7 @@
 ## Repository contents
 
 1. **[`SUBMODULES`](SUBMODULES/)**  
-This directory contains sub-modules with kinetic data organized by the research groups that developed them and the jointly used files `SOURCE-C3Mech.THERM` and `SOURCE-C3Mech.TRAN` that provide all thermochemistry and transport data for C3MechV4.0. These files are recommended as a starting point for model development based on C3MechV4.0.
+This directory contains sub-modules with kinetic data organized by the research groups that developed them and the jointly used files `SOURCE-C3Mech.THERM` and `SOURCE-C3Mech.TRAN` that provide all thermochemistry and transport data for C3MechV4.0.1. These files are recommended as a starting point for model development based on C3MechV4.0.1.
 
 2. **[`SPECIES_DICTIONARY`](SPECIES_DICTIONARY/)**  
 This directory provides a CSV file with plain species data and a PDF generated from these, which serves as an overview. The Python script `make_species_dict.py` implements the C3Mech species model and checks constraints on the data in the CSV file. It can optionally generate LaTeX code and plots of species structures, which can then be compiled into a PDF. The script can also be adapted to manage species data in other chemical kinetic models. Refer to the `README.md` for more details on the species model, the data in the CSV file, and the script's usage. 

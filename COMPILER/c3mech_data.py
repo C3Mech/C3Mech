@@ -7,8 +7,10 @@ import string
 import ntpath as _p  # Windows semantics on all OSes
 from typing import Dict, Iterable, List, Sequence, Tuple
 
-VERSION = "4.0"
+VERSION = "4.0.1"
 DMC_EC_FEW = True
+# Default to Cantera-compatible sub-modules for ambiguous keys (C0, C1-C2)
+CANTERA_MODE = True
 
 DEPENDENCIES = {
     # note that the order of the keys matters!!
@@ -93,13 +95,20 @@ def get_ht_htlt_modules(abs_dir):
   returns the sub-module filesnames in an unspecified order;
   file paths are absolute and normalized
   """
-  base_moduldes_UOG_HTLT = [
-      os.path.join("UOG", "LT-HT", "UOG_" + "C0" + "_LT-HT_Cantera.MECH")
-  ] + [
-      os.path.join("UOG", "LT-HT", "UOG_" + b + "_LT-HT.MECH")
+  global CANTERA_MODE
+
+  # choose the C0 and C1-C2 variant depending on the global mode
+  c0_rel = os.path.join("UOG", "LT-HT", "UOG_C0_LT-HT_Cantera.MECH") if CANTERA_MODE \
+           else os.path.join("UOG", "LT-HT", "UOG_C0_LT-HT.MECH")
+  c12_rel = os.path.join("UOG", "LT-HT", "UOG_C1-C2_LT-HT_Cantera.MECH") if CANTERA_MODE \
+            else os.path.join("UOG", "LT-HT", "UOG_C1-C2_LT-HT.MECH")
+
+  base_modules_UOG_HTLT = [c0_rel] + [
+      (c12_rel if b == "C1-C2" else os.path.join("UOG", "LT-HT", "UOG_" + b +
+                                                 "_LT-HT.MECH"))
       for b in get_base_modules()
   ]
-  base_moduldes_UOG_HT = base_moduldes_UOG_HTLT[:2] + [
+  base_modules_UOG_HT = base_modules_UOG_HTLT[:2] + [
       os.path.join("UOG", "HT", "UOG_" + b + "_HT.MECH")
       for b in get_base_modules()[1:]
   ]
@@ -126,8 +135,8 @@ def get_ht_htlt_modules(abs_dir):
       os.path.join("UOG", "LT-HT", "UOG_" + "C-N" + "_LT-HT.MECH")
   ]
 
-  modules_ht = base_moduldes_UOG_HT + LLNL_base_modules_HT + optional_modules + required_extension_HT  # + optional_modules_HT
-  modules_htlt = base_moduldes_UOG_HTLT + LLNL_base_modules_HTLT + optional_modules + required_extension_HTLT  #  + optional_modules_HTLT
+  modules_ht = base_modules_UOG_HT + LLNL_base_modules_HT + optional_modules + required_extension_HT  # + optional_modules_HT
+  modules_htlt = base_modules_UOG_HTLT + LLNL_base_modules_HTLT + optional_modules + required_extension_HTLT  #  + optional_modules_HTLT
 
   ok = True
   modules_ht_final = []
@@ -214,70 +223,52 @@ def sort_key(combo):
 
 def match_submodules(submodules, modules_ht, modules_htlt):
   """
-    For each key in `submodules` find its unique match in the HT and LT-HT
-    module lists (case-insensitive).
-
-    Returns two dictionaries:  submodules_ht, submodules_htlt
-    Raises ValueError if more than one candidate matches the same key.
+    For each submodule in `submodules`, find and assign its best match in
+    `modules_ht` and `modules_htlt`. Returns two dictionaries mapping submodule names.
     """
 
   def find_match(smod, modules_list, label):
+    matched_mod = None
     smod_l = smod.lower()
+    smod_u = smod.upper()
 
-    # ---------- special cases ---------------------------------------------
-    if smod_l == "llnl_block":
-      expected = "llnl_block_ht" if label == "HT" else "llnl_block.cki"
-      matches = [
-          m for m in modules_list if expected in os.path.basename(m).lower()
-      ]
+    # Auxiliary token for LLNL special cases
+    aux_l = smod_l + "."
+    if smod_u == "LLNL_BLOCK":
+      aux_l = "llnl_block_ht" if label == "HT" else "llnl_block."
 
-    elif smod_l == "llnl_block_dmc_ec":
-      matches = [
-          m for m in modules_list
-          if "llnl_block_dmc_ec" in os.path.basename(m).lower()
-      ]
+    # First pass: prefer UOG files when name contains "<key>_" and "UOG"
+    for mod in modules_list:
+      mod_l = mod.lower()
+      if (smod_l + "_") in mod_l and "uog" in mod_l:
+        if matched_mod is not None:
+          raise Exception(f"second match '{smod}' in {label}")
+        matched_mod = mod
 
-    elif smod_l == "pah_block":
-      matches = [
-          m for m in modules_list
-          if "pah_block" in os.path.basename(m).lower()
-      ]
+    # Second pass: fallback to any occurrence of aux_l (covers LLNL and others)
+    if matched_mod is None:
+      for mod in modules_list:
+        mod_l = mod.lower()
+        if aux_l in mod_l:
+          if matched_mod is not None:
+            raise Exception(f"second match '{smod}' in {label}")
+          matched_mod = mod
 
-    else:
-      # ---------- generic two-pass search --------------------------------
-      # 1) Prefer UOG_<smod>_
-      matches = [
-          m for m in modules_list
-          if f"{smod_l}_" in m.lower() and "nuig" in m.lower()
-      ]
+    if matched_mod is None:
+      print(f"no match for {label}: {smod}")
 
-      # 2) Otherwise look for '<smod>_' OR '<smod>.'
-      if not matches:
-        base_matches = [
-            m for m in modules_list
-            if (f"{smod_l}_" in os.path.basename(m).lower()
-                or f"{smod_l}." in os.path.basename(m).lower())
-        ]
-        matches = base_matches
+    return matched_mod
 
-    # ---------- evaluate result ------------------------------------------
-    if len(matches) > 1:
-      raise ValueError(f"second match for '{smod}' in {label}: " +
-                       " / ".join(matches))
-
-    return matches[0] if matches else None
-
-  # ------------------------------------------------------------------------
   submodules_ht = {}
   submodules_htlt = {}
 
   for smod in submodules:
     ht_match = find_match(smod, modules_ht, "HT")
-    htlt_match = find_match(smod, modules_htlt, "LT-HT")
-
-    if ht_match:
+    if ht_match:  # Only add if found
       submodules_ht[smod] = ht_match
-    if htlt_match:
+
+    htlt_match = find_match(smod, modules_htlt, "HTLT")
+    if htlt_match:  # Only add if found
       submodules_htlt[smod] = htlt_match
 
   return submodules_ht, submodules_htlt
@@ -297,25 +288,31 @@ def get_submodule_filenames(abs_dir):
   modules_ht, modules_htlt = get_ht_htlt_modules(abs_dir)
   submodules_ht, submodules_htlt = match_submodules(submodules, modules_ht,
                                                     modules_htlt)
+
+  # Ensure every key in ORDERED_KEYS was matched for both HT and LT-HT
+  missing_ht = [k for k in ORDERED_KEYS if k not in submodules_ht]
+  missing_ltht = [k for k in ORDERED_KEYS if k not in submodules_htlt]
+
+  if missing_ht or missing_ltht:
+    print("ERROR: could not find sub-module file matches for:")
+    if missing_ht:
+      print(" HT   :", ", ".join(missing_ht))
+    if missing_ltht:
+      print(" LT-HT:", ", ".join(missing_ltht))
+    print("Check your SUBMODULES directory and expected filenames.")
+    sys.exit(1)
+
   submodules_filenames = {
       "HT": submodules_ht,
       "LT-HT": submodules_htlt,
   }
+
   return submodules_filenames
 
-def remove_cantera(filenames):
-  new_filenames = []
-  for f in filenames:
-    dirname, basename = os.path.split(f)
-    new_basename = re.sub(r'(?i)_Cantera', '', basename)
-    new_filenames.append(os.path.join(dirname, new_basename))
-  return new_filenames
 
 def is_ht(filenames, submodules_dir):
   submodules_filenames = get_submodule_filenames(submodules_dir)
   ht_files = set(list(submodules_filenames["HT"].values()))
-  ht_files = remove_cantera(ht_files)
-  filenames = remove_cantera(filenames)
   filenames = get_relative_submodule_paths(filenames, submodules_dir)
   ht_files = get_relative_submodule_paths(ht_files, submodules_dir)
   for f in filenames:
@@ -323,11 +320,10 @@ def is_ht(filenames, submodules_dir):
       return False
   return True
 
+
 def is_ltht(filenames, submodules_dir):
   submodules_filenames = get_submodule_filenames(submodules_dir)
   ltht_files = set(list(submodules_filenames["LT-HT"].values()))
-  ltht_files = remove_cantera(ltht_files)
-  filenames = remove_cantera(filenames)
   filenames = get_relative_submodule_paths(filenames, submodules_dir)
   ltht_files = get_relative_submodule_paths(ltht_files, submodules_dir)
   for f in filenames:
@@ -402,7 +398,7 @@ def generate_submodels(options):
   # for combo in sorted_combos:
   #  print(combo)
   # print("stop")
-  # quit()
+  # sys.exit(1)
   carbon_block_names = {
       0: "C0",
       2: "C1-C2",
@@ -462,9 +458,9 @@ class MID:
     self.BASES = [2 if k in self.BINARY_KEYS else 3 for k in self.ORDERED_KEYS]
     self.key_to_idx = {k: i for i, k in enumerate(self.ORDERED_KEYS)}
     self.version = version
-    if self.version != "4.0":
+    if self.version != "4.0.1":
       raise ValueError(
-          "MID is currently assumed to only be used for C3MechV4.0")
+          "MID is currently assumed to only be used for C3MechV4.0.1")
 
   def max_mixed_radix_number(self):
     n = 0
@@ -529,7 +525,7 @@ class MID:
                        self.START + "'")
     if not re.fullmatch(r'[a-z0-9]+', id_str.lower()):
       print("#error: MID '" + id_str.lower() + "' contains invalid characters")
-      quit()
+      sys.exit(1)
     if self.START:
       id_str = id_str[1:]
     try:
@@ -573,15 +569,21 @@ class MID:
 def get_grouped_combos_mid(options):
   print("Generating model from MID '" + options.mid + "'")
   midgen = MID(ORDERED_KEYS, BINARY_KEYS, version=VERSION)
+
+  # Decide which physical sub-modules to map to ambiguous keys (C0, C1-C2)
+  global CANTERA_MODE
+  CANTERA_MODE = bool(options.mid_cantera)
+
   selection = midgen.id_to_combo(options.mid)
 
   print("MID '" + options.mid + "' decoded as:")
   for key, temp in selection.items():
     print(f"{key:<20} {temp}")
   if 'C0' not in selection:
-    sys.exit(
+    print(
         "Required sub-module 'C0' is missing. Please double check the provided MID '"
         + options.mid + "'")
+    sys.exit(1)
 
   if "UOG_C-N" in selection:
     if not "UOG_N" in selection:
@@ -672,40 +674,24 @@ def check_duplicate(used_paths):
     print("duplicate paths found:")
     for dup in duplicates:
       print(dup)
-    raise ValueError(f"#error: duplicate file paths detected in yaml input")
+    print(f"#error: duplicate file paths detected in yaml input")
+    sys.exit(1)
 
 
 def get_relative_submodule_paths(used_paths, submodules_dir):
-  """
-    Return a dict {relative_path : absolute_path} for every entry in
-    `used_paths` that is located inside `submodules_dir`.
-
-    Uses ntpath so the behaviour is identical on Linux/macOS and Windows.
-    """
-
-  # Canonical form of the base directory
-  base = _p.abspath(submodules_dir)
-  base = _p.normcase(_p.normpath(base))
-
+  if submodules_dir[-1] != os.sep:
+    submodules_dir += os.sep
   used_paths_rel = {}
-
-  for p in used_paths:
-    # Canonical absolute path
-    p_abs = _p.abspath(p)
-    p_norm = _p.normcase(_p.normpath(p_abs))
-
-    # Ensure the file is really under the sub-modules directory
-    if _p.commonpath([base, p_norm]) != base:
-      raise ValueError(f"Path '{p_abs}' is not inside '{submodules_dir}'")
-
-    # Canonical relative path
-    rel = _p.relpath(p_abs, base)
-    rel = _p.normcase(_p.normpath(rel))
-
-    if rel in used_paths_rel:
-      raise ValueError(f"Duplicate relative path '{rel}'")
-    used_paths_rel[rel] = p_abs
-
+  # Remove the prefix to get the short (relative) path
+  for p_abs in used_paths:
+    if not p_abs.startswith(submodules_dir):
+      raise Exception(
+          f"Used path {p_abs} does not start with submodules dir {submodules_dir}"
+      )
+    p_rel = p_abs[len(submodules_dir):]
+    if p_rel in used_paths_rel:
+      raise Exception("Unexpected duplicate '" + p_rel + "'")
+    used_paths_rel[p_rel] = p_abs
   return used_paths_rel
 
 
@@ -716,89 +702,150 @@ def construct_path_to_key_temp(submodules_filenames, submodules_dir):
   for temp in submodules_filenames:
     for key, p in submodules_filenames[temp].items():
       p_rel = get_relative_submodule_paths([p], submodules_dir)
-      original_path = list(p_rel.keys())[0]
-      # Replace "_Cantera" (case-insensitive) only in the filename
-      dirname, basename = os.path.split(original_path)
-      new_basename = re.sub(r'(?i)_Cantera', '', basename)
-      new_filename = os.path.join(dirname, new_basename)
-      path_to_key_temp[new_filename] = (key, temp)
+      path_to_key_temp[list(p_rel.keys())[0]] = (key, temp)
+
+  # Also accept both variants of C0 and C1-C2 (Cantera and non-Cantera) as aliases
+  alias_candidates = [
+      (os.path.join("UOG", "LT-HT", "UOG_C0_LT-HT.MECH"), ("C0", "LT-HT")),
+      (os.path.join("UOG", "LT-HT",
+                    "UOG_C0_LT-HT_Cantera.MECH"), ("C0", "LT-HT")),
+      (os.path.join("UOG", "LT-HT",
+                    "UOG_C1-C2_LT-HT.MECH"), ("C1-C2", "LT-HT")),
+      (os.path.join("UOG", "LT-HT",
+                    "UOG_C1-C2_LT-HT_Cantera.MECH"), ("C1-C2", "LT-HT")),
+  ]
+  for rel_hint, key_temp in alias_candidates:
+    abs_path = os.path.normcase(
+        os.path.abspath(
+            os.path.normpath(os.path.join(submodules_dir, rel_hint))))
+    if os.path.isfile(abs_path):
+      rel_map = get_relative_submodule_paths([abs_path], submodules_dir)
+      rel_path = list(rel_map.keys())[0]
+      # Don't overwrite if it already exists with same meaning
+      if rel_path not in path_to_key_temp:
+        path_to_key_temp[rel_path] = key_temp
+
   return path_to_key_temp
 
 
 def check_HT_and_LT_HT_combi(used_paths_rel, path_to_key_temp, yaml_file_path):
   seen_keys = {}
-  for p_orig in used_paths_rel:
-    # Replace "_Cantera" (case-insensitive) only in the filename
-    dirname, basename = os.path.split(p_orig)
-    new_basename = re.sub(r'(?i)_Cantera', '', basename)
-    p = os.path.join(dirname, new_basename)
-    p = re.sub(r'(?i)_Cantera', '', p_orig)
+  for p in used_paths_rel:
     if p not in path_to_key_temp:
-      raise ValueError(f"unknown sub-module '{used_paths_rel[p_orig]}'. " +
-                       "Check your input or update the compiler script.")
+      print("unknown sub-module '" + used_paths_rel[p] +
+            "'. Check your input or update the compiler script.")
+      sys.exit(1)
     smod = path_to_key_temp[p][0]
     if smod in seen_keys:
       print("#error: HT and LT-HT version of the sub-module '" + smod +
-            "' must not not be combined. The same applies to the Cantera and Non-Cantera "
-            " versions of sub-modules")
+            "' must not be combined.")
       print("        Conflicting files:")
       print("        '" + used_paths_rel[p] + "'")
       print("        '" + seen_keys[path_to_key_temp[p][0]] + "'")
       print("check your YAML input file '" + yaml_file_path + "'")
-      raise ValueError()
-    seen_keys[path_to_key_temp[p][0]] = used_paths_rel[p_orig]
+      sys.exit(1)
+    seen_keys[path_to_key_temp[p][0]] = used_paths_rel[p]
 
 
 def normalize_and_check_submodule_paths(submodules_files, submodules_dir,
                                         yaml_file_path):
+  global CANTERA_MODE
+
+  # Normalize directory path
   submodules_dir_copy = os.path.normcase(
       os.path.abspath(os.path.normpath(submodules_dir)))
-  all_submodules_filenames = get_submodule_filenames(submodules_dir_copy)
 
+  # Normalize input file paths
   submodules_files.core = os.path.normcase(
       os.path.abspath(os.path.normpath(submodules_files.core)))
   for i in range(len(submodules_files.submodules)):
     submodules_files.submodules[i] = os.path.normcase(
         os.path.abspath(os.path.normpath(submodules_files.submodules[i])))
 
+  # Decide Cantera mode from the core BEFORE building the mapping
+  core_rel_map = get_relative_submodule_paths([submodules_files.core],
+                                              submodules_dir_copy)
+  core_rel = list(core_rel_map.keys())[0]
+  core_name = os.path.basename(core_rel).lower()
+  if core_name.endswith("uog_c0_lt-ht_cantera.mech"):
+    CANTERA_MODE = True
+  elif core_name.endswith("uog_c0_lt-ht.mech"):
+    CANTERA_MODE = False
+  else:
+    print("#error: core file does not look like a recognized C0 sub-module:")
+    print("       '" + core_rel + "'")
+    sys.exit(1)
+
+  # Build mapping AFTER CANTERA_MODE is set (self-consistent mapping)
+  submodules_filenames = get_submodule_filenames(submodules_dir_copy)
+
+  # Validate and classify used paths
   used_paths = [submodules_files.core] + submodules_files.submodules
   check_duplicate(used_paths)
 
-  path_to_key_temp = construct_path_to_key_temp(all_submodules_filenames,
+  path_to_key_temp = construct_path_to_key_temp(submodules_filenames,
                                                 submodules_dir_copy)
   used_paths_rel = get_relative_submodule_paths(used_paths,
                                                 submodules_dir_copy)
   check_HT_and_LT_HT_combi(used_paths_rel, path_to_key_temp, yaml_file_path)
 
+  # Forbid mixing Cantera/non-Cantera C1-C2 variants against selected core
+  has_c12_can = any(
+      os.path.basename(k).lower().endswith("uog_c1-c2_lt-ht_cantera.mech")
+      for k in used_paths_rel.keys())
+  has_c12_non = any(
+      os.path.basename(k).lower().endswith("uog_c1-c2_lt-ht.mech")
+      for k in used_paths_rel.keys())
+
+  if has_c12_can and has_c12_non:
+    print(
+        "#error: Both Cantera and non-Cantera versions of C1-C2 were selected."
+    )
+    print("       Please select only one of:")
+    print("         UOG/LT-HT/UOG_C1-C2_LT-HT.MECH")
+    print("         UOG/LT-HT/UOG_C1-C2_LT-HT_Cantera.MECH")
+    print("       YAML file: '" + yaml_file_path + "'")
+    sys.exit(1)
+
+  if CANTERA_MODE and has_c12_non:
+    print(
+        "#error: Cantera-compatible C0 core requires the Cantera-compatible C1-C2 sub-module."
+    )
+    print("       Selected core : UOG/LT-HT/UOG_C0_LT-HT_Cantera.MECH")
+    print("       Incompatible : UOG/LT-HT/UOG_C1-C2_LT-HT.MECH")
+    print("       YAML file: '" + yaml_file_path + "'")
+    sys.exit(1)
+  if (not CANTERA_MODE) and has_c12_can:
+    print(
+        "#error: Non-Cantera C0 core must not be combined with a Cantera-compatible C1-C2."
+    )
+    print("       Selected core : UOG/LT-HT/UOG_C0_LT-HT.MECH")
+    print("       Incompatible : UOG/LT-HT/UOG_C1-C2_LT-HT_Cantera.MECH")
+    print("       YAML file: '" + yaml_file_path + "'")
+    sys.exit(1)
+
+  # Build selection and sorted submodules using the used paths and path_to_key_temp
   selection = {}
+  selected_by_key = {}
+  for p_rel, p_abs in used_paths_rel.items():
+    if p_rel not in path_to_key_temp:
+      print("unknown sub-module '" + used_paths_rel[p_rel] +
+            "'. Check your input or update the compiler script.")
+      sys.exit(1)
+    smod, temp = path_to_key_temp[p_rel]
+    if smod not in selected_by_key:
+      selected_by_key[smod] = (temp, p_abs)
+
   sorted_submodules_files = []
   for smod in ORDERED_KEYS:
-    for temp in all_submodules_filenames:
-      p_abs = all_submodules_filenames[temp][smod]
-      p_rel = list(
-          get_relative_submodule_paths([p_abs], submodules_dir_copy).keys())[0]
-      dirname, basename = os.path.split(p_rel)
-      new_basename = re.sub(r'(?i)_Cantera', '', basename)
-      p_rel_wo_cantera = os.path.join(dirname, new_basename)
-      if (p_rel in used_paths_rel or p_rel_wo_cantera in used_paths_rel) and smod not in selection:
-        selection[smod] = temp
-        if smod != "C0":
-          if p_rel in used_paths_rel:
-            sorted_submodules_files.append(used_paths_rel[p_rel])
-          elif p_rel_wo_cantera in used_paths_rel:
-            sorted_submodules_files.append(used_paths_rel[p_rel_wo_cantera])
-          else:
-            raise ValueError("this must never happen. Chekck the code.")
+    if smod in selected_by_key:
+      selection[smod] = selected_by_key[smod][0]
+      if smod != "C0":
+        sorted_submodules_files.append(selected_by_key[smod][1])
 
   submodules_files.submodules = sorted_submodules_files
   return submodules_files, selection
 
-
-def _contains_cantera_submodule(submodules_files):
-  for f in submodules_files:
-    if "cantera" in f.lower():
-      return True
-  return False
 
 def get_grouped_combos(options):
   try:
@@ -814,8 +861,6 @@ def get_grouped_combos(options):
   submodules_files, selection = normalize_and_check_submodule_paths(
       submodules_files, options.submodules_dir, options.yaml_file_path)
   used_paths = [submodules_files.core] + submodules_files.submodules
-  # will later insert the _Cantera chunk into the filename 
-  options.mid_cantera = _contains_cantera_submodule(used_paths)
 
   midgen = MID(ORDERED_KEYS, BINARY_KEYS, version=VERSION)
   id_str = midgen.combo_to_id(selection)
@@ -826,19 +871,14 @@ def get_grouped_combos(options):
   grouped_combos[cnum]["modules"] = [selection]
   grouped_combos[cnum]["mid"] = [id_str]
   temp_str = ""
-  all_ht = is_ht(used_paths, options.submodules_dir)
-  all_lt_ht = is_ltht(used_paths, options.submodules_dir)
-
-  if all_ht == all_lt_ht:
-    grouped_combos[cnum]["temperature"] = [""]
-  elif all_ht:
+  if is_ht(used_paths, options.submodules_dir):
     temp_str = "_HT"
     grouped_combos[cnum]["temperature"] = ["HT"]
-  elif all_lt_ht:
+  elif is_ltht(used_paths, options.submodules_dir):
     temp_str = "_LT-HT"
     grouped_combos[cnum]["temperature"] = ["LT-HT"]
   else:
-    raise Exception("impossible")
+    grouped_combos[cnum]["temperature"] = [""]
 
   grouped_combos[cnum]["output_chunks"] = [
       sanitize_filename(list(selection.keys())) + temp_str
