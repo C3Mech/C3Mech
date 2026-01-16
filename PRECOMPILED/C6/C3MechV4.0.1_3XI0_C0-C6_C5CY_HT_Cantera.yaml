@@ -14637,7 +14637,7 @@ reactions:
         !YZ_251026
         !MR_251103
         ! High P limit from LB Harding, Y Georgievskii, SJ Klippenstein, JPCA 109: 4646 (2005).
-        ! Low P from  NJ Labbe 2/2016 (improvement at high and low T)
+        ! Low P from  NJ Labbe 2/2016 (improvement at high and low T)
         ! Falloff in Ar (alpha=115*(T/300)^.75) from trajectories of AW Jasper, JA Miller, unpublished (2010).
         ! Very good agreement with the empirical alpha of JA Miller, SJ Klippenstein, C Raffy, JPCA 106: 4904 (2002).
         ! DH = -103.4
@@ -14653,7 +14653,7 @@ reactions:
     YZ_251026
     MR_251103
      High P limit from LB Harding, Y Georgievskii, SJ Klippenstein, JPCA 109: 4646 (2005).
-     Low P from  NJ Labbe 2/2016 (improvement at high and low T)
+     Low P from  NJ Labbe 2/2016 (improvement at high and low T)
      Falloff in Ar (alpha=115*(T/300)^.75) from trajectories of AW Jasper, JA Miller, unpublished (2010).
      Very good agreement with the empirical alpha of JA Miller, SJ Klippenstein, C Raffy, JPCA 106: 4904 (2002).
      DH = -103.4

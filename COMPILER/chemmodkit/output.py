@@ -79,9 +79,7 @@ def generate_readme(grouped_selections, columns, counters):
       "version of C3MechV4.0.1. The sub-models were compiled from the sub-modules "
       +
       "in the directory [`SUBMODULES/`](../SUBMODULES/). The reactions in the "
-      + 
-      "sub-modules are grouped "
-      +
+      + "sub-modules are grouped " +
       "based on the number of carbon atoms in the species (C0, C1-C2, C3-C4, C5, "
       +
       "C6, C7, C8+, C5CY, C6CY), with aromatic species being managed separately. "
@@ -106,11 +104,14 @@ def generate_readme(grouped_selections, columns, counters):
       "lower-temperature conditions, and rapid compression machine (RCM) experiments. "
       +
       "The columns NS(HT/LT-HT) and NR(HT/LT-HT) in the tables below refer to the number "
-      + "of species and reactions in the respective sub-models.\n " 
-      + "\nEach HT and LT-HT version is assigned a unique model ID (MID(HT/LT-HT)) that encodes "
-      + "the specific sub-module combination; if a single model is used across all temperatures, "
-      + "the counts (NS and NR) and MIDs are the same. If you need a combination not listed here, "
-      + "see [`COMPILER/`](../COMPILER/) directory for an easy-to-use script to create "
+      + "of species and reactions in the respective sub-models.\n " +
+      "\nEach HT and LT-HT version is assigned a unique model ID (MID(HT/LT-HT)) that encodes "
+      +
+      "the specific sub-module combination; if a single model is used across all temperatures, "
+      +
+      "the counts (NS and NR) and MIDs are the same. If you need a combination not listed here, "
+      +
+      "see [`COMPILER/`](../COMPILER/) directory for an easy-to-use script to create "
       + "custom sub-models.")
   readme.append("")
   readme.append("## Notes and recommendations ")
@@ -127,8 +128,8 @@ def generate_readme(grouped_selections, columns, counters):
   readme.append("## Available precompiled models ")
   readme.append("")
   readme.append(
-      "You can download individual files in your web browser or clone all files. " +
-      "For each sub-model, there are CHEMKIN (.CKI, .THERM, and .TRAN) " +
+      "You can download individual files in your web browser or clone all files. "
+      + "For each sub-model, there are CHEMKIN (.CKI, .THERM, and .TRAN) " +
       "and Cantera (.yaml) files. The .CKI files are provided as CHEMKIN-PRO/"
       + "OpenSMOKE++-compatible versions " +
       "as well as Cantera/FlameMaster-compatible versions " +
@@ -383,6 +384,11 @@ def insert_boiler_plate(filetype, name, submodules_files, datetime, mid,
   return lines
 
 
+def ascii_space(s: str) -> str:
+  """Return s with every non-ASCII char replaced by a space."""
+  return ''.join(ch if ord(ch) < 128 else ' ' for ch in s)
+
+
 def print_kinetics_file(species_list, species_pruned, header_filename,
                         submodules_files, model_name, mid, output_filename,
                         datetime, reactions, reactions_pruned):
@@ -424,7 +430,7 @@ def print_kinetics_file(species_list, species_pruned, header_filename,
 
   print("writing '" + output_filename + "'")
   with open(output_filename, 'w', encoding="utf-8") as file:
-    file.writelines(new_lines)
+    file.writelines(ascii_space(line) for line in new_lines)
   return n_species, n_reactions
 
 
@@ -583,23 +589,24 @@ def clean_therm(therm_output, species_list, species_pruned, header_filename,
   with open(therm_output, 'w') as thermfile:
 
     thermfile.writelines(
-        insert_boiler_plate("Thermodynamic", model_name, submodules_files,
-                            datetime, mid, header_filename))
+        ascii_space(line) for line in insert_boiler_plate(
+            "Thermodynamic", model_name, submodules_files, datetime, mid,
+            header_filename))
 
-    thermfile.write('THERMO ALL\n')
-    thermfile.write('300.   1000.   5000.\n')
+    thermfile.write(ascii_space('THERMO ALL\n'))
+    thermfile.write(ascii_space('300.   1000.   5000.\n'))
 
     for s in species_list:
       addition = ""
       if s in species_pruned:
         addition = pruned_comment
 
-      thermfile.write(addition + species_output[s][0])
-      thermfile.write(addition + species_output[s][1])
-      thermfile.write(addition + species_output[s][2])
-      thermfile.write(addition + species_output[s][3])
+      thermfile.write(ascii_space(addition + species_output[s][0]))
+      thermfile.write(ascii_space(addition + species_output[s][1]))
+      thermfile.write(ascii_space(addition + species_output[s][2]))
+      thermfile.write(ascii_space(addition + species_output[s][3]))
 
-    thermfile.write('\nEND\n\n')
+    thermfile.write(ascii_space('\nEND\n\n'))
 
 
 def clean_tran(tran_file, tran_output, species_list, species_pruned,
@@ -612,8 +619,9 @@ def clean_tran(tran_file, tran_output, species_list, species_pruned,
   print("writing '" + tran_output + "'")
   with open(tran_output, 'w') as tranfile:
     tranfile.writelines(
-        insert_boiler_plate("Transport", model_name, submodules_files,
-                            datetime, mid, header_filename))
+        ascii_space(line) for line in insert_boiler_plate(
+            "Transport", model_name, submodules_files, datetime, mid,
+            header_filename))
 
     for i in range(len(tranlines)):
       wrk_line = tranlines[i].split("!")[0]
@@ -626,22 +634,25 @@ def clean_tran(tran_file, tran_output, species_list, species_pruned,
         tran_component = tranlines[i].split()
         if ('!' in tranlines[i]):
           tranfile.write(
-              '{0:18}    {1}    {2:8.2f}    {3:6.2f}    {4:6.2f}    {5:6.2f}    {6:6.2f}    {7}\n'
-              .format(tran_component[0], tran_component[1],
-                      float(tran_component[2]), float(tran_component[3]),
-                      float(tran_component[4]), float(tran_component[5]),
-                      float(tran_component[6]), ' '.join(tran_component[7:])))
+              ascii_space(
+                  '{0:18}    {1}    {2:8.2f}    {3:6.2f}    {4:6.2f}    {5:6.2f}    {6:6.2f}    {7}\n'
+                  .format(tran_component[0], tran_component[1],
+                          float(tran_component[2]), float(tran_component[3]),
+                          float(tran_component[4]), float(tran_component[5]),
+                          float(tran_component[6]),
+                          ' '.join(tran_component[7:]))))
         else:
           addition = ""
           if sp_name in species_pruned:
             addition = pruned_comment
           tranfile.write(
-              addition +
-              '{0:18}    {1}    {2:8.2f}    {3:6.2f}    {4:6.2f}    {5:6.2f}    {6:6.2f}\n'
-              .format(tran_component[0], tran_component[1],
-                      float(tran_component[2]), float(tran_component[3]),
-                      float(tran_component[4]), float(tran_component[5]),
-                      float(tran_component[6])))
+              ascii_space(
+                  addition +
+                  '{0:18}    {1}    {2:8.2f}    {3:6.2f}    {4:6.2f}    {5:6.2f}    {6:6.2f}\n'
+                  .format(tran_component[0], tran_component[1],
+                          float(tran_component[2]), float(tran_component[3]),
+                          float(tran_component[4]), float(tran_component[5]),
+                          float(tran_component[6]))))
         #tranfile.write('{0}\n'.format(tranlines[line].rstrip()))
 
     for s, v in species_dict.items():

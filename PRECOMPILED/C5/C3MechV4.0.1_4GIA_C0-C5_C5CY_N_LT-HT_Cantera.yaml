@@ -25013,7 +25013,7 @@ reactions:
         !YZ_251026
         !MR_251103
         ! High P limit from LB Harding, Y Georgievskii, SJ Klippenstein, JPCA 109: 4646 (2005).
-        ! Low P from  NJ Labbe 2/2016 (improvement at high and low T)
+        ! Low P from  NJ Labbe 2/2016 (improvement at high and low T)
         ! Falloff in Ar (alpha=115*(T/300)^.75) from trajectories of AW Jasper, JA Miller, unpublished (2010).
         ! Very good agreement with the empirical alpha of JA Miller, SJ Klippenstein, C Raffy, JPCA 106: 4904 (2002).
         ! DH = -103.4
@@ -25029,7 +25029,7 @@ reactions:
     YZ_251026
     MR_251103
      High P limit from LB Harding, Y Georgievskii, SJ Klippenstein, JPCA 109: 4646 (2005).
-     Low P from  NJ Labbe 2/2016 (improvement at high and low T)
+     Low P from  NJ Labbe 2/2016 (improvement at high and low T)
      Falloff in Ar (alpha=115*(T/300)^.75) from trajectories of AW Jasper, JA Miller, unpublished (2010).
      Very good agreement with the empirical alpha of JA Miller, SJ Klippenstein, C Raffy, JPCA 106: 4904 (2002).
      DH = -103.4
@@ -70676,7 +70676,7 @@ reactions:
 - equation: NH3 + O <=> NH2 + OH  # Reaction 6476
   rate-constant: {A: 93.3, b: 3.29, Ea: 3670.0}
   note: |
-    (Adjusted) S.J. Klippenstein, L.B. Harding, B. Ruscic, R. Sivaramakrishnan, N.K. Srinivasan, M.-C. Su, J.V. Michael, J. Phys. Chem. A 113 (2009) 10241–10259.
+    (Adjusted) S.J. Klippenstein, L.B. Harding, B. Ruscic, R. Sivaramakrishnan, N.K. Srinivasan, M.-C. Su, J.V. Michael, J. Phys. Chem. A 113 (2009) 10241 10259.
 - equation: NH3 + OH <=> H2O + NH2  # Reaction 6477
   rate-constant: {A: 1.09e+05, b: 2.37, Ea: -181.0}
   note: |
@@ -70689,12 +70689,12 @@ reactions:
   duplicate: true
   rate-constant: {A: 4.235619e-10, b: 6.48, Ea: 2.70076482e+04}
   note: |
-    CIS & TRANS; S. Xu, M.C. Lin, Int J Chem Kinet 41: 667–677, 2009 
+    CIS & TRANS; S. Xu, M.C. Lin, Int J Chem Kinet 41: 667 677, 2009 
 - equation: NH3 + NO2 <=> HONO + NH2  # Reaction 6480
   duplicate: true
   rate-constant: {A: 0.2683758, b: 4.02, Ea: 2.3250478e+04}
   note: |
-    CIS & TRANS; S. Xu, M.C. Lin, Int J Chem Kinet 41: 667–677, 2009 
+    CIS & TRANS; S. Xu, M.C. Lin, Int J Chem Kinet 41: 667 677, 2009 
 - equation: NH3 + NO2 <=> HNO2 + NH2  # Reaction 6481
   rate-constant: {A: 2.45014e+11, b: 0.0, Ea: 2.50956023e+04}
   note: |
@@ -70749,7 +70749,7 @@ reactions:
 - equation: NH2 + O2 <=> HNO + OH  # Reaction 6493
   rate-constant: {A: 0.029, b: 3.764, Ea: 1.8185e+04}
   note: |
-    S.J. Klippenstein et al. / Combustion and Flame 158 (2011) 774–789
+    S.J. Klippenstein et al. / Combustion and Flame 158 (2011) 774 789
 - equation: NH2 + O2 <=> H2NO + O  # Reaction 6494
   rate-constant: {A: 3.0e+13, b: 0.0, Ea: 2.98e+04}
   note: |
@@ -70781,11 +70781,11 @@ reactions:
 - equation: NH2 + NO2 <=> H2NO + NO  # Reaction 6501
   rate-constant: {A: 8.18e+11, b: 0.032, Ea: -1510.0}
   note: |
-    x 0.9 Klippenstein et al., J. Phys. Chem. A 2013, 117, 9011−9022
+    x 0.9 Klippenstein et al., J. Phys. Chem. A 2013, 117, 9011 9022
 - equation: NH2 + NO2 <=> H2O + N2O  # Reaction 6502
   rate-constant: {A: 2.6e+18, b: -2.19, Ea: 455.0}
   note: |
-    Klippenstein et al., J. Phys. Chem. A 2013, 117, 9011−9022
+    Klippenstein et al., J. Phys. Chem. A 2013, 117, 9011 9022
 - equation: NH + NH2 <=> H + N2H2  # Reaction 6503
   rate-constant: {A: 1.5e+15, b: -0.5, Ea: 0.0}
   note: |
@@ -70793,11 +70793,11 @@ reactions:
 - equation: N + NH2 => 2 H + N2  # Reaction 6504
   rate-constant: {A: 4.55e+13, b: 0.0, Ea: 0.0}
   note: |
-    Ratio est. 65/35; Dransfeld, P., & Wagner, H. G. (1987). Investigation of the gas phase reaction N+ NH2→ N2+ 2H at room temperature. Zeitschrift für Physikalische Chemie, 153(1-2), 89-97.
+    Ratio est. 65/35; Dransfeld, P., & Wagner, H. G. (1987). Investigation of the gas phase reaction N+ NH2  N2+ 2H at room temperature. Zeitschrift f r Physikalische Chemie, 153(1-2), 89-97.
 - equation: N + NH2 <=> H2 + N2  # Reaction 6505
   rate-constant: {A: 2.45e+13, b: 0.0, Ea: 0.0}
   note: |
-    Ratio est. 65/35; Dransfeld, P., & Wagner, H. G. (1987). Investigation of the gas phase reaction N+ NH2→ N2+ 2H at room temperature. Zeitschrift für Physikalische Chemie, 153(1-2), 89-97.
+    Ratio est. 65/35; Dransfeld, P., & Wagner, H. G. (1987). Investigation of the gas phase reaction N+ NH2  N2+ 2H at room temperature. Zeitschrift f r Physikalische Chemie, 153(1-2), 89-97.
 - equation: 2 NH2 <=> H2 + N2H2  # Reaction 6506
   rate-constant: {A: 1.74e+08, b: 1.02, Ea: 1.1783e+04}
   note: |
@@ -70834,7 +70834,7 @@ reactions:
 - equation: NH + O <=> H + NO  # Reaction 6514
   rate-constant: {A: 1.41e+14, b: -0.21603, Ea: 46.37343}
   note: |
-    Li, A., Xie, C., Xie, D., & Guo, H. (2011). A global ab initio potential energy surface for HNO (a3A ″) and quantum mechanical studies of vibrational states and reaction dynamics. The Journal of chemical physics, 134(19).
+    Li, A., Xie, C., Xie, D., & Guo, H. (2011). A global ab initio potential energy surface for HNO (a3A  ) and quantum mechanical studies of vibrational states and reaction dynamics. The Journal of chemical physics, 134(19).
 - equation: NH + OH <=> H + HNO  # Reaction 6515
   rate-constant: {A: 1.51e+14, b: -0.314, Ea: -308.0}
   note: |
@@ -70846,11 +70846,11 @@ reactions:
 - equation: NH + O2 <=> HNO + O  # Reaction 6517
   rate-constant: {A: 3.32e+09, b: 1.034, Ea: 1.142e+04}
   note: |
-    Elishav et al., Chem. Rev. 2020, 120, 5352−5436 // Fit
+    Elishav et al., Chem. Rev. 2020, 120, 5352 5436 // Fit
 - equation: NH + O2 <=> NO + OH  # Reaction 6518
   rate-constant: {A: 4.5e+08, b: 0.79, Ea: 1195.0}
   note: |
-    Römming, H. J.; Wagner, H. G. A Kinetic Study of the Reactions of NH(X3Σ−) with O2 and No in the Temperature Range from 1200 to 2200 K. Symp. Combust., [Proc.] 1996, 26, 559−566.
+    Ro mming, H. J.; Wagner, H. G. A Kinetic Study of the Reactions of NH(X3  ) with O2 and No in the Temperature Range from 1200 to 2200 K. Symp. Combust., [Proc.] 1996, 26, 559 566.
 - equation: 2 NH => H2 + N2  # Reaction 6519
   rate-constant: {A: 6.26e+12, b: -0.036, Ea: -160.9}
   note: |
@@ -70936,7 +70936,7 @@ reactions:
 - equation: N2H4 + O2 <=> HO2 + N2H3  # Reaction 6536
   rate-constant: {A: 5.05e+12, b: 0.0, Ea: 3.21e+04}
   note: |
-    S. Asgharzade et al. / Computational and Theoretical Chemistry 1104 (2017) 47–55
+    S. Asgharzade et al. / Computational and Theoretical Chemistry 1104 (2017) 47 55
 - equation: N2H4 + NH2 <=> N2H3 + NH3  # Reaction 6537
   rate-constant: {A: 38.0, b: 3.44, Ea: -574.0}
   note: |
@@ -70944,7 +70944,7 @@ reactions:
 - equation: N2H4 + NH <=> N2H3 + NH2  # Reaction 6538
   rate-constant: {A: 60.9, b: 3.61, Ea: 5807.83939}
   note: |
-    DANA ET AL., J. Phys. Chem. A 2019, 123, 4679−4692
+    DANA ET AL., J. Phys. Chem. A 2019, 123, 4679 4692
 - equation: N + N2H4 <=> N2H3 + NH  # Reaction 6539
   rate-constant: {A: 1.0e+10, b: 1.0, Ea: 2000.0}
   note: |
@@ -70983,16 +70983,16 @@ reactions:
   rate-constant: {A: 3.54e+44, b: -7.92978, Ea: 6.80611644e+04}
   note: |2
      Journal of Physical Chemistry A, 2009, Vol. 113, pp. 10241-10259
-    P. Diévart, L. Catoire, Contributions of Experimental Data Obtained in Concentrated Mixtures to Kinetic Studies: Application to Monomethylhydrazine Pyrolysis, The Journal of Physical Chemistry A 124 (2020) 6214-6236.
+    P. Di vart, L. Catoire, Contributions of Experimental Data Obtained in Concentrated Mixtures to Kinetic Studies: Application to Monomethylhydrazine Pyrolysis, The Journal of Physical Chemistry A 124 (2020) 6214-6236.
     REFITTED TO DEAN 2000 PLOG
 - equation: H + N2H3 <=> H2 + N2H2  # Reaction 6547
   rate-constant: {A: 7476.0, b: 2.796, Ea: 4680.0}
   note: |
-    P. Diévart, L. Catoire, Contributions of Experimental Data Obtained in Concentr
+    P. Di vart, L. Catoire, Contributions of Experimental Data Obtained in Concentr
 - equation: H + N2H3 <=> H2 + H2NN  # Reaction 6548
   rate-constant: {A: 6.243e+06, b: 1.89, Ea: 247.0}
   note: |
-    P. Diévart, L. Catoire, Contributions of Experimental Data Obtained in Concentr
+    P. Di vart, L. Catoire, Contributions of Experimental Data Obtained in Concentr
 - equation: N2H3 + O <=> N2H2 + OH  # Reaction 6549
   rate-constant: {A: 1.7e+08, b: 1.5, Ea: -646.0}
   note: |
@@ -71016,7 +71016,7 @@ reactions:
 - equation: N2H3 + NH2 <=> N2H2 + NH3  # Reaction 6554
   rate-constant: {A: 0.608, b: 3.574, Ea: 1190.0}
   note: |
-    P. Diévart, L. Catoire, Contributions of Experimental Data Obtained in Concentrated Mixtures to Kinetic Studies: Application to Monomethylhydrazine Pyrolysis, The Journal of Physical Chemistry A 124 (2020) 6214-6236.
+    P. Di vart, L. Catoire, Contributions of Experimental Data Obtained in Concentrated Mixtures to Kinetic Studies: Application to Monomethylhydrazine Pyrolysis, The Journal of Physical Chemistry A 124 (2020) 6214-6236.
 - equation: N2H3 + NH2 <=> H2NN + NH3  # Reaction 6555
   rate-constant: {A: 3.1, b: 3.43, Ea: -1959.84704}
   note: |
@@ -71136,7 +71136,7 @@ reactions:
 - equation: N2H2 + NH2 <=> NH3 + NNH  # Reaction 6580
   rate-constant: {A: 2.71e+05, b: 2.226, Ea: -1030.0}
   note: |
-    P. Diévart, L. Catoire, Contributions of Experimental Data Obtained in Concentrated Mixtures to Kinetic Studies: Application to Monomethylhydrazine Pyrolysis, The Journal of Physical Chemistry A 124 (2020) 6214-6236.
+    P. Di vart, L. Catoire, Contributions of Experimental Data Obtained in Concentrated Mixtures to Kinetic Studies: Application to Monomethylhydrazine Pyrolysis, The Journal of Physical Chemistry A 124 (2020) 6214-6236.
 - equation: N2H2 + NO <=> N2O + NH2  # Reaction 6581
   rate-constant: {A: 4.0e+12, b: 0.0, Ea: 1.1922e+04}
   note: |
@@ -71148,11 +71148,11 @@ reactions:
 - equation: NNH + O <=> N2 + OH  # Reaction 6583
   rate-constant: {A: 1.2e+13, b: 0.145, Ea: -217.0}
   note: |
-    S.J. Klippenstein et al. / Combustion and Flame 158 (2011) 774–789
+    S.J. Klippenstein et al. / Combustion and Flame 158 (2011) 774 789
 - equation: NNH + O2 <=> HO2 + N2  # Reaction 6584
   rate-constant: {A: 5.6e+14, b: -0.385, Ea: -13.0}
   note: |
-    S.J. Klippenstein et al. / Combustion and Flame 158 (2011) 774–789
+    S.J. Klippenstein et al. / Combustion and Flame 158 (2011) 774 789
 - equation: HO2 + NNH <=> H2O2 + N2  # Reaction 6585
   rate-constant: {A: 1.4e+04, b: 2.69, Ea: -1599.535}
   note: |
@@ -71180,11 +71180,11 @@ reactions:
 - equation: NNH + O <=> NH + NO  # Reaction 6591
   rate-constant: {A: 7.8e+11, b: 0.381, Ea: -409.0}
   note: |
-    +50%; S.J. Klippenstein et al. / Combustion and Flame 158 (2011) 774–789
+    +50%; S.J. Klippenstein et al. / Combustion and Flame 158 (2011) 774 789
 - equation: NNH + O <=> H + N2O  # Reaction 6592
   rate-constant: {A: 1.9e+14, b: -0.274, Ea: -22.0}
   note: |
-    S.J. Klippenstein et al. / Combustion and Flame 158 (2011) 774–789
+    S.J. Klippenstein et al. / Combustion and Flame 158 (2011) 774 789
 - equation: N + O + M <=> NO + M  # Reaction 6593
   type: three-body
   rate-constant: {A: 7.6e+14, b: -0.1, Ea: -1770.0}
@@ -71326,7 +71326,7 @@ reactions:
 - equation: NH3 + NO <=> HNO + NH2  # Reaction 6622
   rate-constant: {A: 1458.295, b: 3.12, Ea: 5.44933078e+04}
   note: |
-    S. Xu, M.C. Lin, Int J Chem Kinet 41: 667–677, 2009 
+    S. Xu, M.C. Lin, Int J Chem Kinet 41: 667 677, 2009 
 - equation: HNO + O <=> NO + OH  # Reaction 6623
   rate-constant: {A: 2.3e+13, b: 0.0, Ea: 0.0}
   note: |
@@ -71379,23 +71379,23 @@ reactions:
   type: three-body
   rate-constant: {A: 5.1e+19, b: -1.73, Ea: 1.604e+04}
   note: |
-    O. Mathieu, E.L. Petersen / Combustion and Flame 162 (2015) 554–570
+    O. Mathieu, E.L. Petersen / Combustion and Flame 162 (2015) 554 570
 - equation: HON + O <=> NO + OH  # Reaction 6631
   rate-constant: {A: 7.0e+13, b: 0.0, Ea: 0.0}
   note: |
-    O. Mathieu, E.L. Petersen / Combustion and Flame 162 (2015) 554–570
+    O. Mathieu, E.L. Petersen / Combustion and Flame 162 (2015) 554 570
 - equation: H + HON <=> H + HNO  # Reaction 6632
   rate-constant: {A: 2.4e+13, b: 0.0, Ea: 0.0}
   note: |
-    O. Mathieu, E.L. Petersen / Combustion and Flame 162 (2015) 554–570
+    O. Mathieu, E.L. Petersen / Combustion and Flame 162 (2015) 554 570
 - equation: HON + OH <=> H + HONO  # Reaction 6633
   rate-constant: {A: 4.0e+13, b: 0.0, Ea: 0.0}
   note: |
-    O. Mathieu, E.L. Petersen / Combustion and Flame 162 (2015) 554–570
+    O. Mathieu, E.L. Petersen / Combustion and Flame 162 (2015) 554 570
 - equation: HON + O2 <=> NO2 + OH  # Reaction 6634
   rate-constant: {A: 1.0e+12, b: 0.0, Ea: 4968.0}
   note: |
-    O. Mathieu, E.L. Petersen / Combustion and Flame 162 (2015) 554–570
+    O. Mathieu, E.L. Petersen / Combustion and Flame 162 (2015) 554 570
 - equation: H2NO + M <=> H + HNO + M  # Reaction 6635
   type: three-body
   rate-constant: {A: 2.8e+24, b: -2.83, Ea: 6.4915e+04}
@@ -71467,7 +71467,7 @@ reactions:
 - equation: HNOH + O2 <=> HNO + HO2  # Reaction 6650
   rate-constant: {A: 3.0e+12, b: 0.0, Ea: 2.5e+04}
   note: |
-    JIM MILLER ESTIMATED, USED BY S.J. Klippenstein et al. / Combustion and Flame 158 (2011) 774–789
+    JIM MILLER ESTIMATED, USED BY S.J. Klippenstein et al. / Combustion and Flame 158 (2011) 774 789
 - equation: HNOH + HO2 <=> H2O2 + HNO  # Reaction 6651
   rate-constant: {A: 2.9e+04, b: 2.69, Ea: -1599.535}
   note: |
@@ -71479,7 +71479,7 @@ reactions:
 - equation: HNOH + NO2 <=> HNO + HONO  # Reaction 6653
   rate-constant: {A: 6.0e+11, b: 0.0, Ea: 2000.0}
   note: |
-    JIM MILLER ESTIMATED, USED BY S.J. Klippenstein et al. / Combustion and Flame 158 (2011) 774–789
+    JIM MILLER ESTIMATED, USED BY S.J. Klippenstein et al. / Combustion and Flame 158 (2011) 774 789
 - equation: HNOH + NH2 <=> H2NN + H2O  # Reaction 6654
   rate-constant: {A: 4.6e+19, b: -1.94, Ea: 1927.39}
   note: |

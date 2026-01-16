@@ -19080,7 +19080,7 @@ reactions:
         !YZ_251026
         !MR_251103
         ! High P limit from LB Harding, Y Georgievskii, SJ Klippenstein, JPCA 109: 4646 (2005).
-        ! Low P from  NJ Labbe 2/2016 (improvement at high and low T)
+        ! Low P from  NJ Labbe 2/2016 (improvement at high and low T)
         ! Falloff in Ar (alpha=115*(T/300)^.75) from trajectories of AW Jasper, JA Miller, unpublished (2010).
         ! Very good agreement with the empirical alpha of JA Miller, SJ Klippenstein, C Raffy, JPCA 106: 4904 (2002).
         ! DH = -103.4
@@ -19096,7 +19096,7 @@ reactions:
     YZ_251026
     MR_251103
      High P limit from LB Harding, Y Georgievskii, SJ Klippenstein, JPCA 109: 4646 (2005).
-     Low P from  NJ Labbe 2/2016 (improvement at high and low T)
+     Low P from  NJ Labbe 2/2016 (improvement at high and low T)
      Falloff in Ar (alpha=115*(T/300)^.75) from trajectories of AW Jasper, JA Miller, unpublished (2010).
      Very good agreement with the empirical alpha of JA Miller, SJ Klippenstein, C Raffy, JPCA 106: 4904 (2002).
      DH = -103.4
@@ -61918,7 +61918,7 @@ reactions:
     RXYLENE=>C6H5C2H3+H                              1.5E+13   0.128 70300 ! LPM AS IN SUN 2022 / 2, SHOULD FORM CH2C6H4CH2, THEN GOES TO C6H5C2H3 !da Silva et al. JPCA 113(2009) 10264-10278! WAS 6H6H+H+C2H2 8.200E+14    0.000  80676.39 !\REF: !\COMMENT:!REF: Path from Bournaceur et al. 2005
     RXYLENE=>C6H6+C2H2+H                             1.5E+13   0.128 70300 ! LPM AS ABOVE , DIFFERENT PRODUCTS; SIMILAR TO GAIL DAGAUT CST 2007 (6E13 0 70000)
     RXYLENE=>CYC6H4+C2H4+H                             0.5E+13   0.128 70300 ! LPM AS ABOVE , prod from ortho-CH2C6H4CH2 + H
-    RXYLENE = C5H6+C3H3                              0.3E+13 0.0 71000  !LPM FROM SUN 2022 / 10 (META ISOMER) Gail and Dagaut Combust. Sci. and Tech., 179: 813–844, 2007, A/3  1.00E+14									   
+    RXYLENE = C5H6+C3H3                              0.3E+13 0.0 71000  !LPM FROM SUN 2022 / 10 (META ISOMER) Gail and Dagaut Combust. Sci. and Tech., 179: 813 844, 2007, A/3  1.00E+14									   
     #[ENDREACTIONCLASS][A1CH2,CH3-RSR][BSCISS_CH]
     #[REACTIONCLASS][A1CH2-RSR][BSCISS_CH]
     RXYLENE=>C7H6+CH3                               9.8E+15	0	90713   !LPM PATH FROM YUAN 2021 PXYL DECO CNF; SEEMS MINOR but in Yuan it depends on isomer (prevails in para). RATE FROM C7H7=>CYC6H4+CH3, 2 PAR FIT AT 1 ATM
