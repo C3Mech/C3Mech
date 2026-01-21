@@ -15,6 +15,19 @@ description: |2-
                                                                                                       !
    For more information, please visit fuelmech.org.                                                   !
                                                                                                       !
+   How to cite C3MechV4.0.1:                                                                          !
+   1) Pratali Maffei, L., Langer, R., Murakami, Y., Wagnon, S. W., Wang, P., Liu, J., Raza, M.,       !
+      Zhu, Y., Girhe, S., Schwenzer, C., Beeckmann, J., Klippenstein, S. J., Faravelli, T.,           !
+      Pitsch, H., Senecal, P. K., & Curran, H. J. (2025). Modeling combustion chemistry using         !
+      C3MechV4.0: An extension to mixtures of hydrogen, ammonia, alkanes, and cycloalkanes.           !
+      Applications in Energy and Combustion Science, 24, 100385.                                      !
+      https://doi.org/10.1016/j.jaecs.2025.100385                                                     !
+   2) Pratali Maffei, L., Langer, R., Murakami, Y., Wagnon, S. W., Wang, P., Liu, J., Raza, M.,       !
+      Zhu, Y., Girhe, S., Schwenzer, C., Beeckmann, J., Klippenstein, S. J., Faravelli, T.,           !
+      Pitsch, H., Senecal, P. K., & Curran, H. J. (2026). Corrigendum to "Modeling combustion         !
+      chemistry using chemistry using C3MechV4.0: An extension to mixtures of hydrogen, ammonia,      !
+      alkanes, and cycloalkanes" [Applications in Energy and Combustion Science, 2025, 24, 100385]    !
+                                                                                                      !
    ================================ Working Groups For C3MechV4.0.1 ================================= !
 
                                                                                                       !
@@ -57,7 +70,7 @@ description: |2-
    ================================================================================================== !
 
 
-   Kinetics data for C3MechV4.0.1, generated on 10/12/2025 16:00:57.
+   Kinetics data for C3MechV4.0.1, generated on 20/01/2026 19:47:54.
 
    The following sub-modules were considered in this file:
    - UOG_C0_LT-HT_Cantera.MECH
@@ -101,6 +114,19 @@ description: |2-
                                                                                                      !
   For more information, please visit fuelmech.org.                                                   !
                                                                                                      !
+  How to cite C3MechV4.0.1:                                                                          !
+  1) Pratali Maffei, L., Langer, R., Murakami, Y., Wagnon, S. W., Wang, P., Liu, J., Raza, M.,       !
+     Zhu, Y., Girhe, S., Schwenzer, C., Beeckmann, J., Klippenstein, S. J., Faravelli, T.,           !
+     Pitsch, H., Senecal, P. K., & Curran, H. J. (2025). Modeling combustion chemistry using         !
+     C3MechV4.0: An extension to mixtures of hydrogen, ammonia, alkanes, and cycloalkanes.           !
+     Applications in Energy and Combustion Science, 24, 100385.                                      !
+     https://doi.org/10.1016/j.jaecs.2025.100385                                                     !
+  2) Pratali Maffei, L., Langer, R., Murakami, Y., Wagnon, S. W., Wang, P., Liu, J., Raza, M.,       !
+     Zhu, Y., Girhe, S., Schwenzer, C., Beeckmann, J., Klippenstein, S. J., Faravelli, T.,           !
+     Pitsch, H., Senecal, P. K., & Curran, H. J. (2026). Corrigendum to "Modeling combustion         !
+     chemistry using chemistry using C3MechV4.0: An extension to mixtures of hydrogen, ammonia,      !
+     alkanes, and cycloalkanes" [Applications in Energy and Combustion Science, 2025, 24, 100385]    !
+                                                                                                     !
   ================================ Working Groups For C3MechV4.0.1 ================================= !
 
                                                                                                      !
@@ -143,7 +169,7 @@ description: |2-
   ================================================================================================== !
 
 
-  Thermodynamic data for C3MechV4.0.1, generated on 10/12/2025 16:00:57.
+  Thermodynamic data for C3MechV4.0.1, generated on 20/01/2026 19:47:54.
 
   The following sub-modules were considered in this file:
   - UOG_C0_LT-HT.MECH
@@ -161,7 +187,7 @@ input-files: [
     C3MechV4.0.1_47U1_C0-C3-C4_C5CY_C6CY_PAH_LT-HT.THERM, 
     C3MechV4.0.1_47U1_C0-C3-C4_C5CY_C6CY_PAH_LT-HT.TRAN]
 cantera-version: 3.1.0
-date: Wed, 10 Dec 2025 16:07:54 +0100
+date: Tue, 20 Jan 2026 19:55:28 +0100
 
 units: {length: cm, time: s, quantity: mol, activation-energy: cal/mol}
 
