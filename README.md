@@ -11,22 +11,22 @@ For most applications you can use a **precompiled model**:
 2. Open `PRECOMPILED/README.md`.
 3. In the **"Quick access table with commonly used sub-models"**, find the row that best matches your case (e.g., cyclopentadiene).
 4. Decide whether you need the **HT** or the **LT-HT** version, based on your application (high-temperature only vs. including low-temperature chemistry).
-5. From that row, note the `directory` and the corresponding MID from the `MID(HT/LT-HT)` column,  
+5. From that row, note the `Directory` and the corresponding MID from the `MID(HT/LT-HT)` column,  
    where the first MID is HT and the second is LT-HT.  
-   Example: for cyclopentadiene you may get `directory = C6/` and `MID = 3X61` (HT) or `MID = 4GU1` (LT-HT).
+   Example: for cyclopentadiene you may get `Directory = C6/` and `MID = 3X61` (HT) or `MID = 4GU1` (LT-HT).
 
 Then:
 
 - **CHEMKIN**  
   Go to  
-  `PRECOMPILED/<directory>/Chemkin/`  
+  `PRECOMPILED/<Directory>/Chemkin/`  
   and use the `.CKI`, `.THERM`, and `.TRAN` files whose names start with  
   `C3MechV4.0.1_<MID>_`.  
-  For cyclopentadiene with `directory = C6/` and `MID = 3X61`, this means the CHEMKIN files whose names start with `C3MechV4.0.1_3X61_`.
+  For cyclopentadiene with `Directory = C6/` and `MID = 3X61`, this means the CHEMKIN files whose names start with `C3MechV4.0.1_3X61_`.
 
 - **Cantera**  
   Go to  
-  `PRECOMPILED/<directory>/Cantera/`  
+  `PRECOMPILED/<Directory>/Cantera/`  
   and use the `.yaml` file whose name starts with  
   `C3MechV4.0.1_<MID>_`,  
   e.g., for cyclopentadiene, the file starting with `C3MechV4.0.1_3X61_`.
