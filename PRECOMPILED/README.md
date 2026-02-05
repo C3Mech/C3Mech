@@ -13,9 +13,19 @@ Each HT and LT-HT version is assigned a unique model ID (MID(HT/LT-HT)) that enc
 For questions or suggestions, please open an issue or 
 [contact us](mailto:r.langer@itv.rwth-aachen.de). 
 
-## Available precompiled models 
+## Available precompiled models
 
-You can download individual files in your web browser or clone all files. For each sub-model, there are CHEMKIN (.CKI, .THERM, and .TRAN) and Cantera (.yaml) files. The .CKI files are provided as CHEMKIN-PRO/OpenSMOKE++-compatible versions as well as Cantera/FlameMaster-compatible versions (filename contains the string 'Cantera'). Once you have found a suitable sub-model, you can use its `MID` to find the corresponding files. It is recommended to refer to a  model's `MID` when using a sub-model of C3MechV4.0.1. 
+You can download individual files or clone all files. For each sub-model, there are CHEMKIN (.CKI, .THERM, .TRAN) and Cantera (.yaml) files, organized identically in all directories (`C0/`, `C1–C2/`, `C3–C4/`, `C5/`, `C6/`, `C7/`, `C8+/`):
+
+- `Chemkin/`:
+  - mechanism files `C3MechV4.0.1_*.CKI` (CHEMKIN‑PRO/OpenSMOKE++)
+  - corresponding thermodynamic and transport files `C3MechV4.0.1_*.THERM` and `C3MechV4.0.1_*.TRAN`
+- `Cantera/`:
+  - Cantera/FlameMaster-compatible mechanism files `C3MechV4.0.1_*_Cantera.CKI`
+  - Cantera `.yaml` files
+
+The thermodynamic (`*.THERM`) and transport (`*.TRAN`) files are **identical** for both `*.CKI` variants and are therefore stored only once in `Chemkin/`. The `.CKI` files are provided as CHEMKIN‑PRO/OpenSMOKE++‑compatible versions and as Cantera/FlameMaster‑compatible versions (filenames containing `Cantera`). Once you have found a suitable sub-model, use its `MID` to locate the corresponding files; we recommend citing the `MID` when using a sub-model of C3MechV4.0.1.
+
 
 ## Quick access table with commonly used sub-models
 
