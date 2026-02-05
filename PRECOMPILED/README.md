@@ -1,17 +1,30 @@
 # Precompiled models 
 
-This directory contains precompiled chemical kinetic sub-models of C3MechV4.0.1, tailored to specific fuel compositions and conditions, and the full version of C3MechV4.0.1. The sub-models were compiled from the sub-modules in the directory [`SUBMODULES/`](../SUBMODULES/). The reactions in the sub-modules are grouped based on the number of carbon atoms in the species (C0, C1-C2, C3-C4, C5, C6, C7, C8+, C5CY, C6CY), with aromatic species being managed separately. Here, 'CY' refers to non-aromatic, cyclic fuel components. Additionally, sub-modules for dimethyl carbonate and ethylene carbonate (DMC+EC), nitrogen-containing species (N), cross-reactions between nitrogen- and carbon-containing species (C-N), and polycyclic aromatic hydrocarbons (PAH) are available. The tables below list all precompiled sub-models, where in this subdirectory "N" refers to the combined N- and C-N sub-modules if a sub-model contains carbon atoms. 
+This directory contains precompiled chemical kinetic sub-models of C3MechV4.0.1, tailored to specific fuel compositions and conditions, and the full version of C3MechV4.0.1.
+
+## Quick start in this directory
+
+- For typical/simple cases, use the **Quick access table with commonly used sub-models** below:  
+  Pick the row that matches your case (e.g., cyclopentadiene), note its `Directory` and MID from `MID(HT/LT-HT)` (HT or LT-HT), and then locate the CHEMKIN and Cantera files as described in **Available precompiled models**.
+- If you need a sub-model that is not listed in the Quick access table (for example, with a different choice of N, PAH, or CY sub-modules), ignore the Quick access table and use the detailed tables in the `C0/`, `C1-C2/`, ..., `C8+/` sections below.
+- If there is **no precompiled sub-model** with the combination of sub-modules you require, use the compiler in [`../COMPILER/`](../COMPILER/) to generate a custom sub-model.
+
+The full C3MechV4.0.1 model corresponds to directory `C8+/` and MID `4HZZ`.
+
+## Terminology and background
+
+The sub-models were compiled from the sub-modules in the directory [`SUBMODULES/`](../SUBMODULES/). The reactions in the sub-modules are grouped based on the number of carbon atoms in the species (C0, C1-C2, C3-C4, C5, C6, C7, C8+, C5CY, C6CY), with aromatic species being managed separately. Here, 'CY' refers to non-aromatic, cyclic fuel components. Additionally, sub-modules for dimethyl carbonate and ethylene carbonate (DMC+EC), nitrogen-containing species (N), cross-reactions between nitrogen- and carbon-containing species (C-N), and polycyclic aromatic hydrocarbons (PAH) are available. The tables below list all precompiled sub-models, where in this subdirectory "N" refers to the combined N- and C-N sub-modules if a sub-model contains carbon atoms. 
 
 Many sub-models are available as smaller high-temperature (HT) versions, which are suitable for simulations of unstretched premixed and counterflow flames, high-temperature flow reactors, and shock tubes. Low-temperature (LT) chemistry is, for example, required to simulate jet-stirred reactors, flow reactors under lower-temperature conditions, and rapid compression machine (RCM) experiments. The columns NS(HT/LT-HT) and NR(HT/LT-HT) in the tables below refer to the number of species and reactions in the respective sub-models. 
 
 Each HT and LT-HT version is assigned a unique model ID (MID(HT/LT-HT)) that encodes the specific sub-module combination; if a single model is used across all temperatures, the counts (NS and NR) and MIDs are the same. If you need a combination not listed here, see [`COMPILER/`](../COMPILER/) directory for an easy-to-use script to create custom sub-models.
 
 ## Notes and recommendations 
+
 - **Selecting a sub-model:** Selecting a sub-model with only the necessary sub-modules facilitates and speeds up kinetic simulations. 
 - **User responsibility:** The user must select an _appropriate_ sub-model for a simulation case. 
 
-For questions or suggestions, please open an issue or 
-[contact us](mailto:r.langer@itv.rwth-aachen.de). 
+For questions or suggestions, please open an issue or [contact us](mailto:r.langer@itv.rwth-aachen.de). 
 
 ## Available precompiled models
 
@@ -24,10 +37,21 @@ You can download individual files or clone all files. For each sub-model, there 
   - Cantera/FlameMaster-compatible mechanism files `C3MechV4.0.1_*_Cantera.CKI`
   - Cantera `.yaml` files
 
-The thermodynamic (`*.THERM`) and transport (`*.TRAN`) files are **identical** for both `*.CKI` variants and are therefore stored only once in `Chemkin/`. The `.CKI` files are provided as CHEMKIN‑PRO/OpenSMOKE++‑compatible versions and as Cantera/FlameMaster‑compatible versions (filenames containing `Cantera`). Once you have found a suitable sub-model, use its `MID` to locate the corresponding files; we recommend citing the `MID` when using a sub-model of C3MechV4.0.1.
+The thermodynamic (`*.THERM`) and transport (`*.TRAN`) files are **identical** for both `*.CKI` variants and are therefore stored only once in `Chemkin/`. The `.CKI` files are provided as CHEMKIN‑PRO/OpenSMOKE++‑compatible versions and as Cantera/FlameMaster‑compatible versions (filenames containing `Cantera`).
 
+Once you have chosen a sub-model in one of the tables below (for example, from the **Quick access table**), use its `Directory` and `MID(HT/LT‑HT)` together with the layout above to locate the corresponding CHEMKIN and Cantera files. We recommend citing the `MID` when using a sub-model of C3MechV4.0.1.
 
 ## Quick access table with commonly used sub-models
+
+Use this table for typical/simple cases:
+
+- Pick the row that matches your case (e.g., cyclopentadiene).
+- Note the `Directory` and the desired MID from `MID(HT/LT-HT)` (HT or LT-HT).
+- Use that `Directory` and MID to locate the CHEMKIN and Cantera files as described in **Available precompiled models** above.
+
+The full C3MechV4.0.1 model corresponds to directory `C8+/` and MID `4HZZ`.
+
+If you need a configuration that is not listed here (e.g. different selection of N, PAH, or CY sub-modules), ignore this table and use the detailed tables in the `C0/`, `C1-C2/`, ..., `C8+/` sections below.
 
 | Fuels                      | Directory      | MID(HT/LT-HT) | C0 | C1-C2 | C3-C4 | C5 | C6-C8+ | C5CY | C6CY | N | PAH | NS(HT/LT-HT) | NR(HT/LT-HT) |
 |:--------------------------:|:--------------:|:-------------:|:--:|:-----:|:-----:|:--:|:------:|:----:|:----:|:-:|:---:|:------------:|:------------:|
