@@ -1,7 +1,7 @@
 description: |2-
    ================================================================================================== !
                                                                                                       !
-              Modeling Combustion Chemistry using C3MechV4.0.1: an extension to mixtures of           !
+              Modeling Combustion Chemistry using C3MechV4.0: an extension to mixtures of             !
                               hydrogen, ammonia, alkanes, and cycloalkanes                            !
                                                                                                       !
    ================================================================================================== !
@@ -11,7 +11,7 @@ description: |2-
    Lawrence Livermore National Laboratory, Argonne National Laboratory, and Convergent Science.       !
                                                                                                       !
    C3MechV4.0.1 is available from the github repository:                                              !
-   https://github.com/C3Mech/C3MechV4.0                                                               !
+   https://github.com/C3Mech/C3Mech                                                                   !
                                                                                                       !
    For more information, please visit fuelmech.org.                                                   !
                                                                                                       !
@@ -70,7 +70,7 @@ description: |2-
    ================================================================================================== !
 
 
-   Kinetics data for C3MechV4.0.1, generated on 20/01/2026 19:47:54.
+   Kinetics data for C3MechV4.0.1, generated on 12/02/2026 17:18:56.
 
    The following sub-modules were considered in this file:
    - UOG_C0_LT-HT_Cantera.MECH
@@ -103,7 +103,7 @@ description: |2-
   \START_ELEMENTS_LIST
   ================================================================================================== !
                                                                                                      !
-             Modeling Combustion Chemistry using C3MechV4.0.1: an extension to mixtures of           !
+             Modeling Combustion Chemistry using C3MechV4.0: an extension to mixtures of             !
                              hydrogen, ammonia, alkanes, and cycloalkanes                            !
                                                                                                      !
   ================================================================================================== !
@@ -113,7 +113,7 @@ description: |2-
   Lawrence Livermore National Laboratory, Argonne National Laboratory, and Convergent Science.       !
                                                                                                      !
   C3MechV4.0.1 is available from the github repository:                                              !
-  https://github.com/C3Mech/C3MechV4.0                                                               !
+  https://github.com/C3Mech/C3Mech                                                                   !
                                                                                                      !
   For more information, please visit fuelmech.org.                                                   !
                                                                                                      !
@@ -172,7 +172,7 @@ description: |2-
   ================================================================================================== !
 
 
-  Thermodynamic data for C3MechV4.0.1, generated on 20/01/2026 19:47:54.
+  Thermodynamic data for C3MechV4.0.1, generated on 12/02/2026 17:18:56.
 
   The following sub-modules were considered in this file:
   - UOG_C0_LT-HT.MECH
@@ -192,7 +192,7 @@ input-files: [C3MechV4.0.1_3W2W_C0-C8+_N_HT_Cantera.CKI,
     C3MechV4.0.1_3W2W_C0-C8+_N_HT.THERM, 
     C3MechV4.0.1_3W2W_C0-C8+_N_HT.TRAN]
 cantera-version: 3.1.0
-date: Tue, 20 Jan 2026 20:21:09 +0100
+date: Thu, 12 Feb 2026 17:38:33 +0100
 
 units: {length: cm, time: s, quantity: mol, activation-energy: cal/mol}
 
