@@ -3,13 +3,13 @@
 
 **C3MechV4.0.1** is a universal chemical kinetic model developed for both conventional and renewable fuels (e.g., alkanes, hydrogen, ammonia, dimethyl ether, dimethyl carbonate/ethylene carbonate). It has been validated for a wide range of conditions and uses a hierarchical structure that allows the targeted compilation of sub-models. This repository is linked to the publication ["Modeling Combustion Chemistry using C3MechV4.0: an extension to mixtures of hydrogen, ammonia, alkanes, and cycloalkanes"](https://doi.org/10.1016/j.jaecs.2025.100385) and its ["forthcoming Corrigendum"](link-to-be-added-upon-publication).
 
-## 0. TL;DR: full model
+## 0. Full model
 
 If you only need the full C3MechV4.0.1 model in CHEMKIN format, use [`FULL_MODEL/`](FULL_MODEL/).
 
 ## 1. Quick start: ready-to-use sub-models
 
-For most applications you can use a **precompiled sub-model**:
+For most applications, you can use a **precompiled sub-model**:
 
 1. Go to [`PRECOMPILED/`](PRECOMPILED/).
 2. Open `PRECOMPILED/README.md`.
@@ -36,7 +36,7 @@ Then:
   In the same directory, go to `Cantera/` and use the `.yaml` file whose name
   starts with `C3MechV4.0.1_<MID>_`.
 
-If the table lists the same MID for HT and LT-HT, there is only a single version, and the same files are used across the entire temperature range.
+If the table lists the same MID for HT and LT-HT, there is only a single version, and the same files are used across the entire temperature range. We recommend citing the MID when using a sub-model of C3MechV4.0.1.
 
 ## 2. Advanced use and model development
 
