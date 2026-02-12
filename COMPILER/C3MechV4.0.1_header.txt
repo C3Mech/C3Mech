@@ -1,6 +1,6 @@
 ! ================================================================================================== !
 !                                                                                                    !
-!            Modeling Combustion Chemistry using C3MechV4.0.1: an extension to mixtures of           !
+!            Modeling Combustion Chemistry using C3MechV4.0: an extension to mixtures of             !
 !                            hydrogen, ammonia, alkanes, and cycloalkanes                            !
 !                                                                                                    !
 ! ================================================================================================== !
@@ -10,7 +10,7 @@
 ! Lawrence Livermore National Laboratory, Argonne National Laboratory, and Convergent Science.       !
 !                                                                                                    !
 ! C3MechV4.0.1 is available from the github repository:                                              !
-! https://github.com/C3Mech/C3MechV4.0                                                               !
+! https://github.com/C3Mech/C3Mech                                                                   !
 !                                                                                                    !
 ! For more information, please visit fuelmech.org.                                                   !
 !                                                                                                    !
