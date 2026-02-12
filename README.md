@@ -36,7 +36,7 @@ Then:
   In the same directory, go to `Cantera/` and use the `.yaml` file whose name
   starts with `C3MechV4.0.1_<MID>_`.
 
-If the table lists the same MID for HT and LT-HT, there is only a single version, and the same files are used across the entire temperature range.
+If the table lists the same MID for HT and LT-HT, there is only a single version, and the same files are used across the entire temperature range. We recommend citing the MID when using a sub-model of C3MechV4.0.1.
 
 ## 2. Advanced use and model development
 
