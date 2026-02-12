@@ -167,14 +167,6 @@ def print_markdown_table(readme,
                     ("NR(HT/LT-HT)", "NR(HT/LT-HT)"),
                     ("MID(HT/LT-HT)", "MID(HT/LT-HT)")]
 
-  col_widths = [max(len(colname), 1) for _, colname in columns_aux]
-
-  header = "| " + " | ".join(
-      f"{colname:<{w}}"
-      for (_, colname), w in zip(columns_aux, col_widths)) + " |"
-
-  sep = "|" + "|".join(f":{'-'*max(1,w)}:" for w in col_widths) + "|"
-
   # print("len(counters)", len(counters))
   # for mid in counters:
   #   print(mid)
@@ -261,13 +253,14 @@ def print_markdown_table(readme,
         for _, i in sort_tuples
     ]
 
-    # Turn MID(HT/LT-HT) into a link to the Chemkin directory for this combination
+    # Turn MID(HT/LT-HT) into a link to the combination directory
     sorted_mid = []
     for _, key in sort_tuples:
       mid_ht = str(unique[key]["HT"]["MID"])
       mid_lt = str(unique[key]["LT-HT"]["MID"])
       combo_dir = unique[key]["combo_dir"]
-      target_rel = f"{group_dir}/Chemkin/{combo_dir}/"
+      # new layout: C-group/combo_dir/ (Chemkin/ and Cantera/ below)
+      target_rel = f"{group_dir}/{combo_dir}/"
       link_text = f"{mid_ht}/{mid_lt}"
       link_md = f"[{link_text}]({target_rel})"
       sorted_mid.append(link_md)
@@ -276,6 +269,34 @@ def print_markdown_table(readme,
     sorted_ns = []
     sorted_nr = []
     sorted_mid = []
+
+  # --- Compute column widths, including cell content lengths ---
+  col_widths = [max(len(colname), 1) for _, colname in columns_aux]
+  if counters is not None and sorted_combos:
+    # NS column
+    idx_ns = len(columns_aux) - 3
+    col_widths[idx_ns] = max(
+        col_widths[idx_ns],
+        max(len(s) for s in sorted_ns) if sorted_ns else 1,
+    )
+    # NR column
+    idx_nr = len(columns_aux) - 2
+    col_widths[idx_nr] = max(
+        col_widths[idx_nr],
+        max(len(s) for s in sorted_nr) if sorted_nr else 1,
+    )
+    # MID column
+    idx_mid = len(columns_aux) - 1
+    col_widths[idx_mid] = max(
+        col_widths[idx_mid],
+        max(len(s) for s in sorted_mid) if sorted_mid else 1,
+    )
+
+  header = "| " + " | ".join(
+      f"{colname:<{w}}"
+      for (_, colname), w in zip(columns_aux, col_widths)) + " |"
+
+  sep = "|" + "|".join(f":{'-'*max(1,w)}:" for w in col_widths) + "|"
 
   rows = []
   count = 0
@@ -293,7 +314,8 @@ def print_markdown_table(readme,
         row_cells.append(f"{tmp:^{col_widths[i]}}")  # center align
       elif counters is not None and i == len(columns_aux) - 1:
         tmp = sorted_mid[count]
-        row_cells.append(f"{tmp:^{col_widths[i]}}")  # center align
+        # LEFT align the MID link so '[' lines up
+        row_cells.append(f"{tmp:<{col_widths[i]}}")
       else:
         if key == "UOG_N":
           cell = n_col_check
@@ -899,17 +921,15 @@ def one_carbon_number(options,
     submodules_files = inp.SubModulesFiles(core_filename, submodules_list)
     submodules_files.insert_model_path(options.submodules_dir)
 
-    # --- Directory layout: carbon group / tool / combo_dir ---
-    # Example:
-    #   carbon_dir = PRECOMPILED/C8+
-    #   tool_dir   = Chemkin or Cantera
-    #   combo_dir  = C0-C8+_DMC+EC_N   (no _HT / _LT-HT)
+    # --- Directory layout: carbon group / combo_dir / tool ---
+    # Examples:
+    #   PRECOMPILED/C8+/C0-C8+_DMC+EC_N/Chemkin/
+    #   PRECOMPILED/C8+/C0-C8+_DMC+EC_N/Cantera/
     carbon_dir = data_dict["output_dir"]  # absolute, e.g. PRECOMPILED/C8+
     tool_dir = "Cantera" if cantera else "Chemkin"
 
     name_with_temp = data_dict["output_chunks"][selection_count]
-    temp_flag = data_dict["temperature"][
-        selection_count]  # "HT", "LT-HT", or ""
+    temp_flag = data_dict["temperature"][selection_count]  # "HT", "LT-HT", or ""
 
     # Strip trailing "_HT" / "_LT-HT" for the directory name
     if temp_flag in ("HT", "LT-HT"):
@@ -917,7 +937,7 @@ def one_carbon_number(options,
     else:
       combo_dir = name_with_temp
 
-    target_dir = os.path.join(carbon_dir, tool_dir, combo_dir)
+    target_dir = os.path.join(carbon_dir, combo_dir, tool_dir)
     os.makedirs(target_dir, exist_ok=True)
 
     out_chuck = ""
