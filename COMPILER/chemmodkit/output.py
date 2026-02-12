@@ -187,11 +187,29 @@ def print_markdown_table(readme,
   #     selection = data_dict["modules"][cnum]
   # combos = [comb for comb in combos['modules']]
 
+  # Carbon-group directory name, e.g. "C0", "C1-C2", ...
+  group_dir = os.path.basename(all_combos["output_dir"])
+
   unique = {}
   for idx, selection in enumerate(all_combos["modules"]):
     modules_keys = tuple(sorted(set(list(selection.keys()))))
     if modules_keys not in unique:
       unique[modules_keys] = {}
+
+    # Derive combination directory name from output_chunks and temperature
+    name_with_temp = all_combos["output_chunks"][idx]
+    temp = all_combos["temperature"][idx]
+    if temp in ("HT", "LT-HT"):
+      combo_dir = name_with_temp.rsplit("_", 1)[0]
+    else:
+      combo_dir = name_with_temp
+
+    # Store combo_dir once per modules_keys; verify consistency
+    if "combo_dir" not in unique[modules_keys]:
+      unique[modules_keys]["combo_dir"] = combo_dir
+    elif unique[modules_keys]["combo_dir"] != combo_dir:
+      raise Exception("Inconsistent combo_dir for " + str(modules_keys))
+
     if all_combos["temperature"][idx] == "HT":
       if "HT" in unique[modules_keys] and unique[modules_keys][
           "HT"] != all_combos["mid"][idx]:
@@ -242,10 +260,17 @@ def print_markdown_table(readme,
         str(unique[i]["HT"]["NR"]) + "/" + str(unique[i]["LT-HT"]["NR"])
         for _, i in sort_tuples
     ]
-    sorted_mid = [
-        str(unique[i]["HT"]["MID"]) + "/" + str(unique[i]["LT-HT"]["MID"])
-        for _, i in sort_tuples
-    ]
+
+    # Turn MID(HT/LT-HT) into a link to the Chemkin directory for this combination
+    sorted_mid = []
+    for _, key in sort_tuples:
+      mid_ht = str(unique[key]["HT"]["MID"])
+      mid_lt = str(unique[key]["LT-HT"]["MID"])
+      combo_dir = unique[key]["combo_dir"]
+      target_rel = f"{group_dir}/Chemkin/{combo_dir}/"
+      link_text = f"{mid_ht}/{mid_lt}"
+      link_md = f"[{link_text}]({target_rel})"
+      sorted_mid.append(link_md)
   else:
     sorted_combos = [modules_keys for modules_keys in unique]
     sorted_ns = []
@@ -660,8 +685,16 @@ def clean_tran(tran_file, tran_output, species_list, species_pruned,
         print('{0} : transport data not found...'.format(s))
 
 
-def compile_model(options, submodules_files, output, datetime, output_chunk,
-                  output_chunk_kin, generated_combinations, identifier, mid):
+def compile_model(options,
+                  submodules_files,
+                  output,
+                  datetime,
+                  output_chunk,
+                  output_chunk_kin,
+                  generated_combinations,
+                  identifier,
+                  mid,
+                  write_therm_trans=True):
   species_list = make_clean_species_list(submodules_files)
   print("\nprocess input...")
   reactions = process_submodules(species_list, submodules_files)
@@ -743,17 +776,24 @@ def compile_model(options, submodules_files, output, datetime, output_chunk,
 
   therm_file = options.model_name + USID + output_chunk + ".THERM"
   output_filename_therm = os.path.join(options.output_dir, output, therm_file)
-  clean_therm(output_filename_therm, species_list, species_pruned,
-              options.header, submodules_files, options.model_name, mid,
-              species_nasa_output, datetime)
 
   trans_filename = options.model_name + USID + output_chunk + ".TRAN"
   output_filename_trans = os.path.join(options.output_dir, output,
                                        trans_filename)
 
-  clean_tran(options.transfile, output_filename_trans, species_list,
-             species_pruned, options.header, submodules_files,
-             options.model_name, mid, datetime)
+  if write_therm_trans:
+    clean_therm(output_filename_therm, species_list, species_pruned,
+                options.header, submodules_files, options.model_name, mid,
+                species_nasa_output, datetime)
+
+    clean_tran(options.transfile, output_filename_trans, species_list,
+               species_pruned, options.header, submodules_files,
+               options.model_name, mid, datetime)
+  else:
+    # We deliberately do not write separate THERM/TRAN here.
+    # The caller is responsible for pointing to canonical files.
+    output_filename_therm = None
+    output_filename_trans = None
 
   generated_combinations[identifier] = {}
   generated_combinations[identifier]["kin"] = output_filename_kin
@@ -832,7 +872,8 @@ def one_carbon_number(options,
                       data_dict,
                       generated_combinations,
                       counters=None,
-                      cantera=True):
+                      cantera=True,
+                      canonical_files=None):
   for selection_count, selection in enumerate(data_dict["modules"]):
     identifier, core_filename = _generate_identifer(submodules_filenames,
                                                     selection, cantera)
@@ -858,23 +899,74 @@ def one_carbon_number(options,
     submodules_files = inp.SubModulesFiles(core_filename, submodules_list)
     submodules_files.insert_model_path(options.submodules_dir)
 
+    # --- Directory layout: carbon group / tool / combo_dir ---
+    # Example:
+    #   carbon_dir = PRECOMPILED/C8+
+    #   tool_dir   = Chemkin or Cantera
+    #   combo_dir  = C0-C8+_DMC+EC_N   (no _HT / _LT-HT)
+    carbon_dir = data_dict["output_dir"]  # absolute, e.g. PRECOMPILED/C8+
+    tool_dir = "Cantera" if cantera else "Chemkin"
+
+    name_with_temp = data_dict["output_chunks"][selection_count]
+    temp_flag = data_dict["temperature"][
+        selection_count]  # "HT", "LT-HT", or ""
+
+    # Strip trailing "_HT" / "_LT-HT" for the directory name
+    if temp_flag in ("HT", "LT-HT"):
+      combo_dir = name_with_temp.rsplit("_", 1)[0]
+    else:
+      combo_dir = name_with_temp
+
+    target_dir = os.path.join(carbon_dir, tool_dir, combo_dir)
+    os.makedirs(target_dir, exist_ok=True)
+
     out_chuck = ""
     if cantera:
       out_chuck = "_Cantera"
 
+    mid = data_dict["mid"][selection_count]
+
     if identifier not in generated_combinations:
+      # In --generate-all:
+      #   - Chemkin (cantera=False): write THERM/TRAN (canonical copies)
+      #   - Cantera (cantera=True): do NOT write THERM/TRAN here; reuse Chemkin's
+      write_therm_trans = True
+      if options.generate_all and cantera:
+        write_therm_trans = False
+
       ns_printed, nr_printed, generated_combinations = compile_model(
           options,
           submodules_files,
-          output=data_dict["output_dir"],
+          output=target_dir,
           datetime=datetime,
-          output_chunk=data_dict["output_chunks"][selection_count],
+          output_chunk=name_with_temp,
           output_chunk_kin=out_chuck,
           generated_combinations=generated_combinations,
           identifier=identifier,
-          mid=data_dict["mid"][selection_count])
-      if counters != None:
-        mid = data_dict["mid"][selection_count]
+          mid=mid,
+          write_therm_trans=write_therm_trans)
+
+      # Track canonical THERM/TRAN by MID (where they are actually written)
+      if canonical_files is not None:
+        therm_path = generated_combinations[identifier]["therm"]
+        trans_path = generated_combinations[identifier]["trans"]
+        if therm_path is not None and trans_path is not None:
+          canonical_files[mid] = {
+              "therm": therm_path,
+              "trans": trans_path,
+          }
+
+      # For Cantera in --generate-all, point to canonical Chemkin THERM/TRAN
+      if options.generate_all and cantera and canonical_files is not None:
+        if mid not in canonical_files:
+          raise Exception("Canonical THERM/TRAN missing for MID '" + mid +
+                          "' when generating Cantera files")
+        generated_combinations[identifier]["therm"] = canonical_files[mid][
+            "therm"]
+        generated_combinations[identifier]["trans"] = canonical_files[mid][
+            "trans"]
+
+      if counters is not None:
         if mid in counters:
           if counters[mid][1] != ns_printed or counters[mid][2] != nr_printed:
             raise Exception("duplicate MID '" + mid + "' for " +
@@ -883,7 +975,7 @@ def one_carbon_number(options,
         counters[mid] = (selection, ns_printed, nr_printed)
     else:
       mid = data_dict["mid"][selection_count]
-      if counters != None and mid not in counters:
+      if counters is not None and mid not in counters:
         raise Exception("duplicate identifier " + str(identifier) +
                         " must have counter but '" + mid + "' was not found")
       # if a sub-module combination was used before
@@ -892,20 +984,35 @@ def one_carbon_number(options,
       aux = ["kin", "therm", "trans"]
       for f in aux:
         fname = generated_combinations[identifier][f]
+        if fname is None:
+          continue
         if not cantera and "cantera" in fname.lower():
           raise Exception(
               "fname " + fname +
               "contains cantera, but cantera is FALSE. There is a bug.")
-        new_fname = fname.replace('_LT-HT', '').replace('_HT', '')
+        dir_name = os.path.dirname(fname)
+        base_name = os.path.basename(fname)
+        new_base = base_name.replace('_LT-HT', '').replace('_HT', '')
+        new_fname = os.path.join(dir_name, new_base)
         if new_fname != fname:
           print(
-              f"Renaming {os.path.basename(fname)} -> { os.path.basename(new_fname)}"
+              f"Renaming {os.path.basename(fname)} -> {os.path.basename(new_fname)}"
           )
           generated_combinations[identifier][f] = new_fname
           os.rename(fname, new_fname)
         else:
           print("this should never happen (new_fname: " + new_fname +
                 ", fname: " + fname + ")")
+
+      # After renaming, refresh canonical THERM/TRAN for this MID
+      if canonical_files is not None:
+        therm_path = generated_combinations[identifier]["therm"]
+        trans_path = generated_combinations[identifier]["trans"]
+        if therm_path is not None and trans_path is not None:
+          canonical_files[mid] = {
+              "therm": therm_path,
+              "trans": trans_path,
+          }
 
   return generated_combinations
 
@@ -920,17 +1027,23 @@ def run(options, submodules_filenames, grouped_selections, columns):
     submodules_filename = options.yaml_file_path
 
     counters = {}
-    cantera_opts = [True, False]
+    # MID -> {"therm": path, "trans": path}
+    canonical_files = {}
+
+    # Run Chemkin first (cantera=False), then Cantera (cantera=True)
+    cantera_opts = [False, True]
     for cantera in cantera_opts:
       for cnum, data_dict in grouped_selections.items():
-        generated_combinations = one_carbon_number(options,
-                                                   submodules_filenames,
-                                                   DATETIME,
-                                                   cnum,
-                                                   data_dict,
-                                                   generated_combinations,
-                                                   counters=counters,
-                                                   cantera=cantera)
+        generated_combinations = one_carbon_number(
+            options,
+            submodules_filenames,
+            DATETIME,
+            cnum,
+            data_dict,
+            generated_combinations,
+            counters=counters,
+            cantera=cantera,
+            canonical_files=canonical_files)
 
     readme = generate_readme(grouped_selections, columns, counters)
     readme_file = os.path.join(options.output_dir, "README.md")
@@ -963,6 +1076,7 @@ def run(options, submodules_filenames, grouped_selections, columns):
   else:
 
     generated_combinations_single = {}
+    canonical_files_single = {}
     for cnum, data_dict in grouped_selections.items():
       if options.mid != "":
         cantera_mode = detect_cantera_mode(submodules_filenames)
@@ -973,11 +1087,17 @@ def run(options, submodules_filenames, grouped_selections, columns):
             cnum,
             data_dict,
             generated_combinations_single,
-            cantera=cantera_mode)
+            cantera=cantera_mode,
+            canonical_files=canonical_files_single)
       else:
         generated_combinations_single = one_carbon_number(
-            options, submodules_filenames, DATETIME, cnum, data_dict,
-            generated_combinations_single)
+            options,
+            submodules_filenames,
+            DATETIME,
+            cnum,
+            data_dict,
+            generated_combinations_single,
+            canonical_files=canonical_files_single)
 
     for identifier in generated_combinations_single:
       if "mid" in identifier:
