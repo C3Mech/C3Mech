@@ -70,7 +70,7 @@ description: |2-
    ================================================================================================== !
 
 
-   Kinetics data for C3MechV4.0.1, generated on 12/02/2026 17:18:56.
+   Kinetics data for C3MechV4.0.1, generated on 23/02/2026 21:02:41.
 
    The following sub-modules were considered in this file:
    - UOG_C0_LT-HT_Cantera.MECH
@@ -169,7 +169,7 @@ description: |2-
   ================================================================================================== !
 
 
-  Thermodynamic data for C3MechV4.0.1, generated on 12/02/2026 17:18:56.
+  Thermodynamic data for C3MechV4.0.1, generated on 23/02/2026 21:02:41.
 
   The following sub-modules were considered in this file:
   - UOG_C0_LT-HT.MECH
@@ -186,7 +186,7 @@ input-files: [C3MechV4.0.1_3SI8_C0-C3-C4_C5CY_N_HT_Cantera.CKI,
     C3MechV4.0.1_3SI8_C0-C3-C4_C5CY_N_HT.THERM, 
     C3MechV4.0.1_3SI8_C0-C3-C4_C5CY_N_HT.TRAN]
 cantera-version: 3.1.0
-date: Thu, 12 Feb 2026 17:24:32 +0100
+date: Mon, 23 Feb 2026 21:08:20 +0100
 
 units: {length: cm, time: s, quantity: mol, activation-energy: cal/mol}
 
@@ -1093,10 +1093,12 @@ species:
     model: NASA7
     temperature-ranges: [200.0, 1000.0, 6000.0]
     data:
-    - [3.7590532, -9.441218e-03, 8.0309721e-05, -1.0080788e-07, 
-        4.0039921e-11, -7560.8143, 7.8497475]
+    - [1.64826839, 8.37081085e-03, 2.76501908e-05, -3.68793644e-08, 
+        1.30696894e-11, -7371.53109, 16.3945365]
     - [5.4887641, 0.01204619, -4.3336931e-06, 7.0028311e-10, 
-        -4.1949088e-14, -9180.4251, -7.0799605]
+        -4.1949088e-14, -9161.00592, -7.06674472]
+    note: Refitted using Mech Checker @ LLNL 
+      https://combustiontools.llnl.gov/
   transport:
     model: gas
     geometry: nonlinear
@@ -1347,10 +1349,12 @@ species:
     model: NASA7
     temperature-ranges: [200.0, 1000.0, 6000.0]
     data:
-    - [3.58349017, -6.02275805e-03, 6.32426867e-05, -8.18540707e-08, 
-        3.30444505e-11, 1.85681353e+04, 9.59725926]
+    - [1.82269584, 8.83584495e-03, 1.93146829e-05, -2.85256179e-08, 
+        1.05461928e-11, 1.87260334e+04, 16.7252321]
     - [5.60158035, 9.17613962e-03, -3.28028902e-06, 5.27903888e-10, 
-        -3.15362241e-14, 1.71446252e+04, -5.47228512]
+        -3.15362241e-14, 1.71608242e+04, -5.46126106]
+    note: Refitted using Mech Checker @ LLNL 
+      https://combustiontools.llnl.gov/
   transport:
     model: gas
     geometry: nonlinear
@@ -2197,10 +2201,12 @@ species:
     model: NASA7
     temperature-ranges: [200.0, 1000.0, 6000.0]
     data:
-    - [2.83278674, -5.21028618e-03, 9.2958321e-05, -1.22753194e-07, 
-        4.99191366e-11, 5195.20048, 10.8306333]
+    - [0.0393438054, 0.0183624042, 2.32679715e-05, -3.81493378e-08, 
+        1.42263823e-11, 5445.70064, 22.1389303]
     - [6.21663437, 0.0165393591, -5.90075838e-06, 9.48095199e-10, 
-        -5.65661522e-14, 2959.37491, -13.6041009]
+        -5.65661522e-14, 2985.07407, -13.5866116]
+    note: Refitted using Mech Checker @ LLNL 
+      https://combustiontools.llnl.gov/
   transport:
     model: gas
     geometry: nonlinear
@@ -3800,11 +3806,12 @@ species:
     model: NASA7
     temperature-ranges: [200.0, 1000.0, 3000.0]
     data:
-    - [3.47058046, 3.11818008e-03, 8.35374096e-05, -1.20922242e-07, 
-        5.10785834e-11, 1.21836478e+04, 9.77569638]
+    - [1.02110561, 0.0237882696, 2.24283109e-05, -4.67359897e-08, 
+        1.97808143e-11, 1.24033028e+04, 19.6915563]
     - [6.6182841, 0.0216524014, -1.00808939e-05, 2.30131063e-09, 
-        -2.08591476e-13, 1.04264812e+04, -11.9456637]
-    note: Yuki Murakami 4 Dec 2023
+        -2.08591476e-13, 1.04490161e+04, -11.9303277]
+    note: Yuki Murakami 4 Dec 2023, Refitted using Mech Checker @ LLNL
+      https://combustiontools.llnl.gov/
   transport:
     model: gas
     geometry: nonlinear
@@ -4353,10 +4360,12 @@ species:
     model: NASA7
     temperature-ranges: [200.0, 1000.0, 6000.0]
     data:
-    - [0.847469463, 0.0131773796, 5.99735901e-05, -9.71562904e-08, 
-        4.22733796e-11, -5367.85445, 21.4945172]
+    - [-1.84838192, 0.0359265359, -7.28206144e-06, -1.55081497e-08, 
+        7.8275855e-12, -5126.10575, 32.4077483]
     - [9.38935003, 0.0140291241, -5.0775511e-06, 8.24137332e-10, 
-        -4.95319963e-14, -8682.41814, -27.916292]
+        -4.95319963e-14, -8657.61682, -27.8994136]
+    note: Refitted using Mech Checker @ LLNL 
+      https://combustiontools.llnl.gov/
   transport:
     model: gas
     geometry: linear
@@ -5418,12 +5427,12 @@ species:
     model: NASA7
     temperature-ranges: [300.0, 548.0, 5000.0]
     data:
-    - [-3.77464921, 0.0602086383, -2.42871227e-05, -5.30361583e-09, 
-        4.45369491e-12, 2.12586071e+04, 44.6395045]
+    - [-79.1372881, 0.823130489, -2.87065546e-03, 4.63339141e-06, 
+        -2.78230555e-09, 2.71142501e+04, 337.596596]
     - [8.5299422, 0.0278527553, -8.45141756e-06, 1.25459237e-09, 
-        -7.35457102e-14, 1.84022038e+04, -17.8610597]
+        -7.35457102e-14, 1.84122553e+04, -17.8393858]
     note: |-
-      \Comment: THERM23, date: 21/11/2023
+      \Comment: THERM23, date: 21/11/2023, Refitted using Mech Checker @ LLNL https://combustiontools.llnl.gov/
       Species name modified, Yuki Murakami, 2 April 2024
   transport:
     model: gas
@@ -5455,11 +5464,12 @@ species:
     model: NASA7
     temperature-ranges: [300.0, 523.0, 5000.0]
     data:
-    - [-5.32011153, 0.0679168934, -4.07995441e-05, 5.57431913e-09, 
-        2.0639377e-12, 1.18252968e+04, 48.6086731]
+    - [-106.042538, 1.10939964, -4.0199954e-03, 6.66349757e-06, 
+        -4.11460405e-09, 1.95064828e+04, 438.141462]
     - [8.82414976, 0.025002706, -7.54677614e-06, 1.12551371e-09, 
-        -6.66360112e-14, 8811.20652, -21.7801672]
-    note: '\Comment: THERM23, date: 21/11/2023'
+        -6.66360112e-14, 8819.96703, -21.7606518]
+    note: '\Comment: THERM23, date: 21/11/2023, Refitted using Mech Checker
+      @ LLNL https://combustiontools.llnl.gov/'
   transport:
     model: gas
     geometry: nonlinear
@@ -5473,11 +5483,12 @@ species:
     model: NASA7
     temperature-ranges: [300.0, 539.0, 5000.0]
     data:
-    - [-2.86003331, 0.0552270543, -2.30187589e-05, -4.13526555e-09, 
-        3.91444741e-12, 1.23826124e+04, 36.4899127]
+    - [-77.9701857, 0.821320738, -2.90548486e-03, 4.73765713e-06, 
+        -2.87418362e-09, 1.81802744e+04, 327.936807]
     - [8.30559817, 0.0252352564, -7.46469197e-06, 1.08092759e-09, 
-        -6.18811843e-14, 9835.2, -20.0209123]
-    note: '\Comment: THERM23, date: 21/11/2023'
+        -6.18811843e-14, 9843.84006, -20.002066]
+    note: '\Comment: THERM23, date: 21/11/2023, Refitted using Mech Checker
+      @ LLNL https://combustiontools.llnl.gov/'
   transport:
     model: gas
     geometry: nonlinear
@@ -6428,10 +6439,12 @@ species:
     model: NASA7
     temperature-ranges: [300.0, 1000.0, 5000.0]
     data:
-    - [-3.40380867, 0.0534723969, -1.16451511e-05, -2.26445787e-08, 
-        1.30341756e-11, 1.21674111e+04, 40.3582032]
+    - [-6.80297556, 0.0797780088, -8.24258906e-05, 5.634526e-08, 
+        -1.80238953e-11, 1.24955783e+04, 54.3917561]
     - [9.32131576, 0.028986385, -1.13280072e-05, 2.02719921e-09, 
-        -1.36385473e-13, 8065.62846, -28.1238834]
+        -1.36385473e-13, 8069.81758, -28.1140775]
+    note: Refitted using Mech Checker @ LLNL 
+      https://combustiontools.llnl.gov/
   transport:
     model: gas
     geometry: nonlinear
@@ -6711,13 +6724,13 @@ species:
     model: NASA7
     temperature-ranges: [200.0, 1000.0, 6000.0]
     data:
-    - [2.31203194, 7.010236e-03, 9.35725543e-05, -1.33744658e-07, 
-        5.55553794e-11, 1.91721662e+04, 17.2892593]
+    - [-0.984042697, 0.0348244248, 1.13426273e-05, -3.39177913e-08, 
+        1.34403249e-11, 1.94677395e+04, 30.6322885]
     - [9.74013709, 0.0215079576, -7.71169114e-06, 1.24352828e-09, 
-        -7.4388747e-14, 1.56355223e+04, -28.9664925]
+        -7.4388747e-14, 1.56658457e+04, -28.945856]
     note: |-
       000000
-      CRECK ,BURCAT, Luna Pratali Maffei 9 August 2023
+       CRECK ,BURCAT, Luna Pratali Maffei 9 August 2023, Refitted using Mech Checker @ LLNL https://combustiontools.llnl.gov/
   transport:
     model: gas
     geometry: nonlinear
@@ -7911,10 +7924,12 @@ species:
     model: NASA7
     temperature-ranges: [200.0, 1000.0, 6000.0]
     data:
-    - [3.8781858, -6.6530886e-03, 5.394761e-05, -6.8176813e-08, 
-        2.7181746e-11, 2.5716857e+04, 7.4618774]
+    - [2.45199601, 5.38192778e-03, 1.8367262e-05, -2.4982385e-08, 
+        8.9588392e-12, 2.58447496e+04, 13.2353183]
     - [5.4028152, 6.9057001e-03, -2.5162977e-06, 4.1014066e-10, 
-        -2.47183e-14, 2.452869e+04, -4.4574262]
+        -2.47183e-14, 2.45418109e+04, -4.44849688]
+    note: Refitted using Mech Checker @ LLNL 
+      https://combustiontools.llnl.gov/
   transport:
     model: gas
     geometry: nonlinear
@@ -8673,10 +8688,12 @@ species:
     model: NASA7
     temperature-ranges: [300.0, 1000.0, 5000.0]
     data:
-    - [2.26850129, 0.0351302455, -2.63187864e-05, 8.53986697e-09, 
-        -3.90322984e-13, 1.11172427e+04, 20.206227]
+    - [0.887961721, 0.0458006161, -5.49790304e-05, 4.04496709e-08, 
+        -1.28995088e-11, 1.12506435e+04, 25.9072714]
     - [10.03977, 0.0136751354, -5.34844897e-06, 9.57716971e-10, 
-        -6.44638734e-14, 8923.11696, -20.0487257]
+        -6.44638734e-14, 8924.02792, -20.0457672]
+    note: Refitted using Mech Checker @ LLNL 
+      https://combustiontools.llnl.gov/
   transport:
     model: gas
     geometry: nonlinear
@@ -8689,10 +8706,12 @@ species:
     model: NASA7
     temperature-ranges: [300.0, 1000.0, 5000.0]
     data:
-    - [2.28174238, 0.0364198806, -1.15926785e-05, -1.16526184e-08, 
-        7.59853866e-12, -3.31557381e+04, 19.8668948]
+    - [0.265707469, 0.0520227245, -5.35794282e-05, 3.52096677e-08, 
+        -1.08302674e-11, -3.29611127e+04, 28.190034]
     - [11.3602772, 0.0173164318, -6.70014499e-06, 1.19170033e-09, 
-        -7.9860372e-14, -3.59770806e+04, -28.536022]
+        -7.9860372e-14, -3.59745534e+04, -28.5301669]
+    note: Refitted using Mech Checker @ LLNL 
+      https://combustiontools.llnl.gov/
   transport:
     model: gas
     geometry: nonlinear
@@ -8737,10 +8756,12 @@ species:
     model: NASA7
     temperature-ranges: [300.0, 1000.0, 5000.0]
     data:
-    - [2.19264991, 0.0303613868, -9.20544493e-06, -9.51119112e-09, 
-        5.92665905e-12, -2.108749e+04, 18.2806884]
+    - [0.331538388, 0.0447564732, -4.79091312e-05, 3.3638235e-08, 
+        -1.10176153e-11, -2.09077432e+04, 25.9651768]
     - [10.1342077, 0.014451283, -5.76016827e-06, 1.04520234e-09, 
-        -7.10247566e-14, -2.36502396e+04, -24.395439]
+        -7.10247566e-14, -2.36485317e+04, -24.3908586]
+    note: Refitted using Mech Checker @ LLNL 
+      https://combustiontools.llnl.gov/
   transport:
     model: gas
     geometry: nonlinear
