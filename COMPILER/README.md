@@ -16,7 +16,7 @@ This directory provides the workflow to compile sub-modules into CHEMKIN and Can
  ./compile_c3mech.py
  ```
 
-The command writes `.CKI,` `.THERM,` and `.TRAN` files to the `output/` directory. For more information, use:
+The command writes `.CKI`, `.THERM`, and `.TRAN` files to the `output/` directory. For more information, use:
 
 ```sh
 ./compile_c3mech.py -h
@@ -35,6 +35,6 @@ The dependency on Cantera is optional.
 ## Notes and recommendations
 
 - **Selecting necessary sub-modules:** Selecting only the necessary sub-modules facilitates and speeds up kinetic simulations. 
-- **User responsibility:** The user must select an appropriate sub-modules for a simulation case. 
+- **User responsibility:** The user must select appropriate sub-modules for a simulation case. 
 
-If you have further questions or need additional help, please feel free to open an issue or [contact us](r.langer@itv.rwth-aachen.de).
+If you have further questions or need additional help, please feel free to open an issue or [contact us](mailto:r.langer@itv.rwth-aachen.de).

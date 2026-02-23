@@ -2,7 +2,7 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-All species in the C3MechV4.0 are defined in `species_dict.csv`. This CSV file has
+All species in C3MechV4.0.1 are defined in `species_dict.csv`. This CSV file has
 seven columns with the following meanings:
 - `model_name`: name used in the CHEMKIN files (upper case ASCII string)
 - `inchi`:  International Chemical Identifier (ASCII string)
@@ -20,14 +20,14 @@ seven columns with the following meanings:
 The combination `inchi`-`excited`-`multiplicity` must be unique for each row.
 Simplified identifiers neglecting stereochemistry information derived from the
 values in the `inchi` and `smiles` columns must still be RDKit compatible and 
-consistent if the value in the `stereochemistry` column is `0`.
+consistent if the value in the `rdkit_stereochemistry` column is `0`.
 
 # How to use
 
 The following commands generate the output file `species_dict.pdf`:
 
 ```sh
-# Select the relevant submodels for the species dictionary the yaml input (default is submodels.yaml).
+# Select the relevant submodels for the species dictionary from the YAML input (default is submodels.yaml).
 # Species images will only be updated if they are older than the species dictionary CSV file. 
 # Erase the content of the output directory to force a regeneration of the species images. 
 ./make_species_dict.py
@@ -52,5 +52,4 @@ conda env create -f environment.yaml
 
 The scripts were tested with Python versions 3.8.5 and 3.9.6.
 
-If you have further questions or need additional help, please feel free to open an issue or [contact us](r.langer@itv.rwth-aachen.de).
-
+If you have further questions or need additional help, please feel free to open an issue or [contact us](mailto:r.langer@itv.rwth-aachen.de).
