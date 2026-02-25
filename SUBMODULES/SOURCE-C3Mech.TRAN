@@ -58,7 +58,6 @@ HCOOC(CH3)2CHO        2      479.88      6.49      0.00      0.00      0.00  !Ji
 CH3OC(CHO)2CH3        2      479.88      6.49      0.00      0.00      0.00  !Jintao Chen, GALWAY, April 2024
 !!
 !! Missing species data taken from LLNL_BLOCK.tran.dat
-CC6H11-B              2      390.29      5.46      0.00     11.25      1.00    !!WAGNON1@LLNL.GOV, ESTIMATED 2024-05-02
 XC7H13-Z              2      422.32      5.71      0.00     13.10      1.00    !!WAGNON1@LLNL.GOV, ESTIMATED 2024-05-02
 YC7H13-Y2             2      422.32      5.71      0.00     13.10      1.00    !!WAGNON1@LLNL.GOV, ESTIMATED 2024-05-02
 YC7H13-X2             2      422.32      5.71      0.00     13.10      1.00    !!WAGNON1@LLNL.GOV, ESTIMATED 2024-05-02
