@@ -418,7 +418,7 @@ def insert_submodule_list(lines, submodules_files, mid):
   for file_path in submodules_files.submodules:
     lines.append('! - ' + os.path.basename(file_path) + '\n')
   lines.append("\n")
-  lines.append('! MID: ' + mid)
+  lines.append('! model ID (MID): ' + mid)
   lines.append("\n")
 
 

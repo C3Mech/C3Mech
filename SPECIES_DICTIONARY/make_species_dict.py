@@ -8,7 +8,7 @@
 # of cases. It is a quick and dirty implementation to make the species directory
 # more readable. Changes might also be required if you add new species.
 
-import os, sys, importlib, re, git, argparse, cairosvg, abc, yaml, pandas, time
+import os, sys, importlib, re, copy, git, argparse, cairosvg, abc, yaml, pandas, time
 import numpy as np
 from shutil import copyfile
 from pathlib import Path
@@ -33,6 +33,10 @@ def print_not_found(what, dir_or_file, path):
 
 def print_error(msg):
   print("\n#error: " + msg)
+
+
+def print_warning(msg):
+  print("\n#warning: " + msg)
 
 
 class SubModulesFiles(yaml.YAMLObject):
@@ -81,8 +85,12 @@ def read_yaml_input(filename):
   with open(filename) as inp:
     try:
       yaml_input_options = yaml.safe_load(inp)
-    except ValueError as e:
-      util.print_error("invalid syntax in yaml input '" + filename + "'")
+    except yaml.YAMLError:
+      print_error("invalid syntax in yaml input '" + filename + "'")
+      quit()
+  if (not isinstance(yaml_input_options, SubModulesFiles)):
+    print_error("yaml input '" + filename + "' must define !SubModulesFiles")
+    quit()
   return yaml_input_options
 
 
@@ -270,34 +278,46 @@ def check_inchi(lines, i, inchis):
       return -1, "", ""
     this_inchi = inchi.group(1)
 
-    if (not re.match("\\s*!.+", lines[i + 1])):
-      if (this_inchi in inchis):
-        if (get_real_inchi(this_inchi) == this_inchi):
-          print("ERROR:", this_inchi, "is a duplicate")
-          quit()
-      inchis[this_inchi] = 1
-      if (re.match("^[\\s]+$", lines[i + 1])):
-        print("ERROR: line", i + 2, "below ", this_inchi, "must not be empty")
-        quit()
-      if (re.match("^[\\s]+[^\\s]+", lines[i + 1])):
-        print("ERROR: line", i + 2, "below ", this_inchi,
-              "must not start with white spaces")
-        quit()
-      re_species_name = re.match("^([^\\s]+)", lines[i + 1])
-
-      #print(print_python_elements(re_species_name.group(1), lines[i + 1][24:44]))
-
-      sum_formula = get_sum_formula(lines[i + 1][24:44])
-      check_inchi_composition_consistency(this_inchi, sum_formula,
-                                          lines[i + 1][0:24])
-      return i, this_inchi, re_species_name.group(1)
-    if (not re.match("\\s*!.+", lines[i + 1])
-        and (len(lines[i + 1]) < 80 or lines[i + 1][79] != '1')):
+    if (i + 1 >= len(lines)):
       print("search for", this_inchi)
       print(
           "ERROR: There must be a NASA polynomial coefficient set below every InChi"
       )
       quit()
+    line_below = lines[i + 1]
+    if (re.match("\\s*!.+", line_below)):
+      print("search for", this_inchi)
+      print(
+          "ERROR: There must be a NASA polynomial coefficient set below every InChi"
+      )
+      quit()
+
+    if (this_inchi in inchis):
+      if (get_real_inchi(this_inchi) == this_inchi):
+        print("ERROR:", this_inchi, "is a duplicate")
+        quit()
+    inchis[this_inchi] = 1
+    if (re.match("^[\\s]+$", line_below)):
+      print("ERROR: line", i + 2, "below ", this_inchi, "must not be empty")
+      quit()
+    if (re.match("^[\\s]+[^\\s]+", line_below)):
+      print("ERROR: line", i + 2, "below ", this_inchi,
+            "must not start with white spaces")
+      quit()
+    if (len(line_below) < 80 or line_below[79] != '1'):
+      print("search for", this_inchi)
+      print(
+          "ERROR: There must be a NASA polynomial coefficient set below every InChi"
+      )
+      quit()
+    re_species_name = re.match("^([^\\s]+)", line_below)
+
+    #print(print_python_elements(re_species_name.group(1), line_below[24:44]))
+
+    sum_formula = get_sum_formula(line_below[24:44])
+    check_inchi_composition_consistency(this_inchi, sum_formula,
+                                        line_below[0:24])
+    return i, this_inchi, re_species_name.group(1)
   elif (re.match(".*InChI.*", lines[i], re.IGNORECASE)):
     if (not re.match("^[!\\s]+InChI.*", lines[i], re.IGNORECASE)):
       print("line:", lines[i])
@@ -721,7 +741,6 @@ def draw_species(tex_file, mol, fig_dir, timestamp_species_dict, name,
 
 class SpeciesType:
   """ identifiers and RDKit molecules """
-
   def __init__(self, name, inchi, smiles, mol, fallback):
     self.name = name
     self.inchi = inchi
@@ -731,7 +750,6 @@ class SpeciesType:
 
 
 class SpeciesDict:
-
   def __init__(self, species_name2inchi, species_name2smiles, canonical2data,
                fallback):
     self.species_name2inchi = species_name2inchi
@@ -820,7 +838,6 @@ class SpeciesDict:
 
 
 class FallBack:
-
   def __init__(self, invalid_stereo_inchi, invalid_stereo_smiles,
                species_name2inchi_wo_stereo, species_name2smiles_wo_stereo):
     self.invalid_stereo_inchi = invalid_stereo_inchi
@@ -839,7 +856,7 @@ class Input:
 
   def __init__(self, csv_filename, yaml_filename, submodule_dir, mech_filename,
                thermo_filename, style_file_dir):
-    self.csv_filename = csv_filename 
+    self.csv_filename = csv_filename
     if csv_filename != "":
       self.csv_filename = os.path.abspath(os.path.normpath(csv_filename))
     self.yaml_filename = os.path.abspath(os.path.normpath(yaml_filename))
@@ -872,7 +889,6 @@ class TexOptions:
 
 
 class SpeciesClassification(object, metaclass=abc.ABCMeta):
-
   @abc.abstractmethod
   def write_all(self, tex_file, fig_dir, tex_opts):
     raise NotImplementedError(
@@ -885,6 +901,43 @@ class SpeciesClassification(object, metaclass=abc.ABCMeta):
 
 
 class DefaultClassification(SpeciesClassification):
+  def __init__(self):
+    self.c0 = []
+    self.c1 = []
+    self.c2 = []
+    self.aromatic_mol = []
+    self.aromatic_rad = []
+    self.alkane = []
+    self.alkyl = []
+    self.alkene = []
+    self.alkenyl = []
+    self.alkyne = []
+    self.alkynyl = []
+    self.polyene = []
+    self.polyenyl = []
+    self.hydro_carbon_mol = []
+    self.hydro_carbon_rad = []
+    self.RO2 = []
+    self.aldehyde = []
+    self.RO = []
+    self.RO2H_mol = []
+    self.RO2H_rad = []
+    self.ether = []
+    self.ether_ooh = []
+    self.O2QOOH = []
+    self.keto_hydroperoxide = []
+    self.keto_alcohol = []
+    self.ketone = []
+    self.POOH = []
+    self.alcohol = []
+    self.alcohol_peroxyl = []
+    self.keto_peroxyl = []
+    self.keto_oxyl = []
+    self.hydroperoxide_oxyl = []
+    self.alcohol_oxyl = []
+    self.alcohol_hydroperoxide = []
+    self.peroxide = []
+    self.misc = []
 
   def write_all(self, tex_file, fig_dir, tex_opts, timestamp_species_dict):
     print_species_group(self.c0, "$\\textrm{C}_0$ species", tex_file, fig_dir,
@@ -1077,43 +1130,6 @@ class DefaultClassification(SpeciesClassification):
       else:
         self.misc.append(spec)
 
-  c0 = []
-  c1 = []
-  c2 = []
-  aromatic_mol = []
-  aromatic_rad = []
-  alkane = []
-  alkyl = []
-  alkene = []
-  alkenyl = []
-  alkyne = []
-  alkynyl = []
-  polyene = []
-  polyenyl = []
-  hydro_carbon_mol = []
-  hydro_carbon_rad = []
-  RO2 = []
-  aldehyde = []
-  RO = []
-  RO2H_mol = []
-  RO2H_rad = []
-  ether = []
-  ether_ooh = []
-  O2QOOH = []
-  keto_hydroperoxide = []
-  keto_alcohol = []
-  ketone = []
-  POOH = []
-  alcohol = []
-  alcohol_peroxyl = []
-  keto_peroxyl = []
-  keto_oxyl = []
-  hydroperoxide_oxyl = []
-  alcohol_oxyl = []
-  alcohol_hydroperoxide = []
-  peroxide = []
-  misc = []
-
 
 def tex_fig_begin(file):
   file.write("\n\n\\begin{figure}[!ht]\n")
@@ -1177,6 +1193,23 @@ def get_thermo_lines(thermo_filename):
     thermo_file = open(thermo_filename)
     lines_thermo = thermo_file.readlines()
     thermo_file.close()
+    if (not len(lines_thermo)
+        or all(not line.strip() for line in lines_thermo)):
+      print_error("chemkin thermochemistry file '" + thermo_filename +
+                  "' must not be empty")
+      quit()
+    if (not any(
+        re.match("\\s*THERMO\\b", line, re.IGNORECASE)
+        for line in lines_thermo)):
+      print_error("chemkin thermochemistry file '" + thermo_filename +
+                  "' must contain a THERMO section")
+      quit()
+    if (len(get_identifier2sum_formula(
+        make_clean_thermo_lines(lines_thermo))) == 0):
+      print_error(
+          "chemkin thermochemistry file '" + thermo_filename +
+          "' must contain at least one species entry in the THERMO section")
+      quit()
   else:
     print_not_found("chemkin thermochemistry", "file", thermo_filename)
     quit()
@@ -1195,9 +1228,9 @@ def itv_mode_check(dry_run, species_list, lines, sc):
     inchi = get_real_inchi(inchi)
     if (inchi_line >= 0):
       if (name.upper() not in species_list):
-        print("'" + name + "' is not in species_list")
+        print_warning("'" + name + "' is not in species_list")
       else:
-        species_list[name] = 1
+        species_list[name.upper()] = 1
 
       count_species += 1
       smiles = check_smiles(lines, i, inchis, inchi, True)
@@ -1210,11 +1243,25 @@ def itv_mode_check(dry_run, species_list, lines, sc):
       if (len(all_inchis) > 1):
         print("'" + name + "' is lumped")
 
-      species_name2inchi[name] = all_inchis
-      species_name2smiles[name] = all_smiles
+      inchis_sorted = [
+          x[0] for x in sorted(all_inchis.items(), key=lambda x: x[1])
+      ]
+      line2smiles = {
+          line_no + 1: cur_smiles
+          for cur_smiles, line_no in all_smiles.items()
+      }
+      smiles_sorted = []
+      for line_no in [all_inchis[cur_inchi] for cur_inchi in inchis_sorted]:
+        if (line_no not in line2smiles):
+          raise Exception("could not map InChI line to SMILES line for '" +
+                          name + "'")
+        smiles_sorted.append(line2smiles[line_no])
 
-      sc.add_species(dry_run, name, [inchi], [smiles], FallBack({}, {}, {},
-                                                                {}))
+      species_name2inchi[name] = inchis_sorted
+      species_name2smiles[name] = smiles_sorted
+
+      sc.add_species(dry_run, name, inchis_sorted, smiles_sorted,
+                     FallBack({}, {}, {}, {}))
 
   return sc, count_species, species_name2inchi, species_name2smiles
 
@@ -1223,29 +1270,15 @@ def strip_nonascii(s):
   return s.encode('ascii', 'ignore').decode()
 
 
-def check_composition_line(lines, i, inchis):
-  tmp_line = strip_nonascii(lines[i])
-  clean_line = tmp_line.split('!')[0].rstrip()
-  if len(clean_line) >= 80 and clean_line[79] in ['1', '2', '3', '4']:
-    if line[79] == '4':
-      try:
-        label, thermo, comp = read_NASA7_entry(thermo, TintDefault, comments)
-      except Exception as e:
-        error_line_number = self.line_number - len(current) + 1
-        error_entry = ''.join(current).rstrip()
-        logger.info('Error while reading thermo entry starting on line {0}:\n'
-                    '"""\n{1}\n"""'.format(error_line_number, error_entry))
-  inchi = re.match("!!\\s*(InChI=[^!\\s]+)", lines[i])
-
-
-def get_species_name2sum_formula(lines, species_list_or_dict, thermo_filename,
-                                 silent):
-  """ returns a dict """
+def make_clean_thermo_lines(lines):
   clean_lines = []
-  for i in range(len(lines)):
-    tmp_line = strip_nonascii(lines[i])
+  for line in lines:
+    tmp_line = strip_nonascii(line)
     clean_lines.append(tmp_line.split('!')[0].rstrip())
+  return clean_lines
 
+
+def get_identifier2sum_formula(clean_lines):
   identifier2sum_formula = {}
   for i in range(3, len(clean_lines)):
     if (len(clean_lines[i]) >= 80 and clean_lines[i][79] == '4'
@@ -1257,6 +1290,19 @@ def get_species_name2sum_formula(lines, species_list_or_dict, thermo_filename,
       composition = the_line[24:44]
       sum_formula = get_sum_formula(composition)
       identifier2sum_formula[identifier] = sum_formula
+  return identifier2sum_formula
+
+
+def get_species_name2sum_formula(lines, species_list_or_dict, thermo_filename,
+                                 silent):
+  """ returns a dict """
+  clean_lines = make_clean_thermo_lines(lines)
+  identifier2sum_formula = get_identifier2sum_formula(clean_lines)
+  if (len(identifier2sum_formula) == 0):
+    print_error(
+        "could not find any species entries in the THERMO section of '" +
+        thermo_filename + "'")
+    quit()
 
   missing_nasa = {}
   found_nasa = {}
@@ -1270,15 +1316,14 @@ def get_species_name2sum_formula(lines, species_list_or_dict, thermo_filename,
     print("found NASA polynomial coefficients for " + str(len(found_nasa)) +
           "/" + str(len(species_list_or_dict)) + " species")
   if (len(missing_nasa) > 0 and len(species_list_or_dict)):
-    print(
-        "\n#warning: Could not find thermochemistry data for the following " +
-        str(len(missing_nasa)) + " species:")
+    print_warning("Could not find thermochemistry data for the following " +
+                  str(len(missing_nasa)) + " species:")
     for identifier in missing_nasa:
       print(identifier)
-    print(
-        "Thermochemistry data are expected to be available for each of the species. Is the thermochemistry file '"
+    print_warning(
+        "Thermochemistry data are expected to be available for each species. Is the thermochemistry file '"
         + thermo_filename +
-        "' intended for the provided kinetic submodule(s)?\n")
+        "' intended for the provided kinetic submodule(s)?")
   return identifier2sum_formula, found_nasa
 
 
@@ -1425,7 +1470,7 @@ def read_csv_species_dict(csv_filename, species_list, fatal_error_only,
         "the stereochemistry information is either RDKit-compatible (1) or not (0)"
     )
     if (fatal_error_only):
-      print("#warning: only fatal errors are considered")
+      print_warning("only fatal errors are considered")
       df = df[df['model_name'].isin(species_list)]
 
     any_error = False
@@ -1694,18 +1739,19 @@ def make_species_dictionary_itv(thermochemistry_filename,
                 c3_excited_vals[c3_primary_key[1]] = 1
 
               if (len(c3_excited_vals) == 1 and len(c3_multiplicities) == 1):
-                primary_key = (itv_inchi, c3_multiplicity, c3_excited)
+                primary_key = (itv_inchi, c3_excited, c3_multiplicity)
                 itv_canonical2data[primary_key] = {}
                 itv_canonical2data[primary_key]['inchi'] = itv_inchi
                 itv_canonical2data[primary_key]['excited'] = primary_key[1]
-                itv_canonical2data[primary_key]['multiplicty'] = primary_key[2]
+                itv_canonical2data[primary_key]['multiplicity'] = primary_key[
+                    2]
                 itv_canonical2data[primary_key]['model_name'] = itv_name
                 if (len(species_name2inchi[itv_name]) == 1):
                   itv_canonical2data[primary_key]['lumped'] = 0
                 else:
                   itv_canonical2data[primary_key]['lumped'] = 1
                 itv_canonical2data[primary_key]['rdkit_stereochemistry'] = 1
-                smiles_lst = list(species_name2smiles[itv_name].keys())
+                smiles_lst = species_name2smiles[itv_name]
                 itv_canonical2data[primary_key]['smiles'] = smiles_lst[0]
                 itv_not_found[itv_name] = 0
               else:
@@ -1723,18 +1769,19 @@ def make_species_dictionary_itv(thermochemistry_filename,
                 c3_excited_vals[c3_primary_key[1]] = 1
 
               if (len(c3_excited_vals) == 1 and len(c3_multiplicities) == 1):
-                primary_key = (itv_inchi, c3_multiplicity, c3_excited)
+                primary_key = (itv_inchi, c3_excited, c3_multiplicity)
                 itv_canonical2data[primary_key] = {}
                 itv_canonical2data[primary_key]['inchi'] = itv_inchi
                 itv_canonical2data[primary_key]['excited'] = primary_key[1]
-                itv_canonical2data[primary_key]['multiplicty'] = primary_key[2]
+                itv_canonical2data[primary_key]['multiplicity'] = primary_key[
+                    2]
                 itv_canonical2data[primary_key]['model_name'] = itv_name
                 if (len(species_name2inchi[itv_name]) == 1):
                   itv_canonical2data[primary_key]['lumped'] = 0
                 else:
                   itv_canonical2data[primary_key]['lumped'] = 1
                 itv_canonical2data[primary_key]['rdkit_stereochemistry'] = 1
-                smiles_lst = list(species_name2smiles[itv_name].keys())
+                smiles_lst = species_name2smiles[itv_name]
                 smiles_count = 0
                 for tmp_inchi in species_name2inchi[itv_name]:
                   if (tmp_inchi == itv_inchi):
@@ -1803,14 +1850,14 @@ def make_species_dictionary_itv(thermochemistry_filename,
           itv_canonical2data[primary_key] = {}
           itv_canonical2data[primary_key]['inchi'] = itv_inchi
           itv_canonical2data[primary_key]['excited'] = primary_key[1]
-          itv_canonical2data[primary_key]['multiplicty'] = primary_key[2]
+          itv_canonical2data[primary_key]['multiplicity'] = primary_key[2]
           itv_canonical2data[primary_key]['model_name'] = itv_name
           if (len(species_name2inchi[itv_name]) == 1):
             itv_canonical2data[primary_key]['lumped'] = 0
           else:
             itv_canonical2data[primary_key]['lumped'] = 1
           itv_canonical2data[primary_key]['rdkit_stereochemistry'] = 1
-          smiles_lst = list(species_name2smiles[itv_name].keys())
+          smiles_lst = species_name2smiles[itv_name]
           itv_canonical2data[primary_key]['smiles'] = smiles_lst[inchi_count]
           count_no_overlap[itv_name] = 1
           inchi_count += 1
@@ -1818,9 +1865,10 @@ def make_species_dictionary_itv(thermochemistry_filename,
         str(len(count_no_overlap)) +
         " ITV species have no overlap with C3Mech")
 
-  print("Could not find the following species")
-  for name in itv_not_found:
-    if (itv_not_found[name]):
+  missing_itv_species = [name for name in itv_not_found if itv_not_found[name]]
+  if (len(missing_itv_species)):
+    print_warning("Could not find the following species")
+    for name in missing_itv_species:
       print(name)
   itv_names_assigned = {}
   for primary_key in itv_canonical2data:
@@ -1850,10 +1898,10 @@ def make_species_classification(inp, sc, dry_run, species_list, itv_mode,
     timestamp_species_dict = os.path.getmtime(inp.csv_filename)
     spec_dict = make_species_dictionary(inp.csv_filename, species_list,
                                         fatal_error_only, show_lumped)
-    # the thermochemistry file is optional in itv_mode
+    count = 0
+    count_missing_inchi = 0
+    # the thermochemistry file is optional in non-itv mode
     if (inp.thermo_filename != ''):
-      count = 0
-      count_missing_inchi = 0
       print(
           "perform optional crosscheck with thermochemistry element compositions"
       )
@@ -1878,24 +1926,21 @@ def make_species_classification(inp, sc, dry_run, species_list, itv_mode,
           " InChI sum formulas against thermochemistry element compositions (skipped "
           + str(count_missing_inchi) + "/" + str(len(species_list) - count) +
           " due to missing InChIs)")
-      #if(len(identifier2sum_formula) > 0):
+    missing_inchi = {}
+    for species in species_list:
+      if (species in spec_dict.species_name2inchi):
+        sc.add_species(dry_run, species, spec_dict.species_name2inchi[species],
+                       spec_dict.species_name2smiles[species],
+                       spec_dict.fallback)
+        count_species += 1
+      else:
+        missing_inchi[species] = 1
 
-      missing_inchi = {}
-      for species in species_list:
-        if (species in spec_dict.species_name2inchi):
-          sc.add_species(dry_run, species,
-                         spec_dict.species_name2inchi[species],
-                         spec_dict.species_name2smiles[species],
-                         spec_dict.fallback)
-          count_species += 1
-        else:
-          missing_inchi[species] = 1
-
-      if (len(missing_inchi) > 0):
-        print("InChIs are missing for the following " +
-              str(len(missing_inchi)) + " species:")
-        for species in missing_inchi:
-          print(species)
+    if (len(missing_inchi) > 0):
+      print_warning("InChIs are missing for the following " +
+                    str(len(missing_inchi)) + " species:")
+      for species in missing_inchi:
+        print(species)
   return sc, count_species, timestamp_species_dict
 
 
@@ -1904,14 +1949,14 @@ def check_species_list(species_list, thermo_filename):
   for s in species_list:
     if (species_list[s] == 0):
       if (all_found):
-        print("Could not find the following species:")
+        print_warning("Could not find the following species:")
       print(s)
       all_found = False
 
   if (not all_found):
-    print(
-        "WARNING: COULD NOT FIND AN INCHI FOR EVERY SPECIES. CHECK THE THERMOCHEMISTRY INPUT: '"
-        + thermo_filename + "'\n")
+    print_warning(
+        "COULD NOT FIND AN INCHI FOR EVERY SPECIES. CHECK THE THERMOCHEMISTRY INPUT: '"
+        + thermo_filename + "'")
   else:
     print_success()
 
@@ -2040,10 +2085,13 @@ def write_species_dict(inp,
                        itv_mode,
                        fatal_error_only,
                        show_lumped,
-                       sc=DefaultClassification(),
+                       sc=None,
                        silent=False):
   if (not silent):
     print("Constructing the species list")
+
+  if (sc is None):
+    sc = DefaultClassification()
 
   start = time.time()
 
@@ -2064,6 +2112,10 @@ def write_species_dict(inp,
     quit()
   print("found " + str(len(species_list)) +
         " species from the selected kinetic submodule(s)")
+  if (len(species_list) == 0):
+    print_error(
+        "could not find any species in the selected kinetic submodule(s)")
+    quit()
   if (not silent):
     print_success()
   set_RDKit_drawing_option()
