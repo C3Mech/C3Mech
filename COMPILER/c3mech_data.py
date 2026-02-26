@@ -76,9 +76,20 @@ def print_not_found(what, dir_or_file, path):
 
 
 def get_submodules_dir(abs_dir):
+  abs_dir_norm = os.path.normcase(os.path.abspath(os.path.normpath(abs_dir)))
+
+  def looks_like_submodules_dir(path):
+    return (os.path.isdir(path) and os.path.isdir(os.path.join(path, "UOG"))
+            and os.path.isdir(os.path.join(path, "LLNL")))
+
+  # Allow passing the sub-modules directory directly, independent of its name.
+  if looks_like_submodules_dir(abs_dir_norm):
+    return abs_dir_norm
+
+  # Fallback: infer SUBMODULES next to a compiler/scripts directory.
   return os.path.normcase(
-      os.path.normpath(os.path.join(abs_dir, os.path.join("..",
-                                                          "SUBMODULES"))))
+      os.path.normpath(os.path.join(abs_dir_norm, os.path.join("..",
+                                                               "SUBMODULES"))))
 
 
 # Helper to get max carbon in a combination
@@ -138,10 +149,11 @@ def get_ht_htlt_modules(abs_dir):
   modules_ht = base_modules_UOG_HT + LLNL_base_modules_HT + optional_modules + required_extension_HT  # + optional_modules_HT
   modules_htlt = base_modules_UOG_HTLT + LLNL_base_modules_HTLT + optional_modules + required_extension_HTLT  #  + optional_modules_HTLT
 
+  submodules_dir = get_submodules_dir(abs_dir)
   ok = True
   modules_ht_final = []
   for f in modules_ht:
-    cur_path = os.path.join(get_submodules_dir(abs_dir), f)
+    cur_path = os.path.join(submodules_dir, f)
     if (not os.path.isfile(cur_path)):
       print_not_found("", "file", cur_path)
       ok = False
@@ -149,7 +161,7 @@ def get_ht_htlt_modules(abs_dir):
         os.path.normcase(os.path.abspath(os.path.normpath(cur_path))))
   modules_htlt_final = []
   for f in modules_htlt:
-    cur_path = os.path.join("..", get_submodules_dir(abs_dir), f)
+    cur_path = os.path.join(submodules_dir, f)
     if (not os.path.isfile(cur_path)):
       print_not_found("", "file", cur_path)
       ok = False
@@ -548,6 +560,9 @@ class MID:
       digits.append(n % base)
       n //= base
 
+    if n != 0:
+      raise ValueError(f"Invalid MID '{id_str}': out of range")
+
     digits.reverse()
 
     selection = {}
@@ -574,7 +589,38 @@ def get_grouped_combos_mid(options):
   global CANTERA_MODE
   CANTERA_MODE = bool(options.mid_cantera)
 
-  selection = midgen.id_to_combo(options.mid)
+  try:
+    selection = midgen.id_to_combo(options.mid)
+  except ValueError as exc:
+    print("#error:", exc)
+    sys.exit(1)
+
+  selection_keys = set(selection.keys())
+  # Enforce dependency constraints for decoded MIDs.
+  for key in selection_keys:
+    missing = DEPENDENCIES[key] - selection_keys
+    if missing:
+      print("#error: MID '" + options.mid + "' decodes to an invalid "
+            "sub-module combination.")
+      print("       Sub-module '" + key +
+            "' is missing required dependencies: " + ", ".join(sorted(missing)))
+      sys.exit(1)
+
+  # Enforce selection policy used for official generated combinations.
+  has_carbon = bool((set(get_base_modules()) & selection_keys)
+                    or ({"LLNL_BLOCK", "LLNL_BLOCK_DMC_EC", "PAH_BLOCK"}
+                        & selection_keys))
+  if has_carbon and "UOG_N" in selection_keys and "UOG_C-N" not in selection_keys:
+    print("#error: MID '" + options.mid + "' decodes to an excluded "
+          "combination (UOG_N with carbon chemistry requires UOG_C-N).")
+    sys.exit(1)
+
+  if DMC_EC_FEW and (((max_carbon(selection_keys) > 2 or "UOG_N" in selection_keys)
+                      and max_carbon(selection_keys) < 8)
+                     and "LLNL_BLOCK_DMC_EC" in selection_keys):
+    print("#error: MID '" + options.mid + "' decodes to an excluded "
+          "combination based on the DMC+EC selection policy.")
+    sys.exit(1)
 
   print("MID '" + options.mid + "' decoded as:")
   for key, temp in selection.items():
@@ -850,13 +896,17 @@ def normalize_and_check_submodule_paths(submodules_files, submodules_dir,
 def get_grouped_combos(options):
   try:
     from chemmodkit.input import make_submodulefiles_from_yaml
-    submodules_files = make_submodulefiles_from_yaml(options.yaml_file_path,
-                                                     options.submodules_dir)
-  except ImportError:
-    print(
-        "ERROR: Could not find chemmodkit.input.make_submodulefiles_from_yaml."
-    )
-    sys.exit(1)
+  except ImportError as exc:
+    if getattr(exc, "name", None) in ("chemmodkit", "chemmodkit.input"):
+      print(
+          "ERROR: Could not import chemmodkit.input.make_submodulefiles_from_yaml."
+      )
+      print("Original error:", exc)
+      sys.exit(1)
+    raise
+
+  submodules_files = make_submodulefiles_from_yaml(options.yaml_file_path,
+                                                   options.submodules_dir)
 
   submodules_files, selection = normalize_and_check_submodule_paths(
       submodules_files, options.submodules_dir, options.yaml_file_path)

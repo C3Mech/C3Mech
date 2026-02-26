@@ -167,6 +167,11 @@ def parse_args():
 
   args = parser.parse_args()
 
+  if args.max_threads < 1:
+    raise ValueError("--max-threads must be >= 1")
+  if args.max_c < 0:
+    raise ValueError("--max-c must be >= 0")
+
   # Determine whether a YAML file will be used for this run
   needs_yaml = (args.mid == "" and not args.generate_all)
 
@@ -186,6 +191,11 @@ def parse_args():
         raise FileNotFoundError(f"File does not exist: {path}")
     else:
       if not os.path.isdir(path):
+        if attr == "output_dir":
+          raise FileNotFoundError(
+              f"Output directory does not exist: {path}. "
+              "Please create it first; this script does not create output root directories."
+          )
         raise FileNotFoundError(f"Directory does not exist: {path}")
 
   if args.process_cantera and shutil.which("ck2yaml") is None:
@@ -211,7 +221,11 @@ def parse_args():
 
 
 def main():
-  options = parse_args()
+  try:
+    options = parse_args()
+  except (FileNotFoundError, ValueError) as exc:
+    print("#error:", exc)
+    sys.exit(1)
   # debug
   print(f"[chemmodkit] Running with options: {options}")
   if options.mid == "" and options.generate_all:
@@ -233,10 +247,15 @@ def main():
 
   try:
     from chemmodkit.output import run
-    run(options, submodules_filenames, grouped_combos, c3mech.columns)
-  except ImportError:
-    print("ERROR: Could not find chemmodkit.output.run.")
-    sys.exit(1)
+  except ImportError as exc:
+    if getattr(exc, "name",
+               None) in ("chemmodkit", "chemmodkit.output"):
+      print("ERROR: Could not import chemmodkit.output.run.")
+      print("Original error:", exc)
+      sys.exit(1)
+    raise
+
+  run(options, submodules_filenames, grouped_combos, c3mech.columns)
 
 
 if __name__ == "__main__":

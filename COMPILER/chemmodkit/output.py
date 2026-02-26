@@ -881,7 +881,7 @@ def _generate_identifer(submodules_filenames, selection, cantera):
       core_filename = cand_core
     else:
       print("#error: expected non-Cantera C0 core not found: " + cand_core)
-      quit()
+      sys.exit(1)
 
   identifier_list.append(core_filename)
   return tuple(sorted(identifier_list)), core_filename
@@ -1020,9 +1020,6 @@ def one_carbon_number(options,
           )
           generated_combinations[identifier][f] = new_fname
           os.rename(fname, new_fname)
-        else:
-          print("this should never happen (new_fname: " + new_fname +
-                ", fname: " + fname + ")")
 
       # After renaming, refresh canonical THERM/TRAN for this MID
       if canonical_files is not None:
@@ -1090,34 +1087,24 @@ def run(options, submodules_filenames, grouped_selections, columns):
         if returncode != 0:
           print(f"Error running ck2yaml for {identifier}:")
           print(stderr)
-          quit()
+          sys.exit(1)
         else:
           print("processing with cantera was successful!")
   else:
 
     generated_combinations_single = {}
     canonical_files_single = {}
+    cantera_mode = detect_cantera_mode(submodules_filenames)
     for cnum, data_dict in grouped_selections.items():
-      if options.mid != "":
-        cantera_mode = detect_cantera_mode(submodules_filenames)
-        generated_combinations_single = one_carbon_number(
-            options,
-            submodules_filenames,
-            DATETIME,
-            cnum,
-            data_dict,
-            generated_combinations_single,
-            cantera=cantera_mode,
-            canonical_files=canonical_files_single)
-      else:
-        generated_combinations_single = one_carbon_number(
-            options,
-            submodules_filenames,
-            DATETIME,
-            cnum,
-            data_dict,
-            generated_combinations_single,
-            canonical_files=canonical_files_single)
+      generated_combinations_single = one_carbon_number(
+          options,
+          submodules_filenames,
+          DATETIME,
+          cnum,
+          data_dict,
+          generated_combinations_single,
+          cantera=cantera_mode,
+          canonical_files=canonical_files_single)
 
     for identifier in generated_combinations_single:
       if "mid" in identifier:
@@ -1134,6 +1121,6 @@ def run(options, submodules_filenames, grouped_selections, columns):
         if returncode != 0:
           print(f"Error running ck2yaml for {identifier}:")
           print(stderr)
-          quit()
+          sys.exit(1)
         else:
           print("processing with cantera was successful!")

@@ -1,4 +1,5 @@
 import os
+import sys
 import yaml
 import re
 import copy
@@ -73,6 +74,9 @@ def make_species_list(directory, files_list):
 
 
 def parse_composition(composition, elements):
+  def fail(msg):
+    raise ValueError(msg + " (composition: '" + composition + "')")
+
   cur_compo = {}
   count_nothing = 0
   for i in range(4):
@@ -83,39 +87,30 @@ def parse_composition(composition, elements):
       if composition[c:c + 2] in elements:
         n = re.match("[a-zA-Z]+\\s*(\\d+)", composition[c:c + 5])
         if not n:
-          print("ERROR: in ", composition[c:])
-          quit()
+          fail("ERROR: malformed element/count near '" + composition[c:] + "'")
         if composition[c:c + 2] in cur_compo:
-          print("ERROR: element", composition[c:c + 2],
-                "cannot be specified twice")
-          quit()
+          fail("ERROR: element '" + composition[c:c + 2] +
+               "' cannot be specified twice")
         cur_compo[composition[c:c + 2]] = int(n.group(1))
       else:
         print("current characters: '" + composition[c:c + 5] + "'")
         print("composition: '" + composition + "'")
-        raise Exception("ERROR: unknown element '" + composition[c:c + 2] +
-                        "'")
-        quit()
+        fail("ERROR: unknown element '" + composition[c:c + 2] + "'")
     else:
       if composition[c:c + 1] in elements:
         n = re.match("[a-zA-Z]+\\s*(\\d+)", composition[c:c + 5])
         if not n:
-          print("ERROR: in ", composition[c:])
-          quit()
+          fail("ERROR: malformed element/count near '" + composition[c:] + "'")
         if composition[c:c + 1] in cur_compo:
-          print("ERROR: element", composition[c:c + 1],
-                "cannot be specified twice")
+          fail("ERROR: element '" + composition[c:c + 1] +
+               "' cannot be specified twice")
         cur_compo[composition[c:c + 1]] = int(n.group(1))
       else:
         print("current characters: '" + composition[c:c + 5] + "'")
         print("composition: '" + composition + "'")
-        raise Exception("ERROR: unknown element '" + composition[c:c + 1] +
-                        "'")
-        quit()
+        fail("ERROR: unknown element '" + composition[c:c + 1] + "'")
   if (count_nothing == 4):
-    print("composition: '" + composition + "'")
-    print("ERROR: empty composition")
-    quit()
+    fail("ERROR: empty composition")
   return cur_compo
 
 
@@ -151,14 +146,20 @@ def print_not_found(what, dir_or_file, path):
   print(what + " " + dir_or_file + " '" + path + "' does not exist")
 
 
+def print_error(msg):
+  print("\n#error: " + msg)
+
+
 def read_yaml_input(filename):
   """ returns a SubModulesFiles """
   yaml_input_options = None
-  with open(filename) as inp:
+  with open(filename, encoding="utf-8") as inp:
     try:
       yaml_input_options = yaml.safe_load(inp)
-    except ValueError as e:
-      util.print_error("invalid syntax in yaml input '" + filename + "'")
+    except yaml.YAMLError as exc:
+      raise ValueError("invalid syntax in yaml input '" + filename + "'") from exc
+  if yaml_input_options is None:
+    raise ValueError("yaml input '" + filename + "' is empty")
   return yaml_input_options
 
 
@@ -169,14 +170,24 @@ def make_submodulefiles_from_yaml(filename, directory):
   """
   if (not os.path.isfile(filename)):
     print_not_found("yaml input", "file", filename)
-    quit()
+    sys.exit(1)
   print("reading yaml file \'" + os.path.basename(filename) + "'")
-  submodules = read_yaml_input(filename)
+  try:
+    submodules = read_yaml_input(filename)
+  except ValueError as exc:
+    print_error(str(exc))
+    sys.exit(1)
+
+  if not isinstance(submodules, SubModulesFiles):
+    print_error("invalid yaml input in '" + filename +
+                "': expected top-level tag '!SubModulesFiles'")
+    sys.exit(1)
+
   submodules.insert_model_path(directory)
 
   if (not submodules.check()):
     print("error: invalid input")
-    quit()
+    sys.exit(1)
 
   return submodules
 
@@ -186,11 +197,12 @@ class SubModulesFiles(yaml.YAMLObject):
   yaml_tag = u'!SubModulesFiles'
 
   def __init__(self, core, submodules):
-    self.core = os.path.normcase(os.path.normpath(copy.copy(core)))
-    self.submodules = copy.copy(
-        [os.path.normcase(os.path.normpath(f)) for f in submodules])
-    if (submodules is None):
+    self.core = os.path.normcase(os.path.normpath(copy.copy(core))) if core is not None else ""
+    if submodules is None:
       self.submodules = []
+    else:
+      self.submodules = copy.copy(
+          [os.path.normcase(os.path.normpath(f)) for f in submodules])
 
   def check(self):
     ok = True
@@ -292,6 +304,7 @@ def _process_reaction_line(submodule_filename, line, line_orig, species_dict,
     """
 
   reaction = rxn.ChemicalReaction(line, line_orig, species_dict)
+  reaction.set_submodule_file(submodule_filename)
 
   n_spec = 0
   # Insert species from reactants/products into species_dict and total_species
@@ -380,14 +393,22 @@ def _handle_rev_keyword(line, match, species_dict, new_canon_str,
   # Check for numeric data in REV line (e.g. Arrhenius parameters)
   numbers_part = match.group(1).strip()  # e.g., "1.0 2.0 3.0"
   number_strings = [num for num in numbers_part.split() if num]
+  if not number_strings:
+    raise ValueError("Syntax error in REV keyword (no numeric parameters): '" +
+                     line + "'")
 
   # Convert to float and limit to up to three numbers
   number_array = []
   for num_str in number_strings[:3]:  # Limit to first three numbers only
     try:
       number_array.append(float(num_str))  # Convert string to float
-    except ValueError:
-      print(f"Could not convert '{num_str}' to float in REV //.")
+    except ValueError as exc:
+      raise ValueError("Syntax error in REV keyword (invalid number '" +
+                       num_str + "') in line: '" + line + "'") from exc
+
+  if not number_array:
+    raise ValueError("Syntax error in REV keyword (no valid numeric parameter): '"
+                     + line + "'")
 
   # If the first number != 0, then add the reverse rate coefficient
   if number_array[0] != 0.0:
@@ -421,6 +442,8 @@ def _process_special_keywords(line, patterns, species_dict, new_canon_str,
     """
   # Try each important pattern
   match_rev = patterns['rev'].match(line)
+  if re.match(r'REV\b', line, re.IGNORECASE) and not match_rev:
+    raise ValueError("Syntax error in REV keyword: '" + line + "'")
   if match_rev:
     cantera_count, last_canon_str = _handle_rev_keyword(
         line, match_rev, species_dict, new_canon_str, normalized_reactions,
@@ -466,7 +489,8 @@ def _handle_tb_pattern(matches_tb, species_dict, normalized_reactions,
 
     if species in species_dict:
       if species in normalized_reactions[last_canon_str][-1].tb_efficiencies:
-        old_val = normalized_reactions[last_canon_str][-1].tb_efficiencies[s]
+        old_val = normalized_reactions[last_canon_str][-1].tb_efficiencies[
+            species]
         print(
             f"Duplicate third body efficiencies for {species} ({value_str} and {old_val})"
         )
@@ -521,6 +545,11 @@ def count_reactions(lines, submodule_filename, species_dict,
       'end': re.compile(r'(END)', re.IGNORECASE),
   }
 
+  # Some mechanism files do not contain an explicit REACTIONS block marker.
+  # In that case, we must keep the first comment block as intro for the first
+  # reaction. If REACTIONS exists, only keep comments from within that block.
+  has_reactions_marker = any(patterns['reac'].match(l) for l in cleaned_lines)
+
   element_mode = False
   species_mode = False
   reaction_mode = False
@@ -541,11 +570,13 @@ def count_reactions(lines, submodule_filename, species_dict,
 
     if patterns['elem'].match(l):
       element_mode = True
-      reaction_only = False
+      if has_reactions_marker:
+        reaction_only = False
       continue
     elif patterns['spec'].match(l):
       species_mode = True
-      reaction_only = False
+      if has_reactions_marker:
+        reaction_only = False
       continue
     elif patterns['reac'].match(l):
       reaction_mode = True
@@ -556,9 +587,10 @@ def count_reactions(lines, submodule_filename, species_dict,
       species_mode = False
       continue
 
-    if (reaction_mode
-        or reaction_only) and not "=" in l and last_canon_str == "":
-      intro.append(lines[idx_line])
+    if (not "=" in l and last_canon_str == "" and not element_mode
+        and not species_mode):
+      if reaction_mode or (reaction_only and not has_reactions_marker):
+        intro.append(lines[idx_line])
 
     if not "=" in l and last_canon_str != "":
       if last_canon_str not in normalized_reactions:
@@ -578,7 +610,7 @@ def count_reactions(lines, submodule_filename, species_dict,
           normalized_reactions, normalized_reactions_check, total_species,
           total_reactions)
 
-      if n_new_species == 0 and len(normalized_reactions[last_canon_str]) == 1:
+      if n_new_species == 0:
         for intro_line in intro:
           normalized_reactions[last_canon_str][-1].add_intro(intro_line)
         intro = []

@@ -69,6 +69,8 @@ class ChemicalReaction:
     new_instance.reaction_string_aux = copy.deepcopy(self.reaction_string_aux)
     new_instance.reaction_intro = copy.deepcopy(self.reaction_intro)
     new_instance.explicit_dependence = copy.deepcopy(self.explicit_dependence)
+    new_instance.tb_efficiencies = copy.deepcopy(self.tb_efficiencies)
+    new_instance.submodule_filename = copy.deepcopy(self.submodule_filename)
     new_instance.empty_chemkin = self.empty_chemkin
 
     return new_instance
@@ -182,7 +184,7 @@ class ChemicalReaction:
     elif fb == "b":
       return -self.increment[elem]
     else:
-      return ValueError("unknown direction '" + str(fb) + "'")
+      raise ValueError("unknown direction '" + str(fb) + "'")
 
   def c_increment(self, fb) -> int:
     return self.element_increment(fb, "C")
