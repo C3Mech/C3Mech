@@ -504,8 +504,12 @@ def _handle_tb_pattern(matches_tb, species_dict, normalized_reactions,
   return error
 
 
-def count_reactions(lines, submodule_filename, species_dict,
-                    normalized_reactions, normalized_reactions_check):
+def count_reactions(lines,
+                    submodule_filename,
+                    species_dict,
+                    normalized_reactions,
+                    normalized_reactions_check,
+                    print_summary=True):
   """
   """
 
@@ -647,10 +651,11 @@ def count_reactions(lines, submodule_filename, species_dict,
   #     print(rr.reaction_definition)
   #     rr.set_submodule_file(submodule_filename)
 
-  print("    new species in sub-module:", n_new_species)
-  print("  total species in sub-module:", len(total_species))
-  print("      reactions in sub-module:",
-        len(normalized_reactions) - n_reactions_start)
+  if print_summary:
+    print("    new species in sub-module:", n_new_species)
+    print("  total species in sub-module:", len(total_species))
+    print("      reactions in sub-module:",
+          len(normalized_reactions) - n_reactions_start)
   # print("total reactions in sub-module:", len(total_reactions))
   # print("number of reactions: ", len(normalized_reactions)-n_reactions_start)
   # print("number of ='s + number of REV's (cantera counting): ", cantera_count)
