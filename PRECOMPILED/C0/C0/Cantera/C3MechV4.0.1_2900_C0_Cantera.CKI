@@ -69,7 +69,7 @@
 ! ================================================================================================== !
 
 
-! Kinetics data for C3MechV4.0.1, generated on 02/03/2026 05:23:37.
+! Kinetics data for C3MechV4.0.1, generated on 02/03/2026 18:02:10.
 
 ! The following sub-modules were considered in this file:
 ! - UOG_C0_LT-HT_Cantera.MECH
@@ -135,10 +135,10 @@ HE / +0.8300 / CO / +1.9000 / CH4 / +2.0000 / H2 / +2.5000 / C2H6 / +3.0000 / CO
 
 H+O2+H=H2+O2        8.80000000E+022 -1.83500000E+000 +8.00000000E+002 !\Author: SP !\Ref: Michael P. Burke & Stephen J. Klippenstein, Nature Chemistry volume 9, pages1078 1082 (2017) !\Comment: (Ref added, YM) 
 !YZ_251026
-	!H2+O=H+OH    1.24E+08    1.686    8033 !! Yuki Murakami, 20 September 2023, Scott Wagnon @LLNL suggests rate parameters. !REFIT, 500-3000K; REFIT ABS ERROR: MEDIAN = 0%, MEAN = 0%, MAX = 2% @500K
-	!DUP
-	!H2+O=H+OH    4.38E+16   -0.340   35603 !! Yuki Murakami, 20 September 2023, Scott Wagnon @LLNL suggests rate parameters. !REFIT, 500-3000K; REFIT ABS ERROR: MEDIAN = 0%, MEAN = 0%, MAX = 2% @500K
-	!DUP
+ !H2+O=H+OH    1.24E+08    1.686    8033 !! Yuki Murakami, 20 September 2023, Scott Wagnon @LLNL suggests rate parameters. !REFIT, 500-3000K; REFIT ABS ERROR: MEDIAN = 0%, MEAN = 0%, MAX = 2% @500K
+ !DUP
+ !H2+O=H+OH    4.38E+16   -0.340   35603 !! Yuki Murakami, 20 September 2023, Scott Wagnon @LLNL suggests rate parameters. !REFIT, 500-3000K; REFIT ABS ERROR: MEDIAN = 0%, MEAN = 0%, MAX = 2% @500K
+ !DUP
 !V3.3
 H2+O=H+OH                                               3.8000e+12    0.000      7948.00
  DUPLICATE
@@ -266,8 +266,8 @@ DUP
 OH+HO2<=>H2O+O2       1.21000000E+009 +1.24000000E+000 -1.30758000E+003 !\Author: UB !\Ref: M.P. BURKE, S.J. KLIPPENSTEIN, L.B. HARDING, PROC. COMBUST. INST. 34(2013) 547-555 !\Comment: WARNING 
 DUP
 
-HO2+HO2=H2O2+O2    1.93E-02	4.12E+00	-4.96E+03!\Author: SP !\Ref: S.J. KLIPPENSTEIN, M.P. BURKE, K.P. SOMERS, 11th U.S. NAT.COMB.MEETING (2019) !\Comment: WARNING 
-HO2+HO2=OH+OH+O2   6.41E+17	-1.54E+00	8.54E+03!\Author: SP !\Ref: S.J. KLIPPENSTEIN, M.P. BURKE, K.P. SOMERS, 11th U.S. NAT.COMB.MEETING (2019) !\Comment: WARNING 
+HO2+HO2=H2O2+O2    1.93E-02 4.12E+00 -4.96E+03!\Author: SP !\Ref: S.J. KLIPPENSTEIN, M.P. BURKE, K.P. SOMERS, 11th U.S. NAT.COMB.MEETING (2019) !\Comment: WARNING 
+HO2+HO2=OH+OH+O2   6.41E+17 -1.54E+00 8.54E+03!\Author: SP !\Ref: S.J. KLIPPENSTEIN, M.P. BURKE, K.P. SOMERS, 11th U.S. NAT.COMB.MEETING (2019) !\Comment: WARNING 
 !___________________________________________________________________________________________________________ 
 !\REACTIONCLASS: RADICAL_ALPHA_SCISSION
 !___________________________________________________________________________________________________________ 

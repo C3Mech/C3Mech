@@ -70,7 +70,7 @@ description: |2-
    ================================================================================================== !
 
 
-   Kinetics data for C3MechV4.0.1, generated on 02/03/2026 05:23:37.
+   Kinetics data for C3MechV4.0.1, generated on 02/03/2026 18:02:10.
 
    The following sub-modules were considered in this file:
    - UOG_C0_LT-HT_Cantera.MECH
@@ -173,7 +173,7 @@ description: |2-
   ================================================================================================== !
 
 
-  Thermodynamic data for C3MechV4.0.1, generated on 02/03/2026 05:23:37.
+  Thermodynamic data for C3MechV4.0.1, generated on 02/03/2026 18:02:10.
 
   The following sub-modules were considered in this file:
   - UOG_C0_LT-HT.MECH
@@ -194,7 +194,7 @@ input-files: [C3MechV4.0.1_3XKW_C0-C8+_C5CY_N_HT_Cantera.CKI,
     C3MechV4.0.1_3XKW_C0-C8+_C5CY_N_HT.THERM, 
     C3MechV4.0.1_3XKW_C0-C8+_C5CY_N_HT.TRAN]
 cantera-version: 3.1.0
-date: Mon, 02 Mar 2026 05:54:03 +0100
+date: Mon, 02 Mar 2026 18:26:53 +0100
 
 units: {length: cm, time: s, quantity: mol, activation-energy: cal/mol}
 
@@ -66266,16 +66266,16 @@ reactions:
   - {P: 50.0 atm, A: 8.98e+65, b: -14.52, Ea: 1.11688e+05}
   - {P: 100.0 atm, A: 3.36e+61, b: -13.18, Ea: 1.09786e+05}
   note: |
-    TC4H9 + SC4H9=C8H18-223  3.59E+14	-0.75	0
+    TC4H9 + SC4H9=C8H18-223  3.59E+14 -0.75 0
     C8H18-223            (=) TC4H9 + SC4H9   8.09E+68  -14.80   103103.
     plog/  1.00E+00     3.50E+94  -22.71   112468.  /   !   (1.00E+00) atm,  900-1800 K,   6% err, 1.00 x !N2
     plog/  2.10E+00     8.92E+91  -21.85   112202.  /   !   (2.10E+00) atm,  900-1800 K,   5% err, 1.00 x !N2
-    plog/  1.30E+01     7.33E+82  -19.00	109445.  /   !   (1.30E+01) atm,  900-1800 K,   3% err, 1.00 x !N2
+    plog/  1.30E+01     7.33E+82  -19.00 109445.  /   !   (1.30E+01) atm,  900-1800 K,   3% err, 1.00 x !N2
     plog/  2.00E+01     1.54E+80  -18.18   108358.  /   !   (2.00E+01) atm,  900-1800 K,   2% err, 1.00 x !N2
     plog/  3.00E+01     3.26E+77  -17.37   107198.  /   !   (3.00E+01) atm,  900-1800 K,   2% err, 1.00 x !N2
     plog/  5.00E+01     9.15E+73  -16.31   105567.  /   !   (5.00E+01) atm,  900-1800 K,   1% err, 1.00 x !N2
     plog/  1.00E+02     8.09E+68  -14.80   103103.  /   !   (1.00E+02) atm,  900-1800 K,   1% err, 1.00 x !N2
-    C2H5 + NEC6-3=C8H18-223  8.00E+11	0.	-1000.0 ! 1.600e+12*0.8
+    C2H5 + NEC6-3=C8H18-223  8.00E+11 0. -1000.0 ! 1.600e+12*0.8
     C8H18-223            (=) C2H5 + NEC6-3  1.77E+64  -13.50   105656.
     plog/  1.00E+00     2.90E+87  -20.76   113085.  /   !   (1.00E+00) atm,  900-1800 K,   7% err, 1.00 x !N2
     plog/  2.10E+00     2.41E+85  -20.04   113200.  /   !   (2.10E+00) atm,  900-1800 K,   6% err, 1.00 x !N2
@@ -66541,7 +66541,7 @@ reactions:
 - equation: C7-23-D2 + OH <=> CH2O + NEC6-3  # Reaction 5924
   rate-constant: {A: 2.0e+10, b: 0.0, Ea: -4000.0}
   note: |
-    C7-23-D2+OH=RC7H13+H2O           4.43E+13	6.80E-02	-4.93E+02
+    C7-23-D2+OH=RC7H13+H2O           4.43E+13 6.80E-02 -4.93E+02
     1.000E+12  0.00  1.230E+03
 - equation: C7-23-D2 + OH <=> CH3COCH3 + TC4H9  # Reaction 5925
   rate-constant: {A: 2.0e+10, b: 0.0, Ea: -4000.0}
@@ -68076,11 +68076,11 @@ reactions:
 - equation: OH + NC10H22 <=> H2O + C10H21-1  # Reaction 6477
   rate-constant: {A: 2.73e+07, b: 1.81, Ea: 868.0}
   note: |
-    OH+NC10H22=H2O+C10H21-1	4.93E+07	1.76E+00	1.06E+03
-    OH+NC10H22=H2O+C10H21-2	7.86E+11	4.43E-01	1.65E+03
-    OH+NC10H22=H2O+C10H21-3	1.73E+06	2.02E+00	-1.74E+03
-    OH+NC10H22=H2O+C10H21-4	1.73E+06	2.02E+00	-1.74E+03
-    OH+NC10H22=H2O+C10H21-5	1.73E+06	2.02E+00	-1.74E+03
+    OH+NC10H22=H2O+C10H21-1 4.93E+07 1.76E+00 1.06E+03
+    OH+NC10H22=H2O+C10H21-2 7.86E+11 4.43E-01 1.65E+03
+    OH+NC10H22=H2O+C10H21-3 1.73E+06 2.02E+00 -1.74E+03
+    OH+NC10H22=H2O+C10H21-4 1.73E+06 2.02E+00 -1.74E+03
+    OH+NC10H22=H2O+C10H21-5 1.73E+06 2.02E+00 -1.74E+03
 - equation: OH + NC10H22 <=> H2O + C10H21-2  # Reaction 6478
   rate-constant: {A: 1.41e+10, b: 0.935, Ea: 505.0}
 - equation: OH + NC10H22 <=> H2O + C10H21-3  # Reaction 6479
@@ -68429,14 +68429,14 @@ reactions:
   - {P: 100.0 atm, A: 3.38e+13, b: -0.03, Ea: 2.9077e+04}
   - {P: 1000.0 atm, A: 2.78e+09, b: 1.2, Ea: 2.7216e+04}
   note: |
-    C2H4+C8H17-1      =     C10H21-1             1.76E+04	2.48	6.13E+03
-    C3H6+C7H15-1      =     C10H21-2    8.80E+03	2.48	6.13E+03
-    C4H8-1+C6H13-1    =     C10H21-3              8.80E+03	2.48	6.13E+03
-    CH3+C9H18-1       =     C10H21-3        1.76E+04	2.48	6.13E+03
-    C5H11-1+C5H10-1   =     C10H21-4       8.80E+03	2.48	6.13E+03
-    C2H5+C8H16-1      =     C10H21-4       8.80E+03	2.48	6.13E+03
-    PC4H9+C6H12-1     =     C10H21-5         8.80E+03	2.48	6.13E+03
-    NC3H7+C7H14-1     =     C10H21-5         8.80E+03	2.48	6.13E+03
+    C2H4+C8H17-1      =     C10H21-1             1.76E+04 2.48 6.13E+03
+    C3H6+C7H15-1      =     C10H21-2    8.80E+03 2.48 6.13E+03
+    C4H8-1+C6H13-1    =     C10H21-3              8.80E+03 2.48 6.13E+03
+    CH3+C9H18-1       =     C10H21-3        1.76E+04 2.48 6.13E+03
+    C5H11-1+C5H10-1   =     C10H21-4       8.80E+03 2.48 6.13E+03
+    C2H5+C8H16-1      =     C10H21-4       8.80E+03 2.48 6.13E+03
+    PC4H9+C6H12-1     =     C10H21-5         8.80E+03 2.48 6.13E+03
+    NC3H7+C7H14-1     =     C10H21-5         8.80E+03 2.48 6.13E+03
      A/2
        (1.00E-02) atm,  700-1300 K,   6% err, 1.00 x !N2
        (1.00E-01) atm,  700-1300 K,   5% err, 1.00 x !N2
