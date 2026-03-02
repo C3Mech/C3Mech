@@ -519,8 +519,12 @@ def _infer_ltht_parent_path(ht_path):
     if parent_base == ht_base:
       return None
 
-  candidate = ht_path.replace(os.sep + "HT" + os.sep,
-                              os.sep + "LT-HT" + os.sep, 1)
+  # Handle Windows/Linux separators and folder case variants (e.g. ht, HT).
+  candidate = re.sub(r"([/\\\\])HT([/\\\\])",
+                     r"\1LT-HT\2",
+                     ht_path,
+                     count=1,
+                     flags=re.IGNORECASE)
   candidate = os.path.join(os.path.dirname(candidate), parent_base)
   return os.path.normcase(os.path.normpath(candidate))
 
