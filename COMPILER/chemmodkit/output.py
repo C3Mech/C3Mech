@@ -3,12 +3,76 @@ import os
 import re
 import subprocess
 import sys
+from collections import defaultdict
 from concurrent.futures import ThreadPoolExecutor, as_completed
+from dataclasses import dataclass
 
 pruned_comment = "! AUTOMATIC PRUNING ! "
 
 from . import input as inp
 from . import reaction as rxn
+
+_REACTION_KEYWORD_ALIASES = {
+    "LOW": "LOW",
+    "LOWMX": "LOWMX",
+    "LOWSP": "LOWSP",
+    "HIGH": "HIGH",
+    "HIGHMX": "HIGHMX",
+    "HIGHSP": "HIGHSP",
+    "TROE": "TROE",
+    "TROEMX": "TROEMX",
+    "TROESP": "TROESP",
+    "SRI": "SRI",
+    "PLOG": "PLOG",
+    "CHEB": "CHEB",
+    "TCHEB": "TCHEB",
+    "PCHEB": "PCHEB",
+    "DUP": "DUPLICATE",
+    "DUPLICATE": "DUPLICATE",
+}
+
+
+@dataclass(frozen=True)
+class ReactionMatchSignature:
+  """Subset-check key used for HT vs LT-HT reaction matching.
+
+  Note: "multiple PLOG/CHEB/..." means repeated lines with the same keyword,
+  not a plural keyword token.
+  """
+
+  canonical: str
+  explicit_dependence: tuple
+  tb_efficiencies: tuple
+  keywords: tuple
+
+
+@dataclass(frozen=True)
+class ParentReactionTrace:
+  line_no: int
+  is_comment: bool
+  reaction_type: str
+  reaction_definition: str
+  raw_line: str
+
+
+@dataclass(frozen=True)
+class RestrictiveMatchWarning:
+  ht_base: str
+  parent_base: str
+  ht_reaction: str
+  parent_reaction: str
+  parent_line: int
+
+
+@dataclass(frozen=True)
+class UnmatchedReactionDetail:
+  key: tuple
+  ht_base: str
+  parent_base: str
+  ht_reaction: str
+  ht_trace: ParentReactionTrace
+  parent_traces: tuple
+  reason: str
 
 
 def write_species_list(species_list, species_pruned, filename):
@@ -436,9 +500,520 @@ def ascii_space(s: str) -> str:
   return ''.join(ch if ord(ch) < 128 else ' ' for ch in s)
 
 
+def _is_ht_submodule_file(path):
+  base = os.path.basename(path).upper()
+  return base == "LLNL_BLOCK_HT.CKI" or ("_HT." in base and
+                                         "_LT-HT." not in base)
+
+
+def _infer_ltht_parent_path(ht_path):
+  ht_base = os.path.basename(ht_path)
+  upper = ht_base.upper()
+  if upper == "LLNL_BLOCK_HT.CKI":
+    parent_base = "LLNL_BLOCK.CKI"
+  else:
+    parent_base = re.sub(r"_HT(\.[^.]+)$",
+                         r"_LT-HT\1",
+                         ht_base,
+                         flags=re.IGNORECASE)
+    if parent_base == ht_base:
+      return None
+
+  candidate = ht_path.replace(os.sep + "HT" + os.sep,
+                              os.sep + "LT-HT" + os.sep, 1)
+  candidate = os.path.join(os.path.dirname(candidate), parent_base)
+  return os.path.normcase(os.path.normpath(candidate))
+
+
+def _resolve_ht_parent_map(submodules_files):
+  ht_parent_map = {}
+  for file_path in [submodules_files.core] + list(submodules_files.submodules):
+    if not _is_ht_submodule_file(file_path):
+      continue
+    parent_path = _infer_ltht_parent_path(file_path)
+    if parent_path is None:
+      raise Exception("Could not derive LT-HT parent for HT sub-module '" +
+                      file_path + "'")
+    if not os.path.isfile(parent_path):
+      raise Exception("#error: expected LT-HT parent sub-module '" +
+                      parent_path + "' for HT sub-module '" + file_path +
+                      "' but it was not found")
+    ht_parent_map[os.path.normcase(os.path.normpath(file_path))] = parent_path
+  return ht_parent_map
+
+
+def _build_parent_species_list(species_list, submodules_files, ht_parent_map):
+  if not ht_parent_map:
+    return species_list.copy(), species_list.copy()
+
+  core_key = os.path.normcase(os.path.normpath(submodules_files.core))
+  core_parent = ht_parent_map.get(core_key, submodules_files.core)
+  submodules_parent = [
+      ht_parent_map.get(os.path.normcase(os.path.normpath(path)), path)
+      for path in submodules_files.submodules
+  ]
+  parent_files = inp.SubModulesFiles(core_parent, submodules_parent)
+  parent_species = make_clean_species_list(parent_files)
+
+  extended_species = species_list.copy()
+  for sp in parent_species:
+    if sp not in extended_species:
+      extended_species[sp] = 0
+  return parent_species, extended_species
+
+
+def _parse_reactions_from_submodule(file_path, species_list):
+  species_dict = {s: 0 for s in species_list}
+  with open(file_path, 'r') as file:
+    lines = file.readlines()
+  reactions, reactions_check = {}, {}
+  n_reactions, _, reactions, reactions_check, species_dict = inp.count_reactions(
+      lines, os.path.basename(file_path), species_dict, reactions,
+      reactions_check, print_summary=False)
+  species_used = sum(1 for _, used in species_dict.items() if used != 0)
+  return reactions, species_used, n_reactions
+
+
+def _extract_reaction_keywords(rr):
+  """Collect recognized keyword families for metadata matching.
+
+  REV is intentionally ignored here:
+  - REV/0 .../ is canonicalized to the same irreversible semantics as '=>'
+  - REV/nonzero is already represented by an additional reverse reaction during
+    parsing, so matching can rely on reaction instances instead of keyword text
+  """
+  keywords = set()
+  for line in rr.get_orignal_CHEMKIN_text():
+    clean = line.split('!', 1)[0].strip().upper()
+    if not clean or '=' in clean:
+      continue
+    head = clean.split('/', 1)[0].strip()
+    if not head:
+      continue
+    token = head.split()[0]
+    if token == "REV":
+      continue
+    if token in _REACTION_KEYWORD_ALIASES:
+      keywords.add(_REACTION_KEYWORD_ALIASES[token])
+  return tuple(sorted(keywords))
+
+
+def _reaction_match_signature(rr):
+  canonical = rr.canonical_representation()[0]
+  explicit_dependence = tuple(sorted(rr.explicit_dependence))
+  tb_efficiencies = tuple(
+      sorted((sp, round(val, 12)) for sp, val in rr.tb_efficiencies.items()))
+  keywords = _extract_reaction_keywords(rr)
+  return ReactionMatchSignature(canonical=canonical,
+                                explicit_dependence=explicit_dependence,
+                                tb_efficiencies=tb_efficiencies,
+                                keywords=keywords)
+
+
+def _reaction_equivalence_key(rr):
+  # Canonical stoichiometry key independent of reaction direction/reversibility.
+  return rr.canonical_representation()[1]
+
+
+def _reaction_metadata_signature(rr):
+  explicit_dependence = tuple(sorted(rr.explicit_dependence))
+  tb_efficiencies = tuple(
+      sorted((sp, round(val, 12)) for sp, val in rr.tb_efficiencies.items()))
+  keywords = _extract_reaction_keywords(rr)
+  return (explicit_dependence, tb_efficiencies, keywords)
+
+def _force_irreversible_separator(text):
+  if '<=>' in text:
+    return text.replace('<=>', '=>', 1)
+  if '=>' in text:
+    return text
+  if '=' in text:
+    return text.replace('=', '=>', 1)
+  return text
+
+
+def _force_irreversible_separator_in_line(line):
+  has_newline = line.endswith('\n')
+  body = line[:-1] if has_newline else line
+  if '!' in body:
+    lhs, comment = body.split('!', 1)
+    body = _force_irreversible_separator(lhs) + '!' + comment
+  else:
+    body = _force_irreversible_separator(body)
+  return body + ('\n' if has_newline else '')
+
+
+def _apply_irreversible_fixes(reactions, reaction_ids):
+  for _, rr_list in reactions.items():
+    for rr in rr_list:
+      if id(rr) not in reaction_ids:
+        continue
+      rr.make_irreversible()
+      rr.reaction_definition = _force_irreversible_separator(
+          rr.reaction_definition)
+      rr.reaction_string = _force_irreversible_separator(rr.reaction_string)
+      rr.reaction_string_orig = _force_irreversible_separator_in_line(
+          rr.reaction_string_orig)
+
+
+def _build_reaction_trace_index(file_path, species_list):
+  species_dict = {s: 0 for s in species_list}
+  trace_index = defaultdict(list)
+  with open(file_path, 'r') as file:
+    for line_no, raw_line in enumerate(file, start=1):
+      stripped = raw_line.strip()
+      if not stripped:
+        continue
+
+      is_comment = stripped.startswith("!")
+      if is_comment:
+        candidate = stripped.lstrip("!").strip()
+      else:
+        candidate = stripped.split('!', 1)[0].strip()
+      if "=" not in candidate:
+        continue
+
+      candidate_upper = candidate.upper()
+      try:
+        rr = rxn.ChemicalReaction(candidate_upper, candidate_upper, species_dict)
+      except Exception:
+        continue
+
+      trace_index[_reaction_equivalence_key(rr)].append(
+          ParentReactionTrace(line_no=line_no,
+                              is_comment=is_comment,
+                              reaction_type=rr.reaction_type,
+                              reaction_definition=rr.reaction_definition,
+                              raw_line=raw_line.rstrip('\n')))
+  return trace_index
+
+
+def _consume_ht_trace(rr, ht_trace_index, used_trace_ids):
+  eq_key = _reaction_equivalence_key(rr)
+  traces = ht_trace_index.get(eq_key, [])
+  for i, trace in enumerate(traces):
+    if i in used_trace_ids[eq_key]:
+      continue
+    if trace.is_comment:
+      continue
+    if (trace.reaction_definition == rr.reaction_definition and
+        trace.reaction_type == rr.reaction_type):
+      used_trace_ids[eq_key].add(i)
+      return trace
+  for i, trace in enumerate(traces):
+    if i in used_trace_ids[eq_key]:
+      continue
+    if not trace.is_comment:
+      used_trace_ids[eq_key].add(i)
+      return trace
+  return ParentReactionTrace(line_no=-1,
+                             is_comment=False,
+                             reaction_type=rr.reaction_type,
+                             reaction_definition=rr.reaction_definition,
+                             raw_line=rr.reaction_string_orig.rstrip('\n'))
+
+
+def _classify_unmatched_reason(rr, canonical, parent_signatures, parent_used,
+                               parent_reaction_index):
+  def _has_unused(candidates):
+    for canonical_parent, i, _ in candidates:
+      if not parent_used[canonical_parent][i]:
+        return True
+    return False
+
+  eq_key = _reaction_equivalence_key(rr)
+  meta_key = _reaction_metadata_signature(rr)
+  canonical_candidates = parent_signatures.get(canonical, [])
+  if len(canonical_candidates) == 0:
+    relaxed_candidates = parent_reaction_index.get((eq_key, meta_key), [])
+    if relaxed_candidates:
+      if _has_unused(relaxed_candidates):
+        return ("same stoichiometric reaction exists in parent with matching "
+                "third-body/keyword data, but arrow form differs "
+                "(direction/reversibility mismatch, e.g. A+B=C+D vs C+D=A+B)")
+      return ("matching parent reaction exists (same stoichiometry and "
+              "third-body/keyword data), but it was already used by another HT "
+              "reaction (HT has an extra duplicate, often from mixed REV/ '=' forms)")
+
+    eq_candidates = parent_reaction_index.get(eq_key, [])
+    if eq_candidates:
+      return ("same stoichiometric reaction exists in parent, but third-body "
+              "terms or keyword blocks differ (e.g. LOW/HIGH/TROE/SRI/"
+              "PLOG/CHEB/DUPLICATE)")
+    return "no active parent reaction with equivalent stoichiometry was found"
+
+  has_unused_same_canonical = False
+  has_unused_same_signature = False
+  for i, candidate_signature in enumerate(canonical_candidates):
+    if parent_used[canonical][i]:
+      continue
+    has_unused_same_canonical = True
+    if candidate_signature == _reaction_match_signature(rr):
+      has_unused_same_signature = True
+      break
+
+  if has_unused_same_signature:
+    return "internal matching inconsistency (unexpected unmatched state)"
+  if has_unused_same_canonical:
+    return ("same arrow form exists in parent, but third-body terms or keyword "
+            "blocks differ (e.g. LOW/HIGH/TROE/SRI/PLOG/CHEB/DUPLICATE)")
+  if (eq_key, meta_key) in parent_reaction_index:
+    return ("matching parent reaction exists (same stoichiometry and "
+            "third-body/keyword data), but it was already used by another HT "
+            "duplicate (HT has an extra duplicate)")
+  if eq_key in parent_reaction_index:
+    return ("same stoichiometric reaction exists in parent, but third-body "
+            "terms or keyword blocks differ (e.g. LOW/HIGH/TROE/SRI/"
+            "PLOG/CHEB/DUPLICATE)")
+  return "no active parent reaction with equivalent stoichiometry was found"
+
+
+def _collect_unmatched_ht_reactions(ht_reactions, parent_reactions, ht_basename,
+                                    parent_base, ht_trace_index,
+                                    parent_trace_index):
+  parent_signatures = {}
+  parent_used = {}
+  parent_relaxed = defaultdict(list)
+  parent_reversible = defaultdict(list)
+  parent_reaction_index = defaultdict(list)
+  for canonical, rr_list in parent_reactions.items():
+    signatures = [_reaction_match_signature(rr) for rr in rr_list]
+    parent_signatures[canonical] = signatures
+    parent_used[canonical] = [False] * len(signatures)
+    for i, rr in enumerate(rr_list):
+      relaxed_key = (_reaction_equivalence_key(rr),
+                     _reaction_metadata_signature(rr))
+      parent_reaction_index[_reaction_equivalence_key(rr)].append((canonical, i,
+                                                                   rr))
+      parent_reaction_index[relaxed_key].append((canonical, i, rr))
+      if rr.reaction_type == "irreversible":
+        parent_relaxed[relaxed_key].append((canonical, i, rr))
+      elif rr.reaction_type == "reversible":
+        parent_reversible[relaxed_key].append((canonical, i, rr))
+
+  unmatched = []
+  restrictive_warnings = []
+  restrictive_keys = set()
+  used_ht_trace_ids = defaultdict(set)
+  local_count = defaultdict(int)
+  for canonical, rr_list in ht_reactions.items():
+    for rr in rr_list:
+      local_idx = local_count[canonical]
+      local_count[canonical] += 1
+      ht_trace = _consume_ht_trace(rr, ht_trace_index, used_ht_trace_ids)
+      target_signature = _reaction_match_signature(rr)
+
+      matched = False
+      for i, candidate_signature in enumerate(
+          parent_signatures.get(canonical, [])):
+        if parent_used[canonical][i]:
+          continue
+        if target_signature == candidate_signature:
+          parent_used[canonical][i] = True
+          matched = True
+          break
+
+      # Parent reversible already contains both directions and is therefore a
+      # valid superset for an HT irreversible reaction with the same metadata.
+      if not matched and rr.reaction_type == "irreversible":
+        relaxed_key = (_reaction_equivalence_key(rr),
+                       _reaction_metadata_signature(rr))
+        for canonical_parent, i, _ in parent_reversible.get(relaxed_key, []):
+          if parent_used[canonical_parent][i]:
+            continue
+          parent_used[canonical_parent][i] = True
+          matched = True
+          break
+
+      # If HT is reversible but parent only has irreversible variant with the
+      # same stoichiometry/metadata, keep it and report that parent is stricter.
+      if not matched and rr.reaction_type == "reversible":
+        relaxed_key = (_reaction_equivalence_key(rr),
+                       _reaction_metadata_signature(rr))
+        for canonical_parent, i, rr_parent in parent_relaxed.get(relaxed_key,
+                                                                 []):
+          if parent_used[canonical_parent][i]:
+            continue
+          parent_used[canonical_parent][i] = True
+          matched = True
+          restrictive_keys.add((ht_basename, canonical, local_idx))
+          restrictive_warnings.append(
+              RestrictiveMatchWarning(
+                  ht_base=ht_basename,
+                  parent_base=parent_base,
+                  ht_reaction=rr.reaction_definition,
+                  parent_reaction=rr_parent.reaction_definition,
+                  parent_line=next(
+                      (t.line_no for t in parent_trace_index.get(
+                          _reaction_equivalence_key(rr_parent), [])
+                       if (not t.is_comment and
+                           t.reaction_definition == rr_parent.reaction_definition)),
+                      -1)))
+          break
+
+      if not matched:
+        eq_key = _reaction_equivalence_key(rr)
+        traces = tuple(parent_trace_index.get(eq_key, []))
+        reason = _classify_unmatched_reason(rr, canonical, parent_signatures,
+                                            parent_used, parent_reaction_index)
+        unmatched.append(
+            UnmatchedReactionDetail(key=(ht_basename, canonical, local_idx),
+                                    ht_base=ht_basename,
+                                    parent_base=parent_base,
+                                    ht_reaction=rr.reaction_definition,
+                                    ht_trace=ht_trace,
+                                    parent_traces=traces,
+                                    reason=reason))
+  return unmatched, restrictive_warnings, restrictive_keys
+
+
+def _prepare_ht_subset_pruning(species_list, submodules_files):
+  ht_parent_map = _resolve_ht_parent_map(submodules_files)
+  if not ht_parent_map:
+    return set(), set(), [], [], species_list.copy(), species_list.copy()
+
+  parent_species, extended_species = _build_parent_species_list(
+      species_list, submodules_files, ht_parent_map)
+  n_extra = len(extended_species) - len(species_list)
+  if n_extra > 0:
+    print("LT-HT parent species extension adds", n_extra, "species")
+
+  unmatched_keys = set()
+  restrictive_keys = set()
+  unmatched_details = []
+  restrictive_warnings = []
+  for ht_path, parent_path in sorted(ht_parent_map.items(),
+                                     key=lambda item: os.path.basename(item[0])):
+    ht_base = os.path.basename(ht_path)
+    parent_base = os.path.basename(parent_path)
+    print("HT subset check: '" + ht_base + "' against parent '" + parent_base +
+          "'")
+
+    parent_reactions, parent_species_used, parent_reaction_count = _parse_reactions_from_submodule(
+        parent_path, extended_species)
+    ht_reactions, ht_species_used, ht_reaction_count = _parse_reactions_from_submodule(
+        ht_path, extended_species)
+    print("  parent (LT-HT) summary:")
+    print("    species referenced by reactions:", parent_species_used)
+    print("    reactions parsed:", parent_reaction_count)
+    print("  HT summary:")
+    print("    species referenced by reactions:", ht_species_used)
+    print("    reactions parsed:", ht_reaction_count)
+    ht_trace_index = _build_reaction_trace_index(ht_path, extended_species)
+    parent_trace_index = _build_reaction_trace_index(parent_path,
+                                                     extended_species)
+    unmatched, restrictive_i, restrictive_i_keys = _collect_unmatched_ht_reactions(
+        ht_reactions, parent_reactions, ht_base, parent_base, ht_trace_index,
+        parent_trace_index)
+    restrictive_warnings.extend(restrictive_i)
+    restrictive_keys.update(restrictive_i_keys)
+    for detail in unmatched:
+      unmatched_keys.add(detail.key)
+      unmatched_details.append(detail)
+  return unmatched_keys, restrictive_keys, unmatched_details, restrictive_warnings, parent_species, extended_species
+
+
+def _reaction_instance_key_map(reactions):
+  # Map each reaction occurrence to id(rr). We use id(rr) to target one
+  # specific ChemicalReaction object even when canonical strings are duplicated.
+  seen = defaultdict(int)
+  mapping = {}
+  for canonical, rr_list in reactions.items():
+    for rr in rr_list:
+      source = rr.get_submodule_file()
+      local_idx = seen[(source, canonical)]
+      seen[(source, canonical)] += 1
+      key = (source, canonical, local_idx)
+      if key in mapping:
+        raise Exception("Duplicate reaction-instance key '" + str(key) + "'")
+      mapping[key] = id(rr)
+  return mapping
+
+
+def _resolve_prepruned_reaction_ids(reactions, unmatched_keys):
+  # Convert unmatched (file, canonical, local occurrence) keys into id(rr)
+  # so downstream pruning/comments affect exactly those reaction instances.
+  if not unmatched_keys:
+    return set()
+  key_to_id = _reaction_instance_key_map(reactions)
+  resolved = set()
+  missing = []
+  for key in sorted(unmatched_keys):
+    if key not in key_to_id:
+      missing.append(key)
+    else:
+      resolved.add(key_to_id[key])
+  if missing:
+    raise Exception("#error: internal mismatch while mapping HT subset-pruned "
+                    "reactions to compiled reactions. Missing keys: " +
+                    ", ".join(str(k) for k in missing))
+  return resolved
+
+
+def _collect_reaction_species(rr):
+  species = set()
+  for _, sp in rr.reactants:
+    species.add(sp)
+  for _, sp in rr.products:
+    species.add(sp)
+  species.update(rr.explicit_dependence)
+  species.update(rr.tb_efficiencies.keys())
+  return species
+
+
+def _species_only_in_removed_reactions(reactions, removed_reaction_ids):
+  if not removed_reaction_ids:
+    return set()
+  removed_species = set()
+  active_species = set()
+  for _, rr_list in reactions.items():
+    for rr in rr_list:
+      species = _collect_reaction_species(rr)
+      if id(rr) in removed_reaction_ids:
+        removed_species.update(species)
+      else:
+        active_species.update(species)
+  return removed_species - active_species
+
+
+def _reaction_consumed_species(rr):
+  consumed = [sp for _, sp in rr.reactants]
+  if rr.reaction_type == 'reversible':
+    consumed += [sp for _, sp in rr.products]
+  return consumed
+
+
+def _reaction_produced_species(rr):
+  produced = [sp for _, sp in rr.products]
+  if rr.reaction_type == 'reversible':
+    produced += [sp for _, sp in rr.reactants]
+  return produced
+
+
+def _reaction_by_id(reactions):
+  by_id = {}
+  for _, rr_list in reactions.items():
+    for rr in rr_list:
+      by_id[id(rr)] = rr
+  return by_id
+
+
+def _count_reaction_instances(reactions):
+  return sum(len(rr_list) for rr_list in reactions.values())
+
+
+def _count_active_canonical_reactions(reactions, reactions_pruned_ids):
+  # Count canonical reactions that still have at least one active instance.
+  count = 0
+  for _, rr_list in reactions.items():
+    if any(id(rr) not in reactions_pruned_ids for rr in rr_list):
+      count += 1
+  return count
+
+
 def print_kinetics_file(species_list, species_pruned, header_filename,
                         submodules_files, model_name, mid, output_filename,
-                        datetime, reactions, reactions_pruned):
+                        datetime, reactions, reactions_pruned_ids):
   species_section_str = write_species_list(species_list, species_pruned, '')
   new_lines = insert_boiler_plate("Kinetics", model_name, submodules_files,
                                   datetime, mid, header_filename)
@@ -446,8 +1021,8 @@ def print_kinetics_file(species_list, species_pruned, header_filename,
   # no pruned species (my be empty)
   n_species -= len(species_pruned)
   new_lines.append("! number of species: " + str(n_species) + "\n")
-  n_reactions = len(reactions)
-  n_reactions -= len(reactions_pruned)
+  n_reactions = _count_active_canonical_reactions(reactions,
+                                                  reactions_pruned_ids)
   new_lines.append("! number of reactions: " + str(n_reactions) + "\n")
   new_lines.append("\n")
 
@@ -468,7 +1043,7 @@ def print_kinetics_file(species_list, species_pruned, header_filename,
       #print("\n\n\n")
       #print(rr.pretty() + ":")
       for p_line in rr.get_orignal_CHEMKIN_text():
-        if r in reactions_pruned and p_line != "":
+        if id(rr) in reactions_pruned_ids and p_line != "":
           new_lines.append(pruned_comment + p_line)
         else:
           new_lines.append(p_line)
@@ -546,21 +1121,39 @@ def process_submodules(species_list, submodules_files):
   return normalized_reactions
 
 
-def prune_model(reactions, prune):
+def prune_model(reactions, prune, initial_removed_reaction_ids=None):
+  if initial_removed_reaction_ids is None:
+    initial_removed_reaction_ids = set()
+
   never_consumed = set()
   never_produced = set()
+  removed_reaction_ids = set(initial_removed_reaction_ids)
+
+  species2reaction = defaultdict(set)
+  consumed = {}
+  produced = {}
+  reaction_by_id = _reaction_by_id(reactions)
+  for _, rr_list in reactions.items():
+    for rr in rr_list:
+      rr_id = id(rr)
+      if rr_id in removed_reaction_ids:
+        continue
+      consumed_species = _reaction_consumed_species(rr)
+      produced_species = _reaction_produced_species(rr)
+      for s in consumed_species:
+        consumed[s] = consumed.get(s, 0) + 1
+        species2reaction[s].add(rr_id)
+      for s in produced_species:
+        produced[s] = produced.get(s, 0) + 1
+        species2reaction[s].add(rr_id)
+
+  active_species = set(species2reaction.keys())
   count = 1
-  consumed, produced, species2reaction = rxn.get_cons_prod_counter(
-      reactions, 1)
-  removed_reaction = set()
-  active_species = set([s for s in species2reaction])
   if prune:
     print("start pruning...")
   while prune:
     print("round " + str(count) + " with " + str(len(active_species)) +
           " species")
-    #if len(active_species) < 100:
-    #  print("active_species:", active_species)
     new_never_consumed = set()
     new_never_produced = set()
 
@@ -571,36 +1164,35 @@ def prune_model(reactions, prune):
         new_never_produced.add(s)
 
     remove_species = new_never_consumed.union(new_never_produced)
-    #print("remove_species:", remove_species)
     active_species = set()
     for s in remove_species:
-      for r in species2reaction[s]:
-        if r in removed_reaction:
+      for rr_id in species2reaction.get(s, set()):
+        if rr_id in removed_reaction_ids:
           continue
-        removed_reaction.add(r)
-        for rr in reactions[r]:
+        removed_reaction_ids.add(rr_id)
+        rr = reaction_by_id[rr_id]
 
-          affected = rr.set_consumed(consumed, species2reaction, -1)
-          for s_remove in affected:
-            if abs(consumed[s_remove]) < 1.0e-5:
-              del consumed[s_remove]
-              if s_remove not in remove_species:
-                #print("new removal (previously consumed):", s_remove)
-                active_species.add(s_remove)
+        for s_remove in _reaction_consumed_species(rr):
+          if s_remove not in consumed:
+            continue
+          consumed[s_remove] -= 1
+          if abs(consumed[s_remove]) < 1.0e-5:
+            del consumed[s_remove]
+            if s_remove not in remove_species:
+              active_species.add(s_remove)
 
-          affected = rr.set_produced(produced, species2reaction, -1)
-          for s_remove in affected:
-            if abs(produced[s_remove]) < 1.0e-5:
-              del produced[s_remove]
-              if s_remove not in remove_species:
-                #print("new removal (previously produced):", s_remove)
-                active_species.add(s_remove)
-          #print("removing:", rr.pretty())
+        for s_remove in _reaction_produced_species(rr):
+          if s_remove not in produced:
+            continue
+          produced[s_remove] -= 1
+          if abs(produced[s_remove]) < 1.0e-5:
+            del produced[s_remove]
+            if s_remove not in remove_species:
+              active_species.add(s_remove)
 
     never_consumed = never_consumed.union(new_never_consumed)
     never_produced = never_produced.union(new_never_produced)
 
-    # debug code
     for s, v in consumed.items():
       if v <= 0.00001:
         raise Exception("consumed is " + str(v) + " for " + s)
@@ -613,7 +1205,7 @@ def prune_model(reactions, prune):
       print("identified species and reactions to prune")
       break
 
-  return never_consumed, never_produced, removed_reaction
+  return never_consumed, never_produced, removed_reaction_ids
 
 
 def make_clean_species_list(submodules_files):
@@ -718,8 +1310,56 @@ def compile_model(options,
                   mid,
                   write_therm_trans=True):
   species_list = make_clean_species_list(submodules_files)
+  subset_unmatched_keys, restrictive_fix_keys, subset_unmatched_details, restrictive_match_warnings, parent_species_list, _ = _prepare_ht_subset_pruning(
+      species_list, submodules_files)
+  species_missing_in_parent = set(species_list.keys()) - set(
+      parent_species_list.keys())
+  if options.require_ht_subset_no_change:
+    has_subset_effect = bool(subset_unmatched_keys or restrictive_fix_keys or
+                             species_missing_in_parent)
+    if has_subset_effect:
+      print(
+          "#error: HT-vs-LT-HT subset checks found differences while "
+          "'--require-ht-subset-no-change' is enabled.")
+      print("        This run is aborted to guarantee that subset logic has no "
+            "effect on the generated output.")
+      if len(subset_unmatched_keys):
+        print("        unmatched HT reactions that would be commented out:",
+              len(subset_unmatched_keys))
+      if len(restrictive_fix_keys):
+        print("        reversible HT reactions that would be rewritten to "
+              "irreversible:", len(restrictive_fix_keys))
+      if len(species_missing_in_parent):
+        print("        species present in HT selection but missing in LT-HT "
+              "parent:", len(species_missing_in_parent))
+      raise Exception(
+          "#error: aborting due to HT-vs-LT-HT subset differences "
+          "(strict no-change mode)")
+  if len(species_missing_in_parent):
+    print("\n")
+    print(
+        len(species_missing_in_parent),
+        "species are present in the selected model but absent in the LT-HT parent species list:"
+    )
+    for s in sorted(species_missing_in_parent):
+      print(s)
+
   print("\nprocess input...")
   reactions = process_submodules(species_list, submodules_files)
+  subset_removed_reaction_ids = _resolve_prepruned_reaction_ids(
+      reactions, subset_unmatched_keys)
+  restrictive_fix_ids = _resolve_prepruned_reaction_ids(
+      reactions, restrictive_fix_keys)
+  _apply_irreversible_fixes(reactions, restrictive_fix_ids)
+  subset_removed_species = _species_only_in_removed_reactions(
+      reactions, subset_removed_reaction_ids)
+  subset_removed_species_missing_parent = subset_removed_species & species_missing_in_parent
+  subset_removed_species_present_in_parent = subset_removed_species - species_missing_in_parent
+  unresolved_parent_mismatch = species_missing_in_parent - subset_removed_species
+  if unresolved_parent_mismatch:
+    raise Exception("#error: species missing in LT-HT parent were not removed "
+                    "by HT subset pruning: " +
+                    ", ".join(sorted(unresolved_parent_mismatch)))
 
   species_compo_dict, species_nasa_output = inp.process_therm(
       options.thermfile, species_list)
@@ -745,8 +1385,59 @@ def compile_model(options,
 
   # quit()
 
-  never_consumed, never_produced, removed_reaction = prune_model(
-      reactions, options.prune)
+  if len(restrictive_match_warnings):
+    print("\n")
+    print(
+        len(restrictive_match_warnings),
+        "HT reactions are reversible in HT but irreversible in the LT-HT parent:"
+    )
+    print("Generated HT output rewrites these reactions to '=>'.")
+    for w in restrictive_match_warnings:
+      line_info = "" if w.parent_line < 0 else f" (line {w.parent_line})"
+      print("[" + w.ht_base + " -> " + w.parent_base + "] HT: " +
+            w.ht_reaction)
+      print("    parent" + line_info + ": " + w.parent_reaction)
+
+  if len(subset_unmatched_details):
+    print("\n")
+    print(
+        len(subset_unmatched_details),
+        "HT reactions could not be matched to the LT-HT parent under subset rules and will be commented out:"
+    )
+    for detail in subset_unmatched_details:
+      ht_loc = "" if detail.ht_trace.line_no < 0 else f" (line {detail.ht_trace.line_no})"
+      print("[" + detail.ht_base + " -> " + detail.parent_base +
+            "] HT reaction" + ht_loc + ": " + detail.ht_reaction)
+      print("    reason: " + detail.reason)
+      if not detail.parent_traces:
+        print("    parent trace revealed: none")
+      else:
+        print("    parent trace revealed:")
+        for trace in detail.parent_traces:
+          print(f"    line {trace.line_no}: {trace.raw_line}")
+
+  if len(subset_removed_species_missing_parent):
+    print("\n")
+    print(
+        len(subset_removed_species_missing_parent),
+        "species are absent in the LT-HT parent and appear only in removed HT reactions:"
+    )
+    for s in sorted(subset_removed_species_missing_parent):
+      print(s)
+
+  if len(subset_removed_species_present_in_parent):
+    print("\n")
+    print(
+        len(subset_removed_species_present_in_parent),
+        "species appear in the LT-HT parent but become inactive in this HT build after removed-reaction filtering:"
+    )
+    for s in sorted(subset_removed_species_present_in_parent):
+      print(s)
+
+  never_consumed, never_produced, removed_reaction_ids = prune_model(
+      reactions,
+      options.prune,
+      initial_removed_reaction_ids=subset_removed_reaction_ids)
   if len(never_consumed) or len(never_produced):
     print("\n")
   if len(never_consumed):
@@ -760,16 +1451,18 @@ def compile_model(options,
     for s in never_produced:
       print(s)
 
-  if len(removed_reaction):
+  reaction_by_id = _reaction_by_id(reactions)
+  removed_by_pruning = removed_reaction_ids - subset_removed_reaction_ids
+  if len(removed_by_pruning):
     print("\n")
-    print(len(removed_reaction), "pruned reactions:")
-    for r in removed_reaction:
-      for rr in reactions[r]:
-        print(f"{rr.reaction_definition}")
+    print(len(removed_by_pruning), "additional pruned reactions:")
+    for rr_id in removed_by_pruning:
+      print(f"{reaction_by_id[rr_id].reaction_definition}")
     print("\n")
 
   print("\ngenerate output...")
-  species_pruned = never_consumed.union(never_produced)
+  species_pruned = never_consumed.union(never_produced).union(
+      subset_removed_species)
   if output_chunk != "":
     output_chunk = "_" + output_chunk
 
@@ -794,7 +1487,7 @@ def compile_model(options,
                                                submodules_files,
                                                options.model_name, mid,
                                                output_filename_kin, datetime,
-                                               reactions, removed_reaction)
+                                               reactions, removed_reaction_ids)
 
   therm_file = options.model_name + USID + output_chunk + ".THERM"
   output_filename_therm = os.path.join(options.output_dir, output, therm_file)

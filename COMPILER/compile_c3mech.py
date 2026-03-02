@@ -20,7 +20,8 @@ class Options:
 
   def __init__(self, generate_all, max_c, prune, process_cantera, max_threads,
                model_name, yaml_file_path, submodules_dir, mid, mid_cantera,
-               thermfile, transfile, header, output_dir):
+               thermfile, transfile, header, output_dir,
+               require_ht_subset_no_change):
     self.generate_all = generate_all
     self.max_c = max_c
     self.prune = prune
@@ -35,6 +36,7 @@ class Options:
     self.transfile = transfile
     self.header = header
     self.output_dir = output_dir
+    self.require_ht_subset_no_change = require_ht_subset_no_change
 
   def __repr__(self):
     return ("Options(\n"
@@ -50,7 +52,8 @@ class Options:
             f"  thermfile='{self.thermfile}',\n"
             f"  transfile='{self.transfile}',\n"
             f"  header='{self.header}',\n"
-            f"  output_dir='{self.output_dir}'\n"
+            f"  output_dir='{self.output_dir}',\n"
+            f"  require_ht_subset_no_change={self.require_ht_subset_no_change}\n"
             ")")
 
 
@@ -88,6 +91,11 @@ def parse_args():
                       dest='process_cantera',
                       action='store_false',
                       help="Do not process output with Cantera's ck2yaml")
+  parser.add_argument(
+      '--require-ht-subset-no-change',
+      action='store_true',
+      help=("Fail immediately if HT-vs-LT-HT subset checks would alter output "
+            "(e.g., removed reactions or irreversible rewrites)."))
   default_model_name = 'C3MechV' + c3mech.VERSION
   parser.add_argument('--model-name',
                       type=str,
@@ -217,7 +225,8 @@ def parse_args():
                  thermfile=args.thermfile,
                  transfile=args.transfile,
                  header=args.header,
-                 output_dir=args.output_dir)
+                 output_dir=args.output_dir,
+                 require_ht_subset_no_change=args.require_ht_subset_no_change)
 
 
 def main():
