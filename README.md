@@ -15,8 +15,8 @@ For most applications, you can use a **precompiled sub-model**:
 2. Open `PRECOMPILED/README.md`.
 3. In the **"Quick access table with commonly used sub-models"**, find the row
    that best matches your case (e.g., cyclopentadiene).
-4. In that row, look at the `MID(HT/LT-HT)` column. It shows two MIDs,
-   `MID_HT/MID_LT-HT`:
+4. In that row, look at the `MID(HT/LT-HT)` column. It shows two model IDs
+   (MIDs), `MID_HT/MID_LT-HT`:
    - The first MID is the **HT** version (model with only high-temperature
      chemistry).
    - The second MID is the **LT-HT** version (model that additionally includes
