@@ -87,10 +87,10 @@ def read_yaml_input(filename):
       yaml_input_options = yaml.safe_load(inp)
     except yaml.YAMLError:
       print_error("invalid syntax in yaml input '" + filename + "'")
-      quit()
+      sys.exit(1)
   if (not isinstance(yaml_input_options, SubModulesFiles)):
     print_error("yaml input '" + filename + "' must define !SubModulesFiles")
-    quit()
+    sys.exit(1)
   return yaml_input_options
 
 
@@ -102,9 +102,28 @@ def make_submodulefiles_from_yaml(filename, cmd_submodule_dir,
   """
   if (not os.path.isfile(filename)):
     print_not_found("yaml input", "file", filename)
-    quit()
+    sys.exit(1)
   print("reading yaml file \'" + filename + "'")
+  yaml_dir = os.path.dirname(os.path.abspath(filename))
   submodules = read_yaml_input(filename)
+
+  if (not hasattr(submodules, 'files') or submodules.files is None):
+    submodules.files = []
+  if (not hasattr(submodules, 'species_dictionary')
+      or submodules.species_dictionary is None):
+    submodules.species_dictionary = ''
+  if (not hasattr(submodules, 'submodule_directory')
+      or submodules.submodule_directory is None):
+    submodules.submodule_directory = ''
+
+  if (submodules.species_dictionary != ''
+      and not os.path.isabs(submodules.species_dictionary)):
+    submodules.species_dictionary = os.path.normpath(
+        os.path.join(yaml_dir, submodules.species_dictionary))
+  if (submodules.submodule_directory != ''
+      and not os.path.isabs(submodules.submodule_directory)):
+    submodules.submodule_directory = os.path.normpath(
+        os.path.join(yaml_dir, submodules.submodule_directory))
 
   if (cmd_species_dictionary != ''):
     if (submodules.species_dictionary != ''):
@@ -118,7 +137,7 @@ def make_submodulefiles_from_yaml(filename, cmd_submodule_dir,
 
   if (not submodules.check()):
     print("error: invalid input from input file '" + filename + "'")
-    quit()
+    sys.exit(1)
 
   return submodules
 
@@ -148,7 +167,7 @@ def get_sum_formula(composition):
       else:
         if (cur_compo[elem] != 0):
           print("ERROR: found", cur_compo[elem], elem)
-          quit()
+          sys.exit(1)
   if (sum_formula == 'HF'):
     return 'FH'
   return sum_formula
@@ -195,7 +214,7 @@ def check_inchi_composition_consistency(inchi, sum_formula, species):
       print("sum_formula:", sum_formula)
       print("inchi_sum_formula", with_two_slash.group(1))
       print("ERROR: sum formulas deviate")
-      quit()
+      sys.exit(1)
   elif with_one_slash:
     if with_one_slash.group(1).upper() != sum_formula:
       print(inchi)
@@ -203,10 +222,10 @@ def check_inchi_composition_consistency(inchi, sum_formula, species):
       print("sum_formula:", sum_formula)
       print("inchi_sum_formula", with_one_slash.group(1))
       print("ERROR: sum formulas deviate")
-      quit()
+      sys.exit(1)
   else:
     print("ERROR: cannot extract sum formula from \"" + inchi + "\"")
-    quit()
+    sys.exit(1)
 
 
 def add_other_inchis_and_smiles(lines, i, cur_inchi, cur_smiles, i_prev,
@@ -250,7 +269,7 @@ def add_other_inchis_and_smiles(lines, i, cur_inchi, cur_smiles, i_prev,
     if (extra_inchi in inchis and cur_inchi != extra_inchi):
       print("ERROR:", extra_inchi,
             "is a duplicate (for a lumped species with multiple inchis)")
-      quit()
+      sys.exit(1)
 
   smiles_for_cur_species = {}
   if (len(inchis_for_cur_species) > 1):
@@ -274,7 +293,7 @@ def check_inchi(lines, i, inchis):
     if re.match(".+skipped.*", inchi.group(1)):
       print("skipped not expected. fixme")
       print(lines[i])
-      quit()
+      sys.exit(1)
       return -1, "", ""
     this_inchi = inchi.group(1)
 
@@ -283,33 +302,33 @@ def check_inchi(lines, i, inchis):
       print(
           "ERROR: There must be a NASA polynomial coefficient set below every InChi"
       )
-      quit()
+      sys.exit(1)
     line_below = lines[i + 1]
     if (re.match("\\s*!.+", line_below)):
       print("search for", this_inchi)
       print(
           "ERROR: There must be a NASA polynomial coefficient set below every InChi"
       )
-      quit()
+      sys.exit(1)
 
     if (this_inchi in inchis):
       if (get_real_inchi(this_inchi) == this_inchi):
         print("ERROR:", this_inchi, "is a duplicate")
-        quit()
+        sys.exit(1)
     inchis[this_inchi] = 1
     if (re.match("^[\\s]+$", line_below)):
       print("ERROR: line", i + 2, "below ", this_inchi, "must not be empty")
-      quit()
+      sys.exit(1)
     if (re.match("^[\\s]+[^\\s]+", line_below)):
       print("ERROR: line", i + 2, "below ", this_inchi,
             "must not start with white spaces")
-      quit()
+      sys.exit(1)
     if (len(line_below) < 80 or line_below[79] != '1'):
       print("search for", this_inchi)
       print(
           "ERROR: There must be a NASA polynomial coefficient set below every InChi"
       )
-      quit()
+      sys.exit(1)
     re_species_name = re.match("^([^\\s]+)", line_below)
 
     #print(print_python_elements(re_species_name.group(1), line_below[24:44]))
@@ -322,7 +341,7 @@ def check_inchi(lines, i, inchis):
     if (not re.match("^[!\\s]+InChI.*", lines[i], re.IGNORECASE)):
       print("line:", lines[i])
       print("ERROR: line", i + 1, "contains an inchi but the format is wrong")
-      quit()
+      sys.exit(1)
   return -1, "", ""
 
 
@@ -346,7 +365,7 @@ def check_inchi_smiles_consistency(inchi, smiles, species, simplification=""):
 def check_smiles(lines, i, inchis, inchi, silent):
   if (i <= 0):
     print("ERROR: linenumber", i, "<= 0")
-    quit()
+    sys.exit(1)
   smiles = re.match("!!\\s*([^!\\s]+)", lines[i - 1])
   if (not smiles):
     print("smiles line:")
@@ -354,7 +373,7 @@ def check_smiles(lines, i, inchis, inchi, silent):
     print("inchi line:")
     print(lines[i])
     print("ERROR: previous line", i - 1, " is not a SMILES line")
-    quit()
+    sys.exit(1)
 
   this_smiles = smiles.group(1)
   if (this_smiles[-1] == ","):
@@ -364,7 +383,7 @@ def check_smiles(lines, i, inchis, inchi, silent):
     print(this_smiles)
 
   if (check_inchi_smiles_consistency(inchi, this_smiles, 'unknown')):
-    quit()
+    sys.exit(1)
   return this_smiles
 
 
@@ -565,7 +584,7 @@ def is_RO2(mol):
   if (mol.GetSubstructMatch(pat) and get_n_atom(mol, "O") == 2):
     if (Descriptors.NumRadicalElectrons(mol) != 1):
       print("something went wrong in is_RO2")
-      quit()
+      sys.exit(1)
     return True
   else:
     return False
@@ -1197,22 +1216,22 @@ def get_thermo_lines(thermo_filename):
         or all(not line.strip() for line in lines_thermo)):
       print_error("chemkin thermochemistry file '" + thermo_filename +
                   "' must not be empty")
-      quit()
+      sys.exit(1)
     if (not any(
         re.match("\\s*THERMO\\b", line, re.IGNORECASE)
         for line in lines_thermo)):
       print_error("chemkin thermochemistry file '" + thermo_filename +
                   "' must contain a THERMO section")
-      quit()
+      sys.exit(1)
     if (len(get_identifier2sum_formula(
         make_clean_thermo_lines(lines_thermo))) == 0):
       print_error(
           "chemkin thermochemistry file '" + thermo_filename +
           "' must contain at least one species entry in the THERMO section")
-      quit()
+      sys.exit(1)
   else:
     print_not_found("chemkin thermochemistry", "file", thermo_filename)
-    quit()
+    sys.exit(1)
   return lines_thermo
 
 
@@ -1302,7 +1321,7 @@ def get_species_name2sum_formula(lines, species_list_or_dict, thermo_filename,
     print_error(
         "could not find any species entries in the THERMO section of '" +
         thermo_filename + "'")
-    quit()
+    sys.exit(1)
 
   missing_nasa = {}
   found_nasa = {}
@@ -1349,7 +1368,7 @@ def check_required_column(df, col):
     print("read the following dataframe:")
     print(df.to_string(index=False))
     print("Could not find the required column '" + col + "'")
-    quit()
+    sys.exit(1)
 
 
 def check_numeric(df, col):
@@ -1360,7 +1379,7 @@ def check_numeric(df, col):
     print(df.loc[mask].to_string(index=False))
     print_error("could not interpret the above value(s) in the column '" +
                 col + "'  as number(s)")
-    quit()
+    sys.exit(1)
 
 
 def check_valid(df, col, valid, reason):
@@ -1369,7 +1388,7 @@ def check_valid(df, col, valid, reason):
     print(df_invalid.to_string(index=False))
     print_error("above value(s) in the column '" + col +
                 "' are invalid because " + reason)
-    quit()
+    sys.exit(1)
 
 
 def remove_inchi_layers(inchi, delimiter_prefixes):
@@ -1398,13 +1417,13 @@ def check_stereochemistry(df):
     uni_loc = df_stereo.drop_duplicates(subset='inchi', keep=False).index
     print(df.loc[uni_loc].to_string(index=False))
     print_error(error_fragment1 + "InChI(s)" + error_fragment2 + question)
-    quit()
+    sys.exit(1)
   if (len(df_stereo.index) and df_stereo['smiles'].is_unique):
     print("\n")
     uni_loc = df_stereo.drop_duplicates(subset='smiles', keep=False).index
     print(df.loc[uni_loc].to_string(index=False))
     print_error(error_fragment1 + "smiles" + error_fragment2 + question)
-    quit()
+    sys.exit(1)
 
   species_name2inchi = df_stereo.set_index('model_name')['inchi'].to_dict()
   species_name2smiles = df_stereo.set_index('model_name')['smiles'].to_dict()
@@ -1424,7 +1443,7 @@ def check_nonzero_zero_multiplicity(df, valid_multiplicity):
         reason = "species multiplicities must not be 0 and non-zero for otherwise identical species"
         print_error("above value(s) in the column '" + 'multiplicity' +
                     "' are invalid because " + reason)
-        quit()
+        sys.exit(1)
 
 
 def read_csv_species_dict(csv_filename, species_list, fatal_error_only,
@@ -1446,7 +1465,7 @@ def read_csv_species_dict(csv_filename, species_list, fatal_error_only,
       print(df[df.isnull().any(axis=1)].to_string(index=False))
       print_error("the above lines of the species dictionary '" +
                   csv_filename + "' must not contain nulls")
-      quit()
+      sys.exit(1)
 
     check_numeric(df, 'excited')
     check_numeric(df, 'multiplicity')
@@ -1470,7 +1489,8 @@ def read_csv_species_dict(csv_filename, species_list, fatal_error_only,
         "the stereochemistry information is either RDKit-compatible (1) or not (0)"
     )
     if (fatal_error_only):
-      print_warning("only fatal errors are considered")
+      print_warning(
+          "fatal-only checks enabled (default): only species used in the selected submodule(s) are validated")
       df = df[df['model_name'].isin(species_list)]
 
     any_error = False
@@ -1486,7 +1506,7 @@ def read_csv_species_dict(csv_filename, species_list, fatal_error_only,
 
     if (any_error):
       print("\nYou need to fix the above errors in '" + csv_filename + "'")
-      quit()
+      sys.exit(1)
 
     count = 0
     # example element:
@@ -1545,7 +1565,7 @@ def read_csv_species_dict(csv_filename, species_list, fatal_error_only,
     return species_name2inchi, species_name2smiles, species_name2inchi_wo_stereo, species_name2smiles_wo_stereo, canonical2data
   else:
     print("csv species dictionary file '" + csv_filename + "' not found")
-    quit()
+    sys.exit(1)
 
 
 def rdkit_error(what, identifier, species):
@@ -1584,7 +1604,7 @@ def rdkit_check(species_name2inchi, species_name2smiles,
 
   if (error):
     print("\nFix the above InChI/SMILES error(s).")
-    quit()
+    sys.exit(1)
 
   for species in species_name2inchi_wo_stereo:
     if (check_inchi_smiles_consistency(
@@ -1596,7 +1616,7 @@ def rdkit_check(species_name2inchi, species_name2smiles,
 
   if (error):
     print("\nFix the above consistency error(s).")
-    quit()
+    sys.exit(1)
   else:
     print("InChI/SMILES check without stereochemistry successful")
 
@@ -1624,7 +1644,7 @@ def rdkit_check(species_name2inchi, species_name2smiles,
 
   if (error):
     print("\nFix the above InChI/SMILES error(s).")
-    quit()
+    sys.exit(1)
 
   for species in species_name2inchi:
     if (len(species_name2inchi[species]) != len(species_name2smiles[species])):
@@ -1643,7 +1663,7 @@ def rdkit_check(species_name2inchi, species_name2smiles,
         error = True
   if (error):
     print("\nFix the above consistency error(s).")
-    quit()
+    sys.exit(1)
   else:
     print("InChI/SMILES check with stereochemistry successful")
 
@@ -2070,7 +2090,7 @@ def get_species_list(kinetics_filename, silent=True):
     kinetics_file.close()
   else:
     print_not_found("chemkin kinetics", "file", kinetics_filename)
-    quit()
+    sys.exit(1)
   species_dict = make_species_from_kinetics_file(lines_mech)
 
   species_dict = {k.upper(): v for k, v in species_dict.items()}
@@ -2109,13 +2129,13 @@ def write_species_dict(inp,
   check_output_dir = Path(output_dir)
   if (not check_output_dir.is_dir()):
     print("output directory '" + output_dir + "' does not exist.")
-    quit()
+    sys.exit(1)
   print("found " + str(len(species_list)) +
         " species from the selected kinetic submodule(s)")
   if (len(species_list) == 0):
     print_error(
         "could not find any species in the selected kinetic submodule(s)")
-    quit()
+    sys.exit(1)
   if (not silent):
     print_success()
   set_RDKit_drawing_option()
@@ -2142,7 +2162,7 @@ def write_species_dict(inp,
 
   if (dry_run):
     print("skipping output generation")
-    quit()
+    return
   print("generating species images and tex input...")
   start_write_dict = time.time()
   write_dict(out.title, out.authors, out.sha, sc, TexOptions(),
@@ -2212,7 +2232,7 @@ if __name__ == "__main__":
       '-f',
       '--fatal_error_only',
       help=
-      'only species currently used in the submodule(s) are considered in the checks',
+      'disable default fatal-only filtering and validate all species in the CSV (including species not used in the selected submodule(s))',
       action='store_false')
   parser.add_argument('-n',
                       '--name',
