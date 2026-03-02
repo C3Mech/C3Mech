@@ -495,9 +495,11 @@ def insert_boiler_plate(filetype, name, submodules_files, datetime, mid,
   return lines
 
 
-def ascii_space(s: str) -> str:
-  """Return s with every non-ASCII char replaced by a space."""
-  return ''.join(ch if ord(ch) < 128 else ' ' for ch in s)
+def ascii_tab_space(s: str) -> str:
+    return ''.join(
+        ch if (ch in '\r\n' or (ord(ch) < 128 and not ch.isspace())) else ' '
+        for ch in s
+    )
 
 
 def _is_ht_submodule_file(path):
@@ -1056,7 +1058,7 @@ def print_kinetics_file(species_list, species_pruned, header_filename,
 
   print("writing '" + output_filename + "'")
   with open(output_filename, 'w', encoding="utf-8") as file:
-    file.writelines(ascii_space(line) for line in new_lines)
+    file.writelines(ascii_tab_space(line) for line in new_lines)
   return n_species, n_reactions
 
 
@@ -1232,24 +1234,24 @@ def clean_therm(therm_output, species_list, species_pruned, header_filename,
   with open(therm_output, 'w') as thermfile:
 
     thermfile.writelines(
-        ascii_space(line) for line in insert_boiler_plate(
+        ascii_tab_space(line) for line in insert_boiler_plate(
             "Thermodynamic", model_name, submodules_files, datetime, mid,
             header_filename))
 
-    thermfile.write(ascii_space('THERMO ALL\n'))
-    thermfile.write(ascii_space('300.   1000.   5000.\n'))
+    thermfile.write(ascii_tab_space('THERMO ALL\n'))
+    thermfile.write(ascii_tab_space('300.   1000.   5000.\n'))
 
     for s in species_list:
       addition = ""
       if s in species_pruned:
         addition = pruned_comment
 
-      thermfile.write(ascii_space(addition + species_output[s][0]))
-      thermfile.write(ascii_space(addition + species_output[s][1]))
-      thermfile.write(ascii_space(addition + species_output[s][2]))
-      thermfile.write(ascii_space(addition + species_output[s][3]))
+      thermfile.write(ascii_tab_space(addition + species_output[s][0]))
+      thermfile.write(ascii_tab_space(addition + species_output[s][1]))
+      thermfile.write(ascii_tab_space(addition + species_output[s][2]))
+      thermfile.write(ascii_tab_space(addition + species_output[s][3]))
 
-    thermfile.write(ascii_space('\nEND\n\n'))
+    thermfile.write(ascii_tab_space('\nEND\n\n'))
 
 
 def clean_tran(tran_file, tran_output, species_list, species_pruned,
@@ -1262,7 +1264,7 @@ def clean_tran(tran_file, tran_output, species_list, species_pruned,
   print("writing '" + tran_output + "'")
   with open(tran_output, 'w') as tranfile:
     tranfile.writelines(
-        ascii_space(line) for line in insert_boiler_plate(
+        ascii_tab_space(line) for line in insert_boiler_plate(
             "Transport", model_name, submodules_files, datetime, mid,
             header_filename))
 
@@ -1277,7 +1279,7 @@ def clean_tran(tran_file, tran_output, species_list, species_pruned,
         tran_component = tranlines[i].split()
         if ('!' in tranlines[i]):
           tranfile.write(
-              ascii_space(
+              ascii_tab_space(
                   '{0:18}    {1}    {2:8.2f}    {3:6.2f}    {4:6.2f}    {5:6.2f}    {6:6.2f}    {7}\n'
                   .format(tran_component[0], tran_component[1],
                           float(tran_component[2]), float(tran_component[3]),
@@ -1289,7 +1291,7 @@ def clean_tran(tran_file, tran_output, species_list, species_pruned,
           if sp_name in species_pruned:
             addition = pruned_comment
           tranfile.write(
-              ascii_space(
+              ascii_tab_space(
                   addition +
                   '{0:18}    {1}    {2:8.2f}    {3:6.2f}    {4:6.2f}    {5:6.2f}    {6:6.2f}\n'
                   .format(tran_component[0], tran_component[1],
