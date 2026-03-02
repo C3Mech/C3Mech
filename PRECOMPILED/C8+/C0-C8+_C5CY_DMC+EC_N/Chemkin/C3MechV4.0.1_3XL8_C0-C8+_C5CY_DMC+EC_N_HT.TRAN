@@ -9,7 +9,7 @@
 ! organization including the University of Galway, Politecnico di Milano, RWTH Aachen University,    !
 ! Lawrence Livermore National Laboratory, Argonne National Laboratory, and Convergent Science.       !
 !                                                                                                    !
-! C3MechV4.0.1 is available from the github repository:                                              !
+! C3MechV4.0.1 is available from the GitHub repository:                                              !
 ! https://github.com/C3Mech/C3Mech                                                                   !
 !                                                                                                    !
 ! For more information, please visit fuelmech.org.                                                   !
@@ -24,10 +24,10 @@
 ! 2) Pratali Maffei, L., Langer, R., Murakami, Y., Wagnon, S. W., Wang, P., Liu, J., Raza, M.,       !
 !    Zhu, Y., Girhe, S., Schwenzer, C., Beeckmann, J., Klippenstein, S. J., Faravelli, T.,           !
 !    Pitsch, H., Senecal, P. K., & Curran, H. J. (2026). Corrigendum to "Modeling combustion         !
-!    chemistry using chemistry using C3MechV4.0: An extension to mixtures of hydrogen, ammonia,      !
-!    alkanes, and cycloalkanes" [Applications in Energy and Combustion Science, 2025, 24, 100385]    !
+!    chemistry using C3MechV4.0: An extension to mixtures of hydrogen, ammonia, alkanes, and         !
+!    cycloalkanes" [Applications in Energy and Combustion Science, 2025, 24, 100385]                 !
 !                                                                                                    !
-! ================================ Working Groups For C3MechV4.0.1 ================================= !
+! ================================ Working Groups for C3MechV4.0.1 ================================= !
 
 !                                                                                                    !
 ! Author                  | Institution                                                              !
@@ -69,7 +69,7 @@
 ! ================================================================================================== !
 
 
-! Transport data for C3MechV4.0.1, generated on 23/02/2026 21:02:41.
+! Transport data for C3MechV4.0.1, generated on 02/03/2026 05:23:37.
 
 ! The following sub-modules were considered in this file:
 ! - UOG_C0_LT-HT.MECH
@@ -84,7 +84,7 @@
 ! - UOG_N_LT-HT.MECH
 ! - UOG_C-N_HT.MECH
 
-! MID: 3XL8
+! model ID (MID): 3XL8
 HE                    0       10.20      2.57      0.00      0.00      0.00
 H2                    1       38.00      2.92      0.00      0.79    280.00
 H                     0      145.00      2.05      0.00      0.00      0.00
@@ -97,14 +97,6 @@ AR                    0      136.50      3.33      0.00      0.00      0.00
 H2O2                  2      107.40      3.45      0.00      0.00      3.80
 HO2                   2      107.40      3.45      0.00      0.00      1.00
 C2H4                  2      280.80      3.97      0.00      0.00      1.50
-CC6H11-B              2      390.29      5.46      0.00     11.25      1.00    !!WAGNON1@LLNL.GOV, ESTIMATED 2024-05-02
-XC7H13-Z              2      422.32      5.71      0.00     13.10      1.00    !!WAGNON1@LLNL.GOV, ESTIMATED 2024-05-02
-YC7H13-Y2             2      422.32      5.71      0.00     13.10      1.00    !!WAGNON1@LLNL.GOV, ESTIMATED 2024-05-02
-YC7H13-X2             2      422.32      5.71      0.00     13.10      1.00    !!WAGNON1@LLNL.GOV, ESTIMATED 2024-05-02
-CC6H11O-B             2      426.64      5.75      0.00     11.82      1.00    !!WAGNON1@LLNL.GOV, ESTIMATED 2024-05-02
-ACC6H10               2      387.89      5.44      0.00     11.08      1.00    !!WAGNON1@LLNL.GOV, ESTIMATED 2024-05-02
-ACC6H9-A              2      385.48      5.42      0.00     10.91      1.00    !!WAGNON1@LLNL.GOV, ESTIMATED 2024-05-02
-ACC6H9-D              2      385.48      5.42      0.00     10.91      1.00    !!WAGNON1@LLNL.GOV, ESTIMATED 2024-05-02
 IC8D3-3R              2      452.14      5.95      0.00     14.95      1.00    !!WAGNON1@LLNL.GOV, ESTIMATED 2024-05-02
 ME133-CPTR1           2      452.14      5.95      0.00     14.95      1.00    !!WAGNON1@LLNL.GOV, ESTIMATED 2024-05-02
 ME144-CPTENE          2      450.06      5.93      0.00     14.78      1.00    !!WAGNON1@LLNL.GOV, ESTIMATED 2024-05-02
@@ -122,7 +114,6 @@ IC8D4-3OH             2      485.91      6.21      0.00     15.69      1.00    !
 IC8D3-5OH             2      485.91      6.21      0.00     15.69      1.00    !!WAGNON1@LLNL.GOV, ESTIMATED 2024-05-02
 IC8D4-5AOH            2      485.91      6.21      0.00     15.69      1.00    !!WAGNON1@LLNL.GOV, ESTIMATED 2024-05-02
 C7H11O                2      452.06      5.95      0.00     13.33      1.00    !!WAGNON1@LLNL.GOV, ESTIMATED 2024-05-02
-IC8D4Y3-5J            2      506.50      6.36      0.00     15.41      1.00    !!WAGNON1@LLNL.GOV, ESTIMATED 2024-05-02
 TC4H9COCCH2           2      452.06      5.95      0.00     13.33      1.00    !!WAGNON1@LLNL.GOV, ESTIMATED 2024-05-02
 C7H11O2               2      483.87      6.19      0.00     13.90      1.00    !!WAGNON1@LLNL.GOV, ESTIMATED 2024-05-02
 I24C7D3OH1-2R         2      456.18      5.98      0.00     13.67      1.00    !!WAGNON1@LLNL.GOV, ESTIMATED 2024-05-02
@@ -168,10 +159,8 @@ ME5-IC8D3             2      482.10      6.18      0.00     16.97      1.00    !
 RME5-IC8D3            2      480.16      6.16      0.00     16.80      1.00    !!WAGNON1@LLNL.GOV, ESTIMATED 2024-05-02
 IC6D24-4R             2      385.48      5.42      0.00     10.91      1.00    !!WAGNON1@LLNL.GOV, ESTIMATED 2024-05-02
 DMCPD                 2      415.62      5.66      0.00     12.59      1.00    !!WAGNON1@LLNL.GOV, ESTIMATED 2024-05-02
-I24C7D13Y1            2      449.98      5.93      0.00     13.16      1.00    !!WAGNON1@LLNL.GOV, ESTIMATED 2024-05-02
 IC6D1Y4-3OJ           2      456.10      5.98      0.00     12.05      1.00    !!WAGNON1@LLNL.GOV, ESTIMATED 2024-05-02
 NEC7Y4-1R             2      456.18      5.98      0.00     13.67      1.00    !!WAGNON1@LLNL.GOV, ESTIMATED 2024-05-02
-IC6D1-4R              2      390.29      5.46      0.00     11.25      1.00    !!WAGNON1@LLNL.GOV, ESTIMATED 2024-05-02
 I24C7D2-1OR           2      456.18      5.98      0.00     13.67      1.00    !!WAGNON1@LLNL.GOV, ESTIMATED 2024-05-02
 I24C7D2-Y1            2      454.11      5.96      0.00     13.50      1.00    !!WAGNON1@LLNL.GOV, ESTIMATED 2024-05-02
 I24C7D2-Y1J           2      452.06      5.95      0.00     13.33      1.00    !!WAGNON1@LLNL.GOV, ESTIMATED 2024-05-02
@@ -184,8 +173,6 @@ C8H17223-5            2      456.26      5.98      0.00     15.29      1.00    !
 C8H17223-6            2      456.26      5.98      0.00     15.29      1.00    !!WAGNON1@LLNL.GOV, ESTIMATED 2024-05-02
 C7-23-2               2      426.74      5.75      0.00     13.44      1.00    !!WAGNON1@LLNL.GOV, ESTIMATED 2024-05-02
 C7-223-4              2      426.74      5.75      0.00     13.44      1.00    !!WAGNON1@LLNL.GOV, ESTIMATED 2024-05-02
-C7-22-3               2      426.74      5.75      0.00     13.44      1.00    !!WAGNON1@LLNL.GOV, ESTIMATED 2024-05-02
-C7-22-3D              2      424.54      5.73      0.00     13.27      1.00    !!WAGNON1@LLNL.GOV, ESTIMATED 2024-05-02
 C7-23-D1              2      424.54      5.73      0.00     13.27      1.00    !!WAGNON1@LLNL.GOV, ESTIMATED 2024-05-02
 C7-233-1D             2      424.54      5.73      0.00     13.27      1.00    !!WAGNON1@LLNL.GOV, ESTIMATED 2024-05-02
 C7-23-D2              2      424.54      5.73      0.00     13.27      1.00    !!WAGNON1@LLNL.GOV, ESTIMATED 2024-05-02
@@ -194,7 +181,6 @@ C8H16223-5            2      454.22      5.96      0.00     15.12      1.00    !
 C8H16223-4            2      454.22      5.96      0.00     15.12      1.00    !!WAGNON1@LLNL.GOV, ESTIMATED 2024-05-02
 RC7H13                2      422.32      5.71      0.00     13.10      1.00    !!WAGNON1@LLNL.GOV, ESTIMATED 2024-05-02
 IBC7H13               2      422.32      5.71      0.00     13.10      1.00    !!WAGNON1@LLNL.GOV, ESTIMATED 2024-05-02
-C7-22-3D4             2      422.32      5.71      0.00     13.10      1.00    !!WAGNON1@LLNL.GOV, ESTIMATED 2024-05-02
 C8H152233-1           2      452.14      5.95      0.00     14.95      1.00    !!WAGNON1@LLNL.GOV, ESTIMATED 2024-05-02
 C8H152233-5           2      452.14      5.95      0.00     14.95      1.00    !!WAGNON1@LLNL.GOV, ESTIMATED 2024-05-02
 C8H152233-6           2      452.14      5.95      0.00     14.95      1.00    !!WAGNON1@LLNL.GOV, ESTIMATED 2024-05-02
@@ -254,16 +240,13 @@ C7-223-41O            2      456.18      5.98      0.00     13.67      1.00    !
 C7-22-31O             2      456.18      5.98      0.00     13.67      1.00    !!WAGNON1@LLNL.GOV, ESTIMATED 2024-05-02
 C7-23-24O             2      456.18      5.98      0.00     13.67      1.00    !!WAGNON1@LLNL.GOV, ESTIMATED 2024-05-02
 C7-223-44O            2      456.18      5.98      0.00     13.67      1.00    !!WAGNON1@LLNL.GOV, ESTIMATED 2024-05-02
-C7-22-34O             2      456.18      5.98      0.00     13.67      1.00    !!WAGNON1@LLNL.GOV, ESTIMATED 2024-05-02
 C7-23-25O             2      456.18      5.98      0.00     13.67      1.00    !!WAGNON1@LLNL.GOV, ESTIMATED 2024-05-02
 C7-22-35O             2      456.18      5.98      0.00     13.67      1.00    !!WAGNON1@LLNL.GOV, ESTIMATED 2024-05-02
 C7-23-26O             2      456.18      5.98      0.00     13.67      1.00    !!WAGNON1@LLNL.GOV, ESTIMATED 2024-05-02
-C6-22-34O             2      426.64      5.75      0.00     11.82      1.00    !!WAGNON1@LLNL.GOV, ESTIMATED 2024-05-02
 C7-223-45O            2      456.18      5.98      0.00     13.67      1.00    !!WAGNON1@LLNL.GOV, ESTIMATED 2024-05-02
 C7-223-34O            2      456.18      5.98      0.00     13.67      1.00    !!WAGNON1@LLNL.GOV, ESTIMATED 2024-05-02
 C7-23-4OD2            2      454.11      5.96      0.00     13.50      1.00    !!WAGNON1@LLNL.GOV, ESTIMATED 2024-05-02
 C7-23-5OD2            2      454.11      5.96      0.00     13.50      1.00    !!WAGNON1@LLNL.GOV, ESTIMATED 2024-05-02
-C7-22-3D-5            2      422.32      5.71      0.00     13.10      1.00    !!WAGNON1@LLNL.GOV, ESTIMATED 2024-05-02
 TC4H9COCH2            2      426.64      5.75      0.00     11.82      1.00    !!WAGNON1@LLNL.GOV, ESTIMATED 2024-05-02
 TC4H8COCH3            2      426.64      5.75      0.00     11.82      1.00    !!WAGNON1@LLNL.GOV, ESTIMATED 2024-05-02
 TC4H8COC2H5           2      456.18      5.98      0.00     13.67      1.00    !!WAGNON1@LLNL.GOV, ESTIMATED 2024-05-02
@@ -295,29 +278,25 @@ C8234AOHBJ            2      487.82      6.22      0.00     15.86      1.00    !
 CH3CODC5H11           2      458.23      6.00      0.00     13.84      1.00    !!WAGNON1@LLNL.GOV, ESTIMATED 2024-05-02
 C7H1223-DCD           2      420.10      5.70      0.00     12.93      1.00    !!WAGNON1@LLNL.GOV, ESTIMATED 2024-05-02
 C7H1223-DAC           2      420.10      5.70      0.00     12.93      1.00    !!WAGNON1@LLNL.GOV, ESTIMATED 2024-05-02
-C7H1224-DAC           2      420.10      5.70      0.00     12.93      1.00    !!WAGNON1@LLNL.GOV, ESTIMATED 2024-05-02
 C7H1223-DAD           2      420.10      5.70      0.00     12.93      1.00    !!WAGNON1@LLNL.GOV, ESTIMATED 2024-05-02
 C7H1224-DBC           2      420.10      5.70      0.00     12.93      1.00    !!WAGNON1@LLNL.GOV, ESTIMATED 2024-05-02
-C7H1223-DBD           2      420.10      5.70      0.00     12.93      1.00    !!WAGNON1@LLNL.GOV, ESTIMATED 2024-05-02
 C7H1223-DDF           2      420.10      5.70      0.00     12.93      1.00    !!WAGNON1@LLNL.GOV, ESTIMATED 2024-05-02
 C8H15234A-AO          2      483.97      6.19      0.00     15.52      1.00    !!WAGNON1@LLNL.GOV, ESTIMATED 2024-05-02
 C8H15234A-CO          2      483.97      6.19      0.00     15.52      1.00    !!WAGNON1@LLNL.GOV, ESTIMATED 2024-05-02
-C8H15234B-AO          2      483.97      6.19      0.00     15.52      1.00    !!WAGNON1@LLNL.GOV, ESTIMATED 2024-05-02
 C8H15234B-DO          2      483.97      6.19      0.00     15.52      1.00    !!WAGNON1@LLNL.GOV, ESTIMATED 2024-05-02
 C8H15234B-FO          2      483.97      6.19      0.00     15.52      1.00    !!WAGNON1@LLNL.GOV, ESTIMATED 2024-05-02
+C8H15234C-EO          2      483.97      6.19      0.00     15.52      1.00    !!WAGNON1@LLNL.GOV, ESTIMATED 2024-05-02
 C8H15234A-DO          2      483.97      6.19      0.00     15.52      1.00    !!WAGNON1@LLNL.GOV, ESTIMATED 2024-05-02
 C8H15234A-EO          2      483.97      6.19      0.00     15.52      1.00    !!WAGNON1@LLNL.GOV, ESTIMATED 2024-05-02
 C8H15234A-FO          2      483.97      6.19      0.00     15.52      1.00    !!WAGNON1@LLNL.GOV, ESTIMATED 2024-05-02
 C8H15234B-EO          2      483.97      6.19      0.00     15.52      1.00    !!WAGNON1@LLNL.GOV, ESTIMATED 2024-05-02
 C8H15234F-AO          2      483.97      6.19      0.00     15.52      1.00    !!WAGNON1@LLNL.GOV, ESTIMATED 2024-05-02
 C7H1323A-D            2      422.32      5.71      0.00     13.10      1.00    !!WAGNON1@LLNL.GOV, ESTIMATED 2024-05-02
-C7H1323B-D            2      422.32      5.71      0.00     13.10      1.00    !!WAGNON1@LLNL.GOV, ESTIMATED 2024-05-02
 C7H1324B-C            2      422.32      5.71      0.00     13.10      1.00    !!WAGNON1@LLNL.GOV, ESTIMATED 2024-05-02
 C7H1323F-D            2      422.32      5.71      0.00     13.10      1.00    !!WAGNON1@LLNL.GOV, ESTIMATED 2024-05-02
 C8H14234-DAC          2      450.06      5.93      0.00     14.78      1.00    !!WAGNON1@LLNL.GOV, ESTIMATED 2024-05-02
 C8H14234-DAF          2      450.06      5.93      0.00     14.78      1.00    !!WAGNON1@LLNL.GOV, ESTIMATED 2024-05-02
 C8H14234-DAD          2      450.06      5.93      0.00     14.78      1.00    !!WAGNON1@LLNL.GOV, ESTIMATED 2024-05-02
-C8H15234F-B           2      452.14      5.95      0.00     14.95      1.00    !!WAGNON1@LLNL.GOV, ESTIMATED 2024-05-02
 C8H17234-AO           2      487.82      6.22      0.00     15.86      1.00    !!WAGNON1@LLNL.GOV, ESTIMATED 2024-05-02
 C8H17234-BO           2      487.82      6.22      0.00     15.86      1.00    !!WAGNON1@LLNL.GOV, ESTIMATED 2024-05-02
 C8H17234-CO           2      487.82      6.22      0.00     15.86      1.00    !!WAGNON1@LLNL.GOV, ESTIMATED 2024-05-02
@@ -331,6 +310,40 @@ C8234KETOA-F          2      513.87      6.41      0.00     16.09      1.00    !
 C8234KETOF-A          2      513.87      6.41      0.00     16.09      1.00    !!WAGNON1@LLNL.GOV, ESTIMATED 2024-05-02
 C8234KETOF-B          2      513.87      6.41      0.00     16.09      1.00    !!WAGNON1@LLNL.GOV, ESTIMATED 2024-05-02
 C8234KETOF-C          2      513.87      6.41      0.00     16.09      1.00    !!WAGNON1@LLNL.GOV, ESTIMATED 2024-05-02
+C11H24-2              2      537.14      6.58      0.00     21.01      1.00    !!WAGNON1@LLNL.GOV, ESTIMATED 2022-08-02
+C11H23-2A             2      535.39      6.57      0.00     20.84      1.00    !!WAGNON1@LLNL.GOV, ESTIMATED 2022-08-02
+C11H23-2B             2      535.39      6.57      0.00     20.84      1.00    !!WAGNON1@LLNL.GOV, ESTIMATED 2022-08-02
+C11H23-2C             2      535.39      6.57      0.00     20.84      1.00    !!WAGNON1@LLNL.GOV, ESTIMATED 2022-08-02
+C11H23-2D             2      535.39      6.57      0.00     20.84      1.00    !!WAGNON1@LLNL.GOV, ESTIMATED 2022-08-02
+C11H23-2E             2      535.39      6.57      0.00     20.84      1.00    !!WAGNON1@LLNL.GOV, ESTIMATED 2022-08-02
+C11H23-2F             2      535.39      6.57      0.00     20.84      1.00    !!WAGNON1@LLNL.GOV, ESTIMATED 2022-08-02
+C11H23-2G             2      535.39      6.57      0.00     20.84      1.00    !!WAGNON1@LLNL.GOV, ESTIMATED 2022-08-02
+C11H23-2H             2      535.39      6.57      0.00     20.84      1.00    !!WAGNON1@LLNL.GOV, ESTIMATED 2022-08-02
+C11H23-2I             2      535.39      6.57      0.00     20.84      1.00    !!WAGNON1@LLNL.GOV, ESTIMATED 2022-08-02
+C11H23-2J             2      535.39      6.57      0.00     20.84      1.00    !!WAGNON1@LLNL.GOV, ESTIMATED 2022-08-02
+C7H15-2F              2      426.74      5.75      0.00     13.44      1.00
+C8H17-2G              2      456.26      5.98      0.00     15.29      1.00    !!WAGNON1@LLNL.GOV, ESTIMATED 2022-08-02
+C9H19-2H              2      484.04      6.19      0.00     17.14      1.00    !!WAGNON1@LLNL.GOV, ESTIMATED 2022-08-02
+C10H21-2I             2      510.35      6.39      0.00     18.99      1.00    !!WAGNON1@LLNL.GOV, ESTIMATED 2022-08-02
+C7H14-5-2             2      424.54      5.73      0.00     13.27      1.00
+C8H16-6-2             2      454.22      5.96      0.00     15.12      1.00    !!WAGNON1@LLNL.GOV, ESTIMATED 2022-08-02
+C9H18-7-2             2      482.10      6.18      0.00     16.97      1.00    !!WAGNON1@LLNL.GOV, ESTIMATED 2022-08-02
+C10H20-8-2            2      508.50      6.37      0.00     18.82      1.00    !!WAGNON1@LLNL.GOV, ESTIMATED 2022-08-02
+C11H22-1-2            2      533.63      6.56      0.00     20.67      1.00    !!WAGNON1@LLNL.GOV, ESTIMATED 2022-08-02
+C11H22-2-2            2      533.63      6.56      0.00     20.67      1.00    !!WAGNON1@LLNL.GOV, ESTIMATED 2022-08-02
+C11H22-3-2            2      533.63      6.56      0.00     20.67      1.00    !!WAGNON1@LLNL.GOV, ESTIMATED 2022-08-02
+C11H22-4-2            2      533.63      6.56      0.00     20.67      1.00    !!WAGNON1@LLNL.GOV, ESTIMATED 2022-08-02
+C11H22-5-2            2      533.63      6.56      0.00     20.67      1.00    !!WAGNON1@LLNL.GOV, ESTIMATED 2022-08-02
+C11H22-6-2            2      533.63      6.56      0.00     20.67      1.00    !!WAGNON1@LLNL.GOV, ESTIMATED 2022-08-02
+C11H22-7-2            2      533.63      6.56      0.00     20.67      1.00    !!WAGNON1@LLNL.GOV, ESTIMATED 2022-08-02
+C11H22-8-2            2      533.63      6.56      0.00     20.67      1.00    !!WAGNON1@LLNL.GOV, ESTIMATED 2022-08-02
+C11H22-9-2            2      533.63      6.56      0.00     20.67      1.00    !!WAGNON1@LLNL.GOV, ESTIMATED 2022-08-02
+C7H13-1-2             2      422.32      5.71      0.00     13.10      1.00
+C8H15-1-2             2      452.14      5.95      0.00     14.95      1.00    !!WAGNON1@LLNL.GOV, ESTIMATED 2022-08-02
+C9H17-1-2             2      480.16      6.16      0.00     16.80      1.00    !!WAGNON1@LLNL.GOV, ESTIMATED 2022-08-02
+C10H19-1-2            2      506.64      6.36      0.00     18.65      1.00    !!WAGNON1@LLNL.GOV, ESTIMATED 2022-08-02
+C8H15                 2      452.14      5.95      0.00     14.95      1.00    !!WAGNON1@LLNL.GOV, ESTIMATED 2022-08-02
+C11H21-1-2            2      531.86      6.54      0.00     20.50      1.00    !!WAGNON1@LLNL.GOV, ESTIMATED 2022-08-02
 COC(VO)OC             2      543.40      5.09      1.70      0.00      1.00    !! TC AND PC FROM NIST WEBBOOK (STEELE, CHIRICO, ET AL., 1997)
 COC(VO)OJ             2      543.40      5.09      1.70      0.00      1.00    !! COC(VO)OC
 COC(VO)OCJ            2      543.40      5.09      1.70      0.00      1.00    !! COC(VO)OC
@@ -703,20 +716,12 @@ C8H132-6,SAO          2      581.30      6.51      2.00      0.00      1.00
 C8H132-6,PAO          2      581.30      6.51      2.00      0.00      1.00
 C7H111-5,1P           2      450.00      5.50      0.00      0.00      1.00
 C5H92-5               2      396.80      5.46      0.00      0.00      1.00
-C5H10OOH1-2           2      523.20      5.66      1.70      0.00      1.00
-C5H10OOH2-1           2      523.20      5.66      1.70      0.00      1.00
-C5H10OOH2-3           2      523.20      5.66      1.70      0.00      1.00
-C5H10OOH3-2           2      523.20      5.66      1.70      0.00      1.00
 NC5H12                2      391.70      5.59      0.00      0.00      1.00
 C5H11-1               2      523.20      5.66      1.70      0.00      1.00
 C5H11-2               2      523.20      5.66      1.70      0.00      1.00
 C5H11-3               2      523.20      5.66      1.70      0.00      1.00
 C5H10-1               2      386.20      5.49      0.40      0.00      1.00
 C5H10-2               2      396.80      5.46      0.00      0.00      1.00
-C5H11O2-1             2      523.20      5.66      1.70      0.00      1.00
-C5H11O2H-1            2      523.20      5.66      1.70      0.00      1.00
-C5H11O2-2             2      523.20      5.66      1.70      0.00      1.00
-C5H11O2H-2            2      523.20      5.66      1.70      0.00      1.00
 CC5H10                2      437.10      5.02      0.00      0.00      0.00
 DC5H11                2      440.74      5.04      0.00      0.00      0.00
 CC5H11                2      440.74      5.04      0.00      0.00      0.00
@@ -734,14 +739,11 @@ NC5KET13O             2      494.80      6.17      1.80      0.00      1.00
 NC5KET14O             2      494.80      6.17      1.80      0.00      1.00
 NC5KET15O             2      494.80      6.17      1.80      0.00      1.00
 NC5KET21O             2      494.80      6.17      1.80      0.00      1.00
-NC5KET23O             2      494.80      6.17      1.80      0.00      1.00
 NC5KET24O             2      494.80      6.17      1.80      0.00      1.00
 NC5KET25O             2      494.80      6.17      1.80      0.00      1.00
 NC5KET31O             2      494.80      6.17      1.80      0.00      1.00
-NC5KET32O             2      494.80      6.17      1.80      0.00      1.00
 ! AUTOMATIC PRUNING ! C2H5COOH              2      481.50      5.00      1.70      0.00      1.00
 NC5H11OH              2      523.20      5.66      1.70      0.00      1.00
-CH2OCH2CHO            2      464.20      5.01      2.60      0.00      1.00
 ! AUTOMATIC PRUNING ! CH2CH2OCH2CH2CHO      2      494.80      6.17      1.80      0.00      1.00
 IC5H12                2      382.10      5.55      0.00      0.00      1.00
 AC5H11O               2      523.20      5.66      1.70      0.00      1.00
@@ -1190,8 +1192,6 @@ XC6-2O                2      431.01      5.78      0.00     12.16      1.00
 ! AUTOMATIC PRUNING ! XC6KET1-3O            2      460.18      6.01      0.00     12.39      1.00
 ! AUTOMATIC PRUNING ! XC6KET1-4O            2      460.18      6.01      0.00     12.39      1.00
 C4H72-2CHO            2      392.58      5.47      0.00      9.80      1.00
-CYHX13ENE             2      383.05      5.40      0.00     10.74      1.00
-CYHX14ENE             2      383.05      5.40      0.00     10.74      1.00
 C6D2Y1-1R             2      457.80      6.17      0.30      0.00      1.00
 NC7H16                2      459.60      6.25      0.00      0.00      1.00
 C7H15-1               2      459.60      6.25      0.00      0.00      1.00

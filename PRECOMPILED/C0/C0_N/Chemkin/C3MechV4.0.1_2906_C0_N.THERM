@@ -9,7 +9,7 @@
 ! organization including the University of Galway, Politecnico di Milano, RWTH Aachen University,    !
 ! Lawrence Livermore National Laboratory, Argonne National Laboratory, and Convergent Science.       !
 !                                                                                                    !
-! C3MechV4.0.1 is available from the github repository:                                              !
+! C3MechV4.0.1 is available from the GitHub repository:                                              !
 ! https://github.com/C3Mech/C3Mech                                                                   !
 !                                                                                                    !
 ! For more information, please visit fuelmech.org.                                                   !
@@ -24,10 +24,10 @@
 ! 2) Pratali Maffei, L., Langer, R., Murakami, Y., Wagnon, S. W., Wang, P., Liu, J., Raza, M.,       !
 !    Zhu, Y., Girhe, S., Schwenzer, C., Beeckmann, J., Klippenstein, S. J., Faravelli, T.,           !
 !    Pitsch, H., Senecal, P. K., & Curran, H. J. (2026). Corrigendum to "Modeling combustion         !
-!    chemistry using chemistry using C3MechV4.0: An extension to mixtures of hydrogen, ammonia,      !
-!    alkanes, and cycloalkanes" [Applications in Energy and Combustion Science, 2025, 24, 100385]    !
+!    chemistry using C3MechV4.0: An extension to mixtures of hydrogen, ammonia, alkanes, and         !
+!    cycloalkanes" [Applications in Energy and Combustion Science, 2025, 24, 100385]                 !
 !                                                                                                    !
-! ================================ Working Groups For C3MechV4.0.1 ================================= !
+! ================================ Working Groups for C3MechV4.0.1 ================================= !
 
 !                                                                                                    !
 ! Author                  | Institution                                                              !
@@ -69,13 +69,13 @@
 ! ================================================================================================== !
 
 
-! Thermodynamic data for C3MechV4.0.1, generated on 23/02/2026 21:02:41.
+! Thermodynamic data for C3MechV4.0.1, generated on 02/03/2026 05:23:37.
 
 ! The following sub-modules were considered in this file:
 ! - UOG_C0_LT-HT.MECH
 ! - UOG_N_LT-HT.MECH
 
-! MID: 2906
+! model ID (MID): 2906
 THERMO ALL
 300.   1000.   5000.
 C2H6                    H   6C   2          G    200.00   6000.00 1000.00      1

@@ -9,7 +9,7 @@
 ! organization including the University of Galway, Politecnico di Milano, RWTH Aachen University,    !
 ! Lawrence Livermore National Laboratory, Argonne National Laboratory, and Convergent Science.       !
 !                                                                                                    !
-! C3MechV4.0.1 is available from the github repository:                                              !
+! C3MechV4.0.1 is available from the GitHub repository:                                              !
 ! https://github.com/C3Mech/C3Mech                                                                   !
 !                                                                                                    !
 ! For more information, please visit fuelmech.org.                                                   !
@@ -24,10 +24,10 @@
 ! 2) Pratali Maffei, L., Langer, R., Murakami, Y., Wagnon, S. W., Wang, P., Liu, J., Raza, M.,       !
 !    Zhu, Y., Girhe, S., Schwenzer, C., Beeckmann, J., Klippenstein, S. J., Faravelli, T.,           !
 !    Pitsch, H., Senecal, P. K., & Curran, H. J. (2026). Corrigendum to "Modeling combustion         !
-!    chemistry using chemistry using C3MechV4.0: An extension to mixtures of hydrogen, ammonia,      !
-!    alkanes, and cycloalkanes" [Applications in Energy and Combustion Science, 2025, 24, 100385]    !
+!    chemistry using C3MechV4.0: An extension to mixtures of hydrogen, ammonia, alkanes, and         !
+!    cycloalkanes" [Applications in Energy and Combustion Science, 2025, 24, 100385]                 !
 !                                                                                                    !
-! ================================ Working Groups For C3MechV4.0.1 ================================= !
+! ================================ Working Groups for C3MechV4.0.1 ================================= !
 
 !                                                                                                    !
 ! Author                  | Institution                                                              !
@@ -69,7 +69,7 @@
 ! ================================================================================================== !
 
 
-! Kinetics data for C3MechV4.0.1, generated on 23/02/2026 21:02:41.
+! Kinetics data for C3MechV4.0.1, generated on 02/03/2026 05:23:37.
 
 ! The following sub-modules were considered in this file:
 ! - UOG_C0_LT-HT_Cantera.MECH
@@ -78,9 +78,9 @@
 ! - UOG_N_LT-HT.MECH
 ! - UOG_C-N_HT.MECH
 
-! MID: 3R08
-! number of species: 495
-! number of reactions: 3484
+! model ID (MID): 3R08
+! number of species: 493
+! number of reactions: 3482
 
 ! REVISION FOR C3MechV4.0.1:
 ! SEARCH FOR "YZ_251026"
@@ -217,66 +217,65 @@ H15DE2M-T                     IC4H7CHO                      IC4H7CO
 IC4H7CHO-A                    IC4H8OH                       C5H8-2                        
 B12DE3M                       C6H6                          C6H9-A                        
 C6H8                          CYHEXEN-4J                    CYPENTN-4MJ                   
-CYHX13ENE                     CYHX14ENE                     CYPENTN-4M4J                  
-CYPENTN-4M3J                  C5H6                          CYC6H7                        
-C6H7-2                        C4H64,1-1OH                   C2H3CHOHCH2                   
-CH2CYC3H4OH                   C5H9OH1-2                     CC5H9OH-A                     
-CC5H8OHA-B                    CC5H8OHA-BO                   C3H4CH2OH-3O                  
-C3H4CH2OH-1O                  C2H3COCH2OH                   C2H3COCHOH                    
-C2H3CHOHCO                    CHCHCH2OH                     C4H61KET43O                   
-C2H3COOCH2                    CH2CHCHCHCCH                  C4H5-2C2H                     
-C4H2                          AC3H5CO                       CC3H5                         
-CJVCCVO                       CH2CCOCH3                     SC4H6OH-2                     
-C4H3-I                        CH3COHOJCOCH3                 C3H6CHO-3                     
-CH3CHOCHCO                    C8H141-5,3-4                  C8H131-5,3-4,TA               
-I3C6D25                       C8H131-5,3-4,TAO              C8H141-5,3                    
-C8H131-5,3,TA                 C8H131-5,3,SA                 C8H131-5,3,PA                 
-C6H10D24                      C8H131-5,3,TAO                C8H131-5,3,SAO                
-C8H131-5,3,PAO                C7H111-5,3,6P                 CC5H9-A                       
-C8H142-6                      C8H132-6,SA                   C8H132-6,PA                   
-C5H81-3                       C8H132-6,SAO                  C8H132-6,PAO                  
-C7H111-5,1P                   C5H92-5                       NH3                           
-NH2                           NO2                           HONO                          
-HNO2                          NH                            N                             
-HNO                           NO                            H2NO                          
-HNOH                          NNH                           N2O                           
-N2H2                          H2NN                          N2H3                          
-N2H4                          NO3                           HON                           
-HONO2                         NH2OH                         H2NNO2                        
-T-HNN(O)OH                    C-HNN(O)OH                    T-ONNH                        
-C-ONNH                        ONHN                          CN                            
-NCO                           HCN                           HNCO                          
-CH2NH                         H2CN                          CH3NO                         
-CH2CN                         HOCN                          CH3CN                         
-HCNO                          CH2NH2                        NCN                           
-HNCN                          CH2NO                         CH3NO2                        
-CH2NO2                        CH3ONO                        CH3ONO2                       
-HNC                           NCCN                          HNCNH                         
-NCNOH                         NCNO                          CH3NH2                        
-CH3NH                         HCNH                          CH3CH2NH2                     
-CH3CHNH2                      CH2CH2NH2                     CH3CH2NH                      
-CH2CHNH2                      CH3CHNH                       H2NCHO                        
-CHCHNH2                       CH2CNH2                       CH2CHNH                       
-H2NCO                         CH3CNH                        CH3CHN                        
-CHCNH2                        CH2CNH                        CH2CHN                        
-CH2CHN(S)                     CHCNH                         C-C2H3N                       
-CH2NCH2                       CH3NHCH2                      CH3NHCH3                      
-CH3NCH3                       CH3NCH2                       CH3NCH                        
-CH3CH2ONO2                    C2H3NO2                       C2H5NO2                       
-CH3CH2ONO                     CH2CH2NO2                     CH3CHNO2                      
-C2H5NO                        CH3CHNO                       CHCHNO                        
-C2H4ONO                       HOC2H4NO2                     CH3CNO                        
-CH2CHNO                       NO2CH2CHO                     NC3H7ONO                      
-NC3H7NO2                      NC3H7ONO2                     HNO3                          
-IC3H7ONO2                     IC3H7ONO                      IC3H7NO2                      
-C3H5NO2                       CH3CNO2CH2                    C3H5NO                        
-NC5H12                        C5H11-1                       C5H11-2                       
-C5H11-3                       PC4H9CHO                      C5H11O-1                      
-C5H11O-2                      C5H11O-3                      NC6H14                        
-C6H13-1                       C6H13-2                       C6H13-3                       
-NC5H11CHO                     NC7H16                        C7H15-1                       
-C7H15-2                       C7H15-3                       C7H15-4                       
-
+CYPENTN-4M4J                  CYPENTN-4M3J                  C5H6                          
+CYC6H7                        C6H7-2                        C4H64,1-1OH                   
+C2H3CHOHCH2                   CH2CYC3H4OH                   C5H9OH1-2                     
+CC5H9OH-A                     CC5H8OHA-B                    CC5H8OHA-BO                   
+C3H4CH2OH-3O                  C3H4CH2OH-1O                  C2H3COCH2OH                   
+C2H3COCHOH                    C2H3CHOHCO                    CHCHCH2OH                     
+C4H61KET43O                   C2H3COOCH2                    CH2CHCHCHCCH                  
+C4H5-2C2H                     C4H2                          AC3H5CO                       
+CC3H5                         CJVCCVO                       CH2CCOCH3                     
+SC4H6OH-2                     C4H3-I                        CH3COHOJCOCH3                 
+C3H6CHO-3                     CH3CHOCHCO                    C8H141-5,3-4                  
+C8H131-5,3-4,TA               I3C6D25                       C8H131-5,3-4,TAO              
+C8H141-5,3                    C8H131-5,3,TA                 C8H131-5,3,SA                 
+C8H131-5,3,PA                 C6H10D24                      C8H131-5,3,TAO                
+C8H131-5,3,SAO                C8H131-5,3,PAO                C7H111-5,3,6P                 
+CC5H9-A                       C8H142-6                      C8H132-6,SA                   
+C8H132-6,PA                   C5H81-3                       C8H132-6,SAO                  
+C8H132-6,PAO                  C7H111-5,1P                   C5H92-5                       
+NH3                           NH2                           NO2                           
+HONO                          HNO2                          NH                            
+N                             HNO                           NO                            
+H2NO                          HNOH                          NNH                           
+N2O                           N2H2                          H2NN                          
+N2H3                          N2H4                          NO3                           
+HON                           HONO2                         NH2OH                         
+H2NNO2                        T-HNN(O)OH                    C-HNN(O)OH                    
+T-ONNH                        C-ONNH                        ONHN                          
+CN                            NCO                           HCN                           
+HNCO                          CH2NH                         H2CN                          
+CH3NO                         CH2CN                         HOCN                          
+CH3CN                         HCNO                          CH2NH2                        
+NCN                           HNCN                          CH2NO                         
+CH3NO2                        CH2NO2                        CH3ONO                        
+CH3ONO2                       HNC                           NCCN                          
+HNCNH                         NCNOH                         NCNO                          
+CH3NH2                        CH3NH                         HCNH                          
+CH3CH2NH2                     CH3CHNH2                      CH2CH2NH2                     
+CH3CH2NH                      CH2CHNH2                      CH3CHNH                       
+H2NCHO                        CHCHNH2                       CH2CNH2                       
+CH2CHNH                       H2NCO                         CH3CNH                        
+CH3CHN                        CHCNH2                        CH2CNH                        
+CH2CHN                        CH2CHN(S)                     CHCNH                         
+C-C2H3N                       CH2NCH2                       CH3NHCH2                      
+CH3NHCH3                      CH3NCH3                       CH3NCH2                       
+CH3NCH                        CH3CH2ONO2                    C2H3NO2                       
+C2H5NO2                       CH3CH2ONO                     CH2CH2NO2                     
+CH3CHNO2                      C2H5NO                        CH3CHNO                       
+CHCHNO                        C2H4ONO                       HOC2H4NO2                     
+CH3CNO                        CH2CHNO                       NO2CH2CHO                     
+NC3H7ONO                      NC3H7NO2                      NC3H7ONO2                     
+HNO3                          IC3H7ONO2                     IC3H7ONO                      
+IC3H7NO2                      C3H5NO2                       CH3CNO2CH2                    
+C3H5NO                        NC5H12                        C5H11-1                       
+C5H11-2                       C5H11-3                       PC4H9CHO                      
+C5H11O-1                      C5H11O-2                      C5H11O-3                      
+NC6H14                        C6H13-1                       C6H13-2                       
+C6H13-3                       NC5H11CHO                     NC7H16                        
+C7H15-1                       C7H15-2                       C7H15-3                       
+C7H15-4                       
 ! AUTOMATIC PRUNING ! HO2CH2CHO                     CHOCOHCH3                     NC3H7COCH2                    
 ! AUTOMATIC PRUNING ! C6Y2-1J                       PC4H9CO                       CVCCVCCVO                     
 ! AUTOMATIC PRUNING ! 
@@ -285,20 +284,6 @@ C7H15-2                       C7H15-3                       C7H15-4
 !+++++++++++++++++++++ 
 END  
 REACTIONS
-! REVISION FOR C3MechV4.0.1:
-! SEARCH FOR "YZ_251026"
-!  1) H2+O=H+OH
-!  2) H2+OH=H+H2O
-!  3) H+O2(+M)=HO2(+M)
-!  4) CH3+H(+M)=CH4(+M)
-!  5) CH2+O2=>CO2+H+H
-!  6) HCO+M=H+CO+M
-!
-!  SEARCH FOR "JL_251029"
-!  1) C2H3+H=C2H2+H2
-!  2) HCCO+OH=>H+CO+CO+H
-!
-!\START_ELEMENTS_LIST
 !++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 !\KINETICS_MODULE: H2_O2
 !++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -12396,9 +12381,9 @@ C6H9-A=CYHEXEN-4J    5.041E8 0.7 2.0246E4
 C6H9-A=CYPENTN-4MJ    5.249E8 0.846 1.9298E4
 !DONG 0406!CYPENTN-4MJ(=)H+CYPENTN-4MTHNE                    +1.97200000E+007 +1.80200000E+000 +3.23040000E+004 !\Author: WARNING !\Ref: WARNING !\Comment: WARNING
 !\Author: WARNING !\Ref: WARNING !\Comment: WARNING
-CYHEXEN-4J=H+CYHX13ENE    7.487E8 1.395 3.3132E4
+!!CYHEXEN-4J=H+CYHX13ENE    7.487E8 1.395 3.3132E4 !! Removed Yuki Murakami 31 March 2024, Same reaction in C6cy module
 !\Author: WARNING !\Ref: WARNING !\Comment: WARNING
-CYHEXEN-4J=H+CYHX14ENE    2.097E9 1.299 3.3394E4
+!!CYHEXEN-4J=H+CYHX14ENE    2.097E9 1.299 3.3394E4 !! Removed Yuki Murakami 31 March 2024, Same reaction in C6cy module
 !\Author: WARNING !\Ref: WARNING !\Comment: WARNING
 CYPENTN-4MJ=CYPENTN-4M4J    5.265E-7 5.639 2.4541E4
 !\Author: WARNING !\Ref: WARNING !\Comment: WARNING

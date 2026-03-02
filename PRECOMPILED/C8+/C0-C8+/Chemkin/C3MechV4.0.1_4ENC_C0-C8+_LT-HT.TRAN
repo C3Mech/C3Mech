@@ -9,7 +9,7 @@
 ! organization including the University of Galway, Politecnico di Milano, RWTH Aachen University,    !
 ! Lawrence Livermore National Laboratory, Argonne National Laboratory, and Convergent Science.       !
 !                                                                                                    !
-! C3MechV4.0.1 is available from the github repository:                                              !
+! C3MechV4.0.1 is available from the GitHub repository:                                              !
 ! https://github.com/C3Mech/C3Mech                                                                   !
 !                                                                                                    !
 ! For more information, please visit fuelmech.org.                                                   !
@@ -24,10 +24,10 @@
 ! 2) Pratali Maffei, L., Langer, R., Murakami, Y., Wagnon, S. W., Wang, P., Liu, J., Raza, M.,       !
 !    Zhu, Y., Girhe, S., Schwenzer, C., Beeckmann, J., Klippenstein, S. J., Faravelli, T.,           !
 !    Pitsch, H., Senecal, P. K., & Curran, H. J. (2026). Corrigendum to "Modeling combustion         !
-!    chemistry using chemistry using C3MechV4.0: An extension to mixtures of hydrogen, ammonia,      !
-!    alkanes, and cycloalkanes" [Applications in Energy and Combustion Science, 2025, 24, 100385]    !
+!    chemistry using C3MechV4.0: An extension to mixtures of hydrogen, ammonia, alkanes, and         !
+!    cycloalkanes" [Applications in Energy and Combustion Science, 2025, 24, 100385]                 !
 !                                                                                                    !
-! ================================ Working Groups For C3MechV4.0.1 ================================= !
+! ================================ Working Groups for C3MechV4.0.1 ================================= !
 
 !                                                                                                    !
 ! Author                  | Institution                                                              !
@@ -69,7 +69,7 @@
 ! ================================================================================================== !
 
 
-! Transport data for C3MechV4.0.1, generated on 23/02/2026 21:02:41.
+! Transport data for C3MechV4.0.1, generated on 02/03/2026 05:23:37.
 
 ! The following sub-modules were considered in this file:
 ! - UOG_C0_LT-HT.MECH
@@ -80,7 +80,7 @@
 ! - UOG_C7_LT-HT.MECH
 ! - LLNL_BLOCK.CKI
 
-! MID: 4ENC
+! model ID (MID): 4ENC
 HE                    0       10.20      2.57      0.00      0.00      0.00
 H2                    1       38.00      2.92      0.00      0.79    280.00
 H                     0      145.00      2.05      0.00      0.00      0.00

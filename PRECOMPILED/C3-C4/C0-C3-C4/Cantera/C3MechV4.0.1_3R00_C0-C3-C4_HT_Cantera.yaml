@@ -10,7 +10,7 @@ description: |2-
    organization including the University of Galway, Politecnico di Milano, RWTH Aachen University,    !
    Lawrence Livermore National Laboratory, Argonne National Laboratory, and Convergent Science.       !
                                                                                                       !
-   C3MechV4.0.1 is available from the github repository:                                              !
+   C3MechV4.0.1 is available from the GitHub repository:                                              !
    https://github.com/C3Mech/C3Mech                                                                   !
                                                                                                       !
    For more information, please visit fuelmech.org.                                                   !
@@ -25,10 +25,10 @@ description: |2-
    2) Pratali Maffei, L., Langer, R., Murakami, Y., Wagnon, S. W., Wang, P., Liu, J., Raza, M.,       !
       Zhu, Y., Girhe, S., Schwenzer, C., Beeckmann, J., Klippenstein, S. J., Faravelli, T.,           !
       Pitsch, H., Senecal, P. K., & Curran, H. J. (2026). Corrigendum to "Modeling combustion         !
-      chemistry using chemistry using C3MechV4.0: An extension to mixtures of hydrogen, ammonia,      !
-      alkanes, and cycloalkanes" [Applications in Energy and Combustion Science, 2025, 24, 100385]    !
+      chemistry using C3MechV4.0: An extension to mixtures of hydrogen, ammonia, alkanes, and         !
+      cycloalkanes" [Applications in Energy and Combustion Science, 2025, 24, 100385]                 !
                                                                                                       !
-   ================================ Working Groups For C3MechV4.0.1 ================================= !
+   ================================ Working Groups for C3MechV4.0.1 ================================= !
 
                                                                                                       !
    Author                  | Institution                                                              !
@@ -70,16 +70,16 @@ description: |2-
    ================================================================================================== !
 
 
-   Kinetics data for C3MechV4.0.1, generated on 23/02/2026 21:02:41.
+   Kinetics data for C3MechV4.0.1, generated on 02/03/2026 05:23:37.
 
    The following sub-modules were considered in this file:
    - UOG_C0_LT-HT_Cantera.MECH
    - UOG_C1-C2_LT-HT_Cantera.MECH
    - UOG_C3-C4_HT.MECH
 
-   MID: 3R00
-   number of species: 374
-   number of reactions: 2512
+   model ID (MID): 3R00
+   number of species: 372
+   number of reactions: 2510
 
    REVISION FOR C3MechV4.0.1:
    SEARCH FOR "YZ_251026"
@@ -106,7 +106,7 @@ description: |2-
   organization including the University of Galway, Politecnico di Milano, RWTH Aachen University,    !
   Lawrence Livermore National Laboratory, Argonne National Laboratory, and Convergent Science.       !
                                                                                                      !
-  C3MechV4.0.1 is available from the github repository:                                              !
+  C3MechV4.0.1 is available from the GitHub repository:                                              !
   https://github.com/C3Mech/C3Mech                                                                   !
                                                                                                      !
   For more information, please visit fuelmech.org.                                                   !
@@ -121,10 +121,10 @@ description: |2-
   2) Pratali Maffei, L., Langer, R., Murakami, Y., Wagnon, S. W., Wang, P., Liu, J., Raza, M.,       !
      Zhu, Y., Girhe, S., Schwenzer, C., Beeckmann, J., Klippenstein, S. J., Faravelli, T.,           !
      Pitsch, H., Senecal, P. K., & Curran, H. J. (2026). Corrigendum to "Modeling combustion         !
-     chemistry using chemistry using C3MechV4.0: An extension to mixtures of hydrogen, ammonia,      !
-     alkanes, and cycloalkanes" [Applications in Energy and Combustion Science, 2025, 24, 100385]    !
+     chemistry using C3MechV4.0: An extension to mixtures of hydrogen, ammonia, alkanes, and         !
+     cycloalkanes" [Applications in Energy and Combustion Science, 2025, 24, 100385]                 !
                                                                                                      !
-  ================================ Working Groups For C3MechV4.0.1 ================================= !
+  ================================ Working Groups for C3MechV4.0.1 ================================= !
 
                                                                                                      !
   Author                  | Institution                                                              !
@@ -166,21 +166,21 @@ description: |2-
   ================================================================================================== !
 
 
-  Thermodynamic data for C3MechV4.0.1, generated on 23/02/2026 21:02:41.
+  Thermodynamic data for C3MechV4.0.1, generated on 02/03/2026 05:23:37.
 
   The following sub-modules were considered in this file:
   - UOG_C0_LT-HT.MECH
   - UOG_C1-C2_LT-HT.MECH
   - UOG_C3-C4_HT.MECH
 
-  MID: 3R00
+  model ID (MID): 3R00
 
 generator: ck2yaml
 input-files: [C3MechV4.0.1_3R00_C0-C3-C4_HT_Cantera.CKI, 
     C3MechV4.0.1_3R00_C0-C3-C4_HT.THERM, 
     C3MechV4.0.1_3R00_C0-C3-C4_HT.TRAN]
 cantera-version: 3.1.0
-date: Mon, 23 Feb 2026 21:07:58 +0100
+date: Mon, 02 Mar 2026 05:35:35 +0100
 
 units: {length: cm, time: s, quantity: mol, activation-energy: cal/mol}
 
@@ -235,14 +235,14 @@ phases:
       H15DE25DM, H15DE25DM-S, H15DE25DM-A, B13DE2M, AC5H9-D, 
       H15DE25DM-AO, H15DE25DM-SO, H15DE2M-T, IC4H7CHO, IC4H7CO, 
       IC4H7CHO-A, IC4H8OH, C5H8-2, B12DE3M, C6H6, C6H9-A, C6H8, 
-      CYHEXEN-4J, CYPENTN-4MJ, CYHX13ENE, CYHX14ENE, CYPENTN-4M4J, 
-      CYPENTN-4M3J, C5H6, CYC6H7, C6H7-2, 'C4H64,1-1OH', C2H3CHOHCH2, 
-      CH2CYC3H4OH, C5H9OH1-2, CC5H9OH-A, CC5H8OHA-B, CC5H8OHA-BO, 
-      C3H4CH2OH-3O, C3H4CH2OH-1O, C2H3COCH2OH, C2H3COCHOH, C2H3CHOHCO, 
-      CHCHCH2OH, C4H61KET43O, C2H3COOCH2, CH2CHCHCHCCH, C4H5-2C2H, 
-      C4H2, AC3H5CO, CC3H5, CJVCCVO, CH2CCOCH3, SC4H6OH-2, C4H3-I, 
-      CH3COHOJCOCH3, C3H6CHO-3, CH3CHOCHCO, 'C8H141-5,3-4', 'C8H131-5,3-4,TA',
-    I3C6D25, 'C8H131-5,3-4,TAO', 'C8H141-5,3', 'C8H131-5,3,TA', 'C8H131-5,3,SA',
+      CYHEXEN-4J, CYPENTN-4MJ, CYPENTN-4M4J, CYPENTN-4M3J, C5H6, 
+      CYC6H7, C6H7-2, 'C4H64,1-1OH', C2H3CHOHCH2, CH2CYC3H4OH, 
+      C5H9OH1-2, CC5H9OH-A, CC5H8OHA-B, CC5H8OHA-BO, C3H4CH2OH-3O, 
+      C3H4CH2OH-1O, C2H3COCH2OH, C2H3COCHOH, C2H3CHOHCO, CHCHCH2OH, 
+      C4H61KET43O, C2H3COOCH2, CH2CHCHCHCCH, C4H5-2C2H, C4H2, AC3H5CO, 
+      CC3H5, CJVCCVO, CH2CCOCH3, SC4H6OH-2, C4H3-I, CH3COHOJCOCH3, 
+      C3H6CHO-3, CH3CHOCHCO, 'C8H141-5,3-4', 'C8H131-5,3-4,TA', 
+      I3C6D25, 'C8H131-5,3-4,TAO', 'C8H141-5,3', 'C8H131-5,3,TA', 'C8H131-5,3,SA',
     'C8H131-5,3,PA', C6H10D24, 'C8H131-5,3,TAO', 'C8H131-5,3,SAO', 'C8H131-5,3,PAO',
     'C7H111-5,3,6P', CC5H9-A, C8H142-6, 'C8H132-6,SA', 'C8H132-6,PA', 
       C5H81-3, 'C8H132-6,SAO', 'C8H132-6,PAO', 'C7H111-5,1P', C5H92-5]
@@ -5415,44 +5415,6 @@ species:
     well-depth: 534.27
     diameter: 5.14
     rotational-relaxation: 1.0
-- name: CYHX13ENE
-  composition: {C: 6, H: 8}
-  thermo:
-    model: NASA7
-    temperature-ranges: [300.0, 523.0, 5000.0]
-    data:
-    - [-106.042538, 1.10939964, -4.0199954e-03, 6.66349757e-06, 
-        -4.11460405e-09, 1.95064828e+04, 438.141462]
-    - [8.82414976, 0.025002706, -7.54677614e-06, 1.12551371e-09, 
-        -6.66360112e-14, 8819.96703, -21.7606518]
-    note: '\Comment: THERM23, date: 21/11/2023, Refitted using Mech Checker
-      @ LLNL https://combustiontools.llnl.gov/'
-  transport:
-    model: gas
-    geometry: nonlinear
-    well-depth: 383.05
-    diameter: 5.4
-    polarizability: 10.74
-    rotational-relaxation: 1.0
-- name: CYHX14ENE
-  composition: {C: 6, H: 8}
-  thermo:
-    model: NASA7
-    temperature-ranges: [300.0, 539.0, 5000.0]
-    data:
-    - [-77.9701857, 0.821320738, -2.90548486e-03, 4.73765713e-06, 
-        -2.87418362e-09, 1.81802744e+04, 327.936807]
-    - [8.30559817, 0.0252352564, -7.46469197e-06, 1.08092759e-09, 
-        -6.18811843e-14, 9843.84006, -20.002066]
-    note: '\Comment: THERM23, date: 21/11/2023, Refitted using Mech Checker
-      @ LLNL https://combustiontools.llnl.gov/'
-  transport:
-    model: gas
-    geometry: nonlinear
-    well-depth: 383.05
-    diameter: 5.4
-    polarizability: 10.74
-    rotational-relaxation: 1.0
 - name: CYPENTN-4M4J
   composition: {C: 6, H: 9}
   thermo:
@@ -6351,19 +6313,7 @@ reactions:
   rate-constant: {A: 4.577e+19, b: -1.4, Ea: 1.044e+05}
   efficiencies: {HE: 0.83, CO: 1.9, CH4: 2.0, H2: 2.5, C2H6: 3.0, CO2: 
       3.8, H2O: 12.0, O2: 0.0}
-  note: |2
-     REVISION FOR C3MechV4.0.1:
-     SEARCH FOR "YZ_251026"
-      1) H2+O=H+OH
-      2) H2+OH=H+H2O
-      3) H+O2(+M)=HO2(+M)
-      4) CH3+H(+M)=CH4(+M)
-      5) CH2+O2=>CO2+H+H
-      6) HCO+M=H+CO+M
-      SEARCH FOR "JL_251029"
-      1) C2H3+H=C2H2+H2
-      2) HCCO+OH=>H+CO+CO+H
-    \START_ELEMENTS_LIST
+  note: |
     ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     \KINETICS_MODULE: H2_O2
     ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -23640,32 +23590,28 @@ reactions:
   rate-constant: {A: 5.249e+08, b: 0.846, Ea: 1.9298e+04}
   note: |
     \Author: WARNING !\Ref: WARNING !\Comment: WARNING
-- equation: CYHEXEN-4J <=> H + CYHX13ENE  # Reaction 2158
-  rate-constant: {A: 7.487e+08, b: 1.395, Ea: 3.3132e+04}
+- equation: CYPENTN-4MJ <=> CYPENTN-4M4J  # Reaction 2158
+  rate-constant: {A: 5.265e-07, b: 5.639, Ea: 2.4541e+04}
   note: |
     DONG 0406!CYPENTN-4MJ(=)H+CYPENTN-4MTHNE                    +1.97200000E+007 +1.80200000E+000 +3.23040000E+004 !\Author: WARNING !\Ref: WARNING !\Comment: WARNING
     \Author: WARNING !\Ref: WARNING !\Comment: WARNING
-- equation: CYHEXEN-4J <=> H + CYHX14ENE  # Reaction 2159
-  rate-constant: {A: 2.097e+09, b: 1.299, Ea: 3.3394e+04}
-  note: |
+    !CYHEXEN-4J=H+CYHX13ENE    7.487E8 1.395 3.3132E4 !! Removed Yuki Murakami 31 March 2024, Same reaction in C6cy module
     \Author: WARNING !\Ref: WARNING !\Comment: WARNING
-- equation: CYPENTN-4MJ <=> CYPENTN-4M4J  # Reaction 2160
-  rate-constant: {A: 5.265e-07, b: 5.639, Ea: 2.4541e+04}
-  note: |
+    !CYHEXEN-4J=H+CYHX14ENE    2.097E9 1.299 3.3394E4 !! Removed Yuki Murakami 31 March 2024, Same reaction in C6cy module
     \Author: WARNING !\Ref: WARNING !\Comment: WARNING
-- equation: CYPENTN-4MJ <=> CYPENTN-4M3J  # Reaction 2161
+- equation: CYPENTN-4MJ <=> CYPENTN-4M3J  # Reaction 2159
   rate-constant: {A: 3.537e-16, b: 8.138, Ea: 1.4583e+04}
   note: |
     \Author: WARNING !\Ref: WARNING !\Comment: WARNING
-- equation: CYPENTN-4M3J <=> C5H6 + CH3  # Reaction 2162
+- equation: CYPENTN-4M3J <=> C5H6 + CH3  # Reaction 2160
   rate-constant: {A: 4.961e+11, b: 0.717, Ea: 3.8962e+04}
   note: |
     \Author: WARNING !\Ref: WARNING !\Comment: WARNING
-- equation: CYPENTN-4M4J <=> CYPENTN-4M3J  # Reaction 2163
+- equation: CYPENTN-4M4J <=> CYPENTN-4M3J  # Reaction 2161
   rate-constant: {A: 3.239e-08, b: 6.224, Ea: 2.4481e+04}
   note: |
     \Author: WARNING !\Ref: WARNING !\Comment: WARNING
-- equation: CYC6H7 <=> C6H6 + H  # Reaction 2164
+- equation: CYC6H7 <=> C6H6 + H  # Reaction 2162
   type: pressure-dependent-Arrhenius
   rate-constants:
   - {P: 0.001 atm, A: 2.51e+48, b: -12.303, Ea: 3.2977e+04}
@@ -23676,7 +23622,7 @@ reactions:
   - {P: 100.0 atm, A: 2.45e+36, b: -6.84, Ea: 3.8803e+04}
   note: |
     \Author: WARNING !\Ref: WARNING !\Comment: WARNING
-- equation: C6H8 + H <=> C6H7-2 + H2  # Reaction 2165
+- equation: C6H8 + H <=> C6H7-2 + H2  # Reaction 2163
   rate-constant: {A: 9.92e+06, b: 2.32, Ea: 1.1566e+04}
   note: |
     \Author: WARNING !\Ref: WARNING !\Comment: WARNING
@@ -23720,34 +23666,34 @@ reactions:
     \Author: WARNING !\Ref: WARNING !\Comment: WARNING
     ! CYHX14ENE+CH3=CYC6H7+CH4    3.49E0 3.494 1.4E3 !! Removed Yuki Murakami 31 March 2024, Same reaction in C6cy module
     \Author: WARNING !\Ref: WARNING !\Comment: WARNING
-- equation: C6H8 + O2 <=> C6H7-2 + HO2  # Reaction 2166
+- equation: C6H8 + O2 <=> C6H7-2 + HO2  # Reaction 2164
   rate-constant: {A: 2.0e+13, b: 0.0, Ea: 4.98e+04}
   note: |
     \Author: WARNING !\Ref: WARNING !\Comment: WARNING
-- equation: C6H8 + O <=> C6H7-2 + OH  # Reaction 2167
+- equation: C6H8 + O <=> C6H7-2 + OH  # Reaction 2165
   rate-constant: {A: 1.44e+05, b: 2.61, Ea: 3029.0}
   note: |
     \Author: WARNING !\Ref: WARNING !\Comment: WARNING
-- equation: C6H8 + OH <=> C6H7-2 + H2O  # Reaction 2168
+- equation: C6H8 + OH <=> C6H7-2 + H2O  # Reaction 2166
   duplicate: true
   rate-constant: {A: 1.54e+06, b: 2.07, Ea: 1440.58}
   note: |
     \Author: WARNING !\Ref: VASU ET AL. J. PHYS. CHEM. A, 2010, 114, 8312-8318 !\Comment: WARNING
-- equation: C6H8 + OH <=> C6H7-2 + H2O  # Reaction 2169
+- equation: C6H8 + OH <=> C6H7-2 + H2O  # Reaction 2167
   duplicate: true
   rate-constant: {A: 1.62e+06, b: 1.99, Ea: 2149.93}
   note: |
     \Author: WARNING !\Ref: VASU ET AL. J. PHYS. CHEM. A, 2010, 114, 8312-8318 !\Comment: WARNING
-- equation: C6H8 + HO2 <=> C6H7-2 + H2O2  # Reaction 2170
+- equation: C6H8 + HO2 <=> C6H7-2 + H2O2  # Reaction 2168
   rate-constant: {A: 7.51e-03, b: 4.52, Ea: 1.471e+04}
   note: |
     \Author: WARNING !\Ref: WARNING !\Comment: WARNING
-- equation: C6H7-2 + O2 <=> C4H5-N + CO + CH2O  # Reaction 2171
+- equation: C6H7-2 + O2 <=> C4H5-N + CO + CH2O  # Reaction 2169
   rate-constant: {A: 2.19e+09, b: 1.08, Ea: 1.242e+04}
   note: |
     \Author: WARNING !\Ref: RUTZ ET AL., JPCA, 2011, 115, 1018-1026. !\Comment: C4H5-I+O2(=)C2H3CO+CH2O
      LPM PRODS REPLACED
-- equation: C4H6 + H <=> C4H612 + H  # Reaction 2172
+- equation: C4H6 + H <=> C4H612 + H  # Reaction 2170
   type: pressure-dependent-Arrhenius
   rate-constants:
   - {P: 0.01 atm, A: 2.42e+31, b: -5.38, Ea: 2.288e+04}
@@ -23769,7 +23715,7 @@ reactions:
      fit btw. 298 and 2200 K with MAE of 0.6%, 1.3%
      fit btw. 298 and 2200 K with MAE of 1.6%, 5.4%
      fit btw. 298 and 2200 K with MAE of 45.0%, 124.6%
-- equation: C4H612 <=> C4H6  # Reaction 2173
+- equation: C4H612 <=> C4H6  # Reaction 2171
   type: pressure-dependent-Arrhenius
   rate-constants:
   - {P: 0.0395 atm, A: 3.24e+78, b: -18.9, Ea: 1.03e+05}
@@ -23783,7 +23729,7 @@ reactions:
      fit btw. 298 and 2200 K with MAE of 0.6%, 1.7%
      fit btw. 298 and 2200 K with MAE of 0.9%, 3.1%
      fit btw. 298 and 2200 K with MAE of 4.1%, 14.3%
-- equation: C4H71-3 <=> C4H6 + H  # Reaction 2174
+- equation: C4H71-3 <=> C4H6 + H  # Reaction 2172
   type: pressure-dependent-Arrhenius
   rate-constants:
   - {P: 0.01 atm, A: 1.38e+68, b: -16.66, Ea: 7.061e+04}
@@ -23803,7 +23749,7 @@ reactions:
     PLOG /                           +1.58000000E-001 +3.54000000E+074 -1.77100000E+001 +1.03000000E+005 /
     PLOG /                           +3.16000000E-001 +0.93000000E+072 -1.69100000E+001 +1.02000000E+005 /
     AUTHOR: HL LOCKHART2017
-- equation: C4H71-4 <=> C4H6 + H  # Reaction 2175
+- equation: C4H71-4 <=> C4H6 + H  # Reaction 2173
   type: pressure-dependent-Arrhenius
   rate-constants:
   - {P: 0.01 atm, A: 6.57e+61, b: -15.34, Ea: 5.351e+04}
@@ -23818,7 +23764,7 @@ reactions:
   - {P: 100.0 atm, A: 6.41e+20, b: -2.84, Ea: 3.654e+04}
   note: |
     \Author: WARNING !\Ref: WARNING !\Comment: WARNING
-- equation: C4H6 + H <=> C2H4 + C2H3  # Reaction 2176
+- equation: C4H6 + H <=> C2H4 + C2H3  # Reaction 2174
   type: pressure-dependent-Arrhenius
   rate-constants:
   - {P: 0.01 atm, A: 1.35e+73, b: -15.58, Ea: 8.008e+04}
@@ -23833,7 +23779,7 @@ reactions:
   - {P: 100.0 atm, A: 2.83, b: 4.12, Ea: 1.25e+04}
   note: |
     \Author: WARNING !\Ref: WARNING !\Comment: WARNING
-- equation: C4H6 + H <=> C3H4-A + CH3  # Reaction 2177
+- equation: C4H6 + H <=> C3H4-A + CH3  # Reaction 2175
   type: pressure-dependent-Arrhenius
   rate-constants:
   - {P: 0.01 atm, A: 6.56e+22, b: -2.98, Ea: 2.037e+04}
@@ -23848,11 +23794,11 @@ reactions:
   note: |
     \Author: WARNING !\Ref: WARNING !\Comment: WARNING
     FIT BTW. 500 AND 3000 K WITH MAE OF 10%
-- equation: H + C4H6 <=> CH3 + C3H4-P  # Reaction 2178
+- equation: H + C4H6 <=> CH3 + C3H4-P  # Reaction 2176
   rate-constant: {A: 4.0e+12, b: 0.0, Ea: 7000.0}
   note: |
     \Author: WARNING !\Ref: WARNING !\Comment: WARNING
-- equation: C4H6 + H <=> C2H5 + C2H2  # Reaction 2179
+- equation: C4H6 + H <=> C2H5 + C2H2  # Reaction 2177
   type: pressure-dependent-Arrhenius
   rate-constants:
   - {P: 0.01 atm, A: 8.75e+23, b: -3.41, Ea: 2.188e+04}
@@ -23867,7 +23813,7 @@ reactions:
   - {P: 100.0 atm, A: 9.49e+04, b: -0.5, Ea: 1.563e+04}
   note: |
     \Author: WARNING !\Ref: WARNING !\Comment: WARNING
-- equation: C4H6 + H <=> C4H5-N + H2  # Reaction 2180
+- equation: C4H6 + H <=> C4H5-N + H2  # Reaction 2178
   rate-constant: {A: 3.8e+07, b: 2.02, Ea: 1.54e+04}
   note: |
     ___________________________________________________________________________________________________________
@@ -23876,16 +23822,16 @@ reactions:
     HL CHANGED
     C4H6+H=C4H5-N+H2                                  +3.47000000E+005 +2.78700000E+000 +1.35730000E+004 !\Author: SD !\Ref: Li Y, ET AL. J Phys Chem A 2017;121:7433  45. !\Comment: WARNING
     \Author: HL, ANALOGY WITH C5H81-3+H(=)C5H7-13-1+H2 !\Ref: WARNING !\Comment: WARNING
-- equation: C4H6 + H <=> C4H5-I + H2  # Reaction 2181
+- equation: C4H6 + H <=> C4H5-I + H2  # Reaction 2179
   rate-constant: {A: 5.98e+08, b: 1.62, Ea: 1.29e+04}
   note: |
     C4H6+H=C4H5-I+H2                                  +9.92000000E+006 +2.32000000E+000 +1.15660000E+004 !\Author: WARNING !\Ref: WARNING !\Comment: WARNING
     \Author: HL, ANALOGY WITH C5H81-3+H(=)C5H7-13-2+H2 A !\Ref: WARNING !\Comment: WARNING
-- equation: C4H6 + O <=> C4H5-N + OH  # Reaction 2182
+- equation: C4H6 + O <=> C4H5-N + OH  # Reaction 2180
   rate-constant: {A: 2.4e+11, b: 0.7, Ea: 8959.1}
   note: |
     \Author: ANALOGY TO PROPENE !\Ref: WARNING !\Comment: WARNING
-- equation: C4H6 + OH <=> C4H5-N + H2O  # Reaction 2183
+- equation: C4H6 + OH <=> C4H5-N + H2O  # Reaction 2181
   duplicate: true
   rate-constant: {A: 5.82851806e+04, b: 2.53024498, Ea: 2421.89189}
   note: |
@@ -23894,48 +23840,48 @@ reactions:
     DONG 0916!C4H6+OH(=)C4H5-N+H2O                              +3.49000000E+006 +2.04000000E+000 +4.29192000E+003 !\Author: WARNING !\Ref: VASU ET AL. J. PHYS. CHEM. A, 2010, 114, 8312-8318 !\Comment: WARNING
     DONG 0916!DUP
      Mean Error = 3.32  Max Error = 7.48 !50% LOWER AT 650K \Author: SD !\Ref: Bai J, Cavallotti C, Zhou C W. Combustion and Flame, 2020, 221: 228-240. !\Comment:
-- equation: C4H6 + OH <=> C4H5-N + H2O  # Reaction 2184
+- equation: C4H6 + OH <=> C4H5-N + H2O  # Reaction 2182
   duplicate: true
   rate-constant: {A: 1919.15437, b: 2.92921243, Ea: 2509.84927}
   note: |
     Mean Error = 3.33  Max Error = 7.65 !50% LOWER AT 650K \Author: SD !\Ref: Bai J, Cavallotti C, Zhou C W. Combustion and Flame, 2020, 221: 228-240. !\Comment:
-- equation: C4H6 + HO2 <=> C4H5-I + H2O2  # Reaction 2185
+- equation: C4H6 + HO2 <=> C4H5-I + H2O2  # Reaction 2183
   rate-constant: {A: 9456.4405, b: 2.83384, Ea: 2.1495841e+04}
   note: |
     C4H6+HO2(=)C4H5-N+H2O2                            +1.91000000E+003 +3.05900000E+000 +2.07986000E+004 !\Author: ANALOGY TO PROPENE FROM AB INITIO CALCULATION CARRIED OUT BY JORGE MENDES. !\Ref: WARNING !\Comment: UNPUBLISHED\
     C4H6+HO2(=)C4H5-I+H2O2                            +7.51000000E-003 +4.52000000E+000 +1.47100000E+004 !\Author: WARNING !\Ref: WARNING !\Comment: WARNING
     \Author: SD !\Ref: Zhu, Yuxiang, and Chong-Wen Zhou. Combustion and Flame 221 (2020): 241-255. !\Comment: WARNING
-- equation: C4H6 + HO2 <=> C4H5-N + H2O2  # Reaction 2186
+- equation: C4H6 + HO2 <=> C4H5-N + H2O2  # Reaction 2184
   duplicate: true
   rate-constant: {A: 19.72846, b: 3.54067, Ea: 2.334135e+04}
   note: |
     \Author: SD !\Ref: Zhu, Yuxiang, and Chong-Wen Zhou. Combustion and Flame 221 (2020): 241-255. !\Comment: WARNING
-- equation: C4H6 + HO2 <=> C4H5-N + H2O2  # Reaction 2187
+- equation: C4H6 + HO2 <=> C4H5-N + H2O2  # Reaction 2185
   duplicate: true
   rate-constant: {A: 36.37504, b: 3.57113, Ea: 2.4286041e+04}
   note: |
     \Author: SD !\Ref: Zhu, Yuxiang, and Chong-Wen Zhou. Combustion and Flame 221 (2020): 241-255. !\Comment: WARNING
-- equation: C4H6 + O2 <=> C4H5-N + HO2  # Reaction 2188
+- equation: C4H6 + O2 <=> C4H5-N + HO2  # Reaction 2186
   rate-constant: {A: 4.0e+13, b: 0.0, Ea: 6.227e+04}
   note: |
     \Author: ANALOGY FROM PROPENE !\Ref: WARNING !\Comment: WARNING
-- equation: C4H6 + CH3 <=> C4H5-N + CH4  # Reaction 2189
+- equation: C4H6 + CH3 <=> C4H5-N + CH4  # Reaction 2187
   rate-constant: {A: 3770.0, b: 2.863, Ea: 1.3853e+04}
   note: |
     \Author: WARNING !\Ref: WARNING !\Comment: WARNING
-- equation: C4H6 + C2H3 <=> C4H5-N + C2H4  # Reaction 2190
+- equation: C4H6 + C2H3 <=> C4H5-N + C2H4  # Reaction 2188
   rate-constant: {A: 3.437e-04, b: 4.732, Ea: 6.579}
   note: |
     \Author: WARNING !\Ref: BURAS ET AL. JPCA, 2015, 119, 7325-7338. !\Comment: WARNING
-- equation: C4H6 + O2 <=> C4H5-I + HO2  # Reaction 2191
+- equation: C4H6 + O2 <=> C4H5-I + HO2  # Reaction 2189
   rate-constant: {A: 2.0e+13, b: 0.0, Ea: 4.98e+04}
   note: |
     \Author: WARNING !\Ref: WARNING !\Comment: WARNING
-- equation: C4H6 + O <=> C4H5-I + OH  # Reaction 2192
+- equation: C4H6 + O <=> C4H5-I + OH  # Reaction 2190
   rate-constant: {A: 1.44e+05, b: 2.61, Ea: 3029.0}
   note: |
     \Author: WARNING !\Ref: WARNING !\Comment: WARNING
-- equation: C4H6 + OH <=> C4H5-I + H2O  # Reaction 2193
+- equation: C4H6 + OH <=> C4H5-I + H2O  # Reaction 2191
   rate-constant: {A: 3.66209433e+04, b: 2.54879919, Ea: 1720.00717}
   note: |
     DONG 0916!C4H6+OH(=)C4H5-I+H2O                              +1.54000000E+006 +2.07000000E+000 +1.44058000E+003 !\Author: WARNING !\Ref: VASU ET AL. J. PHYS. CHEM. A, 2010, 114, 8312-8318 !\Comment: WARNING
@@ -23944,25 +23890,25 @@ reactions:
     DONG 0916!DUP
     DONG 220623!C4H6+OH(=)C4H5-I+H2O                           +7.33209433E+04 +2.54879919E+00 +1.72000717E+03 ! Mean Error = 0.77  Max Error = 1.52 !40% LOWER AT 650K \Author: SD !\Ref: Bai J, Cavallotti C, Zhou C W. Combustion and Flame, 2020, 221: 228-240. !\
     A*0.5, Mean Error = 0.77  Max Error = 1.52 !40% LOWER AT 650K \Author: SD !\Ref: Bai J, Cavallotti C, Zhou C W. Combustion and Flame, 2020, 221: 228-240. !\Comment
-- equation: C4H6 + CH3 <=> C4H5-I + CH4  # Reaction 2194
+- equation: C4H6 + CH3 <=> C4H5-I + CH4  # Reaction 2192
   rate-constant: {A: 5.46e+04, b: 2.547, Ea: 1.1858e+04}
   note: |
     \Author: WARNING !\Ref: WARNING !\Comment: WARNING
-- equation: C4H6 + C2H3 <=> C4H5-I + C2H4  # Reaction 2195
+- equation: C4H6 + C2H3 <=> C4H5-I + C2H4  # Reaction 2193
   rate-constant: {A: 6.21e-04, b: 4.814, Ea: 4.902}
   note: |
     C4H6+CH3=C4H5-I+CH4    2.00E+14    0   22800 !HIDAKA1996  HL ADDED
     \Author: WARNING !\Ref: BURAS ET AL. JPCA, 2015, 119, 7325-7338. !\Comment: WARNING
-- equation: C4H6 + CH2OH <=> C4H5-I + CH3OH  # Reaction 2196
+- equation: C4H6 + CH2OH <=> C4H5-I + CH3OH  # Reaction 2194
   rate-constant: {A: 15.3, b: 3.11, Ea: 1.221e+04}
   note: |
     DONG 0504!C4H6+HCO(=)C4H5-I+CH2O                            +5.16000000E+005 +2.25000000E+000 +1.67600000E+004 !\Author: WARNING !\Ref: WARNING !\Comment: WARNING
     \Author: WARNING !\Ref: WARNING !\Comment: WARNING
-- equation: C4H6 + C2H5 <=> C4H5-I + C2H6  # Reaction 2197
+- equation: C4H6 + C2H5 <=> C4H5-I + C2H6  # Reaction 2195
   rate-constant: {A: 5.01e+10, b: 0.0, Ea: 1.04e+04}
   note: |
     \Author: WARNING !\Ref: WARNING !\Comment: WARNING
-- equation: C4H5-I <=> BUTA123TRIENE + H  # Reaction 2198
+- equation: C4H5-I <=> BUTA123TRIENE + H  # Reaction 2196
   type: pressure-dependent-Arrhenius
   rate-constants:
   - {P: 0.01 atm, A: 9.5e+48, b: -11.73, Ea: 6.855e+04}
@@ -23984,7 +23930,7 @@ reactions:
      fit btw. 298 and 1800 K with MAE of 6.6%, 17.6%
      fit btw. 298 and 2000 K with MAE of 13.6%, 38.3%
      fit btw. 400 and 2000 K with MAE of 8.6%, 17.4%
-- equation: C4H5-I <=> C4H4 + H  # Reaction 2199
+- equation: C4H5-I <=> C4H4 + H  # Reaction 2197
   type: pressure-dependent-Arrhenius
   rate-constants:
   - {P: 0.01 atm, A: 8.42e+63, b: -15.64, Ea: 6.557e+04}
@@ -24003,7 +23949,7 @@ reactions:
     fit btw. 298 and 1800 K with MAE of 2.4%, 7.7%
     fit btw. 298 and 2000 K with MAE of 3.7%, 11.5%
     fit btw. 298 and 2000 K with MAE of 4.4%, 14.4%
-- equation: C4H5-I <=> C2H3 + C2H2  # Reaction 2200
+- equation: C4H5-I <=> C2H3 + C2H2  # Reaction 2198
   type: pressure-dependent-Arrhenius
   rate-constants:
   - {P: 0.01 atm, A: 2.02e+134, b: -37.52, Ea: 1.075e+05}
@@ -24022,7 +23968,7 @@ reactions:
     fit btw. 298 and 1800 K with MAE of 5.3%, 15.4%
     fit btw. 298 and 2000 K with MAE of 5.8%, 17.2%
     fit btw. 300 and 2000 K with MAE of 14.4%, 39.4%
-- equation: C4H5-N <=> C4H5-2  # Reaction 2201
+- equation: C4H5-N <=> C4H5-2  # Reaction 2199
   type: pressure-dependent-Arrhenius
   rate-constants:
   - {P: 0.01 atm, A: 1.01e+136, b: -37.34, Ea: 1.114e+05}
@@ -24041,7 +23987,7 @@ reactions:
     fit btw. 298 and 1600 K with MAE of 36.8%, 126.0%
     fit btw. 298 and 1800 K with MAE of 46.8%, 163.9%
     fit btw. 298 and 1900 K with MAE of 8.0%, 23.5%
-- equation: C4H5-N <=> BUTA123TRIENE + H  # Reaction 2202
+- equation: C4H5-N <=> BUTA123TRIENE + H  # Reaction 2200
   type: pressure-dependent-Arrhenius
   rate-constants:
   - {P: 0.01 atm, A: 3.73e+43, b: -10.81, Ea: 5.785e+04}
@@ -24060,7 +24006,7 @@ reactions:
     fit btw. 298 and 1600 K with MAE of 1.1%, 1.9%
     fit btw. 298 and 1800 K with MAE of 1.7%, 3.8%
     fit btw. 298 and 1900 K with MAE of 26.4%, 75.5%
-- equation: C4H5-N <=> C4H4 + H  # Reaction 2203
+- equation: C4H5-N <=> C4H4 + H  # Reaction 2201
   type: pressure-dependent-Arrhenius
   rate-constants:
   - {P: 0.01 atm, A: 3.05e+58, b: -14.32, Ea: 5.56e+04}
@@ -24079,7 +24025,7 @@ reactions:
     fit btw. 298 and 1600 K with MAE of 2.0%, 4.9%
     fit btw. 298 and 1800 K with MAE of 2.5%, 8.3%
     fit btw. 298 and 1900 K with MAE of 3.7%, 10.5%
-- equation: C4H5-N <=> C2H3 + C2H2  # Reaction 2204
+- equation: C4H5-N <=> C2H3 + C2H2  # Reaction 2202
   type: pressure-dependent-Arrhenius
   rate-constants:
   - {P: 0.01 atm, A: 4.98e+63, b: -15.89, Ea: 6.091e+04}
@@ -24098,7 +24044,7 @@ reactions:
     fit btw. 298 and 1600 K with MAE of 1.5%, 3.1%
     fit btw. 298 and 1800 K with MAE of 2.1%, 5.9%
     fit btw. 298 and 1900 K with MAE of 3.2%, 8.8%
-- equation: BUTA123TRIENE + H <=> C4H4 + H  # Reaction 2205
+- equation: BUTA123TRIENE + H <=> C4H4 + H  # Reaction 2203
   type: pressure-dependent-Arrhenius
   rate-constants:
   - {P: 0.01 atm, A: 2.64e+31, b: -5.02, Ea: 1.448e+04}
@@ -24117,7 +24063,7 @@ reactions:
     fit btw. 298 and 2000 K with MAE of 1.5%, 4.6%
     fit btw. 298 and 2000 K with MAE of 3.8%, 8.0%
     fit btw. 298 and 2000 K with MAE of 3.5%, 7.8%
-- equation: BUTA123TRIENE + H <=> C2H3 + C2H2  # Reaction 2206
+- equation: BUTA123TRIENE + H <=> C2H3 + C2H2  # Reaction 2204
   type: pressure-dependent-Arrhenius
   rate-constants:
   - {P: 0.01 atm, A: 1.74e+26, b: -3.96, Ea: 1.526e+04}
@@ -24136,7 +24082,7 @@ reactions:
     fit btw. 298 and 2000 K with MAE of 0.8%, 2.2%
     fit btw. 298 and 2000 K with MAE of 2.4%, 6.5%
     fit btw. 298 and 2000 K with MAE of 16.2%, 48.3%
-- equation: C4H4 + H <=> C2H3 + C2H2  # Reaction 2207
+- equation: C4H4 + H <=> C2H3 + C2H2  # Reaction 2205
   type: pressure-dependent-Arrhenius
   rate-constants:
   - {P: 0.01 atm, A: 3.36e+21, b: -2.2, Ea: 1.364e+04}
@@ -24155,18 +24101,18 @@ reactions:
     fit btw. 298 and 2000 K with MAE of 0.2%, 0.5%
     fit btw. 298 and 2000 K with MAE of 0.6%, 1.7%
     fit btw. 298 and 2000 K with MAE of 2.0%, 5.8%
-- equation: C4H5-I + H <=> BUTA123TRIENE + H2  # Reaction 2208
+- equation: C4H5-I + H <=> BUTA123TRIENE + H2  # Reaction 2206
   rate-constant: {A: 1232.0, b: 3.035, Ea: 2582.0}
   note: |
     ___________________________________________________________________________________________________________
     \REACTIONCLASS: RADICAL_BETA_SCISSION
     ___________________________________________________________________________________________________________
     \Author: HL, ANALOGY WITH C3H5-A+H(=)C3H4-A+H2, \Ref: KLIPPENSTEIN _ HARDING 2007 !\Comment: WARNING
-- equation: C4H5-I + CH3 <=> BUTA123TRIENE + CH4  # Reaction 2209
+- equation: C4H5-I + CH3 <=> BUTA123TRIENE + CH4  # Reaction 2207
   rate-constant: {A: 3.0e+12, b: -0.32, Ea: -131.0}
   note: |
     \Author: HL, ANALOGY WITH C3H5-A+CH3(=)C3H4-A+CH4, \Ref: LASKIN ET AL. IJCK 32 589-614 2000 !\Comment: WARNING
-- equation: 2 C2H3 <=> C4H5-I + H  # Reaction 2210
+- equation: 2 C2H3 <=> C4H5-I + H  # Reaction 2208
   type: pressure-dependent-Arrhenius
   rate-constants:
   - {P: 0.0263 atm, A: 1.5e+30, b: -4.95, Ea: 1.2958e+04}
@@ -24174,7 +24120,7 @@ reactions:
   - {P: 1.0 atm, A: 1.2e+22, b: -2.44, Ea: 1.3654e+04}
   note: |
     \Author: WARNING !\Ref: WARNING PRIMARY SOURCE UNCLEAR PROBABLY LASKIN ET AL. !\Comment: WARNING
-- equation: 2 C2H3 <=> C4H5-N + H  # Reaction 2211
+- equation: 2 C2H3 <=> C4H5-N + H  # Reaction 2209
   type: pressure-dependent-Arrhenius
   rate-constants:
   - {P: 0.0263 atm, A: 1.1e+24, b: -3.28, Ea: 1.2395e+04}
@@ -24182,7 +24128,7 @@ reactions:
   - {P: 1.0 atm, A: 2.4e+20, b: -2.04, Ea: 1.5361e+04}
   note: |
     \Author: WARNING !\Ref: WARNING PRIMARY SOURCE UNCLEAR PROBABLY LASKIN ET AL. !\Comment: WARNING
-- equation: C4H6 + O <=> CH2O + C3H4-A  # Reaction 2212
+- equation: C4H6 + O <=> CH2O + C3H4-A  # Reaction 2210
   type: pressure-dependent-Arrhenius
   rate-constants:
   - {P: 0.09869 atm, A: 1.222e+09, b: 1.233, Ea: 1474.0}
@@ -24221,25 +24167,25 @@ reactions:
     ! PLOG   / 9.869e-02    2.443e+09    1.233e+00    1.474e+03 /
     ! PLOG   / 9.869e-01    7.555e+09    1.095e+00    1.809e+03 /
     ! PLOG   / 9.869e+00    2.238e+10    9.625e-01    2.138e+03 /
-- equation: C4H6 + O <=> CH2O + C3H4-P  # Reaction 2213
+- equation: C4H6 + O <=> CH2O + C3H4-P  # Reaction 2211
   type: pressure-dependent-Arrhenius
   rate-constants:
   - {P: 0.09869 atm, A: 1.222e+09, b: 1.233, Ea: 1474.0}
   - {P: 0.9869 atm, A: 3.778e+09, b: 1.095, Ea: 1809.0}
   - {P: 9.869 atm, A: 1.119e+10, b: 0.9625, Ea: 2138.0}
-- equation: C4H6 + O <=> H + CH2CHCHCHO  # Reaction 2214
+- equation: C4H6 + O <=> H + CH2CHCHCHO  # Reaction 2212
   type: pressure-dependent-Arrhenius
   rate-constants:
   - {P: 0.09869 atm, A: 4.418e+11, b: 0.4706, Ea: 1523.0}
   - {P: 0.9869 atm, A: 3.679e+11, b: 0.4944, Ea: 1473.0}
   - {P: 9.869 atm, A: 1.762e+11, b: 0.5877, Ea: 1354.0}
-- equation: C4H6 + O <=> C2H3 + CH2CHO  # Reaction 2215
+- equation: C4H6 + O <=> C2H3 + CH2CHO  # Reaction 2213
   type: pressure-dependent-Arrhenius
   rate-constants:
   - {P: 0.09869 atm, A: 1.926e+09, b: 1.263, Ea: 879.5}
   - {P: 0.9869 atm, A: 2.393e+09, b: 1.236, Ea: 938.0}
   - {P: 9.869 atm, A: 3.41e+09, b: 1.191, Ea: 1030.0}
-- equation: C4H6 + O <=> HCO + C3H5-A  # Reaction 2216
+- equation: C4H6 + O <=> HCO + C3H5-A  # Reaction 2214
   type: pressure-dependent-Arrhenius
   rate-constants:
   - {P: 0.09869 atm, A: 1.701e+18, b: -1.837, Ea: 2082.0}
@@ -24251,31 +24197,31 @@ reactions:
     ! PLOG   / 9.869e-02    5.104e+18   -1.837e+00    2.082e+03 /
     ! PLOG   / 9.869e-01    1.373e+21   -2.532e+00    3.606e+03 /
     ! PLOG   / 9.869e+00    8.691e+24   -3.551e+00    7.559e+03 /
-- equation: C4H6 + O <=> HCO + C3H5-S  # Reaction 2217
+- equation: C4H6 + O <=> HCO + C3H5-S  # Reaction 2215
   type: pressure-dependent-Arrhenius
   rate-constants:
   - {P: 0.09869 atm, A: 1.701e+18, b: -1.837, Ea: 2082.0}
   - {P: 0.9869 atm, A: 4.577e+20, b: -2.532, Ea: 3606.0}
   - {P: 9.869 atm, A: 2.897e+24, b: -3.551, Ea: 7559.0}
-- equation: C4H6 + O <=> HCO + C3H5-T  # Reaction 2218
+- equation: C4H6 + O <=> HCO + C3H5-T  # Reaction 2216
   type: pressure-dependent-Arrhenius
   rate-constants:
   - {P: 0.09869 atm, A: 1.701e+18, b: -1.837, Ea: 2082.0}
   - {P: 0.9869 atm, A: 4.577e+20, b: -2.532, Ea: 3606.0}
   - {P: 9.869 atm, A: 2.897e+24, b: -3.551, Ea: 7559.0}
-- equation: C4H6 + O <=> CO + C3H6  # Reaction 2219
+- equation: C4H6 + O <=> CO + C3H6  # Reaction 2217
   type: pressure-dependent-Arrhenius
   rate-constants:
   - {P: 0.09869 atm, A: 3.727e+20, b: -2.612, Ea: 2103.0}
   - {P: 0.9869 atm, A: 5.778e+23, b: -3.544, Ea: 3749.0}
   - {P: 9.869 atm, A: 2.333e+32, b: -5.979, Ea: 1.01e+04}
-- equation: C4H6 + O <=> C2H3COCH2 + H  # Reaction 2220
+- equation: C4H6 + O <=> C2H3COCH2 + H  # Reaction 2218
   type: pressure-dependent-Arrhenius
   rate-constants:
   - {P: 0.09869 atm, A: 8.925e+08, b: 1.217, Ea: 1051.0}
   - {P: 0.9869 atm, A: 3.523e+08, b: 1.333, Ea: 796.3}
   - {P: 9.869 atm, A: 5.074e+07, b: 1.579, Ea: 394.0}
-- equation: C4H6 + OH <=> C4H64,2-1OH  # Reaction 2221
+- equation: C4H6 + OH <=> C4H64,2-1OH  # Reaction 2219
   type: pressure-dependent-Arrhenius
   rate-constants:
   - {P: 0.01 atm, A: 1.32824962e+43, b: -10.0967871, Ea: 5942.01268}
@@ -24313,7 +24259,7 @@ reactions:
     A*0.5, Mean Error = 15.24 Max Error = 30.41
      Mean Error = 14.40 Max Error = 33.79
      Mean Error = 12.96 Max Error = 35.05
-- equation: C4H6 + OH <=> C4H64,1-1OH  # Reaction 2222
+- equation: C4H6 + OH <=> C4H64,1-1OH  # Reaction 2220
   type: pressure-dependent-Arrhenius
   rate-constants:
   - {P: 0.01 atm, A: 5.67810104e+31, b: -6.66686651, Ea: 5491.71925}
@@ -24341,7 +24287,7 @@ reactions:
      Mean Error = 16.61 Max Error = 34.77
      Mean Error = 19.18 Max Error = 54.78
      Mean Error = 17.71 Max Error = 50.90
-- equation: C4H6 + OH <=> C2H3CHOHCH2  # Reaction 2223
+- equation: C4H6 + OH <=> C2H3CHOHCH2  # Reaction 2221
   type: pressure-dependent-Arrhenius
   rate-constants:
   - {P: 1.0 atm, A: 5.27015535e+09, b: 0.375093407, Ea: -743.455885}
@@ -24353,7 +24299,7 @@ reactions:
      Mean Error = 3.33  Max Error = 5.04
      Mean Error = 0.86  Max Error = 1.95
      Mean Error = 2.84  Max Error = 5.52
-- equation: C4H6 + OH <=> C4H5OH-13 + H  # Reaction 2224
+- equation: C4H6 + OH <=> C4H5OH-13 + H  # Reaction 2222
   type: pressure-dependent-Arrhenius
   rate-constants:
   - {P: 0.01 atm, A: 4.42875893e+08, b: 1.24548544, Ea: 6079.40518}
@@ -24413,7 +24359,7 @@ reactions:
      Mean Error = 12.91 Max Error = 47.64
      Mean Error = 30.14 Max Error = 88.32
      Mean Error = 37.95 Max Error = 93.12
-- equation: C4H6 + OH <=> AC3H5CHO + H  # Reaction 2225
+- equation: C4H6 + OH <=> AC3H5CHO + H  # Reaction 2223
   type: pressure-dependent-Arrhenius
   rate-constants:
   - {P: 0.01 atm, A: 1.10792582e+22, b: -2.85342713, Ea: 
@@ -24431,7 +24377,7 @@ reactions:
      Mean Error = 20.89 Max Error = 43.84
      Mean Error = 31.78 Max Error = 65.77
      Mean Error = 43.01 Max Error = 107.20
-- equation: C4H6 + OH <=> C2H3 + C2H3OH  # Reaction 2226
+- equation: C4H6 + OH <=> C2H3 + C2H3OH  # Reaction 2224
   type: pressure-dependent-Arrhenius
   rate-constants:
   - {P: 0.01 atm, A: 7.94628059e+17, b: -1.48122077, Ea: 
@@ -24449,7 +24395,7 @@ reactions:
      Mean Error = 16.80 Max Error = 52.82
      Mean Error = 31.80 Max Error = 89.83
      Mean Error = 36.20 Max Error = 91.99
-- equation: C4H6 + OH <=> C4H51,3OH2 + H  # Reaction 2227
+- equation: C4H6 + OH <=> C4H51,3OH2 + H  # Reaction 2225
   type: pressure-dependent-Arrhenius
   rate-constants:
   - {P: 0.01 atm, A: 4.66664736e+11, b: 0.170098443, Ea: 9345.84634}
@@ -24466,7 +24412,7 @@ reactions:
      Mean Error = 20.54 Max Error = 64.31
      Mean Error = 29.06 Max Error = 71.36
      Mean Error = 30.68 Max Error = 75.62
-- equation: C4H64,1-1OH <=> C4H5OH-13 + H  # Reaction 2228
+- equation: C4H64,1-1OH <=> C4H5OH-13 + H  # Reaction 2226
   type: pressure-dependent-Arrhenius
   rate-constants:
   - {P: 0.01 atm, A: 1.17401614e+49, b: -12.1204886, Ea: 
@@ -24485,7 +24431,7 @@ reactions:
      Mean Error = 17.84 Max Error = 34.93
      Mean Error = 14.81 Max Error = 35.71
      Mean Error = 13.30 Max Error = 31.04
-- equation: C4H64,1-1OH <=> AC3H5CHO + H  # Reaction 2229
+- equation: C4H64,1-1OH <=> AC3H5CHO + H  # Reaction 2227
   type: pressure-dependent-Arrhenius
   rate-constants:
   - {P: 0.01 atm, A: 9.86581723e+44, b: -10.6797145, Ea: 
@@ -24503,7 +24449,7 @@ reactions:
      Mean Error = 22.41 Max Error = 42.37
      Mean Error = 19.39 Max Error = 42.93
      Mean Error = 17.59 Max Error = 37.39
-- equation: C4H64,1-1OH <=> C2H3 + C2H3OH  # Reaction 2230
+- equation: C4H64,1-1OH <=> C2H3 + C2H3OH  # Reaction 2228
   type: pressure-dependent-Arrhenius
   rate-constants:
   - {P: 0.01 atm, A: 9.0430554e+53, b: -13.5340622, Ea: 4.79787033e+04}
@@ -24520,13 +24466,13 @@ reactions:
      Mean Error = 17.93 Max Error = 33.79
      Mean Error = 16.47 Max Error = 38.50
      Mean Error = 12.92 Max Error = 31.83
-- equation: C4H64,1-1OH <=> CH2CYC3H4OH  # Reaction 2231
+- equation: C4H64,1-1OH <=> CH2CYC3H4OH  # Reaction 2229
   rate-constant: {A: 8.24569809e+11, b: -0.04274727, Ea: 
       1.64673986e+04}
   note: |
     1-Buten-4-ol-4(=)Methylcyclopropan-3-ol-1
      Mean Error = 2.91  Max Error = 6.16
-- equation: C4H64,2-1OH <=> C4H5OH-13 + H  # Reaction 2232
+- equation: C4H64,2-1OH <=> C4H5OH-13 + H  # Reaction 2230
   type: pressure-dependent-Arrhenius
   rate-constants:
   - {P: 0.01 atm, A: 1.09296428e+50, b: -12.6155942, Ea: 
@@ -24545,7 +24491,7 @@ reactions:
      Mean Error = 20.14 Max Error = 36.73
      Mean Error = 22.49 Max Error = 47.11
      Mean Error = 22.18 Max Error = 51.01
-- equation: C4H64,2-1OH <=> C4H64,1-1OH  # Reaction 2233
+- equation: C4H64,2-1OH <=> C4H64,1-1OH  # Reaction 2231
   type: pressure-dependent-Arrhenius
   rate-constants:
   - {P: 0.01 atm, A: 0.0309403255, b: 2.47011486, Ea: 2.87772296e+04}
@@ -24561,7 +24507,7 @@ reactions:
      Mean Error = 90.27 Max Error = 338.56
      Mean Error = 93.51 Max Error = 381.12
      Mean Error = 91.87 Max Error = 404.35
-- equation: C2H3CHOHCH2 <=> C2H3 + C2H3OH  # Reaction 2234
+- equation: C2H3CHOHCH2 <=> C2H3 + C2H3OH  # Reaction 2232
   type: pressure-dependent-Arrhenius
   rate-constants:
   - {P: 1.0 atm, A: 1.51964522e+11, b: 0.578092413, Ea: 3.3342009e+04}
@@ -24575,7 +24521,7 @@ reactions:
      Mean Error = 0.44  Max Error = 0.64
      Mean Error = 3.12  Max Error = 5.38
      Mean Error = 7.07  Max Error = 15.95
-- equation: C2H3CHOHCH2 <=> C4H51,3OH2 + H  # Reaction 2235
+- equation: C2H3CHOHCH2 <=> C4H51,3OH2 + H  # Reaction 2233
   type: pressure-dependent-Arrhenius
   rate-constants:
   - {P: 1.0 atm, A: 0.0370110308, b: 4.0418194, Ea: 2.59806848e+04}
@@ -24588,12 +24534,12 @@ reactions:
      Mean Error = 1.38  Max Error = 2.10
      Mean Error = 0.95  Max Error = 1.76
      Mean Error = 4.84  Max Error = 8.70
-- equation: C2H3CHOHCH2 <=> CH2CYC3H4OH  # Reaction 2236
+- equation: C2H3CHOHCH2 <=> CH2CYC3H4OH  # Reaction 2234
   rate-constant: {A: 3.01934221e+08, b: 0.88825065, Ea: 9076.51658}
   note: |
     1-Buten-3-ol-4(=)Methylcyclopropan-3-ol-1
      Mean Error = 0.57  Max Error = 1.44
-- equation: C4H64,2-1OH + CH3 (+M) <=> C5H9OH1-2 (+M)  # Reaction 2237
+- equation: C4H64,2-1OH + CH3 (+M) <=> C5H9OH1-2 (+M)  # Reaction 2235
   type: falloff
   low-P-rate-constant: {A: 3.91e+60, b: -12.81, Ea: 6250.0}
   high-P-rate-constant: {A: 1.0e+14, b: -0.32, Ea: -262.3}
@@ -24624,7 +24570,7 @@ reactions:
     \SUBSPECIES: C4H64,2-1OH+C2H3CHOHCH2
     ===========================================================================================================
     \Author: SD !\Ref: TSANG '91 !\Comment: WARNING
-- equation: C4H64,2-1OH + CH3 (+M) <=> CC5H9OH-A (+M)  # Reaction 2238
+- equation: C4H64,2-1OH + CH3 (+M) <=> CC5H9OH-A (+M)  # Reaction 2236
   type: falloff
   low-P-rate-constant: {A: 3.91e+60, b: -12.81, Ea: 6250.0}
   high-P-rate-constant: {A: 1.0e+14, b: -0.32, Ea: -262.3}
@@ -24633,15 +24579,15 @@ reactions:
       3.0, H2O: 6.0}
   note: |
     \Author: SD !\Ref: TSANG '91 !\Comment: WARNING
-- equation: CC5H9OH-A + OH <=> CC5H8OHA-B + H2O  # Reaction 2239
+- equation: CC5H9OH-A + OH <=> CC5H8OHA-B + H2O  # Reaction 2237
   rate-constant: {A: 614.0, b: 3.2, Ea: -3500.0}
   note: |
     CC5H10+OH(=)CC5H9-B+H2O \Author: WARNING !\Ref: WARNING NO REFERENCE !\Comment: WARNING !
-- equation: CC5H9OH-A + HO2 <=> CC5H8OHA-B + H2O2  # Reaction 2240
+- equation: CC5H9OH-A + HO2 <=> CC5H8OHA-B + H2O2  # Reaction 2238
   rate-constant: {A: 1810.0, b: 2.5, Ea: 7154.0}
   note: |
     CC5H10+HO2(=)CC5H9-B+H2O2 \Author: WARNING !\Ref: WARNING NO REFERENCE !\Comment: WARNING !
-- equation: CC5H8OHA-B + HO2 <=> CC5H8OHA-BO + OH  # Reaction 2241
+- equation: CC5H8OHA-B + HO2 <=> CC5H8OHA-BO + OH  # Reaction 2239
   type: pressure-dependent-Arrhenius
   rate-constants:
   - {P: 0.01 atm, A: 1.02e+13, b: -0.158, Ea: -1417.0}
@@ -24651,11 +24597,11 @@ reactions:
   - {P: 100.0 atm, A: 1.64e+04, b: 2.74, Ea: 1144.4}
   note: |
     \Author: SD !\Ref: GOLDSMITH, C. FRANKLIN, ET AL. PROCEEDINGS OF THE COMBUSTION INSTITUTE 33.1(2011) !\Comment: WARNING
-- equation: CC5H8OHA-BO <=> C2H3COCH3 + CH2OH  # Reaction 2242
+- equation: CC5H8OHA-BO <=> C2H3COCH3 + CH2OH  # Reaction 2240
   rate-constant: {A: 1.59e+22, b: -2.55, Ea: 1.284e+04}
   note: |
     \Author: SD !\Ref: H. J. CURRAN, INT. J. CHEM. KINET., 38, 2006, 250-275 !\Comment: WARNING
-- equation: C4H64,1-1OH + O2 <=> AC3H5CHO + HO2  # Reaction 2243
+- equation: C4H64,1-1OH + O2 <=> AC3H5CHO + HO2  # Reaction 2241
   type: pressure-dependent-Arrhenius
   rate-constants:
   - {P: 0.001 atm, A: 5.26e+17, b: -1.637, Ea: 838.0}
@@ -24705,7 +24651,7 @@ reactions:
     \REACTIONCLASS: R+O2(=)PRODUCTS
     ___________________________________________________________________________________________________________
     C5H10OH11+O2=PC4H9CHO+HO2!\Author: SD !\Ref: DA SILVA J. PHYS. CHEM. A 2009, 113, 8923 SAGGESE1@LLNL.GOV
-- equation: C4H64,2-1OH + O2 <=> C4H5OH-13 + HO2  # Reaction 2244
+- equation: C4H64,2-1OH + O2 <=> C4H5OH-13 + HO2  # Reaction 2242
   type: pressure-dependent-Arrhenius
   rate-constants:
   - {P: 0.01 atm, A: 0.0413013814, b: 3.67965451, Ea: 5052.8564}
@@ -24718,11 +24664,11 @@ reactions:
     DONG 211220!C4H64,2-1OH+O2(=)C4H64,1OH-2O2                    +1.37000000E+003 +2.17900000E+000 -2.20000000E+003 !A*1.5, C5H91-3+O2(=)C5H91-3O2\Author: WARNING !\Ref: YOU, XIAOQING, ET AL. THE JOURNAL OF PHYSICAL CHEMISTRY A 120.30(2016) !\Comment: WARNING
     DONG 220623!C4H64,2-1OH+O2(=)C4H5OH-13+HO2                    +3.18000000E-003 +4.83000000E+000 +0.96385920E+004 !EA-3KCAL, C4H71-3+O2(=)C4H6+HO2\Author: YL !\Ref: DIRECT CALCULATION FROM THE STATED AUTHOR !\Comment: WARNING
     \Author: SD !\Ref: Zhu, Yuxiang, and Chong-Wen Zhou. Combustion and Flame 221 (2020): 241-255. !\Comment: WARNING
-- equation: C2H3CHOHCH2 + O2 <=> C4H51,3OH2 + HO2  # Reaction 2245
+- equation: C2H3CHOHCH2 + O2 <=> C4H51,3OH2 + HO2  # Reaction 2243
   rate-constant: {A: 0.837, b: 3.59, Ea: 1.196e+04}
   note: |
     \Author: WARNING !\Ref: WARNING !\Comment: AC5H11+O2(=)AC5H10+HO2
-- equation: C4H64,2-1OH + HO2 <=> C3H4CH2OH-3O + OH  # Reaction 2246
+- equation: C4H64,2-1OH + HO2 <=> C3H4CH2OH-3O + OH  # Reaction 2244
   type: pressure-dependent-Arrhenius
   rate-constants:
   - {P: 0.01 atm, A: 1.02e+13, b: -0.158, Ea: -1417.0}
@@ -24732,7 +24678,7 @@ reactions:
   - {P: 100.0 atm, A: 1.64e+04, b: 2.74, Ea: 1144.4}
   note: |
     C5H91-3+HO2(=)C5H9O1-3+OH\Author: WARNING !\Ref: GOLDSMITH, C. FRANKLIN, ET AL. PROCEEDINGS OF THE COMBUSTION INSTITUTE 33.1(2011) !\Comment: WARNING
-- equation: C4H64,2-1OH + HO2 <=> C3H4CH2OH-1O + OH  # Reaction 2247
+- equation: C4H64,2-1OH + HO2 <=> C3H4CH2OH-1O + OH  # Reaction 2245
   type: pressure-dependent-Arrhenius
   rate-constants:
   - {P: 0.01 atm, A: 5.1e+12, b: -0.158, Ea: -1417.0}
@@ -24742,7 +24688,7 @@ reactions:
   - {P: 100.0 atm, A: 8200.0, b: 2.74, Ea: 1144.4}
   note: |
     C5H91-3+HO2(=)C5H9O2-1+OH\Author: WARNING !\Ref: GOLDSMITH, C. FRANKLIN, ET AL. PROCEEDINGS OF THE COMBUSTION INSTITUTE 33.1(2011) !\Comment: WARNING
-- equation: C3H4CH2OH-3O <=> C2H3CHO + CH2OH  # Reaction 2248
+- equation: C3H4CH2OH-3O <=> C2H3CHO + CH2OH  # Reaction 2246
   rate-constant: {A: 4.38e+16, b: -0.89, Ea: 1.653e+04}
   note: |
     C3H4CH2OH-1OOH+O2(=)                     +9.00000000E+013 +0.00000000E+000 +4.02000000E+004 !\Author: WARNING !\Ref: SD !\Comment: WARNING
@@ -24750,27 +24696,27 @@ reactions:
     \REACTIONCLASS: RADICAL_BETA_SCISSION
     ___________________________________________________________________________________________________________
     C5H9O2-4(=)SC3H5CHO+CH3\Author: SD !\Ref: H. J. CURRAN, INT. J. CHEM. KINET., 38, 2006, 250-275 !\Comment: WARNING
-- equation: C3H4CH2OH-3O <=> HOCH2CHO + C2H3  # Reaction 2249
+- equation: C3H4CH2OH-3O <=> HOCH2CHO + C2H3  # Reaction 2247
   rate-constant: {A: 8.52e+25, b: -3.61, Ea: 2.38634e+04}
   note: |
     \Author: SD !\Ref: KINETICS FROM FRANKLIN C GOLDSMITH J. PHYS. CHEM. A, 2012, 116(13), PP 3325-3346 !\Comment: WARNING
-- equation: C3H4CH2OH-3O <=> C2H3COCH2OH + H  # Reaction 2250
+- equation: C3H4CH2OH-3O <=> C2H3COCH2OH + H  # Reaction 2248
   rate-constant: {A: 3.5e+11, b: 1.0, Ea: 1.855858e+04}
   note: |
     DONG 0504!C3H4CH2OH-3O(=)CH2OH+C2H3CHO                      +2.70000000E+014 +0.00000000E+000 +2.39036100E+004 !\Author: WARNING !\Ref: WARNING !\Comment: WARNING
     DONG 0504!C3H4CH2OH-3O(=)HOCH2CHO+C2H3                      +2.70000000E+014 +0.00000000E+000 +2.39036100E+004 !\Author: WARNING !\Ref: WARNING !\Comment: WARNING
     \Author: WARNING !\Ref: WARNING !\Comment: WARNING
-- equation: C2H3COCH2OH + OH <=> C2H3COCHOH + H2O  # Reaction 2251
+- equation: C2H3COCH2OH + OH <=> C2H3COCHOH + H2O  # Reaction 2249
   rate-constant: {A: 7.52e+04, b: 2.49, Ea: -1474.1}
   note: |
     DONG 0423!C2H3COCH2OH+OH(=)C2H3COCH2O+H2O                   +5.81000000E-003 +4.28000000E+000 -3.56000000E+003 !C2H5OH+OH(=)C2H5O+H2O \Author: SD !\Ref: SMB 04 / 09 / 2013 !\Comment: BRANCHING RATIO CHANGED FOR THE UNDERPREDICIOTN OF C2H4 IN THE JSR AND FLOW
     DONG 0423!C2H3COCH2OH+HO2(=)C2H3COCH2O+H2O2                 +6.47000000E-007 +5.30000000E+000 +1.05331000E+004 !C2H5OH+HO2(=)C2H5O+H2O2 \Author: SD !\Ref: MITTAL 2013 !\Comment: INCREASED BY 1.75 ZHOU WARNING
     C2H5OH+OH(=)SC2H4OH+H2O \Author: SD !\Ref: SMB 04 / 09 / 2013 !\Comment: BRANCHING RATIO CHANGED FOR THE UNDERPREDICIOTN OF C2H4 IN THE JSR AND FLOW REACTOR
-- equation: C2H3COCH2OH + HO2 <=> C2H3COCHOH + H2O2  # Reaction 2252
+- equation: C2H3COCH2OH + HO2 <=> C2H3COCHOH + H2O2  # Reaction 2250
   rate-constant: {A: 2.45e-05, b: 5.26, Ea: 7475.1}
   note: |
     C2H5OH+HO2(=)SC2H4OH+H2O2 \Author: SD !\Ref: MITTAL 2013 !\Comment: INCREASED BY 1.75 ZHOU WARNING
-- equation: C2H3COCHOH <=> C2H3CHOHCO  # Reaction 2253
+- equation: C2H3COCHOH <=> C2H3CHOHCO  # Reaction 2251
   rate-constant: {A: 8.84e+44, b: -9.263, Ea: 3.8107e+04}
   note: |
     DONG 0423!C2H3COCHOH(=)C2H3COJCHOH                         +7.18000000E+012 -1.60000000E-001 +1.78830000E+003 !\Author: SD !\Ref: Somers, Kieran P., et al. Physical Chemistry Chemical Physics 16.11 (2014): 5349-5367. !\Comment:O
@@ -24778,32 +24724,32 @@ reactions:
     DONG 0423!C2H3COCHOH(=)CH2CY(CCOC)OH                       +1.74000000E+013 -4.20000000E-001 +2.75380000E+004 !\Author: SD !\Ref: Somers, Kieran P., et al. Physical Chemistry Chemical Physics 16.11 (2014): 5349-5367. !\Comment::
     DONG 0423!CH2CY(CCOC)OH(=)C2H3CHOHCO                        +8.27000000E+007 +1.28000000E+000 +1.86780000E+003 !\Author: SD !\Ref: Somers, Kieran P., et al. Physical Chemistry Chemical Physics 16.11 (2014): 5349-5367. !\Comment:T
     (K.P. SOMERS, ESTIMATED THE SAME AS H45DE2O3J = H35DE2O1J (SIRJEAN_FOURNET SEE MECHANISM)
-- equation: C2H3CHOHCO => CO + CH2CHCHOH  # Reaction 2254
+- equation: C2H3CHOHCO => CO + CH2CHCHOH  # Reaction 2252
   rate-constant: {A: 5.84e+10, b: 0.74, Ea: 6710.1}
   note: |
     \Author: SD !\Ref: Somers, Kieran P., et al. Physical Chemistry Chemical Physics 16.11 (2014): 5349-5367. !\Comment:
-- equation: C3H4CH2OH-1O <=> CH2O + CHCHCH2OH  # Reaction 2255
+- equation: C3H4CH2OH-1O <=> CH2O + CHCHCH2OH  # Reaction 2253
   rate-constant: {A: 8.52e+25, b: -3.61, Ea: 2.78634e+04}
   note: |
     C5H9O2-1(=)CH2O+C4H71-1\Author: SD !\Ref: KINETICS FROM FRANKLIN C GOLDSMITH J. PHYS. CHEM. A, 2012, 116(13), PP 3325-3346 !\Comment: WARNING
-- equation: C3H4CH2OH-1O <=> CHOC3H4OH + H  # Reaction 2256
+- equation: C3H4CH2OH-1O <=> CHOC3H4OH + H  # Reaction 2254
   rate-constant: {A: 2.57e+20, b: -2.06, Ea: 2.20401e+04}
   note: |
     C5H9O2-1(=)C4H7CHO-2+H\Author: SD !\Ref: KINETICS FROM FRANKLIN C GOLDSMITH J. PHYS. CHEM. A, 2012, 116(13), PP 3325-3346 !\Comment: WARNING
-- equation: CHOC3H4OH + OH => H2O + CO + CHCHCH2OH  # Reaction 2257
+- equation: CHOC3H4OH + OH => H2O + CO + CHCHCH2OH  # Reaction 2255
   rate-constant: {A: 3.73e+04, b: 2.6, Ea: -2300.0}
   note: |
     \Author: LLNL !\Ref: ABSTRACTIONS ALDEHYDIC H BY OH_RATE RULE KUKKADAPU1.LLNL.GOV !\Comment: WARNING
-- equation: CHOC3H4OH + CH3 => CH4 + CO + CHCHCH2OH  # Reaction 2258
+- equation: CHOC3H4OH + CH3 => CH4 + CO + CHCHCH2OH  # Reaction 2256
   rate-constant: {A: 1.24879, b: 3.63, Ea: 4328.9}
   note: |
     DONG 220624!CHOC3H4OH+HO2=)H2O2+CO+CHCHCH2OH                 +1.17730000E-004 +4.92000000E+000 +3.68430000E+003 !\Author: WARNING !\Ref: J. MENDES, C-W ZHOU, AND H. J. CURRAN. JPCA, 2014, 118, 12089-12104. !\Comment: WARNINGe
     \Author: WARNING !\Ref: J. MENDES, C-W ZHOU, AND H. J. CURRAN. JPCA, 2014, 118, 12089-12104. !\Comment: WARNING
-- equation: C4H61KET43O => C2H3CHO + HCO  # Reaction 2259
+- equation: C4H61KET43O => C2H3CHO + HCO  # Reaction 2257
   rate-constant: {A: 5.51e+22, b: -2.76, Ea: 1.398e+04}
   note: |
     \Author: SD !\Ref: H. J. CURRAN, INT. J. CHEM. KINET., 38, 2006, 250-275 !\Comment: WARNING
-- equation: C4H5-I + O2 <=> C2H3COCH2 + O  # Reaction 2260
+- equation: C4H5-I + O2 <=> C2H3COCH2 + O  # Reaction 2258
   type: pressure-dependent-Arrhenius
   rate-constants:
   - {P: 0.001 atm, A: 6.71e+04, b: 1.8, Ea: 516.0}
@@ -24824,7 +24770,7 @@ reactions:
     \REACTIONCLASS: C4H5-I+O2(=)PRODUCTS
     ___________________________________________________________________________________________________________
     \Author: SD !\Ref: RUTZ ET AL., JPCA, 2011, 115, 1018-1026. !\Comment: WARNING
-- equation: C4H5-I + O2 <=> C2H3CO + CH2O  # Reaction 2261
+- equation: C4H5-I + O2 <=> C2H3CO + CH2O  # Reaction 2259
   type: pressure-dependent-Arrhenius
   rate-constants:
   - {P: 0.001 atm, A: 1.5e+15, b: -1.08, Ea: 3770.0}
@@ -24835,7 +24781,7 @@ reactions:
   - {P: 100.0 atm, A: 2.19e+09, b: 1.08, Ea: 1.242e+04}
   note: |
     \Author: SD !\Ref: RUTZ ET AL., JPCA, 2011, 115, 1018-1026. !\Comment: WARNING
-- equation: C4H5-I + O2 <=> CH2CHO + CH2CO  # Reaction 2262
+- equation: C4H5-I + O2 <=> CH2CHO + CH2CO  # Reaction 2260
   type: pressure-dependent-Arrhenius
   rate-constants:
   - {P: 0.001 atm, A: 3.09e+07, b: 0.91, Ea: 4480.0}
@@ -24846,7 +24792,7 @@ reactions:
   - {P: 100.0 atm, A: 1.53e+06, b: 1.71, Ea: 1.419e+04}
   note: |
     \Author: SD !\Ref: RUTZ ET AL., JPCA, 2011, 115, 1018-1026. !\Comment: WARNING
-- equation: C4H5-I + O2 <=> C4H4 + HO2  # Reaction 2263
+- equation: C4H5-I + O2 <=> C4H4 + HO2  # Reaction 2261
   type: pressure-dependent-Arrhenius
   rate-constants:
   - {P: 0.001 atm, A: 1.53e+04, b: 2.17, Ea: 6800.0}
@@ -24857,7 +24803,7 @@ reactions:
   - {P: 100.0 atm, A: 79.6, b: 3.1, Ea: 1.269e+04}
   note: |
     \Author: SD !\Ref: RUTZ ET AL., JPCA, 2011, 115, 1018-1026. !\Comment: WARNING
-- equation: C2H3COOCH2 <=> C2H3CO + CH2O  # Reaction 2264
+- equation: C2H3COOCH2 <=> C2H3CO + CH2O  # Reaction 2262
   type: pressure-dependent-Arrhenius
   rate-constants:
   - {P: 0.001 atm, A: 5.71e+43, b: -10.4, Ea: 3.315e+04}
@@ -24868,7 +24814,7 @@ reactions:
   - {P: 100.0 atm, A: 6.21e+19, b: -1.99, Ea: 2.899e+04}
   note: |
     \Author: WARNING !\Ref: RUTZ ET AL., JPCA, 2011, 115, 1018-1026. !\Comment: WARNING
-- equation: C4H5-N + O2 <=> CH2CHCHCHO + O  # Reaction 2265
+- equation: C4H5-N + O2 <=> CH2CHCHCHO + O  # Reaction 2263
   type: pressure-dependent-Arrhenius
   rate-constants:
   - {P: 0.01 atm, A: 1.3e+31, b: -5.3, Ea: 1.48e+04}
@@ -24931,7 +24877,7 @@ reactions:
     PLOG /                           +1.00000000E+002 +7.14000000E+007 +1.28000000E+000 +1.40100000E+003 /
     ! Luna Pratali Maffei 31 December 2023
     LPM /2!10  times   faster  \Author:    SD  !\Ref:  Porfiriev,  Denis   P., ET  AL. Physical    Chemistry   Chemical    Physics (2021). !\Comment:  WARNING
-- equation: C4H5-N + O2 <=> C2H3CHO + HCO  # Reaction 2266
+- equation: C4H5-N + O2 <=> C2H3CHO + HCO  # Reaction 2264
   type: pressure-dependent-Arrhenius
   rate-constants:
   - {P: 0.01 atm, A: 5.81e+28, b: -4.57, Ea: 1.03e+04}
@@ -24966,7 +24912,7 @@ reactions:
     PLOG /                           +1.00000000E+002 +1.09160000E+013 -3.13640000E-001 +3.11120000E+003 /
     ! Luna Pratali Maffei 31 December 2023 A*2
     LPM *2 !\Author: SD !\Ref: Porfiriev, Denis P., ET AL. Physical Chemistry Chemical Physics (2021). !\Comment: WARNING
-- equation: C4H5-N + C2H2 <=> CH2CHCHCHCCH + H  # Reaction 2267
+- equation: C4H5-N + C2H2 <=> CH2CHCHCHCCH + H  # Reaction 2265
   type: pressure-dependent-Arrhenius
   rate-constants:
   - {P: 0.01 atm, A: 1.12e+09, b: 1.39, Ea: 1.7333e+04}
@@ -25107,17 +25053,17 @@ reactions:
     !YM!!PLOG /                           +1.00000000E+001 +1.74000000E+019 -1.86000000E+000 +1.23830000E+004 /
     !YM!!PLOG /                           +1.00000000E+002 +1.23000000E+020 -2.00000000E+000 +1.61520000E+004 /
     \Author: WARNING !\Ref: Senosiain JP, Miller JA. J Phys Chem A 2007;111:3740  7. !\Comment: !REF
-- equation: CH2CHCHCHCCH + OH => 2 C2H2 + C2H + H2O  # Reaction 2268
+- equation: CH2CHCHCHCCH + OH => 2 C2H2 + C2H + H2O  # Reaction 2266
   duplicate: true
   rate-constant: {A: 7.65e+05, b: 2.07, Ea: 1905.53}
   note: |
     \Author: WARNING !\Ref: VASU ET AL. J. PHYS. CHEM. A, 2010, 114, 8312-8318 !\Comment: ANALOGY
-- equation: CH2CHCHCHCCH + OH => 2 C2H2 + C2H + H2O  # Reaction 2269
+- equation: CH2CHCHCHCCH + OH => 2 C2H2 + C2H + H2O  # Reaction 2267
   duplicate: true
   rate-constant: {A: 1.75e+06, b: 2.04, Ea: 4291.92}
   note: |
     \Author: WARNING !\Ref: VASU ET AL. J. PHYS. CHEM. A, 2010, 114, 8312-8318 !\Comment: ANALOGY
-- equation: C4H5-I + C2H2 <=> C4H5-2C2H + H  # Reaction 2270
+- equation: C4H5-I + C2H2 <=> C4H5-2C2H + H  # Reaction 2268
   type: pressure-dependent-Arrhenius
   rate-constants:
   - {P: 0.01 atm, A: 5.59e+18, b: -1.43, Ea: 3.034149e+04}
@@ -25145,27 +25091,27 @@ reactions:
     !YM!!PLOG /                           +1.00000000E+001 +9.70000000E+025 -3.76000000E+000 +2.13264710E+004 /
     !YM!!PLOG /                           +1.00000000E+002 +5.22000000E+041 -7.94000000E+000 +3.95969360E+004 /
     \Author: WARNING !\Ref: Senosiain JP, Miller JA. J Phys Chem A 2007;111:3740  7. !\Comment: !REF
-- equation: C4H5-2C2H + OH => C2H2 + C4H2 + H + H2O  # Reaction 2271
+- equation: C4H5-2C2H + OH => C2H2 + C4H2 + H + H2O  # Reaction 2269
   duplicate: true
   rate-constant: {A: 7.65e+05, b: 2.07, Ea: 1905.53}
   note: |
     \Author: WARNING !\Ref: VASU ET AL. J. PHYS. CHEM. A, 2010, 114, 8312-8318 !\Comment: ANALOGY
-- equation: C4H5-2C2H + OH => C2H2 + C4H2 + H + H2O  # Reaction 2272
+- equation: C4H5-2C2H + OH => C2H2 + C4H2 + H + H2O  # Reaction 2270
   duplicate: true
   rate-constant: {A: 1.75e+06, b: 2.04, Ea: 4291.92}
   note: |
     \Author: WARNING !\Ref: VASU ET AL. J. PHYS. CHEM. A, 2010, 114, 8312-8318 !\Comment: ANALOGY
-- equation: C4H5-2C2H + OH => C2H3 + C4H2 + H2O  # Reaction 2273
+- equation: C4H5-2C2H + OH => C2H3 + C4H2 + H2O  # Reaction 2271
   duplicate: true
   rate-constant: {A: 7.65e+05, b: 2.07, Ea: 1905.53}
   note: |
     \Author: WARNING !\Ref: VASU ET AL. J. PHYS. CHEM. A, 2010, 114, 8312-8318 !\Comment: ANALOGY
-- equation: C4H5-2C2H + OH => C2H3 + C4H2 + H2O  # Reaction 2274
+- equation: C4H5-2C2H + OH => C2H3 + C4H2 + H2O  # Reaction 2272
   duplicate: true
   rate-constant: {A: 1.75e+06, b: 2.04, Ea: 4291.92}
   note: |
     \Author: WARNING !\Ref: VASU ET AL. J. PHYS. CHEM. A, 2010, 114, 8312-8318 !\Comment: ANALOGY
-- equation: C4H4O <=> CO + C3H4-P  # Reaction 2275
+- equation: C4H4O <=> CO + C3H4-P  # Reaction 2273
   rate-constant: {A: 1.78e+15, b: 0.0, Ea: 7.75e+04}
   note: |
     DONG 211226!C4H6O23(=)CYC3H5CHO                                +1.95000000E+013 +0.00000000E+000 +4.94000000E+004 !\Author: WARNING !\Ref: WARNING PRIMARY SOURCE UNCLEAR PROBABLY LASKIN ET AL. !\Comment: WARNINGo
@@ -25174,11 +25120,11 @@ reactions:
     DONG 211226!C4H6O23(=)C2H4+CH2CO                              +5.75000000E+015 +0.00000000E+000 +6.93000000E+004 !\Author: WARNING !\Ref: WARNING PRIMARY SOURCE UNCLEAR PROBABLY LASKIN ET AL. !\Comment: WARNING
     DONG 211226!C4H6O23(=)C2H2+C2H4O1-2                           +1.00000000E+016 +0.00000000E+000 +7.58000000E+004 !\Author: WARNING !\Ref: WARNING PRIMARY SOURCE UNCLEAR PROBABLY LASKIN ET AL. !\Comment: WARNING
     \Author: WARNING !\Ref: WARNING PRIMARY SOURCE UNCLEAR PROBABLY LASKIN ET AL. !\Comment: WARNING
-- equation: C4H4O <=> C2H2 + CH2CO  # Reaction 2276
+- equation: C4H4O <=> C2H2 + CH2CO  # Reaction 2274
   rate-constant: {A: 5.01e+14, b: 0.0, Ea: 7.75e+04}
   note: |
     \Author: WARNING !\Ref: WARNING PRIMARY SOURCE UNCLEAR PROBABLY LASKIN ET AL. !\Comment: WARNING
-- equation: C4H4O + H <=> C3H5-A + CO  # Reaction 2277
+- equation: C4H4O + H <=> C3H5-A + CO  # Reaction 2275
   duplicate: true
   rate-constant: {A: 6.6e+13, b: -0.02, Ea: 2740.0}
   note: |
@@ -25186,39 +25132,39 @@ reactions:
     \REACTIONCLASS: ADD_DECO
     ___________________________________________________________________________________________________________
     \Author: WARNING !\Ref: ALZUETA ET AL. INT J CHEM KINET !\Comment: WARNING
+- equation: C4H4O + H <=> C3H5-A + CO  # Reaction 2276
+  duplicate: true
+  rate-constant: {A: 5.9e+06, b: 2.0, Ea: 1300.0}
+  note: |
+    \Author: WARNING !\Ref: ALZUETA ET AL. INT J CHEM KINET !\Comment: WARNING
+- equation: C4H4O + H <=> C3H5-A + CO  # Reaction 2277
+  duplicate: true
+  rate-constant: {A: 6.6e+13, b: -0.02, Ea: 2740.0}
+  note: |
+    \Author: WARNING !\Ref: ALZUETA ET AL. INT J CHEM KINET !\Comment: WARNING
 - equation: C4H4O + H <=> C3H5-A + CO  # Reaction 2278
   duplicate: true
   rate-constant: {A: 5.9e+06, b: 2.0, Ea: 1300.0}
   note: |
     \Author: WARNING !\Ref: ALZUETA ET AL. INT J CHEM KINET !\Comment: WARNING
-- equation: C4H4O + H <=> C3H5-A + CO  # Reaction 2279
-  duplicate: true
-  rate-constant: {A: 6.6e+13, b: -0.02, Ea: 2740.0}
-  note: |
-    \Author: WARNING !\Ref: ALZUETA ET AL. INT J CHEM KINET !\Comment: WARNING
-- equation: C4H4O + H <=> C3H5-A + CO  # Reaction 2280
-  duplicate: true
-  rate-constant: {A: 5.9e+06, b: 2.0, Ea: 1300.0}
-  note: |
-    \Author: WARNING !\Ref: ALZUETA ET AL. INT J CHEM KINET !\Comment: WARNING
-- equation: C4H4O + O <=> CH2CHO + HCCO  # Reaction 2281
+- equation: C4H4O + O <=> CH2CHO + HCCO  # Reaction 2279
   rate-constant: {A: 3.0e+08, b: 1.45, Ea: -860.0}
   note: |
     \Author: WARNING !\Ref: ALZUETA ET AL. INT J CHEM KINET !\Comment: WARNING
-- equation: C4H4O + OH <=> C3H5-A + CO2  # Reaction 2282
+- equation: C4H4O + OH <=> C3H5-A + CO2  # Reaction 2280
   rate-constant: {A: 3.0e+12, b: 0.0, Ea: 0.0}
   note: |
     \Author: WARNING !\Ref: ALZUETA ET AL. INT J CHEM KINET !\Comment: WARNING
-- equation: C4H4O + OH => C2H2 + HCCO + H2O  # Reaction 2283
+- equation: C4H4O + OH => C2H2 + HCCO + H2O  # Reaction 2281
   rate-constant: {A: 2.02e+13, b: 0.0, Ea: 5933.0}
   note: |
     \Author: KPS !\Ref: !PITZ2001 !\Comment: WARNING
-- equation: C2H3COCH2 <=> AC3H5CO  # Reaction 2284
+- equation: C2H3COCH2 <=> AC3H5CO  # Reaction 2282
   rate-constant: {A: 8.84e+44, b: -9.263, Ea: 3.8107e+04}
   note: |
     DONG 211116 TEST!C2H3COCH2(=)C2H3+CH2CO                            +8.52000000E+025 -3.61000000E+000 +2.38634000E+004  !EA-4KCAL,HPL TAKEN\AUTHOR: SD!\REF: KINETICS FROM FRANKLIN C GOLDSMITH J. PHYS. CHEM. A, 2012, 116 (13), PP 3325-3346 !\COMMENT:C5H9O1-3(=
     (K.P. SOMERS, ESTIMATED THE SAME AS H45DE2O3J = H35DE2O1J (SIRJEAN_FOURNET SEE MECHANISM)
-- equation: CC3H5 <=> C3H5-A  # Reaction 2285
+- equation: CC3H5 <=> C3H5-A  # Reaction 2283
   type: pressure-dependent-Arrhenius
   rate-constants:
   - {P: 1.0 atm, A: 5.16e+35, b: -7.784, Ea: 2.6318e+04}
@@ -25241,31 +25187,31 @@ reactions:
     CPT+OH=CYC5H9+H2O                                      8.37E+07    1.779    -193 !WAGNON1@LLNL.GOV! 209-1341K FIT SIVARAMAKRISHNAN COMBUST.FLAME 156 (2009) 1126-1134
     CPT+HO2=CYC5H9+H2O2                                    4.74E+02    3.370   13719 !WAGNON1@LLNL.GOV! AS A*10(FOR DEG)*1.5 SECONDARY IN TABLE 5 AGUILERA-IPARRAGUIRRE JPCA 112 (2008) 7047-7054
     CPT+CH3=CYC5H9+CH4                                     4.20E+05    2.100    7574 !WAGNON1@LLNL.GOV! DEG=10 AS ALKANE SECONDARY RATE RULE, ZHANG COMBUST.FLAME 172 (2016) 116-135
-- equation: CC3H6 + O2 <=> CC3H5 + HO2  # Reaction 2286
+- equation: CC3H6 + O2 <=> CC3H5 + HO2  # Reaction 2284
   rate-constant: {A: 5.4e+14, b: 0.0, Ea: 6.1104e+04}
   note: |
     WAGNON1@LLNL.GOV! A=DEG*9E+13, E=DH+2RT, T=1000K DH BASED ON BDE OF 106.3KCAL/MOL
-- equation: CC3H6 + H <=> CC3H5 + H2  # Reaction 2287
+- equation: CC3H6 + H <=> CC3H5 + H2  # Reaction 2285
   rate-constant: {A: 1.15e+08, b: 1.99, Ea: 1.11e+04}
   note: |
     WAGNON1@LLNL.GOV! TABLE 4 CYC3*6(DEG) CARSTENSEN J.PHYS.CHEM.A 113 (2009) 367-380
-- equation: CC3H6 + O <=> CC3H5 + OH  # Reaction 2288
+- equation: CC3H6 + O <=> CC3H5 + OH  # Reaction 2286
   rate-constant: {A: 8.62e+07, b: 1.858, Ea: 5804.0}
   note: |
     WAGNON1@LLNL.GOV! ESTIMATE
-- equation: CC3H6 + OH <=> CC3H5 + H2O  # Reaction 2289
+- equation: CC3H6 + OH <=> CC3H5 + H2O  # Reaction 2287
   rate-constant: {A: 4.02e+06, b: 2.11, Ea: 1893.0}
   note: |
     WAGNON1@LLNL.GOV! ESTIMATE
-- equation: CC3H6 + HO2 <=> CC3H5 + H2O2  # Reaction 2290
+- equation: CC3H6 + HO2 <=> CC3H5 + H2O2  # Reaction 2288
   rate-constant: {A: 40.8, b: 3.59, Ea: 1.9724e+04}
   note: |
     WAGNON1@LLNL.GOV! ESTIMATE
-- equation: CC3H6 + CH3 <=> CC3H5 + CH4  # Reaction 2291
+- equation: CC3H6 + CH3 <=> CC3H5 + CH4  # Reaction 2289
   rate-constant: {A: 5.24, b: 3.494, Ea: 9814.0}
   note: |
     WAGNON1@LLNL.GOV! ESTIMATE
-- equation: CJVCCVO <=> C2H3CO  # Reaction 2292
+- equation: CJVCCVO <=> C2H3CO  # Reaction 2290
   rate-constant: {A: 1.4e+09, b: 0.98, Ea: 3.21e+04}
   note: |2
      LPM REACTIONS PREVIOUSLY REMOVED FOR THE DECOMPOSITION OF CVCCVCCVO, CJVCCVO PREVIOUSLY IN PAH BLOCK INSERTED HERE
@@ -25279,23 +25225,23 @@ reactions:
      AUTOMATIC PRUNING ! CVCCVCCVO+CH3O2=>C4H5-N+CO+CH3O2H                      1.50E+12    0.000   11920 !WAGNON1@LLNL.GOV! A/2 AS CVCCVCCVO+HO2=>C4H5-N+CO+H2O2
      AUTOMATIC PRUNING ! 
     \AUTHOR: !\REF:SAKAI ET AL PROCEEDINGS OF THE COMBUSTION INSTITUTE 32 (2009) 411-418
-- equation: C2H2 + HCO <=> CJVCCVO  # Reaction 2293
+- equation: C2H2 + HCO <=> CJVCCVO  # Reaction 2291
   rate-constant: {A: 7.77e+06, b: 1.41, Ea: 7755.0}
   note: |
     \AUTHOR: !\REF:SAKAI ET AL PROCEEDINGS OF THE COMBUSTION INSTITUTE 32 (2009) 411-418
-- equation: CJVCCVO + O2 => CH2CHO + CO + O  # Reaction 2294
+- equation: CJVCCVO + O2 => CH2CHO + CO + O  # Reaction 2292
   rate-constant: {A: 2.45e+12, b: 0.0, Ea: 1041.0}
   note: |
     WAGNON1@LLNL.GOV! FIT TO ARAMCO2.0 C2H3+O2<=>CH2CHO+O AT 1ATM GOLDSMITH JPCA 119 (2015) 7766-7779
-- equation: CJVCCVO + O2 => CHOCHO + H + CO  # Reaction 2295
+- equation: CJVCCVO + O2 => CHOCHO + H + CO  # Reaction 2293
   rate-constant: {A: 4.26e+11, b: 0.0, Ea: -1537.0}
   note: |
     WAGNON1@LLNL.GOV! FIT TO ARAMCO2.0 C2H3+O2=>CH2O+H+CO AT 1ATM GOLDSMITH JPCA 119 (2015) 7766-7779
-- equation: CJVCCVO + O2 <=> CHOCHO + HCO  # Reaction 2296
+- equation: CJVCCVO + O2 <=> CHOCHO + HCO  # Reaction 2294
   rate-constant: {A: 1.82e+11, b: 0.0, Ea: -1537.0}
   note: |
     WAGNON1@LLNL.GOV! FIT TO ARAMCO2.0 C2H3+O2<=>CH2O+HCO AT 1ATM GOLDSMITH JPCA 119 (2015) 7766-7779
-- equation: C4H612 <=> C4H5-2 + H  # Reaction 2297
+- equation: C4H612 <=> C4H5-2 + H  # Reaction 2295
   type: pressure-dependent-Arrhenius
   rate-constants:
   - {P: 0.039473684 atm, A: 1.77828e+64, b: -14.96, Ea: 1.08e+05}
@@ -25313,7 +25259,7 @@ reactions:
     \REACTIONCLASS: RH(=)PRODUCTS
     ___________________________________________________________________________________________________________
     \Author: KUKKADAPU1@LLNL.GOV, LOCKHART J.PHYS.CHEM.A 20(2017) 3827-3850 ! !\Ref: WARNING !\Comment: WARNING
-- equation: C4H612 <=> C4H5-I + H  # Reaction 2298
+- equation: C4H612 <=> C4H5-I + H  # Reaction 2296
   type: pressure-dependent-Arrhenius
   rate-constants:
   - {P: 0.039473684 atm, A: 1.54882e+69, b: -16.28, Ea: 1.179e+05}
@@ -25322,7 +25268,7 @@ reactions:
   - {P: 0.315789474 atm, A: 1.99526e+66, b: -15.09, Ea: 1.213e+05}
   note: |
     AUTHOR: HL LOCKHART2017
-- equation: C4H612 <=> C4H5-3 + H  # Reaction 2299
+- equation: C4H612 <=> C4H5-3 + H  # Reaction 2297
   type: pressure-dependent-Arrhenius
   rate-constants:
   - {P: 0.039473684 atm, A: 1.25893e+67, b: -16.04, Ea: 1.096e+05}
@@ -25331,7 +25277,7 @@ reactions:
   - {P: 0.315789474 atm, A: 1.20226e+72, b: -17.03, Ea: 1.154e+05}
   note: |
     AUTHOR: HL LOCKHART2017
-- equation: C4H612 => C4H4 + 2 H  # Reaction 2300
+- equation: C4H612 => C4H4 + 2 H  # Reaction 2298
   type: pressure-dependent-Arrhenius
   rate-constants:
   - {P: 0.039473684 atm, A: 2.63027e+64, b: -14.94, Ea: 1.087e+05}
@@ -25340,7 +25286,7 @@ reactions:
   - {P: 0.315789474 atm, A: 4.16869e+63, b: -14.43, Ea: 1.094e+05}
   note: |
     AUTHOR: HL LOCKHART2017
-- equation: C4H612 <=> CH3 + C3H3  # Reaction 2301
+- equation: C4H612 <=> CH3 + C3H3  # Reaction 2299
   type: pressure-dependent-Arrhenius
   rate-constants:
   - {P: 0.039473684 atm, A: 1.7337e+127, b: -32.04, Ea: 1.533e+05}
@@ -25363,7 +25309,7 @@ reactions:
     PLOG / 0.157894737 0.6902E+156 -39.63  181700 /
     PLOG / 0.315789474 4.456255E+95    -23.13  126700 /
     AUTHOR: HL LOCKHART2017 A*0.5 EA+2KCAL
-- equation: C4H612 + H <=> C4H5-I + H2  # Reaction 2302
+- equation: C4H612 + H <=> C4H5-I + H2  # Reaction 2300
   rate-constant: {A: 1.7e+05, b: 2.5, Ea: 2490.0}
   note: |
     C4H612=C3H3+CH3                                   4.62E+43       -8.00    95030.0 !HUANG 2017
@@ -25393,55 +25339,55 @@ reactions:
     \REACTIONCLASS: RH+R_ABSTRACTION
     ___________________________________________________________________________________________________________
     \Author: WARNING !\Ref: WARNING PRIMARY SOURCE UNCLEAR PROBABLY LASKIN ET AL. !\Comment: WARNING
-- equation: C4H612 + CH3 <=> C4H5-I + CH4  # Reaction 2303
+- equation: C4H612 + CH3 <=> C4H5-I + CH4  # Reaction 2301
   rate-constant: {A: 7.0e+13, b: 0.0, Ea: 1.85e+04}
   note: |
     \Author: WARNING !\Ref: WARNING PRIMARY SOURCE UNCLEAR PROBABLY LASKIN ET AL. !\Comment: WARNING
-- equation: C4H612 + O <=> C4H5-I + OH  # Reaction 2304
+- equation: C4H612 + O <=> C4H5-I + OH  # Reaction 2302
   rate-constant: {A: 1.8e+11, b: 0.7, Ea: 5880.0}
   note: |
     \Author: WARNING !\Ref: WARNING PRIMARY SOURCE UNCLEAR PROBABLY LASKIN ET AL. !\Comment: WARNING
-- equation: C4H612 + OH <=> C4H5-I + H2O  # Reaction 2305
+- equation: C4H612 + OH <=> C4H5-I + H2O  # Reaction 2303
   rate-constant: {A: 3.1e+06, b: 2.0, Ea: -298.0}
   note: |
     \Author: WARNING !\Ref: WARNING PRIMARY SOURCE UNCLEAR PROBABLY LASKIN ET AL. !\Comment: WARNING
-- equation: C4H612 + H <=> C4H5-3 + H2  # Reaction 2306
+- equation: C4H612 + H <=> C4H5-3 + H2  # Reaction 2304
   rate-constant: {A: 3312.5, b: 3.095, Ea: 5522.0}
   note: |
     \Author: HL, ANALOGY WITH C3H4-A+H(=)C3H3+H2 A/2, SP !\Ref: MILLER ET AL., J. PHYS. CHEM. A, VOL. 112, NO. 39, 2008 !\Comment: WARNING
-- equation: C4H612 + CH3 <=> C4H5-3 + CH4  # Reaction 2307
+- equation: C4H612 + CH3 <=> C4H5-3 + CH4  # Reaction 2305
   rate-constant: {A: 22.0, b: 3.24, Ea: 7761.0}
   note: |
     \Author: HL, ANALOGY WITH C3H4-A+CH3(=)C3H3+CH4 A/2, !\Ref: WARNING !\Comment: WARNING
-- equation: C4H612 + OH <=> C4H5-3 + H2O  # Reaction 2308
+- equation: C4H612 + OH <=> C4H5-3 + H2O  # Reaction 2306
   duplicate: true
   rate-constant: {A: 2.525e+05, b: 2.36, Ea: 2879.0}
   note: |
     \Author: HL, ANALOGY WITH C3H4-A+OH(=)C3H3+H2O A/2, !\Ref: ZADOR AND MILLER, PROCEEDINGS OF THE COMBUSTION INSTITUTE 35(2015) 181-188 !\Comment: WARNING
-- equation: C4H612 + OH <=> C4H5-3 + H2O  # Reaction 2309
+- equation: C4H612 + OH <=> C4H5-3 + H2O  # Reaction 2307
   duplicate: true
   rate-constant: {A: 2.975e+04, b: 2.5, Ea: 661.1}
   note: |
     \Author: HL, ANALOGY WITH C3H4-A+OH(=)C3H3+H2O A/2, !\Ref: ZADOR AND MILLER, PROCEEDINGS OF THE COMBUSTION INSTITUTE 35(2015) 181-188 !\Comment: WARNING
-- equation: C4H612 + H <=> C4H5-2 + H2  # Reaction 2310
+- equation: C4H612 + H <=> C4H5-2 + H2  # Reaction 2308
   rate-constant: {A: 5.667e+04, b: 2.5, Ea: 1000.0}
   note: |
     C4H612+H(=)C4H5-I+H2                                 6.97E+02           3.24E+00         3.33E+03!\Author:HL, ANALOGY WITH C3H6+H(=)C3H5-A+H2, JP !\Ref: !\Comment: H_ADDITION_APPROX_VARIATIONAL_EFFECT
     C4H612+H(=)C4H5-2+H2                                 2.323E+02           3.24E+00         1.83E+03!\Author:HL, A/3 ea-1.5kcal; ANALOGY WITH C3H6+H(=)C3H5-A+H2, JP !\Ref: !\Comment: H_ADDITION_APPROX_VARIATIONAL_EFFECT6
     \Author: HL, ANALOGY WITH C4H612+H(=)C4H5-I+H2, A/3, EA-1.5, \Ref: WARNING PRIMARY SOURCE UNCLEAR PROBABLY LASKIN ET AL. !\Comment: WARNING
-- equation: C4H612 + CH3 <=> C4H5-2 + CH4  # Reaction 2311
+- equation: C4H612 + CH3 <=> C4H5-2 + CH4  # Reaction 2309
   rate-constant: {A: 2.3333e+13, b: 0.0, Ea: 1.7e+04}
   note: |
     \Author: C4H612+CH3(=)C4H5-I+CH4, A/3, EA-1.5 WARNING !\Ref: WARNING PRIMARY SOURCE UNCLEAR PROBABLY LASKIN ET AL. !\Comment: WARNING
-- equation: C4H612 + O <=> C4H5-2 + OH  # Reaction 2312
+- equation: C4H612 + O <=> C4H5-2 + OH  # Reaction 2310
   rate-constant: {A: 6.0e+10, b: 0.7, Ea: 4380.0}
   note: |
     \Author: HL, ANALOGY WITH C4H612+O(=)C4H5-I+OH, A/3, EA-1.5KCAL !\Ref: WARNING PRIMARY SOURCE UNCLEAR PROBABLY LASKIN ET AL. !\Comment: WARNING
-- equation: C4H612 + OH <=> C4H5-2 + H2O  # Reaction 2313
+- equation: C4H612 + OH <=> C4H5-2 + H2O  # Reaction 2311
   rate-constant: {A: 1.0333e+06, b: 2.0, Ea: -448.0}
   note: |
     \Author: HL, ANALOGY WITH C4H612+OH(=)C4H5-I+H2O, A/3, EA-1.5KCAL, WARNING !\Ref: WARNING PRIMARY SOURCE UNCLEAR PROBABLY LASKIN ET AL. !\Comment: WARNING
-- equation: C4H612 + H <=> C4H71-1  # Reaction 2314
+- equation: C4H612 + H <=> C4H71-1  # Reaction 2312
   type: pressure-dependent-Arrhenius
   rate-constants:
   - {P: 0.01 atm, A: 1.51e+61, b: -17.05, Ea: 2.223e+04}
@@ -25463,7 +25409,7 @@ reactions:
      fit btw. 298 and 1300 K with MAE of 0.9%, 2.5%
      fit btw. 298 and 1400 K with MAE of 2.8%, 6.3%
      fit btw. 298 and 1600 K with MAE of 5.9%, 13.3%
-- equation: C4H612 + H <=> C4H71-3  # Reaction 2315
+- equation: C4H612 + H <=> C4H71-3  # Reaction 2313
   type: pressure-dependent-Arrhenius
   rate-constants:
   - {P: 0.01 atm, A: 1.51e+68, b: -17.67, Ea: 2.148e+04}
@@ -25482,7 +25428,7 @@ reactions:
     fit btw. 298 and 1800 K with MAE of 4.0%, 11.8%
     fit btw. 298 and 2000 K with MAE of 6.3%, 18.9%
     fit btw. 298 and 2200 K with MAE of 6.9%, 22.3%
-- equation: C4H612 + H <=> C4H71-4  # Reaction 2316
+- equation: C4H612 + H <=> C4H71-4  # Reaction 2314
   type: pressure-dependent-Arrhenius
   rate-constants:
   - {P: 0.01 atm, A: 3.89e+62, b: -16.32, Ea: 1.935e+04}
@@ -25501,7 +25447,7 @@ reactions:
     fit btw. 298 and 1500 K with MAE of 2.6%, 5.8%
     fit btw. 298 and 1700 K with MAE of 5.6%, 15.4%
     fit btw. 298 and 1900 K with MAE of 9.4%, 27.0%
-- equation: C4H612 + H <=> C4H72-2  # Reaction 2317
+- equation: C4H612 + H <=> C4H72-2  # Reaction 2315
   type: pressure-dependent-Arrhenius
   rate-constants:
   - {P: 0.01 atm, A: 4.6e+68, b: -18.47, Ea: 1.936e+04}
@@ -25520,7 +25466,7 @@ reactions:
     fit btw. 298 and 1300 K with MAE of 0.8%, 2.3%
     fit btw. 298 and 1400 K with MAE of 2.2%, 4.8%
     fit btw. 298 and 1600 K with MAE of 3.6%, 9.3%
-- equation: C4H612 + H <=> C4H71-2  # Reaction 2318
+- equation: C4H612 + H <=> C4H71-2  # Reaction 2316
   type: pressure-dependent-Arrhenius
   rate-constants:
   - {P: 0.01 atm, A: 1.01e+67, b: -17.67, Ea: 2.032e+04}
@@ -25539,7 +25485,7 @@ reactions:
     fit btw. 298 and 1400 K with MAE of 1.6%, 3.7%
     fit btw. 298 and 1500 K with MAE of 3.0%, 6.9%
     fit btw. 298 and 1700 K with MAE of 4.3%, 10.5%
-- equation: C4H612 + H <=> C2H4 + C2H3  # Reaction 2319
+- equation: C4H612 + H <=> C2H4 + C2H3  # Reaction 2317
   type: pressure-dependent-Arrhenius
   rate-constants:
   - {P: 0.01 atm, A: 8.18e+31, b: -6.16, Ea: 1.308e+04}
@@ -25557,7 +25503,7 @@ reactions:
     fit btw. 298 and 2200 K with MAE of 4.5%, 10.8%
     fit btw. 298 and 2200 K with MAE of 2.1%, 7.0%
     fit btw. 298 and 2200 K with MAE of 78.9%, 297.6%
-- equation: C4H612 + H <=> C4H6-2 + H  # Reaction 2320
+- equation: C4H612 + H <=> C4H6-2 + H  # Reaction 2318
   type: pressure-dependent-Arrhenius
   rate-constants:
   - {P: 0.01 atm, A: 2.35e+11, b: 0.51, Ea: 4140.0}
@@ -25576,7 +25522,7 @@ reactions:
     fit btw. 298 and 2200 K with MAE of 0.3%, 1.3%
     fit btw. 298 and 2200 K with MAE of 0.8%, 1.9%
     fit btw. 298 and 2200 K with MAE of 1.3%, 4.4%
-- equation: C4H612 <=> C4H6-2  # Reaction 2321
+- equation: C4H612 <=> C4H6-2  # Reaction 2319
   type: pressure-dependent-Arrhenius
   rate-constants:
   - {P: 0.039473684 atm, A: 8.29795e+75, b: -18.54, Ea: 9.78e+04}
@@ -25589,7 +25535,7 @@ reactions:
     fit btw. 298 and 2200 K with MAE of 0.4%, 1.3%
     fit btw. 298 and 2200 K with MAE of 0.8%, 1.7%
     fit btw. 298 and 2200 K with MAE of 1.5%, 4.9%
-- equation: C4H612 + H <=> C3H4-P + CH3  # Reaction 2322
+- equation: C4H612 + H <=> C3H4-P + CH3  # Reaction 2320
   type: pressure-dependent-Arrhenius
   rate-constants:
   - {P: 0.01 atm, A: 5.9e+11, b: 0.69, Ea: 6026.0}
@@ -25604,7 +25550,7 @@ reactions:
   - {P: 100.0 atm, A: 5.95e+04, b: 2.68, Ea: 5547.0}
   note: |
     author:SN LOCKHART2017 A*2
-- equation: C4H612 + H <=> C3H4-A + CH3  # Reaction 2323
+- equation: C4H612 + H <=> C3H4-A + CH3  # Reaction 2321
   type: pressure-dependent-Arrhenius
   rate-constants:
   - {P: 0.01 atm, A: 8.43e+24, b: -3.73, Ea: 9052.0}
@@ -25623,7 +25569,7 @@ reactions:
     fit btw. 298 and 2200 K with MAE of 0.7%, 1.7%
     fit btw. 298 and 2200 K with MAE of 1.1%, 3.1%
     fit btw. 298 and 2200 K with MAE of 3.2%, 11.4%
-- equation: C4H612 + H <=> C2H5 + C2H2  # Reaction 2324
+- equation: C4H612 + H <=> C2H5 + C2H2  # Reaction 2322
   type: pressure-dependent-Arrhenius
   rate-constants:
   - {P: 0.01 atm, A: 7.04e+09, b: 0.76, Ea: 1.477e+04}
@@ -25640,7 +25586,7 @@ reactions:
     fit btw. 298 and 2200 K with MAE of 1.2%, 3.4%
     fit btw. 298 and 2200 K with MAE of 22.1%, 93.1%
     fit btw. 298 and 2200 K with MAE of 56.5%, 198.4%
-- equation: C2H4 + C2H3 <=> C3H4-P + CH3  # Reaction 2325
+- equation: C2H4 + C2H3 <=> C3H4-P + CH3  # Reaction 2323
   type: pressure-dependent-Arrhenius
   rate-constants:
   - {P: 0.01 atm, A: 1.82e+04, b: 1.71, Ea: 1.321e+04}
@@ -25657,7 +25603,7 @@ reactions:
      fit btw. 298 and 2000 K with MAE of 0.2%, 0.3%
      fit btw. 298 and 2000 K with MAE of 0.4%, 0.9%
      fit btw. 298 and 2000 K with MAE of 1.6%, 4.4%
-- equation: C2H4 + C2H3 <=> C2H5 + C2H2  # Reaction 2326
+- equation: C2H4 + C2H3 <=> C2H5 + C2H2  # Reaction 2324
   type: pressure-dependent-Arrhenius
   rate-constants:
   - {P: 0.01 atm, A: 9.96e+12, b: -1.1, Ea: 1.66e+04}
@@ -25678,7 +25624,7 @@ reactions:
     fit btw. 298 and 2000 K with MAE of 0.3%, 0.7%
     fit btw. 298 and 2000 K with MAE of 1.3%, 3.9%
     fit btw. 298 and 2000 K with MAE of 47.2%, 160.5%
-- equation: C3H4-P + CH3 <=> C2H5 + C2H2  # Reaction 2327
+- equation: C3H4-P + CH3 <=> C2H5 + C2H2  # Reaction 2325
   type: pressure-dependent-Arrhenius
   rate-constants:
   - {P: 0.01 atm, A: 1460.0, b: 1.37, Ea: 2.037e+04}
@@ -25697,7 +25643,7 @@ reactions:
      fit btw. 298 and 2000 K with MAE of 0.1%, 0.3%
      fit btw. 298 and 2000 K with MAE of 0.2%, 0.7%
      fit btw. 298 and 2000 K with MAE of 0.6%, 1.7%
-- equation: C3H4-A + CH3 <=> C2H5 + C2H2  # Reaction 2328
+- equation: C3H4-A + CH3 <=> C2H5 + C2H2  # Reaction 2326
   type: pressure-dependent-Arrhenius
   rate-constants:
   - {P: 0.01 atm, A: 3.8e+12, b: -1.76, Ea: 2.186e+04}
@@ -25716,7 +25662,7 @@ reactions:
     fit btw. 298 and 2000 K with MAE of 0.1%, 0.5%
     fit btw. 298 and 2000 K with MAE of 0.7%, 1.5%
     fit btw. 298 and 2000 K with MAE of 36.0%, 105.5%
-- equation: C4H612 + O <=> CH2CO + C2H4  # Reaction 2329
+- equation: C4H612 + O <=> CH2CO + C2H4  # Reaction 2327
   rate-constant: {A: 1.2e+08, b: 1.65, Ea: 327.0}
   note: |
     ___________________________________________________________________________________________________________
@@ -25726,7 +25672,7 @@ reactions:
     \REACTIONCLASS: RADICAL_ADDITIONO
     ___________________________________________________________________________________________________________
     \Author: WARNING !\Ref: WARNING PRIMARY SOURCE UNCLEAR PROBABLY LASKIN ET AL. !\Comment: WARNING
-- equation: C4H6-2 <=> H2CC + C2H4  # Reaction 2330
+- equation: C4H6-2 <=> H2CC + C2H4  # Reaction 2328
   type: pressure-dependent-Arrhenius
   rate-constants:
   - {P: 0.01 atm, A: 1.24e+70, b: -16.9, Ea: 1.091e+05}
@@ -25745,7 +25691,7 @@ reactions:
     \REACTIONCLASS: RH(=)PRODUCTS
     ___________________________________________________________________________________________________________
     author:SN LOCKHART2017 A*0.5
-- equation: C4H6-2 <=> C2H2 + C2H4  # Reaction 2331
+- equation: C4H6-2 <=> C2H2 + C2H4  # Reaction 2329
   type: pressure-dependent-Arrhenius
   rate-constants:
   - {P: 0.01 atm, A: 7.29e+70, b: -17.33, Ea: 1.141e+05}
@@ -25760,7 +25706,7 @@ reactions:
      fit btw. 800 and 2300 K with MAE of 8.7%, 17.8%
      fit btw. 800 and 2300 K with MAE of 12.9%, 23.3%
      fit btw. 800 and 2300 K with MAE of 13.5%, 32.2%
-- equation: C4H6-2 <=> C4H5-I + H  # Reaction 2332
+- equation: C4H6-2 <=> C4H5-I + H  # Reaction 2330
   type: pressure-dependent-Arrhenius
   rate-constants:
   - {P: 0.01 atm, A: 4.21e+71, b: -17.39, Ea: 1.184e+05}
@@ -25775,7 +25721,7 @@ reactions:
      fit btw. 800 and 2300 K with MAE of 7.1%, 14.8%
      fit btw. 800 and 2300 K with MAE of 11.4%, 21.1%
      fit btw. 800 and 2300 K with MAE of 13.1%, 30.6%
-- equation: C4H6-2 <=> C4H5-2 + H  # Reaction 2333
+- equation: C4H6-2 <=> C4H5-2 + H  # Reaction 2331
   type: pressure-dependent-Arrhenius
   rate-constants:
   - {P: 0.01 atm, A: 1.27e+73, b: -17.47, Ea: 1.164e+05}
@@ -25790,7 +25736,7 @@ reactions:
      fit btw. 800 and 2300 K with MAE of 6.5%, 13.2%
      fit btw. 800 and 2300 K with MAE of 8.1%, 15.4%
      fit btw. 800 and 2300 K with MAE of 6.1%, 15.3%
-- equation: C4H6-2 <=> 2 C2H3  # Reaction 2334
+- equation: C4H6-2 <=> 2 C2H3  # Reaction 2332
   type: pressure-dependent-Arrhenius
   rate-constants:
   - {P: 0.01 atm, A: 9.7e+69, b: -17.11, Ea: 1.255e+05}
@@ -25805,7 +25751,7 @@ reactions:
      fit btw. 800 and 2300 K with MAE of 5.5%, 11.5%
      fit btw. 800 and 2300 K with MAE of 9.2%, 17.4%
      fit btw. 800 and 2300 K with MAE of 11.9%, 27.1%
-- equation: C4H6-2 <=> CH3 + C3H3  # Reaction 2335
+- equation: C4H6-2 <=> CH3 + C3H3  # Reaction 2333
   type: pressure-dependent-Arrhenius
   rate-constants:
   - {P: 0.039473684 atm, A: 1.315135e+80, b: -19.17, Ea: 1.132e+05}
@@ -25814,7 +25760,7 @@ reactions:
   - {P: 0.315789474 atm, A: 2.0369e+88, b: -21.03, Ea: 1.267e+05}
   note: |
     LOCKHART2017 A*0.5 EA+1.5KCAL
-- equation: C4H6-2 + H <=> C4H71-3  # Reaction 2336
+- equation: C4H6-2 + H <=> C4H71-3  # Reaction 2334
   type: pressure-dependent-Arrhenius
   rate-constants:
   - {P: 0.01 atm, A: 2.43e+63, b: -16.86, Ea: 2.461e+04}
@@ -25839,7 +25785,7 @@ reactions:
      fit btw. 298 and 1800 K with MAE of 4.1%, 11.2%
      fit btw. 298 and 2000 K with MAE of 59.1%, 171.3%
      fit btw. 298 and 2200 K with MAE of 18.4%, 58.4%
-- equation: C4H6-2 + H <=> C4H71-4  # Reaction 2337
+- equation: C4H6-2 + H <=> C4H71-4  # Reaction 2335
   type: pressure-dependent-Arrhenius
   rate-constants:
   - {P: 0.01 atm, A: 5.48e+55, b: -14.88, Ea: 2.132e+04}
@@ -25857,7 +25803,7 @@ reactions:
     fit btw. 298 and 1500 K with MAE of 2.5%, 4.6%
     fit btw. 298 and 1700 K with MAE of 4.8%, 12.1%
     fit btw. 298 and 1900 K with MAE of 79.3%, 225.0%
-- equation: C4H6-2 + H <=> C4H72-2  # Reaction 2338
+- equation: C4H6-2 + H <=> C4H72-2  # Reaction 2336
   type: pressure-dependent-Arrhenius
   rate-constants:
   - {P: 0.01 atm, A: 2.02e+68, b: -17.67, Ea: 2.041e+04}
@@ -25876,7 +25822,7 @@ reactions:
     fit btw. 298 and 1300 K with MAE of 1.2%, 3.0%
     fit btw. 298 and 1400 K with MAE of 2.5%, 5.2%
     fit btw. 298 and 1600 K with MAE of 3.7%, 8.9%
-- equation: C4H6-2 + H <=> C4H71-2  # Reaction 2339
+- equation: C4H6-2 + H <=> C4H71-2  # Reaction 2337
   type: pressure-dependent-Arrhenius
   rate-constants:
   - {P: 0.01 atm, A: 1.35e+59, b: -17.02, Ea: 2.661e+04}
@@ -25895,7 +25841,7 @@ reactions:
     fit btw. 298 and 1400 K with MAE of 1.0%, 2.3%
     fit btw. 298 and 1500 K with MAE of 3.8%, 6.9%
     fit btw. 298 and 1700 K with MAE of 34.2%, 115.9%
-- equation: C4H6-2 + H <=> C4H71-1  # Reaction 2340
+- equation: C4H6-2 + H <=> C4H71-1  # Reaction 2338
   type: pressure-dependent-Arrhenius
   rate-constants:
   - {P: 0.01 atm, A: 7.4e+56, b: -16.36, Ea: 2.569e+04}
@@ -25914,7 +25860,7 @@ reactions:
     fit btw. 298 and 1300 K with MAE of 0.7%, 1.7%
     fit btw. 298 and 1400 K with MAE of 2.1%, 4.7%
     fit btw. 298 and 1600 K with MAE of 7.2%, 17.0%
-- equation: C4H6-2 + H <=> C2H4 + C2H3  # Reaction 2341
+- equation: C4H6-2 + H <=> C2H4 + C2H3  # Reaction 2339
   type: pressure-dependent-Arrhenius
   rate-constants:
   - {P: 0.01 atm, A: 3.99e+18, b: -1.94, Ea: 2.165e+04}
@@ -25932,7 +25878,7 @@ reactions:
     fit btw. 298 and 2200 K with MAE of 0.5%, 1.2%
     fit btw. 298 and 2200 K with MAE of 29.1%, 114.0%
     fit btw. 298 and 2200 K with MAE of 40.3%, 124.3%
-- equation: C4H6-2 + H <=> C3H4-P + CH3  # Reaction 2342
+- equation: C4H6-2 + H <=> C3H4-P + CH3  # Reaction 2340
   type: pressure-dependent-Arrhenius
   rate-constants:
   - {P: 0.01 atm, A: 2.0e+16, b: -0.79, Ea: 1.379e+04}
@@ -25952,7 +25898,7 @@ reactions:
      fit btw. 298 and 2200 K with MAE of 0.8%, 1.8%
      fit btw. 298 and 2200 K with MAE of 0.8%, 1.8%
      fit btw. 298 and 2200 K with MAE of 2.1%, 6.7%
-- equation: C4H6-2 + H <=> C3H4-A + CH3  # Reaction 2343
+- equation: C4H6-2 + H <=> C3H4-A + CH3  # Reaction 2341
   type: pressure-dependent-Arrhenius
   rate-constants:
   - {P: 0.01 atm, A: 6.2e+06, b: 1.02, Ea: 1.865e+04}
@@ -25972,7 +25918,7 @@ reactions:
      fit btw. 298 and 2200 K with MAE of 0.5%, 2.0%
      fit btw. 298 and 2200 K with MAE of 0.7%, 1.6%
      fit btw. 298 and 2200 K with MAE of 3.5%, 11.5%
-- equation: C4H6-2 + H <=> C2H5 + C2H2  # Reaction 2344
+- equation: C4H6-2 + H <=> C2H5 + C2H2  # Reaction 2342
   type: pressure-dependent-Arrhenius
   rate-constants:
   - {P: 0.01 atm, A: 6.7e+06, b: 1.25, Ea: 1.957e+04}
@@ -25991,22 +25937,22 @@ reactions:
     fit btw. 298 and 2200 K with MAE of 0.2%, 0.8%
     fit btw. 298 and 2200 K with MAE of 3.8%, 8.9%
     fit btw. 298 and 2200 K with MAE of 2.3%, 7.4%
-- equation: C4H6-2 + H <=> C4H5-2 + H2  # Reaction 2345
+- equation: C4H6-2 + H <=> C4H5-2 + H2  # Reaction 2343
   rate-constant: {A: 5.72e+04, b: 2.825, Ea: 4821.0}
   note: |
     ___________________________________________________________________________________________________________
     \REACTIONCLASS: RH+R_ABSTRACTION
     ___________________________________________________________________________________________________________
     author: SN, 2*C3H4-P
-- equation: C4H6-2 + CH3 <=> C4H5-2 + CH4  # Reaction 2346
+- equation: C4H6-2 + CH3 <=> C4H5-2 + CH4  # Reaction 2344
   rate-constant: {A: 1.0, b: 3.94, Ea: 6810.0}
   note: |
     YINJIN C3H4-P+CH3(=)C3H3+CH4 CLOSE TO BELMEKKI2002
-- equation: C4H6-2 + C3H3 <=> C3H4-P + C4H5-2  # Reaction 2347
+- equation: C4H6-2 + C3H3 <=> C3H4-P + C4H5-2  # Reaction 2345
   rate-constant: {A: 1.0e+13, b: 0.0, Ea: 1.4e+04}
   note: |
     BELMEKKI2002
-- equation: C4H6-2 + O <=> OH + C4H5-2  # Reaction 2348
+- equation: C4H6-2 + O <=> OH + C4H5-2  # Reaction 2346
   type: pressure-dependent-Arrhenius
   rate-constants:
   - {P: 0.1 atm, A: 3.8e+11, b: 0.205, Ea: 3140.0}
@@ -26015,51 +25961,51 @@ reactions:
   - {P: 30.0 atm, A: 2.88e+15, b: -0.82, Ea: 7670.0}
   note: |
     \Author: HL, A*2, ANALOGY WITH C3H4-P+O(=)C3H3+OH, \Ref: GIMONDI, CAVALLOTTI, VANUZZO, BALUCANI, CASAVECCHIA, J. PHYS. CHEM. A 2016, 120, 4619-4633 !\Comment
-- equation: C4H6-2 + OH <=> C4H5-2 + H2O  # Reaction 2349
+- equation: C4H6-2 + OH <=> C4H5-2 + H2O  # Reaction 2347
   duplicate: true
   rate-constant: {A: 3.87e+05, b: 2.34, Ea: 2173.0}
   note: |
     \Author:HL, A, ANALOGY WITH C3H4-P+OH(=)C3H3+H2O, \Ref: ZADOR AND MILLER, PROCEEDINGS OF THE COMBUSTION INSTITUTE 35(2015) 181-188 !\Comment: WARNING
-- equation: C4H6-2 + OH <=> C4H5-2 + H2O  # Reaction 2350
+- equation: C4H6-2 + OH <=> C4H5-2 + H2O  # Reaction 2348
   duplicate: true
   rate-constant: {A: 4.93e+04, b: 2.48, Ea: -62.0}
   note: |
     \Author:HL, A, ANALOGY WITH C3H4-P+OH(=)C3H3+H2O, \Ref: ZADOR AND MILLER, PROCEEDINGS OF THE COMBUSTION INSTITUTE 35(2015) 181-188 !\Comment: WARNING
-- equation: C4H6-2 + O2 <=> C4H5-2 + HO2  # Reaction 2351
+- equation: C4H6-2 + O2 <=> C4H5-2 + HO2  # Reaction 2349
   rate-constant: {A: 6.0e+13, b: 0.0, Ea: 4.26e+04}
   note: |
     \Author: HL, A*2, ANALOGY WITH C3H4-P+O2(=)C3H3+HO2, \Ref: WARNING !\Comment: WARNING
-- equation: C4H6-2 + O2 => 2 CH3CO  # Reaction 2352
+- equation: C4H6-2 + O2 => 2 CH3CO  # Reaction 2350
   rate-constant: {A: 2.0e+13, b: 0.0, Ea: 4.1e+04}
   note: |
     \Author: HL, A, ANALOGY WITH O2+C3H4-P=)HCO+CH3CO, \Ref: WARNING !\Comment: WARNING
-- equation: C4H6-2 + HO2 <=> C4H5-2 + H2O2  # Reaction 2353
+- equation: C4H6-2 + HO2 <=> C4H5-2 + H2O2  # Reaction 2351
   rate-constant: {A: 0.17, b: 4.4, Ea: 1.3547e+04}
   note: |
     HL, A, ANALOGY WITH C3H4-P+HO2(=)C3H3+H2O2;
-- equation: C4H6-2 + CH3O <=> C4H5-2 + CH3OH  # Reaction 2354
+- equation: C4H6-2 + CH3O <=> C4H5-2 + CH3OH  # Reaction 2352
   rate-constant: {A: 18.0, b: 2.95, Ea: 1.199e+04}
   note: |
     \Author: HL, ANALOGY WITH C4H8-2+CH3O(=)C4H71-3+CH3OH, WARNING !\Ref: IN ARAMCO(ESTIMATE) !\Comment: WARNING
-- equation: C4H6-2 + O <=> CH3 + CH3CCO  # Reaction 2355
+- equation: C4H6-2 + O <=> CH3 + CH3CCO  # Reaction 2353
   rate-constant: {A: 1.479e+09, b: 1.28, Ea: 2472.0}
   note: |
     ___________________________________________________________________________________________________________
     \REACTIONCLASS: RADICAL_ADDITIONO
     ___________________________________________________________________________________________________________
     \Author: HL, A*2, ANALOGY WITH C3H4-P+O(=)CH3+HCCO, \Ref: NGUYEN ET AL. J.PHYS.CHEM A 2006, 110, 6696-6706 !\Comment: WARNING
-- equation: C4H6-2 + O <=> CH2CCOCH3 + H  # Reaction 2356
+- equation: C4H6-2 + O <=> CH2CCOCH3 + H  # Reaction 2354
   rate-constant: {A: 2.958e+09, b: 1.28, Ea: 2472.0}
   note: |
     \Author: HL, A*2, ANALOGY WITH C3H4-P+O(=)C3H3O+H, \Ref: NGUYEN ET AL. J.PHYS.CHEM A 2006, 110, 6696-6706 !\Comment: WARNING
-- equation: C4H6-2 + HO2 <=> CH3CCOCH3 + OH  # Reaction 2357
+- equation: C4H6-2 + HO2 <=> CH3CCOCH3 + OH  # Reaction 2355
   rate-constant: {A: 1.0e+08, b: 1.0, Ea: 1.0e+04}
   note: |
     ___________________________________________________________________________________________________________
     \REACTIONCLASS: RADICAL_ADDITIONHO2
     ___________________________________________________________________________________________________________
     HL ESTAMITED
-- equation: C4H6-2 + HO2 <=> CH3CHCOCH3 + O  # Reaction 2358
+- equation: C4H6-2 + HO2 <=> CH3CHCOCH3 + O  # Reaction 2356
   type: pressure-dependent-Arrhenius
   rate-constants:
   - {P: 0.01 atm, A: 5.5e+06, b: 1.19, Ea: 1.288e+04}
@@ -26080,7 +26026,7 @@ reactions:
   - {P: 100.0 atm, A: 0.11, b: 3.52, Ea: 1.198e+04}
   note: |
     \Author: HL, ANALOGY WITH C3H4-P+HO2(=)CH3CHCHO+O, \Ref: ANALOGY TO C2H2+HO2 GIMENEZ-LOPEZ ET AL. INT. J. CHEM. KINET. 48, 11(2016) 724-738 !\Comment: WARNIN
-- equation: C4H6-2 + HO2 <=> CH3CHO + CH3CO  # Reaction 2359
+- equation: C4H6-2 + HO2 <=> CH3CHO + CH3CO  # Reaction 2357
   type: pressure-dependent-Arrhenius
   rate-constants:
   - {P: 0.01 atm, A: 3.9e+13, b: -1.17, Ea: 1.375e+04}
@@ -26101,7 +26047,7 @@ reactions:
   - {P: 100.0 atm, A: 4.32e-06, b: 4.31, Ea: 6829.0}
   note: |
     \Author: HL, ANALOGY WITH C3H4-P+HO2(=)CH3CHO+HCO, \Ref: ANALOGY TO C2H2+HO2 GIMENEZ-LOPEZ ET AL. INT. J. CHEM. KINET. 48, 11(2016) 724-738 !\Comment: WARNIN
-- equation: C4H6-2 + OH <=> SC4H6OH-2  # Reaction 2360
+- equation: C4H6-2 + OH <=> SC4H6OH-2  # Reaction 2358
   type: pressure-dependent-Arrhenius
   rate-constants:
   - {P: 0.000987 atm, A: 1.1e+39, b: -9.21, Ea: 3565.0}
@@ -26121,7 +26067,7 @@ reactions:
     \REACTIONCLASS: RADICAL_ADDITIONOH
     ___________________________________________________________________________________________________________
     \Author: HL, ANALOGY WITH C4H8-2+OH(=)SC4H8OH-3, \Ref: ANTONOV, IVAN O., ET AL. THE JOURNAL OF PHYSICAL CHEMISTRY A119.28(2015) !\Comment: WARNING
-- equation: C4H6-2 + OH <=> CH3CHCO + CH3  # Reaction 2361
+- equation: C4H6-2 + OH <=> CH3CHCO + CH3  # Reaction 2359
   type: pressure-dependent-Arrhenius
   rate-constants:
   - {P: 0.0009869 atm, A: 5.32e+19, b: -2.65, Ea: 3168.0}
@@ -26140,7 +26086,7 @@ reactions:
   - {P: 98.69 atm, A: 494.0, b: 2.59, Ea: 5447.0}
   note: |
     \Author: HL, A*2, ANALOGY WITH C3H4-P+OH=CH2CO+CH3, \Ref: ZADOR AND MILLER, PROCEEDINGS OF THE COMBUSTION INSTITUTE 35(2015) 181-188 !\Comment: WARNING
-- equation: C4H5-2 <=> BUTA123TRIENE + H  # Reaction 2362
+- equation: C4H5-2 <=> BUTA123TRIENE + H  # Reaction 2360
   type: pressure-dependent-Arrhenius
   rate-constants:
   - {P: 0.01 atm, A: 6.17e+58, b: -13.92, Ea: 7.546e+04}
@@ -26164,7 +26110,7 @@ reactions:
      fit btw. 298 and 2000 K with MAE of 5.3%, 15.8%
      fit btw. 298 and 2000 K with MAE of 5.2%, 15.3%
      fit btw. 298 and 2000 K with MAE of 5.1%, 15.4%
-- equation: C4H5-2 <=> C4H4 + H  # Reaction 2363
+- equation: C4H5-2 <=> C4H4 + H  # Reaction 2361
   type: pressure-dependent-Arrhenius
   rate-constants:
   - {P: 0.01 atm, A: 6.6e+57, b: -13.61, Ea: 7.352e+04}
@@ -26181,7 +26127,7 @@ reactions:
     fit btw. 298 and 2000 K with MAE of 28.2%, 91.0%
     fit btw. 298 and 2000 K with MAE of 59.1%, 161.7%
     fit btw. 298 and 2000 K with MAE of 60.0%, 158.6%
-- equation: C4H5-2 <=> C2H3 + C2H2  # Reaction 2364
+- equation: C4H5-2 <=> C2H3 + C2H2  # Reaction 2362
   type: pressure-dependent-Arrhenius
   rate-constants:
   - {P: 0.01 atm, A: 7.04e+57, b: -14.19, Ea: 7.765e+04}
@@ -26199,7 +26145,7 @@ reactions:
     fit btw. 298 and 2000 K with MAE of 4.2%, 11.8%
     fit btw. 298 and 2000 K with MAE of 6.3%, 16.6%
     fit btw. 298 and 2000 K with MAE of 61.4%, 173.4%
-- equation: C4H5-2 + H <=> C3H3 + CH3  # Reaction 2365
+- equation: C4H5-2 + H <=> C3H3 + CH3  # Reaction 2363
   type: pressure-dependent-Arrhenius
   rate-constants:
   - {P: 0.01 atm, A: 3.31e+16, b: -0.69, Ea: 5200.0}
@@ -26217,7 +26163,7 @@ reactions:
     \REACTIONCLASS: R+R(=)PRODUCTS
     ___________________________________________________________________________________________________________
     \Author: HL ANALOGY WITH C3H5-T+H(=)C2H3+CH3, !\Ref: WARNING !\Comment: WARNING
-- equation: H2CCC(S) + CH3 <=> C4H5-2  # Reaction 2366
+- equation: H2CCC(S) + CH3 <=> C4H5-2  # Reaction 2364
   type: pressure-dependent-Arrhenius
   rate-constants:
   - {P: 0.1 atm, A: 6.8e+20, b: -4.16, Ea: 1.8e+04}
@@ -26228,27 +26174,27 @@ reactions:
   - {P: 100.0 atm, A: 3.8e+36, b: -7.58, Ea: 3.13e+04}
   note: |
     \Author: HL ANALOGY WITH C2H2+CH3=C3H5-T, !\Ref: MILLER ET AL. J. PHYS. CHEM. A 2008, 112, 9429-9438 !\Comment: WARNING
-- equation: C4H5-2 + OH <=> CH2OH + C3H3  # Reaction 2367
+- equation: C4H5-2 + OH <=> CH2OH + C3H3  # Reaction 2365
   rate-constant: {A: 3.0e+12, b: 0.0, Ea: 0.0}
   note: |
     \Author: WARNING !\Ref: WARNING PRIMARY SOURCE UNCLEAR PROBABLY LASKIN ET AL. !\Comment: WARNING
-- equation: C4H5-2 + HO2 => OH + C2H2 + CH3CO  # Reaction 2368
+- equation: C4H5-2 + HO2 => OH + C2H2 + CH3CO  # Reaction 2366
   rate-constant: {A: 8.0e+11, b: 0.0, Ea: 0.0}
   note: |
     \Author: WARNING !\Ref: WARNING PRIMARY SOURCE UNCLEAR PROBABLY LASKIN ET AL. !\Comment: WARNING
-- equation: C4H5-2 + O2 <=> CH3CO + CH2CO  # Reaction 2369
+- equation: C4H5-2 + O2 <=> CH3CO + CH2CO  # Reaction 2367
   rate-constant: {A: 2.16e+10, b: 0.0, Ea: 2500.0}
   note: |
     \Author: WARNING !\Ref: WARNING PRIMARY SOURCE UNCLEAR PROBABLY LASKIN ET AL. !\Comment: WARNING
-- equation: C4H5-2 + O <=> CH2O + C3H3  # Reaction 2370
+- equation: C4H5-2 + O <=> CH2O + C3H3  # Reaction 2368
   rate-constant: {A: 3.0e+13, b: 0.0, Ea: 0.0}
   note: |
     \Author: WARNING !\Ref: WARNING PRIMARY SOURCE UNCLEAR PROBABLY LASKIN ET AL. !\Comment: WARNING
-- equation: C4H5-2 + O <=> C4H4O + H  # Reaction 2371
+- equation: C4H5-2 + O <=> C4H4O + H  # Reaction 2369
   rate-constant: {A: 1.4e+14, b: 0.0, Ea: 0.0}
   note: |
     \Author: HL, ANALOGY WITH C3H3+O(=)C2HCHO+H, \Ref: KUKKADAPU1@LLNL.GOV, BASED ON RECOMMENDATION FROM SLAGLE ET AL., PROCI 23(1991), 115-121 !\Comment: WARNIN
-- equation: C4H5-2 + OH <=> C2H3 + CH3CO  # Reaction 2372
+- equation: C4H5-2 + OH <=> C2H3 + CH3CO  # Reaction 2370
   type: pressure-dependent-Arrhenius
   rate-constants:
   - {P: 0.1 atm, A: 1.07088e+19, b: -1.65, Ea: 4470.0}
@@ -26257,7 +26203,7 @@ reactions:
   - {P: 30.0 atm, A: 2.29e+36, b: -6.25, Ea: 2.41e+04}
   note: |
     \Author: HL, ANALOGY WITH C3H3+OH(=)C2H3+HCO, \Ref: VANUZZO, BALUCANI, LEONORI, STRANGES, FALCINELLI, BERGEAT, CASAVECCHIA, GIMONDI, CAVALLOTTI, J. PHYS. CHE
-- equation: C4H3-I + H <=> BUTA123TRIENE  # Reaction 2373
+- equation: C4H3-I + H <=> BUTA123TRIENE  # Reaction 2371
   type: pressure-dependent-Arrhenius
   rate-constants:
   - {P: 0.0395 atm, A: 3.388e+36, b: -7.41, Ea: 6337.0}
@@ -26274,15 +26220,15 @@ reactions:
     \REACTIONCLASS: R+R(=)PRODUCTS
     ___________________________________________________________________________________________________________
     \Author: HL ANALOGY WITH C3H3+H(=)C3H4-A\Ref: Miller and Klippenstein, J. Phys. Chem. A 2003, 107, 2680-2692 !\Comment: WARNING!SP_
-- equation: BUTA123TRIENE + CH3 <=> C4H3-I + CH4  # Reaction 2374
+- equation: BUTA123TRIENE + CH3 <=> C4H3-I + CH4  # Reaction 2372
   rate-constant: {A: 44.0, b: 3.24, Ea: 7761.0}
   note: |
     \Author: HL ANALOGY WITH C3H4-A+CH3(=)C3H3+CH4!\Ref: WARNING !\Comment: WARNING
-- equation: BUTA123TRIENE + H <=> C4H3-I + H2  # Reaction 2375
+- equation: BUTA123TRIENE + H <=> C4H3-I + H2  # Reaction 2373
   rate-constant: {A: 6625.0, b: 3.095, Ea: 5522.0}
   note: |
     \Author: HL ANALOGY WITH C3H4-A+H(=)C3H3+H2\Ref: MILLER ET AL., J. PHYS. CHEM. A, VOL. 112, NO. 39, 2008 !\Comment: WARNING
-- equation: BUTA123TRIENE + H => CH3 + H2CCC(S)  # Reaction 2376
+- equation: BUTA123TRIENE + H => CH3 + H2CCC(S)  # Reaction 2374
   type: pressure-dependent-Arrhenius
   rate-constants:
   - {P: 0.001 atm, A: 1.23e+08, b: 1.53, Ea: 4737.0}
@@ -26295,37 +26241,37 @@ reactions:
   - {P: 100.0 atm, A: 1.28e+06, b: 1.71, Ea: 9774.0}
   note: |
     \Author: HL ANALOGY WITH C3H4-A+H=CH3+C2H2\Ref: MILLER ET AL. J. PHYS. CHEM. A 2008, 112, 9429-9438 !\Comment: WARNING
-- equation: BUTA123TRIENE + C2H <=> C2H2 + C4H3-I  # Reaction 2377
+- equation: BUTA123TRIENE + C2H <=> C2H2 + C4H3-I  # Reaction 2375
   rate-constant: {A: 1.0e+13, b: 0.0, Ea: 0.0}
   note: |
     \Author: HL, ANALOGY WITH C3H4-A+C2H(=)C2H2+C3H3, \Ref: LASKIN ET AL. IJCK 32 589-614 2000 !\Comment: WARNING
-- equation: BUTA123TRIENE + O2 <=> C4H3-I + HO2  # Reaction 2378
+- equation: BUTA123TRIENE + O2 <=> C4H3-I + HO2  # Reaction 2376
   rate-constant: {A: 4.0e+13, b: 0.0, Ea: 4.132e+04}
   note: |
     \Author: HL,ANALOGY WITH C3H4-A+O2(=)C3H3+HO2, \Ref: ANALOGY WITH CURRAN 2006 ALKYL DECOMP !\Comment: WARNING
-- equation: BUTA123TRIENE + C3H5-A <=> C4H3-I + C3H6  # Reaction 2379
+- equation: BUTA123TRIENE + C3H5-A <=> C4H3-I + C3H6  # Reaction 2377
   rate-constant: {A: 840.0, b: 3.22, Ea: 1.44e+04}
   note: |
     \Author: HL, ANALOGY WITH C3H4-A+C3H5-A(=)C3H3+C3H6, \Ref: WARNING !\Comment: WARNING
-- equation: BUTA123TRIENE + O <=> C4H3-I + OH  # Reaction 2380
+- equation: BUTA123TRIENE + O <=> C4H3-I + OH  # Reaction 2378
   rate-constant: {A: 1.93e+06, b: 2.05, Ea: 180.0}
   note: |
     \Author: HL, ANALOGY WITH C3H4-A+O(=)C3H3+OH, \Ref: Nguyen, Peeters, and Vereecken, J. Phys. Chem. A 2006, 110, 12166-12176!\Comment: 20% BR to H-ABSTRACTION
-- equation: BUTA123TRIENE + HCO <=> C4H5-I + CO  # Reaction 2381
+- equation: BUTA123TRIENE + HCO <=> C4H5-I + CO  # Reaction 2379
   rate-constant: {A: 1.0e+07, b: 2.0, Ea: 6000.0}
   note: |
     \Author:HL, ANALOGY WITH C3H4-A+HCO(=)C3H5-A+CO, \Ref: GRI 3.0 AND USC II !\Comment: C2H2+HCO(=)C2H3+CO
-- equation: BUTA123TRIENE + OH <=> C4H3-I + H2O  # Reaction 2382
+- equation: BUTA123TRIENE + OH <=> C4H3-I + H2O  # Reaction 2380
   duplicate: true
   rate-constant: {A: 5.05e+05, b: 2.36, Ea: 2879.0}
   note: |
     \Author: HL, ANALOGY WITH C3H4-A+OH(=)C3H3+H2O, \Ref: ZADOR AND MILLER, PROCEEDINGS OF THE COMBUSTION INSTITUTE 35(2015) 181-188 !\Comment: WARNING
-- equation: BUTA123TRIENE + OH <=> C4H3-I + H2O  # Reaction 2383
+- equation: BUTA123TRIENE + OH <=> C4H3-I + H2O  # Reaction 2381
   duplicate: true
   rate-constant: {A: 5.95e+04, b: 2.5, Ea: 661.1}
   note: |
     \Author: HL, ANALOGY WITH C3H4-A+OH(=)C3H3+H2O, \Ref: ZADOR AND MILLER, PROCEEDINGS OF THE COMBUSTION INSTITUTE 35(2015) 181-188 !\Comment: WARNING
-- equation: IC4H7 <=> C4H6-2 + H  # Reaction 2384
+- equation: IC4H7 <=> C4H6-2 + H  # Reaction 2382
   rate-constant: {A: 3.18e+56, b: -14.562, Ea: 9.0458e+04}
   note: |
     ===========================================================================================================
@@ -26335,7 +26281,7 @@ reactions:
     \REACTIONCLASS: RADICAL_ADDITIONH
     ___________________________________________________________________________________________________________
     ! ADDED BY KUKKADAPU1@LLNL.GOV, FROM KUN WANG'S STUDY
-- equation: CH2CCOCH3 => C2HCOCH3 + H  # Reaction 2385
+- equation: CH2CCOCH3 => C2HCOCH3 + H  # Reaction 2383
   type: pressure-dependent-Arrhenius
   rate-constants:
   - {P: 0.001 atm, A: 3.0e+15, b: -2.31, Ea: 1.46679e+04}
@@ -26353,11 +26299,11 @@ reactions:
     ----------------------------------------------------------------------------------------------------------------------------------
     ----------------------------------------------------------------------------------------------------------------------------------
     \Author: HL, ANALOGY WITH C3H3O=)C2HCHO+H, \Ref: FRANKLIN C GOLDSMITH J. PHYS. CHEM. A, 2012, 116(13), PP 3325 3346 \COMMENT !\Comment: WARNING
-- equation: CH2CCOCH3 + H <=> C2H3COCH3  # Reaction 2386
+- equation: CH2CCOCH3 + H <=> C2H3COCH3  # Reaction 2384
   rate-constant: {A: 1.0e+13, b: 0.0, Ea: 0.0}
   note: |
     \Author: HL, ANALOGY WITH CH3COCH2+H(=)CH3COCH3, \Ref: WJP !\Comment: WARNING
-- equation: CH2CCOCH3 <=> CH2CCO + CH3  # Reaction 2387
+- equation: CH2CCOCH3 <=> CH2CCO + CH3  # Reaction 2385
   type: pressure-dependent-Arrhenius
   rate-constants:
   - {P: 0.0009869 atm, A: 5.41e+58, b: -14.54, Ea: 5.567e+04}
@@ -26376,7 +26322,7 @@ reactions:
   - {P: 98.69 atm, A: 3.5e+19, b: -1.89, Ea: 4.258e+04}
   note: |
     \Author: HL, ANALOGY WITH CH3COCH2=CH2CO+CH3, \Ref: ZADOR AND MILLER, PROCEEDINGS OF THE COMBUSTION INSTITUTE 35(2015) 181-188 !\Comment: WARNING
-- equation: SC4H6OH-2 <=> CH3CHCOCH3  # Reaction 2388
+- equation: SC4H6OH-2 <=> CH3CHCOCH3  # Reaction 2386
   type: pressure-dependent-Arrhenius
   rate-constants:
   - {P: 0.0009869 atm, A: 34.7, b: 0.0, Ea: 7218.0}
@@ -26392,7 +26338,7 @@ reactions:
   - {P: 98.69 atm, A: 4.93e+26, b: -4.92, Ea: 3.225e+04}
   note: |
     \Author: HL, ANALOGY WITH CH3C(OH)CH=CH3COCH2, \Ref: ZADOR AND MILLER, PROCEEDINGS OF THE COMBUSTION INSTITUTE 35(2015) 181-188 !\Comment: WARNING
-- equation: SC4H6OH-2 <=> CH3CHCO + CH3  # Reaction 2389
+- equation: SC4H6OH-2 <=> CH3CHCO + CH3  # Reaction 2387
   type: pressure-dependent-Arrhenius
   rate-constants:
   - {P: 0.000987 atm, A: 5.73e+15, b: -2.117, Ea: 2.5217668e+04}
@@ -26409,7 +26355,7 @@ reactions:
   - {P: 98.7 atm, A: 2.31e+05, b: 1.67, Ea: 2.836e+04}
   note: |
     \Author: HL, ANALOGY WITH CH3C(OH)CH=CH2CO+CH3, \Ref: ZADOR AND MILLER, PROCEEDINGS OF THE COMBUSTION INSTITUTE 35(2015) 181-188 !\Comment: WARNING
-- equation: CH3CHCOCH3 <=> CH2CH2COCH3  # Reaction 2390
+- equation: CH3CHCOCH3 <=> CH2CH2COCH3  # Reaction 2388
   type: pressure-dependent-Arrhenius
   rate-constants:
   - {P: 0.0009869 atm, A: 1.23e+65, b: -18.01, Ea: 5.15e+04}
@@ -26426,7 +26372,7 @@ reactions:
   - {P: 98.69 atm, A: 6.7e-08, b: 5.27, Ea: 2.782e+04}
   note: |
     \Author: HL, ANALOGY WITH CH3CHCHO=CH2CH2CHO, \Ref: ZADOR AND MILLER, PROCEEDINGS OF THE COMBUSTION INSTITUTE 35(2015) 181-188 \COMMENT !\Comment: WARNING
-- equation: CH3CHCOCH3 <=> C4H63,1-3OH  # Reaction 2391
+- equation: CH3CHCOCH3 <=> C4H63,1-3OH  # Reaction 2389
   type: pressure-dependent-Arrhenius
   rate-constants:
   - {P: 0.000987 atm, A: 1.12e+43, b: -10.33, Ea: 4.101e+04}
@@ -26445,7 +26391,7 @@ reactions:
     \AUTHOR: HL, ANALOGY WITH CH3CHCHO=CH2CHCHOH, \Ref:  ZADOR AND MILLER, PROCEEDINGS OF THE COMBUSTION INSTITUTE 35 (2015) 181-188 \COMMENT !\COMMENT: WARNING
      fit btw. 500 and 2000 K with MAE of 70%, 30%
      fit btw. 500 and 2000 K with MAE of 70%, 30%
-- equation: CH3COHOJCOCH3 <=> CH3COOH + CH3CO  # Reaction 2392
+- equation: CH3COHOJCOCH3 <=> CH3COOH + CH3CO  # Reaction 2390
   type: pressure-dependent-Arrhenius
   rate-constants:
   - {P: 0.00526 atm, A: 1.76e+31, b: -7.2, Ea: 1.64e+04}
@@ -26455,39 +26401,39 @@ reactions:
   - {P: 100.0 atm, A: 6.42e+27, b: -4.63, Ea: 1.84e+04}
   note: |
     Author: HL !, ANALOGY WITH CH3COHOJCH3=CH3COOH+CH3, IC3H7O=CH3CHO+CH3 \Author: SD !\Ref: ZADOR AND MILLER, PROC. COMBUST. 34(2013) 519-526 !\Comment: WARNIN
-- equation: C4H72-2OH + H <=> SC4H8OH-3  # Reaction 2393
+- equation: C4H72-2OH + H <=> SC4H8OH-3  # Reaction 2391
   rate-constant: {A: 6.25e+11, b: 0.51, Ea: 4020.0}
   note: |
     \Author: HL, ANALOGY WITH IC3H5OH+H(=)C3H6OH2-1, \Ref: BASED ON IC4H8+H(=)IC4H9 !\Comment: WARNING
-- equation: C4H72-2OH + OH <=> C4H63,1-2OH + H2O  # Reaction 2394
+- equation: C4H72-2OH + OH <=> C4H63,1-2OH + H2O  # Reaction 2392
   rate-constant: {A: 2.1e+07, b: 1.77, Ea: 271.0}
   note: |
     \Author: HL, ANALOGY WITH IC3H5OH+OH=SC3H4OH+H2O, \Ref: WARNING !\Comment: WARNING
-- equation: C4H72-2OH + HO2 <=> C4H63,1-2OH + H2O2  # Reaction 2395
+- equation: C4H72-2OH + HO2 <=> C4H63,1-2OH + H2O2  # Reaction 2393
   rate-constant: {A: 0.0771, b: 4.4, Ea: 1.3547e+04}
   note: |
     \Author: HL, ANALOGY WITH IC3H5OH+HO2=SC3H4OH+H2O2, \Ref: WARNING !\Comment: WARNING
-- equation: C2H4COCH2 <=> C3H4-P + CH2O  # Reaction 2396
+- equation: C2H4COCH2 <=> C3H4-P + CH2O  # Reaction 2394
   rate-constant: {A: 6.0e+14, b: 0.0, Ea: 6.0e+04}
   note: |
     \Author: HL, ANALOGY WITH CH2COCH2(=)C2H2+CH2O, \Ref: WARNING !\Comment: WARNING
-- equation: C2H4COCH2 + OH => CH2O + C3H3 + H2O  # Reaction 2397
+- equation: C2H4COCH2 + OH => CH2O + C3H3 + H2O  # Reaction 2395
   rate-constant: {A: 5.0e+12, b: 0.0, Ea: 0.0}
   note: |
     \Author: HL, ANALOGY WITH CH2COCH2+OH=)CH2O+C2H+H2O, \Ref: WESTBROOK ESTIMATE !\Comment: WARNING
-- equation: C2H4COCH2 + H => CH2O + C3H3 + H2  # Reaction 2398
+- equation: C2H4COCH2 + H => CH2O + C3H3 + H2  # Reaction 2396
   rate-constant: {A: 2.63e+07, b: 2.0, Ea: 5000.0}
   note: |
     \Author: HL, ANALOGY WITH CH2COCH2+H=)CH2O+C2H+H2, \Ref: WESTBROOK ESTIMATE !\Comment: WARNING
-- equation: C2H4COCH2 + O => CH2O + C3H3 + OH  # Reaction 2399
+- equation: C2H4COCH2 + O => CH2O + C3H3 + OH  # Reaction 2397
   rate-constant: {A: 8.43e+13, b: 0.0, Ea: 5200.0}
   note: |
     \Author: HL, ANALOGY WITH CH2COCH2+O=)CH2O+C2H+OH, \Ref: WESTBROOK ESTIMATE !\Comment: WARNING
-- equation: C2H4COCH2 + HO2 => CH2O + C3H3 + H2O2  # Reaction 2400
+- equation: C2H4COCH2 + HO2 => CH2O + C3H3 + H2O2  # Reaction 2398
   rate-constant: {A: 1.0e+13, b: 0.0, Ea: 1.5e+04}
   note: |
     \Author: HL, ANALOGY WITH CH2COCH2+HO2=)CH2O+C2H+H2O2, \Ref: WESTBROOK ESTIMATE !\Comment: WARNING
-- equation: C2H + C2H3 <=> C4H4  # Reaction 2401
+- equation: C2H + C2H3 <=> C4H4  # Reaction 2399
   rate-constant: {A: 1.0e+13, b: 0.0, Ea: 0.0}
   note: |
     ----------------------------------------------------------------------------------------------------------------------------------
@@ -26503,7 +26449,7 @@ reactions:
     ___________________________________________________________________________________________________________
     C4H3-I+H(=)C4H4                                   +3.40000000E+043 -9.01000000E+000 +1.21200000E+004 !\Author: WARNING !\Ref: WARNING PRIMARY SOURCE UNCLEAR PROBABLY LASKIN ET AL. !\Comment: WARNING
     \Author: SN \Ref !\Ref: WARNING !\Comment: WARNING
-- equation: C4H4 <=> 2 C2H2  # Reaction 2402
+- equation: C4H4 <=> 2 C2H2  # Reaction 2400
   type: pressure-dependent-Arrhenius
   rate-constants:
   - {P: 0.0009869 atm, A: 1.13e+62, b: -14.55, Ea: 1.118e+05}
@@ -26528,7 +26474,7 @@ reactions:
      fit btw. 600 and 2500 K with MAE of 2.9%, 7.3%
      fit btw. 600 and 2500 K with MAE of 2.6%, 7.5%
      fit btw. 600 and 2500 K with MAE of 1.5%, 3.4%
-- equation: C4H4 <=> C2H2 + H2CC  # Reaction 2403
+- equation: C4H4 <=> C2H2 + H2CC  # Reaction 2401
   type: pressure-dependent-Arrhenius
   rate-constants:
   - {P: 0.0009869 atm, A: 6.24e+64, b: -14.98, Ea: 1.126e+05}
@@ -26551,7 +26497,7 @@ reactions:
      fit btw. 600 and 2500 K with MAE of 2.3%, 5.8%
      fit btw. 600 and 2500 K with MAE of 1.9%, 5.3%
      fit btw. 600 and 2500 K with MAE of 2.0%, 5.3%
-- equation: C4H4 <=> C4H3-I + H  # Reaction 2404
+- equation: C4H4 <=> C4H3-I + H  # Reaction 2402
   type: pressure-dependent-Arrhenius
   rate-constants:
   - {P: 0.0009869 atm, A: 9.56e+56, b: -13.13, Ea: 1.163e+05}
@@ -26574,7 +26520,7 @@ reactions:
      fit btw. 600 and 2500 K with MAE of 2.3%, 5.7%
      fit btw. 600 and 2500 K with MAE of 3.0%, 8.5%
      fit btw. 600 and 2500 K with MAE of 1.9%, 4.1%
-- equation: C4H4 <=> C4H2 + H2  # Reaction 2405
+- equation: C4H4 <=> C4H2 + H2  # Reaction 2403
   type: pressure-dependent-Arrhenius
   rate-constants:
   - {P: 0.0009869 atm, A: 5.89e+56, b: -13.27, Ea: 1.11e+05}
@@ -26597,28 +26543,28 @@ reactions:
      fit btw. 600 and 2500 K with MAE of 2.4%, 5.6%
      fit btw. 600 and 2500 K with MAE of 2.8%, 7.9%
      fit btw. 600 and 2500 K with MAE of 2.0%, 5.9%
-- equation: C4H4 + H <=> C4H3-N + H2  # Reaction 2406
+- equation: C4H4 + H <=> C4H3-N + H2  # Reaction 2404
   rate-constant: {A: 6.65e+05, b: 2.53, Ea: 1.224e+04}
   note: |
     ___________________________________________________________________________________________________________
     \REACTIONCLASS: RH+R_ABSTRACTION
     ___________________________________________________________________________________________________________
     \Author: WARNING !\Ref: WARNING PRIMARY SOURCE UNCLEAR PROBABLY LASKIN ET AL. !\Comment: WARNING
-- equation: C4H4 + OH <=> C4H3-N + H2O  # Reaction 2407
+- equation: C4H4 + OH <=> C4H3-N + H2O  # Reaction 2405
   rate-constant: {A: 3.1e+07, b: 2.0, Ea: 3430.0}
   note: |
     \Author: WARNING !\Ref: WARNING PRIMARY SOURCE UNCLEAR PROBABLY LASKIN ET AL. !\Comment: WARNING
-- equation: C4H4 + CH3 <=> C4H3-N + CH4  # Reaction 2408
+- equation: C4H4 + CH3 <=> C4H3-N + CH4  # Reaction 2406
   duplicate: true
   rate-constant: {A: 488.0, b: 2.947, Ea: 1.5148e+04}
   note: |
     \Author: WARNING !\Ref: WARNING !\Comment: WARNING
-- equation: C4H4 + CH3 <=> C4H3-N + CH4  # Reaction 2409
+- equation: C4H4 + CH3 <=> C4H3-N + CH4  # Reaction 2407
   duplicate: true
   rate-constant: {A: 8.13e-05, b: 4.417, Ea: 8836.0}
   note: |
     \Author: WARNING !\Ref: WARNING !\Comment: WARNING
-- equation: C4H4 + H <=> C4H3-I + H2  # Reaction 2410
+- equation: C4H4 + H <=> C4H3-I + H2  # Reaction 2408
   duplicate: true
   rate-constant: {A: 1220.0, b: 3.1, Ea: 5344.0}
   note: |
@@ -26631,20 +26577,20 @@ reactions:
         PLOG/1.0E1 8.13E47 -1.0774E1 1.9688E4/
         PLOG/1.0E2 1.24E34 -6.473E0 1.4628E4/
     \Author: WARNING !\Ref: WARNING !\Comment: WARNING
-- equation: C4H4 + H <=> C4H3-I + H2  # Reaction 2411
+- equation: C4H4 + H <=> C4H3-I + H2  # Reaction 2409
   duplicate: true
   rate-constant: {A: 5.43e+13, b: 0.0, Ea: 1.3676e+04}
   note: |
     \Author: WARNING !\Ref: WARNING !\Comment: WARNING
-- equation: C4H4 + OH <=> C4H3-I + H2O  # Reaction 2412
+- equation: C4H4 + OH <=> C4H3-I + H2O  # Reaction 2410
   rate-constant: {A: 1.55e+07, b: 2.0, Ea: 430.0}
   note: |
     \Author: WARNING !\Ref: WARNING PRIMARY SOURCE UNCLEAR PROBABLY LASKIN ET AL. !\Comment: WARNING
-- equation: C4H4 + CH3 <=> C4H3-I + CH4  # Reaction 2413
+- equation: C4H4 + CH3 <=> C4H3-I + CH4  # Reaction 2411
   rate-constant: {A: 5.0e+13, b: 0.0, Ea: 1.98e+04}
   note: |
     \Author: !(KPS !\Ref: WARNING !\Comment: WARNING
-- equation: C3H3 + CH2 <=> C4H4 + H  # Reaction 2414
+- equation: C3H3 + CH2 <=> C4H4 + H  # Reaction 2412
   rate-constant: {A: 5.0e+13, b: 0.0, Ea: 0.0}
   note: |
     C4H4+CH3(=)C4H3-I+CH4                             +2.50000000E+013 +0.00000000E+000 +1.98000000E+004 !\Author: HL A*0.5!(KPS !\Ref: WARNING !\Comment: WARNING
@@ -26652,21 +26598,21 @@ reactions:
     \REACTIONCLASS: RADICAL_ADDITIONH
     ___________________________________________________________________________________________________________
     \Author: WARNING !\Ref: WARNING PRIMARY SOURCE UNCLEAR PROBABLY LASKIN ET AL. !\Comment: WARNING
-- equation: C4H4 + O <=> C3H3 + HCO  # Reaction 2415
+- equation: C4H4 + O <=> C3H3 + HCO  # Reaction 2413
   rate-constant: {A: 6.0e+08, b: 1.45, Ea: -860.0}
   note: |
     ___________________________________________________________________________________________________________
     \REACTIONCLASS: RADICAL_ADDITIONO
     ___________________________________________________________________________________________________________
     \Author: WARNING !\Ref: WARNING PRIMARY SOURCE UNCLEAR PROBABLY LASKIN ET AL. !\Comment: WARNING
-- equation: C4H4 + OH <=> CH2O + C3H3  # Reaction 2416
+- equation: C4H4 + OH <=> CH2O + C3H3  # Reaction 2414
   rate-constant: {A: 5.0e+12, b: 0.0, Ea: 0.0}
   note: |
     ___________________________________________________________________________________________________________
     \REACTIONCLASS: RADICAL_ADDITIONOH
     ___________________________________________________________________________________________________________
     \Author: WARNING !\Ref: WARNING !\Comment: WARNING
-- equation: C2H2 + C2H (+M) <=> C4H3-N (+M)  # Reaction 2417
+- equation: C2H2 + C2H (+M) <=> C4H3-N (+M)  # Reaction 2415
   type: falloff
   low-P-rate-constant: {A: 1.24e+31, b: -4.718, Ea: 1871.0}
   high-P-rate-constant: {A: 8.3e+10, b: 0.899, Ea: -363.0}
@@ -26678,7 +26624,7 @@ reactions:
     \REACTIONCLASS: RADICAL_BETA_SCISSION
     ___________________________________________________________________________________________________________
     \Author: WARNING !\Ref: WARNING !\Comment: WARNING
-- equation: C2H2 + C2H (+M) <=> C4H3-I (+M)  # Reaction 2418
+- equation: C2H2 + C2H (+M) <=> C4H3-I (+M)  # Reaction 2416
   type: falloff
   low-P-rate-constant: {A: 1.24e+31, b: -4.718, Ea: 1871.0}
   high-P-rate-constant: {A: 8.3e+10, b: 0.899, Ea: -363.0}
@@ -26687,7 +26633,7 @@ reactions:
       2.5, C2H6: 3.0, H2O: 6.0}
   note: |
     \Author: WARNING !\Ref: WARNING !\Comment: WARNING
-- equation: C4H2 + H (+M) <=> C4H3-I (+M)  # Reaction 2419
+- equation: C4H2 + H (+M) <=> C4H3-I (+M)  # Reaction 2417
   type: falloff
   low-P-rate-constant: {A: 2.3e+45, b: -8.095, Ea: 2506.6}
   high-P-rate-constant: {A: 4.31e+10, b: 1.158, Ea: 1752.9}
@@ -26697,7 +26643,7 @@ reactions:
     DONG 220324!C4H2+H(=)C4H3-N                                   +1.10000000E+042 -8.72000000E+000 +1.53000000E+004 !\Author: WARNING !\Ref: LASKIN ET AL. IJCK 32 589-614 2000 !\Comment: WARNING
     DONG 220324!C4H2+H(=)C4H3-I                                   +1.10000000E+030 -4.92000000E+000 +1.08000000E+004 !\Author: WARNING !\Ref: WARNING PRIMARY SOURCE UNCLEAR PROBABLY LASKIN ET AL. !\Comment: WARNING
      KLIPP_MILLER 2005, JPCA, 19 (109),2005 !! KUKKADAPU1@LLNL.GOV
-- equation: C4H2 + H <=> C4H3-N  # Reaction 2420
+- equation: C4H2 + H <=> C4H3-N  # Reaction 2418
   type: pressure-dependent-Arrhenius
   rate-constants:
   - {P: 0.0263 atm, A: 1.44e+63, b: -15.7, Ea: 2.4e+04}
@@ -26723,62 +26669,62 @@ reactions:
     !
     !
     !
-- equation: C4H3-N <=> C4H3-I  # Reaction 2421
+- equation: C4H3-N <=> C4H3-I  # Reaction 2419
   rate-constant: {A: 4.1e+43, b: -9.49, Ea: 5.3e+04}
   note: |
     \Author: WARNING !\Ref: WARNING PRIMARY SOURCE UNCLEAR PROBABLY LASKIN ET AL. !\Comment: WARNING
-- equation: C4H3-N + H <=> C4H3-I + H  # Reaction 2422
+- equation: C4H3-N + H <=> C4H3-I + H  # Reaction 2420
   rate-constant: {A: 2.5e+20, b: -1.67, Ea: 1.08e+04}
   note: |
     ___________________________________________________________________________________________________________
     \REACTIONCLASS: R+R(=)PRODUCTS
     ___________________________________________________________________________________________________________
     \Author: WARNING !\Ref: WARNING PRIMARY SOURCE UNCLEAR PROBABLY LASKIN ET AL. !\Comment: WARNING
-- equation: C4H3-N + H <=> C2H2 + H2CC  # Reaction 2423
+- equation: C4H3-N + H <=> C2H2 + H2CC  # Reaction 2421
   rate-constant: {A: 6.3e+25, b: -3.34, Ea: 1.0014e+04}
   note: |
     \Author: WARNING !\Ref: WARNING PRIMARY SOURCE UNCLEAR PROBABLY LASKIN ET AL. !\Comment: WARNING
-- equation: C4H3-N + H <=> C4H4  # Reaction 2424
+- equation: C4H3-N + H <=> C4H4  # Reaction 2422
   rate-constant: {A: 2.0e+47, b: -10.26, Ea: 1.307e+04}
   note: |
     \Author: WARNING !\Ref: WARNING PRIMARY SOURCE UNCLEAR PROBABLY LASKIN ET AL. !\Comment: WARNING
-- equation: C4H3-N + H <=> C4H2 + H2  # Reaction 2425
+- equation: C4H3-N + H <=> C4H2 + H2  # Reaction 2423
   rate-constant: {A: 3.0e+13, b: 0.0, Ea: 0.0}
   note: |
     \Author: WARNING !\Ref: WARNING PRIMARY SOURCE UNCLEAR PROBABLY LASKIN ET AL. !\Comment: WARNING
-- equation: C4H3-N + OH <=> C4H2 + H2O  # Reaction 2426
+- equation: C4H3-N + OH <=> C4H2 + H2O  # Reaction 2424
   rate-constant: {A: 2.0e+12, b: 0.0, Ea: 0.0}
   note: |
     \Author: WARNING !\Ref: WARNING PRIMARY SOURCE UNCLEAR PROBABLY LASKIN ET AL. !\Comment: WARNING
-- equation: C4H3-N + C2H3 <=> 2 C3H3  # Reaction 2427
+- equation: C4H3-N + C2H3 <=> 2 C3H3  # Reaction 2425
   rate-constant: {A: 4.0e+12, b: 0.0, Ea: 0.0}
   note: |
     \Author: WARNING !\Ref: WARNING !\Comment: WARNING
-- equation: C3H3 + CH <=> C4H3-I + H  # Reaction 2428
+- equation: C3H3 + CH <=> C4H3-I + H  # Reaction 2426
   rate-constant: {A: 5.0e+13, b: 0.0, Ea: 0.0}
   note: |
     \Author: WARNING !\Ref: WARNING PRIMARY SOURCE UNCLEAR PROBABLY LASKIN ET AL. !\Comment: WARNING
-- equation: C4H3-I + H <=> C2H2 + H2CC  # Reaction 2429
+- equation: C4H3-I + H <=> C2H2 + H2CC  # Reaction 2427
   rate-constant: {A: 2.8e+23, b: -2.55, Ea: 1.078e+04}
   note: |
     \Author: WARNING !\Ref: WARNING PRIMARY SOURCE UNCLEAR PROBABLY LASKIN ET AL. !\Comment: WARNING
-- equation: C4H3-I + H <=> C4H2 + H2  # Reaction 2430
+- equation: C4H3-I + H <=> C4H2 + H2  # Reaction 2428
   rate-constant: {A: 6.0e+13, b: 0.0, Ea: 0.0}
   note: |
     \Author: WARNING !\Ref: WARNING PRIMARY SOURCE UNCLEAR PROBABLY LASKIN ET AL. !\Comment: WARNING
-- equation: C4H3-I + OH <=> C4H2 + H2O  # Reaction 2431
+- equation: C4H3-I + OH <=> C4H2 + H2O  # Reaction 2429
   rate-constant: {A: 4.0e+12, b: 0.0, Ea: 0.0}
   note: |
     \Author: WARNING !\Ref: WARNING PRIMARY SOURCE UNCLEAR PROBABLY LASKIN ET AL. !\Comment: WARNING
-- equation: C4H3-I + O2 <=> HCCO + CH2CO  # Reaction 2432
+- equation: C4H3-I + O2 <=> HCCO + CH2CO  # Reaction 2430
   rate-constant: {A: 7.86e+16, b: -1.8, Ea: 0.0}
   note: |
     \Author: WARNING !\Ref: WARNING PRIMARY SOURCE UNCLEAR PROBABLY LASKIN ET AL. !\Comment: WARNING
-- equation: C4H3-I + CH2 <=> C3H4-A + C2H  # Reaction 2433
+- equation: C4H3-I + CH2 <=> C3H4-A + C2H  # Reaction 2431
   rate-constant: {A: 2.0e+13, b: 0.0, Ea: 0.0}
   note: |
     \Author: WARNING !\Ref: ZIEGLER ET AL. J. ANAL.APPLY.PYROLYSIS 73 212-230(2005) !\Comment: WARNING
-- equation: C3H3 + HCCO <=> C4H4 + CO  # Reaction 2434
+- equation: C3H3 + HCCO <=> C4H4 + CO  # Reaction 2432
   rate-constant: {A: 2.5e+13, b: 0.0, Ea: 0.0}
   note: |
     ___________________________________________________________________________________________________________
@@ -26793,7 +26739,7 @@ reactions:
     \REACTIONCLASS: MISCELLANEOUS
     ___________________________________________________________________________________________________________
     \Author: WARNING !\Ref: WARNING PRIMARY SOURCE UNCLEAR PROBABLY LASKIN ET AL. !\Comment: WARNING
-- equation: 2 C2H <=> C4H2  # Reaction 2435
+- equation: 2 C2H <=> C4H2  # Reaction 2433
   rate-constant: {A: 1.8e+13, b: 0.0, Ea: 0.0}
   note: |
     ----------------------------------------------------------------------------------------------------------------------------------
@@ -26810,23 +26756,23 @@ reactions:
     DONG 220723 DUP!TROE /                           +9.80000000E-001 +5.60000000E+001 +5.80000000E+002 +4.16400000E+003 /
     DONG 220723 DUP!CO / +1.5000 / CO2 / +2.0000 / H2 / +2.0000 / CH4 / +2.0000 / C2H4 / +3.0000 / C2H6 / +3.0000 / C2H2 / +3.0000 / H2O / +6.0000 /
     \Author: HL, Fournet 1999 TANG 1986
-- equation: C2H2 + C2H <=> C4H2 + H  # Reaction 2436
+- equation: C2H2 + C2H <=> C4H2 + H  # Reaction 2434
   rate-constant: {A: 9.6e+13, b: 0.0, Ea: 0.0}
   note: |
     ___________________________________________________________________________________________________________
     \REACTIONCLASS: RADICAL_ADDITIONOH
     ___________________________________________________________________________________________________________
     \Author: WARNING !\Ref: LASKIN ET AL. IJCK 32 589-614 2000 !\Comment: WARNING
-- equation: C4H2 + OH <=> CO + C3H3  # Reaction 2437
+- equation: C4H2 + OH <=> CO + C3H3  # Reaction 2435
   rate-constant: {A: 2.58e+19, b: -2.44, Ea: 3034.0}
   note: |
     \Author: WARNING !\Ref: WARNING !\Comment: WARNING
-- equation: C4H2 + O <=> C3H2 + CO  # Reaction 2438
+- equation: C4H2 + O <=> C3H2 + CO  # Reaction 2436
   rate-constant: {A: 4.5e+13, b: 0.0, Ea: 1967.017}
   note: |
     TEST
     NIST Langer suggestion
-- equation: NC3H7CHO <=> CH3 + CH2CH2CHO  # Reaction 2439
+- equation: NC3H7CHO <=> CH3 + CH2CH2CHO  # Reaction 2437
   rate-constant: {A: 1.63e+24, b: -2.246, Ea: 9.03693e+04}
   note: |
     ___________________________________________________________________________________________________________
@@ -26846,226 +26792,226 @@ reactions:
     \REACTIONCLASS: RH(=)PRODUCTS/UNIMOLECULARDECOMPOSITION
     ___________________________________________________________________________________________________________
     \Author: SD !\Ref: M. PELUCCHI,COMBUST. FLAME 162(2015) 265-286. !\Comment: WARNING
-- equation: NC3H7CHO <=> C2H5 + CH2CHO  # Reaction 2440
+- equation: NC3H7CHO <=> C2H5 + CH2CHO  # Reaction 2438
   rate-constant: {A: 8.96e+35, b: -5.6, Ea: 9.0479e+04}
   note: |
     NC3H7CHO(=)C2H5+CH2CHO                            +7.56000000E+027 -3.50000000E+000 +8.14791000E+004 !\Author: WARNING !\Ref: M. PELUCCHI,COMBUST. FLAME 162(2015) 265-286. !\Comment: WARNING
     ERFIT OVER 300-1000K \Author: SD !\Ref: M. PELUCCHI,COMBUST. FLAME 162(2015) 265-286. !\Comment: WARNING
-- equation: NC3H7CHO <=> NC3H7 + HCO  # Reaction 2441
+- equation: NC3H7CHO <=> NC3H7 + HCO  # Reaction 2439
   rate-constant: {A: 1.12e+28, b: -3.51, Ea: 8.37575e+04}
   note: |
     \Author: WARNING !\Ref: M. PELUCCHI,COMBUST. FLAME 162(2015) 265-286. !\Comment: WARNING
-- equation: NC3H7CHO <=> H + C3H6CHO-1  # Reaction 2442
+- equation: NC3H7CHO <=> H + C3H6CHO-1  # Reaction 2440
   rate-constant: {A: 5.42e+15, b: -0.23, Ea: 9.15293e+04}
   note: |
     \Author: SD !\Ref: M. PELUCCHI,COMBUST. FLAME 162(2015) 265-286. !\Comment: WARNING
-- equation: NC3H7CHO <=> H + NC3H7CO  # Reaction 2443
+- equation: NC3H7CHO <=> H + NC3H7CO  # Reaction 2441
   rate-constant: {A: 4.07e+17, b: -0.5778, Ea: 8.8995e+04}
   note: |
     \Author: SD !\Ref: M. PELUCCHI,COMBUST. FLAME 162(2015) 265-286. !\Comment: WARNING
-- equation: NC3H7CHO <=> CO + C3H8  # Reaction 2444
+- equation: NC3H7CHO <=> CO + C3H8  # Reaction 2442
   rate-constant: {A: 1.0e+14, b: 0.0, Ea: 7.5e+04}
   note: |
     \Author: WARNING !\Ref: WARNING !\Comment: WARNING
-- equation: NC3H7CHO <=> CH2CO + C2H6  # Reaction 2445
+- equation: NC3H7CHO <=> CH2CO + C2H6  # Reaction 2443
   rate-constant: {A: 1.0e+14, b: 0.0, Ea: 7.5e+04}
   note: |
     \Author: WARNING !\Ref: WARNING !\Comment: WARNING
-- equation: NC3H7CHO + H <=> NC3H7CO + H2  # Reaction 2446
+- equation: NC3H7CHO + H <=> NC3H7CO + H2  # Reaction 2444
   rate-constant: {A: 8.46e+05, b: 2.3, Ea: 1545.0}
   note: |
     ___________________________________________________________________________________________________________
     \REACTIONCLASS: RH+R_ABSTRACTION
     ___________________________________________________________________________________________________________
     \Author: SD !\Ref: J. MENDES, ET AL, J. PHYS. CHEM. A, 118(51)(2014), PP. 12089-12104 !\Comment: WARNING
-- equation: NC3H7CHO + H <=> C3H6CHO-1 + H2  # Reaction 2447
+- equation: NC3H7CHO + H <=> C3H6CHO-1 + H2  # Reaction 2445
   rate-constant: {A: 1.05e+05, b: 2.5, Ea: 5041.0}
   note: |
     \Author: WARNING !\Ref: WARNING !\Comment: WARNING
-- equation: NC3H7CHO + H <=> C3H6CHO-2 + H2  # Reaction 2448
+- equation: NC3H7CHO + H <=> C3H6CHO-2 + H2  # Reaction 2446
   rate-constant: {A: 1.3e+06, b: 2.4, Ea: 4471.0}
   note: |
     \Author: WARNING !\Ref: WARNING !\Comment: WARNING
-- equation: NC3H7CHO + H <=> C3H6CHO-3 + H2  # Reaction 2449
+- equation: NC3H7CHO + H <=> C3H6CHO-3 + H2  # Reaction 2447
   rate-constant: {A: 2.63e+05, b: 2.69, Ea: 6450.0}
   note: |
     \Author: SD !\Ref: M. PELUCCHI,COMBUST. FLAME 162(2015) 265-286 !\Comment: WARNING
-- equation: NC3H7CHO + O <=> NC3H7CO + OH  # Reaction 2450
+- equation: NC3H7CHO + O <=> NC3H7CO + OH  # Reaction 2448
   rate-constant: {A: 5.8e+12, b: 0.0, Ea: 1800.0}
   note: |
     \Author: SD !\Ref: ANALOGY WITH CH3CHO+O !\Comment: WARNING
-- equation: NC3H7CHO + O <=> C3H6CHO-1 + OH  # Reaction 2451
+- equation: NC3H7CHO + O <=> C3H6CHO-1 + OH  # Reaction 2449
   rate-constant: {A: 1.444e+11, b: 0.23, Ea: 2970.0}
   note: |
     \Author: SD !\Ref: ZHANG ET AL. !\Comment: WARNING
-- equation: NC3H7CHO + O <=> C3H6CHO-2 + OH  # Reaction 2452
+- equation: NC3H7CHO + O <=> C3H6CHO-2 + OH  # Reaction 2450
   rate-constant: {A: 2.81e+13, b: 0.0, Ea: 5200.0}
   note: |
     \Author: WARNING !\Ref: WARNING !\Comment: WARNING
-- equation: NC3H7CHO + O <=> C3H6CHO-3 + OH  # Reaction 2453
+- equation: NC3H7CHO + O <=> C3H6CHO-3 + OH  # Reaction 2451
   rate-constant: {A: 3.71e+06, b: 2.4, Ea: 5505.0}
   note: |
     \Author: SD !\Ref: ZHANG ET AL. !\Comment: WARNING
-- equation: NC3H7CHO + OH <=> NC3H7CO + H2O  # Reaction 2454
+- equation: NC3H7CHO + OH <=> NC3H7CO + H2O  # Reaction 2452
   rate-constant: {A: 3.73e+04, b: 2.6, Ea: -2300.0}
   note: |
     \Author: WARNING !\Ref: WARNING !\Comment: WARNING
-- equation: NC3H7CHO + OH <=> C3H6CHO-1 + H2O  # Reaction 2455
+- equation: NC3H7CHO + OH <=> C3H6CHO-1 + H2O  # Reaction 2453
   rate-constant: {A: 472.0, b: 3.15, Ea: -3050.045}
   note: |
     \Author: WARNING !\Ref: C.-W. ZHOU, PHYS. CHEM. CHEM. PHYS. 13(2011) 11175-11192. !\Comment: WARNING
-- equation: NC3H7CHO + OH <=> C3H6CHO-2 + H2O  # Reaction 2456
+- equation: NC3H7CHO + OH <=> C3H6CHO-2 + H2O  # Reaction 2454
   rate-constant: {A: 7.055e+09, b: 0.935, Ea: 504.7}
   note: |
     \Author: WARNING !\Ref: R. SIVARAMAKRISHNAN, J. V. MICHAEL, J. PHYS. CHEM. A, 113, 2009, 5047-5060 !\Comment: WARNING
-- equation: NC3H7CHO + OH <=> C3H6CHO-3 + H2O  # Reaction 2457
+- equation: NC3H7CHO + OH <=> C3H6CHO-3 + H2O  # Reaction 2455
   rate-constant: {A: 1.366e+07, b: 1.813, Ea: 868.4}
   note: |
     \Author: WARNING !\Ref: R. SIVARAMAKRISHNAN, J. V. MICHAEL, J. PHYS. CHEM. A, 113, 2009, 5047-5060 !\Comment: WARNING
-- equation: NC3H7CHO + CH3 <=> NC3H7CO + CH4  # Reaction 2458
+- equation: NC3H7CHO + CH3 <=> NC3H7CO + CH4  # Reaction 2456
   rate-constant: {A: 2.99, b: 3.6, Ea: 4338.0}
   note: |
     \Author: SD !\Ref: J. MENDES, ET AL, J. PHYS. CHEM. A, 118(51)(2014), PP. 12089-12104 !\Comment: WARNING
-- equation: NC3H7CHO + CH3 <=> C3H6CHO-1 + CH4  # Reaction 2459
+- equation: NC3H7CHO + CH3 <=> C3H6CHO-1 + CH4  # Reaction 2457
   rate-constant: {A: 0.616, b: 3.6, Ea: 6581.0}
   note: |
     \Author: SD !\Ref: J. MENDES, ET AL, J. PHYS. CHEM. A, 118(51)(2014), PP. 12089-12104 !\Comment: WARNING
-- equation: NC3H7CHO + CH3 <=> C3H6CHO-2 + CH4  # Reaction 2460
+- equation: NC3H7CHO + CH3 <=> C3H6CHO-2 + CH4  # Reaction 2458
   rate-constant: {A: 1.51, b: 3.46, Ea: 5481.0}
   note: |
     \Author: WARNING !\Ref: WARNING !\Comment: WARNING
-- equation: NC3H7CHO + CH3 <=> C3H6CHO-3 + CH4  # Reaction 2461
+- equation: NC3H7CHO + CH3 <=> C3H6CHO-3 + CH4  # Reaction 2459
   rate-constant: {A: 0.105, b: 4.0, Ea: 9253.0}
   note: |
     \Author: SD !\Ref: J. MENDES, ET AL, J. PHYS. CHEM. A, 118(51)(2014), PP. 12089-12104 !\Comment: WARNING
-- equation: NC3H7CHO + HO2 <=> NC3H7CO + H2O2  # Reaction 2462
+- equation: NC3H7CHO + HO2 <=> NC3H7CO + H2O2  # Reaction 2460
   rate-constant: {A: 4.65e-05, b: 5.0, Ea: 3504.0}
   note: |
     \Author: WARNING !\Ref: J. MENDES, ET AL, J. PHYS. CHEM. A, 118(51)(2014), PP. 12089-12104 !\Comment: WARNING
-- equation: NC3H7CHO + HO2 <=> C3H6CHO-1 + H2O2  # Reaction 2463
+- equation: NC3H7CHO + HO2 <=> C3H6CHO-1 + H2O2  # Reaction 2461
   rate-constant: {A: 7.7483e+12, b: 0.0, Ea: 1.8248e+04}
   note: |
     \Author: WARNING !\Ref: ALTARAWNEH, MOHAMMEDNOOR, ET AL. JOURNAL OF COMPUTATIONAL CHEMISTRY 32.8(2011) !\Comment: WARNING
-- equation: NC3H7CHO + HO2 <=> C3H6CHO-2 + H2O2  # Reaction 2464
+- equation: NC3H7CHO + HO2 <=> C3H6CHO-2 + H2O2  # Reaction 2462
   rate-constant: {A: 78.76, b: 3.37, Ea: 1.372e+04}
   note: |
     \Author: WARNING !\Ref: J. AGUILERA-IPARRAGUIRRE, H. J. CURRAN, W. KLOPPER, J. M. SIMMIE, J. PHYS. CHEM. A, 112, 2008, 7047-7054 !\Comment: WARNING
-- equation: NC3H7CHO + HO2 <=> C3H6CHO-3 + H2O2  # Reaction 2465
+- equation: NC3H7CHO + HO2 <=> C3H6CHO-3 + H2O2  # Reaction 2463
   rate-constant: {A: 10.4, b: 3.59, Ea: 1.56e+04}
   note: |
     \Author: WARNING !\Ref: 60% OF NEW RATE !\Comment: WARNING
-- equation: NC3H7CHO + O2 <=> NC3H7CO + HO2  # Reaction 2466
+- equation: NC3H7CHO + O2 <=> NC3H7CO + HO2  # Reaction 2464
   rate-constant: {A: 9.0e+12, b: 0.5, Ea: 4.22e+04}
   note: |
     \Author: SD !\Ref: ANALOGY TO CH3CHO !\Comment: WARNING
-- equation: NC3H7CHO + O2 <=> C3H6CHO-1 + HO2  # Reaction 2467
+- equation: NC3H7CHO + O2 <=> C3H6CHO-1 + HO2  # Reaction 2465
   rate-constant: {A: 3.03e+13, b: 0.0, Ea: 4.59e+04}
   note: |
     \Author: WARNING !\Ref: WARNING !\Comment: WARNING
-- equation: NC3H7CHO + O2 <=> C3H6CHO-2 + HO2  # Reaction 2468
+- equation: NC3H7CHO + O2 <=> C3H6CHO-2 + HO2  # Reaction 2466
   rate-constant: {A: 2.0e+13, b: 0.0, Ea: 4.98e+04}
   note: |
     \Author: WARNING !\Ref: WARNING !\Comment: WARNING
-- equation: NC3H7CHO + O2 <=> C3H6CHO-3 + HO2  # Reaction 2469
+- equation: NC3H7CHO + O2 <=> C3H6CHO-3 + HO2  # Reaction 2467
   rate-constant: {A: 3.0e+13, b: 0.0, Ea: 5.23e+04}
   note: |
     \Author: WARNING !\Ref: WARNING !\Comment: WARNING
-- equation: NC3H7CHO + C2H5 <=> NC3H7CO + C2H6  # Reaction 2470
+- equation: NC3H7CHO + C2H5 <=> NC3H7CO + C2H6  # Reaction 2468
   rate-constant: {A: 7.36e+04, b: 2.0, Ea: 5917.09}
   note: |
     \Author: WARNING !\Ref: WARNING !\Comment: WARNING
-- equation: NC3H7CHO + C2H5 <=> C3H6CHO-1 + C2H6  # Reaction 2471
+- equation: NC3H7CHO + C2H5 <=> C3H6CHO-1 + C2H6  # Reaction 2469
   rate-constant: {A: 3.0e+10, b: 0.0, Ea: 8600.0}
   note: |
     \Author: WARNING !\Ref: WARNING !\Comment: WARNING
-- equation: NC3H7CHO + C2H5 <=> C3H6CHO-2 + C2H6  # Reaction 2472
+- equation: NC3H7CHO + C2H5 <=> C3H6CHO-2 + C2H6  # Reaction 2470
   rate-constant: {A: 5.0e+10, b: 0.0, Ea: 1.04e+04}
   note: |
     \Author: WARNING !\Ref: WARNING !\Comment: WARNING
-- equation: NC3H7CHO + C2H5 <=> C3H6CHO-3 + C2H6  # Reaction 2473
+- equation: NC3H7CHO + C2H5 <=> C3H6CHO-3 + C2H6  # Reaction 2471
   rate-constant: {A: 1.0e+11, b: 0.0, Ea: 1.04e+04}
   note: |
     \Author: WARNING !\Ref: WARNING !\Comment: WARNING
-- equation: NC3H7CHO + CH3O <=> NC3H7CO + CH3OH  # Reaction 2474
+- equation: NC3H7CHO + CH3O <=> NC3H7CO + CH3OH  # Reaction 2472
   duplicate: true
   rate-constant: {A: 1.69e+05, b: 2.0438, Ea: 2353.2}
   note: |
     \Author: WARNING !\Ref: WARNING !\Comment: WARNING
-- equation: NC3H7CHO + CH3O <=> NC3H7CO + CH3OH  # Reaction 2475
+- equation: NC3H7CHO + CH3O <=> NC3H7CO + CH3OH  # Reaction 2473
   duplicate: true
   rate-constant: {A: 9620.0, b: 2.5005, Ea: 158.95}
   note: |
     \Author: WARNING !\Ref: WARNING !\Comment: WARNING
-- equation: NC3H7CHO + CH3O <=> C3H6CHO-1 + CH3OH  # Reaction 2476
+- equation: NC3H7CHO + CH3O <=> C3H6CHO-1 + CH3OH  # Reaction 2474
   rate-constant: {A: 8.64e+11, b: 0.0, Ea: 4570.0}
   note: |
     \Author: WARNING !\Ref: WARNING !\Comment: WARNING
-- equation: NC3H7CHO + CH3O <=> C3H6CHO-2 + CH3OH  # Reaction 2477
+- equation: NC3H7CHO + CH3O <=> C3H6CHO-2 + CH3OH  # Reaction 2475
   rate-constant: {A: 3.0e+11, b: 0.0, Ea: 7000.0}
   note: |
     \Author: WARNING !\Ref: WARNING !\Comment: WARNING
-- equation: NC3H7CHO + CH3O <=> C3H6CHO-3 + CH3OH  # Reaction 2478
+- equation: NC3H7CHO + CH3O <=> C3H6CHO-3 + CH3OH  # Reaction 2476
   rate-constant: {A: 1.5e+11, b: 0.0, Ea: 7000.0}
   note: |
     \Author: WARNING !\Ref: WARNING !\Comment: WARNING
-- equation: NC3H7CHO + C2H5O <=> NC3H7CO + C2H5OH  # Reaction 2479
+- equation: NC3H7CHO + C2H5O <=> NC3H7CO + C2H5OH  # Reaction 2477
   duplicate: true
   rate-constant: {A: 1.69e+05, b: 2.0438, Ea: 2353.2}
   note: |
     \Author: WARNING !\Ref: WARNING !\Comment: WARNING
-- equation: NC3H7CHO + C2H5O <=> NC3H7CO + C2H5OH  # Reaction 2480
+- equation: NC3H7CHO + C2H5O <=> NC3H7CO + C2H5OH  # Reaction 2478
   duplicate: true
   rate-constant: {A: 9620.0, b: 2.5005, Ea: 158.95}
   note: |
     \Author: WARNING !\Ref: WARNING !\Comment: WARNING
-- equation: NC3H7CHO + C2H5O <=> C3H6CHO-1 + C2H5OH  # Reaction 2481
+- equation: NC3H7CHO + C2H5O <=> C3H6CHO-1 + C2H5OH  # Reaction 2479
   rate-constant: {A: 8.64e+11, b: 0.0, Ea: 4570.0}
   note: |
     \Author: WARNING !\Ref: WARNING !\Comment: WARNING
-- equation: NC3H7CHO + C2H5O <=> C3H6CHO-2 + C2H5OH  # Reaction 2482
+- equation: NC3H7CHO + C2H5O <=> C3H6CHO-2 + C2H5OH  # Reaction 2480
   rate-constant: {A: 3.0e+11, b: 0.0, Ea: 7000.0}
   note: |
     \Author: WARNING !\Ref: WARNING !\Comment: WARNING
-- equation: NC3H7CHO + C2H5O <=> C3H6CHO-3 + C2H5OH  # Reaction 2483
+- equation: NC3H7CHO + C2H5O <=> C3H6CHO-3 + C2H5OH  # Reaction 2481
   rate-constant: {A: 1.5e+11, b: 0.0, Ea: 7000.0}
   note: |
     \Author: WARNING !\Ref: WARNING !\Comment: WARNING
-- equation: NC3H7CHO + C2H3 <=> NC3H7CO + C2H4  # Reaction 2484
+- equation: NC3H7CHO + C2H3 <=> NC3H7CO + C2H4  # Reaction 2482
   rate-constant: {A: 1.7e+12, b: 0.0, Ea: 8440.0}
   note: |
     \Author: WARNING !\Ref: ANALOGY WITH ACETALDEHYDE !\Comment: WARNING
-- equation: NC3H7CHO + C2H3 <=> C3H6CHO-1 + C2H4  # Reaction 2485
+- equation: NC3H7CHO + C2H3 <=> C3H6CHO-1 + C2H4  # Reaction 2483
   rate-constant: {A: 4.5e+10, b: 0.0, Ea: 5600.0}
   note: |
     \Author: WARNING !\Ref: WARNING !\Comment: WARNING
-- equation: NC3H7CHO + C2H3 <=> C3H6CHO-2 + C2H4  # Reaction 2486
+- equation: NC3H7CHO + C2H3 <=> C3H6CHO-2 + C2H4  # Reaction 2484
   rate-constant: {A: 4.0e+11, b: 0.0, Ea: 1.68e+04}
   note: |
     \Author: WARNING !\Ref: WARNING !\Comment: WARNING
-- equation: NC3H7CHO + NC3H7 <=> NC3H7CO + C3H8  # Reaction 2487
+- equation: NC3H7CHO + NC3H7 <=> NC3H7CO + C3H8  # Reaction 2485
   rate-constant: {A: 1.7e+12, b: 0.0, Ea: 8440.0}
   note: |
     \Author: WARNING !\Ref: ANALOGY WITH ACETALDEHYDE !\Comment: WARNING
-- equation: NC3H7CHO + IC3H7 <=> NC3H7CO + C3H8  # Reaction 2488
+- equation: NC3H7CHO + IC3H7 <=> NC3H7CO + C3H8  # Reaction 2486
   rate-constant: {A: 1.7e+12, b: 0.0, Ea: 8440.0}
   note: |
     \Author: WARNING !\Ref: ANALOGY WITH ACETALDEHYDE !\Comment: WARNING
-- equation: NC3H7CHO + C3H5-A <=> NC3H7CO + C3H6  # Reaction 2489
+- equation: NC3H7CHO + C3H5-A <=> NC3H7CO + C3H6  # Reaction 2487
   rate-constant: {A: 1.7e+12, b: 0.0, Ea: 8440.0}
   note: |
     \Author: WARNING !\Ref: ANALOGY WITH ACETALDEHYDE !\Comment: WARNING
-- equation: NC3H7CO <=> NC3H7 + CO  # Reaction 2490
+- equation: NC3H7CO <=> NC3H7 + CO  # Reaction 2488
   rate-constant: {A: 5.78e+14, b: 0.0, Ea: 1.684351e+04}
   note: |
     ___________________________________________________________________________________________________________
     \REACTIONCLASS: RADICAL_DECOMPOSITION
     ___________________________________________________________________________________________________________
     \Author: WARNING !\Ref: WARNING !\Comment: WARNING
-- equation: C2H5 + CH2CO <=> NC3H7CO  # Reaction 2491
+- equation: C2H5 + CH2CO <=> NC3H7CO  # Reaction 2489
   rate-constant: {A: 333.0, b: 2.73, Ea: 1.395389e+04}
   note: |
     \Author: WARNING !\Ref: WARNING !\Comment: WARNING
-- equation: C3H6CHO-1 <=> C2H3CHO + CH3  # Reaction 2492
+- equation: C3H6CHO-1 <=> C2H3CHO + CH3  # Reaction 2490
   type: pressure-dependent-Arrhenius
   rate-constants:
   - {P: 0.01 atm, A: 1.19785116e+70, b: -17.5086009, Ea: 
@@ -27079,7 +27025,7 @@ reactions:
   note: |
     DONG 211230!CH3+C2H3CHO(=)C3H6CHO-1                           +1.76000000E+004 +2.48000000E+000 +6.13000000E+003 !\Author: WARNING !\Ref: WARNING !\Comment: WARNING
     C5H91-3(=)C4H6+CH3\Author: WARNING !\Ref: WARNING !\Comment: WARNING
-- equation: C3H6CHO-1 <=> C2H5CHCO + H  # Reaction 2493
+- equation: C3H6CHO-1 <=> C2H5CHCO + H  # Reaction 2491
   type: pressure-dependent-Arrhenius
   rate-constants:
   - {P: 0.0009869 atm, A: 1.14e+54, b: -13.74, Ea: 6.123e+04}
@@ -27096,15 +27042,15 @@ reactions:
   - {P: 98.69 atm, A: 4.87e+23, b: -3.29, Ea: 5.123e+04}
   note: |
     \Author: WARNING !\Ref: ZADOR AND MILLER, PROCEEDINGS OF THE COMBUSTION INSTITUTE 35(2015) 181-188 !\Comment: WARNING
-- equation: C3H6CHO-3 <=> CH2CHO + C2H4  # Reaction 2494
+- equation: C3H6CHO-3 <=> CH2CHO + C2H4  # Reaction 2492
   rate-constant: {A: 7.4e+11, b: 0.0, Ea: 2.197e+04}
   note: |
     \Author: SD !\Ref: VELOO, PETER S., ET AL. COMBUSTION AND FLAME 160.9(2013) !\Comment: WARNING
-- equation: C3H6CHO-1 + O2 => C2H5CHO + CO + OH  # Reaction 2495
+- equation: C3H6CHO-1 + O2 => C2H5CHO + CO + OH  # Reaction 2493
   rate-constant: {A: 1.791e+14, b: -0.6, Ea: 1.012e+04}
   note: |
     \Author: WARNING !\Ref: J. LEE, AND J.W. BOZZELLI. J. PHYS. CHEM. A, 2003, 107(19), 3778-3791 !\Comment: WARNING
-- equation: C2H5CHCO + OH <=> NC3H7 + CO2  # Reaction 2496
+- equation: C2H5CHCO + OH <=> NC3H7 + CO2  # Reaction 2494
   rate-constant: {A: 3.73e+12, b: 0.0, Ea: -1010.0}
   note: |
     ===========================================================================================================
@@ -27114,28 +27060,28 @@ reactions:
     \REACTIONCLASS: RADICAL_ADDITIONMISC
     ___________________________________________________________________________________________________________
     \Author: WARNING !\Ref: CURRAN ESTIMATE !\Comment: WARNING
-- equation: C2H5CHCO + H <=> NC3H7 + CO  # Reaction 2497
+- equation: C2H5CHCO + H <=> NC3H7 + CO  # Reaction 2495
   rate-constant: {A: 4.4e+12, b: 0.0, Ea: 1459.0}
   note: |
     \Author: WARNING !\Ref: CURRAN ESTIMATE !\Comment: WARNING
-- equation: C2H5CHCO + O <=> C3H6 + CO2  # Reaction 2498
+- equation: C2H5CHCO + O <=> C3H6 + CO2  # Reaction 2496
   rate-constant: {A: 3.2e+12, b: 0.0, Ea: -437.0}
   note: |
     \Author: WARNING !\Ref: CURRAN ESTIMATE !\Comment: WARNING
-- equation: C2H5CHCO + OH <=> SC3H5CO + H2O  # Reaction 2499
+- equation: C2H5CHCO + OH <=> SC3H5CO + H2O  # Reaction 2497
   rate-constant: {A: 2.02e+06, b: 2.2, Ea: -437.2}
   note: |
     DONG 0923
     \Author: SD !\Ref: WARNING !\Comment: C5H10-2+OH(=)C5H92-4+H2O
-- equation: C2H5CHCO + HO2 <=> SC3H5CO + H2O2  # Reaction 2500
+- equation: C2H5CHCO + HO2 <=> SC3H5CO + H2O2  # Reaction 2498
   rate-constant: {A: 0.782, b: 3.97, Ea: 1.1702e+04}
   note: |
     \Author: SD !\Ref: ZADOR, KLIPPENSTEIN, AND MILLER - J. PHYS. CHEM. A, 2011, 115(36), PP 10218-10225 !\Comment: WARNING
-- equation: CH3CHOCHCO <=> CH3CHO + HCCO  # Reaction 2501
+- equation: CH3CHOCHCO <=> CH3CHO + HCCO  # Reaction 2499
   rate-constant: {A: 8.52e+25, b: -3.61, Ea: 2.38634e+04}
   note: |
     \Author: SD !\Ref: KINETICS FROM FRANKLIN C GOLDSMITH J. PHYS. CHEM. A, 2012, 116(13), PP 3325-3346 !\COMMENT: C5H9O2-4(=)CH3CHO+C3H5-S
-- equation: SC3H5CHO <=> C3H6 + CO  # Reaction 2502
+- equation: SC3H5CHO <=> C3H6 + CO  # Reaction 2500
   rate-constant: {A: 3.9e+14, b: 0.0, Ea: 6.9e+04}
   note: |
     ===========================================================================================================
@@ -27148,77 +27094,77 @@ reactions:
     \REACTIONCLASS: RH(=)PRODUCTS
     ___________________________________________________________________________________________________________
     \Author: WARNING !\Ref: WARNING PRIMARY SOURCE UNCLEAR PROBABLY LASKIN ET AL. !\Comment: WARNING
-- equation: SC3H5CO + H <=> SC3H5CHO  # Reaction 2503
+- equation: SC3H5CO + H <=> SC3H5CHO  # Reaction 2501
   rate-constant: {A: 1.0e+14, b: 0.0, Ea: 0.0}
   note: |
     \Author: WARNING !\Ref: WARNING PRIMARY SOURCE UNCLEAR PROBABLY LASKIN ET AL. !\Comment: WARNING
-- equation: CH2CHCHCHO + H <=> SC3H5CHO  # Reaction 2504
+- equation: CH2CHCHCHO + H <=> SC3H5CHO  # Reaction 2502
   rate-constant: {A: 1.0e+14, b: 0.0, Ea: 0.0}
   note: |
     \Author: WARNING !\Ref: PITZ ESTIMATE !\Comment: WARNING
-- equation: SC3H5CHO + OH <=> SC3H5CO + H2O  # Reaction 2505
+- equation: SC3H5CHO + OH <=> SC3H5CO + H2O  # Reaction 2503
   rate-constant: {A: 3.73e+04, b: 2.6, Ea: -2300.0}
   note: |
     ___________________________________________________________________________________________________________
     \REACTIONCLASS: RH+R_ABSTRACTION
     ___________________________________________________________________________________________________________
     \Author: WARNING !\Ref: BILL ADDED !\Comment: WARNING
-- equation: SC3H5CHO + HO2 <=> SC3H5CO + H2O2  # Reaction 2506
+- equation: SC3H5CHO + HO2 <=> SC3H5CO + H2O2  # Reaction 2504
   rate-constant: {A: 1.0e+12, b: 0.0, Ea: 1.192e+04}
   note: |
     \Author: WARNING !\Ref: ANALOGY WITH IC3H5CHO+X --)IC3H5CO+HX !\Comment: WARNING
-- equation: SC3H5CHO + CH3 <=> SC3H5CO + CH4  # Reaction 2507
+- equation: SC3H5CHO + CH3 <=> SC3H5CO + CH4  # Reaction 2505
   rate-constant: {A: 3.98e+12, b: 0.0, Ea: 8700.0}
   note: |
     \Author: WARNING !\Ref: ANALOGY WITH IC3H5CHO+X --)IC3H5CO+HX !\Comment: WARNING
-- equation: SC3H5CHO + O <=> SC3H5CO + OH  # Reaction 2508
+- equation: SC3H5CHO + O <=> SC3H5CO + OH  # Reaction 2506
   rate-constant: {A: 7.18e+12, b: 0.0, Ea: 1389.0}
   note: |
     \Author: WARNING !\Ref: ANALOGY WITH IC3H5CHO+X --)IC3H5CO+HX !\Comment: WARNING
-- equation: SC3H5CHO + O2 <=> SC3H5CO + HO2  # Reaction 2509
+- equation: SC3H5CHO + O2 <=> SC3H5CO + HO2  # Reaction 2507
   rate-constant: {A: 4.0e+13, b: 0.0, Ea: 3.76e+04}
   note: |
     \Author: WARNING !\Ref: ANALOGY WITH IC3H5CHO+X --)IC3H5CO+HX !\Comment: WARNING
-- equation: SC3H5CHO + H <=> SC3H5CO + H2  # Reaction 2510
+- equation: SC3H5CHO + H <=> SC3H5CO + H2  # Reaction 2508
   rate-constant: {A: 2.6e+12, b: 0.0, Ea: 2600.0}
   note: |
     \Author: WARNING !\Ref: ANALOGY WITH IC3H5CHO+X --)IC3H5CO+HX !\Comment: WARNING
-- equation: SC3H5CHO + C2H3 <=> SC3H5CO + C2H4  # Reaction 2511
+- equation: SC3H5CHO + C2H3 <=> SC3H5CO + C2H4  # Reaction 2509
   rate-constant: {A: 1.11, b: 3.5, Ea: 4682.0}
   note: |
     \Author: WARNING !\Ref: WARNING PRIMARY SOURCE UNCLEAR PROBABLY LASKIN ET AL. !\Comment: WARNING
-- equation: SC3H5CHO + H <=> CH2CHCHCHO + H2  # Reaction 2512
+- equation: SC3H5CHO + H <=> CH2CHCHCHO + H2  # Reaction 2510
   rate-constant: {A: 1.7e+05, b: 2.5, Ea: 2490.0}
   note: |
     \Author: WARNING !\Ref: WARNING PRIMARY SOURCE UNCLEAR PROBABLY LASKIN ET AL. !\Comment: WARNING
-- equation: SC3H5CHO + O <=> CH2CHCHCHO + OH  # Reaction 2513
+- equation: SC3H5CHO + O <=> CH2CHCHCHO + OH  # Reaction 2511
   rate-constant: {A: 5.24e+11, b: 0.7, Ea: 5884.0}
   note: |
     \Author: WARNING !\Ref: WARNING PRIMARY SOURCE UNCLEAR PROBABLY LASKIN ET AL. !\Comment: WARNING
-- equation: SC3H5CHO + OH <=> CH2CHCHCHO + H2O  # Reaction 2514
+- equation: SC3H5CHO + OH <=> CH2CHCHCHO + H2O  # Reaction 2512
   rate-constant: {A: 4.46e+06, b: 2.072, Ea: 1051.0}
   note: |
     \Author: WARNING !\Ref: WARNING PRIMARY SOURCE UNCLEAR PROBABLY LASKIN ET AL. !\Comment: WARNING
-- equation: SC3H5CHO + CH3 <=> CH2CHCHCHO + CH4  # Reaction 2515
+- equation: SC3H5CHO + CH3 <=> CH2CHCHCHO + CH4  # Reaction 2513
   rate-constant: {A: 2.1, b: 3.5, Ea: 5675.0}
   note: |
     \Author: WARNING !\Ref: WARNING PRIMARY SOURCE UNCLEAR PROBABLY LASKIN ET AL. !\Comment: WARNING
-- equation: SC3H5CHO + C2H3 <=> CH2CHCHCHO + C2H4  # Reaction 2516
+- equation: SC3H5CHO + C2H3 <=> CH2CHCHCHO + C2H4  # Reaction 2514
   rate-constant: {A: 2.21, b: 3.5, Ea: 4682.0}
   note: |
     \Author: WARNING !\Ref: WARNING PRIMARY SOURCE UNCLEAR PROBABLY LASKIN ET AL. !\Comment: WARNING
-- equation: SC3H5CHO + H <=> CH3 + C2H3CHO  # Reaction 2517
+- equation: SC3H5CHO + H <=> CH3 + C2H3CHO  # Reaction 2515
   rate-constant: {A: 4.0e+21, b: -2.39, Ea: 1.118e+04}
   note: |
     ___________________________________________________________________________________________________________
     \REACTIONCLASS: RADICAL_ADDITIONH
     ___________________________________________________________________________________________________________
     \Author: WARNING !\Ref: WARNING PRIMARY SOURCE UNCLEAR PROBABLY LASKIN ET AL. !\Comment: WARNING
-- equation: SC3H5CHO + H <=> C3H6 + HCO  # Reaction 2518
+- equation: SC3H5CHO + H <=> C3H6 + HCO  # Reaction 2516
   rate-constant: {A: 4.0e+21, b: -2.39, Ea: 1.118e+04}
   note: |
     \Author: WARNING !\Ref: WARNING PRIMARY SOURCE UNCLEAR PROBABLY LASKIN ET AL. !\Comment: WARNING
-- equation: CH2CHCHCHO + O2 <=> C2H3CHO + HOCO  # Reaction 2519
+- equation: CH2CHCHCHO + O2 <=> C2H3CHO + HOCO  # Reaction 2517
   rate-constant: {A: 1.2e+36, b: -7.25, Ea: 3.36e+04}
   note: |
     ___________________________________________________________________________________________________________
@@ -27227,7 +27173,7 @@ reactions:
     LPM Removed by Luna on 24th Jan. 2024!C3H5-S+CO(=)SC3H5CO                               +5.00000000E+012 +0.00000000E+000 +8.00000000E+003 !\Author: WARNING !\Ref: PITZ ESTIMATE !\Comment: WARNING
     DONG 211116!CH2CHCHCHO(=)C3H5-A+CO                            +6.10000000E+005 +9.20000000E-001 -1.12000000E+003 !\Author: WARNING !\Ref: ALZUETA _ GLARBORG IJCK 32 !\Comment: SPECIES HAS BEEN RENAMED
     \Author: WARNING !\Ref: ALZUETA _ GLARBORG IJCK 32 !\Comment: SPECIES HAS BEEN RENAMED
-- equation: CH2CHCHCHO <=> SC3H5CO  # Reaction 2520
+- equation: CH2CHCHCHO <=> SC3H5CO  # Reaction 2518
   type: pressure-dependent-Arrhenius
   rate-constants:
   - {P: 0.01 atm, A: 1.12e+53, b: -14.02, Ea: 3.6508e+04}
@@ -27253,7 +27199,7 @@ reactions:
      R2_adj = 1.00 , T RANGE = 500 - 1000 K
      R2_adj = 1.00 , T RANGE = 500 - 1100 K
      R2_adj = 1.00 , T RANGE = 500 - 1300 K
-- equation: CH2CHCHCHO <=> C3H5-S + CO  # Reaction 2521
+- equation: CH2CHCHCHO <=> C3H5-S + CO  # Reaction 2519
   type: pressure-dependent-Arrhenius
   rate-constants:
   - {P: 0.01 atm, A: 1.1e+49, b: -11.78, Ea: 4.0178e+04}
@@ -27268,7 +27214,7 @@ reactions:
     R2_adj = 1.00 , T RANGE = 500 - 1400 K
     R2_adj = 1.00 , T RANGE = 500 - 1700 K
     R2_adj = 1.00 , T RANGE = 500 - 2000 K
-- equation: C3H5-A + CO <=> CH2CHCHCHO  # Reaction 2522
+- equation: C3H5-A + CO <=> CH2CHCHCHO  # Reaction 2520
   type: pressure-dependent-Arrhenius
   rate-constants:
   - {P: 0.01 atm, A: 3.9e-16, b: 4.92, Ea: 1.8585e+04}
@@ -27283,7 +27229,7 @@ reactions:
     R2_adj = 0.96 , T RANGE = 500 - 1400 K
     R2_adj = 1.00 , T RANGE = 500 - 1700 K
     R2_adj = 1.00 , T RANGE = 500 - 2000 K
-- equation: SC3H5CO <=> C3H5-S + CO  # Reaction 2523
+- equation: SC3H5CO <=> C3H5-S + CO  # Reaction 2521
   type: pressure-dependent-Arrhenius
   rate-constants:
   - {P: 0.01 atm, A: 2.64e+50, b: -12.46, Ea: 3.4231e+04}
@@ -27298,7 +27244,7 @@ reactions:
     R2_adj = 1.00 , T RANGE = 500 - 1000 K
     R2_adj = 1.00 , T RANGE = 500 - 1100 K
     R2_adj = 1.00 , T RANGE = 500 - 1300 K
-- equation: CH2CHCHCHO + HO2 <=> C4H61KET43O + OH  # Reaction 2524
+- equation: CH2CHCHCHO + HO2 <=> C4H61KET43O + OH  # Reaction 2522
   type: pressure-dependent-Arrhenius
   rate-constants:
   - {P: 0.01 atm, A: 1.02e+13, b: -0.158, Ea: -1417.0}
@@ -27313,7 +27259,7 @@ reactions:
     R2_adj = 1.00 , T RANGE = 500 - 2000 K
     R2_adj = 1.00 , T RANGE = 500 - 2000 K
     R2_adj = 1.00 , T RANGE = 500 - 2000 K
-- equation: C2H3COCH3 + OH <=> CH3CHO + CH3CO  # Reaction 2525
+- equation: C2H3COCH3 + OH <=> CH3CHO + CH3CO  # Reaction 2523
   rate-constant: {A: 1.0e+11, b: 0.0, Ea: 0.0}
   note: |
     ===========================================================================================================
@@ -27326,19 +27272,19 @@ reactions:
     \REACTIONCLASS: RADICAL_ADDITIONMISC
     ___________________________________________________________________________________________________________
     \Author: WARNING !\Ref: CURRAN ESTIMATE !\Comment: WARNING
-- equation: C2H3COCH3 + OH => CH2CO + C2H3 + H2O  # Reaction 2526
+- equation: C2H3COCH3 + OH => CH2CO + C2H3 + H2O  # Reaction 2524
   rate-constant: {A: 5.1e+11, b: 0.0, Ea: 1192.0}
   note: |
     \Author: WARNING !\Ref: CURRAN ESTIMATE !\Comment: WARNING
-- equation: C2H3COCH3 + HO2 => CH2CHO + CH3CO + OH  # Reaction 2527
+- equation: C2H3COCH3 + HO2 => CH2CHO + CH3CO + OH  # Reaction 2525
   rate-constant: {A: 6.03e+09, b: 0.0, Ea: 7949.0}
   note: |
     \Author: WARNING !\Ref: CURRAN ESTIMATE !\Comment: WARNING
-- equation: C2H3COCH3 + HO2 => CH2CO + C2H3 + H2O2  # Reaction 2528
+- equation: C2H3COCH3 + HO2 => CH2CO + C2H3 + H2O2  # Reaction 2526
   rate-constant: {A: 8.5e+12, b: 0.0, Ea: 2.046e+04}
   note: |
     \Author: WARNING !\Ref: CURRAN ESTIMATE !\Comment: WARNING
-- equation: C2H5COCH3 + OH <=> CH2CH2COCH3 + H2O  # Reaction 2529
+- equation: C2H5COCH3 + OH <=> CH2CH2COCH3 + H2O  # Reaction 2527
   rate-constant: {A: 7.55e+09, b: 0.97, Ea: 1586.0}
   note: |
     ===========================================================================================================
@@ -27356,126 +27302,126 @@ reactions:
     \REACTIONCLASS: RH+R_ABSTRACTION
     ___________________________________________________________________________________________________________
     \Author: WARNING !\Ref: ANALOGY TO C2H5OH+X(=)PC2H4OH+HX; CURRAN 1995 !\Comment: WARNING
-- equation: C2H5COCH3 + HO2 <=> CH2CH2COCH3 + H2O2  # Reaction 2530
+- equation: C2H5COCH3 + HO2 <=> CH2CH2COCH3 + H2O2  # Reaction 2528
   rate-constant: {A: 2.38e+04, b: 2.55, Ea: 1.649e+04}
   note: |
     \Author: WARNING !\Ref: ANALOGY TO C3H8+X(=)PC3H7+HX X 0.5 TSANG 88; CURRAN 1995 !\Comment: WARNING
-- equation: C2H5COCH3 + O <=> CH2CH2COCH3 + OH  # Reaction 2531
+- equation: C2H5COCH3 + O <=> CH2CH2COCH3 + OH  # Reaction 2529
   rate-constant: {A: 2.25e+13, b: 0.0, Ea: 7700.0}
   note: |
     \Author: WARNING !\Ref: ANALOGY TO C2H5OH+X(=)PC2H4OH+HX; CURRAN 1995 !\Comment: WARNING
-- equation: C2H5COCH3 + H <=> CH2CH2COCH3 + H2  # Reaction 2532
+- equation: C2H5COCH3 + H <=> CH2CH2COCH3 + H2  # Reaction 2530
   rate-constant: {A: 9.16e+06, b: 2.0, Ea: 7700.0}
   note: |
     \Author: WARNING !\Ref: ANALOGY TO C2H5OH+X(=)PC2H4OH+HX; CURRAN 1995 !\Comment: WARNING
-- equation: C2H5COCH3 + O2 <=> CH2CH2COCH3 + HO2  # Reaction 2533
+- equation: C2H5COCH3 + O2 <=> CH2CH2COCH3 + HO2  # Reaction 2531
   rate-constant: {A: 2.05e+13, b: 0.0, Ea: 5.131e+04}
   note: |
     \Author: WARNING !\Ref: ANALOGY TO C2H5OH+X(=)PC2H4OH+HX; CURRAN 1995 !\Comment: WARNING
-- equation: C2H5COCH3 + CH3 <=> CH2CH2COCH3 + CH4  # Reaction 2534
+- equation: C2H5COCH3 + CH3 <=> CH2CH2COCH3 + CH4  # Reaction 2532
   rate-constant: {A: 31.9, b: 3.17, Ea: 7172.0}
   note: |
     \Author: WARNING !\Ref: ANALOGY TO C2H5OH+X(=)PC2H4OH+HX; CURRAN 1995 !\Comment: WARNING
-- equation: C2H5COCH3 + CH3O <=> CH2CH2COCH3 + CH3OH  # Reaction 2535
+- equation: C2H5COCH3 + CH3O <=> CH2CH2COCH3 + CH3OH  # Reaction 2533
   rate-constant: {A: 2.17e+11, b: 0.0, Ea: 6460.0}
   note: |
     \Author: WARNING !\Ref: ANALOGY TO C3H8+X(=)PC3H7+HX X 0.5 TSANG 88; CURRAN 1995 !\Comment: WARNING
-- equation: C2H5COCH3 + C2H3 <=> CH2CH2COCH3 + C2H4  # Reaction 2536
+- equation: C2H5COCH3 + C2H3 <=> CH2CH2COCH3 + C2H4  # Reaction 2534
   rate-constant: {A: 5.0e+11, b: 0.0, Ea: 1.04e+04}
   note: |
     \Author: WARNING !\Ref: ANALOGY TO C2H5OH+X(=)PC2H4OH+HX; CURRAN 1995 !\Comment: WARNING
-- equation: C2H5COCH3 + C2H5 <=> CH2CH2COCH3 + C2H6  # Reaction 2537
+- equation: C2H5COCH3 + C2H5 <=> CH2CH2COCH3 + C2H6  # Reaction 2535
   rate-constant: {A: 5.0e+10, b: 0.0, Ea: 1.34e+04}
   note: |
     \Author: WARNING !\Ref: ANALOGY TO C2H5OH+X(=)PC2H4OH+HX; CURRAN 1995 !\Comment: WARNING
-- equation: C2H5COCH3 + OH <=> CH3CHCOCH3 + H2O  # Reaction 2538
+- equation: C2H5COCH3 + OH <=> CH3CHCOCH3 + H2O  # Reaction 2536
   rate-constant: {A: 8.45e+11, b: 0.0, Ea: -228.0}
   note: |
     \Author: WARNING !\Ref: ANALOGY TO C2H5COC2H5+OH(=)PRODUCTS; CURRAN 1995 !\Comment: WARNING
-- equation: C2H5COCH3 + HO2 <=> CH3CHCOCH3 + H2O2  # Reaction 2539
+- equation: C2H5COCH3 + HO2 <=> CH3CHCOCH3 + H2O2  # Reaction 2537
   rate-constant: {A: 2.0e+11, b: 0.0, Ea: 8698.0}
   note: |
     \Author: WARNING !\Ref: ANALOGY TO C3H8+X(=)C3H7+HX TSANG 88 EA -(6 X 0.3) KCAL / MOL(C(=)O); CURRAN 1995 !\Comment: WARNING
-- equation: C2H5COCH3 + O <=> CH3CHCOCH3 + OH  # Reaction 2540
+- equation: C2H5COCH3 + O <=> CH3CHCOCH3 + OH  # Reaction 2538
   rate-constant: {A: 3.07e+13, b: 0.0, Ea: 3400.0}
   note: |
     \Author: WARNING !\Ref: ANALOGY TO C2H5OH+X(=)SC2H4OH+HX EA -(6 X 0.3) KCAL / MOL(C(=)O); CURRAN 1995 !\Comment: WARNING
-- equation: C2H5COCH3 + H <=> CH3CHCOCH3 + H2  # Reaction 2541
+- equation: C2H5COCH3 + H <=> CH3CHCOCH3 + H2  # Reaction 2539
   rate-constant: {A: 4.46e+06, b: 2.0, Ea: 3200.0}
   note: |
     \Author: WARNING !\Ref: ANALOGY TO C3H8+X(=)C3H7+HX TSANG 88 EA -(6 X 0.3) KCAL / MOL(C(=)O); CURRAN 1995 !\Comment: WARNING
-- equation: C2H5COCH3 + O2 <=> CH3CHCOCH3 + HO2  # Reaction 2542
+- equation: C2H5COCH3 + O2 <=> CH3CHCOCH3 + HO2  # Reaction 2540
   rate-constant: {A: 1.55e+13, b: 0.0, Ea: 4.197e+04}
   note: |
     \Author: WARNING !\Ref: ANALOGY TO C2H5OH+X(=)SC2H4OH+HX EA -(6 X 0.3) KCAL / MOL(C(=)O); CURRAN 1995 !\Comment: WARNING
-- equation: C2H5COCH3 + CH3 <=> CH3CHCOCH3 + CH4  # Reaction 2543
+- equation: C2H5COCH3 + CH3 <=> CH3CHCOCH3 + CH4  # Reaction 2541
   rate-constant: {A: 1.74, b: 3.46, Ea: 3680.0}
   note: |
     \Author: WARNING !\Ref: ANALOGY TO C2H5OH+X(=)SC2H4OH+HX EA -(6 X 0.3) KCAL / MOL(C(=)O); CURRAN 1995 !\Comment: WARNING
-- equation: C2H5COCH3 + CH3O <=> CH3CHCOCH3 + CH3OH  # Reaction 2544
+- equation: C2H5COCH3 + CH3O <=> CH3CHCOCH3 + CH3OH  # Reaction 2542
   rate-constant: {A: 1.45e+11, b: 0.0, Ea: 2771.0}
   note: |
     \Author: WARNING !\Ref: ANALOGY TO C3H8+X(=)C3H7+HX TSANG 88 EA -(6 X 0.3) KCAL / MOL(C(=)O); CURRAN 1995 !\Comment: WARNING
-- equation: C2H5COCH3 + C2H3 <=> CH3CHCOCH3 + C2H4  # Reaction 2545
+- equation: C2H5COCH3 + C2H3 <=> CH3CHCOCH3 + C2H4  # Reaction 2543
   rate-constant: {A: 3.0e+11, b: 0.0, Ea: 3400.0}
   note: |
     \Author: WARNING !\Ref: ANALOGY TO C2H5OH+X(=)SC2H4OH+HX EA -(6 X 0.3) KCAL / MOL(C(=)O); CURRAN 1995 !\Comment: WARNING
-- equation: C2H5COCH3 + C2H5 <=> CH3CHCOCH3 + C2H6  # Reaction 2546
+- equation: C2H5COCH3 + C2H5 <=> CH3CHCOCH3 + C2H6  # Reaction 2544
   rate-constant: {A: 3.0e+10, b: 0.0, Ea: 8600.0}
   note: |
     \Author: WARNING !\Ref: ANALOGY TO C2H5OH+X(=)SC2H4OH+HX EA -(6 X 0.3) KCAL / MOL(C(=)O); CURRAN 1995 !\Comment: WARNING
-- equation: C2H5COCH3 + OH <=> C2H5COCH2 + H2O  # Reaction 2547
+- equation: C2H5COCH3 + OH <=> C2H5COCH2 + H2O  # Reaction 2545
   rate-constant: {A: 5.1e+11, b: 0.0, Ea: 1192.0}
   note: |
     \Author: WARNING !\Ref: ANALOGY TO CH3COCH3+X(=)CH2COCH3+HX X 0.5; CURRAN 1995 !\Comment: WARNING
-- equation: C2H5COCH3 + HO2 <=> C2H5COCH2 + H2O2  # Reaction 2548
+- equation: C2H5COCH3 + HO2 <=> C2H5COCH2 + H2O2  # Reaction 2546
   rate-constant: {A: 2.38e+04, b: 2.55, Ea: 1.469e+04}
   note: |
     \Author: WARNING !\Ref: ANALOGY TO C3H8+X(=)C3H7+HX TSANG 88 EA -(6 X 0.3) KCAL / MOL(C(=)O); CURRAN 1995 !\Comment: WARNING
-- equation: C2H5COCH3 + O <=> C2H5COCH2 + OH  # Reaction 2549
+- equation: C2H5COCH3 + O <=> C2H5COCH2 + OH  # Reaction 2547
   rate-constant: {A: 5.0e+12, b: 0.0, Ea: 5962.0}
   note: |
     \Author: WARNING !\Ref: ANALOGY TO CH3COCH3+X(=)CH2COCH3+HX X 0.5; CURRAN 1995 !\Comment: WARNING
-- equation: C2H5COCH3 + H <=> C2H5COCH2 + H2  # Reaction 2550
+- equation: C2H5COCH3 + H <=> C2H5COCH2 + H2  # Reaction 2548
   rate-constant: {A: 9.3e+12, b: 0.0, Ea: 6357.0}
   note: |
     \Author: WARNING !\Ref: ANALOGY TO CH3COCH3+X(=)CH2COCH3+HX X 0.5; CURRAN 1995 !\Comment: WARNING
-- equation: C2H5COCH3 + O2 <=> C2H5COCH2 + HO2  # Reaction 2551
+- equation: C2H5COCH3 + O2 <=> C2H5COCH2 + HO2  # Reaction 2549
   rate-constant: {A: 2.05e+13, b: 0.0, Ea: 4.915e+04}
   note: |
     \Author: WARNING !\Ref: ANALOGY TO C2H5OH+X(=)SC2H4OH+HX EA -(6 X 0.3) KCAL / MOL(C(=)O); CURRAN 1995 !\Comment: WARNING
-- equation: C2H5COCH3 + CH3 <=> C2H5COCH2 + CH4  # Reaction 2552
+- equation: C2H5COCH3 + CH3 <=> C2H5COCH2 + CH4  # Reaction 2550
   rate-constant: {A: 1.62e+11, b: 0.0, Ea: 9630.0}
   note: |
     \Author: WARNING !\Ref: ANALOGY TO CH3COCH3+X(=)CH2COCH3+HX X 0.5; CURRAN 1995 !\Comment: WARNING
-- equation: C2H5COCH3 + CH3O <=> C2H5COCH2 + CH3OH  # Reaction 2553
+- equation: C2H5COCH3 + CH3O <=> C2H5COCH2 + CH3OH  # Reaction 2551
   rate-constant: {A: 2.17e+11, b: 0.0, Ea: 4660.0}
   note: |
     \Author: WARNING !\Ref: ANALOGY TO C3H8+X(=)C3H7+HX TSANG 88 EA -(6 X 0.3) KCAL / MOL(C(=)O); CURRAN 1995 !\Comment: WARNING
-- equation: C2H5COCH3 + C2H3 <=> C2H5COCH2 + C2H4  # Reaction 2554
+- equation: C2H5COCH3 + C2H3 <=> C2H5COCH2 + C2H4  # Reaction 2552
   rate-constant: {A: 6.15e+10, b: 0.0, Ea: 4278.0}
   note: |
     \Author: WARNING !\Ref: ANALOGY TO CH3COCH3+X(=)CH2COCH3+HX X 0.5; CURRAN 1995 !\Comment: WARNING
-- equation: C2H5COCH3 + C2H5 <=> C2H5COCH2 + C2H6  # Reaction 2555
+- equation: C2H5COCH3 + C2H5 <=> C2H5COCH2 + C2H6  # Reaction 2553
   rate-constant: {A: 5.0e+10, b: 0.0, Ea: 1.16e+04}
   note: |
     \Author: WARNING !\Ref: ANALOGY TO C2H5OH+X(=)SC2H4OH+HX EA -(6 X 0.3) KCAL / MOL(C(=)O); CURRAN 1995 !\Comment: WARNING
-- equation: C2H3COCH3 + H <=> CH3CHCOCH3  # Reaction 2556
+- equation: C2H3COCH3 + H <=> CH3CHCOCH3  # Reaction 2554
   rate-constant: {A: 5.0e+12, b: 0.0, Ea: 1200.0}
   note: |
     ___________________________________________________________________________________________________________
     \REACTIONCLASS: RADICAL_BETA_SCISSION
     ___________________________________________________________________________________________________________
     \Author: WARNING !\Ref: ANALOGY WITH IC3H6CHO+X --)PRODUCTS !\Comment: WARNING
-- equation: CH3CHCO + CH3 <=> CH3CHCOCH3  # Reaction 2557
+- equation: CH3CHCO + CH3 <=> CH3CHCOCH3  # Reaction 2555
   rate-constant: {A: 1.23e+11, b: 0.0, Ea: 7800.0}
   note: |
     \Author: WARNING !\Ref: ANALOGY WITH IC3H6CHO+X --)PRODUCTS !\Comment: WARNING
-- equation: C2H5COCH2 <=> CH2CO + C2H5  # Reaction 2558
+- equation: C2H5COCH2 <=> CH2CO + C2H5  # Reaction 2556
   rate-constant: {A: 1.0e+14, b: 0.0, Ea: 3.5e+04}
   note: |
     \Author: WARNING !\Ref: WKM 19 / 04 / 2010 !\Comment: WARNING
-- equation: 2 C4H71-3 <=> C8H141-5,3-4  # Reaction 2559
+- equation: 2 C4H71-3 <=> C8H141-5,3-4  # Reaction 2557
   rate-constant: {A: 4.11e+16, b: -1.26, Ea: 1560.62}
   note: |
     ----------------------------------------------------------------------------------------------------------------------------------
@@ -27490,56 +27436,56 @@ reactions:
     \REACTIONCLASS:  \RH(=)PRODUCTS                             \A              \N              \EA
     ___________________________________________________________________________________________________________
     \AUTHOR: !\REF: FRIDLYAND ET AL. J. PHYS. CHEM. A, 2013, 117, 4762-4776
-- equation: C8H141-5,3-4 + OH <=> C8H131-5,3-4,TA + H2O  # Reaction 2560
+- equation: C8H141-5,3-4 + OH <=> C8H131-5,3-4,TA + H2O  # Reaction 2558
   rate-constant: {A: 2.5e+06, b: 2.0, Ea: -2629.06}
   note: |
     ___________________________________________________________________________________________________________
     \REACTIONCLASS:  \RH_R_ABSTRACTION                          \A              \N              \EA
     ___________________________________________________________________________________________________________
     \AUTHOR: !\REF: HENRY'S SLIDES
-- equation: C8H141-5,3-4 + HO2 <=> C8H131-5,3-4,TA + H2O2  # Reaction 2561
+- equation: C8H141-5,3-4 + HO2 <=> C8H131-5,3-4,TA + H2O2  # Reaction 2559
   rate-constant: {A: 3.2e+04, b: 2.6, Ea: 1.075526e+04}
   note: |
     \AUTHOR: !\REF: HENRY'S SLIDES
-- equation: C8H141-5,3-4 + H <=> C8H131-5,3-4,TA + H2  # Reaction 2562
+- equation: C8H141-5,3-4 + H <=> C8H131-5,3-4,TA + H2  # Reaction 2560
   rate-constant: {A: 5.0e+04, b: 2.5, Ea: -2868.07}
   note: |
     \AUTHOR: !\REF: HENRY'S SLIDES
-- equation: C8H141-5,3-4 + O <=> C8H131-5,3-4,TA + OH  # Reaction 2563
+- equation: C8H141-5,3-4 + O <=> C8H131-5,3-4,TA + OH  # Reaction 2561
   rate-constant: {A: 6.3e+10, b: 0.7, Ea: 1195.03}
   note: |
     \AUTHOR: !\REF: HENRY'S SLIDES
-- equation: C8H141-5,3-4 + CH3 <=> C8H131-5,3-4,TA + CH4  # Reaction 2564
+- equation: C8H141-5,3-4 + CH3 <=> C8H131-5,3-4,TA + CH4  # Reaction 2562
   rate-constant: {A: 1.6e+12, b: 0.0, Ea: 5258.13}
   note: |
     \AUTHOR: !\REF: HENRY'S SLIDES
-- equation: C8H141-5,3-4 + O2 <=> C8H131-5,3-4,TA + HO2  # Reaction 2565
+- equation: C8H141-5,3-4 + O2 <=> C8H131-5,3-4,TA + HO2  # Reaction 2563
   rate-constant: {A: 1.6e+13, b: 0.0, Ea: 3.542e+04}
   note: |
     \AUTHOR: !\REF: C4H8-1, C4H8-2 AND LLNL ANALOGY !\COMMENT: !ESTIMATED BY THE AVERAGE DIFFERENCE BETWEEN PRIMARY_SECONDARY ALKANE ABSTRACTION AND AL
-- equation: I3C6D25 + C2H3 <=> C8H131-5,3-4,TA  # Reaction 2566
+- equation: I3C6D25 + C2H3 <=> C8H131-5,3-4,TA  # Reaction 2564
   rate-constant: {A: 4.4e+04, b: 2.48, Ea: 6130.0}
   note: |
     ___________________________________________________________________________________________________________
     \REACTIONCLASS:  \RADICAL_BETA_SCISSION                     \A              \N              \EA
     ___________________________________________________________________________________________________________
     \AUTHOR: !\REF: H. J. CURRAN INC. INT J CHEM KINET 38: 250 C275, 2006
-- equation: I3C6D25 <=> C2H3 + C4H72-2  # Reaction 2567
+- equation: I3C6D25 <=> C2H3 + C4H72-2  # Reaction 2565
   rate-constant: {A: 2.5e+15, b: 0.0, Ea: 9.95e+04}
   note: |
     \AUTHOR: !\REF: ANALOGY TO KUIWEN'S MECH
-- equation: C8H131-5,3-4,TA + HO2 <=> C8H131-5,3-4,TAO + OH  # Reaction 2568
+- equation: C8H131-5,3-4,TA + HO2 <=> C8H131-5,3-4,TAO + OH  # Reaction 2566
   rate-constant: {A: 1.64e+04, b: 2.74, Ea: 1144.38}
   note: |
     ___________________________________________________________________________________________________________
     \REACTIONCLASS:  \R+HO2(=)PRODUCTS                          \A              \N              \EA
     ___________________________________________________________________________________________________________
     \AUTHOR: !\REF:C. FRANKLIN GOLDSMITH J. PHYS. CHEM. A 2012, 116, 3325.3346 #ALLYL+HO2(=)ALLYLOXY+OH#
-- equation: C4H71-3 + C2H3COCH3 <=> C8H131-5,3-4,TAO  # Reaction 2569
+- equation: C4H71-3 + C2H3COCH3 <=> C8H131-5,3-4,TAO  # Reaction 2567
   rate-constant: {A: 2.5e+10, b: 0.0, Ea: 1.009e+04}
   note: |
     \AUTHOR: !\REF: H.J. CURRAN, INT. J. CHEM. KIN. 38 (4) (2006) 250-275.
-- equation: 2 C4H71-3 <=> C8H141-5,3  # Reaction 2570
+- equation: 2 C4H71-3 <=> C8H141-5,3  # Reaction 2568
   rate-constant: {A: 4.11e+16, b: -1.26, Ea: 1560.62}
   note: |
     ----------------------------------------------------------------------------------------------------------------------------------
@@ -27554,97 +27500,97 @@ reactions:
     \REACTIONCLASS:  \RH(=)PRODUCTS                             \A              \N              \EA
     ___________________________________________________________________________________________________________
     \AUTHOR: !\REF: FRIDLYAND ET AL. J. PHYS. CHEM. A, 2013, 117, 4762-4776
-- equation: C8H141-5,3 + OH <=> C8H131-5,3,TA + H2O  # Reaction 2571
+- equation: C8H141-5,3 + OH <=> C8H131-5,3,TA + H2O  # Reaction 2569
   rate-constant: {A: 1.3e+06, b: 2.0, Ea: -2629.06}
   note: |
     ___________________________________________________________________________________________________________
     \REACTIONCLASS:  \RH_R_ABSTRACTION                          \A              \N              \EA
     ___________________________________________________________________________________________________________
     \AUTHOR: !\REF: HENRY'S SLIDES
-- equation: C8H141-5,3 + HO2 <=> C8H131-5,3,TA + H2O2  # Reaction 2572
+- equation: C8H141-5,3 + HO2 <=> C8H131-5,3,TA + H2O2  # Reaction 2570
   rate-constant: {A: 1.6e+04, b: 2.6, Ea: 1.075526e+04}
   note: |
     \AUTHOR: !\REF: HENRY'S SLIDES
-- equation: C8H141-5,3 + H <=> C8H131-5,3,TA + H2  # Reaction 2573
+- equation: C8H141-5,3 + H <=> C8H131-5,3,TA + H2  # Reaction 2571
   rate-constant: {A: 2.5e+04, b: 2.5, Ea: -2868.07}
   note: |
     \AUTHOR: !\REF: HENRY'S SLIDES
-- equation: C8H141-5,3 + O <=> C8H131-5,3,TA + OH  # Reaction 2574
+- equation: C8H141-5,3 + O <=> C8H131-5,3,TA + OH  # Reaction 2572
   rate-constant: {A: 3.2e+10, b: 0.7, Ea: 1195.03}
   note: |
     \AUTHOR: !\REF: HENRY'S SLIDES
-- equation: C8H141-5,3 + CH3 <=> C8H131-5,3,TA + CH4  # Reaction 2575
+- equation: C8H141-5,3 + CH3 <=> C8H131-5,3,TA + CH4  # Reaction 2573
   rate-constant: {A: 7.9e+11, b: 0.0, Ea: 5258.13}
   note: |
     \AUTHOR: !\REF: HENRY'S SLIDES
-- equation: C8H141-5,3 + O2 <=> C8H131-5,3,TA + HO2  # Reaction 2576
+- equation: C8H141-5,3 + O2 <=> C8H131-5,3,TA + HO2  # Reaction 2574
   rate-constant: {A: 8.0e+12, b: 0.0, Ea: 3.542e+04}
   note: |
     \AUTHOR: !\REF: C4H8-1, C4H8-2 AND LLNL ANALOGY !\COMMENT: !ESTIMATED BY THE AVERAGE DIFFERENCE BETWEEN PRIMARY_SECONDARY ALKANE ABSTRACTION AND AL
-- equation: C8H141-5,3 + OH <=> C8H131-5,3,SA + H2O  # Reaction 2577
+- equation: C8H141-5,3 + OH <=> C8H131-5,3,SA + H2O  # Reaction 2575
   rate-constant: {A: 3.2e+06, b: 2.0, Ea: -1434.03}
   note: |
     \AUTHOR: !\REF: HENRY'S SLIDES
-- equation: C8H141-5,3 + HO2 <=> C8H131-5,3,SA + H2O2  # Reaction 2578
+- equation: C8H141-5,3 + HO2 <=> C8H131-5,3,SA + H2O2  # Reaction 2576
   rate-constant: {A: 6300.0, b: 2.6, Ea: 1.24283e+04}
   note: |
     \AUTHOR: !\REF: HENRY'S SLIDES
-- equation: C8H141-5,3 + H <=> C8H131-5,3,SA + H2  # Reaction 2579
+- equation: C8H141-5,3 + H <=> C8H131-5,3,SA + H2  # Reaction 2577
   rate-constant: {A: 5.0e+04, b: 2.5, Ea: -1673.04}
   note: |
     \AUTHOR: !\REF: HENRY'S SLIDES
-- equation: C8H141-5,3 + O <=> C8H131-5,3,SA + OH  # Reaction 2580
+- equation: C8H141-5,3 + O <=> C8H131-5,3,SA + OH  # Reaction 2578
   rate-constant: {A: 8.0e+10, b: 0.7, Ea: 3107.07}
   note: |
     \AUTHOR: !\REF: HENRY'S SLIDES
-- equation: C8H141-5,3 + CH3 <=> C8H131-5,3,SA + CH4  # Reaction 2581
+- equation: C8H141-5,3 + CH3 <=> C8H131-5,3,SA + CH4  # Reaction 2579
   rate-constant: {A: 1.6e+12, b: 0.0, Ea: 6931.17}
   note: |
     \AUTHOR: !\REF: HENRY'S SLIDES
-- equation: C8H141-5,3 + O2 <=> C8H131-5,3,SA + HO2  # Reaction 2582
+- equation: C8H141-5,3 + O2 <=> C8H131-5,3,SA + HO2  # Reaction 2580
   rate-constant: {A: 2.0e+13, b: 0.0, Ea: 3.719e+04}
   note: |
     \AUTHOR: !\REF: C4H8-1, C4H8-2 AND LLNL ANALOGY
-- equation: C8H141-5,3 + OH <=> C8H131-5,3,PA + H2O  # Reaction 2583
+- equation: C8H141-5,3 + OH <=> C8H131-5,3,PA + H2O  # Reaction 2581
   rate-constant: {A: 3.0e+06, b: 2.0, Ea: -239.01}
   note: |
     \AUTHOR: !\REF: HENRY'S SLIDES
-- equation: C8H141-5,3 + HO2 <=> C8H131-5,3,PA + H2O2  # Reaction 2584
+- equation: C8H141-5,3 + HO2 <=> C8H131-5,3,PA + H2O2  # Reaction 2582
   rate-constant: {A: 9500.0, b: 2.6, Ea: 1.386233e+04}
   note: |
     \AUTHOR: !\REF: HENRY'S SLIDES
-- equation: C8H141-5,3 + H <=> C8H131-5,3,PA + H2  # Reaction 2585
+- equation: C8H141-5,3 + H <=> C8H131-5,3,PA + H2  # Reaction 2583
   rate-constant: {A: 1.9e+05, b: 2.5, Ea: 2390.06}
   note: |
     \AUTHOR: !\REF: HENRY'S SLIDES
-- equation: C8H141-5,3 + O <=> C8H131-5,3,PA + OH  # Reaction 2586
+- equation: C8H141-5,3 + O <=> C8H131-5,3,PA + OH  # Reaction 2584
   rate-constant: {A: 6.3e+10, b: 0.7, Ea: 5975.14}
   note: |
     \AUTHOR: !\REF: HENRY'S SLIDES
-- equation: C8H141-5,3 + CH3 <=> C8H131-5,3,PA + CH4  # Reaction 2587
+- equation: C8H141-5,3 + CH3 <=> C8H131-5,3,PA + CH4  # Reaction 2585
   rate-constant: {A: 0.15, b: 3.5, Ea: 5736.14}
   note: |
     \AUTHOR: !\REF: HENRY'S SLIDES
-- equation: C8H141-5,3 + O2 <=> C8H131-5,3,PA + HO2  # Reaction 2588
+- equation: C8H141-5,3 + O2 <=> C8H131-5,3,PA + HO2  # Reaction 2586
   rate-constant: {A: 2.0e+13, b: 0.0, Ea: 3.939e+04}
   note: |
     \AUTHOR: !\REF: C4H8-1, C4H8-2 AND LLNL ANALOGY
-- equation: B13DE2M + C3H5-S <=> C8H131-5,3,TA  # Reaction 2589
+- equation: B13DE2M + C3H5-S <=> C8H131-5,3,TA  # Reaction 2587
   rate-constant: {A: 4.4e+04, b: 2.48, Ea: 6130.0}
   note: |
     ___________________________________________________________________________________________________________
     \REACTIONCLASS:  \RADICAL_BETA_SCISSION                     \A              \N              \EA
     ___________________________________________________________________________________________________________
     \AUTHOR: !\REF: H. J. CURRAN INC. INT J CHEM KINET 38: 250 C275, 2006
-- equation: C6H10D24 + C2H3 <=> C8H131-5,3,SA  # Reaction 2590
+- equation: C6H10D24 + C2H3 <=> C8H131-5,3,SA  # Reaction 2588
   rate-constant: {A: 8800.0, b: 2.48, Ea: 6130.0}
   note: |
     \AUTHOR: !\REF: H. J. CURRAN INC. INT J CHEM KINET 38: 250 C275, 2006
-- equation: C4H6 + C4H71-3 <=> C8H131-5,3,PA  # Reaction 2591
+- equation: C4H6 + C4H71-3 <=> C8H131-5,3,PA  # Reaction 2589
   rate-constant: {A: 1300.0, b: 2.48, Ea: 8520.0}
   note: |
     \AUTHOR: !\REF: H. J. CURRAN INC. INT J CHEM KINET 38: 250 C275, 2006
-- equation: C8H131-5,3,TA + HO2 <=> C8H131-5,3,TAO + OH  # Reaction 2592
+- equation: C8H131-5,3,TA + HO2 <=> C8H131-5,3,TAO + OH  # Reaction 2590
   rate-constant: {A: 1.64e+04, b: 2.74, Ea: 1144.38}
   note: |
     DONG 1002 DUPLICATED REACTION
@@ -27653,28 +27599,28 @@ reactions:
     \REACTIONCLASS:  \R+HO2(=)PRODUCTS                          \A              \N              \EA
     ___________________________________________________________________________________________________________
     \AUTHOR: !\REF:C. FRANKLIN GOLDSMITH J. PHYS. CHEM. A 2012, 116, 3325.3346 #ALLYL+HO2(=)ALLYLOXY+OH#
-- equation: C8H131-5,3,SA + HO2 <=> C8H131-5,3,SAO + OH  # Reaction 2593
+- equation: C8H131-5,3,SA + HO2 <=> C8H131-5,3,SAO + OH  # Reaction 2591
   rate-constant: {A: 1.64e+04, b: 2.74, Ea: 1144.38}
   note: |
     \AUTHOR: !\REF:C. FRANKLIN GOLDSMITH J. PHYS. CHEM. A 2012, 116, 3325.3346 #ALLYL+HO2(=)ALLYLOXY+OH#
-- equation: C8H131-5,3,PA + HO2 <=> C8H131-5,3,PAO + OH  # Reaction 2594
+- equation: C8H131-5,3,PA + HO2 <=> C8H131-5,3,PAO + OH  # Reaction 2592
   rate-constant: {A: 1.64e+04, b: 2.74, Ea: 1144.38}
   note: |
     \AUTHOR: !\REF:C. FRANKLIN GOLDSMITH J. PHYS. CHEM. A 2012, 116, 3325.3346 #ALLYL+HO2(=)ALLYLOXY+OH#
-- equation: C4H71-3 + SC3H5CHO <=> C8H131-5,3,SAO  # Reaction 2595
+- equation: C4H71-3 + SC3H5CHO <=> C8H131-5,3,SAO  # Reaction 2593
   rate-constant: {A: 3.33e+10, b: 0.0, Ea: 6397.0}
   note: |
     C4H71-3+C2H3COCH3(=)C8H131-5,3,TAO                           +2.5000000E+010 +0.0000000E+000 +1.0090000E+004   !\AUTHOR: !\REF: H.J. CURRAN, INT. J. CHEM. KIN. 38 (4) (2006) 250-275.!comment: Removed as reverse rate are too high-
     \AUTHOR: !\REF: H.J. CURRAN, INT. J. CHEM. KIN. 38 (4) (2006) 250-275.
-- equation: C7H111-5,3,6P + CH2O <=> C8H131-5,3,PAO  # Reaction 2596
+- equation: C7H111-5,3,6P + CH2O <=> C8H131-5,3,PAO  # Reaction 2594
   rate-constant: {A: 1.0e+11, b: 0.0, Ea: 3496.0}
   note: |
     \AUTHOR: !\REF: H.J. CURRAN, INT. J. CHEM. KIN. 38 (4) (2006) 250-275.
-- equation: CC5H9-A + C2H2 <=> C7H111-5,3,6P  # Reaction 2597
+- equation: CC5H9-A + C2H2 <=> C7H111-5,3,6P  # Reaction 2595
   rate-constant: {A: 1.32e+04, b: 2.48, Ea: 6130.0}
   note: |
     \AUTHOR: !\REF: H.J. CURRAN, INT. J. CHEM. KIN. 38 (4) (2006) 250-275.
-- equation: 2 C4H71-3 <=> C8H142-6  # Reaction 2598
+- equation: 2 C4H71-3 <=> C8H142-6  # Reaction 2596
   rate-constant: {A: 4.11e+16, b: -1.26, Ea: 1560.62}
   note: |
     ----------------------------------------------------------------------------------------------------------------------------------
@@ -27689,88 +27635,88 @@ reactions:
     \REACTIONCLASS:  \RH(=)PRODUCTS                             \A              \N              \EA
     ___________________________________________________________________________________________________________
     \AUTHOR: !\REF: FRIDLYAND ET AL. J. PHYS. CHEM. A, 2013, 117, 4762-4776
-- equation: C8H142-6 + OH <=> C8H132-6,SA + H2O  # Reaction 2599
+- equation: C8H142-6 + OH <=> C8H132-6,SA + H2O  # Reaction 2597
   rate-constant: {A: 6.3e+06, b: 2.0, Ea: -1434.03}
   note: |
     ___________________________________________________________________________________________________________
     \REACTIONCLASS:  \RH_R_ABSTRACTION                          \A              \N              \EA
     ___________________________________________________________________________________________________________
     \AUTHOR: !\REF: HENRY'S SLIDES
-- equation: C8H142-6 + HO2 <=> C8H132-6,SA + H2O2  # Reaction 2600
+- equation: C8H142-6 + HO2 <=> C8H132-6,SA + H2O2  # Reaction 2598
   rate-constant: {A: 1.3e+04, b: 2.6, Ea: 1.24283e+04}
   note: |
     \AUTHOR: !\REF: HENRY'S SLIDES
-- equation: C8H142-6 + H <=> C8H132-6,SA + H2  # Reaction 2601
+- equation: C8H142-6 + H <=> C8H132-6,SA + H2  # Reaction 2599
   rate-constant: {A: 1.0e+05, b: 2.5, Ea: -1673.04}
   note: |
     \AUTHOR: !\REF: HENRY'S SLIDES
-- equation: C8H142-6 + O <=> C8H132-6,SA + OH  # Reaction 2602
+- equation: C8H142-6 + O <=> C8H132-6,SA + OH  # Reaction 2600
   rate-constant: {A: 1.6e+11, b: 0.7, Ea: 3107.07}
   note: |
     \AUTHOR: !\REF: HENRY'S SLIDES
-- equation: C8H142-6 + CH3 <=> C8H132-6,SA + CH4  # Reaction 2603
+- equation: C8H142-6 + CH3 <=> C8H132-6,SA + CH4  # Reaction 2601
   rate-constant: {A: 3.2e+12, b: 0.0, Ea: 6931.17}
   note: |
     \AUTHOR: !\REF: HENRY'S SLIDES
-- equation: C8H142-6 + O2 <=> C8H132-6,SA + HO2  # Reaction 2604
+- equation: C8H142-6 + O2 <=> C8H132-6,SA + HO2  # Reaction 2602
   rate-constant: {A: 4.0e+13, b: 0.0, Ea: 3.719e+04}
   note: |
     \AUTHOR: !\REF: C4H8-1, C4H8-2 AND LLNL ANALOGY
-- equation: C8H142-6 + OH <=> C8H132-6,PA + H2O  # Reaction 2605
+- equation: C8H142-6 + OH <=> C8H132-6,PA + H2O  # Reaction 2603
   rate-constant: {A: 6.0e+06, b: 2.0, Ea: -239.01}
   note: |
     \AUTHOR: !\REF: HENRY'S SLIDES
-- equation: C8H142-6 + HO2 <=> C8H132-6,PA + H2O2  # Reaction 2606
+- equation: C8H142-6 + HO2 <=> C8H132-6,PA + H2O2  # Reaction 2604
   rate-constant: {A: 1.9e+04, b: 2.6, Ea: 1.386233e+04}
   note: |
     \AUTHOR: !\REF: HENRY'S SLIDES
-- equation: C8H142-6 + H <=> C8H132-6,PA + H2  # Reaction 2607
+- equation: C8H142-6 + H <=> C8H132-6,PA + H2  # Reaction 2605
   rate-constant: {A: 3.8e+05, b: 2.5, Ea: 2390.06}
   note: |
     \AUTHOR: !\REF: HENRY'S SLIDES
-- equation: C8H142-6 + O <=> C8H132-6,PA + OH  # Reaction 2608
+- equation: C8H142-6 + O <=> C8H132-6,PA + OH  # Reaction 2606
   rate-constant: {A: 1.3e+11, b: 0.7, Ea: 5975.14}
   note: |
     \AUTHOR: !\REF: HENRY'S SLIDES
-- equation: C8H142-6 + CH3 <=> C8H132-6,PA + CH4  # Reaction 2609
+- equation: C8H142-6 + CH3 <=> C8H132-6,PA + CH4  # Reaction 2607
   rate-constant: {A: 0.3, b: 3.5, Ea: 5736.14}
   note: |
     \AUTHOR: !\REF: HENRY'S SLIDES
-- equation: C8H142-6 + O2 <=> C8H132-6,PA + HO2  # Reaction 2610
+- equation: C8H142-6 + O2 <=> C8H132-6,PA + HO2  # Reaction 2608
   rate-constant: {A: 4.0e+13, b: 0.0, Ea: 3.939e+04}
   note: |
     \AUTHOR: !\REF: C4H8-1, C4H8-2 AND LLNL ANALOGY
-- equation: C5H81-3 + C3H5-S <=> C8H132-6,SA  # Reaction 2611
+- equation: C5H81-3 + C3H5-S <=> C8H132-6,SA  # Reaction 2609
   rate-constant: {A: 8800.0, b: 2.48, Ea: 6130.0}
   note: |
     ___________________________________________________________________________________________________________
     \REACTIONCLASS:  \RADICAL_BETA_SCISSION                     \A              \N              \EA
     ___________________________________________________________________________________________________________
     \AUTHOR: !\REF: H. J. CURRAN INC. INT J CHEM KINET 38: 250 C275, 2006
-- equation: C4H6 + C4H71-3 <=> C8H132-6,PA  # Reaction 2612
+- equation: C4H6 + C4H71-3 <=> C8H132-6,PA  # Reaction 2610
   rate-constant: {A: 1300.0, b: 2.48, Ea: 8520.0}
   note: |
     \AUTHOR: !\REF: H. J. CURRAN INC. INT J CHEM KINET 38: 250 C275, 2006
-- equation: C8H132-6,SA + HO2 <=> C8H132-6,SAO + OH  # Reaction 2613
+- equation: C8H132-6,SA + HO2 <=> C8H132-6,SAO + OH  # Reaction 2611
   rate-constant: {A: 1.64e+04, b: 2.74, Ea: 1144.38}
   note: |
     ___________________________________________________________________________________________________________
     \REACTIONCLASS:  \R+HO2(=)PRODUCTS                          \A              \N              \EA
     ___________________________________________________________________________________________________________
     \AUTHOR: !\REF: C. FRANKLIN GOLDSMITH J. PHYS. CHEM. A 2012, 116, 3325.3346 #ALLYL+HO2(=)ALLYLOXY+OH#
-- equation: C8H132-6,PA + HO2 <=> C8H132-6,PAO + OH  # Reaction 2614
+- equation: C8H132-6,PA + HO2 <=> C8H132-6,PAO + OH  # Reaction 2612
   rate-constant: {A: 1.64e+04, b: 2.74, Ea: 1144.38}
   note: |
     \AUTHOR: !\REF: C. FRANKLIN GOLDSMITH J. PHYS. CHEM. A 2012, 116, 3325.3346 #ALLYL+HO2(=)ALLYLOXY+OH#
-- equation: C4H71-3 + SC3H5CHO <=> C8H132-6,SAO  # Reaction 2615
+- equation: C4H71-3 + SC3H5CHO <=> C8H132-6,SAO  # Reaction 2613
   rate-constant: {A: 3.33e+10, b: 0.0, Ea: 6397.0}
   note: |
     \AUTHOR: !\REF: H.J. CURRAN, INT. J. CHEM. KIN. 38 (4) (2006) 250-275.!comment: Removed as reverse rate were too high
-- equation: C7H111-5,1P + CH2O <=> C8H132-6,PAO  # Reaction 2616
+- equation: C7H111-5,1P + CH2O <=> C8H132-6,PAO  # Reaction 2614
   rate-constant: {A: 1.0e+11, b: 0.0, Ea: 3496.0}
   note: |
     \AUTHOR: !\REF: H.J. CURRAN, INT. J. CHEM. KIN. 38 (4) (2006) 250-275.
-- equation: C5H92-5 + C2H2 <=> C7H111-5,1P  # Reaction 2617
+- equation: C5H92-5 + C2H2 <=> C7H111-5,1P  # Reaction 2615
   rate-constant: {A: 1.32e+04, b: 2.48, Ea: 6130.0}
   note: |
     \AUTHOR: !\REF: H.J. CURRAN, INT. J. CHEM. KIN. 38 (4) (2006) 250-275.

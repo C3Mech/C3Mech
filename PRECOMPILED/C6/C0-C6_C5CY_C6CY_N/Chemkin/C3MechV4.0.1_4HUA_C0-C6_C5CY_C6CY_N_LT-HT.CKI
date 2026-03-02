@@ -9,7 +9,7 @@
 ! organization including the University of Galway, Politecnico di Milano, RWTH Aachen University,    !
 ! Lawrence Livermore National Laboratory, Argonne National Laboratory, and Convergent Science.       !
 !                                                                                                    !
-! C3MechV4.0.1 is available from the github repository:                                              !
+! C3MechV4.0.1 is available from the GitHub repository:                                              !
 ! https://github.com/C3Mech/C3Mech                                                                   !
 !                                                                                                    !
 ! For more information, please visit fuelmech.org.                                                   !
@@ -24,10 +24,10 @@
 ! 2) Pratali Maffei, L., Langer, R., Murakami, Y., Wagnon, S. W., Wang, P., Liu, J., Raza, M.,       !
 !    Zhu, Y., Girhe, S., Schwenzer, C., Beeckmann, J., Klippenstein, S. J., Faravelli, T.,           !
 !    Pitsch, H., Senecal, P. K., & Curran, H. J. (2026). Corrigendum to "Modeling combustion         !
-!    chemistry using chemistry using C3MechV4.0: An extension to mixtures of hydrogen, ammonia,      !
-!    alkanes, and cycloalkanes" [Applications in Energy and Combustion Science, 2025, 24, 100385]    !
+!    chemistry using C3MechV4.0: An extension to mixtures of hydrogen, ammonia, alkanes, and         !
+!    cycloalkanes" [Applications in Energy and Combustion Science, 2025, 24, 100385]                 !
 !                                                                                                    !
-! ================================ Working Groups For C3MechV4.0.1 ================================= !
+! ================================ Working Groups for C3MechV4.0.1 ================================= !
 
 !                                                                                                    !
 ! Author                  | Institution                                                              !
@@ -69,7 +69,7 @@
 ! ================================================================================================== !
 
 
-! Kinetics data for C3MechV4.0.1, generated on 23/02/2026 21:02:41.
+! Kinetics data for C3MechV4.0.1, generated on 02/03/2026 05:23:37.
 
 ! The following sub-modules were considered in this file:
 ! - UOG_C0_LT-HT.MECH
@@ -82,7 +82,7 @@
 ! - UOG_N_LT-HT.MECH
 ! - UOG_C-N_LT-HT.MECH
 
-! MID: 4HUA
+! model ID (MID): 4HUA
 ! number of species: 2570
 ! number of reactions: 11006
 
@@ -979,20 +979,6 @@ C7H15-4O2                     C7H15-4O
 !+++++++++++++++++++++ 
 END  
 REACTIONS
-! REVISION FOR C3MechV4.0.1:
-! SEARCH FOR "YZ_251026"
-!  1) H2+O=H+OH
-!  2) H2+OH=H+H2O
-!  3) H+O2(+M)=HO2(+M)
-!  4) CH3+H(+M)=CH4(+M)
-!  5) CH2+O2=>CO2+H+H
-!  6) HCO+M=H+CO+M
-!
-!  SEARCH FOR "JL_251029"
-!  1) C2H3+H=C2H2+H2
-!  2) HCCO+OH=>H+CO+CO+H
-!
-!\START_ELEMENTS_LIST
 !++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 !\KINETICS_MODULE: H2_O2
 !++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++

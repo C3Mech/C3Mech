@@ -9,7 +9,7 @@
 ! organization including the University of Galway, Politecnico di Milano, RWTH Aachen University,    !
 ! Lawrence Livermore National Laboratory, Argonne National Laboratory, and Convergent Science.       !
 !                                                                                                    !
-! C3MechV4.0.1 is available from the github repository:                                              !
+! C3MechV4.0.1 is available from the GitHub repository:                                              !
 ! https://github.com/C3Mech/C3Mech                                                                   !
 !                                                                                                    !
 ! For more information, please visit fuelmech.org.                                                   !
@@ -24,10 +24,10 @@
 ! 2) Pratali Maffei, L., Langer, R., Murakami, Y., Wagnon, S. W., Wang, P., Liu, J., Raza, M.,       !
 !    Zhu, Y., Girhe, S., Schwenzer, C., Beeckmann, J., Klippenstein, S. J., Faravelli, T.,           !
 !    Pitsch, H., Senecal, P. K., & Curran, H. J. (2026). Corrigendum to "Modeling combustion         !
-!    chemistry using chemistry using C3MechV4.0: An extension to mixtures of hydrogen, ammonia,      !
-!    alkanes, and cycloalkanes" [Applications in Energy and Combustion Science, 2025, 24, 100385]    !
+!    chemistry using C3MechV4.0: An extension to mixtures of hydrogen, ammonia, alkanes, and         !
+!    cycloalkanes" [Applications in Energy and Combustion Science, 2025, 24, 100385]                 !
 !                                                                                                    !
-! ================================ Working Groups For C3MechV4.0.1 ================================= !
+! ================================ Working Groups for C3MechV4.0.1 ================================= !
 
 !                                                                                                    !
 ! Author                  | Institution                                                              !
@@ -69,7 +69,7 @@
 ! ================================================================================================== !
 
 
-! Kinetics data for C3MechV4.0.1, generated on 23/02/2026 21:02:41.
+! Kinetics data for C3MechV4.0.1, generated on 02/03/2026 05:23:37.
 
 ! The following sub-modules were considered in this file:
 ! - UOG_C0_LT-HT_Cantera.MECH
@@ -80,9 +80,9 @@
 ! - UOG_N_LT-HT.MECH
 ! - UOG_C-N_HT.MECH
 
-! MID: 3SO8
+! model ID (MID): 3SO8
 ! number of species: 576
-! number of reactions: 3750
+! number of reactions: 3748
 
 ! REVISION FOR C3MechV4.0.1:
 ! SEARCH FOR "YZ_251026"
@@ -219,51 +219,51 @@ H15DE25DM-SO                  H15DE2M-T                     IC4H7CHO
 IC4H7CO                       IC4H7CHO-A                    IC4H8OH                       
 C5H8-2                        B12DE3M                       C6H6                          
 C6H9-A                        C6H8                          CYHEXEN-4J                    
-CYPENTN-4MJ                   CYHX13ENE                     CYHX14ENE                     
-CYPENTN-4M4J                  CYPENTN-4M3J                  C5H6                          
-CYC6H7                        C6H7-2                        C4H64,1-1OH                   
-C2H3CHOHCH2                   CH2CYC3H4OH                   C5H9OH1-2                     
-CC5H9OH-A                     CC5H8OHA-B                    CC5H8OHA-BO                   
-C3H4CH2OH-3O                  C3H4CH2OH-1O                  C2H3COCH2OH                   
-C2H3COCHOH                    C2H3CHOHCO                    CHCHCH2OH                     
-C4H61KET43O                   C2H3COOCH2                    CH2CHCHCHCCH                  
-C4H5-2C2H                     C4H2                          AC3H5CO                       
-CC3H5                         CVCCVCCVO                     CJVCCVO                       
-CH2CCOCH3                     SC4H6OH-2                     C4H3-I                        
-CH3COHOJCOCH3                 C3H6CHO-3                     CH3CHOCHCO                    
-C8H141-5,3-4                  C8H131-5,3-4,TA               I3C6D25                       
-C8H131-5,3-4,TAO              C8H141-5,3                    C8H131-5,3,TA                 
-C8H131-5,3,SA                 C8H131-5,3,PA                 C6H10D24                      
-C8H131-5,3,TAO                C8H131-5,3,SAO                C8H131-5,3,PAO                
-C7H111-5,3,6P                 CC5H9-A                       C8H142-6                      
-C8H132-6,SA                   C8H132-6,PA                   C5H81-3                       
-C8H132-6,SAO                  C8H132-6,PAO                  C7H111-5,1P                   
-C5H92-5                       CYC5H10                       C5H10-1                       
-CYC5H9                        CYC5H8                        C5H91-5                       
-C2H3OC3H4A                    C4H6CHO-4,3                   CYC5E1-4O                     
-PC4H8CHO-4                    CPTOJ                         CYC3H5CHCH2                   
-C5H8D14                       C5H91-3                       C5H91-4                       
-C5H92-4                       CPTOH-2                       C53OH1EN5J                    
-PC4H8CHO-1                    PC4H9CHO                      CYC5H71-3                     
-CPND2                         CYC51EN3OJ                    C4H6CHO2-5                    
-CPN-3R                        CYC5H71-4                     C5D2Y1-1R                     
-C4H6CHO-3,2                   C4H6CHO4-5                    C4H7CO1-4                     
-CPND3                         C5H7-14-1                     CVCCJCVC                      
-CPN                           CPN-2R                        C4H7CHO-4                     
-PC2H4COC2H3                   PC3H6CHCO                     C5Y2D4-1R                     
-C5H5O                         CPNOH3-2R                     CPNOH2-3R                     
-CPNOH3-4R                     CPN-2OR                       CPN-3OR                       
-OVCCVCCOJ                     AC3H5CHCO                     C2H3CHCO                      
-C5Y3D14                       C5H4O                         C5H3O-2                       
-CYC6H11                       CYC6H12                       C6H12-1                       
-CYC6H10                       C6H111-6                      HEX5ENAL                      
-CHX1VO4J                      HX1N5AL6J                     HX15AL6J                      
-CHX1VO3OJ                     OVCCCJCVO                     HX16AL2J                      
-HX12AL1J                      HX14AL2J                      HX5ENAL4J                     
-CYHX1N4OJ                     HX5ENAL1J                     HX5ENAL2J                     
-HX5ENAL3J                     HX5ENAL4OJ                    CYHX1N3J                      
-C6H9-13-6                     CYHX1N3OJ                     HX2N1AL6J                     
-C6D2Y1-1R                     C5H91-1                       CYC6H724-OJ                   
+CYPENTN-4MJ                   CYPENTN-4M4J                  CYPENTN-4M3J                  
+C5H6                          CYC6H7                        C6H7-2                        
+C4H64,1-1OH                   C2H3CHOHCH2                   CH2CYC3H4OH                   
+C5H9OH1-2                     CC5H9OH-A                     CC5H8OHA-B                    
+CC5H8OHA-BO                   C3H4CH2OH-3O                  C3H4CH2OH-1O                  
+C2H3COCH2OH                   C2H3COCHOH                    C2H3CHOHCO                    
+CHCHCH2OH                     C4H61KET43O                   C2H3COOCH2                    
+CH2CHCHCHCCH                  C4H5-2C2H                     C4H2                          
+AC3H5CO                       CC3H5                         CVCCVCCVO                     
+CJVCCVO                       CH2CCOCH3                     SC4H6OH-2                     
+C4H3-I                        CH3COHOJCOCH3                 C3H6CHO-3                     
+CH3CHOCHCO                    C8H141-5,3-4                  C8H131-5,3-4,TA               
+I3C6D25                       C8H131-5,3-4,TAO              C8H141-5,3                    
+C8H131-5,3,TA                 C8H131-5,3,SA                 C8H131-5,3,PA                 
+C6H10D24                      C8H131-5,3,TAO                C8H131-5,3,SAO                
+C8H131-5,3,PAO                C7H111-5,3,6P                 CC5H9-A                       
+C8H142-6                      C8H132-6,SA                   C8H132-6,PA                   
+C5H81-3                       C8H132-6,SAO                  C8H132-6,PAO                  
+C7H111-5,1P                   C5H92-5                       CYC5H10                       
+C5H10-1                       CYC5H9                        CYC5H8                        
+C5H91-5                       C2H3OC3H4A                    C4H6CHO-4,3                   
+CYC5E1-4O                     PC4H8CHO-4                    CPTOJ                         
+CYC3H5CHCH2                   C5H8D14                       C5H91-3                       
+C5H91-4                       C5H92-4                       CPTOH-2                       
+C53OH1EN5J                    PC4H8CHO-1                    PC4H9CHO                      
+CYC5H71-3                     CPND2                         CYC51EN3OJ                    
+C4H6CHO2-5                    CPN-3R                        CYC5H71-4                     
+C5D2Y1-1R                     C4H6CHO-3,2                   C4H6CHO4-5                    
+C4H7CO1-4                     CPND3                         C5H7-14-1                     
+CVCCJCVC                      CPN                           CPN-2R                        
+C4H7CHO-4                     PC2H4COC2H3                   PC3H6CHCO                     
+C5Y2D4-1R                     C5H5O                         CPNOH3-2R                     
+CPNOH2-3R                     CPNOH3-4R                     CPN-2OR                       
+CPN-3OR                       OVCCVCCOJ                     AC3H5CHCO                     
+C2H3CHCO                      C5Y3D14                       C5H4O                         
+C5H3O-2                       CYC6H11                       CYC6H12                       
+C6H12-1                       CYC6H10                       C6H111-6                      
+HEX5ENAL                      CHX1VO4J                      HX1N5AL6J                     
+HX15AL6J                      CHX1VO3OJ                     OVCCCJCVO                     
+HX16AL2J                      HX12AL1J                      HX14AL2J                      
+HX5ENAL4J                     CYHX1N4OJ                     HX5ENAL1J                     
+HX5ENAL2J                     HX5ENAL3J                     HX5ENAL4OJ                    
+CYHX1N3J                      CYHX13ENE                     C6H9-13-6                     
+CYHX1N3OJ                     HX2N1AL6J                     C6D2Y1-1R                     
+C5H91-1                       CYHX14ENE                     CYC6H724-OJ                   
 CYC6H725-OJ                   C6H6O-24                      C6H6O-25                      
 NH3                           NH2                           NO2                           
 HONO                          HNO2                          NH                            
@@ -313,20 +313,6 @@ C7H15-2                       C7H15-3                       C7H15-4
 !+++++++++++++++++++++ 
 END  
 REACTIONS
-! REVISION FOR C3MechV4.0.1:
-! SEARCH FOR "YZ_251026"
-!  1) H2+O=H+OH
-!  2) H2+OH=H+H2O
-!  3) H+O2(+M)=HO2(+M)
-!  4) CH3+H(+M)=CH4(+M)
-!  5) CH2+O2=>CO2+H+H
-!  6) HCO+M=H+CO+M
-!
-!  SEARCH FOR "JL_251029"
-!  1) C2H3+H=C2H2+H2
-!  2) HCCO+OH=>H+CO+CO+H
-!
-!\START_ELEMENTS_LIST
 !++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 !\KINETICS_MODULE: H2_O2
 !++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -12432,9 +12418,9 @@ C6H9-A=CYHEXEN-4J    5.041E8 0.7 2.0246E4
 C6H9-A=CYPENTN-4MJ    5.249E8 0.846 1.9298E4
 !DONG 0406!CYPENTN-4MJ(=)H+CYPENTN-4MTHNE                    +1.97200000E+007 +1.80200000E+000 +3.23040000E+004 !\Author: WARNING !\Ref: WARNING !\Comment: WARNING
 !\Author: WARNING !\Ref: WARNING !\Comment: WARNING
-CYHEXEN-4J=H+CYHX13ENE    7.487E8 1.395 3.3132E4
+!!CYHEXEN-4J=H+CYHX13ENE    7.487E8 1.395 3.3132E4 !! Removed Yuki Murakami 31 March 2024, Same reaction in C6cy module
 !\Author: WARNING !\Ref: WARNING !\Comment: WARNING
-CYHEXEN-4J=H+CYHX14ENE    2.097E9 1.299 3.3394E4
+!!CYHEXEN-4J=H+CYHX14ENE    2.097E9 1.299 3.3394E4 !! Removed Yuki Murakami 31 March 2024, Same reaction in C6cy module
 !\Author: WARNING !\Ref: WARNING !\Comment: WARNING
 CYPENTN-4MJ=CYPENTN-4M4J    5.265E-7 5.639 2.4541E4
 !\Author: WARNING !\Ref: WARNING !\Comment: WARNING

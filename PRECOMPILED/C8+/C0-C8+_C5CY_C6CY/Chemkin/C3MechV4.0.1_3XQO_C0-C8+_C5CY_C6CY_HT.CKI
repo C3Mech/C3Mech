@@ -9,7 +9,7 @@
 ! organization including the University of Galway, Politecnico di Milano, RWTH Aachen University,    !
 ! Lawrence Livermore National Laboratory, Argonne National Laboratory, and Convergent Science.       !
 !                                                                                                    !
-! C3MechV4.0.1 is available from the github repository:                                              !
+! C3MechV4.0.1 is available from the GitHub repository:                                              !
 ! https://github.com/C3Mech/C3Mech                                                                   !
 !                                                                                                    !
 ! For more information, please visit fuelmech.org.                                                   !
@@ -24,10 +24,10 @@
 ! 2) Pratali Maffei, L., Langer, R., Murakami, Y., Wagnon, S. W., Wang, P., Liu, J., Raza, M.,       !
 !    Zhu, Y., Girhe, S., Schwenzer, C., Beeckmann, J., Klippenstein, S. J., Faravelli, T.,           !
 !    Pitsch, H., Senecal, P. K., & Curran, H. J. (2026). Corrigendum to "Modeling combustion         !
-!    chemistry using chemistry using C3MechV4.0: An extension to mixtures of hydrogen, ammonia,      !
-!    alkanes, and cycloalkanes" [Applications in Energy and Combustion Science, 2025, 24, 100385]    !
+!    chemistry using C3MechV4.0: An extension to mixtures of hydrogen, ammonia, alkanes, and         !
+!    cycloalkanes" [Applications in Energy and Combustion Science, 2025, 24, 100385]                 !
 !                                                                                                    !
-! ================================ Working Groups For C3MechV4.0.1 ================================= !
+! ================================ Working Groups for C3MechV4.0.1 ================================= !
 
 !                                                                                                    !
 ! Author                  | Institution                                                              !
@@ -69,7 +69,7 @@
 ! ================================================================================================== !
 
 
-! Kinetics data for C3MechV4.0.1, generated on 23/02/2026 21:02:41.
+! Kinetics data for C3MechV4.0.1, generated on 02/03/2026 05:23:37.
 
 ! The following sub-modules were considered in this file:
 ! - UOG_C0_LT-HT.MECH
@@ -82,9 +82,9 @@
 ! - UOG_C7_HT.MECH
 ! - LLNL_BLOCK_HT.CKI
 
-! MID: 3XQO
-! number of species: 1356
-! number of reactions: 7171
+! model ID (MID): 3XQO
+! number of species: 1350
+! number of reactions: 7404
 
 ! REVISION FOR C3MechV4.0.1:
 ! SEARCH FOR "YZ_251026"
@@ -222,255 +222,248 @@ H15DE2M-T                     IC4H7CHO                      IC4H7CO
 IC4H7CHO-A                    IC4H8OH                       C5H8-2                        
 B12DE3M                       C6H6                          C6H9-A                        
 C6H8                          CYHEXEN-4J                    CYPENTN-4MJ                   
-CYHX13ENE                     CYHX14ENE                     CYPENTN-4M4J                  
-CYPENTN-4M3J                  C5H6                          CYC6H7                        
-C6H7-2                        C4H64,1-1OH                   C2H3CHOHCH2                   
-CH2CYC3H4OH                   C5H9OH1-2                     CC5H9OH-A                     
-CC5H8OHA-B                    CC5H8OHA-BO                   C3H4CH2OH-3O                  
-C3H4CH2OH-1O                  C2H3COCH2OH                   C2H3COCHOH                    
-C2H3CHOHCO                    CHCHCH2OH                     C4H61KET43O                   
-C2H3COOCH2                    CH2CHCHCHCCH                  C4H5-2C2H                     
-C4H2                          AC3H5CO                       CC3H5                         
-CVCCVCCVO                     CJVCCVO                       CH2CCOCH3                     
-SC4H6OH-2                     C4H3-I                        CH3COHOJCOCH3                 
-C3H6CHO-3                     CH3CHOCHCO                    C8H141-5,3-4                  
-C8H131-5,3-4,TA               I3C6D25                       C8H131-5,3-4,TAO              
-C8H141-5,3                    C8H131-5,3,TA                 C8H131-5,3,SA                 
-C8H131-5,3,PA                 C6H10D24                      C8H131-5,3,TAO                
-C8H131-5,3,SAO                C8H131-5,3,PAO                C7H111-5,3,6P                 
-CC5H9-A                       C8H142-6                      C8H132-6,SA                   
-C8H132-6,PA                   C5H81-3                       C8H132-6,SAO                  
-C8H132-6,PAO                  C7H111-5,1P                   C5H92-5                       
-NC5H12                        C5H11-1                       C5H11-2                       
-C5H11-3                       C5H10-1                       C5H10OOH1-2                   
-C5H10OOH2-1                   C5H10-2                       C5H10OOH2-3                   
-C5H10OOH3-2                   C5H11O2-1                     C5H11O2H-1                    
-C5H11O2-2                     C5H11O2H-2                    CC5H10                        
+CYPENTN-4M4J                  CYPENTN-4M3J                  C5H6                          
+CYC6H7                        C6H7-2                        C4H64,1-1OH                   
+C2H3CHOHCH2                   CH2CYC3H4OH                   C5H9OH1-2                     
+CC5H9OH-A                     CC5H8OHA-B                    CC5H8OHA-BO                   
+C3H4CH2OH-3O                  C3H4CH2OH-1O                  C2H3COCH2OH                   
+C2H3COCHOH                    C2H3CHOHCO                    CHCHCH2OH                     
+C4H61KET43O                   C2H3COOCH2                    CH2CHCHCHCCH                  
+C4H5-2C2H                     C4H2                          AC3H5CO                       
+CC3H5                         CVCCVCCVO                     CJVCCVO                       
+CH2CCOCH3                     SC4H6OH-2                     C4H3-I                        
+CH3COHOJCOCH3                 C3H6CHO-3                     CH3CHOCHCO                    
+C8H141-5,3-4                  C8H131-5,3-4,TA               I3C6D25                       
+C8H131-5,3-4,TAO              C8H141-5,3                    C8H131-5,3,TA                 
+C8H131-5,3,SA                 C8H131-5,3,PA                 C6H10D24                      
+C8H131-5,3,TAO                C8H131-5,3,SAO                C8H131-5,3,PAO                
+C7H111-5,3,6P                 CC5H9-A                       C8H142-6                      
+C8H132-6,SA                   C8H132-6,PA                   C5H81-3                       
+C8H132-6,SAO                  C8H132-6,PAO                  C7H111-5,1P                   
+C5H92-5                       NC5H12                        C5H11-1                       
+C5H11-2                       C5H11-3                       CC5H10                        
 DC5H11                        CC5H11                        BC5H11                        
-AC5H11                        BC5H10                        C5H11O-1                      
-C5H11O-2                      C5H11O-3                      NC5KET12O                     
-NC5KET13O                     NC5KET14O                     NC5KET15O                     
-NC5KET21O                     NC5KET23O                     NC5KET24O                     
-NC5KET25O                     NC5KET31O                     NC5KET32O                     
-OCH2CHO                       CH2OCH2CHO                    IC5H12                        
-AC5H11O                       BC5H11O                       CC5H11O                       
-DC5H11O                       IC5KETAAO                     IC5KETABO                     
-IC5KETACO                     IC5KETADO                     IC5KETCAO                     
-IC5KETCBO                     IC5KETCDO                     IC5KETDAO                     
-IC5KETDBO                     IC5KETDCO                     IC3H5COCH3                    
-IC3H5COCH2                    AC3H4COCH3                    NEOC5H12                      
-NEOC5H11                      NEOC5H11O                     NEOC5KETOX                    
-NEOC5KEJOL                    C5H91-3                       C5H91-4                       
-C5H91-5                       C5H92-4                       C5H91-1                       
-C5H91-2                       AC5H9-A1                      AC5H9-A2                      
-AC5H9-C                       BC5H9-C                       CC5H9-B                       
-CC5H9-C                       CC5H9-D                       C5H92-2                       
-C5H92-3                       C6H12-3                       I3C6D1                        
-IC6D3                         PC4H8CHO-1                    CH3CH2CHCOCH3                 
-CH3CHCOC2H5                   C5H10OH12                     C5H10OH21                     
-C5H10OH23                     C5H10OH32                     CH2CYC3H4CH3                  
-CYC5H9                        CH3CYC3H3CH3-3                CYC4H6-2-CH3                  
-C5H8D14                       CYC4H6-3-CH3                  CYC3H4C2H5-2                  
-C5H81-2                       CYC3H5CHCH3                   C5H8-1                        
-CH3CYC3H3CH3                  CYC3H4C2H5-1                  CYC3H5CHCH2                   
-CYC3H4CHCH3                   CYC3H3-1C2H5                  CYC3H3-3C2H5                  
-CH2CYC3H3CH3                  CVCCJCVC                      C5H9OH1-2,4                   
-C5H7-14-1                     C5H7-13-2                     C5H7-13-3                     
-CVCCVCCOJ                     CVCC(OJ)CVC                   NC53ONE-1                     
-NC52ONE-3                     C5H9O1-3                      C5H9O2-1                      
-C4H7CHO-2                     C5H9O2-4                      C5H91-5O                      
-C5H81KET53O                   BC5H10OH                      CC5H10OH                      
-AC5H9O-A2                     CC5H9O-B                      B2E3M1OJ                      
-IC5D2Y4                       AC5H10OH                      AC5H9O-C                      
-B2E2M1OJ                      B13DE2MJ                      TC4H8CHO                      
-PC4H9CHO                      PC4H8CHO-2                    PC4H8CHO-3                    
-PC4H8CHO-4                    C5D2Y1-1R                     C4H7CHO-3                     
-C4H6CHO-3,1                   C4H6CHO-3,2                   C4H6CHO-2,4O                  
-C4H7CHO-4                     C4H6CHO-4,3                   NC3H7COCH3                    
-CH3CHCH2COCH3                 CH2CH2CH2COCH3                C2H5COC2H5                    
-CH2CH2COC2H5                  NC52ONE-4                     NC5H11OH                      
-C5H10OH15                     C5H10OH14                     C5H10OH13                     
-C5H10OH11                     C5H10OH25                     C5H10OH22                     
-C5H9OH1-1                     C5H9OH2-1                     C5H9OH2-2                     
-C5H9OH1-2,4O                  CVCCVCCOH                     C5H9OH1-4,3O                  
-C5H9OH2-1,3                   C5H9OH2-1,3O                  HOCH2COCH2                    
-HOCH2COCH2O                   IC5D2Y4-1J                    IC5D2Y4-4J                    
-DC5H9O-B                      DC5H9O-C                      IC5Y4OH2-3J                   
-IC5Y4OH3-2J                   IC5D1Y4-3OJ                   IC5D2Y4-1OJ                   
-CYC5H10                       CYC5H8                        C2H3OC3H4A                    
-CYC5E1-4O                     CPTOJ                         CPTOH-2                       
-C53OH1EN5J                    CYC5H71-3                     CPND2                         
-CYC51EN3OJ                    C4H6CHO2-5                    CPN-3R                        
-CYC5H71-4                     C4H6CHO4-5                    C4H7CO1-4                     
-CPND3                         CPN                           CPN-2R                        
-PC2H4COC2H3                   PC3H6CHCO                     C5Y2D4-1R                     
-C5H5O                         CPNOH3-2R                     CPNOH2-3R                     
-CPNOH3-4R                     CPN-2OR                       CPN-3OR                       
-OVCCVCCOJ                     AC3H5CHCO                     C2H3CHCO                      
-C5Y3D14                       C5H4O                         C5H3O-2                       
-C6KET12O                      C6KET13O                      C6KET14O                      
-C6KET15O                      C6KET21O                      C6KET23O                      
-C6KET24O                      C6KET25O                      C6KET26O                      
-C6KET31O                      C6KET32O                      C6KET34O                      
-C6KET35O                      C6KET36O                      NC6H14                        
-C6H13-1                       C6H13-2                       C6H13-3                       
-C6H12-1                       C6H12-2                       C6H13O-1                      
-C6H13O-2                      C6H13O-3                      C6H11OH1-1                    
-C6D2Y1                        C6H11OH1-2                    C6H10D13                      
-C6H11OH2-1                    C6H111-3                      C6H112-4                      
-NC5H10CHO-1                   C6H111-1                      C6H111-2                      
-C6H111-4                      C6H111-5                      C6H111-6                      
-C6H112-5                      C6H112-6                      C6H113-1                      
-C7H14-3                       I3C7D1                        I3C7D1-3                      
-I3C7D1-3O                     C6H12OH-1J2                   C6H12OH-2J1                   
-C6H12OH-2J3                   C6H12OH-3J2                   C6H12OH-3J4                   
-C6H11OH2-2                    C6H11OH3-2                    C6H12OH15                     
-C6H12OH11                     C6H12OH16                     C6H12OH25                     
-C6H12OH22                     C6H11OH1-4                    C6H10OH1-4,3                  
-C6H10OH1-4,3O                 C6H11OH1-5                    C6H10OH1-5,4                  
-C6H10OH1-5,4O                 NC6KET2OH1-5                  NC6KET5OH1-2                  
-P13DE1O4J                     C6H11-1D3O                    C6H11-2D1O                    
-C6H11-2D4O                    C6H11-3D2O                    C6H10D14                      
-C6H101-5                      C6H11-1D5O                    NC5H11CHO                     
-NC5H11CO                      NC5H10CHO-2                   NC5H10CHO-3                   
-NC5H10CHO-4                   NC5H10CHO-5                   CVCCJCVCC                     
-CVCCVCCOJC                    C6H9-13-2                     C6H9-13-3                     
-C6H9-13-6                     CVCCOJCVCC                    COJCVCCVCC                    
-P13DE1J                       IC6-1                         IC6H14                        
-IC6-2                         IC6-3                         IC6-4                         
-IC6-5                         IC6D1                         IC6D2                         
-IC6D4                         IC6D1-1A                      IC6D1-3                       
-IC6D1-4                       IC6D1-5                       IC6D3-2                       
-IC6D2-5                       IC6D3-1                       IC6D4-3                       
-IC6D4-1                       IC6D4-2                       DC5H10O                       
-IC6OH1-2J                     IC6OH2-1J                     IC6OH2-3J                     
-IC6OH3-2J                     IC6OH3-4J                     IC6OH4-3J                     
-IC6OH4-5J                     IC6OH5-4J                     IC6D13                        
-IC6D1-1AO                     IC6D1-3O                      IC6D3-2O                      
-IC6D4-3O                      IC6D14                        IC6D24                        
-IC6D14-1                      IC6D13-5R                     IC6-1O                        
-IC6-2O                        IC6-3O                        IC6-4O                        
-IC6-5O                        IC6KET1-1AO                   IC6KET1-2O                    
-IC6KET1-3O                    IC6KET1-4O                    IC6KET1-5O                    
-C4H8CHO4-2                    IC6KET3-1O                    IC6KET3-2O                    
-IC6KET3-4O                    IC6KET3-5O                    IC3H7COCH2                    
-IC6KET4-1O                    IC6KET4-2O                    IC6KET4-3O                    
-IC6KET4-5O                    IC4H9CO                       IC6KET5-1O                    
-IC6KET5-2O                    IC6KET5-3O                    IC6KET5-4O                    
-CC5H9-AO                      C5H91-4O                      C5H92-5O                      
-IC6D13-1AR                    NC5D124                       NC5D124-5R                    
-I3C6-1                        I3C6H14                       I3C6-2                        
-I3C6-3                        I3C6-4                        I3C6D2                        
-I3C6D3                        I3C6D1-3                      I3C6D1-4                      
-I3C6D1-5                      I3C6D1-6                      I3C6D3-2                      
-I3C6D2-5                      I3C6D2-6                      I3C6D3-1                      
-SC4H9CHO                      I3C6OH1-2J                    I3C6OH2-1J                    
-I3C6OH2-3J                    I3C6OH3-2J                    I3C6OH3-4J                    
-I3C6OH4-3J                    I3C6D13                       I3C6D15                       
-I3C6D13-5                     I3C6D13-6                     I3C6D15-3                     
-I3C6D15-4                     I3C6D1-3O                     I3C6D2-5O                     
-I3C6D3-2O                     I3C6D1-4O                     I3C6D1-5O                     
-I3C6D1-6O                     I3C6D2-6O                     I3C6D3-1O                     
-I3C6-1O                       I3C6-2O                       I3C6-3O                       
-I3C6-4O                       I3C6KET1-2O                   I3C6KET1-3O                   
-I3C6KET1-4O                   I3C6KET1-5O                   I3C6KET1-6O                   
-DC5H9O-A                      I3C6KET2-1O                   SC4H9CO                       
-I3C6KET2-3O                   I3C6KET2-4O                   I3C6KET2-5O                   
-I3C6KET2-6O                   IC5Y3-1J                      I3C6KET4-1O                   
-SC4H8CHO-1                    I3C6KET4-2O                   I3C6KET4-3O                   
-SC4H8CHO-2                    SC4H8CHO-3                    NEC6-1                        
-NEC6H14                       NEC6-3                        NEC6-4                        
-NEC6D3                        NEC6D3-1                      TC4H9CHO                      
-NEC6OH3-4J                    NEC6OH4-3J                    NEC6-1O                       
-NEC6-3O                       NEC6-4O                       NEC6KET1-1AO                  
-NEC6KET1-3O                   NEC6KET1-4O                   NEC6KET3-1O                   
-IC5Y3-2J                      NEC6KET3-4O                   TC4H9CO                       
-NEC6KET4-3O                   XC6-1                         XC6H14                        
-XC6-2                         XC6D1                         XC6D2                         
-XC6D1-1A                      XC6D1-3                       XC6D1-4                       
-XC6OH1-2J                     XC6OH2-1J                     XC6OH2-3J                     
-XC6D1-1AO                     XC6D1-3O                      XC6D13                        
-XC6D13-1AR                    XC6-1O                        XC6-2O                        
-IC5Y3                         C4H72-2CHO                    CYC6H11                       
-CYC6H12                       CYC6H10                       HEX5ENAL                      
-CHX1VO4J                      HX1N5AL6J                     HX15AL6J                      
-CHX1VO3OJ                     OVCCCJCVO                     HX16AL2J                      
-HX12AL1J                      HX14AL2J                      HX5ENAL4J                     
-CYHX1N4OJ                     HX5ENAL1J                     HX5ENAL2J                     
-HX5ENAL3J                     HX5ENAL4OJ                    CYHX1N3J                      
+AC5H11                        BC5H10                        C5H10-1                       
+C5H10-2                       C5H11O-1                      C5H11O-2                      
+C5H11O-3                      NC5KET12O                     NC5KET13O                     
+NC5KET14O                     NC5KET15O                     NC5KET21O                     
+NC5KET24O                     NC5KET25O                     NC5KET31O                     
+OCH2CHO                       IC5H12                        AC5H11O                       
+BC5H11O                       CC5H11O                       DC5H11O                       
+IC5KETAAO                     IC5KETABO                     IC5KETACO                     
+IC5KETADO                     IC5KETCAO                     IC5KETCBO                     
+IC5KETCDO                     IC5KETDAO                     IC5KETDBO                     
+IC5KETDCO                     IC3H5COCH3                    IC3H5COCH2                    
+AC3H4COCH3                    NEOC5H12                      NEOC5H11                      
+NEOC5H11O                     NEOC5KETOX                    NEOC5KEJOL                    
+C5H91-3                       C5H91-4                       C5H91-5                       
+C5H92-4                       C5H91-1                       C5H91-2                       
+AC5H9-A1                      AC5H9-A2                      AC5H9-C                       
+BC5H9-C                       CC5H9-B                       CC5H9-C                       
+CC5H9-D                       C5H92-2                       C5H92-3                       
+C6H12-3                       I3C6D1                        IC6D3                         
+PC4H8CHO-1                    CH3CH2CHCOCH3                 CH3CHCOC2H5                   
+C5H10OH12                     C5H10OH21                     C5H10OH23                     
+C5H10OH32                     CH2CYC3H4CH3                  CYC5H9                        
+CH3CYC3H3CH3-3                CYC4H6-2-CH3                  C5H8D14                       
+CYC4H6-3-CH3                  CYC3H4C2H5-2                  C5H81-2                       
+CYC3H5CHCH3                   C5H8-1                        CH3CYC3H3CH3                  
+CYC3H4C2H5-1                  CYC3H5CHCH2                   CYC3H4CHCH3                   
+CYC3H3-1C2H5                  CYC3H3-3C2H5                  CH2CYC3H3CH3                  
+CVCCJCVC                      C5H9OH1-2,4                   C5H7-14-1                     
+C5H7-13-2                     C5H7-13-3                     CVCCVCCOJ                     
+CVCC(OJ)CVC                   NC53ONE-1                     NC52ONE-3                     
+C5H9O1-3                      C5H9O2-1                      C4H7CHO-2                     
+C5H9O2-4                      C5H91-5O                      C5H81KET53O                   
+BC5H10OH                      CC5H10OH                      AC5H9O-A2                     
+CC5H9O-B                      B2E3M1OJ                      IC5D2Y4                       
+AC5H10OH                      AC5H9O-C                      B2E2M1OJ                      
+B13DE2MJ                      TC4H8CHO                      PC4H9CHO                      
+PC4H8CHO-2                    PC4H8CHO-3                    PC4H8CHO-4                    
+C5D2Y1-1R                     C4H7CHO-3                     C4H6CHO-3,1                   
+C4H6CHO-3,2                   C4H6CHO-2,4O                  C4H7CHO-4                     
+C4H6CHO-4,3                   NC3H7COCH3                    CH3CHCH2COCH3                 
+CH2CH2CH2COCH3                C2H5COC2H5                    CH2CH2COC2H5                  
+NC52ONE-4                     NC5H11OH                      C5H10OH15                     
+C5H10OH14                     C5H10OH13                     C5H10OH11                     
+C5H10OH25                     C5H10OH22                     C5H9OH1-1                     
+C5H9OH2-1                     C5H9OH2-2                     C5H9OH1-2,4O                  
+CVCCVCCOH                     C5H9OH1-4,3O                  C5H9OH2-1,3                   
+C5H9OH2-1,3O                  HOCH2COCH2                    HOCH2COCH2O                   
+IC5D2Y4-1J                    IC5D2Y4-4J                    DC5H9O-B                      
+DC5H9O-C                      IC5Y4OH2-3J                   IC5Y4OH3-2J                   
+IC5D1Y4-3OJ                   IC5D2Y4-1OJ                   CYC5H10                       
+CYC5H8                        C2H3OC3H4A                    CYC5E1-4O                     
+CPTOJ                         CPTOH-2                       C53OH1EN5J                    
+CYC5H71-3                     CPND2                         CYC51EN3OJ                    
+C4H6CHO2-5                    CPN-3R                        CYC5H71-4                     
+C4H6CHO4-5                    C4H7CO1-4                     CPND3                         
+CPN                           CPN-2R                        PC2H4COC2H3                   
+PC3H6CHCO                     C5Y2D4-1R                     C5H5O                         
+CPNOH3-2R                     CPNOH2-3R                     CPNOH3-4R                     
+CPN-2OR                       CPN-3OR                       OVCCVCCOJ                     
+AC3H5CHCO                     C2H3CHCO                      C5Y3D14                       
+C5H4O                         C5H3O-2                       C6KET12O                      
+C6KET13O                      C6KET14O                      C6KET15O                      
+C6KET21O                      C6KET23O                      C6KET24O                      
+C6KET25O                      C6KET26O                      C6KET31O                      
+C6KET32O                      C6KET34O                      C6KET35O                      
+C6KET36O                      NC6H14                        C6H13-1                       
+C6H13-2                       C6H13-3                       C6H12-1                       
+C6H12-2                       C6H13O-1                      C6H13O-2                      
+C6H13O-3                      C6H11OH1-1                    C6D2Y1                        
+C6H11OH1-2                    C6H10D13                      C6H11OH2-1                    
+C6H111-3                      C6H112-4                      NC5H10CHO-1                   
+C6H111-1                      C6H111-2                      C6H111-4                      
+C6H111-5                      C6H111-6                      C6H112-5                      
+C6H112-6                      C6H113-1                      C7H14-3                       
+I3C7D1                        I3C7D1-3                      I3C7D1-3O                     
+C6H12OH-1J2                   C6H12OH-2J1                   C6H12OH-2J3                   
+C6H12OH-3J2                   C6H12OH-3J4                   C6H11OH2-2                    
+C6H11OH3-2                    C6H12OH15                     C6H12OH11                     
+C6H12OH16                     C6H12OH25                     C6H12OH22                     
+C6H11OH1-4                    C6H10OH1-4,3                  C6H10OH1-4,3O                 
+C6H11OH1-5                    C6H10OH1-5,4                  C6H10OH1-5,4O                 
+NC6KET2OH1-5                  NC6KET5OH1-2                  P13DE1O4J                     
+C6H11-1D3O                    C6H11-2D1O                    C6H11-2D4O                    
+C6H11-3D2O                    C6H10D14                      C6H101-5                      
+C6H11-1D5O                    NC5H11CHO                     NC5H11CO                      
+NC5H10CHO-2                   NC5H10CHO-3                   NC5H10CHO-4                   
+NC5H10CHO-5                   CVCCJCVCC                     CVCCVCCOJC                    
+C6H9-13-2                     C6H9-13-3                     C6H9-13-6                     
+CVCCOJCVCC                    COJCVCCVCC                    P13DE1J                       
+IC6-1                         IC6H14                        IC6-2                         
+IC6-3                         IC6-4                         IC6-5                         
+IC6D1                         IC6D2                         IC6D4                         
+IC6D1-1A                      IC6D1-3                       IC6D1-4                       
+IC6D1-5                       IC6D3-2                       IC6D2-5                       
+IC6D3-1                       IC6D4-3                       IC6D4-1                       
+IC6D4-2                       DC5H10O                       IC6OH1-2J                     
+IC6OH2-1J                     IC6OH2-3J                     IC6OH3-2J                     
+IC6OH3-4J                     IC6OH4-3J                     IC6OH4-5J                     
+IC6OH5-4J                     IC6D13                        IC6D1-1AO                     
+IC6D1-3O                      IC6D3-2O                      IC6D4-3O                      
+IC6D14                        IC6D24                        IC6D14-1                      
+IC6D13-5R                     IC6-1O                        IC6-2O                        
+IC6-3O                        IC6-4O                        IC6-5O                        
+IC6KET1-1AO                   IC6KET1-2O                    IC6KET1-3O                    
+IC6KET1-4O                    IC6KET1-5O                    C4H8CHO4-2                    
+IC6KET3-1O                    IC6KET3-2O                    IC6KET3-4O                    
+IC6KET3-5O                    IC3H7COCH2                    IC6KET4-1O                    
+IC6KET4-2O                    IC6KET4-3O                    IC6KET4-5O                    
+IC4H9CO                       IC6KET5-1O                    IC6KET5-2O                    
+IC6KET5-3O                    IC6KET5-4O                    CC5H9-AO                      
+C5H91-4O                      C5H92-5O                      IC6D13-1AR                    
+NC5D124                       NC5D124-5R                    I3C6-1                        
+I3C6H14                       I3C6-2                        I3C6-3                        
+I3C6-4                        I3C6D2                        I3C6D3                        
+I3C6D1-3                      I3C6D1-4                      I3C6D1-5                      
+I3C6D1-6                      I3C6D3-2                      I3C6D2-5                      
+I3C6D2-6                      I3C6D3-1                      SC4H9CHO                      
+I3C6OH1-2J                    I3C6OH2-1J                    I3C6OH2-3J                    
+I3C6OH3-2J                    I3C6OH3-4J                    I3C6OH4-3J                    
+I3C6D13                       I3C6D15                       I3C6D13-5                     
+I3C6D13-6                     I3C6D15-3                     I3C6D15-4                     
+I3C6D1-3O                     I3C6D2-5O                     I3C6D3-2O                     
+I3C6D1-4O                     I3C6D1-5O                     I3C6D1-6O                     
+I3C6D2-6O                     I3C6D3-1O                     I3C6-1O                       
+I3C6-2O                       I3C6-3O                       I3C6-4O                       
+I3C6KET1-2O                   I3C6KET1-3O                   I3C6KET1-4O                   
+I3C6KET1-5O                   I3C6KET1-6O                   DC5H9O-A                      
+I3C6KET2-1O                   SC4H9CO                       I3C6KET2-3O                   
+I3C6KET2-4O                   I3C6KET2-5O                   I3C6KET2-6O                   
+IC5Y3-1J                      I3C6KET4-1O                   SC4H8CHO-1                    
+I3C6KET4-2O                   I3C6KET4-3O                   SC4H8CHO-2                    
+SC4H8CHO-3                    NEC6-1                        NEC6H14                       
+NEC6-3                        NEC6-4                        NEC6D3                        
+NEC6D3-1                      TC4H9CHO                      NEC6OH3-4J                    
+NEC6OH4-3J                    NEC6-1O                       NEC6-3O                       
+NEC6-4O                       NEC6KET1-1AO                  NEC6KET1-3O                   
+NEC6KET1-4O                   NEC6KET3-1O                   IC5Y3-2J                      
+NEC6KET3-4O                   TC4H9CO                       NEC6KET4-3O                   
+XC6-1                         XC6H14                        XC6-2                         
+XC6D1                         XC6D2                         XC6D1-1A                      
+XC6D1-3                       XC6D1-4                       XC6OH1-2J                     
+XC6OH2-1J                     XC6OH2-3J                     XC6D1-1AO                     
+XC6D1-3O                      XC6D13                        XC6D13-1AR                    
+XC6-1O                        XC6-2O                        IC5Y3                         
+C4H72-2CHO                    CYC6H11                       CYC6H12                       
+CYC6H10                       HEX5ENAL                      CHX1VO4J                      
+HX1N5AL6J                     HX15AL6J                      CHX1VO3OJ                     
+OVCCCJCVO                     HX16AL2J                      HX12AL1J                      
+HX14AL2J                      HX5ENAL4J                     CYHX1N4OJ                     
+HX5ENAL1J                     HX5ENAL2J                     HX5ENAL3J                     
+HX5ENAL4OJ                    CYHX1N3J                      CYHX13ENE                     
 CYHX1N3OJ                     HX2N1AL6J                     C6D2Y1-1R                     
-CYC6H724-OJ                   CYC6H725-OJ                   C6H6O-24                      
-C6H6O-25                      NC7H16                        C7H15-1                       
-C7H15-2                       C7H15-3                       C7H15-4                       
-C7H14-1                       C7H14-2                       C7H15-1O                      
-C7H15-2O                      C7H15-3O                      C7H15-4O                      
-C7KET12O                      C7KET13O                      C7KET14O                      
-C7KET15O                      C7KET21O                      C7KET23O                      
-C7KET24O                      C7KET25O                      C7KET26O                      
-C7KET31O                      C7KET32O                      C7KET34O                      
-C7KET35O                      C7KET36O                      C7KET37O                      
-C6Y3-6J                       C7KET41O                      C6Y3-1J                       
-C7KET42O                      C7KET43O                      C6Y2                          
-C7H131-3                      C7H132-4                      C7H132-5                      
-C7H132-6                      C7H132-7                      C7H133-1                      
-C7H133-5                      C7H133-6                      C7H133-7                      
-C7H131-1                      C7H131-2                      C7H131-4                      
-C7H131-5                      C7H131-6                      C7H131-7                      
-C8H16-3                       I3C8D1                        I2C8D3                        
-I4C8D2                        C8H153-2                      C8H153-5                      
-C8H152-4O                     C8H153-5O                     I3C8D1-3                      
-I3C8D1-3O                     I2C8D3-2                      I2C8D2-4O                     
-I4C8D2-4                      I4C8D2-4O                     C7H13-1D3O                    
-C7H13-2D1O                    C7H14OH-1J2                   C7H14OH-2J1                   
-C7H14OH-2J3                   C7H14OH-3J2                   C7H14OH-3J4                   
-C7H14OH-4J3                   C7H13-2D4O                    C7H13-3D5O                    
-C4Y1-3OR                      C7H121-3                      CVCCJCVCCC                    
-CVCCVCCOJCC                   C7H121-4                      CVCCOJCVCCC                   
-C7H121-5                      CVCCJCCVCC                    CVCCOJCCVCC                   
-C7H121-6                      CVCCJCCCVC                    CVCCOJCCCVC                   
-IC8H18                        IC8-1R                        IC8-3R                        
-IC8-4R                        IC8-5R                        NEC7-4R                       
-I24C7-2R                      I24C7D1                       I24C7D2                       
-NEC7D3                        NEC7D4                        CC6H11-B                      
-XC7H13-Z                      YC7H13-Y2                     YC7H13-X2                     
-CC6H11O-B                     ACC6H10                       ACC6H9-A                      
-ACC6H9-D                      IC8D3                         IC8D4                         
+CYHX14ENE                     CYC6H724-OJ                   CYC6H725-OJ                   
+C6H6O-24                      C6H6O-25                      NC7H16                        
+C7H15-1                       C7H15-2                       C7H15-3                       
+C7H15-4                       C7H14-1                       C7H14-2                       
+C7H15-1O                      C7H15-2O                      C7H15-3O                      
+C7H15-4O                      C7KET12O                      C7KET13O                      
+C7KET14O                      C7KET15O                      C7KET21O                      
+C7KET23O                      C7KET24O                      C7KET25O                      
+C7KET26O                      C7KET31O                      C7KET32O                      
+C7KET34O                      C7KET35O                      C7KET36O                      
+C7KET37O                      C6Y3-6J                       C7KET41O                      
+C6Y3-1J                       C7KET42O                      C7KET43O                      
+C6Y2                          C7H131-3                      C7H132-4                      
+C7H132-5                      C7H132-6                      C7H132-7                      
+C7H133-1                      C7H133-5                      C7H133-6                      
+C7H133-7                      C7H131-1                      C7H131-2                      
+C7H131-4                      C7H131-5                      C7H131-6                      
+C7H131-7                      C8H16-3                       I3C8D1                        
+I2C8D3                        I4C8D2                        C8H153-2                      
+C8H153-5                      C8H152-4O                     C8H153-5O                     
+I3C8D1-3                      I3C8D1-3O                     I2C8D3-2                      
+I2C8D2-4O                     I4C8D2-4                      I4C8D2-4O                     
+C7H13-1D3O                    C7H13-2D1O                    C7H14OH-1J2                   
+C7H14OH-2J1                   C7H14OH-2J3                   C7H14OH-3J2                   
+C7H14OH-3J4                   C7H14OH-4J3                   C7H13-2D4O                    
+C7H13-3D5O                    C4Y1-3OR                      C7H121-3                      
+CVCCJCVCCC                    CVCCVCCOJCC                   C7H121-4                      
+CVCCOJCVCCC                   C7H121-5                      CVCCJCCVCC                    
+CVCCOJCCVCC                   C7H121-6                      CVCCJCCCVC                    
+CVCCOJCCCVC                   IC8H18                        IC8-1R                        
+IC8-3R                        IC8-4R                        IC8-5R                        
+NEC7-4R                       I24C7-2R                      I24C7D1                       
+I24C7D2                       NEC7D3                        NEC7D4                        
+I24C7D2-4R                    IC8D3                         IC8D4                         
 IC8-1OR                       IC8-3OR                       IC8-4OR                       
 IC8-5OR                       NEC7Y4                        IC8KET1-3O                    
 IC8KET1-4O                    IC8KET3-4O                    IC8KET5-3O                    
 IC8KET5-4O                    IC6D2Y4                       I24C7D2-4OR                   
 NEC7Y4-3R                     NEC7Y4-5R                     IC8D3-1R                      
-I24C7D2-4R                    IC8D3-5R                      IC8D3-3R                      
-IC8D4-1R                      IC8D4-5R                      I24C7D13                      
-I24C7D14                      ME133-CPTR1                   ME144-CPTENE                  
-ME133-CPTENE                  IC8D3-5CHO                    IC8D4-5AR                     
-IC8D4-5CHO                    IC8D4-3OR                     IC8D3-5OR                     
-IC8D4-5OR                     NEC7D4-4R                     NEC7D3-4R                     
-I24C7D1-4R                    DIB4-1OR                      IC7D1Y5-4J                    
-I24C7D13Y5                    IC8OH3-4R                     IC8OH4-3R                     
-IC8OH4-5R                     IC8OH5-4R                     NEC7Y34                       
-NEC7Y34-1J                    IC8D3-5OH                     IC8D4-5AOH                    
-IC8Y3                         C7H11O                        C7H11O2                       
-I24C7D3OH1-2R                 I24C7D1OH4-3R                 I24C7D13-1AR                  
-I24C7D13-1AOR                 I24C7D13Y1A                   IC6D34-2R                     
-I24C7D13Y1A-1AR               I24C7D14-3R                   I24C7D13-5OR                  
-I24C7D13Y5-5R                 IC6D13-4R                     I24C7D14-3OJ                  
-IC8D3-5CO                     IC8D4-5CO                     IC8D4Y5-1J                    
-IC8D3Y5-1J                    IC8D4Y5-3J                    I24C7D1-1AR                   
-I24C7D1-5R                    I24C7D1-1OJ                   I24C7D1-Y1                    
-I24C7D1-Y1J                   IC6D4-4R                      IC6D14O3J                     
-XC6D13-1OJ                    XC6D13-Y1                     XC6D13Y1J                     
-B13DE2M-3                     C4Y3OH1-2J                    DIBD4-DIMER                   
-RDIBD4-DIMER                  DIBD3-DIMER                   RDIBD3-DIMER                  
-DIBD34-DIMER                  RDIBD34-DIMER                 DIB3DIMER-OHJ                 
-DIB4DIMER-OHJ                 IC6D2T4                       IC6D2T4-1R                    
-C5H4CH3                       C5D3T1                        C#CCVCCJ                      
-IC7D124                       IC7D1T5                       ME3-IC8D4                     
-RME3-IC8D4                    ME5-IC8D4                     RME5-IC8D4                    
-ME5-IC8D3                     RME5-IC8D3                    NEOC5H11CO                    
-IC6D134                       IC6D134-1AR                   I24C7D13OH5-5AR               
-I24C7D13OH5                   IC6D34-2OR                    NC5D12Y4                      
-NC5D12Y4-5R                   I24C7D13Y1                    I24C7D1-3R                    
+IC8D3-5R                      IC8D3-3R                      IC8D4-1R                      
+IC8D4-5R                      I24C7D13                      I24C7D14                      
+ME133-CPTR1                   ME144-CPTENE                  ME133-CPTENE                  
+IC8D3-5CHO                    IC8D4-5AR                     IC8D4-5CHO                    
+IC8D4-3OR                     IC8D3-5OR                     IC8D4-5OR                     
+NEC7D4-4R                     NEC7D3-4R                     I24C7D1-4R                    
+IC7D1Y5-4J                    I24C7D13Y5                    IC8OH3-4R                     
+IC8OH4-3R                     IC8OH4-5R                     IC8OH5-4R                     
+NEC7Y34                       NEC7Y34-1J                    IC8D3-5OH                     
+IC8D4-5AOH                    IC8Y3                         C7H11O                        
+C7H11O2                       I24C7D3OH1-2R                 I24C7D1OH4-3R                 
+I24C7D13-1AR                  I24C7D13-1AOR                 I24C7D13Y1A                   
+IC6D34-2R                     I24C7D13Y1A-1AR               I24C7D14-3R                   
+I24C7D13-5OR                  I24C7D13Y5-5R                 IC6D13-4R                     
+I24C7D14-3OJ                  IC8D3-5CO                     IC8D4-5CO                     
+IC8D4Y5-1J                    IC8D3Y5-1J                    IC8D4Y5-3J                    
+I24C7D1-1AR                   I24C7D1-5R                    I24C7D1-1OJ                   
+I24C7D1-Y1                    I24C7D1-Y1J                   IC6D4-4R                      
+IC6D14O3J                     XC6D13-1OJ                    XC6D13-Y1                     
+XC6D13Y1J                     B13DE2M-3                     C4Y3OH1-2J                    
+DIBD4-DIMER                   RDIBD4-DIMER                  DIBD3-DIMER                   
+RDIBD3-DIMER                  DIBD34-DIMER                  RDIBD34-DIMER                 
+DIB3DIMER-OHJ                 DIB4DIMER-OHJ                 IC6D2T4                       
+IC6D2T4-1R                    C5H4CH3                       C5D3T1                        
+C#CCVCCJ                      IC7D124                       IC7D1T5                       
+ME3-IC8D4                     RME3-IC8D4                    ME5-IC8D4                     
+RME5-IC8D4                    ME5-IC8D3                     RME5-IC8D3                    
+NEOC5H11CO                    IC6D134                       IC6D134-1AR                   
+I24C7D13OH5-5AR               I24C7D13OH5                   IC6D34-2OR                    
+NC5D12Y4                      NC5D12Y4-5R                   I24C7D1-3R                    
 I24C7D1-4OR                   I24C7-1R                      I24C7OH1-2R                   
 I24C7OH2-1R                   I24C7D2-5R                    I24C7-3R                      
 I24C7OH2-3R                   I24C7OH3-2R                   IC6D1Y4-3R                    
@@ -481,31 +474,29 @@ NEC7OH4-3R                    NEC7OH4-5R                    NEC7OH5-4R
 NEOC5H10CHO-1                 NEOC5H10CHO-3                 NEC7Y4-1R                     
 IC6Y4                         IC6Y4-1R                      IC6Y4-2R                      
 IC6Y4-3R                      IC6Y4-5R                      IC8Y3-1R                      
-IC8Y3-4R                      IC8Y3-5R                      IC6D1-4R                      
-I24C7D2-1OR                   I24C7D1-3OR                   I24C7D2-Y1                    
-I24C7D2-Y1J                   IC6D3-4R                      C8H18-223                     
-C8H17223-1                    C8H17223-3                    C8H17223-4                    
-C8H17223-5                    C8H17223-6                    C7-23-2                       
-C7-223-4                      C7-22-3                       C7-22-3D                      
+IC8Y3-4R                      IC8Y3-5R                      I24C7D2-1OR                   
+I24C7D1-3OR                   I24C7D2-Y1                    I24C7D2-Y1J                   
+IC6D3-4R                      C8H18-223                     C8H17223-1                    
+C8H17223-3                    C8H17223-4                    C8H17223-5                    
+C8H17223-6                    C7-23-2                       C7-223-4                      
 C7-23-D1                      C7-233-1D                     C7-23-D2                      
 C8H16223-3                    C8H16223-5                    C8H16223-4                    
-RC7H13                        IBC7H13                       C7-22-3D4                     
-C8H152233-1                   C8H152233-5                   C8H152233-6                   
-C8H152234-1                   C8H152234-6                   C8H152235-1                   
-C8H152235-5                   C8223OH3-4J                   C8223OH4-3J                   
-C8223OH4-5J                   C8223OH5-4J                   C8223OH3-6J                   
-C8223OH6-3J                   C7-23-D24                     C6-22-3D4                     
-C8H152233-5O                  C8H152234-3O                  C8H152233-6O                  
-C8H152235-4O                  C8H152233-1O                  C8H152234-1O                  
-C8H152234-6O                  C8H152235-1O                  C8H152235-5O                  
-C7-22-3D3                     C7-233-1OD4                   C8H14223-D45                  
-C8H14223-D45R                 C8H17223-1O                   C8H17223-3O                   
-C8H17223-4O                   C8H17223-5O                   C8H17223-6O                   
-TC4H9COCH3                    C7-223O4                      C7-23-21D                     
-C6-22-31O                     C7-223-41O                    C7-22-31O                     
-C7-23-24O                     C7-223-44O                    C7-23-25O                     
-C7-22-35O                     C7-23-26O                     TC4H9COC2H5                   
-C6-22-34O                     C7-223-45O                    C7-22-3D-5                    
+RC7H13                        IBC7H13                       C8H152233-1                   
+C8H152233-5                   C8H152233-6                   C8H152234-1                   
+C8H152234-6                   C8H152235-1                   C8H152235-5                   
+C8223OH3-4J                   C8223OH4-3J                   C8223OH4-5J                   
+C8223OH5-4J                   C8223OH3-6J                   C8223OH6-3J                   
+C7-23-D24                     C6-22-3D4                     C8H152233-5O                  
+C8H152234-3O                  C8H152233-6O                  C8H152235-4O                  
+C8H152233-1O                  C8H152234-1O                  C8H152234-6O                  
+C8H152235-1O                  C8H152235-5O                  C7-22-3D3                     
+C7-233-1OD4                   C8H14223-D45                  C8H14223-D45R                 
+C8H17223-1O                   C8H17223-3O                   C8H17223-4O                   
+C8H17223-5O                   C8H17223-6O                   TC4H9COCH3                    
+C7-223O4                      C7-23-21D                     C6-22-31O                     
+C7-223-41O                    C7-22-31O                     C7-23-24O                     
+C7-223-44O                    C7-23-25O                     C7-22-35O                     
+C7-23-26O                     TC4H9COC2H5                   C7-223-45O                    
 C7-23-4OD2                    C7-23-5OD2                    TC4H9COCH2                    
 TC4H8COCH3                    TC4H8COC2H5                   TC4H9COC2H4P                  
 TC4H9COC2H4S                  C8H18-234                     C8H17234-A                    
@@ -516,57 +507,64 @@ C7H1323A-E                    C8H15234A-A                   C8H15234A-C
 C8H15234A-D                   C8H15234A-E                   C8H15234A-F                   
 C8H15234B-D                   C8H15234B-E                   C8H15234B-F                   
 C8H15234F-A                   C8234AOHBJ                    C7H1223-DCD                   
-C7H1223-DAC                   C7H1224-DAC                   C7H1223-DAD                   
-C7H1224-DBC                   C7H1223-DBD                   C7H1223-DDF                   
-C8H15234A-AO                  C8H15234A-CO                  C8H15234B-AO                  
-C8H15234B-DO                  C8H15234B-FO                  C8H15234A-DO                  
-C8H15234A-EO                  C8H15234A-FO                  C8H15234B-EO                  
-C8H15234F-AO                  C7H1323A-D                    C7H1323B-D                    
+C7H1223-DAC                   C7H1223-DAD                   C7H1224-DBC                   
+C7H1223-DDF                   C8H15234A-AO                  C8H15234A-CO                  
+C8H15234C-EO                  C8H15234B-DO                  C8H15234B-FO                  
+C8H15234A-DO                  C8H15234A-EO                  C8H15234A-FO                  
+C8H15234B-EO                  C8H15234F-AO                  C7H1323A-D                    
 C7H1324B-C                    C7H1323F-D                    C8H14234-DAC                  
-C8H14234-DAF                  C8H14234-DAD                  C8H15234F-B                   
-C8H17234-AO                   C8H17234-BO                   C8H17234-CO                   
-C8H17234-FO                   C8234KETOA-A                  C8234KETOA-B                  
-C8234KETOA-C                  C8234KETOA-D                  C8234KETOA-E                  
-C8234KETOA-F                  C8234KETOF-A                  C8234KETOF-B                  
-C8234KETOF-C                  NC8H18                        C8H17-1                       
-C8H17-2                       C8H17-3                       C8H17-4                       
-NC12H26                       C12H25-1                      C12H25-2                      
-C12H25-3                      C12H25-4                      C12H25-5                      
-C12H25-6                      NC11H24                       C11H23-1                      
-C11H23-2                      C11H23-3                      C11H23-4                      
-C11H23-5                      C11H23-6                      C9H19-1                       
-NC10H22                       C10H21-1                      C10H21-2                      
-C10H21-3                      C10H21-4                      C10H21-5                      
-NC9H20                        C9H19-2                       C9H19-3                       
-C9H19-4                       C9H19-5                       C12H24-1                      
-C12H24-2                      C11H22-1                      C12H24-3                      
-C10H20-1                      C12H24-4                      C9H18-1                       
-C12H24-5                      C8H16-1                       C12H24-6                      
-C11H22-2                      C11H22-3                      C11H22-4                      
-C11H22-5                      C10H20-2                      C10H20-3                      
-C10H20-4                      C10H20-5                      C9H18-2                       
-C9H18-3                       C9H18-4                       C8H16-2                       
-C8H16-4                       C12H23                        C11H21                        
-C10H19                        C9H17                         C8H16OHS                      
-C9H18OHS                      C10H20OHS                     C11H22OHS                     
-C12H24OHS                     C12H25O-1                     C12H25O-2                     
-C12H25O-3                     C12H25O-4                     C12H25O-5                     
-C12H25O-6                     C11H23O-1                     C11H23O-2                     
-C11H23O-3                     C11H23O-4                     C11H23O-5                     
-C11H23O-6                     C10H21O-1                     C10H21O-2                     
-C10H21O-3                     C10H21O-4                     C10H21O-5                     
-C9H19O-1                      C9H19O-2                      C9H19O-3                      
-C9H19O-4                      C9H19O-5                      C8H17O-1                      
-C8H17O-2                      C8H17O-3                      C8H17O-4                      
-NC6H13CHO                     NC6H13CO                      NC7H15CHO                     
-NC7H15CO                      NC8H17CHO                     NC8H17CO                      
-NC9H19CHO                     NC9H19CO                      NC10H21CHO                    
-NC10H21CO                     NC11H23CHO                    NC11H23CO                     
-NC12H25CHO                    NC12H25CO                     C5H11COCH2                    
-C6H13COCH2                    C7H15COCH2                    C8COC2H4P                     
-C7COC2H4P                     C6COC2H4P                     C5COC2H4P                     
-C4COC2H4P                     C7COC3H6P                     C6COC3H6P                     
-C5COC3H6P                     C4COC3H6P                     C3COC3H6P                     
+C8H14234-DAF                  C8H14234-DAD                  C8H17234-AO                   
+C8H17234-BO                   C8H17234-CO                   C8H17234-FO                   
+NC8H18                        C8H17-1                       C8H17-2                       
+C8H17-3                       C8H17-4                       NC12H26                       
+C12H25-1                      C12H25-2                      C12H25-3                      
+C12H25-4                      C12H25-5                      C12H25-6                      
+NC11H24                       C11H23-1                      C11H23-2                      
+C11H23-3                      C11H23-4                      C11H23-5                      
+C11H23-6                      C9H19-1                       NC10H22                       
+C10H21-1                      C10H21-2                      C10H21-3                      
+C10H21-4                      C10H21-5                      NC9H20                        
+C9H19-2                       C9H19-3                       C9H19-4                       
+C9H19-5                       C12H24-1                      C12H24-2                      
+C11H22-1                      C12H24-3                      C10H20-1                      
+C12H24-4                      C9H18-1                       C12H24-5                      
+C8H16-1                       C12H24-6                      C11H22-2                      
+C11H22-3                      C11H22-4                      C11H22-5                      
+C10H20-2                      C10H20-3                      C10H20-4                      
+C10H20-5                      C9H18-2                       C9H18-3                       
+C9H18-4                       C8H16-2                       C8H16-4                       
+C12H23                        C11H21                        C10H19                        
+C9H17                         C8H16OHS                      C9H18OHS                      
+C10H20OHS                     C11H22OHS                     C12H24OHS                     
+C12H25O-1                     C12H25O-2                     C12H25O-3                     
+C12H25O-4                     C12H25O-5                     C12H25O-6                     
+C11H23O-1                     C11H23O-2                     C11H23O-3                     
+C11H23O-4                     C11H23O-5                     C11H23O-6                     
+C10H21O-1                     C10H21O-2                     C10H21O-3                     
+C10H21O-4                     C10H21O-5                     C9H19O-1                      
+C9H19O-2                      C9H19O-3                      C9H19O-4                      
+C9H19O-5                      C8H17O-1                      C8H17O-2                      
+C8H17O-3                      C8H17O-4                      NC6H13CHO                     
+NC6H13CO                      NC7H15CHO                     NC7H15CO                      
+NC8H17CHO                     NC8H17CO                      NC9H19CHO                     
+NC9H19CO                      NC10H21CHO                    NC10H21CO                     
+NC11H23CHO                    NC11H23CO                     NC12H25CHO                    
+NC12H25CO                     C5H11COCH2                    C6H13COCH2                    
+C7H15COCH2                    C8COC2H4P                     C7COC2H4P                     
+C6COC2H4P                     C5COC2H4P                     C4COC2H4P                     
+C7COC3H6P                     C6COC3H6P                     C5COC3H6P                     
+C4COC3H6P                     C3COC3H6P                     C11H24-2                      
+C11H23-2A                     C11H23-2B                     C11H23-2C                     
+C11H23-2D                     C11H23-2E                     C11H23-2F                     
+C11H23-2G                     C11H23-2H                     C11H23-2I                     
+C11H23-2J                     C7H15-2F                      C8H17-2G                      
+C9H19-2H                      C10H21-2I                     C7H14-5-2                     
+C8H16-6-2                     C9H18-7-2                     C10H20-8-2                    
+C11H22-1-2                    C11H22-2-2                    C11H22-3-2                    
+C11H22-4-2                    C11H22-5-2                    C11H22-6-2                    
+C11H22-7-2                    C11H22-8-2                    C11H22-9-2                    
+C7H13-1-2                     C8H15-1-2                     C9H17-1-2                     
+C10H19-1-2                    C8H15                         C11H21-1-2                    
 
 ! AUTOMATIC PRUNING ! HO2CH2CHO                     CHOCOHCH3                     CH2CH2OCH2CH2CHO              
 ! AUTOMATIC PRUNING ! CH3COCH2OCH2CH2               C5H81KET34O                   C5H81KET35O                   
@@ -588,42 +586,31 @@ C5COC3H6P                     C4COC3H6P                     C3COC3H6P
 ! AUTOMATIC PRUNING ! C7H121KET64O                  C7H121KET65O                  C7H121KET67O                  
 ! AUTOMATIC PRUNING ! C7H121KET74O                  IC8KET1-1AO                   IC8KET1-5O                    
 ! AUTOMATIC PRUNING ! IC8KET3-1O                    IC8KET3-5O                    IC8KET5-1O                    
-! AUTOMATIC PRUNING ! IC8KET5-5AO                   C6H5CH3                       NEC7Y3OH4-4J                  
-! AUTOMATIC PRUNING ! IC8D4-3OH                     IC8D3-3OH                     IC8D4Y3-5J                    
+! AUTOMATIC PRUNING ! IC8KET5-5AO                   C6H5CH3                       DIB4-1OR                      
+! AUTOMATIC PRUNING ! NEC7Y3OH4-4J                  IC8D4-3OH                     IC8D3-3OH                     
 ! AUTOMATIC PRUNING ! TC4H9COCCH2                   IC6D3OH1-2R                   IC6OH2D3-1R                   
 ! AUTOMATIC PRUNING ! IC6D24-4R                     DMCPD                         C8223KETO1-1                  
 ! AUTOMATIC PRUNING ! C8223KETO1-3                  C8223KETO1-4                  C8223KETO1-5                  
 ! AUTOMATIC PRUNING ! C8223KETO1-6                  C8223KETO4-1                  C8223KETO4-3                  
-! AUTOMATIC PRUNING ! C8223KETO4-5                  C8223KETO4-6                  C7-22-34O                     
-! AUTOMATIC PRUNING ! C8223KETO5-1                  C8223KETO5-3                  C8223KETO5-4                  
-! AUTOMATIC PRUNING ! C8223KETO5-6                  C8223KETO6-1                  C8223KETO6-3                  
-! AUTOMATIC PRUNING ! C8223KETO6-4                  C8223KETO6-5                  C7-223-4OD3                   
-! AUTOMATIC PRUNING ! C7-223-34O                    CH3CODC5H11                   C5H11COC2H3                   
-! AUTOMATIC PRUNING ! NC4H9CHCO                     C6H13COC2H3                   C5H11CHCO                     
-! AUTOMATIC PRUNING ! NC3H7CHCO                     C6H13CHCO                     C7H15CHCO                     
-! AUTOMATIC PRUNING ! C8H17CHCO                     C9H19CHCO                     C10H21CHCO                    
-! AUTOMATIC PRUNING ! C11H23CHCO                    C10H21COCH2                   C11H23COCH2                   
-! AUTOMATIC PRUNING ! C8H17COCH2                    C9H19COCH2                    NC3H7COC2H3                   
-! AUTOMATIC PRUNING ! NC4H9COC2H3                   C12H25COCH2                   
+! AUTOMATIC PRUNING ! C8223KETO4-5                  C8223KETO4-6                  C8223KETO5-1                  
+! AUTOMATIC PRUNING ! C8223KETO5-3                  C8223KETO5-4                  C8223KETO5-6                  
+! AUTOMATIC PRUNING ! C8223KETO6-1                  C8223KETO6-3                  C8223KETO6-4                  
+! AUTOMATIC PRUNING ! C8223KETO6-5                  C7-223-4OD3                   C7-223-34O                    
+! AUTOMATIC PRUNING ! CH3CODC5H11                   C8234KETOA-A                  C8234KETOA-B                  
+! AUTOMATIC PRUNING ! C8234KETOA-C                  C8234KETOA-D                  C8234KETOA-E                  
+! AUTOMATIC PRUNING ! C8234KETOA-F                  C8234KETOF-A                  C8234KETOF-B                  
+! AUTOMATIC PRUNING ! C8234KETOF-C                  C5H11COC2H3                   NC4H9CHCO                     
+! AUTOMATIC PRUNING ! C6H13COC2H3                   C5H11CHCO                     NC3H7CHCO                     
+! AUTOMATIC PRUNING ! C6H13CHCO                     C7H15CHCO                     C8H17CHCO                     
+! AUTOMATIC PRUNING ! C9H19CHCO                     C10H21CHCO                    C11H23CHCO                    
+! AUTOMATIC PRUNING ! C10H21COCH2                   C11H23COCH2                   C8H17COCH2                    
+! AUTOMATIC PRUNING ! C9H19COCH2                    NC3H7COC2H3                   NC4H9COC2H3                   
+! AUTOMATIC PRUNING ! C12H25COCH2                   
 !+++++++++++++++++++++ 
 !\END_SPECIES_MODULE: ALL 
 !+++++++++++++++++++++ 
 END  
 REACTIONS
-! REVISION FOR C3MechV4.0.1:
-! SEARCH FOR "YZ_251026"
-!  1) H2+O=H+OH
-!  2) H2+OH=H+H2O
-!  3) H+O2(+M)=HO2(+M)
-!  4) CH3+H(+M)=CH4(+M)
-!  5) CH2+O2=>CO2+H+H
-!  6) HCO+M=H+CO+M
-!
-!  SEARCH FOR "JL_251029"
-!  1) C2H3+H=C2H2+H2
-!  2) HCCO+OH=>H+CO+CO+H
-!
-!\START_ELEMENTS_LIST
 !++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 !\KINETICS_MODULE: H2_O2
 !++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -8814,14 +8801,14 @@ C4H8-1+H=C4H8-2+H    4.95E-11 7.09 5.008E3
 !  1.00E+01 (1.00E+01) atm,  700-1700 K,   7% err, 1.00 x !N2
 !  5.00E+01 (5.00E+01) atm,  700-1700 K,   3% err, 1.00 x !N2
 !  1.00E+02 (1.00E+02) atm,  700-1700 K,   2% err, 1.00 x !N2
-C4H8-2+CH3=C4H8-1+CH3    4.39E-27 11.55 2.23E4
-    PLOG/1.0E-2 1.07E7 1.25E0 1.96E4/
-    PLOG/1.0E-1 3.11E13 -5.6E-1 2.46E4/
-    PLOG/1.0E0 1.19E16 -1.18E0 2.88E4/
-    PLOG/1.0E1 1.05E10 7.6E-1 3.0E4/
-    PLOG/1.0E2 8.19E-7 5.62E0 2.73E4/
-    PLOG/1.0E3 4.39E-27 1.155E1 2.23E4/
-! R4185
+C4H8-2+CH3=C4H8-1+CH3               4.3900E-27 11.55000     22300.00
+PLOG/      0.0100     1.0700E+07    1.2500  19650.0000/
+PLOG/      0.1000     3.1100E+13   -0.5600  24610.0000/
+PLOG/      1.0000     1.1900E+16   -1.1800  28810.0000/
+PLOG/     10.0000     1.0500E+10    0.7600  30000.0000/
+PLOG/    100.0000     8.1900E-07    5.6200  27260.0000/
+PLOG/   1000.0000     4.3900E-27   11.5500  22300.0000/
+! R4190
 PC4H9=C2H4+C2H5    9.81623E13 -0.137 2.8272E4
     PLOG/1.0E-1 8.98E34 -7.68E0 2.8256E4/
     PLOG/1.0E0 3.45E40 -8.87E0 3.4297E4/
@@ -12736,9 +12723,9 @@ C6H9-A=CYHEXEN-4J    5.041E8 0.7 2.0246E4
 C6H9-A=CYPENTN-4MJ    5.249E8 0.846 1.9298E4
 !DONG 0406!CYPENTN-4MJ(=)H+CYPENTN-4MTHNE                    +1.97200000E+007 +1.80200000E+000 +3.23040000E+004 !\Author: WARNING !\Ref: WARNING !\Comment: WARNING
 !\Author: WARNING !\Ref: WARNING !\Comment: WARNING
-CYHEXEN-4J=H+CYHX13ENE    7.487E8 1.395 3.3132E4
+!!CYHEXEN-4J=H+CYHX13ENE    7.487E8 1.395 3.3132E4 !! Removed Yuki Murakami 31 March 2024, Same reaction in C6cy module
 !\Author: WARNING !\Ref: WARNING !\Comment: WARNING
-CYHEXEN-4J=H+CYHX14ENE    2.097E9 1.299 3.3394E4
+!!CYHEXEN-4J=H+CYHX14ENE    2.097E9 1.299 3.3394E4 !! Removed Yuki Murakami 31 March 2024, Same reaction in C6cy module
 !\Author: WARNING !\Ref: WARNING !\Comment: WARNING
 CYPENTN-4MJ=CYPENTN-4M4J    5.265E-7 5.639 2.4541E4
 !\Author: WARNING !\Ref: WARNING !\Comment: WARNING
@@ -15832,6 +15819,7 @@ C5H92-5+C2H2=C7H111-5,1P    1.32E4 2.48 6.13E3
 !++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 !\KINETICS_MODULE: C5
 !++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+! R4096
 NC5H12=NC3H7+C2H5                   1.0000E+00  0.00000         0.00
 PLOG/      0.0100     9.5152E+96  -23.4523 126306.2274/
 PLOG/      0.1000     1.4958E+90  -21.1823 125890.2274/
@@ -15881,14 +15869,6 @@ PLOG/      5.0000     3.4100E+63  -13.7400 126353.0000/
 PLOG/     10.0000     2.1700E+58  -12.2100 123622.0000/
 PLOG/     20.0000     5.3200E+52  -10.5700 120451.0000/
 PLOG/     50.0000     1.2600E+45   -8.3600 115883.0000/
-! R4101
-C5H10-1+HO2=C5H10OOH1-2             2.8200E+04  2.49000     14734.00
-! R4102
-C5H10-1+HO2=C5H10OOH2-1             1.3600E+02  3.00000     12484.00
-! R4103
-C5H10-2+HO2=C5H10OOH2-3             4.7800E+03  2.58000     10347.00
-! R4104
-C5H10-2+HO2=C5H10OOH3-2             4.7800E+03  2.58000     10347.00
 ! R4105
 NC5H12+O2=>C5H11-1+HO2              1.4045E+14 -0.14034     53465.30
 ! R4106
@@ -15907,12 +15887,6 @@ NC5H12+CH3O=C5H11-1+CH3OH           3.0000E+11  0.00000      7000.00
 NC5H12+C2H5=>C5H11-1+C2H6           1.2094E+11 -0.07561      5703.91
 ! R4113
 NC5H12+C2H3=C5H11-1+C2H4            1.0000E+12  0.00000     18000.00
-! R4114
-NC5H12+C5H11O2-1=C5H11-1+C5H11O2H-1   1.2100E+13  0.00000     20430.00
-! R4115
-NC5H12+C5H11O2-1=C5H11-2+C5H11O2H-1   8.0640E+12  0.00000     17700.00
-! R4116
-NC5H12+C5H11O2-1=C5H11-3+C5H11O2H-1   4.0320E+12  0.00000     17700.00
 ! R4117
 NC5H12+O2=>C5H11-2+HO2              1.5465E+14 -0.21165     50094.24
 ! R4118
@@ -15933,20 +15907,6 @@ NC5H12+C2H5=>C5H11-2+C2H6           6.4400E+10  0.01790      5901.76
 NC5H12+C2H3=C5H11-2+C2H4            8.0000E+11  0.00000     16800.00
 ! R4126
 NC5H12+C5H11-1=C5H11-2+NC5H12       1.0000E+11  0.00000     10400.00
-! R4127
-C5H11-1=C5H11-2    1.0309E4 2.13885 1.79E4
-    PLOG/1.0E-2 5.6226E49 -1.25519E1 3.18E4/
-    PLOG/1.0E-1 2.2349E42 -9.9715E0 3.08E4/
-    PLOG/1.0E0 4.4012E30 -6.1755E0 2.75E4/
-    PLOG/1.0E1 1.584E21 -3.1662E0 2.45E4/
-    PLOG/1.0E2 1.1452E13 -6.222E-1 2.16E4/
-    PLOG/1.0E3 1.0309E4 2.1388E0 1.79E4/
-! R4242
-NC5H12+C5H11O2-2=C5H11-1+C5H11O2H-2   1.2100E+13  0.00000     20430.00
-! R4128
-NC5H12+C5H11O2-2=C5H11-2+C5H11O2H-2   8.0640E+12  0.00000     17700.00
-! R4129
-NC5H12+C5H11O2-2=C5H11-3+C5H11O2H-2   4.0320E+12  0.00000     17700.00
 ! R4130
 NC5H12+O2=>C5H11-3+HO2              7.7323E+13 -0.21165     50094.24
 ! R4131
@@ -15968,495 +15928,489 @@ NC5H12+C2H3=C5H11-3+C2H4            4.0000E+11  0.00000     16800.00
 ! R4139
 NC5H12+C5H11-1=C5H11-3+NC5H12       5.0000E+10  0.00000     10400.00
 ! R4140
-C5H11-1=C5H11-3    1.415E6 1.7517 3.35E4
-    PLOG/1.0E-2 4.7263E64 -1.78109E1 4.71E4/
-    PLOG/1.0E-1 1.4379E63 -1.66851E1 5.01E4/
-    PLOG/1.0E0 5.2172E50 -1.23616E1 4.83E4/
-    PLOG/1.0E1 5.373E35 -7.4572E0 4.44E4/
-    PLOG/1.0E2 4.1899E21 -2.9917E0 3.97E4/
-    PLOG/1.0E3 1.415E6 1.7517E0 3.35E4/
-! R4243
 NC5H12+C5H11-2=C5H11-3+NC5H12       5.0000E+10  0.00000     12300.00
-! R4156
-C5H11-2=C5H11-3    7.1787E9 0.84343 3.79E4
-    PLOG/1.0E-2 1.2152E68 -1.87059E1 5.13E4/
-    PLOG/1.0E-1 1.351E67 -1.77482E1 5.44E4/
-    PLOG/1.0E0 1.2771E57 -1.41285E1 5.37E4/
-    PLOG/1.0E1 6.2432E39 -8.4847E0 4.89E4/
-    PLOG/1.0E2 1.0076E25 -3.8024E0 4.4E4/
-    PLOG/1.0E3 7.1787E9 8.434E-1 3.79E4/
-! R4287
-CC5H10+H=DC5H11    5.09E14 -0.42 4.8E3
-    PLOG/1.0E-2 3.66E53 -1.413E1 1.19E4/
-    PLOG/1.0E-1 3.75E49 -1.23E1 1.23E4/
-    PLOG/1.0E0 1.79E39 -8.62E0 1.06E4/
-    PLOG/1.0E1 1.61E29 -5.19E0 8.51E3/
-    PLOG/1.0E2 6.87E19 -2.1E0 6.14E3/
-    PLOG/1.0E3 5.09E14 -4.2E-1 4.8E3/
-! R4157
-CC5H10+H=CC5H11    4.07E14 -0.24 3.12E3
-    PLOG/1.0E-2 1.41E53 -1.329E1 1.17E4/
-    PLOG/1.0E-1 1.43E44 -1.007E1 1.02E4/
-    PLOG/1.0E0 1.09E33 -6.3E0 7.79E3/
-    PLOG/1.0E1 1.07E25 -3.63E0 5.9E3/
-    PLOG/1.0E2 3.43E19 -1.82E0 4.52E3/
-    PLOG/1.0E3 4.07E14 -2.4E-1 3.12E3/
-! R4158
-CC5H10+H=BC5H11    6.89E-6 5.37 8.26E3
-    PLOG/1.0E-2 3.96E52 -1.402E1 1.51E4/
-    PLOG/1.0E-1 4.96E47 -1.182E1 1.67E4/
-    PLOG/1.0E0 3.51E34 -7.21E0 1.57E4/
-    PLOG/1.0E1 4.26E19 -2.29E0 1.34E4/
-    PLOG/1.0E2 9.3E6 1.71E0 1.11E4/
-    PLOG/1.0E3 6.89E-6 5.37E0 8.26E3/
-! R4159
-CC5H10+H=AC5H11    3.01E-4 4.75 4.93E3
-    PLOG/1.0E-2 9.54E54 -1.448E1 1.35E4/
-    PLOG/1.0E-1 2.13E49 -1.22E1 1.43E4/
-    PLOG/1.0E0 1.16E36 -7.66E0 1.29E4/
-    PLOG/1.0E1 4.27E21 -2.96E0 1.04E4/
-    PLOG/1.0E2 6.72E5 1.98E0 6.92E3/
-    PLOG/1.0E3 3.01E-4 4.75E0 4.93E3/
-! R4160
-CC5H10+H=C2H4+IC3H7    1.59E-6 6.01 5.38E3
-    PLOG/1.0E-2 1.56E10 1.06E0 4.08E3/
-    PLOG/1.0E-1 2.87E13 1.3E-1 6.3E3/
-    PLOG/1.0E0 4.4E15 -4.4E-1 8.66E3/
-    PLOG/1.0E1 1.99E13 3.3E-1 9.52E3/
-    PLOG/1.0E2 1.3E5 2.8E0 8.14E3/
-    PLOG/1.0E3 1.59E-6 6.01E0 5.38E3/
-! R4161
-CC5H10+H=C4H8-2+CH3    2.33E-9 6.95 4.03E3
-    PLOG/1.0E-2 8.22E16 -7.9E-1 5.86E3/
-    PLOG/1.0E-1 3.58E19 -1.5E0 8.37E3/
-    PLOG/1.0E0 4.23E18 -1.15E0 9.76E3/
-    PLOG/1.0E1 3.91E12 7.0E-1 9.25E3/
-    PLOG/1.0E2 1.17E2 3.85E0 6.87E3/
-    PLOG/1.0E3 2.33E-9 6.95E0 4.03E3/
 ! R4162
-CC5H10+H=IC4H8+CH3    5.47E-21 10.19 1.04E4
-    PLOG/1.0E-2 2.3E11 4.0E-1 7.51E3/
-    PLOG/1.0E-1 4.45E17 -1.36E0 1.21E4/
-    PLOG/1.0E0 9.98E20 -2.22E0 1.64E4/
-    PLOG/1.0E1 9.95E15 -5.9E-1 1.8E4/
-    PLOG/1.0E2 3.3E0 4.09E0 1.55E4/
-    PLOG/1.0E3 5.47E-21 1.019E1 1.04E4/
+CC5H10+H=DC5H11                     5.0900E+14 -0.42000      4797.00
+PLOG/      0.0100     3.6600E+53  -14.1300  11940.0000/
+PLOG/      0.1000     3.7500E+49  -12.3000  12300.0000/
+PLOG/      1.0000     1.7900E+39   -8.6200  10620.0000/
+PLOG/     10.0000     1.6100E+29   -5.1900   8506.0000/
+PLOG/    100.0000     6.8700E+19   -2.1000   6142.0000/
+PLOG/   1000.0000     5.0900E+14   -0.4200   4797.0000/
 ! R4163
-CC5H10+H=C3H6+C2H5    1.79E-19 9.59 8.17E3
-    PLOG/1.0E-2 3.13E13 -3.9E-1 5.64E3/
-    PLOG/1.0E-1 1.1E19 -1.94E0 9.86E3/
-    PLOG/1.0E0 9.3E21 -2.67E0 1.4E4/
-    PLOG/1.0E1 1.11E17 -1.06E0 1.55E4/
-    PLOG/1.0E2 1.22E2 3.46E0 1.32E4/
-    PLOG/1.0E3 1.79E-19 9.59E0 8.17E3/
+CC5H10+H=CC5H11                     4.0700E+14 -0.24000      3119.00
+PLOG/      0.0100     1.4100E+53  -13.2900  11660.0000/
+PLOG/      0.1000     1.4300E+44  -10.0700  10250.0000/
+PLOG/      1.0000     1.0900E+33   -6.3000   7795.0000/
+PLOG/     10.0000     1.0700E+25   -3.6300   5901.0000/
+PLOG/    100.0000     3.4300E+19   -1.8200   4522.0000/
+PLOG/   1000.0000     4.0700E+14   -0.2400   3119.0000/
 ! R4164
-CC5H10+H=C4H8-1+CH3    1.5E-20 9.92 8.82E3
-    PLOG/1.0E-2 1.55E10 6.0E-1 5.59E3/
-    PLOG/1.0E-1 7.01E15 -9.8E-1 9.74E3/
-    PLOG/1.0E0 2.47E19 -1.9E0 1.4E4/
-    PLOG/1.0E1 2.25E15 -5.6E-1 1.59E4/
-    PLOG/1.0E2 1.0E1 3.79E0 1.39E4/
-    PLOG/1.0E3 1.5E-20 9.92E0 8.82E3/
+CC5H10+H=BC5H11                     6.8900E-06  5.37000      8259.00
+PLOG/      0.0100     3.9600E+52  -14.0200  15110.0000/
+PLOG/      0.1000     4.9600E+47  -11.8200  16750.0000/
+PLOG/      1.0000     3.5100E+34   -7.2100  15710.0000/
+PLOG/     10.0000     4.2600E+19   -2.2900  13400.0000/
+PLOG/    100.0000     9.3000E+06    1.7100  11060.0000/
+PLOG/   1000.0000     6.8900E-06    5.3700   8259.0000/
 ! R4165
-CC5H10+H=AC5H10+H    5.12E-26 11.64 1.01E4
-    PLOG/1.0E-2 2.51E2 3.01E0 6.24E3/
-    PLOG/1.0E-1 1.48E8 1.39E0 1.03E4/
-    PLOG/1.0E0 3.41E12 2.2E-1 1.47E4/
-    PLOG/1.0E1 3.37E9 1.26E0 1.7E4/
-    PLOG/1.0E2 4.48E-5 5.47E0 1.51E4/
-    PLOG/1.0E3 5.12E-26 1.164E1 1.01E4/
+CC5H10+H=AC5H11                     3.0100E-04  4.75000      4930.00
+PLOG/      0.0100     9.5400E+54  -14.4800  13490.0000/
+PLOG/      0.1000     2.1300E+49  -12.2000  14350.0000/
+PLOG/      1.0000     1.1600E+36   -7.6600  12860.0000/
+PLOG/     10.0000     4.2700E+21   -2.9600  10420.0000/
+PLOG/    100.0000     6.7200E+05    1.9800   6920.0000/
+PLOG/   1000.0000     3.0100E-04    4.7500   4930.0000/
 ! R4166
-CC5H10+H=BC5H10+H    6.53E-13 7.73 5.17E3
-    PLOG/1.0E-2 7.74E10 7.1E-1 6.11E3/
-    PLOG/1.0E-1 1.09E14 -1.6E-1 8.72E3/
-    PLOG/1.0E0 1.07E14 -8.0E-2 1.04E4/
-    PLOG/1.0E1 7.66E8 1.51E0 1.02E4/
-    PLOG/1.0E2 6.6E-2 4.53E0 8.08E3/
-    PLOG/1.0E3 6.53E-13 7.73E0 5.17E3/
+CC5H10+H=C2H4+IC3H7                 1.5900E-06  6.01000      5379.00
+PLOG/      0.0100     1.5600E+10    1.0600   4077.0000/
+PLOG/      0.1000     2.8700E+13    0.1300   6305.0000/
+PLOG/      1.0000     4.4000E+15   -0.4400   8657.0000/
+PLOG/     10.0000     1.9900E+13    0.3300   9522.0000/
+PLOG/    100.0000     1.3000E+05    2.8000   8136.0000/
+PLOG/   1000.0000     1.5900E-06    6.0100   5379.0000/
 ! R4167
-DC5H11=CC5H11    4.51E-3 4.31 2.72E4
-    PLOG/1.0E-2 2.36E19 -4.0E0 2.85E4/
-    PLOG/1.0E-1 8.88E13 -1.76E0 2.87E4/
-    PLOG/1.0E0 3.18E5 1.32E0 2.76E4/
-    PLOG/1.0E1 5.9E1 2.76E0 2.74E4/
-    PLOG/1.0E2 4.95E-4 4.52E0 2.65E4/
-    PLOG/1.0E3 4.51E-3 4.31E0 2.72E4/
+CC5H10+H=C4H8-2+CH3                 2.3300E-09  6.95000      4035.00
+PLOG/      0.0100     8.2200E+16   -0.7900   5863.0000/
+PLOG/      0.1000     3.5800E+19   -1.5000   8373.0000/
+PLOG/      1.0000     4.2300E+18   -1.1500   9762.0000/
+PLOG/     10.0000     3.9100E+12    0.7000   9247.0000/
+PLOG/    100.0000     1.1700E+02    3.8500   6867.0000/
+PLOG/   1000.0000     2.3300E-09    6.9500   4035.0000/
 ! R4168
-IC5H12+CC5H11=DC5H11+IC5H12    7.5E10 0.0 1.23E4
-!\Author: WARNING !\Ref: WARNING !\Comment: WARNING
-DC5H11=BC5H11    6.66E-13 6.86 2.0E4
-    PLOG/1.0E-2 1.28E-1 2.19E0 1.93E4/
-    PLOG/1.0E-1 6.97E-7 4.23E0 1.9E4/
-    PLOG/1.0E0 8.75E-14 6.71E0 1.81E4/
-    PLOG/1.0E1 5.36E-14 6.97E0 1.87E4/
-    PLOG/1.0E2 1.54E-16 7.9E0 1.85E4/
-    PLOG/1.0E3 6.66E-13 6.86E0 2.0E4/
+CC5H10+H=IC4H8+CH3                  5.4700E-21 10.19000     10380.00
+PLOG/      0.0100     2.3000E+11    0.4000   7507.0000/
+PLOG/      0.1000     4.4500E+17   -1.3600  12100.0000/
+PLOG/      1.0000     9.9800E+20   -2.2200  16420.0000/
+PLOG/     10.0000     9.9500E+15   -0.5900  17980.0000/
+PLOG/    100.0000     3.3000E+00    4.0900  15480.0000/
+PLOG/   1000.0000     5.4700E-21   10.1900  10380.0000/
 ! R4169
-IC5H12+BC5H11=DC5H11+IC5H12    7.5E10 0.0 1.23E4
-!\Author: WARNING !\Ref: WARNING !\Comment: WARNING
-DC5H11=AC5H11    3.74E-1 3.38 1.55E4
-    PLOG/1.0E-2 5.82E9 -3.1E-1 1.68E4/
-    PLOG/1.0E-1 7.96E5 1.07E0 1.62E4/
-    PLOG/1.0E0 2.35E1 2.62E0 1.53E4/
-    PLOG/1.0E1 4.48E0 2.93E0 1.54E4/
-    PLOG/1.0E2 4.51E-2 3.62E0 1.5E4/
-    PLOG/1.0E3 3.74E-1 3.38E0 1.55E4/
+CC5H10+H=C3H6+C2H5                  1.7900E-19  9.59000      8171.00
+PLOG/      0.0100     3.1300E+13   -0.3900   5637.0000/
+PLOG/      0.1000     1.1000E+19   -1.9400   9859.0000/
+PLOG/      1.0000     9.3000E+21   -2.6700  13980.0000/
+PLOG/     10.0000     1.1100E+17   -1.0600  15550.0000/
+PLOG/    100.0000     1.2200E+02    3.4600  13240.0000/
+PLOG/   1000.0000     1.7900E-19    9.5900   8171.0000/
 ! R4170
-IC5H12+AC5H11=DC5H11+IC5H12    7.5E10 0.0 1.23E4
-!\Author: WARNING !\Ref: WARNING !\Comment: WARNING
-C3H6+C2H5=AC5H11    9.0789E32 -6.582 1.85E4
+CC5H10+H=C4H8-1+CH3                 1.5000E-20  9.92000      8822.00
+PLOG/      0.0100     1.5500E+10    0.6000   5587.0000/
+PLOG/      0.1000     7.0100E+15   -0.9800   9740.0000/
+PLOG/      1.0000     2.4700E+19   -1.9000  14020.0000/
+PLOG/     10.0000     2.2500E+15   -0.5600  15910.0000/
+PLOG/    100.0000     1.0000E+01    3.7900  13860.0000/
+PLOG/   1000.0000     1.5000E-20    9.9200   8822.0000/
 ! R4171
-C4H8-1+CH3=AC5H11    1.8158E33 -6.582 1.85E4
+CC5H10+H=AC5H10+H                   5.1200E-26 11.64000     10080.00
+PLOG/      0.0100     2.5100E+02    3.0100   6243.0000/
+PLOG/      0.1000     1.4800E+08    1.3900  10270.0000/
+PLOG/      1.0000     3.4100E+12    0.2200  14750.0000/
+PLOG/     10.0000     3.3700E+09    1.2600  17000.0000/
+PLOG/    100.0000     4.4800E-05    5.4700  15150.0000/
+PLOG/   1000.0000     5.1200E-26   11.6400  10080.0000/
 ! R4172
-IC4H8+CH3=BC5H11    4.1195E42 -9.103 2.16E4
+CC5H10+H=BC5H10+H                   6.5300E-13  7.73000      5174.00
+PLOG/      0.0100     7.7400E+10    0.7100   6109.0000/
+PLOG/      0.1000     1.0900E+14   -0.1600   8720.0000/
+PLOG/      1.0000     1.0700E+14   -0.0800  10430.0000/
+PLOG/     10.0000     7.6600E+08    1.5100  10250.0000/
+PLOG/    100.0000     6.6000E-02    4.5300   8077.0000/
+PLOG/   1000.0000     6.5300E-13    7.7300   5174.0000/
 ! R4173
-C4H8-2+CH3=CC5H11    1.8158E33 -6.582 1.85E4
+AC5H11=>DC5H11                      2.8350E+12  0.00000     20600.00
 ! R4174
-C2H4+IC3H7=DC5H11    6.2626E35 -7.282 1.76E4
+DC5H11=>AC5H11                      5.6700E+12  0.00000     20600.00
 ! R4175
-AC5H11=AC5H10+H    2.15E13 -0.14 3.56E4
-    PLOG/1.0E-2 2.12E49 -1.25E1 4.3E4/
-    PLOG/1.0E-1 4.35E41 -9.65E0 4.21E4/
-    PLOG/1.0E0 1.51E31 -6.06E0 3.99E4/
-    PLOG/1.0E1 2.32E23 -3.43E0 3.82E4/
-    PLOG/1.0E2 8.57E17 -1.62E0 3.68E4/
-    PLOG/1.0E3 2.15E13 -1.4E-1 3.56E4/
+AC5H11=C3H6+C2H5                    1.0000E+00  0.00000         0.00
+PLOG/      0.1000     2.6300E+31   -6.6500  24563.0000/
+PLOG/      1.0000     3.1700E+38   -8.2600  31752.0000/
+PLOG/     10.0000     4.8400E+39   -8.1600  36085.0000/
+PLOG/     50.0000     6.6500E+34   -6.5000  35666.0000/
+PLOG/    100.0000     3.1100E+31   -5.4400  34627.0000/
 ! R4176
-AC5H11=BC5H10+H    4.72E-8 5.88 3.81E4
-    PLOG/1.0E-2 1.09E48 -1.256E1 4.48E4/
-    PLOG/1.0E-1 1.34E42 -1.012E1 4.6E4/
-    PLOG/1.0E0 2.63E28 -5.39E0 4.46E4/
-    PLOG/1.0E1 2.07E14 -7.7E-1 4.24E4/
-    PLOG/1.0E2 1.26E3 2.75E0 4.04E4/
-    PLOG/1.0E3 4.72E-8 5.88E0 3.81E4/
+AC5H11=C4H8-1+CH3                   1.0000E+00  0.00000         0.00
+PLOG/      0.1000     2.0600E+22   -4.0500  22861.0000/
+PLOG/      1.0000     3.2500E+31   -6.2800  30951.0000/
+PLOG/     10.0000     2.2000E+35   -6.9400  36755.0000/
+PLOG/     50.0000     8.5500E+31   -5.6800  37250.0000/
+PLOG/    100.0000     1.0000E+29   -4.7300  36486.0000/
 ! R4177
-C2H4+IC3H7=C4H8-2+CH3    4.21E-26 11.32 2.05E4
-    PLOG/1.0E-2 1.39E5 1.87E0 1.73E4/
-    PLOG/1.0E-1 1.3E11 2.1E-1 2.18E4/
-    PLOG/1.0E0 1.36E14 -5.5E-1 2.6E4/
-    PLOG/1.0E1 2.09E9 1.02E0 2.76E4/
-    PLOG/1.0E2 2.12E-6 5.55E0 2.53E4/
-    PLOG/1.0E3 4.21E-26 1.132E1 2.05E4/
+BC5H11=IC4H8+CH3                    1.0000E+00  0.00000         0.00
+PLOG/      0.1000     1.3700E+45  -10.4800  35369.0000/
+PLOG/      1.0000     5.5500E+50  -11.6400  42182.0000/
+PLOG/     10.0000     9.0200E+48  -10.6700  45085.0000/
+PLOG/     50.0000     2.9700E+41   -8.2500  43236.0000/
+PLOG/    100.0000     1.0500E+37   -6.8700  41553.0000/
 ! R4178
-C2H4+IC3H7=IC4H8+CH3    2.19E-27 11.42 1.86E4
-    PLOG/1.0E-2 1.67E7 9.6E-1 1.61E4/
-    PLOG/1.0E-1 1.17E13 -6.5E-1 2.09E4/
-    PLOG/1.0E0 8.54E14 -1.06E0 2.48E4/
-    PLOG/1.0E1 6.12E8 9.0E-1 2.6E4/
-    PLOG/1.0E2 1.16E-7 5.65E0 2.34E4/
-    PLOG/1.0E3 2.19E-27 1.142E1 1.86E4/
+CC5H11=C4H8-2+CH3                   1.0000E+00  0.00000         0.00
+PLOG/      0.1000     5.4800E+46  -10.8100  39168.0000/
+PLOG/      1.0000     1.8900E+48  -10.8000  43910.0000/
+PLOG/     10.0000     5.5500E+39   -7.9400  42613.0000/
+PLOG/     50.0000     1.7100E+29   -4.7100  38450.0000/
+PLOG/    100.0000     4.3100E+24   -3.3200  36393.0000/
 ! R4179
-C2H4+IC3H7=C4H8-1+CH3    1.55E-23 10.35 1.69E4
-    PLOG/1.0E-2 2.37E19 -2.53E0 1.76E4/
-    PLOG/1.0E-1 4.69E23 -3.69E0 2.19E4/
-    PLOG/1.0E0 2.81E23 -3.48E0 2.5E4/
-    PLOG/1.0E1 9.37E14 -8.3E-1 2.53E4/
-    PLOG/1.0E2 4.18E-2 4.06E0 2.23E4/
-    PLOG/1.0E3 1.55E-23 1.035E1 1.69E4/
+DC5H11=C2H4+IC3H7                   1.0000E+00  0.00000         0.00
+PLOG/      0.1000     2.6800E+26   -5.2400  20638.0000/
+PLOG/      1.0000     1.2000E+34   -7.0200  27715.0000/
+PLOG/     10.0000     3.6300E+38   -7.8700  33728.0000/
+PLOG/     50.0000     2.2900E+37   -7.2400  35563.0000/
+PLOG/    100.0000     2.9900E+35   -6.5800  35489.0000/
 ! R4180
-C2H4+IC3H7=AC5H10+H    1.69E-29 12.0 1.77E4
-    PLOG/1.0E-2 5.5E6 1.05E0 1.6E4/
-    PLOG/1.0E-1 1.18E12 -4.2E-1 2.04E4/
-    PLOG/1.0E0 8.28E13 -8.3E-1 2.42E4/
-    PLOG/1.0E1 6.27E7 1.13E0 2.54E4/
-    PLOG/1.0E2 1.59E-8 5.84E0 2.28E4/
-    PLOG/1.0E3 1.69E-29 1.2E1 1.77E4/
+AC5H11=AC5H10+H                     2.1500E+13 -0.14000     35570.00
+PLOG/      0.0100     2.1200E+49  -12.5000  42990.0000/
+PLOG/      0.1000     4.3500E+41   -9.6500  42070.0000/
+PLOG/      1.0000     1.5100E+31   -6.0600  39920.0000/
+PLOG/     10.0000     2.3200E+23   -3.4300  38160.0000/
+PLOG/    100.0000     8.5700E+17   -1.6200  36840.0000/
+PLOG/   1000.0000     2.1500E+13   -0.1400  35570.0000/
 ! R4181
-C2H4+IC3H7=BC5H10+H    5.2E-30 12.22 2.05E4
-    PLOG/1.0E-2 4.7E-2 3.5E0 1.6E4/
-    PLOG/1.0E-1 1.53E5 1.67E0 2.08E4/
-    PLOG/1.0E0 8.31E8 7.0E-1 2.53E4/
-    PLOG/1.0E1 1.1E5 2.0E0 2.73E4/
-    PLOG/1.0E2 6.29E-10 6.32E0 2.52E4/
-    PLOG/1.0E3 5.2E-30 1.222E1 2.05E4/
+AC5H11=BC5H10+H                     4.7200E-08  5.88000     38150.00
+PLOG/      0.0100     1.0900E+48  -12.5600  44770.0000/
+PLOG/      0.1000     1.3400E+42  -10.1200  46020.0000/
+PLOG/      1.0000     2.6300E+28   -5.3900  44630.0000/
+PLOG/     10.0000     2.0700E+14   -0.7700  42410.0000/
+PLOG/    100.0000     1.2600E+03    2.7500  40430.0000/
+PLOG/   1000.0000     4.7200E-08    5.8800  38150.0000/
 ! R4182
-C4H8-2+CH3=IC4H8+CH3    1.48E-25 11.16 2.03E4
-    PLOG/1.0E-2 6.58E13 -6.7E-1 1.97E4/
-    PLOG/1.0E-1 3.0E19 -2.23E0 2.45E4/
-    PLOG/1.0E0 3.17E20 -2.38E0 2.81E4/
-    PLOG/1.0E1 4.55E12 8.0E-2 2.86E4/
-    PLOG/1.0E2 2.42E-5 5.27E0 2.54E4/
-    PLOG/1.0E3 1.48E-25 1.116E1 2.03E4/
+C2H4+IC3H7=C4H8-2+CH3               4.2100E-26 11.32000     20550.00
+PLOG/      0.0100     1.3900E+05    1.8700  17280.0000/
+PLOG/      0.1000     1.3000E+11    0.2100  21830.0000/
+PLOG/      1.0000     1.3600E+14   -0.5500  26000.0000/
+PLOG/     10.0000     2.0900E+09    1.0200  27600.0000/
+PLOG/    100.0000     2.1200E-06    5.5500  25270.0000/
+PLOG/   1000.0000     4.2100E-26   11.3200  20550.0000/
 ! R4183
-C4H8-2+CH3=C3H6+C2H5    3.87E-26 11.25 2.16E4
-    PLOG/1.0E-2 1.34E10 3.2E-1 1.97E4/
-    PLOG/1.0E-1 2.06E16 -1.39E0 2.46E4/
-    PLOG/1.0E0 1.34E18 -1.78E0 2.86E4/
-    PLOG/1.0E1 1.56E11 4.1E-1 2.95E4/
-    PLOG/1.0E2 3.68E-6 5.42E0 2.65E4/
-    PLOG/1.0E3 3.87E-26 1.125E1 2.16E4/
+C2H4+IC3H7=IC4H8+CH3                2.1900E-27 11.42000     18640.00
+PLOG/      0.0100     1.6700E+07    0.9600  16060.0000/
+PLOG/      0.1000     1.1700E+13   -0.6500  20910.0000/
+PLOG/      1.0000     8.5400E+14   -1.0600  24840.0000/
+PLOG/     10.0000     6.1200E+08    0.9000  25980.0000/
+PLOG/    100.0000     1.1600E-07    5.6500  23380.0000/
+PLOG/   1000.0000     2.1900E-27   11.4200  18640.0000/
 ! R4184
-C4H8-2+CH3=AC5H10+H    2.13E-28 12.01 2.22E4
-    PLOG/1.0E-2 1.33E5 1.88E0 1.96E4/
-    PLOG/1.0E-1 2.92E11 1.1E-1 2.43E4/
-    PLOG/1.0E0 2.92E14 -6.4E-1 2.86E4/
-    PLOG/1.0E1 9.14E8 1.14E0 2.99E4/
-    PLOG/1.0E2 1.3E-7 5.92E0 2.73E4/
-    PLOG/1.0E3 2.13E-28 1.201E1 2.22E4/
+C2H4+IC3H7=C4H8-1+CH3               1.5500E-23 10.35000     16930.00
+PLOG/      0.0100     2.3700E+19   -2.5300  17570.0000/
+PLOG/      0.1000     4.6900E+23   -3.6900  21870.0000/
+PLOG/      1.0000     2.8100E+23   -3.4800  25050.0000/
+PLOG/     10.0000     9.3700E+14   -0.8300  25300.0000/
+PLOG/    100.0000     4.1800E-02    4.0600  22300.0000/
+PLOG/   1000.0000     1.5500E-23   10.3500  16930.0000/
+! R4185
+C2H4+IC3H7=AC5H10+H                 1.6900E-29 12.00000     17710.00
+PLOG/      0.0100     5.5000E+06    1.0500  16020.0000/
+PLOG/      0.1000     1.1800E+12   -0.4200  20410.0000/
+PLOG/      1.0000     8.2800E+13   -0.8300  24240.0000/
+PLOG/     10.0000     6.2700E+07    1.1300  25390.0000/
+PLOG/    100.0000     1.5900E-08    5.8400  22840.0000/
+PLOG/   1000.0000     1.6900E-29   12.0000  17710.0000/
 ! R4186
-C4H8-2+CH3=BC5H10+H    2.5E-16 8.36 1.49E4
-    PLOG/1.0E-2 3.47E12 -1.3E-1 1.76E4/
-    PLOG/1.0E-1 2.92E14 -6.3E-1 2.0E4/
-    PLOG/1.0E0 3.62E12 2.0E-2 2.1E4/
-    PLOG/1.0E1 4.92E5 2.11E0 2.02E4/
-    PLOG/1.0E2 6.18E-6 5.36E0 1.76E4/
-    PLOG/1.0E3 2.5E-16 8.36E0 1.49E4/
+C2H4+IC3H7=BC5H10+H                 5.2000E-30 12.22000     20460.00
+PLOG/      0.0100     4.7000E-02    3.5000  16050.0000/
+PLOG/      0.1000     1.5300E+05    1.6700  20840.0000/
+PLOG/      1.0000     8.3100E+08    0.7000  25290.0000/
+PLOG/     10.0000     1.1000E+05    2.0000  27260.0000/
+PLOG/    100.0000     6.2900E-10    6.3200  25250.0000/
+PLOG/   1000.0000     5.2000E-30   12.2200  20460.0000/
 ! R4187
-IC4H8+CH3=C3H6+C2H5    3.37E-21 10.04 2.3E4
-    PLOG/1.0E-2 7.79E12 -2.5E-1 2.05E4/
-    PLOG/1.0E-1 1.03E19 -1.95E0 2.53E4/
-    PLOG/1.0E0 1.73E21 -2.47E0 2.93E4/
-    PLOG/1.0E1 9.43E14 -4.7E-1 3.04E4/
-    PLOG/1.0E2 9.55E-2 4.35E0 2.77E4/
-    PLOG/1.0E3 3.37E-21 1.004E1 2.3E4/
+C4H8-2+CH3=IC4H8+CH3                1.4800E-25 11.16000     20340.00
+PLOG/      0.0100     6.5800E+13   -0.6700  19710.0000/
+PLOG/      0.1000     3.0000E+19   -2.2300  24480.0000/
+PLOG/      1.0000     3.1700E+20   -2.3800  28120.0000/
+PLOG/     10.0000     4.5500E+12    0.0800  28620.0000/
+PLOG/    100.0000     2.4200E-05    5.2700  25370.0000/
+PLOG/   1000.0000     1.4800E-25   11.1600  20340.0000/
 ! R4188
-IC4H8+CH3=C4H8-1+CH3    3.41E-22 10.35 2.37E4
-    PLOG/1.0E-2 6.16E9 6.8E-1 2.06E4/
-    PLOG/1.0E-1 1.3E16 -1.09E0 2.53E4/
-    PLOG/1.0E0 1.24E19 -1.83E0 2.95E4/
-    PLOG/1.0E1 5.57E13 -1.0E-1 3.1E4/
-    PLOG/1.0E2 2.08E-2 4.56E0 2.85E4/
-    PLOG/1.0E3 3.41E-22 1.035E1 2.37E4/
+C4H8-2+CH3=C3H6+C2H5                3.8700E-26 11.25000     21610.00
+PLOG/      0.0100     1.3400E+10    0.3200  19660.0000/
+PLOG/      0.1000     2.0600E+16   -1.3900  24650.0000/
+PLOG/      1.0000     1.3400E+18   -1.7800  28600.0000/
+PLOG/     10.0000     1.5600E+11    0.4100  29470.0000/
+PLOG/    100.0000     3.6800E-06    5.4200  26500.0000/
+PLOG/   1000.0000     3.8700E-26   11.2500  21610.0000/
 ! R4189
-IC4H8+CH3=AC5H10+H    3.46E-14 8.12 1.55E4
-    PLOG/1.0E-2 4.54E11 5.0E-1 1.72E4/
-    PLOG/1.0E-1 2.19E14 -2.3E-1 1.97E4/
-    PLOG/1.0E0 3.6E13 8.0E-2 2.11E4/
-    PLOG/1.0E1 5.62E7 1.87E0 2.07E4/
-    PLOG/1.0E2 2.75E-3 4.95E0 1.84E4/
-    PLOG/1.0E3 3.46E-14 8.12E0 1.55E4/
-! R4190
-IC4H8+CH3=BC5H10+H    3.75E-14 7.84 1.47E4
-    PLOG/1.0E-2 2.0E13 -2.5E-1 1.7E4/
-    PLOG/1.0E-1 4.0E15 -8.5E-1 1.94E4/
-    PLOG/1.0E0 1.5E14 -3.7E-1 2.06E4/
-    PLOG/1.0E1 7.5E7 1.57E0 2.0E4/
-    PLOG/1.0E2 2.1E-3 4.73E0 1.76E4/
-    PLOG/1.0E3 3.75E-14 7.84E0 1.47E4/
+C4H8-2+CH3=AC5H10+H                 2.1300E-28 12.01000     22170.00
+PLOG/      0.0100     1.3300E+05    1.8800  19600.0000/
+PLOG/      0.1000     2.9200E+11    0.1100  24320.0000/
+PLOG/      1.0000     2.9200E+14   -0.6400  28570.0000/
+PLOG/     10.0000     9.1400E+08    1.1400  29940.0000/
+PLOG/    100.0000     1.3000E-07    5.9200  27300.0000/
+PLOG/   1000.0000     2.1300E-28   12.0100  22170.0000/
 ! R4191
-C3H6+C2H5=AC5H10+H    2.23E-17 8.47 1.59E4
-    PLOG/1.0E-2 1.49E5 1.8E0 1.64E4/
-    PLOG/1.0E-1 2.26E8 9.2E-1 1.89E4/
-    PLOG/1.0E0 5.06E8 9.0E-1 2.08E4/
-    PLOG/1.0E1 1.27E4 2.33E0 2.08E4/
-    PLOG/1.0E2 3.04E-6 5.22E0 1.88E4/
-    PLOG/1.0E3 2.23E-17 8.47E0 1.59E4/
+C4H8-2+CH3=BC5H10+H                 2.5000E-16  8.36000     14860.00
+PLOG/      0.0100     3.4700E+12   -0.1300  17650.0000/
+PLOG/      0.1000     2.9200E+14   -0.6300  19980.0000/
+PLOG/      1.0000     3.6200E+12    0.0200  21020.0000/
+PLOG/     10.0000     4.9200E+05    2.1100  20180.0000/
+PLOG/    100.0000     6.1800E-06    5.3600  17620.0000/
+PLOG/   1000.0000     2.5000E-16    8.3600  14860.0000/
 ! R4192
-C3H6+C2H5=BC5H10+H    2.03E-27 11.36 2.15E4
-    PLOG/1.0E-2 1.49E3 2.08E0 1.79E4/
-    PLOG/1.0E-1 3.68E9 2.9E-1 2.25E4/
-    PLOG/1.0E0 1.12E13 -6.1E-1 2.69E4/
-    PLOG/1.0E1 2.51E8 9.2E-1 2.86E4/
-    PLOG/1.0E2 2.79E-7 5.44E0 2.63E4/
-    PLOG/1.0E3 2.03E-27 1.136E1 2.15E4/
+IC4H8+CH3=C3H6+C2H5                 3.3700E-21 10.04000     23050.00
+PLOG/      0.0100     7.7900E+12   -0.2500  20530.0000/
+PLOG/      0.1000     1.0300E+19   -1.9500  25320.0000/
+PLOG/      1.0000     1.7300E+21   -2.4700  29330.0000/
+PLOG/     10.0000     9.4300E+14   -0.4700  30430.0000/
+PLOG/    100.0000     9.5500E-02    4.3500  27710.0000/
+PLOG/   1000.0000     3.3700E-21   10.0400  23050.0000/
 ! R4193
-C4H8-1+CH3=AC5H10+H    1.15E-16 8.35 1.53E4
-    PLOG/1.0E-2 2.28E4 2.12E0 1.52E4/
-    PLOG/1.0E-1 5.38E7 1.18E0 1.78E4/
-    PLOG/1.0E0 3.81E8 1.01E0 1.98E4/
-    PLOG/1.0E1 3.45E4 2.28E0 2.0E4/
-    PLOG/1.0E2 1.86E-5 5.07E0 1.82E4/
-    PLOG/1.0E3 1.15E-16 8.35E0 1.53E4/
+IC4H8+CH3=C4H8-1+CH3                3.4100E-22 10.35000     23740.00
+PLOG/      0.0100     6.1600E+09    0.6800  20560.0000/
+PLOG/      0.1000     1.3000E+16   -1.0900  25290.0000/
+PLOG/      1.0000     1.2400E+19   -1.8300  29530.0000/
+PLOG/     10.0000     5.5700E+13   -0.1000  30960.0000/
+PLOG/    100.0000     2.0800E-02    4.5600  28480.0000/
+PLOG/   1000.0000     3.4100E-22   10.3500  23740.0000/
 ! R4194
-C4H8-1+CH3=BC5H10+H    2.31E-26 11.12 2.08E4
-    PLOG/1.0E-2 2.75E2 2.37E0 1.66E4/
-    PLOG/1.0E-1 7.29E8 5.6E-1 2.12E4/
-    PLOG/1.0E0 8.12E12 -5.0E-1 2.57E4/
-    PLOG/1.0E1 1.15E9 7.9E-1 2.77E4/
-    PLOG/1.0E2 4.7E-6 5.15E0 2.56E4/
-    PLOG/1.0E3 2.31E-26 1.112E1 2.08E4/
+IC4H8+CH3=AC5H10+H                  3.4600E-14  8.12000     15550.00
+PLOG/      0.0100     4.5400E+11    0.5000  17180.0000/
+PLOG/      0.1000     2.1900E+14   -0.2300  19690.0000/
+PLOG/      1.0000     3.6000E+13    0.0800  21130.0000/
+PLOG/     10.0000     5.6200E+07    1.8700  20700.0000/
+PLOG/    100.0000     2.7500E-03    4.9500  18410.0000/
+PLOG/   1000.0000     3.4600E-14    8.1200  15550.0000/
 ! R4195
-AC5H10+H=BC5H10+H    2.32E-11 7.43 5.31E3
-    PLOG/1.0E-2 2.02E11 7.2E-1 5.81E3/
-    PLOG/1.0E-1 3.64E14 -1.8E-1 8.41E3/
-    PLOG/1.0E0 8.18E14 -2.1E-1 1.02E4/
-    PLOG/1.0E1 1.69E10 1.25E0 1.02E4/
-    PLOG/1.0E2 3.5E0 4.16E0 8.23E3/
-    PLOG/1.0E3 2.32E-11 7.43E0 5.31E3/
+IC4H8+CH3=BC5H10+H                  3.7500E-14  7.84000     14740.00
+PLOG/      0.0100     2.0000E+13   -0.2500  16970.0000/
+PLOG/      0.1000     4.0000E+15   -0.8500  19380.0000/
+PLOG/      1.0000     1.5000E+14   -0.3700  20610.0000/
+PLOG/     10.0000     7.5000E+07    1.5700  19970.0000/
+PLOG/    100.0000     2.1000E-03    4.7300  17570.0000/
+PLOG/   1000.0000     3.7500E-14    7.8400  14740.0000/
 ! R4196
-C2H4+NC3H7=C5H11-1    6.2626E35 -7.282 1.76E4
+C3H6+C2H5=AC5H10+H                  2.2300E-17  8.47000     15910.00
+PLOG/      0.0100     1.4900E+05    1.8000  16370.0000/
+PLOG/      0.1000     2.2600E+08    0.9200  18950.0000/
+PLOG/      1.0000     5.0600E+08    0.9000  20770.0000/
+PLOG/     10.0000     1.2700E+04    2.3300  20810.0000/
+PLOG/    100.0000     3.0400E-06    5.2200  18820.0000/
+PLOG/   1000.0000     2.2300E-17    8.4700  15910.0000/
 ! R4197
-C3H6+C2H5=C5H11-2    3.1313E35 -7.282 1.76E4
+C3H6+C2H5=BC5H10+H                  2.0300E-27 11.36000     21480.00
+PLOG/      0.0100     1.4900E+03    2.0800  17860.0000/
+PLOG/      0.1000     3.6800E+09    0.2900  22530.0000/
+PLOG/      1.0000     1.1200E+13   -0.6100  26910.0000/
+PLOG/     10.0000     2.5100E+08    0.9200  28600.0000/
+PLOG/    100.0000     2.7900E-07    5.4400  26320.0000/
+PLOG/   1000.0000     2.0300E-27   11.3600  21480.0000/
 ! R4198
-C4H8-1+CH3=C5H11-3    6.2626E35 -7.282 1.76E4
+C4H8-1+CH3=AC5H10+H                 1.1500E-16  8.35000     15280.00
+PLOG/      0.0100     2.2800E+04    2.1200  15210.0000/
+PLOG/      0.1000     5.3800E+07    1.1800  17800.0000/
+PLOG/      1.0000     3.8100E+08    1.0100  19780.0000/
+PLOG/     10.0000     3.4500E+04    2.2800  20030.0000/
+PLOG/    100.0000     1.8600E-05    5.0700  18200.0000/
+PLOG/   1000.0000     1.1500E-16    8.3500  15280.0000/
 ! R4199
-C5H10-1+H=C5H11-1    1.6537E12 0.43951 3.8E3
-    PLOG/1.0E-2 4.3467E64 -1.70321E1 1.68E4/
-    PLOG/1.0E-1 1.6462E62 -1.56844E1 1.89E4/
-    PLOG/1.0E0 3.2621E50 -1.1648E1 1.69E4/
-    PLOG/1.0E1 2.0517E36 -7.042E0 1.28E4/
-    PLOG/1.0E2 4.1625E23 -3.0522E0 8.42E3/
-    PLOG/1.0E3 1.6537E12 4.395E-1 3.8E3/
+C4H8-1+CH3=BC5H10+H                 2.3100E-26 11.12000     20790.00
+PLOG/      0.0100     2.7500E+02    2.3700  16640.0000/
+PLOG/      0.1000     7.2900E+08    0.5600  21190.0000/
+PLOG/      1.0000     8.1200E+12   -0.5000  25720.0000/
+PLOG/     10.0000     1.1500E+09    0.7900  27700.0000/
+PLOG/    100.0000     4.7000E-06    5.1500  25650.0000/
+PLOG/   1000.0000     2.3100E-26   11.1200  20790.0000/
 ! R4200
-C5H10-1+H=C5H11-2    2.7722E12 0.43537 2.47E3
-    PLOG/1.0E-2 6.4408E59 -1.54203E1 1.41E4/
-    PLOG/1.0E-1 7.0096E59 -1.48866E1 1.66E4/
-    PLOG/1.0E0 4.2473E49 -1.13131E1 1.51E4/
-    PLOG/1.0E1 1.6231E36 -6.9428E0 1.14E4/
-    PLOG/1.0E2 2.4153E23 -2.914E0 6.92E3/
-    PLOG/1.0E3 2.7722E12 4.354E-1 2.47E3/
+AC5H10+H=BC5H10+H                   2.3200E-11  7.43000      5310.00
+PLOG/      0.0100     2.0200E+11    0.7200   5811.0000/
+PLOG/      0.1000     3.6400E+14   -0.1800   8414.0000/
+PLOG/      1.0000     8.1800E+14   -0.2100  10240.0000/
+PLOG/     10.0000     1.6900E+10    1.2500  10240.0000/
+PLOG/    100.0000     3.5000E+00    4.1600   8228.0000/
+PLOG/   1000.0000     2.3200E-11    7.4300   5310.0000/
 ! R4201
-C5H10-1+H=C5H11-3    7.0303E-10 6.83788 9.74E3
-    PLOG/1.0E-2 1.4422E64 -1.73915E1 2.07E4/
-    PLOG/1.0E-1 7.4102E66 -1.74785E1 2.61E4/
-    PLOG/1.0E0 1.9853E60 -1.47893E1 2.86E4/
-    PLOG/1.0E1 2.4055E38 -7.6328E0 2.46E4/
-    PLOG/1.0E2 1.1721E20 -1.889E0 2.06E4/
-    PLOG/1.0E3 7.0303E-10 6.8379E0 9.74E3/
+C5H11-1=C2H4+NC3H7                  5.0000E-01  0.00000         0.00
+PLOG/      0.1000     1.8430E+33   -7.0864  27727.5030/
+PLOG/      1.0000     5.4430E+39   -8.5064  34743.5030/
+PLOG/     10.0000     8.1780E+39   -8.1264  38585.5030/
+PLOG/     50.0000     2.4870E+34   -6.2664  37797.5030/
+PLOG/    100.0000     6.8370E+30   -5.1464  36612.5030/
 ! R4202
-C5H10-1+H=C5H10-2+H    1.2197E-14 8.4223 6.18E3
-    PLOG/1.0E-2 1.1397E6 2.191E0 4.48E3/
-    PLOG/1.0E-1 5.3502E11 5.651E-1 8.09E3/
-    PLOG/1.0E0 2.0166E19 -1.5549E0 1.39E4/
-    PLOG/1.0E1 5.7616E17 -9.359E-1 1.64E4/
-    PLOG/1.0E2 6.3775E2 3.569E0 1.23E4/
-    PLOG/1.0E3 1.2197E-14 8.4223E0 6.18E3/
+C5H11-2=C3H6+C2H5                   5.0000E-01  0.00000         0.00
+PLOG/      0.1000     1.4130E+34   -7.3826  27973.7170/
+PLOG/      1.0000     2.0890E+40   -8.7226  34849.7170/
+PLOG/     10.0000     1.8270E+39   -7.9826  37975.7170/
+PLOG/     50.0000     9.5760E+32   -5.9126  36717.7170/
+PLOG/    100.0000     2.0580E+29   -4.7626  35458.7170/
 ! R4203
-C5H10-1+H=C4H8-1+CH3    4.9172E-25 11.70489 1.3E4
-    PLOG/1.0E-2 3.6345E5 2.2118E0 6.23E3/
-    PLOG/1.0E-1 6.4275E14 -4.393E-1 1.21E4/
-    PLOG/1.0E0 3.5228E27 -4.0113E0 2.17E4/
-    PLOG/1.0E1 7.4125E29 -4.414E0 2.85E4/
-    PLOG/1.0E2 7.1566E8 2.0038E0 2.46E4/
-    PLOG/1.0E3 4.9172E-25 1.17049E1 1.3E4/
+C5H11-3=C4H8-1+CH3                  5.0000E-01  0.00000         0.00
+PLOG/      0.1000     6.7580E+40   -9.2826  33217.7170/
+PLOG/      1.0000     1.2330E+47  -10.6326  40338.7170/
+PLOG/     10.0000     7.5390E+45   -9.8326  43571.7170/
+PLOG/     50.0000     4.0750E+38   -7.4626  41892.7170/
+PLOG/    100.0000     1.4980E+34   -6.0826  40254.7170/
 ! R4204
-C5H10-1+H=C3H6+C2H5    2.5948E-10 7.29466 4.17E3
-    PLOG/1.0E-2 8.922E13 1.68E-2 3.61E3/
-    PLOG/1.0E-1 1.1271E21 -2.0105E0 8.27E3/
-    PLOG/1.0E0 2.8533E27 -3.7634E0 1.39E4/
-    PLOG/1.0E1 1.2886E22 -2.0199E0 1.47E4/
-    PLOG/1.0E2 2.2156E6 2.6951E0 1.0E4/
-    PLOG/1.0E3 2.5948E-10 7.2947E0 4.17E3/
+C5H10-1+H=C5H11-1                   1.6537E+12  0.43951      3805.00
+PLOG/      0.0100     4.3467E+64  -17.0321  16806.6357/
+PLOG/      0.1000     1.6462E+62  -15.6844  18861.0262/
+PLOG/      1.0000     3.2621E+50  -11.6480  16862.7280/
+PLOG/     10.0000     2.0517E+36   -7.0420  12832.2807/
+PLOG/    100.0000     4.1625E+23   -3.0522   8424.1701/
+PLOG/   1000.0000     1.6537E+12    0.4395   3805.0016/
 ! R4205
-C5H10-1+H=C2H4+NC3H7    1.6569E-9 7.06139 6.67E3
-    PLOG/1.0E-2 1.8824E13 1.926E-1 5.25E3/
-    PLOG/1.0E-1 2.5816E20 -1.8477E0 9.89E3/
-    PLOG/1.0E0 2.8956E27 -3.792E0 1.58E4/
-    PLOG/1.0E1 1.8515E23 -2.3866E0 1.72E4/
-    PLOG/1.0E2 7.5012E7 2.2319E0 1.28E4/
-    PLOG/1.0E3 1.6569E-9 7.0614E0 6.67E3/
+C5H10-1+H=C5H11-2                   2.7722E+12  0.43537      2474.72
+PLOG/      0.0100     6.4408E+59  -15.4203  14061.3184/
+PLOG/      0.1000     7.0096E+59  -14.8866  16622.1539/
+PLOG/      1.0000     4.2473E+49  -11.3131  15101.3620/
+PLOG/     10.0000     1.6231E+36   -6.9428  11398.8806/
+PLOG/    100.0000     2.4153E+23   -2.9140   6916.9993/
+PLOG/   1000.0000     2.7722E+12    0.4354   2474.7234/
 ! R4206
-C3H6+C2H5=C4H8-1+CH3    5.9164E-30 12.6856 2.35E4
-    PLOG/1.0E-2 1.2886E8 9.948E-1 1.89E4/
-    PLOG/1.0E-1 4.9811E19 -2.3006E0 2.67E4/
-    PLOG/1.0E0 9.7262E29 -5.1087E0 3.59E4/
-    PLOG/1.0E1 4.5409E26 -3.8451E0 4.03E4/
-    PLOG/1.0E2 4.8583E2 3.3981E0 3.48E4/
-    PLOG/1.0E3 5.9164E-30 1.26856E1 2.35E4/
+C5H10-1+H=C5H11-3                   7.0303E-10  6.83788      9739.86
+PLOG/      0.0100     1.4422E+64  -17.3915  20732.6598/
+PLOG/      0.1000     7.4102E+66  -17.4785  26075.2060/
+PLOG/      1.0000     1.9853E+60  -14.7893  28643.5382/
+PLOG/     10.0000     2.4055E+38   -7.6328  24627.3202/
+PLOG/    100.0000     1.1721E+20   -1.8890  20592.0130/
+PLOG/   1000.0000     7.0303E-10    6.8379   9739.8576/
 ! R4207
-C2H4+NC3H7=C4H8-1+CH3    1.4661E-30 12.81401 2.15E4
-    PLOG/1.0E-2 4.6519E6 1.3303E0 1.61E4/
-    PLOG/1.0E-1 3.2138E18 -2.0397E0 2.41E4/
-    PLOG/1.0E0 3.1837E29 -5.0511E0 3.37E4/
-    PLOG/1.0E1 3.6939E26 -3.8952E0 3.83E4/
-    PLOG/1.0E2 7.4527E2 3.2777E0 3.3E4/
-    PLOG/1.0E3 1.4661E-30 1.2814E1 2.15E4/
+C5H10-1+H=C5H10-2+H                 1.2197E-14  8.42230      6177.48
+PLOG/      0.0100     1.1397E+06    2.1910   4477.7710/
+PLOG/      0.1000     5.3502E+11    0.5651   8086.2242/
+PLOG/      1.0000     2.0166E+19   -1.5549  13867.5893/
+PLOG/     10.0000     5.7616E+17   -0.9359  16369.3033/
+PLOG/    100.0000     6.3775E+02    3.5690  12271.0156/
+PLOG/   1000.0000     1.2197E-14    8.4223   6177.4847/
 ! R4208
-C2H4+NC3H7=C3H6+C2H5    1.3429E-29 12.48633 1.47E4
-    PLOG/1.0E-2 6.879E27 -4.8858E0 1.78E4/
-    PLOG/1.0E-1 4.6018E37 -7.607E0 2.58E4/
-    PLOG/1.0E0 3.0124E40 -8.1768E0 3.23E4/
-    PLOG/1.0E1 1.2937E26 -3.6489E0 3.18E4/
-    PLOG/1.0E2 1.3431E3 3.2058E0 2.62E4/
-    PLOG/1.0E3 1.3429E-29 1.24863E1 1.47E4/
+C5H10-1+H=C4H8-1+CH3                4.9172E-25 11.70489     13030.63
+PLOG/      0.0100     3.6345E+05    2.2118   6227.4235/
+PLOG/      0.1000     6.4275E+14   -0.4393  12106.2553/
+PLOG/      1.0000     3.5228E+27   -4.0113  21691.3947/
+PLOG/     10.0000     7.4125E+29   -4.4140  28455.2967/
+PLOG/    100.0000     7.1566E+08    2.0038  24577.8665/
+PLOG/   1000.0000     4.9172E-25   11.7049  13030.6326/
 ! R4209
-C5H10-2+H=C5H11-1    2.489E-11 7.03185 3.5E3
-    PLOG/1.0E-2 1.0832E66 -1.7378E1 1.91E4/
-    PLOG/1.0E-1 2.0001E65 -1.65931E1 2.29E4/
-    PLOG/1.0E0 4.385E54 -1.28788E1 2.31E4/
-    PLOG/1.0E1 7.8069E36 -7.2132E0 1.98E4/
-    PLOG/1.0E2 2.5352E15 -6.621E-1 1.34E4/
-    PLOG/1.0E3 2.489E-11 7.0318E0 3.5E3/
+C5H10-1+H=C3H6+C2H5                 2.5948E-10  7.29466      4174.83
+PLOG/      0.0100     8.9220E+13    0.0168   3606.1159/
+PLOG/      0.1000     1.1271E+21   -2.0105   8271.9456/
+PLOG/      1.0000     2.8533E+27   -3.7634  13878.4988/
+PLOG/     10.0000     1.2886E+22   -2.0199  14694.7773/
+PLOG/    100.0000     2.2156E+06    2.6951  10036.7362/
+PLOG/   1000.0000     2.5948E-10    7.2947   4174.8254/
 ! R4210
-C5H10-2+H=C5H11-2    9.8369E11 0.54335 2.89E3
-    PLOG/1.0E-2 8.1226E61 -1.59558E1 1.6E4/
-    PLOG/1.0E-1 9.6472E59 -1.48619E1 1.78E4/
-    PLOG/1.0E0 4.9578E48 -1.10036E1 1.57E4/
-    PLOG/1.0E1 5.8193E33 -6.2061E0 1.11E4/
-    PLOG/1.0E2 9.2759E21 -2.508E0 6.96E3/
-    PLOG/1.0E3 9.8369E11 5.434E-1 2.89E3/
+C5H10-1+H=C2H4+NC3H7                1.6569E-09  7.06139      6675.11
+PLOG/      0.0100     1.8824E+13    0.1926   5248.0918/
+PLOG/      0.1000     2.5816E+20   -1.8477   9887.9841/
+PLOG/      1.0000     2.8956E+27   -3.7920  15789.2125/
+PLOG/     10.0000     1.8515E+23   -2.3866  17160.3739/
+PLOG/    100.0000     7.5012E+07    2.2319  12772.6443/
+PLOG/   1000.0000     1.6569E-09    7.0614   6675.1085/
 ! R4211
-C5H10-2+H=C5H11-3    3.1964E11 0.677 2.74E3
-    PLOG/1.0E-2 2.3074E68 -1.77603E1 1.94E4/
-    PLOG/1.0E-1 4.7742E59 -1.4641E1 1.85E4/
-    PLOG/1.0E0 2.0025E46 -1.0213E1 1.52E4/
-    PLOG/1.0E1 1.5491E33 -6.0159E0 1.12E4/
-    PLOG/1.0E2 3.5579E20 -2.0865E0 6.46E3/
-    PLOG/1.0E3 3.1964E11 6.77E-1 2.74E3/
+C3H6+C2H5=C4H8-1+CH3                5.9164E-30 12.68560     23524.25
+PLOG/      0.0100     1.2886E+08    0.9948  18890.7766/
+PLOG/      0.1000     4.9811E+19   -2.3006  26731.1744/
+PLOG/      1.0000     9.7262E+29   -5.1087  35940.8045/
+PLOG/     10.0000     4.5409E+26   -3.8451  40298.2725/
+PLOG/    100.0000     4.8583E+02    3.3981  34773.3837/
+PLOG/   1000.0000     5.9164E-30   12.6856  23524.2461/
 ! R4212
-C5H10-2+H=C4H8-1+CH3    4.7593E-12 7.82656 5.72E3
-    PLOG/1.0E-2 5.2448E17 -1.0807E0 6.99E3/
-    PLOG/1.0E-1 7.1005E25 -3.379E0 1.27E4/
-    PLOG/1.0E0 5.1204E29 -4.3599E0 1.76E4/
-    PLOG/1.0E1 1.0666E21 -1.6422E0 1.68E4/
-    PLOG/1.0E2 9.1414E3 3.4363E0 1.14E4/
-    PLOG/1.0E3 4.7593E-12 7.8266E0 5.72E3/
+C2H4+NC3H7=C4H8-1+CH3               1.4661E-30 12.81401     21511.13
+PLOG/      0.0100     4.6519E+06    1.3303  16097.3550/
+PLOG/      0.1000     3.2138E+18   -2.0397  24056.8258/
+PLOG/      1.0000     3.1837E+29   -5.0511  33690.2876/
+PLOG/     10.0000     3.6939E+26   -3.8952  38336.1143/
+PLOG/    100.0000     7.4527E+02    3.2777  33032.7766/
+PLOG/   1000.0000     1.4661E-30   12.8140  21511.1348/
 ! R4213
-C5H10-2+H=C3H6+C2H5    1.574E-10 7.34473 5.33E3
-    PLOG/1.0E-2 2.3266E15 -4.116E-1 5.28E3/
-    PLOG/1.0E-1 8.8127E22 -2.5675E0 1.04E4/
-    PLOG/1.0E0 2.9884E28 -4.0549E0 1.57E4/
-    PLOG/1.0E1 4.0315E21 -1.8635E0 1.59E4/
-    PLOG/1.0E2 5.3588E5 2.8716E0 1.11E4/
-    PLOG/1.0E3 1.574E-10 7.3447E0 5.33E3/
+C2H4+NC3H7=C3H6+C2H5                1.3429E-29 12.48633     14674.30
+PLOG/      0.0100     6.8790E+27   -4.8858  17816.2273/
+PLOG/      0.1000     4.6018E+37   -7.6070  25825.2199/
+PLOG/      1.0000     3.0124E+40   -8.1768  32306.0244/
+PLOG/     10.0000     1.2937E+26   -3.6489  31784.2345/
+PLOG/    100.0000     1.3431E+03    3.2058  26177.6644/
+PLOG/   1000.0000     1.3429E-29   12.4863  14674.3009/
 ! R4214
-C5H10-2+H=C2H4+NC3H7    5.1304E-26 11.85431 9.4E3
-    PLOG/1.0E-2 1.6675E20 -2.2705E0 8.09E3/
-    PLOG/1.0E-1 1.1664E31 -5.3391E0 1.57E4/
-    PLOG/1.0E0 1.9926E39 -7.5283E0 2.42E4/
-    PLOG/1.0E1 2.6231E31 -4.9043E0 2.66E4/
-    PLOG/1.0E2 7.527E7 2.1876E0 2.12E4/
-    PLOG/1.0E3 5.1304E-26 1.18543E1 9.4E3/
-! R4225
-C5H11-1+O2=>C5H10-1+HO2    3.0E8 0.0 3.5E3
-! R4226
-C5H11-2+O2=>C5H10-1+HO2    4.5E8 0.0 3.5E3
+C5H10-2+H=C5H11-1                   2.4890E-11  7.03185      3504.77
+PLOG/      0.0100     1.0832E+66  -17.3780  19074.8542/
+PLOG/      0.1000     2.0001E+65  -16.5931  22872.3061/
+PLOG/      1.0000     4.3850E+54  -12.8788  23122.7840/
+PLOG/     10.0000     7.8069E+36   -7.2132  19761.0003/
+PLOG/    100.0000     2.5352E+15   -0.6621  13387.8314/
+PLOG/   1000.0000     2.4890E-11    7.0318   3504.7690/
+! R4215
+C5H10-2+H=C5H11-2                   9.8369E+11  0.54335      2893.22
+PLOG/      0.0100     8.1226E+61  -15.9558  16044.9000/
+PLOG/      0.1000     9.6472E+59  -14.8619  17798.9494/
+PLOG/      1.0000     4.9578E+48  -11.0036  15663.1756/
+PLOG/     10.0000     5.8193E+33   -6.2061  11129.3771/
+PLOG/    100.0000     9.2759E+21   -2.5080   6959.9447/
+PLOG/   1000.0000     9.8369E+11    0.5434   2893.2165/
+! R4216
+C5H10-2+H=C5H11-3                   3.1964E+11  0.67700      2742.23
+PLOG/      0.0100     2.3074E+68  -17.7603  19449.1707/
+PLOG/      0.1000     4.7742E+59  -14.6410  18516.5133/
+PLOG/      1.0000     2.0025E+46  -10.2130  15210.4608/
+PLOG/     10.0000     1.5491E+33   -6.0159  11153.6301/
+PLOG/    100.0000     3.5579E+20   -2.0865   6459.5512/
+PLOG/   1000.0000     3.1964E+11    0.6770   2742.2336/
+! R4217
+C5H10-2+H=C4H8-1+CH3                4.7593E-12  7.82656      5721.82
+PLOG/      0.0100     5.2448E+17   -1.0807   6986.5114/
+PLOG/      0.1000     7.1005E+25   -3.3790  12745.7109/
+PLOG/      1.0000     5.1204E+29   -4.3599  17553.9667/
+PLOG/     10.0000     1.0666E+21   -1.6422  16806.5243/
+PLOG/    100.0000     9.1414E+03    3.4363  11396.7745/
+PLOG/   1000.0000     4.7593E-12    7.8266   5721.8198/
+! R4218
+C5H10-2+H=C3H6+C2H5                 1.5740E-10  7.34473      5334.15
+PLOG/      0.0100     2.3266E+15   -0.4116   5281.9468/
+PLOG/      0.1000     8.8127E+22   -2.5675  10397.6326/
+PLOG/      1.0000     2.9884E+28   -4.0549  15743.0927/
+PLOG/     10.0000     4.0315E+21   -1.8635  15855.7708/
+PLOG/    100.0000     5.3588E+05    2.8716  11063.1571/
+PLOG/   1000.0000     1.5740E-10    7.3447   5334.1538/
+! R4219
+C5H10-2+H=C2H4+NC3H7                5.1304E-26 11.85431      9401.15
+PLOG/      0.0100     1.6675E+20   -2.2705   8091.1211/
+PLOG/      0.1000     1.1664E+31   -5.3391  15715.9572/
+PLOG/      1.0000     1.9926E+39   -7.5283  24203.5196/
+PLOG/     10.0000     2.6231E+31   -4.9043  26628.8511/
+PLOG/    100.0000     7.5270E+07    2.1876  21180.6343/
+PLOG/   1000.0000     5.1304E-26   11.8543   9401.1542/
 ! R4227
-C5H11-2+O2=>C5H10-2+HO2    3.0E8 0.0 3.5E3
+C5H11-1+O2=>C5H10-1+HO2             2.5445E+01 -0.45224      4075.27
 ! R4228
-C5H11-3+O2=>C5H10-2+HO2    6.0E8 0.0 3.5E3
+C5H11-2+O2=>C5H10-1+HO2             1.5962E-01  0.19028      2910.97
+! R4229
+C5H11-2+O2=>C5H10-2+HO2             3.1925E-01  0.19028      2910.97
+! R4230
+C5H11-3+O2=>C5H10-2+HO2             6.3850E-01  0.19028      2910.97
 ! R4241
-C5H11-1+HO2=C5H11O-1+OH    9.0E12 0.0 -1.0E3
-! R4288
-C5H11-2+HO2=C5H11O-2+OH    9.0E12 0.0 -1.0E3
-! R4289
-C5H11-3+HO2=C5H11O-3+OH    9.0E12 0.0 -1.0E3
-! R4347
-NC5KET12O=NC3H7CHO+HCO    2.9E12 0.38 1.11E4
-! R4348
-NC5KET13O=C2H5CHO+CH2CHO    2.9E12 0.38 1.11E4
-! R4349
-NC5KET14O=CH3CHO+CH2CH2CHO    2.9E12 0.38 1.11E4
-! R4350
-NC5KET15O=CH2O+C3H6CHO-3    2.9E12 0.38 1.11E4
-! R4351
-NC5KET21O=CH2O+NC3H7CO    2.9E12 0.38 1.11E4
-! R4352
-NC5KET23O=C2H5CHO+CH3CO    2.9E12 0.38 1.11E4
-! R4353
-NC5KET24O=CH3CHO+CH3COCH2    2.9E12 0.38 1.11E4
-! R4354
-NC5KET25O=CH2O+CH2CH2COCH3    2.9E12 0.38 1.11E4
-! R4355
-NC5KET31O=C2H5COCH2+CH2O    2.9E12 0.38 1.11E4
-! R4356
-NC5KET32O=CH3CHO+C2H5CO    2.9E12 0.38 1.11E4
-! R4472
-OCH2CHO=CH2O+HCO    2.9E12 0.38 1.11E4
-! R4473
-CH2OCH2CHO=CH2O+CH2CHO    1.6E13 0.0 2.55E4
-! R4474
-! AUTOMATIC PRUNING ! CH2CH2OCH2CH2CHO=>CH2O+C2H4+CH2CHO    1.6E13 0.0 2.55E4
-! AUTOMATIC PRUNING ! ! R4489
-CH2O+PC4H9=C5H11O-1    5.0E10 0.0 3.46E3
-! R4490
-CH3CHO+NC3H7=C5H11O-2    3.33E10 0.0 6.4E3
-! R4491
-C2H5+C2H5CHO=C5H11O-3    1.67E10 0.0 6.19E3
-!___________________________________________________________________________________________________________
-!\REACTIONCLASS: RH(=)PRODUCTS
-!___________________________________________________________________________________________________________
-!\Author: JB 7 / 10 / 2013 !\Ref: WARNING !\Comment: RATE CONSTANTS CALCULATED BASED ON LJ PARAMETERS FROM A. W. JASPER, J. A. MILLER. COMBUST. FLAME(2013) FO
+C5H11-1=>C5H11-2                    1.1382E+11  0.31594     17308.87
+! R4242
+C5H11-1=>C5H11-1                    4.5000E+11  0.00000     14500.63
+! R4243
+C5H11-2=>C5H11-1                    1.0894E+11  0.40752     20867.57
+! R4269
+C5H11-1+HO2=C5H11O-1+OH             9.0000E+12  0.00000     -1000.00
+! R4270
+C5H11-2+HO2=C5H11O-2+OH             9.0000E+12  0.00000     -1000.00
+! R4271
+C5H11-3+HO2=C5H11O-3+OH             9.0000E+12  0.00000     -1000.00
+! R4316
+NC5KET12O=NC3H7CHO+HCO              2.9000E+12  0.38000     11080.00
+! R4317
+NC5KET13O=C2H5CHO+CH2CHO            2.9000E+12  0.38000     11080.00
+! R4318
+NC5KET14O=CH3CHO+CH2CH2CHO          2.9000E+12  0.38000     11080.00
+! R4319
+NC5KET15O=CH2O+C3H6CHO-3            2.9000E+12  0.38000     11080.00
+! R4320
+NC5KET21O=CH2O+NC3H7CO              2.9000E+12  0.38000     11080.00
+! R4321
+NC5KET24O=CH3CHO+CH3COCH2           2.9000E+12  0.38000     11080.00
+! R4322
+NC5KET25O=CH2O+CH2CH2COCH3          2.9000E+12  0.38000     11080.00
+! R4323
+NC5KET31O=C2H5COCH2+CH2O            2.9000E+12  0.38000     11080.00
+! R4395
+OCH2CHO=CH2O+HCO                    2.9000E+12  0.38000     11080.00
+! R4396
+! AUTOMATIC PRUNING ! CH2CH2OCH2CH2CHO=>CH2O+C2H4+CH2CHO   1.6000E+13  0.00000     25500.00
+! AUTOMATIC PRUNING ! ! R4411
+CH2O+PC4H9=C5H11O-1                 5.0000E+10  0.00000      3457.00
+! R4412
+CH3CHO+NC3H7=C5H11O-2               3.3300E+10  0.00000      6397.00
+! R4413
+C2H5+C2H5CHO=C5H11O-3               1.6700E+10  0.00000      6193.00
 IC5H12=IC3H7+C2H5    1.55E51 -9.83 1.03292E5
     PLOG/1.0E-2 4.07E95 -2.337E1 1.21614E5/
     PLOG/1.0E-1 2.8E90 -2.155E1 1.22339E5/
@@ -16569,6 +16523,12 @@ IC5H12+CH3O=DC5H11+CH3OH    1.5E11 0.0 7.0E3
 IC5H12+C2H5=DC5H11+C2H6    5.0E10 0.0 1.34E4
 !\Author: WARNING !\Ref: WARNING !\Comment: WARNING
 IC5H12+C2H3=DC5H11+C2H4    5.0E11 0.0 1.8E4
+!\Author: WARNING !\Ref: WARNING !\Comment: WARNING
+IC5H12+AC5H11=DC5H11+IC5H12    7.5E10 0.0 1.23E4
+!\Author: WARNING !\Ref: WARNING !\Comment: WARNING
+IC5H12+BC5H11=DC5H11+IC5H12    7.5E10 0.0 1.23E4
+!\Author: WARNING !\Ref: WARNING !\Comment: WARNING
+IC5H12+CC5H11=DC5H11+IC5H12    7.5E10 0.0 1.23E4
 !\Author: WARNING !\Ref: WARNING !\Comment: WARNING
 IC5H12+O2=CC5H11+HO2    1.4E13 0.0 5.016E4
 !\Author: WARNING !\Ref: WARNING !\Comment: WARNING
@@ -26578,43 +26538,43 @@ IC8-5R=CH3+NEC7D4    4.66E44 -9.51 4.005E4
     PLOG/1.0E1 4.19E44 -9.8E0 3.76651E4/
     PLOG/1.0E2 4.66E44 -9.51E0 4.0054E4/
 !kaust
-I24C7D2=CH3+CC6H11-B    4.469E22 -2.128 7.543E4
+I24C7D2=CH3+IC6D3-2    4.469E22 -2.128 7.543E4
     REV/1.93E14 -3.2E-1 0.0E0/
 I24C7D2+OH=>CH3COCH3+IC4H9    2.0E10 0.0 -4.0E3
 I24C7D2+O=>CH3COCH3+IC4H8    2.0E10 0.0 -1.05E3
-I24C7D2+H=XC7H13-Z+H2    3.46E5 2.5 2.492E3
-    REV/9.749E6 2.06E0 2.005E4/
-I24C7D2+H=YC7H13-Y2+H2    2.65E6 2.2 0.0E0
-    REV/1.836E7 2.14E0 2.229E4/
-I24C7D2+H=YC7H13-X2+H2    1.33E6 2.54 6.756E3
-    REV/6.176E4 2.54E0 1.108E4/
-I24C7D2+OH=XC7H13-Z+H2O    6.24E6 2.0 -2.98E2
-    REV/7.613E8 1.56E0 3.242E4/
-I24C7D2+OH=YC7H13-Y2+H2O    6.14E2 3.2 -3.5E3
-    REV/1.842E4 3.14E0 3.394E4/
-I24C7D2+OH=YC7H13-X2+H2O    1.054E10 0.97 1.586E3
-    REV/2.119E9 9.7E-1 2.106E4/
-CC6H11-B+HO2=CC6H11O-B+OH    9.64E12 0.0 0.0E0
-    REV/5.162E15 -1.0E0 1.707E4/
-CC6H11O-B=CH3COCH3+C3H5-S    7.18E17 -1.2 2.837E4
-    REV/1.0E11 0.0E0 1.19E4/
-YC7H13-Y2+HO2=IC4H7-I1+CH3COCH3+OH    7.0E12 0.0 -1.0E3
-YC7H13-Y2+O=IC4H7-I1+CH3COCH3    6.03E13 0.0 0.0E0
-XC7H13-Z=ACC6H10+CH3    2.837E16 -0.83 4.123E4
-    REV/1.0E11 0.0E0 1.06E4/
-ACC6H10+OH=ACC6H9-A+H2O    3.12E6 2.0 -2.98E2
-    REV/5.491E8 1.39E0 3.246E4/
-ACC6H10+OH=ACC6H9-D+H2O    3.12E6 2.0 -2.98E2
-    REV/5.491E8 1.39E0 3.246E4/
-ACC6H10+HO2=ACC6H9-A+H2O2    9.64E3 2.6 1.391E4
-    REV/1.007E7 1.66E0 1.521E4/
-ACC6H10+HO2=ACC6H9-D+H2O2    9.64E3 2.6 1.391E4
-    REV/1.007E7 1.66E0 1.521E4/
-ACC6H9-A=C3H4-A+C3H5-S    1.194E24 -2.85 7.431E4
-    REV/1.0E11 0.0E0 9.2E3/
-ACC6H9-D+HO2=>IC3H5CHO+C2H3+OH    8.91E12 0.0 0.0E0
-YC7H13-X2=C3H6+IC4H7-I1    1.226E18 -1.37 4.384E4
-    REV/7.5E10 0.0E0 9.2E3/
+!I24C7D2+H=I24C7D1-3R+H2    3.46E5 2.5 2.492E3
+!    REV/9.749E6 2.06E0 2.005E4/
+!I24C7D2+H=I24C7D2-4R+H2    2.65E6 2.2 0.0E0
+!    REV/1.836E7 2.14E0 2.229E4/
+!I24C7D2+H=I24C7D2-5R+H2    1.33E6 2.54 6.756E3
+!    REV/6.176E4 2.54E0 1.108E4/
+!I24C7D2+OH=I24C7D1-3R+H2O    6.24E6 2.0 -2.98E2
+!    REV/7.613E8 1.56E0 3.242E4/
+!I24C7D2+OH=I24C7D2-4R+H2O    6.14E2 3.2 -3.5E3
+!    REV/1.842E4 3.14E0 3.394E4/
+!I24C7D2+OH=I24C7D2-5R+H2O    1.054E10 0.97 1.586E3
+!    REV/2.119E9 9.7E-1 2.106E4/
+!IC6D3-2+HO2=IC6D3-2O+OH    9.64E12 0.0 0.0E0
+!    REV/5.162E15 -1.0E0 1.707E4/
+!IC6D3-2O=CH3COCH3+C3H5-S    7.18E17 -1.2 2.837E4
+!    REV/1.0E11 0.0E0 1.19E4/
+I24C7D2-4R+HO2=IC4H7-I1+CH3COCH3+OH    7.0E12 0.0 -1.0E3
+I24C7D2-4R+O=IC4H7-I1+CH3COCH3    6.03E13 0.0 0.0E0
+!I24C7D1-3R=IC6D13+CH3    2.837E16 -0.83 4.123E4
+!    REV/1.0E11 0.0E0 1.06E4/
+!IC6D13+OH=IC6D13-1AR+H2O    3.12E6 2.0 -2.98E2
+!    REV/5.491E8 1.39E0 3.246E4/
+!IC6D13+OH=IC6D13-4R+H2O    3.12E6 2.0 -2.98E2
+!    REV/5.491E8 1.39E0 3.246E4/
+!IC6D13+HO2=IC6D13-1AR+H2O2    9.64E3 2.6 1.391E4
+!    REV/1.007E7 1.66E0 1.521E4/
+!IC6D13+HO2=IC6D13-4R+H2O2    9.64E3 2.6 1.391E4
+!    REV/1.007E7 1.66E0 1.521E4/
+!IC6D13-1AR=C3H4-A+C3H5-S    1.194E24 -2.85 7.431E4
+!    REV/1.0E11 0.0E0 9.2E3/
+!IC6D13-4R+HO2=>IC3H5CHO+C2H3+OH    8.91E12 0.0 0.0E0
+!I24C7D2-5R=C3H6+IC4H7-I1    1.226E18 -1.37 4.384E4
+!    REV/7.5E10 0.0E0 9.2E3/
 !___________________________________________________________________________________________________________
 !\REACTIONCLASS: 4.R+O2=E+HO2!REF
 !___________________________________________________________________________________________________________
@@ -26903,9 +26863,7 @@ IC8D4-5AR+O2=>HCO+NEC7Y4    9.27E21 -2.74 9.364E3
 !\REACTIONCLASS: PRIALLYLICSITEONDIB-1
 !___________________________________________________________________________________________________________
 !\Author: WARNING
-IC8D4+H=IC8D4-5R+H2    1.0E0 0.0 0.0E0
-    PLOG/1.0E0 -8.86E8 1.307E0 3.412E3/
-    PLOG/1.0E0 5.49E5 2.396E0 2.613E3/
+IC8D4+H=IC8D4-5R+H2                                    6.07E+05    2.391    4487 !REFIT, 500-2500K; REFIT ABS ERROR: MEDIAN = 0%, MEAN = 0%, MAX = 4% @500K
 !\Author: WARNING
 IC8D4+O=IC8D4-5R+OH    1.43E2 3.374 1.74E2
 !\Author: WARNING
@@ -27210,8 +27168,8 @@ IC8D4-5R+H=>CH3+NEC7D4-4R    4.57E38 -6.21 4.066E4
     PLOG/1.0E2 4.57E38 -6.21E0 4.0659E4/
     PLOG/1.0E2 1.42E11 1.06E0 1.651E4/
 !\Author: WARNING
-CH2O+IC4H8+C3H5-T=DIB4-1OR    5.0E10 0.0 2.33E3
-!\Author: WARNING
+! AUTOMATIC PRUNING ! DIB4-1OR=>CH2O+IC4H8+C3H5-T                            2.90E+12    0.400   11080 
+! AUTOMATIC PRUNING ! !\Author: WARNING
 IC7D1Y5-4J=H+I24C7D13Y5    6.41E20 -2.84 3.654E4
     PLOG/1.0E-2 6.57E61 -1.534E1 5.351E4/
     PLOG/1.0E-2 2.48E31 -6.49E0 3.863E4/
@@ -27344,9 +27302,9 @@ IC8D4-5AOH+OH=>H2O+IC4H8+IC4H6OH    8.0E12 0.0 0.0E0
 ! AUTOMATIC PRUNING !     PLOG/1.0E0 4.42E42 -9.09E0 6.70692E4/
 ! AUTOMATIC PRUNING !     PLOG/1.0E2 2.9E27 -4.35E0 6.16129E4/
 ! AUTOMATIC PRUNING ! !\Author: WARNING
-IC8Y3+OH=IC4H8+CO+IC3H7+H2O    4.92E7 1.76 7.43E2
+IC8Y3+OH=>IC4H8+CO+IC3H7+H2O    4.92E7 1.76 7.43E2
 !\Author: WARNING
-IC8Y3+OH=C3H6+CO+TC4H9+H2O    3.35E6 2.08 3.76E2
+IC8Y3+OH=>C3H6+CO+TC4H9+H2O    3.35E6 2.08 3.76E2
 !\Author: WARNING
 IC8Y3+HO2=>IC4H8+CO+IC3H7+H2O2    6.12E1 3.6 1.716E4
 !\Author: WARNING
@@ -27356,8 +27314,8 @@ IC8OH5-4R=TC4H9+IC4H7OH    6.245E14 -0.14 2.589E4
 !\Author: WARNING
 IC8OH4-5R=IC3H5OH+NEOC5H11    3.734E8 1.57 2.702E4
 !\Author: WARNING
-! AUTOMATIC PRUNING ! IC8D4Y3-5J=>CO+TC4H9COCCH2    1.37E21 -2.179 3.941E4
-! AUTOMATIC PRUNING ! !\Author: WARNING
+!! RL's patch3 IC8D4Y3-5J=>CO+TC4H9COCCH2    1.37E21 -2.179 3.941E4
+!\Author: WARNING
 ! AUTOMATIC PRUNING ! TC4H9COCCH2+O2=>CH2O+TC4H9CO+CO    9.27E21 -2.74 9.364E3
 ! AUTOMATIC PRUNING !     PLOG/1.0E-2 4.13E20 -2.57E0 2.366E3/
 ! AUTOMATIC PRUNING !     PLOG/1.0E-1 5.55E20 -2.61E0 2.458E3/
@@ -28498,7 +28456,7 @@ NC5D12Y4+O2=NC5D12Y4-5R+HO2    3.02E13 0.0 4.85E4
 NC5D12Y4+HO2=NC5D12Y4-5R+H2O2    8.5E12 0.0 2.046E4
 NC5D12Y4-5R=C3H3+CH2CO    1.0E14 0.0 3.1E4
 !
-I24C7D13-1AR+O=I24C7D13Y1+H    6.03E13 0.0 0.0E0
+I24C7D13-1AR+O=I24C7D13Y1A+H    6.03E13 0.0 0.0E0
 !!!!
 IC6D13-4R+O2=IC3H5CO+CH3CHO    3.0E12 0.0 0.0E0
 !
@@ -28576,7 +28534,7 @@ I24C7D2+CH3O=I24C7D2-5R+CH3OH    3.0E11 0.0 7.0E3
 I24C7D2+H=I24C7-2R    6.25E11 0.5 2.62E3
 I24C7D2+H=I24C7-3R    2.5E11 0.5 2.62E3
 IC6D3+CH3=I24C7-3R    1.89E3 2.7 6.85E3
-I24C7D2=IC6D3-2+CH3    9.86E21 -2.1 7.506E4
+!I24C7D2=IC6D3-2+CH3    9.86E21 -2.1 7.506E4
 I24C7D2+OH=I24C7OH2-3R    1.0E12 0.0 -1.042E3
 I24C7D2+OH=I24C7OH3-2R    1.0E12 0.0 -1.042E3
 !! REMOVED BY GOUTHAM..IC6D2Y4+CH3=I24C7D2-4OR                                9.45E+02    2.700    6850
@@ -28761,7 +28719,8 @@ I24C7D14+H=I24C7D14-3R+H2    3.38E5 2.36 2.07E2
 I24C7D14+O=I24C7D14-3R+OH    6.6E5 2.43 1.21E3
 !!I24C7D14+O2=I24C7D14-3R+HO2                            4.88E+01 3.48E+00 3.50E+04
 I24C7D14+HO2=I24C7D14-3R+H2O2    4.82E3 2.55 1.053E4
-I24C7D1=>IC6D1-4R+CH3    1.38E26 -2.59 8.586E4
+I24C7D1=>IC6D1-4+CH3                                  1.38E+26   -2.590   85860  !! RL's patch4 
+!I24C7D1=>IC6D1-4R+CH3    1.38E26 -2.59 8.586E4
 !!
 ! FIT BTW. 298 AND 1500 K WITH MAE OF 2.2%, 5.3%
 ! FIT BTW. 298 AND 1600 K WITH MAE OF 3.4%, 9.3%
@@ -28945,9 +28904,9 @@ IC4H7-I1+C3H6=I24C7D2-5R    9.45E2 2.67 6.85E3
 !!!!
 !!
 NEC7D4=>IC6D4-2+CH3    1.64E27 -2.79 8.393E4
-C3H5-T+C3H6=IC6D1-4R    9.45E2 2.67 6.85E3
-IC6D1-4R=IC6D13+H    1.32E5 2.28 3.325E4
-IC6D1-4R+O2=IC6D13+HO2    1.0E11 0.0 0.0E0
+!C3H5-T+C3H6=IC6D1-4R    9.45E2 2.67 6.85E3
+!IC6D1-4R=IC6D13+H    1.32E5 2.28 3.325E4
+!IC6D1-4R+O2=IC6D13+HO2    1.0E11 0.0 0.0E0
 !I24C7D1-1Q=)CH2O+C3H4-A+IC3H7+OH                      1.000e+16    0.000    4.120e+04
 !----------------------------------------------------------------------------------------------------------------------------------
 !\ENDSUBMECH: Heptene
@@ -29122,7 +29081,7 @@ C8H18-223=CH3+C7-223-4    3.36E61 -13.18 1.098E5
 !   (3.00E+01) atm,  900-1800 K,   3% err, 1.00 x !N2
 !   (5.00E+01) atm,  900-1800 K,   2% err, 1.00 x !N2
 !   (1.00E+02) atm,  900-1800 K,   1% err, 1.00 x !N2
-C8H18-223=CH3+C7-22-3    4.54E62 -13.09 1.074E5
+C8H18-223=CH3+NEC7-3R    4.54E62 -13.09 1.074E5
     PLOG/1.0E0 1.03E84 -1.984E1 1.13382E5/
     PLOG/2.1E0 2.04E82 -1.922E1 1.13775E5/
     PLOG/1.3E1 1.57E75 -1.691E1 1.12541E5/
@@ -29134,9 +29093,9 @@ C2H5+BC5H10=C7-23-2    1.0E11 0.0 8.2E3
 CH3+IC6D2=C7-23-2    1.0E11 0.0 8.2E3
 TC4H9+C3H6=C7-223-4    1.0E11 0.0 8.2E3
 NEC6D3+CH3=C7-223-4    1.0E11 0.0 8.2E3
-IC6D2+CH3=C7-22-3    1.0E11 0.0 8.2E3
-NEC6D3+CH3=C7-22-3    1.0E11 0.0 8.2E3
-C7-22-3D+H=C7-22-3    2.5E11 0.51 2.62E3
+!IC6D2+CH3=NEC7-3R    1.0E11 0.0 8.2E3
+!NEC6D3+CH3=NEC7-3R    1.0E11 0.0 8.2E3
+!NEC7D3+H=NEC7-3R    2.5E11 0.51 2.62E3
 !___________________________________________________________________________________________________________
 !\REACTIONCLASS: 2.F_H_ABSTRACTION!REF
 !___________________________________________________________________________________________________________
@@ -29193,7 +29152,7 @@ C8H18-223+C2H5=C8H17223-6+C2H6    5.0E10 0.0 1.34E4
 !CH3+C7-233-1D=C8H17223-3 5.000E+10     0.     8200
 !CH3+C7-23-D2=C8H17223-3  5.000E+10     0.     8200
 !TC4H9+C4H8-2=C8H17223-4  5.000E+10     0.     8200
-!CH3+C7-22-3D=C8H17223-4  5.000E+10     0.     8200
+!CH3+NEC7D3=C8H17223-4  5.000E+10     0.     8200
 !C2H4+NEC6-3=C8H17223-5   5.000E+10     0.     8200
 !TC4H9+C4H8-1=C8H17223-6  5.000E+10     0.     8200
 !C2H5+NEC6D3=C8H17223-6   5.000E+10     0.     8200
@@ -29202,7 +29161,7 @@ C8H18-223+C2H5=C8H17223-6+C2H6    5.0E10 0.0 1.34E4
 !CH3+C7-233-1D=C8H17223-3   6.50E+02   2.48    8520
 !CH3+C7-23-D2=C8H17223-3    1.30E+03   2.48    8520
 !TC4H9+C4H8-2=C8H17223-4    6.30E+02   2.67    6850
-!CH3+C7-22-3D=C8H17223-4    1.89E+03   2.67    6850
+!CH3+NEC7D3=C8H17223-4    1.89E+03   2.67    6850
 !C2H4+NEC6-3=C8H17223-5     6.60E+03   2.48    6130
 !TC4H9+C4H8-1=C8H17223-6    9.46E+02   2.67    6850
 !C2H5+NEC6D3=C8H17223-6     9.46E+02   2.67    6850
@@ -29235,7 +29194,7 @@ C8H17223-4=TC4H9+C4H8-2    2.34E18 -0.978 2.603E4
     PLOG/1.0E0 3.74E11 -5.3E-1 9.722E3/
     PLOG/1.0E1 1.7E24 -3.73E0 2.0112E4/
     PLOG/1.0E2 2.54E31 -5.35E0 2.7945E4/
-C8H17223-4=CH3+C7-22-3D    1.89E6 2.268 2.984E4
+C8H17223-4=CH3+NEC7D3    1.89E6 2.268 2.984E4
     PLOG/1.0E-1 5.6E-21 8.02E0 1.329E3/
     PLOG/1.0E0 1.6E-9 5.09E0 9.308E3/
     PLOG/1.0E1 1.15E5 1.53E0 1.9845E4/
@@ -29270,7 +29229,7 @@ C7-23-D1+H=RC7H13+H2    1.0E12 0.0 3.9E3
 C7-23-D1+O=RC7H13+OH    1.0E12 0.0 4.0E3
 C7-23-D2+H=RC7H13+H2    1.0E12 0.0 3.9E3
 C7-23-D2+CH3=RC7H13+CH4    2.0E11 0.0 7.3E3
-C7-23-D2=IC6D2-5+CH3    1.0E16 0.0 7.1E4
+C7-23-D2=>IC6D2-5+CH3    1.0E16 0.0 7.1E4
 C7-23-D2+OH=RC7H13+H2O    1.0E12 0.0 1.23E3
 !C7-23-D2+OH=RC7H13+H2O           4.43E+13	6.80E-02	-4.93E+02
 !1.000E+12  0.00  1.230E+03
@@ -29305,7 +29264,7 @@ C8H17223-1=C8H17223-6    3.0E11 0.0 2.11E4
 !\REACTIONCLASS: 6A. OLEFIN DECOMPOSITIONS
 !___________________________________________________________________________________________________________
 C8H16223-3=CH3+RC7H13    1.46E27 -3.03 7.855E4
-C8H16223-4=CH3+C7-22-3D4    1.46E27 -3.03 7.855E4
+C8H16223-4=CH3+NEC7D4-3R    1.46E27 -3.03 7.855E4
 C8H16223-4=TC4H9+C4H71-3    1.46E27 -3.03 7.855E4
 C8H16223-4=CH3+RC7H13    1.46E27 -3.03 7.855E4
 C8H16223-5=CH3+RC7H13    1.46E27 -3.03 7.855E4
@@ -29446,22 +29405,22 @@ C8H152235-5+HO2=C8H152235-5O+OH    9.64E12 0.0 0.0E0
 !!___________________________________________________________________________________________________________
 !!\REACTIONCLASS: 6G. OLEFIN RO AND RO2H DECOMPOSITION
 !!___________________________________________________________________________________________________________
-C8H152233-5O=CH2O+IBC7H13    3.13E19 -1.9 1.067E4
-C8H152234-3O=TC4H9+C2H3COCH3    3.13E19 -1.9 1.067E4
-C8H152233-6O=CH2O+C7-22-3D3    3.13E19 -1.9 1.067E4
-C8H152235-4O=CH3+C7-233-1OD4    3.13E19 -1.9 1.067E4
-C8H152233-1O=CH2O+RC7H13    3.13E19 -1.9 1.067E4
-C8H152234-1O=CH2O+RC7H13    3.13E19 -1.9 1.067E4
-C8H152234-6O=CH2O+C7-22-3D4    3.13E19 -1.9 1.067E4
-C8H152235-1O=CH2O+RC7H13    3.13E19 -1.9 1.067E4
-C8H152235-5O=CH2O+IBC7H13    3.13E19 -1.9 1.067E4
+C8H152233-5O=>CH2O+IBC7H13    3.13E19 -1.9 1.067E4
+C8H152234-3O=>TC4H9+C2H3COCH3    3.13E19 -1.9 1.067E4
+C8H152233-6O=>CH2O+C7-22-3D3    3.13E19 -1.9 1.067E4
+C8H152235-4O=>CH3+C7-233-1OD4    3.13E19 -1.9 1.067E4
+C8H152233-1O=>CH2O+RC7H13    3.13E19 -1.9 1.067E4
+C8H152234-1O=>CH2O+RC7H13    3.13E19 -1.9 1.067E4
+C8H152234-6O=>CH2O+NEC7D4-3R    3.13E19 -1.9 1.067E4
+C8H152235-1O=>CH2O+RC7H13    3.13E19 -1.9 1.067E4
+C8H152235-5O=>CH2O+IBC7H13    3.13E19 -1.9 1.067E4
 !___________________________________________________________________________________________________________
 !\REACTIONCLASS: 6H. ALKENYL RADICALS + O2 TO PRODUCE DI-OLEFINS
 !___________________________________________________________________________________________________________
 C8H152234-6+O2=HO2+C8H14223-D45    1.07E0 3.71 9.322E3
 C8H152235-5+O2=HO2+C8H14223-D45    1.07E0 3.71 9.322E3
-C8H152234-6=C8H14223-D45+H    2.5E11 0.5 2.62E3
-C8H152235-5=C8H14223-D45+H    2.5E11 0.5 2.62E3
+C8H152234-6=>C8H14223-D45+H    2.5E11 0.5 2.62E3
+C8H152235-5=>C8H14223-D45+H    2.5E11 0.5 2.62E3
 !C8H14223-D45 + OH (=) H2O + C4H5-I + TC4H9             +1.00000000E+014 +0.00000000E+000 +0.00000000E+000
 C8H14223-D45+OH=C8H14223-D45R+H2O    4.92E7 1.76 7.43E2
 C8H14223-D45+O=C8H14223-D45R+OH    1.695E14 0.0 7.85E3
@@ -29482,7 +29441,7 @@ C8H17223-3O=>C2H5+TC4H9COCH3    2.0E13 0.0 1.5E4
 C8H17223-4O=>NEC6-3+CH3CHO    2.0E13 0.0 1.5E4
 C8H17223-4O=>CH3+C7-223O4    2.0E13 0.0 1.5E4
 C8H17223-5O=>CH2O+C7-223-4    2.0E13 0.0 1.5E4
-C8H17223-6O=>CH2O+C7-22-3    2.0E13 0.0 1.5E4
+C8H17223-6O=>CH2O+NEC7-3R    2.0E13 0.0 1.5E4
 ! AUTOMATIC PRUNING ! C8223KETO1-1=>CH2O+C7-23-21D    2.9E12 0.4 1.108E4
 ! AUTOMATIC PRUNING ! C8223KETO1-3=>TC3H6CHO+C2H5COCH3    2.9E12 0.4 1.108E4
 ! AUTOMATIC PRUNING ! C8223KETO1-4=>CH3CHO+C6-22-31O    2.9E12 0.4 1.108E4
@@ -29491,14 +29450,14 @@ C8H17223-6O=>CH2O+C7-22-3    2.0E13 0.0 1.5E4
 ! AUTOMATIC PRUNING ! C8223KETO4-1=>CH2O+C7-23-24O    2.9E12 0.4 1.108E4
 ! AUTOMATIC PRUNING ! C8223KETO4-3=>TC4H9COCH3+CH3CO    2.9E12 0.4 1.108E4
 ! AUTOMATIC PRUNING ! C8223KETO4-5=>CH2O+C7-223-44O    2.9E12 0.4 1.108E4
-! AUTOMATIC PRUNING ! C8223KETO4-6=>CH2O+C7-22-34O    2.9E12 0.4 1.108E4
+! AUTOMATIC PRUNING ! C8223KETO4-6=>CH2O+NEC7Y4-3R    2.9E12 0.4 1.108E4
 ! AUTOMATIC PRUNING ! C8223KETO5-1=>CH2O+C7-23-25O    2.9E12 0.4 1.108E4
 ! AUTOMATIC PRUNING ! C8223KETO5-3=>TC4H9COCH3+CH2CHO    2.9E12 0.4 1.108E4
 ! AUTOMATIC PRUNING ! C8223KETO5-4=>C7-223O4+HCO    2.9E12 0.4 1.108E4
 ! AUTOMATIC PRUNING ! C8223KETO5-6=>CH2O+C7-22-35O    2.9E12 0.4 1.108E4
 ! AUTOMATIC PRUNING ! C8223KETO6-1=>CH2O+C7-23-26O    2.9E12 0.4 1.108E4
 ! AUTOMATIC PRUNING ! C8223KETO6-3=>HCO+TC4H9COC2H5    2.9E12 0.4 1.108E4
-! AUTOMATIC PRUNING ! C8223KETO6-4=>CH3CHO+C6-22-34O    2.9E12 0.4 1.108E4
+! AUTOMATIC PRUNING ! C8223KETO6-4=>CH3CHO+NEOC5H10CHO-3    2.9E12 0.4 1.108E4
 ! AUTOMATIC PRUNING ! C8223KETO6-5=>CH2O+C7-223-45O    2.9E12 0.4 1.108E4
 ! AUTOMATIC PRUNING ! !___________________________________________________________________________________________________________
 ! AUTOMATIC PRUNING ! !\REACTIONCLASS: X2.O2QOOH+R'=OQOOH+R'O,ETC!REF
@@ -29507,21 +29466,22 @@ C8H17223-6O=>CH2O+C7-22-3    2.0E13 0.0 1.5E4
 ! AUTOMATIC PRUNING ! !\REACTIONCLASS: X2.O2QOOH+R'=OQOOH+R'O,ETC!REF
 ! AUTOMATIC PRUNING ! !___________________________________________________________________________________________________________
 C7-22-3D3=TC4H9+C3H4-A    1.0E13 0.0 4.5E4
-C7-22-3D4=TC4H9+C3H4-A    1.0E13 0.0 4.5E4
-C7-22-3D=TC4H9+C3H5-S    1.0E16 0.0 7.1E4
-C7-22-3D+OH=C2H5CHO+TC4H9    2.0E10 0.0 -4.0E3
-C7-22-3D+OH=NEOC5H11+CH3CHO    2.0E10 0.0 -4.0E3
-C7-22-3D+O=TC4H9+HCO+C2H4    2.0E10 0.0 -1.05E3
-C7-22-3D+OH=C7-22-3D-5+H2O    1.0E12 0.0 1.23E3
-C7-22-3D+O=C7-22-3D-5+OH    1.0E12 0.0 4.0E3
-C7-22-3D+H=C7-22-3D-5+H2    1.0E12 0.0 3.9E3
-C7-22-3D+CH3=C7-22-3D-5+CH4    2.0E11 0.0 7.3E3
-C7-22-3D-5=TC4H9+C3H4-A    1.0E13 0.0 4.5E4
+NEC7D4-3R=TC4H9+C3H4-A    1.0E13 0.0 4.5E4
+
+!NEC7D3=TC4H9+C3H5-S    1.0E16 0.0 7.1E4
+!NEC7D3+OH=C2H5CHO+TC4H9    2.0E10 0.0 -4.0E3
+!NEC7D3+OH=NEOC5H11+CH3CHO    2.0E10 0.0 -4.0E3
+!NEC7D3+O=TC4H9+HCO+C2H4    2.0E10 0.0 -1.05E3
+!NEC7D3+OH=NEC7D4-3R+H2O    1.0E12 0.0 1.23E3
+!NEC7D3+O=NEC7D4-3R+OH    1.0E12 0.0 4.0E3
+!NEC7D3+H=NEC7D4-3R+H2    1.0E12 0.0 3.9E3
+!NEC7D3+CH3=NEC7D4-3R+CH4    2.0E11 0.0 7.3E3
+!NEC7D4-3R=TC4H9+C3H4-A    1.0E13 0.0 4.5E4
 C6-22-3D4=IC4H8+C2H3    4.792E17 -1.23 2.964E4
 C6-22-3D4=B12DE3M+CH3    2.5E13 0.0 4.5E4
 CH3CO+BC5H9-C=C7-23-4OD2    1.0E13 0.0 0.0E0
 HCO+IC6D2-5=C7-23-5OD2    1.0E13 0.0 0.0E0
-C2H3+BC5H9-C=C7-23-D24    1.0E13 0.0 0.0E0
+!C2H3+BC5H9-C=C7-23-D24    1.0E13 0.0 0.0E0
 HCO+NEC6-3=C7-223O4    2.0E13 0.0 0.0E0
 TC4H9COCH3+OH=TC4H9COCH2+H2O    5.1E11 0.0 1.192E3
 TC4H9COCH3+OH=TC4H8COCH3+H2O    2.29E8 1.53 7.75E2
@@ -29544,12 +29504,12 @@ C7-22-31O=HCO+IC6D2    1.0E14 0.0 1.8E4
 C7-23-25O=BC5H10+CH2CHO    1.0E14 0.0 1.8E4
 C7-23-26O=HCO+IC6D2    1.0E14 0.0 1.8E4
 C7-22-35O=HCO+NEC6D3    1.0E14 0.0 1.8E4
-C6-22-34O=CH3+IC5D2Y4    1.0E14 0.0 1.8E4
+!NEOC5H10CHO-3=CH3+IC5D2Y4    1.0E14 0.0 1.8E4
 C7-23-21D=C4H72-2CHO+C2H5    1.0E14 0.0 1.8E4
 C7-23-24O=BC5H10+CH2CHO    1.0E14 0.0 1.8E4
 C7-223-45O=HCO+NEC6D3    1.0E14 0.0 1.8E4
 C7-223-44O=NEC6-3+CO    1.0E11 0.0 9.6E3
-! AUTOMATIC PRUNING ! C7-22-34O+OH=>CH3+CO2+NEOC5H11    3.0E12 0.0 0.0E0
+!NEC7Y4-3R+OH=>CH3+CO2+NEOC5H11    3.0E12 0.0 0.0E0
 ! AUTOMATIC PRUNING ! C7-223-4OD3+OH=>CO2+NEC6-3    3.0E12 0.0 0.0E0
 ! AUTOMATIC PRUNING ! C7-223-34O+OH=>CH3+CO2+BC5H11    3.0E12 0.0 0.0E0
 TC4H9+C3H3O=C7-233-1OD4    1.0E13 0.0 0.0E0
@@ -29707,7 +29667,7 @@ H+C8H16234-B=C8H17234-B    6.25E11 0.51 2.62E3
 H+C8H16234-B=C8H17234-C    6.25E11 0.51 2.62E3
 H+C8H16234-F=C8H17234-C    1.06E12 0.51 1.23E3
 H+C8H16234-F=C8H17234-F    6.25E11 0.51 2.62E3
-C7H1423-C=IC3H7+C4H72-2    1.0E16 0.0 7.1E4
+C7H1423-C=>IC3H7+C4H72-2    1.0E16 0.0 7.1E4
 C7H1423-C+OH=RC7H13+H2O    1.0E12 0.0 1.23E3
 C7H1423-C+H=RC7H13+H2    1.0E12 0.0 3.9E3
 C7H1423-C+O=RC7H13+OH    1.0E12 0.0 4.0E3
@@ -29759,13 +29719,13 @@ C8H17234-C=C8H17234-F    1.0E11 0.0 3.5E4
 !___________________________________________________________________________________________________________
 !\REACTIONCLASS: 6A. OLEFIN DECOMPOSITIONS
 !___________________________________________________________________________________________________________
-C8H16234-A=AC5H9-C+IC3H7    1.46E27 -3.03 7.855E4
-C8H16234-A=CC5H11+C3H5-T    1.46E27 -3.03 7.855E4
-C8H16234-A=CH3+C7H1323A-E    1.46E27 -3.03 7.855E4
-C8H16234-A=CH3+I24C7D1-3R    1.46E27 -3.03 7.855E4
-C8H16234-B=CC5H9-B+IC3H7    1.46E27 -3.03 7.855E4
-C8H16234-B=IC3H7+BC5H9-C    1.46E27 -3.03 7.855E4
-C8H16234-F=CC5H9-B+IC3H7    1.46E27 -3.03 7.855E4
+C8H16234-A=>AC5H9-C+IC3H7    1.46E27 -3.03 7.855E4
+C8H16234-A=>CC5H11+C3H5-T    1.46E27 -3.03 7.855E4
+C8H16234-A=>CH3+C7H1323A-E    1.46E27 -3.03 7.855E4
+C8H16234-A=>CH3+I24C7D1-3R    1.46E27 -3.03 7.855E4
+C8H16234-B=>CC5H9-B+IC3H7    1.46E27 -3.03 7.855E4
+C8H16234-B=>IC3H7+BC5H9-C    1.46E27 -3.03 7.855E4
+C8H16234-F=>CC5H9-B+IC3H7    1.46E27 -3.03 7.855E4
 C7H1323A-E=>BC5H9-C+C2H4    3.13E19 -1.9 1.067E4
 !!___________________________________________________________________________________________________________
 !!\REACTIONCLASS: 6B.OLEFIN H ATOM ABSTRACTION!REF
@@ -29823,10 +29783,10 @@ C8H16234-B+O=C8H15234B-D+OH    3.3E5 2.43 -7.9E2
 C8H16234-B+O=C8H15234B-E+OH    1.13E14 0.0 7.85E3
 C8H16234-B+O=C8H15234B-F+OH    4.41E5 2.42 3.15E3
 !
-C8H16234-B+OH=C8H15234A-C+H2O    6.24E6 2.0 -2.98E2
-C8H16234-B+OH=C8H15234B-D+H2O    6.14E2 3.2 -3.5E3
-C8H16234-B+OH=C8H15234B-E+H2O    2.73E7 1.813 8.684E2
-C8H16234-B+OH=C8H15234B-F+H2O    3.12E6 2.0 -2.98E2
+C8H16234-B+OH=>C8H15234A-C+H2O    6.24E6 2.0 -2.98E2
+C8H16234-B+OH=>C8H15234B-D+H2O    6.14E2 3.2 -3.5E3
+C8H16234-B+OH=>C8H15234B-E+H2O    2.73E7 1.813 8.684E2
+C8H16234-B+OH=>C8H15234B-F+H2O    3.12E6 2.0 -2.98E2
 !
 C8H16234-B+O2=C8H15234A-C+HO2    6.6E12 0.0 3.99E4
 C8H16234-B+O2=C8H15234B-D+HO2    1.1E12 0.0 3.522E4
@@ -29888,7 +29848,7 @@ C3H4-A+CC5H11=C8H15234A-A    1.0E11 0.0 7.8E3
 CH3+C7H1223-DCD=C8H15234A-C    1.0E11 0.0 7.8E3
 CH3+C7H1223-DAC=C8H15234A-C    1.0E11 0.0 7.8E3
 !
-CH3+C7H1224-DAC=C8H15234A-D    1.0E11 0.0 7.8E3
+CH3+I24C7D13=C8H15234A-D    1.0E11 0.0 7.8E3
 BC5H10+C3H5-T=C8H15234A-D    1.0E11 0.0 7.8E3
 !
 CH3+C7H1223-DAD=C8H15234A-E    1.0E11 0.0 7.8E3
@@ -29899,7 +29859,7 @@ IC3H7+B13DE2M=C8H15234A-F    1.0E11 0.0 7.8E3
 !
 CH3+C7H1224-DBC=C8H15234B-D    1.0E11 0.0 7.8E3
 !
-CH3+C7H1223-DBD=C8H15234B-E    1.0E11 0.0 7.8E3
+CH3+C7-23-D24=C8H15234B-E    1.0E11 0.0 7.8E3
 C3H6+CC5H9-B=C8H15234B-E    1.0E11 0.0 7.8E3
 !
 IC3H7+B12DE3M=C8H15234B-F    1.0E11 0.0 7.8E3
@@ -29913,21 +29873,21 @@ C3H6+CC5H9-B=C8H15234F-A    1.0E11 0.0 7.8E3
 !
 C7H1223-DAC+OH=>C3H5-T+C4H612+H2O    1.0E12 0.0 0.0E0
 C7H1223-DAD+OH=>C3H5-T+C4H6+H2O    1.0E12 0.0 0.0E0
-C7H1223-DBD+OH=>B12DE3M+C2H3+H2O    1.0E12 0.0 0.0E0
+C7-23-D24+OH=>B12DE3M+C2H3+H2O    1.0E12 0.0 0.0E0
 C7H1223-DCD+OH=>C3H6+C4H5-2+H2O    1.0E12 0.0 0.0E0
 C7H1223-DDF+OH=>B12DE3M+C2H3+H2O    1.0E12 0.0 0.0E0
 !
 C7H1223-DAC+H=>C3H5-T+C4H612+H2    1.0E12 0.0 0.0E0
 C7H1223-DAD+H=>C3H5-T+C4H6+H2    1.0E12 0.0 0.0E0
-C7H1223-DBD+H=>B12DE3M+C2H3+H2    1.0E12 0.0 0.0E0
+C7-23-D24+H=>B12DE3M+C2H3+H2    1.0E12 0.0 0.0E0
 C7H1223-DCD+H=>C3H6+C4H5-2+H2    1.0E12 0.0 0.0E0
 C7H1223-DDF+H=>B12DE3M+C2H3+H2    1.0E12 0.0 0.0E0
 !
 !
-C7H1224-DAC+OH=>C3H5-T+C4H6+H2O    1.0E12 0.0 0.0E0
+!I24C7D13+OH=>C3H5-T+C4H6+H2O    1.0E12 0.0 0.0E0
 C7H1224-DBC+OH=>C3H5-T+C4H6+H2O    1.0E12 0.0 0.0E0
 !
-C7H1224-DAC+H=>C3H5-T+C4H6+H2    1.0E12 0.0 0.0E0
+!I24C7D13+H=>C3H5-T+C4H6+H2    1.0E12 0.0 0.0E0
 C7H1224-DBC+H=>C3H5-T+C4H6+H2    1.0E12 0.0 0.0E0
 !___________________________________________________________________________________________________________
 !\REACTIONCLASS: 6F. OLEFIN RADICAL + RO2
@@ -29950,7 +29910,7 @@ C8H15234A-C+HO2=C8H15234A-CO+OH    1.0E0 1.0 1.0E0
     PLOG/1.0E1 2.98E36 -6.97E0 1.46E4/
     PLOG/3.0E1 5.58E40 -8.14E0 1.904E4/
     PLOG/5.0E1 4.44E42 -8.67E0 2.1071E4/
-C8H15234A-C+HO2=C8H15234B-AO+OH    1.0E0 1.0 1.0E0
+C8H15234A-C+HO2=C8H15234C-EO+OH    1.0E0 1.0 1.0E0
     PLOG/1.0E-2 6.9E20 -2.68E0 2.29E2/
     PLOG/1.0E-1 4.5E22 -3.18E0 1.76E3/
     PLOG/1.0E0 8.61E27 -4.63E0 6.415E3/
@@ -29993,7 +29953,7 @@ C8H15234A-DO=AC5H9-C+CH3COCH3    3.13E19 -1.9 1.067E4
 C8H15234A-EO=C7H1323A-D+CH2O    3.13E19 -1.9 1.067E4
 C8H15234A-FO=I24C7D1-3R+CH2O    3.13E19 -1.9 1.067E4
 C8H15234B-DO=CH3COCH3+BC5H9-C    3.13E19 -1.9 1.067E4
-C8H15234B-EO=C7H1323B-D+CH2O    3.13E19 -1.9 1.067E4
+C8H15234B-EO=RC7H13+CH2O    3.13E19 -1.9 1.067E4
 C8H15234B-FO=C7H1324B-C+CH2O    3.13E19 -1.9 1.067E4
 C8H15234F-AO=C7H1323F-D+CH2O    3.13E19 -1.9 1.067E4
 C8H15234B-FO=CH3COCH3+CC5H9-B    3.13E19 -1.9 1.067E4
@@ -30001,7 +29961,7 @@ C8H15234B-FO=CH3COCH3+CC5H9-B    3.13E19 -1.9 1.067E4
 C7H1323A-D=>C3H5-T+C4H8-2    3.13E19 -1.9 1.067E4
 I24C7D1-3R=>C3H5-T+C4H8-2    3.13E19 -1.9 1.067E4
 C7H1324B-C=>C4H6-2+IC3H7    3.13E19 -1.9 1.067E4
-C7H1323B-D=>BC5H9-C+C2H4    3.13E19 -1.9 1.067E4
+RC7H13=>BC5H9-C+C2H4    3.13E19 -1.9 1.067E4
 C7H1323F-D=>BC5H9-C+C2H4    3.13E19 -1.9 1.067E4
 !___________________________________________________________________________________________________________
 !\REACTIONCLASS: 6H. ALKENYL RADICALS + O2 TO PRODUCE DI-OLEFINS
@@ -30015,21 +29975,21 @@ C8H15234A-F+O2=C8H14234-DAF+HO2    1.07E0 3.71 9.322E3
 C8H15234B-D+O2=C8H14234-DAC+HO2    1.07E0 3.71 9.322E3
 C8H15234B-E+O2=C8H14234-DAC+HO2    1.07E0 3.71 9.322E3
 C8H15234F-A+O2=C8H14234-DAF+HO2    1.07E0 3.71 9.322E3
-C8H15234F-B+O2=C8H14234-DAF+HO2    1.07E0 3.71 9.322E3
+!C8H15234B-F+O2=C8H14234-DAF+HO2    1.07E0 3.71 9.322E3
 !
-C8H15234A-C=C8H14234-DAC+H    2.5E11 0.5 2.62E3
-C8H15234A-C=C8H14234-DAF+H    2.5E11 0.5 2.62E3
-C8H15234A-D=C8H14234-DAC+H    2.5E11 0.5 2.62E3
-C8H15234A-D=C8H14234-DAD+H    2.5E11 0.5 2.62E3
-C8H15234A-E=C8H14234-DAD+H    2.5E11 0.5 2.62E3
-C8H15234A-F=C8H14234-DAF+H    2.5E11 0.5 2.62E3
-C8H15234B-D=C8H14234-DAC+H    2.5E11 0.5 2.62E3
-C8H15234B-E=C8H14234-DAC+H    2.5E11 0.5 2.62E3
-C8H15234F-A=C8H14234-DAF+H    2.5E11 0.5 2.62E3
-C8H15234F-B=C8H14234-DAF+H    2.5E11 0.5 2.62E3
+C8H15234A-C=>C8H14234-DAC+H    2.5E11 0.5 2.62E3
+C8H15234A-C=>C8H14234-DAF+H    2.5E11 0.5 2.62E3
+C8H15234A-D=>C8H14234-DAC+H    2.5E11 0.5 2.62E3
+C8H15234A-D=>C8H14234-DAD+H    2.5E11 0.5 2.62E3
+C8H15234A-E=>C8H14234-DAD+H    2.5E11 0.5 2.62E3
+C8H15234A-F=>C8H14234-DAF+H    2.5E11 0.5 2.62E3
+C8H15234B-D=>C8H14234-DAC+H    2.5E11 0.5 2.62E3
+C8H15234B-E=>C8H14234-DAC+H    2.5E11 0.5 2.62E3
+C8H15234F-A=>C8H14234-DAF+H    2.5E11 0.5 2.62E3
+!C8H15234B-F=C8H14234-DAF+H    2.5E11 0.5 2.62E3
 !
 C8H14234-DAC+OH=B12DE3M+C3H5-T+H2O    1.0E12 0.0 0.0E0
-C8H14234-DAD+OH=C4H5-I+C3H5-T+CH3+H2O    1.0E12 0.0 0.0E0
+C8H14234-DAD+OH=>C4H5-I+C3H5-T+CH3+H2O    1.0E12 0.0 0.0E0
 C8H14234-DAF+OH=B12DE3M+C3H5-T+H2O    1.0E12 0.0 0.0E0
 C8H17234-A+HO2=C8H17234-AO+OH    9.0E12 0.0 -1.0E3
 C8H17234-B+HO2=C8H17234-BO+OH    9.0E12 0.0 -1.0E3
@@ -30043,19 +30003,19 @@ C8H17234-BO=>CH3COCH3+C4H8-2+CH3    2.0E13 0.0 1.5E4
 C8H17234-CO=>IC3H7+CH3CHCOCH3+CH3    2.0E13 0.0 1.5E4
 C8H17234-FO=>IC3H7+IC4H8+CH2O    2.0E13 0.0 1.5E4
 !
-C8234KETOA-A=CH2O+IC3H7+AC3H5CHO    2.9E12 0.4 1.108E4
-C8234KETOA-B=HCO+IC3H7+CH3CHCOCH3    2.9E12 0.4 1.108E4
-C8234KETOA-C=CH3CHCHO+IC5Y3    2.9E12 0.4 1.108E4
-C8234KETOA-D=CH3COCH3+SC4H8CHO-3    2.9E12 0.4 1.108E4
-C8234KETOA-E=CH3CHCHO+C4H8-2+CH2O    2.9E12 0.4 1.108E4
-C8234KETOA-F=CH2O+HCO+IC6D3    2.9E12 0.4 1.108E4
-!
-C8234KETOF-A=CH2O+AC3H5CHO+IC3H7    2.9E12 0.4 1.108E4
-C8234KETOF-B=DC5H9O-C+CH3COCH3    2.9E12 0.4 1.108E4
-C8234KETOF-C=IC3H7CO+IC3H7+HCO    2.9E12 0.4 1.108E4
-!
-!
-IC6D3-1=C3H6+C3H5-S    2.9E12 0.4 1.108E4
+! AUTOMATIC PRUNING ! C8234KETOA-A=>CH2O+IC3H7+AC3H5CHO    2.9E12 0.4 1.108E4
+! AUTOMATIC PRUNING ! C8234KETOA-B=>HCO+IC3H7+CH3CHCOCH3    2.9E12 0.4 1.108E4
+! AUTOMATIC PRUNING ! C8234KETOA-C=>CH3CHCHO+IC5Y3    2.9E12 0.4 1.108E4
+! AUTOMATIC PRUNING ! C8234KETOA-D=>CH3COCH3+SC4H8CHO-3    2.9E12 0.4 1.108E4
+! AUTOMATIC PRUNING ! C8234KETOA-E=>CH3CHCHO+C4H8-2+CH2O    2.9E12 0.4 1.108E4
+! AUTOMATIC PRUNING ! C8234KETOA-F=>CH2O+HCO+IC6D3    2.9E12 0.4 1.108E4
+! AUTOMATIC PRUNING ! !
+! AUTOMATIC PRUNING ! C8234KETOF-A=>CH2O+AC3H5CHO+IC3H7    2.9E12 0.4 1.108E4
+! AUTOMATIC PRUNING ! C8234KETOF-B=>DC5H9O-C+CH3COCH3    2.9E12 0.4 1.108E4
+! AUTOMATIC PRUNING ! C8234KETOF-C=>IC3H7CO+IC3H7+HCO    2.9E12 0.4 1.108E4
+! AUTOMATIC PRUNING ! !
+! AUTOMATIC PRUNING ! !
+IC6D3-1=>C3H6+C3H5-S    2.9E12 0.4 1.108E4
 IC6D3-2+OH=CH3COCH3+C3H6    1.0E12 0.0 5.0E3
 !
 !----------------------------------------------------------------------------------------------------------------------------------
@@ -31159,6 +31119,653 @@ CH2CO+C8H17-1=NC9H19CO    3.3E2 2.73 1.4E4
 CH2CO+C9H19-1=NC10H21CO    3.3E2 2.73 1.4E4
 CH2CO+C10H21-1=NC11H23CO    3.3E2 2.73 1.4E4
 CH2CO+C11H23-1=NC12H25CO    3.3E2 2.73 1.4E4
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+!!
+!! RL's patch1 BEGIN
+!!
+
+!\SUBMECH: \C11H24-2
+!FH_UNIMOLECULAR________________________________________________________________
+
+C11H24-2=C11H23-2A+H                                  5.41E+114  -29.170  154079 !WAGNON1@LLNL.GOV! BASED ON NC7H16, 2 P SITES
+PLOG /  1.00E-02 7.75E+101  -26.740  136707 / 
+PLOG /  1.00E-01 1.58E+109  -28.450  142837 / 
+PLOG /  1.00E+00 2.70E+116  -30.070  150954 / 
+PLOG /  2.00E+00 1.34E+117  -30.140  152681 / 
+PLOG /  5.00E+00 2.87E+116  -29.780  153956 / 
+PLOG /  1.00E+01 5.41E+114  -29.170  154079 / 
+PLOG /  2.00E+01 1.18E+112  -28.310  153502 / 
+PLOG /  5.00E+01 2.96E+107  -26.880  151838 / 
+C11H24-2=C11H23-2B+H                                   6.34E+18   -0.784   96250 !WAGNON1@LLNL.GOV! AS IC5H12=BC5H11+H
+PLOG /  1.00E-02  1.24E+77  -18.650  120361 / !FIT FROM: 1000-2000 K ERROR IN FIT: 6%
+PLOG /  1.00E-01  1.43E+78  -18.530  125424 / !FIT FROM: 1000-2000 K ERROR IN FIT: 4%
+PLOG /  1.00E+00  2.48E+73  -16.810  126657 / !FIT FROM: 1000-2000 K ERROR IN FIT: 3%
+PLOG /  2.00E+00  3.39E+70  -15.900  125951 / !FIT FROM: 1000-2000 K ERROR IN FIT: 2%
+PLOG /  5.00E+00  4.90E+65  -14.410  124153 / !FIT FROM: 1000-2000 K ERROR IN FIT: 2%
+PLOG /  1.00E+01  1.95E+61  -13.090  122150 / !FIT FROM: 1000-2000 K ERROR IN FIT: 2%
+PLOG /  2.00E+01  2.31E+56  -11.630  119644 / !FIT FROM: 1000-2000 K ERROR IN FIT: 2%
+PLOG /  5.00E+01  2.03E+49   -9.560  115729 / !FIT FROM: 1000-2000 K ERROR IN FIT: 2%
+C11H24-2=C11H23-2C+H                                  3.08E+114  -29.080  151369 !WAGNON1@LLNL.GOV! BASED ON NC7H16, 1 S SITE
+PLOG /  1.00E-02 5.60E+103  -27.260  134548 / 
+PLOG /  1.00E-01 6.05E+111  -29.160  141621 / 
+PLOG /  1.00E+00 9.10E+117  -30.480  149382 / 
+PLOG /  2.00E+00 1.29E+118  -30.390  150791 / 
+PLOG /  5.00E+00 5.20E+116  -29.830  151596 / 
+PLOG /  1.00E+01 3.08E+114  -29.080  151369 / 
+PLOG /  2.00E+01 2.58E+111  -28.110  150481 / 
+PLOG /  5.00E+01 2.71E+106  -26.580  148505 / 
+C11H24-2=C11H23-2D+H                                  3.08E+114  -29.080  151369 !WAGNON1@LLNL.GOV! BASED ON NC7H16, 1 S SITE
+PLOG /  1.00E-02 5.60E+103  -27.260  134548 / 
+PLOG /  1.00E-01 6.05E+111  -29.160  141621 / 
+PLOG /  1.00E+00 9.10E+117  -30.480  149382 / 
+PLOG /  2.00E+00 1.29E+118  -30.390  150791 / 
+PLOG /  5.00E+00 5.20E+116  -29.830  151596 / 
+PLOG /  1.00E+01 3.08E+114  -29.080  151369 / 
+PLOG /  2.00E+01 2.58E+111  -28.110  150481 / 
+PLOG /  5.00E+01 2.71E+106  -26.580  148505 / 
+C11H24-2=C11H23-2E+H                                  3.08E+114  -29.080  151369 !WAGNON1@LLNL.GOV! BASED ON NC7H16, 1 S SITE
+PLOG /  1.00E-02 5.60E+103  -27.260  134548 / 
+PLOG /  1.00E-01 6.05E+111  -29.160  141621 / 
+PLOG /  1.00E+00 9.10E+117  -30.480  149382 / 
+PLOG /  2.00E+00 1.29E+118  -30.390  150791 / 
+PLOG /  5.00E+00 5.20E+116  -29.830  151596 / 
+PLOG /  1.00E+01 3.08E+114  -29.080  151369 / 
+PLOG /  2.00E+01 2.58E+111  -28.110  150481 / 
+PLOG /  5.00E+01 2.71E+106  -26.580  148505 / 
+C11H24-2=C11H23-2F+H                                  3.08E+114  -29.080  151369 !WAGNON1@LLNL.GOV! BASED ON NC7H16, 1 S SITE
+PLOG /  1.00E-02 5.60E+103  -27.260  134548 / 
+PLOG /  1.00E-01 6.05E+111  -29.160  141621 / 
+PLOG /  1.00E+00 9.10E+117  -30.480  149382 / 
+PLOG /  2.00E+00 1.29E+118  -30.390  150791 / 
+PLOG /  5.00E+00 5.20E+116  -29.830  151596 / 
+PLOG /  1.00E+01 3.08E+114  -29.080  151369 / 
+PLOG /  2.00E+01 2.58E+111  -28.110  150481 / 
+PLOG /  5.00E+01 2.71E+106  -26.580  148505 / 
+C11H24-2=C11H23-2G+H                                  3.08E+114  -29.080  151369 !WAGNON1@LLNL.GOV! BASED ON NC7H16, 1 S SITE
+PLOG /  1.00E-02 5.60E+103  -27.260  134548 / 
+PLOG /  1.00E-01 6.05E+111  -29.160  141621 / 
+PLOG /  1.00E+00 9.10E+117  -30.480  149382 / 
+PLOG /  2.00E+00 1.29E+118  -30.390  150791 / 
+PLOG /  5.00E+00 5.20E+116  -29.830  151596 / 
+PLOG /  1.00E+01 3.08E+114  -29.080  151369 / 
+PLOG /  2.00E+01 2.58E+111  -28.110  150481 / 
+PLOG /  5.00E+01 2.71E+106  -26.580  148505 / 
+C11H24-2=C11H23-2H+H                                  3.08E+114  -29.080  151369 !WAGNON1@LLNL.GOV! BASED ON NC7H16, 1 S SITE
+PLOG /  1.00E-02 5.60E+103  -27.260  134548 / 
+PLOG /  1.00E-01 6.05E+111  -29.160  141621 / 
+PLOG /  1.00E+00 9.10E+117  -30.480  149382 / 
+PLOG /  2.00E+00 1.29E+118  -30.390  150791 / 
+PLOG /  5.00E+00 5.20E+116  -29.830  151596 / 
+PLOG /  1.00E+01 3.08E+114  -29.080  151369 / 
+PLOG /  2.00E+01 2.58E+111  -28.110  150481 / 
+PLOG /  5.00E+01 2.71E+106  -26.580  148505 / 
+C11H24-2=C11H23-2I+H                                  3.08E+114  -29.080  151369 !WAGNON1@LLNL.GOV! BASED ON NC7H16, 1 S SITE
+PLOG /  1.00E-02 5.60E+103  -27.260  134548 / 
+PLOG /  1.00E-01 6.05E+111  -29.160  141621 / 
+PLOG /  1.00E+00 9.10E+117  -30.480  149382 / 
+PLOG /  2.00E+00 1.29E+118  -30.390  150791 / 
+PLOG /  5.00E+00 5.20E+116  -29.830  151596 / 
+PLOG /  1.00E+01 3.08E+114  -29.080  151369 / 
+PLOG /  2.00E+01 2.58E+111  -28.110  150481 / 
+PLOG /  5.00E+01 2.71E+106  -26.580  148505 / 
+C11H24-2=C11H23-2J+H                                  2.71E+114  -29.170  154079 !WAGNON1@LLNL.GOV! BASED ON NC7H16, 1 P SITE
+PLOG /  1.00E-02 3.88E+101  -26.740  136707 / 
+PLOG /  1.00E-01 7.90E+108  -28.450  142837 / 
+PLOG /  1.00E+00 1.35E+116  -30.070  150954 / 
+PLOG /  2.00E+00 6.70E+116  -30.140  152681 / 
+PLOG /  5.00E+00 1.44E+116  -29.780  153956 / 
+PLOG /  1.00E+01 2.71E+114  -29.170  154079 / 
+PLOG /  2.00E+01 5.90E+111  -28.310  153502 / 
+PLOG /  5.00E+01 1.48E+107  -26.880  151838 / 
+
+C11H24-2=CH3+C10H21-2                                  5.73E+35   -5.680   96525 !WAGNON1@LLNL.GOV! AS NC7H16=C6H13-1+CH3
+PLOG /  1.00E-02  3.21E+84  -20.200  120586 / 
+PLOG /  1.00E-01  1.98E+69  -15.580  114157 / 
+PLOG /  1.00E+00  5.48E+51  -10.360  105321 / 
+PLOG /  2.00E+00  3.58E+46   -8.840  102532 / 
+PLOG /  5.00E+00  1.36E+40   -6.960   98990 / 
+PLOG /  1.00E+01  5.73E+35   -5.680   96525 / 
+PLOG /  2.00E+01  8.09E+31   -4.560   94324 / 
+PLOG /  5.00E+01  5.41E+27   -3.350   91903 / 
+C11H24-2=IC3H7+C8H17-1                                 1.47E+26   -2.659   86860 !WAGNON1@LLNL.GOV! AS IC5H12=IC3H7+C2H5
+PLOG /  1.00E-02  4.07E+95  -23.370  121614 / !FIT FROM: 1000-2000 K ERROR IN FIT: 4%
+PLOG /  1.00E-01  2.80E+90  -21.550  122339 / !FIT FROM: 1000-2000 K ERROR IN FIT: 3%
+PLOG /  1.00E+00  8.58E+79  -18.270  119001 / !FIT FROM: 1000-2000 K ERROR IN FIT: 2%
+PLOG /  2.00E+00  3.96E+75  -16.970  117015 / !FIT FROM: 1000-2000 K ERROR IN FIT: 2%
+PLOG /  5.00E+00  1.41E+69  -15.060  113723 / !FIT FROM: 1000-2000 K ERROR IN FIT: 2%
+PLOG /  1.00E+01  7.29E+63  -13.510  110811 / !FIT FROM: 1000-2000 K ERROR IN FIT: 2%
+PLOG /  2.00E+01  2.46E+58  -11.910  107645 / !FIT FROM: 1000-2000 K ERROR IN FIT: 2%
+PLOG /  5.00E+01  1.55E+51   -9.830  103292 / !FIT FROM: 1000-2000 K ERROR IN FIT: 2%
+C11H24-2=IC4H9+C7H15-1                                 5.20E+38   -6.310   95823 !WAGNON1@LLNL.GOV! A/2 AS NC7H16=PC4H9+NC3H7
+PLOG /  1.00E-02  4.02E+87  -20.870  120084 / 
+PLOG /  1.00E-01  1.63E+72  -16.190  113496 / 
+PLOG /  1.00E+00  4.07E+54  -10.970  104592 / 
+PLOG /  2.00E+00  2.76E+49   -9.450  101803 / 
+PLOG /  5.00E+00  1.14E+43   -7.580   98272 / 
+PLOG /  1.00E+01  5.20E+38   -6.310   95823 / 
+PLOG /  2.00E+01  8.00E+34   -5.200   93640 / 
+PLOG /  5.00E+01  6.05E+30   -4.010   91246 / 
+C11H24-2=DC5H11+C6H13-1                                5.20E+38   -6.310   95823 !WAGNON1@LLNL.GOV! A/2 AS NC7H16=PC4H9+NC3H7
+PLOG /  1.00E-02  4.02E+87  -20.870  120084 / 
+PLOG /  1.00E-01  1.63E+72  -16.190  113496 / 
+PLOG /  1.00E+00  4.07E+54  -10.970  104592 / 
+PLOG /  2.00E+00  2.76E+49   -9.450  101803 / 
+PLOG /  5.00E+00  1.14E+43   -7.580   98272 / 
+PLOG /  1.00E+01  5.20E+38   -6.310   95823 / 
+PLOG /  2.00E+01  8.00E+34   -5.200   93640 / 
+PLOG /  5.00E+01  6.05E+30   -4.010   91246 / 
+C11H24-2=IC6-5+C5H11-1                                 5.20E+38   -6.310   95823 !WAGNON1@LLNL.GOV! A/2 AS NC7H16=PC4H9+NC3H7
+PLOG /  1.00E-02  4.02E+87  -20.870  120084 / 
+PLOG /  1.00E-01  1.63E+72  -16.190  113496 / 
+PLOG /  1.00E+00  4.07E+54  -10.970  104592 / 
+PLOG /  2.00E+00  2.76E+49   -9.450  101803 / 
+PLOG /  5.00E+00  1.14E+43   -7.580   98272 / 
+PLOG /  1.00E+01  5.20E+38   -6.310   95823 / 
+PLOG /  2.00E+01  8.00E+34   -5.200   93640 / 
+PLOG /  5.00E+01  6.05E+30   -4.010   91246 / 
+C11H24-2=C7H15-2F+PC4H9                                5.20E+38   -6.310   95823 !WAGNON1@LLNL.GOV! A/2 AS NC7H16=PC4H9+NC3H7
+PLOG /  1.00E-02  4.02E+87  -20.870  120084 / 
+PLOG /  1.00E-01  1.63E+72  -16.190  113496 / 
+PLOG /  1.00E+00  4.07E+54  -10.970  104592 / 
+PLOG /  2.00E+00  2.76E+49   -9.450  101803 / 
+PLOG /  5.00E+00  1.14E+43   -7.580   98272 / 
+PLOG /  1.00E+01  5.20E+38   -6.310   95823 / 
+PLOG /  2.00E+01  8.00E+34   -5.200   93640 / 
+PLOG /  5.00E+01  6.05E+30   -4.010   91246 / 
+C11H24-2=C8H17-2G+NC3H7                                5.20E+38   -6.310   95823 !WAGNON1@LLNL.GOV! A/2 AS NC7H16=PC4H9+NC3H7
+PLOG /  1.00E-02  4.02E+87  -20.870  120084 / 
+PLOG /  1.00E-01  1.63E+72  -16.190  113496 / 
+PLOG /  1.00E+00  4.07E+54  -10.970  104592 / 
+PLOG /  2.00E+00  2.76E+49   -9.450  101803 / 
+PLOG /  5.00E+00  1.14E+43   -7.580   98272 / 
+PLOG /  1.00E+01  5.20E+38   -6.310   95823 / 
+PLOG /  2.00E+01  8.00E+34   -5.200   93640 / 
+PLOG /  5.00E+01  6.05E+30   -4.010   91246 / 
+C11H24-2=C9H19-2H+C2H5                                 1.06E+28   -3.390   91711 !WAGNON1@LLNL.GOV! A/2 AS NC7H16=C5H11-1+C2H5
+PLOG /  1.00E-02  2.66E+77  -18.030  116934 / 
+PLOG /  1.00E-01  1.24E+61  -13.110  109490 / 
+PLOG /  1.00E+00  2.31E+43   -7.870  100282 / 
+PLOG /  2.00E+00  2.02E+38   -6.390   97509 / 
+PLOG /  5.00E+00  1.41E+32   -4.590   94062 / 
+PLOG /  1.00E+01  1.06E+28   -3.390   91711 / 
+PLOG /  2.00E+01  2.78E+24   -2.350   89645 / 
+PLOG /  5.00E+01  4.23E+20   -1.240   87414 / 
+C11H24-2=C10H21-2I+CH3                                 2.87E+35   -5.680   96525 !WAGNON1@LLNL.GOV! A/2 AS NC7H16=C6H13-1+CH3
+PLOG /  1.00E-02  1.61E+84  -20.200  120586 / 
+PLOG /  1.00E-01  9.90E+68  -15.580  114157 / 
+PLOG /  1.00E+00  2.74E+51  -10.360  105321 / 
+PLOG /  2.00E+00  1.79E+46   -8.840  102532 / 
+PLOG /  5.00E+00  6.80E+39   -6.960   98990 / 
+PLOG /  1.00E+01  2.87E+35   -5.680   96525 / 
+PLOG /  2.00E+01  4.05E+31   -4.560   94324 / 
+PLOG /  5.00E+01  2.71E+27   -3.350   91903 / 
+
+
+
+!FH_ABSTRACTION_________________________________________________________________
+
+C11H24-2+H=C11H23-2A+H2                                9.96E+05    2.540    6739 !WAGNON1@LLNL.GOV! AS P*6(DEG) MERTENS JPCA 122 (2018) 9518
+C11H24-2+H=C11H23-2B+H2                                7.59E+05    2.400    2800 !WAGNON1@LLNL.GOV! AS T*1(DEG) MERTENS JPCA 122 (2018) 9518
+C11H24-2+H=C11H23-2C+H2                                8.73E+05    2.400    4263 !WAGNON1@LLNL.GOV! AS S*2(DEG) MERTENS JPCA 122 (2018) 9518
+C11H24-2+H=C11H23-2D+H2                                8.73E+05    2.400    4263 !WAGNON1@LLNL.GOV! AS S*2(DEG) MERTENS JPCA 122 (2018) 9518
+C11H24-2+H=C11H23-2E+H2                                8.73E+05    2.400    4263 !WAGNON1@LLNL.GOV! AS S*2(DEG) MERTENS JPCA 122 (2018) 9518
+C11H24-2+H=C11H23-2F+H2                                8.73E+05    2.400    4263 !WAGNON1@LLNL.GOV! AS S*2(DEG) MERTENS JPCA 122 (2018) 9518
+C11H24-2+H=C11H23-2G+H2                                8.73E+05    2.400    4263 !WAGNON1@LLNL.GOV! AS S*2(DEG) MERTENS JPCA 122 (2018) 9518
+C11H24-2+H=C11H23-2H+H2                                8.73E+05    2.400    4263 !WAGNON1@LLNL.GOV! AS S*2(DEG) MERTENS JPCA 122 (2018) 9518
+C11H24-2+H=C11H23-2I+H2                                8.73E+05    2.400    4263 !WAGNON1@LLNL.GOV! AS S*2(DEG) MERTENS JPCA 122 (2018) 9518
+C11H24-2+H=C11H23-2J+H2                                4.98E+05    2.540    6739 !WAGNON1@LLNL.GOV! AS P*3(DEG) MERTENS JPCA 122 (2018) 9518
+
+C11H24-2+O=C11H23-2A+OH                                1.96E+06    2.430    4750 
+C11H24-2+O=C11H23-2B+OH                                3.83E+05    2.410    1140 
+C11H24-2+O=C11H23-2C+OH                                5.52E+05    2.450    2830 
+C11H24-2+O=C11H23-2D+OH                                5.52E+05    2.450    2830 
+C11H24-2+O=C11H23-2E+OH                                5.52E+05    2.450    2830 
+C11H24-2+O=C11H23-2F+OH                                5.52E+05    2.450    2830 
+C11H24-2+O=C11H23-2G+OH                                5.52E+05    2.450    2830 
+C11H24-2+O=C11H23-2H+OH                                5.52E+05    2.450    2830 
+C11H24-2+O=C11H23-2I+OH                                5.52E+05    2.450    2830 
+C11H24-2+O=C11H23-2J+OH                                9.81E+05    2.430    4750 
+
+C11H24-2+OH=C11H23-2A+H2O                              2.73E+07    1.813     868 !WAGNON1@LLNL.GOV! A*6(DEG) AS P1 TABLE 8 SIVARAMAKRISHNAN JPCA 113 (2009) 5047
+C11H24-2+OH=C11H23-2B+H2O                              4.72E+10    0.576     -70 !WAGNON1@LLNL.GOV! A*1(DEG) AS T002 TABLE 8 SIVARAMAKRISHNAN JPCA 113 (2009) 5047
+C11H24-2+OH=C11H23-2C+H2O                              5.72E+06    1.811   -1015 !WAGNON1@LLNL.GOV! A*2(DEG) AS S11 TABLE 8 SIVARAMAKRISHNAN JPCA 113 (2009) 5047
+C11H24-2+OH=C11H23-2D+H2O                              5.62E+11    0.320     847 !WAGNON1@LLNL.GOV! A*2(DEG) AS S11' TABLE 8 SIVARAMAKRISHNAN JPCA 113 (2009) 5047
+C11H24-2+OH=C11H23-2E+H2O                              5.62E+11    0.320     847 !WAGNON1@LLNL.GOV! A*2(DEG) AS S11' TABLE 8 SIVARAMAKRISHNAN JPCA 113 (2009) 5047
+C11H24-2+OH=C11H23-2F+H2O                              5.62E+11    0.320     847 !WAGNON1@LLNL.GOV! A*2(DEG) AS S11' TABLE 8 SIVARAMAKRISHNAN JPCA 113 (2009) 5047
+C11H24-2+OH=C11H23-2G+H2O                              5.62E+11    0.320     847 !WAGNON1@LLNL.GOV! A*2(DEG) AS S11' TABLE 8 SIVARAMAKRISHNAN JPCA 113 (2009) 5047
+C11H24-2+OH=C11H23-2H+H2O                              5.62E+11    0.320     847 !WAGNON1@LLNL.GOV! A*2(DEG) AS S11' TABLE 8 SIVARAMAKRISHNAN JPCA 113 (2009) 5047
+C11H24-2+OH=C11H23-2I+H2O                              5.72E+06    1.811   -1015 !WAGNON1@LLNL.GOV! A*2(DEG) AS S11 TABLE 8 SIVARAMAKRISHNAN JPCA 113 (2009) 5047
+C11H24-2+OH=C11H23-2J+H2O                              1.37E+07    1.813     868 !WAGNON1@LLNL.GOV! A*3(DEG) AS P1 TABLE 8 SIVARAMAKRISHNAN JPCA 113 (2009) 5047
+
+C11H24-2+CH3=C11H23-2A+CH4                             1.14E+00    3.650    7589 !WAGNON1@LLNL.GOV! AS P*6(DEG) MERTENS JPCA 122 (2018) 9518
+C11H24-2+CH3=C11H23-2B+CH4                             1.55E+00    3.460    4694 !WAGNON1@LLNL.GOV! AS T*1(DEG) MERTENS JPCA 122 (2018) 9518
+C11H24-2+CH3=C11H23-2C+CH4                             2.49E+00    3.460    6345 !WAGNON1@LLNL.GOV! AS S*2(DEG) MERTENS JPCA 122 (2018) 9518
+C11H24-2+CH3=C11H23-2D+CH4                             2.49E+00    3.460    6345 !WAGNON1@LLNL.GOV! AS S*2(DEG) MERTENS JPCA 122 (2018) 9518
+C11H24-2+CH3=C11H23-2E+CH4                             2.49E+00    3.460    6345 !WAGNON1@LLNL.GOV! AS S*2(DEG) MERTENS JPCA 122 (2018) 9518
+C11H24-2+CH3=C11H23-2F+CH4                             2.49E+00    3.460    6345 !WAGNON1@LLNL.GOV! AS S*2(DEG) MERTENS JPCA 122 (2018) 9518
+C11H24-2+CH3=C11H23-2G+CH4                             2.49E+00    3.460    6345 !WAGNON1@LLNL.GOV! AS S*2(DEG) MERTENS JPCA 122 (2018) 9518
+C11H24-2+CH3=C11H23-2H+CH4                             2.49E+00    3.460    6345 !WAGNON1@LLNL.GOV! AS S*2(DEG) MERTENS JPCA 122 (2018) 9518
+C11H24-2+CH3=C11H23-2I+CH4                             2.49E+00    3.460    6345 !WAGNON1@LLNL.GOV! AS S*2(DEG) MERTENS JPCA 122 (2018) 9518
+C11H24-2+CH3=C11H23-2J+CH4                             5.69E-01    3.650    7589 !WAGNON1@LLNL.GOV! AS P*3(DEG) MERTENS JPCA 122 (2018) 9518
+
+C11H24-2+HO2=C11H23-2A+H2O2                            6.12E+01    3.590   17161 !WAGNON1@LLNL.GOV! AS P*9(1.5*DEG) TABLE 5 AGUILERA-IPARRAGUIRRE JPCA 112 (2008) 7047
+C11H24-2+HO2=C11H23-2B+H2O2                            9.76E+02    3.010   12094 !WAGNON1@LLNL.GOV! AS T*1.5(1.5*DEG) TABLE 5 AGUILERA-IPARRAGUIRRE JPCA 112 (2008) 7047
+C11H24-2+HO2=C11H23-2C+H2O2                            9.48E+01    3.370   13719 !WAGNON1@LLNL.GOV! AS S*3(1.5*DEG) TABLE 5 AGUILERA-IPARRAGUIRRE JPCA 112 (2008) 7047
+C11H24-2+HO2=C11H23-2D+H2O2                            9.48E+01    3.370   13719 !WAGNON1@LLNL.GOV! AS S*3(1.5*DEG) TABLE 5 AGUILERA-IPARRAGUIRRE JPCA 112 (2008) 7047
+C11H24-2+HO2=C11H23-2E+H2O2                            9.48E+01    3.370   13719 !WAGNON1@LLNL.GOV! AS S*3(1.5*DEG) TABLE 5 AGUILERA-IPARRAGUIRRE JPCA 112 (2008) 7047
+C11H24-2+HO2=C11H23-2F+H2O2                            9.48E+01    3.370   13719 !WAGNON1@LLNL.GOV! AS S*3(1.5*DEG) TABLE 5 AGUILERA-IPARRAGUIRRE JPCA 112 (2008) 7047
+C11H24-2+HO2=C11H23-2G+H2O2                            9.48E+01    3.370   13719 !WAGNON1@LLNL.GOV! AS S*3(1.5*DEG) TABLE 5 AGUILERA-IPARRAGUIRRE JPCA 112 (2008) 7047
+C11H24-2+HO2=C11H23-2H+H2O2                            9.48E+01    3.370   13719 !WAGNON1@LLNL.GOV! AS S*3(1.5*DEG) TABLE 5 AGUILERA-IPARRAGUIRRE JPCA 112 (2008) 7047
+C11H24-2+HO2=C11H23-2I+H2O2                            9.48E+01    3.370   13719 !WAGNON1@LLNL.GOV! AS S*3(1.5*DEG) TABLE 5 AGUILERA-IPARRAGUIRRE JPCA 112 (2008) 7047
+C11H24-2+HO2=C11H23-2J+H2O2                            3.06E+01    3.590   17161 !WAGNON1@LLNL.GOV! AS P*4.5(1.5*DEG) TABLE 5 AGUILERA-IPARRAGUIRRE JPCA 112 (2008) 7047
+
+C11H24-2+CH3O=C11H23-2A+CH3OH                          4.34E+11    0.000    6548 
+C11H24-2+CH3O=C11H23-2B+CH3OH                          2.29E+10    0.000    2873 
+C11H24-2+CH3O=C11H23-2C+CH3OH                          1.45E+11    0.000    4571 
+C11H24-2+CH3O=C11H23-2D+CH3OH                          1.45E+11    0.000    4571 
+C11H24-2+CH3O=C11H23-2E+CH3OH                          1.45E+11    0.000    4571 
+C11H24-2+CH3O=C11H23-2F+CH3OH                          1.45E+11    0.000    4571 
+C11H24-2+CH3O=C11H23-2G+CH3OH                          1.45E+11    0.000    4571 
+C11H24-2+CH3O=C11H23-2H+CH3OH                          1.45E+11    0.000    4571 
+C11H24-2+CH3O=C11H23-2I+CH3OH                          1.45E+11    0.000    4571 
+C11H24-2+CH3O=C11H23-2J+CH3OH                          2.17E+11    0.000    6548 
+
+C11H24-2+O2=C11H23-2A+HO2                              5.40E+14    0.000   55954 !WAGNON1@LLNL.GOV! A=DEG*9E+13, E=DH298+2RT, T=1000K
+C11H24-2+O2=C11H23-2B+HO2                              9.00E+13    0.000   51324 !WAGNON1@LLNL.GOV! A=DEG*9E+13, E=DH298+2RT, T=1000K
+C11H24-2+O2=C11H23-2C+HO2                              1.80E+14    0.000   52874 !WAGNON1@LLNL.GOV! A=DEG*9E+13, E=DH298+2RT, T=1000K
+C11H24-2+O2=C11H23-2D+HO2                              1.80E+14    0.000   52874 !WAGNON1@LLNL.GOV! A=DEG*9E+13, E=DH298+2RT, T=1000K
+C11H24-2+O2=C11H23-2E+HO2                              1.80E+14    0.000   52874 !WAGNON1@LLNL.GOV! A=DEG*9E+13, E=DH298+2RT, T=1000K
+C11H24-2+O2=C11H23-2F+HO2                              1.80E+14    0.000   52874 !WAGNON1@LLNL.GOV! A=DEG*9E+13, E=DH298+2RT, T=1000K
+C11H24-2+O2=C11H23-2G+HO2                              1.80E+14    0.000   52874 !WAGNON1@LLNL.GOV! A=DEG*9E+13, E=DH298+2RT, T=1000K
+C11H24-2+O2=C11H23-2H+HO2                              1.80E+14    0.000   52874 !WAGNON1@LLNL.GOV! A=DEG*9E+13, E=DH298+2RT, T=1000K
+C11H24-2+O2=C11H23-2I+HO2                              1.80E+14    0.000   52874 !WAGNON1@LLNL.GOV! A=DEG*9E+13, E=DH298+2RT, T=1000K
+C11H24-2+O2=C11H23-2J+HO2                              2.70E+14    0.000   55954 !WAGNON1@LLNL.GOV! A=DEG*9E+13, E=DH298+2RT, T=1000K
+
+C11H24-2+C2H5=C11H23-2A+C2H6                           1.00E+11    0.000   13400 
+C11H24-2+C2H5=C11H23-2B+C2H6                           1.00E+11    0.000    7900 
+C11H24-2+C2H5=C11H23-2C+C2H6                           5.00E+10    0.000   10400 
+C11H24-2+C2H5=C11H23-2D+C2H6                           5.00E+10    0.000   10400 
+C11H24-2+C2H5=C11H23-2E+C2H6                           5.00E+10    0.000   10400 
+C11H24-2+C2H5=C11H23-2F+C2H6                           5.00E+10    0.000   10400 
+C11H24-2+C2H5=C11H23-2G+C2H6                           5.00E+10    0.000   10400 
+C11H24-2+C2H5=C11H23-2H+C2H6                           5.00E+10    0.000   10400 
+C11H24-2+C2H5=C11H23-2I+C2H6                           5.00E+10    0.000   10400 
+C11H24-2+C2H5=C11H23-2J+C2H6                           5.00E+10    0.000   13400 
+
+C11H24-2+C2H3=C11H23-2A+C2H4                           1.00E+12    0.000   18000 
+C11H24-2+C2H3=C11H23-2B+C2H4                           2.00E+11    0.000   14300 
+C11H24-2+C2H3=C11H23-2C+C2H4                           4.00E+11    0.000   16800 
+C11H24-2+C2H3=C11H23-2D+C2H4                           4.00E+11    0.000   16800 
+C11H24-2+C2H3=C11H23-2E+C2H4                           4.00E+11    0.000   16800 
+C11H24-2+C2H3=C11H23-2F+C2H4                           4.00E+11    0.000   16800 
+C11H24-2+C2H3=C11H23-2G+C2H4                           4.00E+11    0.000   16800 
+C11H24-2+C2H3=C11H23-2H+C2H4                           4.00E+11    0.000   16800 
+C11H24-2+C2H3=C11H23-2I+C2H4                           4.00E+11    0.000   16800 
+C11H24-2+C2H3=C11H23-2J+C2H4                           5.00E+11    0.000   18000 
+
+!! RL's patch2 C11H24-2+CH3O2=C11H23-2A+CH3O2H                        1.39E+00    3.970   18280 
+!! RL's patch2 C11H24-2+CH3O2=C11H23-2B+CH3O2H                        2.06E+02    3.120   13190 
+!! RL's patch2 C11H24-2+CH3O2=C11H23-2C+CH3O2H                        1.02E+01    3.580   14810 
+!! RL's patch2 C11H24-2+CH3O2=C11H23-2D+CH3O2H                        1.02E+01    3.580   14810 
+!! RL's patch2 C11H24-2+CH3O2=C11H23-2E+CH3O2H                        1.02E+01    3.580   14810 
+!! RL's patch2 C11H24-2+CH3O2=C11H23-2F+CH3O2H                        1.02E+01    3.580   14810 
+!! RL's patch2 C11H24-2+CH3O2=C11H23-2G+CH3O2H                        1.02E+01    3.580   14810 
+!! RL's patch2 C11H24-2+CH3O2=C11H23-2H+CH3O2H                        1.02E+01    3.580   14810 
+!! RL's patch2 C11H24-2+CH3O2=C11H23-2I+CH3O2H                        1.02E+01    3.580   14810 
+!! RL's patch2 C11H24-2+CH3O2=C11H23-2J+CH3O2H                        6.93E-01    3.970   18280 
+
+
+
+!F_UNIMOLECULAR_________________________________________________________________
+
+C11H23-2A=C8H17-1+C3H6                                 1.33E+16   -0.770   30660 !WAGNON1@LLNL.GOV! AS AC5H11=C3H6+C2H5 TABLE 10 POWER JPCA 124 (2020) 10649
+C11H23-2A=CH3+C10H20-1                                 3.61E+15   -0.570   32600 !WAGNON1@LLNL.GOV! AS AC5H11=C4H8-1+CH3 TABLE 10 POWER JPCA 124 (2020) 10649
+C11H23-2B=C7H15-1+IC4H8                                2.95E+12    0.310   28260 !WAGNON1@LLNL.GOV! AS C7H15-3=C4H8-1+C3H7-1 BOCKHORN 2009 CH5 BY TSANG TABLE 2
+C11H23-2C=C6H13-1+CC5H10                               2.95E+12    0.310   28260 !WAGNON1@LLNL.GOV! AS C7H15-3=C4H8-1+C3H7-1 BOCKHORN 2009 CH5 BY TSANG TABLE 2
+C11H23-2C=CH3+C10H20-2                                 5.59E+14   -0.330   32101 !WAGNON1@LLNL.GOV! AS CC5H11=C4H8-2+CH3 TABLE 10 POWER JPCA 124 (2020) 10649
+C11H23-2D=IC3H7+C8H16-1                                2.95E+12    0.310   28260 !WAGNON1@LLNL.GOV! AS C7H15-3=C4H8-1+C3H7-1 BOCKHORN 2009 CH5 BY TSANG TABLE 2
+C11H23-2D=C5H11-1+IC6D4                                2.95E+12    0.310   28260 !WAGNON1@LLNL.GOV! AS C7H15-3=C4H8-1+C3H7-1 BOCKHORN 2009 CH5 BY TSANG TABLE 2
+C11H23-2E=IC4H9+C7H14-1                                2.95E+12    0.310   28260 !WAGNON1@LLNL.GOV! AS C7H15-3=C4H8-1+C3H7-1 BOCKHORN 2009 CH5 BY TSANG TABLE 2
+C11H23-2E=PC4H9+C7H14-5-2                              2.95E+12    0.310   28260 !WAGNON1@LLNL.GOV! AS C7H15-3=C4H8-1+C3H7-1 BOCKHORN 2009 CH5 BY TSANG TABLE 2
+C11H23-2F=DC5H11+C6H12-1                               2.95E+12    0.310   28260 !WAGNON1@LLNL.GOV! AS C7H15-3=C4H8-1+C3H7-1 BOCKHORN 2009 CH5 BY TSANG TABLE 2
+C11H23-2F=NC3H7+C8H16-6-2                              2.95E+12    0.310   28260 !WAGNON1@LLNL.GOV! AS C7H15-3=C4H8-1+C3H7-1 BOCKHORN 2009 CH5 BY TSANG TABLE 2
+C11H23-2G=IC6-5+C5H10-1                                2.95E+12    0.310   28260 !WAGNON1@LLNL.GOV! AS C7H15-3=C4H8-1+C3H7-1 BOCKHORN 2009 CH5 BY TSANG TABLE 2
+C11H23-2G=C2H5+C9H18-7-2                               5.89E+12    0.310   28260 !WAGNON1@LLNL.GOV! AS C7H15-3=C5H10-1+C2H5 BOCKHORN 2009 CH5 BY TSANG TABLE 2
+C11H23-2H=C7H15-2F+C4H8-1                              2.95E+12    0.310   28260 !WAGNON1@LLNL.GOV! AS C7H15-3=C4H8-1+C3H7-1 BOCKHORN 2009 CH5 BY TSANG TABLE 2
+C11H23-2H=CH3+C10H20-8-2                               1.10E+11    0.750   29405 !WAGNON1@LLNL.GOV! AS C7H15-3=C6H12-1+CH3 BOCKHORN 2009 CH5 BY TSANG TABLE 2
+C11H23-2I=C8H17-2G+C3H6                                5.01E+11    0.560   28095 !WAGNON1@LLNL.GOV! AS C7H15-2=C3H6+C4H9-1 BOCKHORN 2009 CH5 BY TSANG TABLE 2
+C11H23-2J=C9H19-2H+C2H4                                7.94E+11    0.330   27213 !WAGNON1@LLNL.GOV! AS C7H15-1=C2H4+C5H11-1 BOCKHORN 2009 CH5 BY TSANG TABLE 2
+
+H+C11H22-1-2=C11H23-2A                                 1.33E+13    0.030    4998 !WAGNON1@LLNL.GOV! AS AC5H10+H=AC5H11 TABLE 7 POWER JPCA 124 (2020) 10649
+H+C11H22-1-2=C11H23-2B                                 4.96E+15   -0.520    2827 !WAGNON1@LLNL.GOV! AS AC5H10+H=BC5H11 TABLE 7 POWER JPCA 124 (2020) 10649
+H+C11H22-2-2=C11H23-2B                                 8.98E+14   -0.380    2973 !WAGNON1@LLNL.GOV! AS BC5H10+H=BC5H11 TABLE 7 POWER JPCA 124 (2020) 10649
+H+C11H22-2-2=C11H23-2C                                 9.36E+12    0.100    3999 !WAGNON1@LLNL.GOV! AS BC5H10+H=CC5H11 TABLE 7 POWER JPCA 124 (2020) 10649
+H+C11H22-3-2=C11H23-2C                                 6.02E+08    1.510    1592 !WAGNON1@LLNL.GOV! AS C5H10-2+H=C5H11-3 TABLE 10 POWER JPCA 123 (2019) 8506
+H+C11H22-3-2=C11H23-2D                                 6.02E+08    1.510    1592 !WAGNON1@LLNL.GOV! AS C5H10-2+H=C5H11-3 TABLE 10 POWER JPCA 123 (2019) 8506
+H+C11H22-4-2=C11H23-2D                                 6.02E+08    1.510    1592 !WAGNON1@LLNL.GOV! AS C5H10-2+H=C5H11-3 TABLE 10 POWER JPCA 123 (2019) 8506
+H+C11H22-4-2=C11H23-2E                                 6.02E+08    1.510    1592 !WAGNON1@LLNL.GOV! AS C5H10-2+H=C5H11-3 TABLE 10 POWER JPCA 123 (2019) 8506
+H+C11H22-5-2=C11H23-2E                                 6.02E+08    1.510    1592 !WAGNON1@LLNL.GOV! AS C5H10-2+H=C5H11-3 TABLE 10 POWER JPCA 123 (2019) 8506
+H+C11H22-5-2=C11H23-2F                                 6.02E+08    1.510    1592 !WAGNON1@LLNL.GOV! AS C5H10-2+H=C5H11-3 TABLE 10 POWER JPCA 123 (2019) 8506
+H+C11H22-6-2=C11H23-2F                                 6.02E+08    1.510    1592 !WAGNON1@LLNL.GOV! AS C5H10-2+H=C5H11-3 TABLE 10 POWER JPCA 123 (2019) 8506
+H+C11H22-6-2=C11H23-2G                                 6.02E+08    1.510    1592 !WAGNON1@LLNL.GOV! AS C5H10-2+H=C5H11-3 TABLE 10 POWER JPCA 123 (2019) 8506
+H+C11H22-7-2=C11H23-2G                                 6.02E+08    1.510    1592 !WAGNON1@LLNL.GOV! AS C5H10-2+H=C5H11-3 TABLE 10 POWER JPCA 123 (2019) 8506
+H+C11H22-7-2=C11H23-2H                                 6.02E+08    1.510    1592 !WAGNON1@LLNL.GOV! AS C5H10-2+H=C5H11-3 TABLE 10 POWER JPCA 123 (2019) 8506
+H+C11H22-8-2=C11H23-2H                                 6.02E+08    1.510    1592 !WAGNON1@LLNL.GOV! AS C5H10-2+H=C5H11-3 TABLE 10 POWER JPCA 123 (2019) 8506
+H+C11H22-8-2=C11H23-2I                                 6.86E+08    1.500    1565 !WAGNON1@LLNL.GOV! AS C5H10-2+H=C5H11-2 TABLE 10 POWER JPCA 123 (2019) 8506
+H+C11H22-9-2=C11H23-2I                                 1.97E+08    1.520     985 !WAGNON1@LLNL.GOV! AS C5H10-1+H=C5H11-2 TABLE 10 POWER JPCA 123 (2019) 8506
+H+C11H22-9-2=C11H23-2J                                 1.97E+08    1.630    2161 !WAGNON1@LLNL.GOV! AS C5H10-1+H=C5H11-1 TABLE 10 POWER JPCA 123 (2019) 8506
+
+C11H23-2A=C11H23-2D                                    6.92E+00    3.200   16558 !TSANG 2007 1-C6H13=3-C6H13 5M P-S
+C11H23-2A=C11H23-2E                                    1.82E+02    2.550   10960 !TSANG 2007 1-C6H13=2-C6H13  6M P-S
+C11H23-2A=C11H23-2F                                    2.96E+00    3.080   11020 !TSANG 2009 1-OCTYL=3-OCTYL. 7M P-S
+C11H23-2B=C11H23-2E                                    1.27E+01    3.070   17440 !AWAN 2010 5-5MEH=2-5MEH, 5M T-S
+C11H23-2B=C11H23-2F                                    4.11E+02    2.420   11500 !AWAN 2010 5-5MEH=1-5MEH, 6M T-S
+C11H23-2B=C11H23-2G                                    4.50E+00    2.750   12300 !ESTIMATED BY MANI SARATHY 2010, 7M T-S
+C11H23-2C=C11H23-2F                                    1.42E+00    3.320   16140 !TSANG 2009 2-OCTY=4OCTYL, 5M S-S
+C11H23-2C=C11H23-2G                                    1.86E+00    3.270   13240 !TSANG 2009 2-OCTY=4OCTYL, 6M S-S
+C11H23-2C=C11H23-2H                                    1.20E+00    3.350   14000 !ESTIMATED BY MANI SARATHY 2010, 7M S-S
+C11H23-2D=C11H23-2G                                    1.42E+00    3.320   16140 !TSANG 2009 2-OCTY=4OCTYL, 5M S-S
+C11H23-2D=C11H23-2H                                    1.86E+00    3.270   13240 !TSANG 2009 2-OCTY=4OCTYL, 6M S-S
+C11H23-2D=C11H23-2I                                    1.20E+00    3.350   14000 !ESTIMATED BY MANI SARATHY 2010, 7M S-S
+C11H23-2E=C11H23-2H                                    1.42E+00    3.320   16140 !TSANG 2009 2-OCTY=4OCTYL, 5M S-S
+C11H23-2E=C11H23-2I                                    1.86E+00    3.270   13240 !TSANG 2009 2-OCTY=4OCTYL, 6M S-S
+C11H23-2J=C11H23-2E                                    2.96E+00    3.080   11020 !TSANG 2009 1-OCTYL=3-OCTYL. 7M P-S
+C11H23-2F=C11H23-2I                                    1.42E+00    3.320   16140 !TSANG 2009 2-OCTY=4OCTYL, 5M S-S
+C11H23-2J=C11H23-2F                                    1.82E+02    2.550   10960 !TSANG 2007 1-C6H13=2-C6H13  6M P-S
+C11H23-2J=C11H23-2G                                    6.92E+00    3.200   16558 !TSANG 2007 1-C6H13=3-C6H13 5M P-S
+
+!!
+!! RL's patch1 END
+!!
+
+
+
+!!
+!! RL's patch2 BEGIN
+!!
+
+!\SUBMECH: \C11H22-1-2 \C11H22-2-2 \C11H22-3-2 \C11H22-4-2 \C11H22-5-2 \C11H22-6-2
+!\SUBMECH: \C11H22-7-2 \C11H22-8-2 \C11H22-9-2
+
+!FH_UNIMOLECULAR________________________________________________________________
+
+C11H22-1-2=IC4H7+C7H15-1                               2.50E+16    0.000   71000 
+REV /  1.00E+13    0.000       0 / 
+C11H22-2-2=CC5H9-D+C6H13-1                             2.50E+16    0.000   71000 
+REV /  1.00E+13    0.000       0 / 
+C11H22-3-2=IC6D4-3+C5H11-1                             2.50E+16    0.000   71000 
+REV /  1.00E+13    0.000       0 / 
+C11H22-4-2=C7H13-1-2+PC4H9                             2.50E+16    0.000   71000 
+REV /  1.00E+13    0.000       0 / 
+C11H22-5-2=C8H15-1-2+NC3H7                             2.50E+16    0.000   71000 
+REV /  1.00E+13    0.000       0 / 
+C11H22-6-2=C9H17-1-2+C2H5                              2.50E+16    0.000   71000 
+REV /  1.00E+13    0.000       0 / 
+C11H22-7-2=C10H19-1-2+CH3                              2.50E+16    0.000   71000 
+REV /  1.00E+13    0.000       0 / 
+C11H22-4-2=IC3H7+C8H15                                 2.50E+16    0.000   71000 
+REV /  1.00E+13    0.000       0 / 
+C11H22-5-2=IC4H7+C7H15-1                               2.50E+16    0.000   71000 
+REV /  1.00E+13    0.000       0 / 
+C11H22-6-2=CC5H9-D+C6H13-1                             2.50E+16    0.000   71000 
+REV /  1.00E+13    0.000       0 / 
+C11H22-7-2=IC6D4-3+C5H11-1                             2.50E+16    0.000   71000 
+REV /  1.00E+13    0.000       0 / 
+C11H22-8-2=C7H13-1-2+PC4H9                             2.50E+16    0.000   71000 
+REV /  1.00E+13    0.000       0 / 
+C11H22-9-2=C8H15-1-2+NC3H7                             2.50E+16    0.000   71000 
+REV /  1.00E+13    0.000       0 / 
+
+C11H22-1-2=C8H16-1+C3H6                                3.98E+12    0.000   57629 
+C11H22-2-2=C6H12-1+CC5H10                              3.98E+12    0.000   57629 
+C11H22-3-2=C5H10-1+IC6D4                               3.98E+12    0.000   57629 
+C11H22-4-2=C4H8-1+C7H14-5-2                            3.98E+12    0.000   57629 
+C11H22-5-2=C3H6+C8H16-6-2                              3.98E+12    0.000   57629 
+C11H22-6-2=C2H4+C9H18-7-2                              3.98E+12    0.000   57629 
+C11H22-4-2=C8H16-1+C3H6                                3.98E+12    0.000   57629 
+C11H22-5-2=C7H14-1+IC4H8                               3.98E+12    0.000   57629 
+C11H22-6-2=C6H12-1+CC5H10                              3.98E+12    0.000   57629 
+C11H22-7-2=C5H10-1+IC6D4                               3.98E+12    0.000   57629 
+C11H22-8-2=C4H8-1+C7H14-5-2                            3.98E+12    0.000   57629 
+C11H22-9-2=C3H6+C8H16-6-2                              3.98E+12    0.000   57629 
+
+
+
+!FH_ABSTRACTION_________________________________________________________________
+
+! THE FOLLOWING ARE GLOBAL REACTIONS USED FOR SIMPLICITY.  ABSTRACTIONS FORM A C10H19-1-2 RADICAL WHICH IS A LUMP OF ALL POSSIBLE RADICALS
+C11H22-1-2+OH=C11H21-1-2+H2O                           5.15E+08    1.610     -35 
+C11H22-2-2+OH=C11H21-1-2+H2O                           5.15E+08    1.610     -35 
+C11H22-3-2+OH=C11H21-1-2+H2O                           5.15E+08    1.610     -35 
+C11H22-4-2+OH=C11H21-1-2+H2O                           5.15E+08    1.610     -35 
+C11H22-5-2+OH=C11H21-1-2+H2O                           5.15E+08    1.610     -35 
+C11H22-6-2+OH=C11H21-1-2+H2O                           5.15E+08    1.610     -35 
+C11H22-7-2+OH=C11H21-1-2+H2O                           5.15E+08    1.610     -35 
+C11H22-8-2+OH=C11H21-1-2+H2O                           5.15E+08    1.610     -35 
+C11H22-9-2+OH=C11H21-1-2+H2O                           5.15E+08    1.610     -35 
+
+C11H22-1-2+HO2=C11H21-1-2+H2O2                         6.95E+02    3.370   13720 
+C11H22-2-2+HO2=C11H21-1-2+H2O2                         6.95E+02    3.370   13720 
+C11H22-3-2+HO2=C11H21-1-2+H2O2                         6.95E+02    3.370   13720 
+C11H22-4-2+HO2=C11H21-1-2+H2O2                         6.95E+02    3.370   13720 
+C11H22-5-2+HO2=C11H21-1-2+H2O2                         6.95E+02    3.370   13720 
+C11H22-6-2+HO2=C11H21-1-2+H2O2                         6.95E+02    3.370   13720 
+C11H22-7-2+HO2=C11H21-1-2+H2O2                         6.95E+02    3.370   13720 
+C11H22-8-2+HO2=C11H21-1-2+H2O2                         6.95E+02    3.370   13720 
+C11H22-9-2+HO2=C11H21-1-2+H2O2                         6.95E+02    3.370   13720 
+
+C11H22-1-2+H=C11H21-1-2+H2                             1.43E+07    2.400    4471 
+C11H22-2-2+H=C11H21-1-2+H2                             1.43E+07    2.400    4471 
+C11H22-3-2+H=C11H21-1-2+H2                             1.43E+07    2.400    4471 
+C11H22-4-2+H=C11H21-1-2+H2                             1.43E+07    2.400    4471 
+C11H22-5-2+H=C11H21-1-2+H2                             1.43E+07    2.400    4471 
+C11H22-6-2+H=C11H21-1-2+H2                             1.43E+07    2.400    4471 
+C11H22-7-2+H=C11H21-1-2+H2                             1.43E+07    2.400    4471 
+C11H22-8-2+H=C11H21-1-2+H2                             1.43E+07    2.400    4471 
+C11H22-9-2+H=C11H21-1-2+H2                             1.43E+07    2.400    4471 
+
+C11H22-1-2+CH3=C11H21-1-2+CH4                          1.66E+01    3.460    5481 
+C11H22-2-2+CH3=C11H21-1-2+CH4                          1.66E+01    3.460    5481 
+C11H22-3-2+CH3=C11H21-1-2+CH4                          1.66E+01    3.460    5481 
+C11H22-4-2+CH3=C11H21-1-2+CH4                          1.66E+01    3.460    5481 
+C11H22-5-2+CH3=C11H21-1-2+CH4                          1.66E+01    3.460    5481 
+C11H22-6-2+CH3=C11H21-1-2+CH4                          1.66E+01    3.460    5481 
+C11H22-7-2+CH3=C11H21-1-2+CH4                          1.66E+01    3.460    5481 
+C11H22-8-2+CH3=C11H21-1-2+CH4                          1.66E+01    3.460    5481 
+C11H22-9-2+CH3=C11H21-1-2+CH4                          1.66E+01    3.460    5481 
+
+C11H22-1-2+O=C11H21-1-2+OH                             6.07E+06    2.450    2830 
+C11H22-2-2+O=C11H21-1-2+OH                             6.07E+06    2.450    2830 
+C11H22-3-2+O=C11H21-1-2+OH                             6.07E+06    2.450    2830 
+C11H22-4-2+O=C11H21-1-2+OH                             6.07E+06    2.450    2830 
+C11H22-5-2+O=C11H21-1-2+OH                             6.07E+06    2.450    2830 
+C11H22-6-2+O=C11H21-1-2+OH                             6.07E+06    2.450    2830 
+C11H22-7-2+O=C11H21-1-2+OH                             6.07E+06    2.450    2830 
+C11H22-8-2+O=C11H21-1-2+OH                             6.07E+06    2.450    2830 
+C11H22-9-2+O=C11H21-1-2+OH                             6.07E+06    2.450    2830 
+
+
+
+!FH_VINYLIC_O-ADDITION__________________________________________________________
+
+C11H22-1-2+O=>CH2O+C10H20-2                            1.00E+11    0.000   -1050 
+C11H22-1-2+O=>CH3COCH3+C8H16-1                         1.00E+11    0.000   -1050 
+C11H22-2-2+O=>CH3COCH3+C8H16-1                         1.00E+11    0.000   -1050 
+C11H22-3-2+O=>NC6H13CHO+IC4H8                          1.00E+11    0.000   -1050 
+C11H22-4-2+O=>NC6H13CHO+IC4H8                          1.00E+11    0.000   -1050 
+C11H22-4-2+O=>NC5H11CHO+CC5H10                         1.00E+11    0.000   -1050 
+C11H22-5-2+O=>NC5H11CHO+CC5H10                         1.00E+11    0.000   -1050 
+C11H22-5-2+O=>PC4H9CHO+IC6D4                           1.00E+11    0.000   -1050 
+C11H22-6-2+O=>PC4H9CHO+IC6D4                           1.00E+11    0.000   -1050 
+C11H22-6-2+O=>NC3H7CHO+C7H14-5-2                       1.00E+11    0.000   -1050 
+C11H22-7-2+O=>NC3H7CHO+C7H14-5-2                       1.00E+11    0.000   -1050 
+C11H22-7-2+O=>C2H5CHO+C8H16-6-2                        1.00E+11    0.000   -1050 
+C11H22-8-2+O=>C2H5CHO+C8H16-6-2                        1.00E+11    0.000   -1050 
+C11H22-8-2+O=>CH3CHO+C9H18-7-2                         1.00E+11    0.000   -1050 
+C11H22-9-2+O=>CH3CHO+C9H18-7-2                         1.00E+11    0.000   -1050 
+C11H22-9-2+O=>CH2O+C10H20-8-2                          1.00E+11    0.000   -1050 
+
+
+
+!FH_VINYLIC_OH-ADDITION_________________________________________________________
+
+C11H22-1-2+OH=>CH2O+C10H21-2                           1.00E+11    0.000   -4000 
+C11H22-1-2+OH=>CH3COCH3+C8H17-1                        1.00E+11    0.000   -4000 
+C11H22-2-2+OH=>CH3COCH3+C8H17-1                        1.00E+11    0.000   -4000 
+C11H22-3-2+OH=>NC6H13CHO+IC4H9                         1.00E+11    0.000   -4000 
+C11H22-4-2+OH=>NC6H13CHO+IC4H9                         1.00E+11    0.000   -4000 
+C11H22-4-2+OH=>NC5H11CHO+DC5H11                        1.00E+11    0.000   -4000 
+C11H22-5-2+OH=>NC5H11CHO+DC5H11                        1.00E+11    0.000   -4000 
+C11H22-5-2+OH=>PC4H9CHO+IC6-5                          1.00E+11    0.000   -4000 
+C11H22-6-2+OH=>PC4H9CHO+IC6-5                          1.00E+11    0.000   -4000 
+C11H22-6-2+OH=>NC3H7CHO+C7H15-2F                       1.00E+11    0.000   -4000 
+C11H22-7-2+OH=>NC3H7CHO+C7H15-2F                       1.00E+11    0.000   -4000 
+C11H22-7-2+OH=>C2H5CHO+C8H17-2G                        1.00E+11    0.000   -4000 
+C11H22-8-2+OH=>C2H5CHO+C8H17-2G                        1.00E+11    0.000   -4000 
+C11H22-8-2+OH=>CH3CHO+C9H19-2H                         1.00E+11    0.000   -4000 
+C11H22-9-2+OH=>CH3CHO+C9H19-2H                         1.00E+11    0.000   -4000 
+C11H22-9-2+OH=>CH2O+C10H21-2I                          1.00E+11    0.000   -4000 
+
+
+
+!F_UNIMOLECULAR_________________________________________________________________
+
+C11H21-1-2=C3H6+C8H15                                  2.50E+13    0.000   30000 
+REV /  1.00E+11    0.000    9600 / 
+C11H21-1-2=IC4H8+C7H131-7                              2.50E+13    0.000   30000 
+REV /  1.00E+11    0.000    9600 / 
+C11H21-1-2=CC5H10+C6H111-6                             2.50E+13    0.000   30000 
+REV /  1.00E+11    0.000    9600 / 
+C11H21-1-2=IC6D4+C5H91-5                               2.50E+13    0.000   30000 
+REV /  1.00E+11    0.000    9600 / 
+C11H21-1-2=C7H14-5-2+C4H71-4                           2.50E+13    0.000   30000 
+REV /  1.00E+11    0.000    9600 / 
+C11H21-1-2=C8H16-6-2+C3H5-A                            2.50E+13    0.000   25000 
+REV /  1.00E+11    0.000    9600 / 
+C11H21-1-2=C9H18-7-2+C2H3                              2.50E+13    0.000   35000 
+REV /  1.00E+11    0.000    9600 / 
+C11H21-1-2=C3H5-T+C8H16-1                              2.50E+13    0.000   25000 
+REV /  1.00E+11    0.000    9600 / 
+C11H21-1-2=IC4H7+C7H14-1                               2.50E+13    0.000   30000 
+REV /  1.00E+11    0.000    9600 / 
+C11H21-1-2=CC5H9-D+C6H12-1                             2.50E+13    0.000   30000 
+REV /  1.00E+11    0.000    9600 / 
+C11H21-1-2=IC6D4-3+C5H10-1                             2.50E+13    0.000   30000 
+REV /  1.00E+11    0.000    9600 / 
+C11H21-1-2=C7H13-1-2+C4H8-1                            2.50E+13    0.000   30000 
+REV /  1.00E+11    0.000    9600 / 
+C11H21-1-2=C8H15-1-2+C3H6                              2.50E+13    0.000   30000 
+REV /  1.00E+11    0.000    9600 / 
+C11H21-1-2=C9H17-1-2+C2H4                              2.50E+13    0.000   30000 
+REV /  1.00E+11    0.000    9600 / 
+
+
+
+!F_HO2/CH3O2/C2H5O2-ADDITION____________________________________________________
+
+C11H21-1-2+HO2=>AC3H5CHO+C7H15-1+OH                    9.64E+12    0.000       0 
+!! RL's patch2 C11H21-1-2+CH3O2=>AC3H5CHO+C7H15-1+CH3O                9.64E+12    0.000       0 
+!! RL's patch2 C11H21-1-2+C2H5O2=>AC3H5CHO+C7H15-1+C2H5O              9.64E+12    0.000       0 
+
+
+
+!!\SUBMECH: \C11H22-1 \C11H22-2
+
+!!FH_UNIMOLECULAR________________________________________________________________
+
+!C11H22-1=C8H17-1+C3H5-A                                2.50E+16    0.000   71000
+!REV /  1.00E+13    0.000       0 /
+!C11H22-2=C4H71-1+C7H15-1                               2.50E+16    0.000   71000
+!REV /  1.00E+13    0.000       0 /
+
+!C11H22-1=C8H16-1+C3H6                                  3.98E+12    0.000   57629
+!C11H22-2=C7H14-1+C4H8-1                                3.98E+12    0.000   57629
+
+
+
+!!FH_ABSTRACTION_________________________________________________________________
+
+!C11H22-1+HO2=C11H21+H2O2                               6.95E+02    3.370   13720
+!C11H22-1+OH=C11H21+H2O                                 5.15E+08    1.610     -35
+!C11H22-1+H=C11H21+H2                                   1.43E+07    2.400    4471
+!C11H22-1+CH3=C11H21+CH4                                1.66E+01    3.460    5481
+!C11H22-1+O=C11H21+OH                                   6.07E+06    2.450    2830
+
+!C11H22-2+HO2=C11H21+H2O2                               6.95E+02    3.370   13720
+!C11H22-2+OH=C11H21+H2O                                 5.15E+08    1.610     -35
+!C11H22-2+H=C11H21+H2                                   1.43E+07    2.400    4471
+!C11H22-2+CH3=C11H21+CH4                                1.66E+01    3.460    5481
+!C11H22-2+O=C11H21+OH                                   6.07E+06    2.450    2830
+
+
+
+!!FH_VINYLIC_O-ADDITION__________________________________________________________
+
+!C11H22-1+O=>CH2CHO+C9H19-1                              1.00E+11    0.000   -1050
+!C11H22-2+O=>CH3CHO+C9H18-1                              1.00E+11    0.000   -1050
+
+
+
+!!FH_VINYLIC_OH-ADDITION_________________________________________________________
+
+!C11H22-1+OH=>CH2O+C10H21-1                              1.00E+11    0.000   -4000
+!C11H22-1+OH=>CH3CHO+C9H19-1                             1.00E+11    0.000   -4000
+!C11H22-2+OH=>CH3CHO+C9H19-1                             1.00E+11    0.000   -4000
+!C11H22-2+OH=>C2H5CHO+C8H17-1                            1.00E+11    0.000   -4000
+
+
+
+!!F_UNIMOLECULAR_________________________________________________________________
+
+!C11H21=C2H3+C9H18-1                                    2.50E+13    0.000   35000
+!REV /  1.00E+11    0.000    9600 /
+!C11H21=C3H5-A+C8H16-1                                  2.50E+13    0.000   25000
+!REV /  1.00E+11    0.000    9600 /
+!C11H21=C4H71-1+C7H14-1                                 2.50E+13    0.000   30000
+!REV /  1.00E+11    0.000    9600 /
+!C11H21=C5H91-5+C6H12-1                                 2.50E+13    0.000   30000
+!REV /  1.00E+11    0.000    9600 /
+!C11H21=C6H111-6+C5H10-1                                2.50E+13    0.000   30000
+!REV /  1.00E+11    0.000    9600 /
+!C11H21=C7H131-7+C4H8-1                                 2.50E+13    0.000   30000
+!REV /  1.00E+11    0.000    9600 /
+!C11H21=C8H15+C3H6                                      2.50E+13    0.000   30000
+!REV /  1.00E+11    0.000    9600 /
+!C11H21=C9H17+C2H4                                      2.50E+13    0.000   30000
+!REV /  1.00E+11    0.000    9600 /
+
+
+
+!!F_HO2/CH3O2/C2H5O2-ADDITION____________________________________________________
+
+!C11H21+HO2=>AC3H5CHO+C7H15-1+OH                        9.64E+12    0.000       0
+!C11H21+CH3O2=>AC3H5CHO+C7H15-1+CH3O                    9.64E+12    0.000       0
+!C11H21+C2H5O2=>AC3H5CHO+C7H15-1+C2H5O                  9.64E+12    0.000       0
+
+
+!!
+!! RL's patch2 END
+!!
+
+
+
+
+
+
+
 !++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 !\END_KINETICS_MODULE: C8-C12
 !++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
