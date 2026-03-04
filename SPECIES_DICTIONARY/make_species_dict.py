@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-# Copyright (c) Raymond Langer 2025
+# Copyright (c) Raymond Langer 2026
 
 # Please read the README.md for instructions on how to run the script.
 
@@ -8,7 +8,8 @@
 # of cases. It is a quick and dirty implementation to make the species directory
 # more readable. Changes might also be required if you add new species.
 
-import os, sys, importlib, re, copy, git, argparse, cairosvg, abc, yaml, pandas, time
+import os, sys, importlib, re, git, argparse, cairosvg, abc, yaml, pandas, time, copy
+from collections import defaultdict
 import numpy as np
 from shutil import copyfile
 from pathlib import Path
@@ -20,6 +21,7 @@ write_species = importlib.import_module("COMPILER.chemmodkit.input")
 from rdkit import Chem
 from rdkit.Chem import AllChem
 from rdkit.Chem import Descriptors
+from rdkit.Chem import rdMolDescriptors
 from rdkit.Chem import rdmolops
 from rdkit.ML.Descriptors import MoleculeDescriptors
 from rdkit import RDLogger
@@ -146,9 +148,17 @@ def print_success():
   print("Success!\n")
 
 
+def parse_composition(composition, elements):
+  try:
+    return write_species.parse_composition(composition, elements)
+  except ValueError as exc:
+    print(str(exc))
+    sys.exit(1)
+
+
 def get_sum_formula(composition):
   #
-  # This is used for a sanitity check for the provided InChI's
+  # This is used for a sanity check for the provided InChI's
   #
   # generates a sum formula that can be compared to the
   # sum formula in the InChI's
@@ -156,7 +166,7 @@ def get_sum_formula(composition):
   if not len(composition) == 20:
     print("composition:", composition)
     raise Exception("ERROR: the composition string has the wrong length")
-  cur_compo = write_species.parse_composition(composition, elements)
+  cur_compo = parse_composition(composition, elements)
   sum_formula = ""
   for elem in elements:
     if (elem in cur_compo):
@@ -193,7 +203,7 @@ def print_python_elements(name, composition):
     print("composition:", composition)
     raise Exception("ERROR: the composition string has the wrong length")
   elements = {'C': 1, 'H': 1, 'O': 1, 'N': 1, 'HE': 1, 'AR': 1}
-  cur_compo = write_species.parse_composition(composition, elements)
+  cur_compo = parse_composition(composition, elements)
   py_info = "\"" + name + "\" : " + "[[], {"
   for elem in elements:
     if (elem in cur_compo):
@@ -300,14 +310,14 @@ def check_inchi(lines, i, inchis):
     if (i + 1 >= len(lines)):
       print("search for", this_inchi)
       print(
-          "ERROR: There must be a NASA polynomial coefficient set below every InChi"
+          "ERROR: There must be a NASA polynomial coefficient set below every InChI"
       )
       sys.exit(1)
     line_below = lines[i + 1]
     if (re.match("\\s*!.+", line_below)):
       print("search for", this_inchi)
       print(
-          "ERROR: There must be a NASA polynomial coefficient set below every InChi"
+          "ERROR: There must be a NASA polynomial coefficient set below every InChI"
       )
       sys.exit(1)
 
@@ -326,7 +336,7 @@ def check_inchi(lines, i, inchis):
     if (len(line_below) < 80 or line_below[79] != '1'):
       print("search for", this_inchi)
       print(
-          "ERROR: There must be a NASA polynomial coefficient set below every InChi"
+          "ERROR: There must be a NASA polynomial coefficient set below every InChI"
       )
       sys.exit(1)
     re_species_name = re.match("^([^\\s]+)", line_below)
@@ -760,6 +770,7 @@ def draw_species(tex_file, mol, fig_dir, timestamp_species_dict, name,
 
 class SpeciesType:
   """ identifiers and RDKit molecules """
+
   def __init__(self, name, inchi, smiles, mol, fallback):
     self.name = name
     self.inchi = inchi
@@ -769,6 +780,7 @@ class SpeciesType:
 
 
 class SpeciesDict:
+
   def __init__(self, species_name2inchi, species_name2smiles, canonical2data,
                fallback):
     self.species_name2inchi = species_name2inchi
@@ -786,7 +798,7 @@ class SpeciesDict:
           raise Exception(
               "At least one of the InChIs in " +
               str(self.species_name2inchi[name]) +
-              " is supposed to invalid. This should never hapen for lumped species."
+              " is supposed to be invalid. This should never happen for lumped species."
           )
         best_inchi[name] = [self.fallback.species_name2inchi_wo_stereo[name]]
     return best_inchi
@@ -819,7 +831,7 @@ class SpeciesDict:
     excited = []
     multiplicity = []
     lumped = []
-    stereochemistry = []
+    rdkit_stereochemistry = []
 
     for primary_key in self.canonical2data:
       cur_dict = self.canonical2data[primary_key]
@@ -829,7 +841,7 @@ class SpeciesDict:
       excited.append(primary_key[1])
       multiplicity.append(primary_key[2])
       lumped.append(cur_dict['lumped'])
-      stereochemistry.append(cur_dict['rdkit_stereochemistry'])
+      rdkit_stereochemistry.append(cur_dict['rdkit_stereochemistry'])
 
     data = {
         'model_name': model_names,
@@ -838,7 +850,7 @@ class SpeciesDict:
         'excited': excited,
         'multiplicity': multiplicity,
         'lumped': lumped,
-        'rdkit_stereochemistry': stereochemistry
+        'rdkit_stereochemistry': rdkit_stereochemistry
     }
     df = pandas.DataFrame.from_dict(data)
     if (set_index):
@@ -857,6 +869,7 @@ class SpeciesDict:
 
 
 class FallBack:
+
   def __init__(self, invalid_stereo_inchi, invalid_stereo_smiles,
                species_name2inchi_wo_stereo, species_name2smiles_wo_stereo):
     self.invalid_stereo_inchi = invalid_stereo_inchi
@@ -908,6 +921,7 @@ class TexOptions:
 
 
 class SpeciesClassification(object, metaclass=abc.ABCMeta):
+
   @abc.abstractmethod
   def write_all(self, tex_file, fig_dir, tex_opts):
     raise NotImplementedError(
@@ -920,6 +934,7 @@ class SpeciesClassification(object, metaclass=abc.ABCMeta):
 
 
 class DefaultClassification(SpeciesClassification):
+
   def __init__(self):
     self.c0 = []
     self.c1 = []
@@ -1490,7 +1505,8 @@ def read_csv_species_dict(csv_filename, species_list, fatal_error_only,
     )
     if (fatal_error_only):
       print_warning(
-          "fatal-only checks enabled (default): only species used in the selected submodule(s) are validated")
+          "fatal-only checks enabled (default): only species used in the selected submodule(s) are validated"
+      )
       df = df[df['model_name'].isin(species_list)]
 
     any_error = False
@@ -2218,7 +2234,7 @@ if __name__ == "__main__":
       '-c',
       '--csv',
       help=
-      'csv file with the species defintions used to generate the species dictionary',
+      'csv file with the species definitions used to generate the species dictionary',
       default="")
   parser.add_argument('-i',
                       '--itv',
