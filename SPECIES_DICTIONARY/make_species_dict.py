@@ -109,6 +109,14 @@ def make_submodulefiles_from_yaml(filename, cmd_submodule_dir,
   yaml_dir = os.path.dirname(os.path.abspath(filename))
   submodules = read_yaml_input(filename)
 
+  allowed_yaml_keys = {"files", "species_dictionary", "submodule_directory"}
+  yaml_keys = set(vars(submodules).keys())
+  unknown_yaml_keys = sorted(yaml_keys - allowed_yaml_keys)
+  if unknown_yaml_keys:
+    print_error("unknown key(s) in yaml input '" + filename + "': " +
+                ", ".join(unknown_yaml_keys))
+    sys.exit(1)
+
   if (not hasattr(submodules, 'files') or submodules.files is None):
     submodules.files = []
   if (not hasattr(submodules, 'species_dictionary')
