@@ -70,7 +70,7 @@ description: |2-
    ================================================================================================== !
 
 
-   Kinetics data for C3MechV4.0.1, generated on 02/03/2026 18:02:10.
+   Kinetics data for C3MechV4.0.1, generated on 04/03/2026 18:53:27.
 
    The following sub-modules were considered in this file:
    - UOG_C0_LT-HT_Cantera.MECH
@@ -173,7 +173,7 @@ description: |2-
   ================================================================================================== !
 
 
-  Thermodynamic data for C3MechV4.0.1, generated on 02/03/2026 18:02:10.
+  Thermodynamic data for C3MechV4.0.1, generated on 04/03/2026 18:53:27.
 
   The following sub-modules were considered in this file:
   - UOG_C0_LT-HT.MECH
@@ -194,7 +194,7 @@ input-files: [C3MechV4.0.1_3XQ8_C0-C7_C5CY_C6CY_N_HT_Cantera.CKI,
     C3MechV4.0.1_3XQ8_C0-C7_C5CY_C6CY_N_HT.THERM, 
     C3MechV4.0.1_3XQ8_C0-C7_C5CY_C6CY_N_HT.TRAN]
 cantera-version: 3.1.0
-date: Mon, 02 Mar 2026 18:17:37 +0100
+date: Wed, 04 Mar 2026 19:08:12 +0100
 
 units: {length: cm, time: s, quantity: mol, activation-energy: cal/mol}
 
