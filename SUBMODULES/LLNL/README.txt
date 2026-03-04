@@ -1,4 +1,5 @@
-"LLNL_BLOCK" contains the chemistry specific to
+Please note that the "LLNL_BLOCK" only contains the chemistry (species,
+pathways, rate constants, thermodynamic and transport properties) specific to
 the following submodels:
  - IC8: "iso-octane"
  - IC8D3: "2,4,4-trimethyl-2-pentene"
