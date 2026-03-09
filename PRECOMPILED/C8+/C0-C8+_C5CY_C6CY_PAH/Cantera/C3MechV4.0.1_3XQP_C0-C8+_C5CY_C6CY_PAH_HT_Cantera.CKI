@@ -69,7 +69,7 @@
 ! ================================================================================================== !
 
 
-! Kinetics data for C3MechV4.0.1, generated on 04/03/2026 18:53:27.
+! Kinetics data for C3MechV4.0.1, generated on 09/03/2026 20:01:52.
 
 ! The following sub-modules were considered in this file:
 ! - UOG_C0_LT-HT_Cantera.MECH
@@ -84,8 +84,8 @@
 ! - PAH_BLOCK.CKI
 
 ! model ID (MID): 3XQP
-! number of species: 1489
-! number of reactions: 10480
+! number of species: 1609
+! number of reactions: 10719
 
 ! REVISION FOR C3MechV4.0.1:
 ! SEARCH FOR "YZ_251026"
@@ -133,201 +133,211 @@ HOCHO                         HOCH2O                        OCH2O2H
 HOCH2O2                       HOCH2O2H                      C2H5                          
 C2H6                          C2H5O2                        C2H5O2H                       
 C2H3                          C2H5O                         C2H4O2H                       
-C2H4O1-2                      C2-OOQOOH                     NC3H7O2H                      
-NC3H7O2                       IC3H7O2H                      IC3H7O2                       
-C2H5OH                        CH3CHO                        NC3H7O                        
-NC3H7OH                       C2H5CHO                       IC3H7O                        
-IC3H7OH                       CH3COCH3                      CH3CHOOH                      
-C2H3O1-2                      CH3CO                         CH2CHO                        
-H2CC                          CH3CO3                        CH3CO3H                       
-C2H3OO                        C2H3OOH                       C2H3OH                        
-PC2H4OH                       CHCHO                         CHOCHO                        
-C2H                           HCCOH                         C2H2OH                        
-HCCO                          C2                            C2O                           
-CH3CHOHOJ                     CH3COOH                       CH2CO2                        
-O2CH2CHO                      HO2CH2CO                      CH3CO2                        
-CH2COOH                       SC2H4OH                       O2C2H4OH                      
-CH3OCH3                       CH3OCH2                       CH3OCH2O2                     
-CH3OCH2O2H                    CH2OCHO                       CH3OCHO                       
-CH3OCO                        CH2OCH2O2H                    O2CH2OCH2O2H                  
-HO2CH2OCHO                    CH3OCH2O                      OCH2OCHO                      
-CH2OO                         HOCH2OCO                      C3H8                          
-NC3H7                         IC3H7                         C3H5-A                        
-C3H6                          OCHCH2CH2O                    CH3COCH2O                     
-C2H4OCHO                      C3H4-A                        CH3OCHCH2                     
-CH2CHOCH2                     CC3H6                         C3H5-T                        
-C3H5-S                        CH3CHCHO                      CH3COCH2                      
-C3H4-P                        C2H3CHO                       CH3CCHO                       
-CH3CHCO                       CH2CHOCHO                     CH2CCO                        
-CH2COCH2                      CH3COCH                       CH2CHOCO                      
-C3H5O                         CH2CH2CHO                     CH2CHCHOH                     
-C3H5OH                        IC3H5OH                       SC3H5OH                       
-C3H6OH1-2                     C3H6OH2-1                     CH2CCH2OH                     
-HOCH2CO                       SC3H4OH                       CH2COHCH2O                    
-CH2COHCHO                     SC2H2OH                       CC3H4                         
-C4H4                          CH3CCO                        C3H3O                         
-C2H3CO                        CH3COH                        CH3C(OH)CH                    
-PC3H4OH-2                     PC3H4OH-1                     C3H2C                         
-C3H2                          C2HCHO                        C4H3-N                        
-C3H2(S)                       H2CCC(S)                      CH2OCHCO                      
-C3H6OH1-3                     C3H6OH1-1                     TC3H6OH                       
-CH2OHCHCHO                    CH3COHCO                      C2H3CHOHOJ                    
-C2H3COOH                      C2H5COCH2                     C2H5CO                        
-NC3H7COCH2                    NC3H7CO                       C6Y2-1J                       
-PC4H9CO                       C4H10                         PC4H9                         
-SC4H9                         PC4H9O                        SC4H9O                        
-C4H8-1                        C4H8-2                        C2H5COCH3                     
-IC4H9                         IC4H8                         TC4H9                         
-IC4H10                        TC4H9O                        IC4H9O                        
-IC3H7CHO                      TC3H6CHO                      SC4H7OH-I                     
-IC3H7CO                       IC3H6CHO                      IC3H5CHO                      
-IC3H6CO                       IC4H7                         TC3H6OCHO                     
-IC3H6OHCHO                    IC3H5CO                       IC3H4CHO-A                    
-SC4H7OH-IP                    SC4H7O-I                      IC4H6OH                       
-IC4H7-I1                      IC4H7O                        IC4H7OH                       
-IC4H7O-1                      CHOIC3H6O                     IC4H8OH-IT                    
-IC4H8OH-TI                    OVCC(VC)COJ                   C4H71-4                       
-C4H71-3                       C4H71-1                       C4H71-2                       
-C2H5CHCO                      PC4H8OH-2                     SC4H8OH-1                     
-C4H6                          C4H612                        C4H6-1                        
-C2H5CCHO                      C3H6CHO-1                     SC3H5CHO                      
-C2H5COCH                      C2H4COCH2                     C4H72-2                       
-C4H7O2-1                      C4H71-O                       C2H3COCH3                     
-C4H7O1-4                      AC3H5OCH2                     CH2CH2COCH3                   
-SC3H5OCH2-1                   C3H6CHO-2                     C4H5-3                        
-C4H5-4                        C4H6-2                        C2H5CCO                       
-CH3C3H2O                      SC3H5CO                       C2H5CCHOH                     
-C2H5COHCH                     C4H5-I                        C4H5-N                        
-C4H5-2                        BUTA123TRIENE                 IC5T1                         
-C5H82-3                       C2HCOCH3                      C4H5O1-4                      
-C2H5COH                       C4H4O                         CH3CHCCO                      
-C4H63,1-1OH                   CH3CHOCHCHOH                  CH3COCHCHOH                   
-C4H63,1-3OH                   CH3COHCHCH2O                  CH2COHCHCHO                   
-C4H72-2OH                     CH3CCOCH3                     CH3CHCOCH3                    
-SC4H8OH-3                     NC4H9OH                       PC4H8OH-1                     
-PC4H8OH-3                     PC4H8OH-4                     C4H71-1OH                     
-NC3H7CHO                      C4H72-1OH                     PC4H8OH-1O                    
-PC4H8OH-2O                    PC4H8OH-3O                    PC4H8OH-4O                    
-HOCH2CHO                      C4H71-4OH                     C4H71-2OH                     
-C4H63,1-2OH                   C4H64,2-1OH                   C4H5OH-13                     
-AC3H5CHO                      CH2CHCHCHO                    CH2OHCHCHCHOH                 
-CHOC3H4OH                     C4H51,3OH2                    C2H3COCH2                     
-NC4KET12OH                    C2H5CHOHCO                    NC4KET21OH                    
-C2H4COCH2OH                   HOCHCHO                       C5H9OH1-4,3                   
-CH3COCHOH                     SC4H8OH-2                     C4H71-3OH                     
-C4H61-3OH-3O                  NC4KET23OH                    CH3COCOHCH3                   
-CH2COHCO                      AC5H10                        H15DE25DM                     
-H15DE25DM-S                   H15DE25DM-A                   B13DE2M                       
-AC5H9-D                       H15DE25DM-AO                  H15DE25DM-SO                  
-H15DE2M-T                     IC4H7CHO                      IC4H7CO                       
-IC4H7CHO-A                    IC4H8OH                       C5H8-2                        
-B12DE3M                       C6H6                          C6H9-A                        
-C6H8                          CYHEXEN-4J                    CYPENTN-4MJ                   
-CYPENTN-4M4J                  CYPENTN-4M3J                  C5H6                          
-CYC6H7                        C6H7-2                        C4H64,1-1OH                   
-C2H3CHOHCH2                   CH2CYC3H4OH                   C5H9OH1-2                     
-CC5H9OH-A                     CC5H8OHA-B                    CC5H8OHA-BO                   
-C3H4CH2OH-3O                  C3H4CH2OH-1O                  C2H3COCH2OH                   
-C2H3COCHOH                    C2H3CHOHCO                    CHCHCH2OH                     
-C4H61KET43O                   C2H3COOCH2                    CH2CHCHCHCCH                  
-C4H5-2C2H                     C4H2                          AC3H5CO                       
-CC3H5                         CVCCVCCVO                     CJVCCVO                       
-CH2CCOCH3                     SC4H6OH-2                     C4H3-I                        
-CH3COHOJCOCH3                 C3H6CHO-3                     CH3CHOCHCO                    
-C8H141-5,3-4                  C8H131-5,3-4,TA               I3C6D25                       
-C8H131-5,3-4,TAO              C8H141-5,3                    C8H131-5,3,TA                 
-C8H131-5,3,SA                 C8H131-5,3,PA                 C6H10D24                      
-C8H131-5,3,TAO                C8H131-5,3,SAO                C8H131-5,3,PAO                
-C7H111-5,3,6P                 CC5H9-A                       C8H142-6                      
-C8H132-6,SA                   C8H132-6,PA                   C5H81-3                       
-C8H132-6,SAO                  C8H132-6,PAO                  C7H111-5,1P                   
-C5H92-5                       NC5H12                        C5H11-1                       
-C5H11-2                       C5H11-3                       CC5H10                        
-DC5H11                        CC5H11                        BC5H11                        
-AC5H11                        BC5H10                        C5H10-1                       
-C5H10-2                       C5H11O-1                      C5H11O-2                      
-C5H11O-3                      NC5KET12O                     NC5KET13O                     
-NC5KET14O                     NC5KET15O                     NC5KET21O                     
-NC5KET24O                     NC5KET25O                     NC5KET31O                     
-OCH2CHO                       IC5H12                        AC5H11O                       
+C2H4O1-2                      C2-OOQOOH                     HO2CH2CHO                     
+NC3H7O2H                      NC3H7O2                       IC3H7O2H                      
+IC3H7O2                       C2H5OH                        CH3CHO                        
+NC3H7O                        NC3H7OH                       C2H5CHO                       
+IC3H7O                        IC3H7OH                       CH3COCH3                      
+CH3CHOOH                      C2H3O1-2                      CH3CO                         
+CH2CHO                        H2CC                          CH3CO3                        
+CH3CO3H                       C2H3OO                        C2H3OOH                       
+C2H3OH                        PC2H4OH                       CHCHO                         
+CHOCHO                        C2H                           HCCOH                         
+C2H2OH                        HCCO                          C2                            
+C2O                           CH3CHOHOJ                     CH3COOH                       
+CH2CO2                        O2CH2CHO                      HO2CH2CO                      
+CH3CO2                        CH2COOH                       SC2H4OH                       
+O2C2H4OH                      CH3OCH3                       CH3OCH2                       
+CH3OCH2O2                     CH3OCH2O2H                    CH2OCHO                       
+CH3OCHO                       CH3OCO                        CH2OCH2O2H                    
+O2CH2OCH2O2H                  HO2CH2OCHO                    CH3OCH2O                      
+OCH2OCHO                      CH2OO                         HOCH2OCO                      
+C3H8                          NC3H7                         IC3H7                         
+C3H5-A                        C3H6                          OCHCH2CH2O                    
+CH3COCH2O                     C2H4OCHO                      C3H4-A                        
+CH3OCHCH2                     CH2CHOCH2                     CC3H6                         
+C3H5-T                        C3H5-S                        CH3CHCHO                      
+CH3COCH2                      C3H4-P                        C2H3CHO                       
+CH3CCHO                       CH3CHCO                       CH2CHOCHO                     
+CH2CCO                        CH2COCH2                      CH3COCH                       
+CH2CHOCO                      C3H5O                         CH2CH2CHO                     
+CH2CHCHOH                     C3H5OH                        IC3H5OH                       
+SC3H5OH                       C3H6OH1-2                     C3H6OH2-1                     
+CH2CCH2OH                     HOCH2CO                       SC3H4OH                       
+CH2COHCH2O                    CH2COHCHO                     SC2H2OH                       
+CC3H4                         C4H4                          CH3CCO                        
+C3H3O                         C2H3CO                        CH3COH                        
+CH3C(OH)CH                    PC3H4OH-2                     PC3H4OH-1                     
+C3H2C                         C3H2                          C2HCHO                        
+C4H3-N                        C3H2(S)                       H2CCC(S)                      
+CH2OCHCO                      C3H6OH1-3                     C3H6OH1-1                     
+TC3H6OH                       CHOCOHCH3                     CH2OHCHCHO                    
+CH3COHCO                      C2H3CHOHOJ                    C2H3COOH                      
+C2H5COCH2                     C2H5CO                        NC3H7COCH2                    
+NC3H7CO                       C6Y2-1J                       PC4H9CO                       
+C4H10                         PC4H9                         SC4H9                         
+PC4H9O                        SC4H9O                        C4H8-1                        
+C4H8-2                        C2H5COCH3                     IC4H9                         
+IC4H8                         TC4H9                         IC4H10                        
+TC4H9O                        IC4H9O                        IC3H7CHO                      
+TC3H6CHO                      SC4H7OH-I                     IC3H7CO                       
+IC3H6CHO                      IC3H5CHO                      IC3H6CO                       
+IC4H7                         TC3H6OCHO                     IC3H6OHCHO                    
+IC3H5CO                       IC3H4CHO-A                    SC4H7OH-IP                    
+SC4H7O-I                      IC4H6OH                       IC4H7-I1                      
+IC4H7O                        IC4H7OH                       IC4H7O-1                      
+CHOIC3H6O                     IC4H8OH-IT                    IC4H8OH-TI                    
+OVCC(VC)COJ                   C4H71-4                       C4H71-3                       
+C4H71-1                       C4H71-2                       C2H5CHCO                      
+PC4H8OH-2                     SC4H8OH-1                     C4H6                          
+C4H612                        C4H6-1                        C2H5CCHO                      
+C3H6CHO-1                     SC3H5CHO                      C2H5COCH                      
+C2H4COCH2                     C4H72-2                       C4H7O2-1                      
+C4H71-O                       C2H3COCH3                     C4H7O1-4                      
+AC3H5OCH2                     CH2CH2COCH3                   SC3H5OCH2-1                   
+C3H6CHO-2                     C4H5-3                        C4H5-4                        
+C4H6-2                        C2H5CCO                       CH3C3H2O                      
+SC3H5CO                       C2H5CCHOH                     C2H5COHCH                     
+C4H5-I                        C4H5-N                        C4H5-2                        
+BUTA123TRIENE                 IC5T1                         C5H82-3                       
+C2HCOCH3                      C4H5O1-4                      C2H5COH                       
+C4H4O                         CH3CHCCO                      C4H63,1-1OH                   
+CH3CHOCHCHOH                  CH3COCHCHOH                   C4H63,1-3OH                   
+CH3COHCHCH2O                  CH2COHCHCHO                   C4H72-2OH                     
+CH3CCOCH3                     CH3CHCOCH3                    SC4H8OH-3                     
+NC4H9OH                       PC4H8OH-1                     PC4H8OH-3                     
+PC4H8OH-4                     C4H71-1OH                     NC3H7CHO                      
+C4H72-1OH                     PC4H8OH-1O                    PC4H8OH-2O                    
+PC4H8OH-3O                    PC4H8OH-4O                    HOCH2CHO                      
+C4H71-4OH                     C4H71-2OH                     C4H63,1-2OH                   
+C4H64,2-1OH                   C4H5OH-13                     AC3H5CHO                      
+CH2CHCHCHO                    CH2OHCHCHCHOH                 CHOC3H4OH                     
+C4H51,3OH2                    C2H3COCH2                     NC4KET12OH                    
+C2H5CHOHCO                    NC4KET21OH                    C2H4COCH2OH                   
+HOCHCHO                       C5H9OH1-4,3                   CH3COCHOH                     
+SC4H8OH-2                     C4H71-3OH                     C4H61-3OH-3O                  
+NC4KET23OH                    CH3COCOHCH3                   CH2COHCO                      
+AC5H10                        H15DE25DM                     H15DE25DM-S                   
+H15DE25DM-A                   B13DE2M                       AC5H9-D                       
+H15DE25DM-AO                  H15DE25DM-SO                  H15DE2M-T                     
+IC4H7CHO                      IC4H7CO                       IC4H7CHO-A                    
+IC4H8OH                       C5H8-2                        B12DE3M                       
+C6H6                          C6H9-A                        C6H8                          
+CYHEXEN-4J                    CYPENTN-4MJ                   CYPENTN-4M4J                  
+CYPENTN-4M3J                  C5H6                          CYC6H7                        
+C6H7-2                        C4H64,1-1OH                   C2H3CHOHCH2                   
+CH2CYC3H4OH                   C5H9OH1-2                     CC5H9OH-A                     
+CC5H8OHA-B                    CC5H8OHA-BO                   C3H4CH2OH-3O                  
+C3H4CH2OH-1O                  C2H3COCH2OH                   C2H3COCHOH                    
+C2H3CHOHCO                    CHCHCH2OH                     C4H61KET43O                   
+C2H3COOCH2                    CH2CHCHCHCCH                  C4H5-2C2H                     
+C4H2                          AC3H5CO                       CC3H5                         
+CVCCVCCVO                     CJVCCVO                       CH2CCOCH3                     
+SC4H6OH-2                     C4H3-I                        CH3COHOJCOCH3                 
+C3H6CHO-3                     CH3CHOCHCO                    C8H141-5,3-4                  
+C8H131-5,3-4,TA               I3C6D25                       C8H131-5,3-4,TAO              
+C8H141-5,3                    C8H131-5,3,TA                 C8H131-5,3,SA                 
+C8H131-5,3,PA                 C6H10D24                      C8H131-5,3,TAO                
+C8H131-5,3,SAO                C8H131-5,3,PAO                C7H111-5,3,6P                 
+CC5H9-A                       C8H142-6                      C8H132-6,SA                   
+C8H132-6,PA                   C5H81-3                       C8H132-6,SAO                  
+C8H132-6,PAO                  C7H111-5,1P                   C5H92-5                       
+NC5H12                        C5H11-1                       C5H11-2                       
+C5H11-3                       CC5H10                        DC5H11                        
+CC5H11                        BC5H11                        AC5H11                        
+BC5H10                        C5H10-1                       C5H10-2                       
+C5H11O-1                      C5H11O-2                      C5H11O-3                      
+NC5KET12O                     NC5KET13O                     NC5KET14O                     
+NC5KET15O                     NC5KET21O                     NC5KET24O                     
+NC5KET25O                     NC5KET31O                     OCH2CHO                       
+CH2CH2OCH2CH2CHO              IC5H12                        AC5H11O                       
 BC5H11O                       CC5H11O                       DC5H11O                       
 IC5KETAAO                     IC5KETABO                     IC5KETACO                     
 IC5KETADO                     IC5KETCAO                     IC5KETCBO                     
 IC5KETCDO                     IC5KETDAO                     IC5KETDBO                     
-IC5KETDCO                     IC3H5COCH3                    IC3H5COCH2                    
-AC3H4COCH3                    NEOC5H12                      NEOC5H11                      
-NEOC5H11O                     NEOC5KETOX                    NEOC5KEJOL                    
-C5H91-3                       C5H91-4                       C5H91-5                       
-C5H92-4                       C5H91-1                       C5H91-2                       
-AC5H9-A1                      AC5H9-A2                      AC5H9-C                       
-BC5H9-C                       CC5H9-B                       CC5H9-C                       
-CC5H9-D                       C5H92-2                       C5H92-3                       
-C6H12-3                       I3C6D1                        IC6D3                         
-PC4H8CHO-1                    CH3CH2CHCOCH3                 CH3CHCOC2H5                   
-C5H10OH12                     C5H10OH21                     C5H10OH23                     
-C5H10OH32                     CH2CYC3H4CH3                  CYC5H9                        
-CH3CYC3H3CH3-3                CYC4H6-2-CH3                  C5H8D14                       
-CYC4H6-3-CH3                  CYC3H4C2H5-2                  C5H81-2                       
-CYC3H5CHCH3                   C5H8-1                        CH3CYC3H3CH3                  
-CYC3H4C2H5-1                  CYC3H5CHCH2                   CYC3H4CHCH3                   
-CYC3H3-1C2H5                  CYC3H3-3C2H5                  CH2CYC3H3CH3                  
-CVCCJCVC                      C5H9OH1-2,4                   C5H7-14-1                     
-C5H7-13-2                     C5H7-13-3                     CVCCVCCOJ                     
-CVCC(OJ)CVC                   NC53ONE-1                     NC52ONE-3                     
-C5H9O1-3                      C5H9O2-1                      C4H7CHO-2                     
-C5H9O2-4                      C5H91-5O                      C5H81KET53O                   
-BC5H10OH                      CC5H10OH                      AC5H9O-A2                     
-CC5H9O-B                      B2E3M1OJ                      IC5D2Y4                       
-AC5H10OH                      AC5H9O-C                      B2E2M1OJ                      
-B13DE2MJ                      TC4H8CHO                      PC4H9CHO                      
-PC4H8CHO-2                    PC4H8CHO-3                    PC4H8CHO-4                    
-C5D2Y1-1R                     C4H7CHO-3                     C4H6CHO-3,1                   
-C4H6CHO-3,2                   C4H6CHO-2,4O                  C4H7CHO-4                     
-C4H6CHO-4,3                   NC3H7COCH3                    CH3CHCH2COCH3                 
-CH2CH2CH2COCH3                C2H5COC2H5                    CH2CH2COC2H5                  
-NC52ONE-4                     NC5H11OH                      C5H10OH15                     
-C5H10OH14                     C5H10OH13                     C5H10OH11                     
-C5H10OH25                     C5H10OH22                     C5H9OH1-1                     
-C5H9OH2-1                     C5H9OH2-2                     C5H9OH1-2,4O                  
-CVCCVCCOH                     C5H9OH1-4,3O                  C5H9OH2-1,3                   
-C5H9OH2-1,3O                  HOCH2COCH2                    HOCH2COCH2O                   
-IC5D2Y4-1J                    IC5D2Y4-4J                    DC5H9O-B                      
-DC5H9O-C                      IC5Y4OH2-3J                   IC5Y4OH3-2J                   
-IC5D1Y4-3OJ                   IC5D2Y4-1OJ                   CYC5H10                       
-CYC5H8                        C2H3OC3H4A                    CYC5E1-4O                     
-CPTOJ                         CPTOH-2                       C53OH1EN5J                    
-CYC5H71-3                     CPND2                         CYC51EN3OJ                    
-C4H6CHO2-5                    CPN-3R                        CYC5H71-4                     
-C4H6CHO4-5                    C4H7CO1-4                     CPND3                         
-CPN                           CPN-2R                        PC2H4COC2H3                   
-PC3H6CHCO                     C5Y2D4-1R                     C5H5O                         
-CPNOH3-2R                     CPNOH2-3R                     CPNOH3-4R                     
-CPN-2OR                       CPN-3OR                       OVCCVCCOJ                     
+IC5KETDCO                     CH3COCH2OCH2CH2               IC3H5COCH3                    
+IC3H5COCH2                    AC3H4COCH3                    NEOC5H12                      
+NEOC5H11                      NEOC5H11O                     NEOC5KETOX                    
+NEOC5KEJOL                    C5H91-3                       C5H91-4                       
+C5H91-5                       C5H92-4                       C5H91-1                       
+C5H91-2                       AC5H9-A1                      AC5H9-A2                      
+AC5H9-C                       BC5H9-C                       CC5H9-B                       
+CC5H9-C                       CC5H9-D                       C5H92-2                       
+C5H92-3                       C6H12-3                       I3C6D1                        
+IC6D3                         PC4H8CHO-1                    CH3CH2CHCOCH3                 
+CH3CHCOC2H5                   C5H10OH12                     C5H10OH21                     
+C5H10OH23                     C5H10OH32                     CH2CYC3H4CH3                  
+CYC5H9                        CH3CYC3H3CH3-3                CYC4H6-2-CH3                  
+C5H8D14                       CYC4H6-3-CH3                  CYC3H4C2H5-2                  
+C5H81-2                       CYC3H5CHCH3                   C5H8-1                        
+CH3CYC3H3CH3                  CYC3H4C2H5-1                  CYC3H5CHCH2                   
+CYC3H4CHCH3                   CYC3H3-1C2H5                  CYC3H3-3C2H5                  
+CH2CYC3H3CH3                  CVCCJCVC                      C5H9OH1-2,4                   
+C5H7-14-1                     C5H7-13-2                     C5H7-13-3                     
+CVCCVCCOJ                     CVCC(OJ)CVC                   NC53ONE-1                     
+NC52ONE-3                     C5H9O1-3                      C5H9O2-1                      
+C4H7CHO-2                     C5H9O2-4                      C5H91-5O                      
+C5H81KET34O                   C5H81KET35O                   C5H81KET43O                   
+C5H81KET45O                   C5H81KET53O                   C5H81KET54O                   
+C5H82KET41O                   C5H82KET51O                   BC5H10OH                      
+CC5H10OH                      AC5H9O-A2                     CC5H9O-B                      
+B2E3M1OJ                      IC5D2Y4                       AC5H10OH                      
+AC5H9O-C                      B2E2M1OJ                      B13DE2MJ                      
+TC4H8CHO                      PC4H9CHO                      PC4H8CHO-2                    
+PC4H8CHO-3                    PC4H8CHO-4                    C5D2Y1-1R                     
+C4H7CHO-3                     C4H6CHO-3,1                   C4H6CHO-3,2                   
+C4H6CHO-2,4O                  C4H7CHO-4                     C4H6CHO-4,3                   
+NC3H7COCH3                    CH3CHCH2COCH3                 CH2CH2CH2COCH3                
+C2H5COC2H5                    CH2CH2COC2H5                  NC52ONE-4                     
+NC5H11OH                      C5H10OH15                     C5H10OH14                     
+C5H10OH13                     C5H10OH11                     C5H10OH25                     
+C5H10OH22                     C5H9OH1-1                     C5H9OH2-1                     
+C5H9OH2-2                     C5H9OH1-2,4O                  CVCCVCCOH                     
+C5H9OH1-3                     C5H9OH1-4                     C5H9OH1-4,3O                  
+C5H9OH2-1,3                   C5H9OH2-1,3O                  C5H9OH2-3                     
+C5H9OH3-2                     C5H9OH3-1                     CH3COCOHCH2                   
+HOCH2COCH2                    HOCH2COCH2O                   IC5D2Y4-1J                    
+IC5D2Y4-4J                    DC5H9O-B                      DC5H9O-C                      
+IC5Y4OH2-3J                   IC5Y4OH3-2J                   IC5D1Y4-3OJ                   
+IC5D2Y4-1OJ                   CYC5H10                       CYC5H8                        
+C2H3OC3H4A                    CYC5E1-4O                     CPTOJ                         
+CPTOH-2                       C53OH1EN5J                    CYC5H71-3                     
+CPND2                         CYC51EN3OJ                    C4H6CHO2-5                    
+CPN-3R                        CYC5H71-4                     C4H6CHO4-5                    
+C4H7CO1-4                     CPND3                         CPN                           
+CPN-2R                        PC2H4COC2H3                   PC3H6CHCO                     
+C5Y2D4-1R                     C5H5O                         CPNOH3-2R                     
+CPNOH2-3R                     CPNOH3-4R                     CPN-2OR                       
+CPN-3OR                       OVCCVCCOJ                     CJVCC(C)VO                    
 AC3H5CHCO                     C2H3CHCO                      C5Y3D14                       
 C5H4O                         C5H3O-2                       C6KET12O                      
 C6KET13O                      C6KET14O                      C6KET15O                      
 C6KET21O                      C6KET23O                      C6KET24O                      
 C6KET25O                      C6KET26O                      C6KET31O                      
 C6KET32O                      C6KET34O                      C6KET35O                      
-C6KET36O                      NC6H14                        C6H13-1                       
-C6H13-2                       C6H13-3                       C6H12-1                       
-C6H12-2                       C6H13O-1                      C6H13O-2                      
-C6H13O-3                      C6H11OH1-1                    C6D2Y1                        
-C6H11OH1-2                    C6H10D13                      C6H11OH2-1                    
-C6H111-3                      C6H112-4                      NC5H10CHO-1                   
-C6H111-1                      C6H111-2                      C6H111-4                      
-C6H111-5                      C6H111-6                      C6H112-5                      
-C6H112-6                      C6H113-1                      C7H14-3                       
-I3C7D1                        I3C7D1-3                      I3C7D1-3O                     
-C6H12OH-1J2                   C6H12OH-2J1                   C6H12OH-2J3                   
-C6H12OH-3J2                   C6H12OH-3J4                   C6H11OH2-2                    
-C6H11OH3-2                    C6H12OH15                     C6H12OH11                     
-C6H12OH16                     C6H12OH25                     C6H12OH22                     
-C6H11OH1-4                    C6H10OH1-4,3                  C6H10OH1-4,3O                 
-C6H11OH1-5                    C6H10OH1-5,4                  C6H10OH1-5,4O                 
-NC6KET2OH1-5                  NC6KET5OH1-2                  P13DE1O4J                     
-C6H11-1D3O                    C6H11-2D1O                    C6H11-2D4O                    
-C6H11-3D2O                    C6H10D14                      C6H101-5                      
+C6KET36O                      C2H5COOH                      NC6H14                        
+C6H13-1                       C6H13-2                       C6H13-3                       
+C6H12-1                       C6H12-2                       C6H13O-1                      
+C6H13O-2                      C6H13O-3                      C6H11OH1-1                    
+C6D2Y1                        C6H11OH1-2                    C6H10D13                      
+C6H11OH2-1                    C6H111-3                      C6H112-4                      
+NC5H10CHO-1                   C6H111-1                      C6H111-2                      
+C6H111-4                      C6H111-5                      C6H111-6                      
+C6H112-5                      C6H112-6                      C6H113-1                      
+C7H14-3                       I3C7D1                        I3C7D1-3                      
+I3C7D1-3O                     C6H12OH-1J2                   C6H12OH-2J1                   
+C6H12OH-2J3                   C6H12OH-3J2                   C6H12OH-3J4                   
+C6H11OH2-2                    C6H11OH3-2                    C6H12OH15                     
+C6H12OH11                     C6H12OH16                     C6H12OH25                     
+C6H12OH22                     C6H11OH1-4                    C6H10OH1-4,3                  
+C6H10OH1-4,3O                 C6H11OH1-5                    C6H10OH1-5,4                  
+C6H10OH1-5,4O                 NC6KET2OH1-5                  NC6KET5OH1-2                  
+P13DE1O4J                     C6H11-1D3O                    C6H11-2D1O                    
+C6H11-2D4O                    C6H11-3D2O                    C6H10D14                      
+C6H101-5                      NC6D1KET34O                   NC6D1KET35O                   
+NC6D1KET36O                   NC6D1KET43O                   NC6D1KET45O                   
+NC6D1KET46O                   NC6D1KET53O                   NC6D1KET54O                   
+NC6D1KET56O                   NC6D1KET64O                   NC6D1KET65O                   
 C6H11-1D5O                    NC5H11CHO                     NC5H11CO                      
 NC5H10CHO-2                   NC5H10CHO-3                   NC5H10CHO-4                   
 NC5H10CHO-5                   CVCCJCVCC                     CVCCVCCOJC                    
@@ -353,41 +363,43 @@ IC6KET3-1O                    IC6KET3-2O                    IC6KET3-4O
 IC6KET3-5O                    IC3H7COCH2                    IC6KET4-1O                    
 IC6KET4-2O                    IC6KET4-3O                    IC6KET4-5O                    
 IC4H9CO                       IC6KET5-1O                    IC6KET5-2O                    
-IC6KET5-3O                    IC6KET5-4O                    CC5H9-AO                      
-C5H91-4O                      C5H92-5O                      IC6D13-1AR                    
-NC5D124                       NC5D124-5R                    I3C6-1                        
-I3C6H14                       I3C6-2                        I3C6-3                        
-I3C6-4                        I3C6D2                        I3C6D3                        
-I3C6D1-3                      I3C6D1-4                      I3C6D1-5                      
-I3C6D1-6                      I3C6D3-2                      I3C6D2-5                      
-I3C6D2-6                      I3C6D3-1                      SC4H9CHO                      
-I3C6OH1-2J                    I3C6OH2-1J                    I3C6OH2-3J                    
-I3C6OH3-2J                    I3C6OH3-4J                    I3C6OH4-3J                    
-I3C6D13                       I3C6D15                       I3C6D13-5                     
-I3C6D13-6                     I3C6D15-3                     I3C6D15-4                     
-I3C6D1-3O                     I3C6D2-5O                     I3C6D3-2O                     
-I3C6D1-4O                     I3C6D1-5O                     I3C6D1-6O                     
-I3C6D2-6O                     I3C6D3-1O                     I3C6-1O                       
-I3C6-2O                       I3C6-3O                       I3C6-4O                       
-I3C6KET1-2O                   I3C6KET1-3O                   I3C6KET1-4O                   
-I3C6KET1-5O                   I3C6KET1-6O                   DC5H9O-A                      
-I3C6KET2-1O                   SC4H9CO                       I3C6KET2-3O                   
-I3C6KET2-4O                   I3C6KET2-5O                   I3C6KET2-6O                   
-IC5Y3-1J                      I3C6KET4-1O                   SC4H8CHO-1                    
-I3C6KET4-2O                   I3C6KET4-3O                   SC4H8CHO-2                    
-SC4H8CHO-3                    NEC6-1                        NEC6H14                       
-NEC6-3                        NEC6-4                        NEC6D3                        
-NEC6D3-1                      TC4H9CHO                      NEC6OH3-4J                    
-NEC6OH4-3J                    NEC6-1O                       NEC6-3O                       
-NEC6-4O                       NEC6KET1-1AO                  NEC6KET1-3O                   
-NEC6KET1-4O                   NEC6KET3-1O                   IC5Y3-2J                      
-NEC6KET3-4O                   TC4H9CO                       NEC6KET4-3O                   
-XC6-1                         XC6H14                        XC6-2                         
-XC6D1                         XC6D2                         XC6D1-1A                      
-XC6D1-3                       XC6D1-4                       XC6OH1-2J                     
-XC6OH2-1J                     XC6OH2-3J                     XC6D1-1AO                     
-XC6D1-3O                      XC6D13                        XC6D13-1AR                    
-XC6-1O                        XC6-2O                        IC5Y3                         
+IC6KET5-3O                    IC6KET5-4O                    IC3H7CHCO                     
+CC5H9-AO                      C5H91-4O                      C5H92-5O                      
+IC6D13-1AR                    NC5D124                       NC5D124-5R                    
+I3C6-1                        I3C6H14                       I3C6-2                        
+I3C6-3                        I3C6-4                        I3C6D2                        
+I3C6D3                        I3C6D1-3                      I3C6D1-4                      
+I3C6D1-5                      I3C6D1-6                      I3C6D3-2                      
+I3C6D2-5                      I3C6D2-6                      I3C6D3-1                      
+SC4H9CHO                      I3C6OH1-2J                    I3C6OH2-1J                    
+I3C6OH2-3J                    I3C6OH3-2J                    I3C6OH3-4J                    
+I3C6OH4-3J                    I3C6D13                       I3C6D15                       
+I3C6D13-5                     I3C6D13-6                     I3C6D15-3                     
+I3C6D15-4                     I3C6D1-3O                     I3C6D2-5O                     
+I3C6D3-2O                     I3C6D1-4O                     I3C6D1-5O                     
+I3C6D1-6O                     I3C6D2-6O                     I3C6D3-1O                     
+I3C6-1O                       I3C6-2O                       I3C6-3O                       
+I3C6-4O                       I3C6KET1-2O                   I3C6KET1-3O                   
+I3C6KET1-4O                   I3C6KET1-5O                   I3C6KET1-6O                   
+DC5H9O-A                      I3C6KET2-1O                   SC4H9CO                       
+I3C6KET2-3O                   I3C6KET2-4O                   I3C6KET2-5O                   
+I3C6KET2-6O                   IC5Y3-1J                      I3C6KET4-1O                   
+SC4H8CHO-1                    I3C6KET4-2O                   I3C6KET4-3O                   
+SC4H8CHO-2                    SC4H8CHO-3                    NEC6-1                        
+NEC6H14                       NEC6-3                        NEC6-4                        
+NEC6D3                        NEC6D3-1                      TC4H9CHO                      
+NEC6OH3-4J                    NEC6OH4-3J                    NEC6-1O                       
+NEC6-3O                       NEC6-4O                       NEC6KET1-1AO                  
+NEC6KET1-3O                   NEC6KET1-4O                   NEC6KET3-1O                   
+IC5Y3-2J                      NEC6KET3-4O                   TC4H9CO                       
+NEC6KET4-1O                   NEC6KET4-3O                   XC6-1                         
+XC6H14                        XC6-2                         XC6D1                         
+XC6D2                         XC6D1-1A                      XC6D1-3                       
+XC6D1-4                       XC6OH1-2J                     XC6OH2-1J                     
+XC6OH2-3J                     XC6D1-1AO                     XC6D1-3O                      
+XC6D13                        XC6D13-1AR                    XC6-1O                        
+XC6-2O                        IC5Y3                         XC6KET1-1AO                   
+XC6KET1-2O                    XC6KET1-3O                    XC6KET1-4O                    
 C4H72-2CHO                    CYC6H11                       CYC6H12                       
 CYC6H10                       HEX5ENAL                      CHX1VO4J                      
 HX1N5AL6J                     HX15AL6J                      CHX1VO3OJ                     
@@ -420,31 +432,41 @@ I3C8D1-3                      I3C8D1-3O                     I2C8D3-2
 I2C8D2-4O                     I4C8D2-4                      I4C8D2-4O                     
 C7H13-1D3O                    C7H13-2D1O                    C7H14OH-1J2                   
 C7H14OH-2J1                   C7H14OH-2J3                   C7H14OH-3J2                   
-C7H14OH-3J4                   C7H14OH-4J3                   C7H13-2D4O                    
+C7H14OH-3J4                   C7H14OH-4J3                   C7H13OH1-1                    
+C7H13OH1-2                    C7H13OH2-1                    C7H13-2D4O                    
 C7H13-3D5O                    C4Y1-3OR                      C7H121-3                      
-CVCCJCVCCC                    CVCCVCCOJCC                   C7H121-4                      
-CVCCOJCVCCC                   C7H121-5                      CVCCJCCVCC                    
-CVCCOJCCVCC                   C7H121-6                      CVCCJCCCVC                    
-CVCCOJCCCVC                   IC8H18                        IC8-1R                        
-IC8-3R                        IC8-4R                        IC8-5R                        
-NEC7-4R                       I24C7-2R                      I24C7D1                       
-I24C7D2                       NEC7D3                        NEC7D4                        
-I24C7D2-4R                    IC8D3                         IC8D4                         
-IC8-1OR                       IC8-3OR                       IC8-4OR                       
-IC8-5OR                       NEC7Y4                        IC8KET1-3O                    
-IC8KET1-4O                    IC8KET3-4O                    IC8KET5-3O                    
-IC8KET5-4O                    IC6D2Y4                       I24C7D2-4OR                   
-NEC7Y4-3R                     NEC7Y4-5R                     IC8D3-1R                      
-IC8D3-5R                      IC8D3-3R                      IC8D4-1R                      
-IC8D4-5R                      I24C7D13                      I24C7D14                      
-ME133-CPTR1                   ME144-CPTENE                  ME133-CPTENE                  
-C6H5CH3                       IC8D3-5CHO                    IC8D4-5AR                     
-IC8D4-5CHO                    IC8D4-3OR                     IC8D3-5OR                     
-IC8D4-5OR                     NEC7D4-4R                     NEC7D3-4R                     
-I24C7D1-4R                    IC7D1Y5-4J                    I24C7D13Y5                    
-IC8OH3-4R                     IC8OH4-3R                     IC8OH4-5R                     
-IC8OH5-4R                     NEC7Y34                       NEC7Y34-1J                    
-IC8D3-5OH                     IC8D4-5AOH                    IC8Y3                         
+C7H121KET34O                  C7H121KET35O                  C7H121KET36O                  
+C7H121KET43O                  C7H121KET45O                  C7H121KET46O                  
+C7H121KET47O                  C7H121KET53O                  C7H121KET54O                  
+C7H121KET56O                  C7H121KET57O                  C7H121KET63O                  
+C7H121KET64O                  C7H121KET65O                  C7H121KET67O                  
+C7H121KET74O                  CVCCJCVCCC                    CVCCVCCOJCC                   
+C7H121-4                      CVCCOJCVCCC                   C7H121-5                      
+CVCCJCCVCC                    CVCCOJCCVCC                   C7H121-6                      
+CVCCJCCCVC                    CVCCOJCCCVC                   IC8H18                        
+IC8-1R                        IC8-3R                        IC8-4R                        
+IC8-5R                        NEC7-4R                       I24C7-2R                      
+I24C7D1                       I24C7D2                       NEC7D3                        
+NEC7D4                        I24C7D2-4R                    IC8D3                         
+IC8D4                         IC8-1OR                       IC8-3OR                       
+IC8-4OR                       IC8-5OR                       NEC7Y4                        
+IC8KET1-1AO                   IC8KET1-3O                    IC8KET1-4O                    
+IC8KET1-5O                    IC8KET3-1O                    IC8KET3-4O                    
+IC8KET3-5O                    IC8KET5-1O                    IC8KET5-3O                    
+IC8KET5-4O                    IC8KET5-5AO                   IC6D2Y4                       
+I24C7D2-4OR                   NEC7Y4-3R                     NEC7Y4-5R                     
+IC8D3-1R                      IC8D3-5R                      IC8D3-3R                      
+IC8D4-1R                      IC8D4-5R                      I24C7D13                      
+I24C7D14                      ME133-CPTR1                   ME144-CPTENE                  
+ME133-CPTENE                  C6H5CH3                       IC8D3-5CHO                    
+IC8D4-5AR                     IC8D4-5CHO                    IC8D4-3OR                     
+IC8D3-5OR                     IC8D4-5OR                     NEC7D4-4R                     
+NEC7D3-4R                     I24C7D1-4R                    DIB4-1OR                      
+IC7D1Y5-4J                    I24C7D13Y5                    IC8OH3-4R                     
+IC8OH4-3R                     IC8OH4-5R                     IC8OH5-4R                     
+NEC7Y3OH4-4J                  NEC7Y34                       NEC7Y34-1J                    
+IC8D4-3OH                     IC8D3-5OH                     IC8D4-5AOH                    
+IC8D3-3OH                     IC8Y3                         TC4H9COCCH2                   
 C7H11O                        C7H11O2                       I24C7D3OH1-2R                 
 I24C7D1OH4-3R                 I24C7D13-1AR                  I24C7D13-1AOR                 
 I24C7D13Y1A                   IC6D34-2R                     I24C7D13Y1A-1AR               
@@ -457,57 +479,65 @@ IC6D4-4R                      IC6D14O3J                     XC6D13-1OJ
 XC6D13-Y1                     XC6D13Y1J                     B13DE2M-3                     
 C4Y3OH1-2J                    DIBD4-DIMER                   RDIBD4-DIMER                  
 DIBD3-DIMER                   RDIBD3-DIMER                  DIBD34-DIMER                  
-RDIBD34-DIMER                 DIB3DIMER-OHJ                 DIB4DIMER-OHJ                 
-IC6D2T4                       IC6D2T4-1R                    C5H4CH3                       
-C5D3T1                        C#CCVCCJ                      IC7D124                       
-IC7D1T5                       ME3-IC8D4                     RME3-IC8D4                    
-ME5-IC8D4                     RME5-IC8D4                    ME5-IC8D3                     
-RME5-IC8D3                    NEOC5H11CO                    IC6D134                       
-IC6D134-1AR                   I24C7D13OH5-5AR               I24C7D13OH5                   
-IC6D34-2OR                    NC5D12Y4                      NC5D12Y4-5R                   
-I24C7D1-3R                    I24C7D1-4OR                   I24C7-1R                      
-I24C7OH1-2R                   I24C7OH2-1R                   I24C7D2-5R                    
-I24C7-3R                      I24C7OH2-3R                   I24C7OH3-2R                   
-IC6D1Y4-3R                    IC6D1Y4-3OJ                   NEC7D4-3R                     
-NEC7D3-1R                     NEC7D4-1R                     NEC7D4-3OR                    
-NEC7-3R                       NEC7-5R                       NEOC5H11CHO                   
-NEC7OH3-4R                    NEC7OH4-3R                    NEC7OH4-5R                    
-NEC7OH5-4R                    NEOC5H10CHO-1                 NEOC5H10CHO-3                 
-NEC7Y4-1R                     IC6Y4                         IC6Y4-1R                      
-IC6Y4-2R                      IC6Y4-3R                      IC6Y4-5R                      
-IC8Y3-1R                      IC8Y3-4R                      IC8Y3-5R                      
-I24C7D2-1OR                   I24C7D1-3OR                   I24C7D2-Y1                    
-I24C7D2-Y1J                   IC6D3-4R                      C8H18-223                     
-C8H17223-1                    C8H17223-3                    C8H17223-4                    
-C8H17223-5                    C8H17223-6                    C7-23-2                       
-C7-223-4                      C7-23-D1                      C7-233-1D                     
-C7-23-D2                      C8H16223-3                    C8H16223-5                    
-C8H16223-4                    RC7H13                        IBC7H13                       
-C8H152233-1                   C8H152233-5                   C8H152233-6                   
-C8H152234-1                   C8H152234-6                   C8H152235-1                   
-C8H152235-5                   C8223OH3-4J                   C8223OH4-3J                   
-C8223OH4-5J                   C8223OH5-4J                   C8223OH3-6J                   
-C8223OH6-3J                   C7-23-D24                     C6-22-3D4                     
-C8H152233-5O                  C8H152234-3O                  C8H152233-6O                  
-C8H152235-4O                  C8H152233-1O                  C8H152234-1O                  
-C8H152234-6O                  C8H152235-1O                  C8H152235-5O                  
-C7-22-3D3                     C7-233-1OD4                   C8H14223-D45                  
-C8H14223-D45R                 C8H17223-1O                   C8H17223-3O                   
-C8H17223-4O                   C8H17223-5O                   C8H17223-6O                   
-TC4H9COCH3                    C7-223O4                      C7-23-21D                     
-C6-22-31O                     C7-223-41O                    C7-22-31O                     
-C7-23-24O                     C7-223-44O                    C7-23-25O                     
-C7-22-35O                     C7-23-26O                     TC4H9COC2H5                   
+RDIBD34-DIMER                 IC6D3OH1-2R                   IC6OH2D3-1R                   
+DIB3DIMER-OHJ                 DIB4DIMER-OHJ                 IC6D2T4                       
+IC6D2T4-1R                    C5H4CH3                       C5D3T1                        
+C#CCVCCJ                      IC7D124                       IC7D1T5                       
+ME3-IC8D4                     RME3-IC8D4                    ME5-IC8D4                     
+RME5-IC8D4                    ME5-IC8D3                     RME5-IC8D3                    
+NEOC5H11CO                    IC6D24-4R                     DMCPD                         
+IC6D134                       IC6D134-1AR                   I24C7D13OH5-5AR               
+I24C7D13OH5                   IC6D34-2OR                    NC5D12Y4                      
+NC5D12Y4-5R                   I24C7D1-3R                    I24C7D1-4OR                   
+I24C7-1R                      I24C7OH1-2R                   I24C7OH2-1R                   
+I24C7D2-5R                    I24C7-3R                      I24C7OH2-3R                   
+I24C7OH3-2R                   IC6D1Y4-3R                    IC6D1Y4-3OJ                   
+NEC7D4-3R                     NEC7D3-1R                     NEC7D4-1R                     
+NEC7D4-3OR                    NEC7-3R                       NEC7-5R                       
+NEOC5H11CHO                   NEC7OH3-4R                    NEC7OH4-3R                    
+NEC7OH4-5R                    NEC7OH5-4R                    NEOC5H10CHO-1                 
+NEOC5H10CHO-3                 NEC7Y4-1R                     IC6Y4                         
+IC6Y4-1R                      IC6Y4-2R                      IC6Y4-3R                      
+IC6Y4-5R                      IC8Y3-1R                      IC8Y3-4R                      
+IC8Y3-5R                      I24C7D2-1OR                   I24C7D1-3OR                   
+I24C7D2-Y1                    I24C7D2-Y1J                   IC6D3-4R                      
+C8H18-223                     C8H17223-1                    C8H17223-3                    
+C8H17223-4                    C8H17223-5                    C8H17223-6                    
+C7-23-2                       C7-223-4                      C7-23-D1                      
+C7-233-1D                     C7-23-D2                      C8H16223-3                    
+C8H16223-5                    C8H16223-4                    RC7H13                        
+IBC7H13                       C8H152233-1                   C8H152233-5                   
+C8H152233-6                   C8H152234-1                   C8H152234-6                   
+C8H152235-1                   C8H152235-5                   C8223OH3-4J                   
+C8223OH4-3J                   C8223OH4-5J                   C8223OH5-4J                   
+C8223OH3-6J                   C8223OH6-3J                   C7-23-D24                     
+C6-22-3D4                     C8H152233-5O                  C8H152234-3O                  
+C8H152233-6O                  C8H152235-4O                  C8H152233-1O                  
+C8H152234-1O                  C8H152234-6O                  C8H152235-1O                  
+C8H152235-5O                  C7-22-3D3                     C7-233-1OD4                   
+C8H14223-D45                  C8H14223-D45R                 C8H17223-1O                   
+C8H17223-3O                   C8H17223-4O                   C8H17223-5O                   
+C8H17223-6O                   TC4H9COCH3                    C7-223O4                      
+C8223KETO1-1                  C7-23-21D                     C8223KETO1-3                  
+C8223KETO1-4                  C6-22-31O                     C8223KETO1-5                  
+C7-223-41O                    C8223KETO1-6                  C7-22-31O                     
+C8223KETO4-1                  C7-23-24O                     C8223KETO4-3                  
+C8223KETO4-5                  C7-223-44O                    C8223KETO4-6                  
+C8223KETO5-1                  C7-23-25O                     C8223KETO5-3                  
+C8223KETO5-4                  C8223KETO5-6                  C7-22-35O                     
+C8223KETO6-1                  C7-23-26O                     C8223KETO6-3                  
+TC4H9COC2H5                   C8223KETO6-4                  C8223KETO6-5                  
 C7-223-45O                    C7-23-4OD2                    C7-23-5OD2                    
 TC4H9COCH2                    TC4H8COCH3                    TC4H8COC2H5                   
-TC4H9COC2H4P                  TC4H9COC2H4S                  C8H18-234                     
-C8H17234-A                    C8H17234-B                    C8H17234-C                    
-C8H17234-F                    C7H1523-D                     C7H1423-D                     
-C7H1423-C                     C8H16234-A                    C8H16234-B                    
-C8H16234-F                    C7H1323A-E                    C8H15234A-A                   
-C8H15234A-C                   C8H15234A-D                   C8H15234A-E                   
-C8H15234A-F                   C8H15234B-D                   C8H15234B-E                   
-C8H15234B-F                   C8H15234F-A                   C8234AOHBJ                    
+TC4H9COC2H4P                  TC4H9COC2H4S                  C7-223-4OD3                   
+C7-223-34O                    C8H18-234                     C8H17234-A                    
+C8H17234-B                    C8H17234-C                    C8H17234-F                    
+C7H1523-D                     C7H1423-D                     C7H1423-C                     
+C8H16234-A                    C8H16234-B                    C8H16234-F                    
+C7H1323A-E                    C8H15234A-A                   C8H15234A-C                   
+C8H15234A-D                   C8H15234A-E                   C8H15234A-F                   
+C8H15234B-D                   C8H15234B-E                   C8H15234B-F                   
+C8H15234F-A                   C8234AOHBJ                    CH3CODC5H11                   
 C7H1223-DCD                   C7H1223-DAC                   C7H1223-DAD                   
 C7H1224-DBC                   C7H1223-DDF                   C8H15234A-AO                  
 C8H15234A-CO                  C8H15234C-EO                  C8H15234B-DO                  
@@ -516,7 +546,10 @@ C8H15234A-FO                  C8H15234B-EO                  C8H15234F-AO
 C7H1323A-D                    C7H1324B-C                    C7H1323F-D                    
 C8H14234-DAC                  C8H14234-DAF                  C8H14234-DAD                  
 C8H17234-AO                   C8H17234-BO                   C8H17234-CO                   
-C8H17234-FO                   NC8H18                        C8H17-1                       
+C8H17234-FO                   C8234KETOA-A                  C8234KETOA-B                  
+C8234KETOA-C                  C8234KETOA-D                  C8234KETOA-E                  
+C8234KETOA-F                  C8234KETOF-A                  C8234KETOF-B                  
+C8234KETOF-C                  NC8H18                        C8H17-1                       
 C8H17-2                       C8H17-3                       C8H17-4                       
 NC12H26                       C12H25-1                      C12H25-2                      
 C12H25-3                      C12H25-4                      C12H25-5                      
@@ -550,11 +583,17 @@ NC6H13CHO                     NC6H13CO                      NC7H15CHO
 NC7H15CO                      NC8H17CHO                     NC8H17CO                      
 NC9H19CHO                     NC9H19CO                      NC10H21CHO                    
 NC10H21CO                     NC11H23CHO                    NC11H23CO                     
-NC12H25CHO                    NC12H25CO                     C5H11COCH2                    
-C6H13COCH2                    C7H15COCH2                    C8COC2H4P                     
-C7COC2H4P                     C6COC2H4P                     C5COC2H4P                     
-C4COC2H4P                     C7COC3H6P                     C6COC3H6P                     
-C5COC3H6P                     C4COC3H6P                     C3COC3H6P                     
+NC12H25CHO                    NC12H25CO                     C5H11COC2H3                   
+NC4H9CHCO                     C6H13COC2H3                   C5H11CHCO                     
+NC3H7CHCO                     C6H13CHCO                     C7H15CHCO                     
+C8H17CHCO                     C9H19CHCO                     C10H21CHCO                    
+C11H23CHCO                    C10H21COCH2                   C11H23COCH2                   
+C5H11COCH2                    C6H13COCH2                    C7H15COCH2                    
+C8H17COCH2                    C9H19COCH2                    NC3H7COC2H3                   
+NC4H9COC2H3                   C8COC2H4P                     C7COC2H4P                     
+C6COC2H4P                     C5COC2H4P                     C4COC2H4P                     
+C7COC3H6P                     C6COC3H6P                     C5COC3H6P                     
+C4COC3H6P                     C3COC3H6P                     C12H25COCH2                   
 C11H24-2                      C11H23-2A                     C11H23-2B                     
 C11H23-2C                     C11H23-2D                     C11H23-2E                     
 C11H23-2F                     C11H23-2G                     C11H23-2H                     
@@ -608,52 +647,12 @@ C14H13                        O-O2C6H4CH3                   OC6H4CH2
 C16H10                        TETRALIN                      RTETRALIN                     
 BZFUR                         RTETRAOO                      DIBZFUR                       
 RDECALIN                      DECALIN                       ODECAL                        
-RODECA                        C10H15                        CH3C10H6O-A                   
+RODECA                        C10H16                        C10H15                        
+RMCYC6                        MCYC6                         CH3C10H6O-A                   
 CH3C10H6O-B                   C10H7CH2OOH-A                 C10H7CH2OOH-B                 
 C12H7                         C16H9                         C18H9                         
 CH3C10H6OH-A                  CH3C10H6OH-B                  BIN1A                         
 BIN1B                         
-! AUTOMATIC PRUNING ! HO2CH2CHO                     CHOCOHCH3                     CH2CH2OCH2CH2CHO              
-! AUTOMATIC PRUNING ! CH3COCH2OCH2CH2               C5H81KET34O                   C5H81KET35O                   
-! AUTOMATIC PRUNING ! C5H81KET43O                   C5H81KET45O                   C5H81KET54O                   
-! AUTOMATIC PRUNING ! C5H82KET41O                   C5H82KET51O                   C5H9OH1-3                     
-! AUTOMATIC PRUNING ! C5H9OH1-4                     C5H9OH2-3                     C5H9OH3-2                     
-! AUTOMATIC PRUNING ! C5H9OH3-1                     CH3COCOHCH2                   CJVCC(C)VO                    
-! AUTOMATIC PRUNING ! C2H5COOH                      NC6D1KET34O                   NC6D1KET35O                   
-! AUTOMATIC PRUNING ! NC6D1KET36O                   NC6D1KET43O                   NC6D1KET45O                   
-! AUTOMATIC PRUNING ! NC6D1KET46O                   NC6D1KET53O                   NC6D1KET54O                   
-! AUTOMATIC PRUNING ! NC6D1KET56O                   NC6D1KET64O                   NC6D1KET65O                   
-! AUTOMATIC PRUNING ! IC3H7CHCO                     NEC6KET4-1O                   XC6KET1-1AO                   
-! AUTOMATIC PRUNING ! XC6KET1-2O                    XC6KET1-3O                    XC6KET1-4O                    
-! AUTOMATIC PRUNING ! C7H13OH1-1                    C7H13OH1-2                    C7H13OH2-1                    
-! AUTOMATIC PRUNING ! C7H121KET34O                  C7H121KET35O                  C7H121KET36O                  
-! AUTOMATIC PRUNING ! C7H121KET43O                  C7H121KET45O                  C7H121KET46O                  
-! AUTOMATIC PRUNING ! C7H121KET47O                  C7H121KET53O                  C7H121KET54O                  
-! AUTOMATIC PRUNING ! C7H121KET56O                  C7H121KET57O                  C7H121KET63O                  
-! AUTOMATIC PRUNING ! C7H121KET64O                  C7H121KET65O                  C7H121KET67O                  
-! AUTOMATIC PRUNING ! C7H121KET74O                  IC8KET1-1AO                   IC8KET1-5O                    
-! AUTOMATIC PRUNING ! IC8KET3-1O                    IC8KET3-5O                    IC8KET5-1O                    
-! AUTOMATIC PRUNING ! IC8KET5-5AO                   DIB4-1OR                      NEC7Y3OH4-4J                  
-! AUTOMATIC PRUNING ! IC8D4-3OH                     IC8D3-3OH                     TC4H9COCCH2                   
-! AUTOMATIC PRUNING ! IC6D3OH1-2R                   IC6OH2D3-1R                   IC6D24-4R                     
-! AUTOMATIC PRUNING ! DMCPD                         C8223KETO1-1                  C8223KETO1-3                  
-! AUTOMATIC PRUNING ! C8223KETO1-4                  C8223KETO1-5                  C8223KETO1-6                  
-! AUTOMATIC PRUNING ! C8223KETO4-1                  C8223KETO4-3                  C8223KETO4-5                  
-! AUTOMATIC PRUNING ! C8223KETO4-6                  C8223KETO5-1                  C8223KETO5-3                  
-! AUTOMATIC PRUNING ! C8223KETO5-4                  C8223KETO5-6                  C8223KETO6-1                  
-! AUTOMATIC PRUNING ! C8223KETO6-3                  C8223KETO6-4                  C8223KETO6-5                  
-! AUTOMATIC PRUNING ! C7-223-4OD3                   C7-223-34O                    CH3CODC5H11                   
-! AUTOMATIC PRUNING ! C8234KETOA-A                  C8234KETOA-B                  C8234KETOA-C                  
-! AUTOMATIC PRUNING ! C8234KETOA-D                  C8234KETOA-E                  C8234KETOA-F                  
-! AUTOMATIC PRUNING ! C8234KETOF-A                  C8234KETOF-B                  C8234KETOF-C                  
-! AUTOMATIC PRUNING ! C5H11COC2H3                   NC4H9CHCO                     C6H13COC2H3                   
-! AUTOMATIC PRUNING ! C5H11CHCO                     NC3H7CHCO                     C6H13CHCO                     
-! AUTOMATIC PRUNING ! C7H15CHCO                     C8H17CHCO                     C9H19CHCO                     
-! AUTOMATIC PRUNING ! C10H21CHCO                    C11H23CHCO                    C10H21COCH2                   
-! AUTOMATIC PRUNING ! C11H23COCH2                   C8H17COCH2                    C9H19COCH2                    
-! AUTOMATIC PRUNING ! NC3H7COC2H3                   NC4H9COC2H3                   C12H25COCH2                   
-! AUTOMATIC PRUNING ! C10H16                        RMCYC6                        MCYC6                         
-! AUTOMATIC PRUNING ! 
 !+++++++++++++++++++++ 
 !\END_SPECIES_MODULE: ALL 
 !+++++++++++++++++++++ 
@@ -1935,23 +1934,23 @@ O2+C2H4O2H=C2-OOQOOH    7.95E+29    -5.56   5.91E+03    !\Author: PW !\Ref: anal
     PLOG/1.0E1  1.08E+37    -7.95E+00   7.525E3/
     PLOG/3.0E1  7.95E+33    -6.88E+00   6.913E3/
     PLOG/1.0E2  7.95E+29    -5.56E+00   5.909E3/
-! AUTOMATIC PRUNING ! C2-OOQOOH=>HO2CH2CHO+OH    2.47E+12    -2.40E-01    2.80E+04!1.0E12  0.0     2.85E4
-! AUTOMATIC PRUNING ! !C2-OQOOH=>OH+CH2O+HCO    2.0E+15   0.00    42500
-! AUTOMATIC PRUNING ! !C2H4O2H=>CH2OH+CH2O    2.0E13 0.0 2.75E4
-! AUTOMATIC PRUNING ! 
-! AUTOMATIC PRUNING ! !===========================================================================================================
-! AUTOMATIC PRUNING ! !\SUBSPECIES: C2H5O2H
-! AUTOMATIC PRUNING ! !===========================================================================================================
-! AUTOMATIC PRUNING ! !___________________________________________________________________________________________________________ 
-! AUTOMATIC PRUNING ! !\REACTIONCLASS: RH+R_ABSTRACTION
-! AUTOMATIC PRUNING ! !___________________________________________________________________________________________________________ 
-! AUTOMATIC PRUNING ! !C2H5O2+HO2<=>C2H5O2H+O2                           +1.05000000E+010 +0.00000000E+000 -3.27500000E+003 !\Author: WARNING !\Ref: TSANG, JPC REF. DATA, 16 !\Comment: WARNING 
-! AUTOMATIC PRUNING ! !C2H5O2+CH2O<=>C2H5O2H+HCO                         +1.99000000E+012 +0.00000000E+000 +1.16600000E+004 !\Author: WARNING !\Ref: TSANG AND HAMPSON, J. PHYS. CHEM. REF. DATA, 15 !\Comment: WARNING 
-! AUTOMATIC PRUNING ! !C2H5O2+CH4<=>C2H5O2H+CH3                          +1.24000000E+001 +3.69000000E+000 +2.13000000E+004 !\Author: SP !\Ref: H-H CARSTENSEN, A.M. DEAN, O. DEUTSCHMANN, PROC. COMBUST. INST. 31(2007) 149-157 !\Comment: WARNING 
-! AUTOMATIC PRUNING ! !C2H5O2+CH3OH<=>C2H5O2H+CH2OH                      +1.81000000E+012 +0.00000000E+000 +1.37100000E+004 !\Author: WARNING !\Ref: TSANG, JPC REF. DATA, 16 !\Comment: WARNING 
-! AUTOMATIC PRUNING ! !C2H5O2+H2<=>C2H5O2H+H                             +1.50000000E+014 +0.00000000E+000 +2.60300000E+004 !\Author: WARNING !\Ref: TSANG & HAMPSON, METHANE, J. PHYS. CHEM. REF. DATA, VOL 15, 1986 !\Comment: WARNING 
-! AUTOMATIC PRUNING ! !C2H5O2+H2O2<=>C2H5O2H+HO2                           +2.41000000E+012 +0.00000000E+000 +9.93600000E+003 !\Author: WARNING !\Ref: !REF !\Comment: ADDED 29 / 07 / 2015 
-! AUTOMATIC PRUNING ! !C2H5O2H+HO2<=>C2H5O2+H2O2            7.1E-3 4.517 11.58E3 !CH2O+HO2 EA+5 KCAL
+C2-OOQOOH=>HO2CH2CHO+OH    2.47E+12    -2.40E-01    2.80E+04!1.0E12  0.0     2.85E4
+!C2-OQOOH=>OH+CH2O+HCO    2.0E+15   0.00    42500
+!C2H4O2H=>CH2OH+CH2O    2.0E13 0.0 2.75E4
+
+!===========================================================================================================
+!\SUBSPECIES: C2H5O2H
+!===========================================================================================================
+!___________________________________________________________________________________________________________ 
+!\REACTIONCLASS: RH+R_ABSTRACTION
+!___________________________________________________________________________________________________________ 
+!C2H5O2+HO2<=>C2H5O2H+O2                           +1.05000000E+010 +0.00000000E+000 -3.27500000E+003 !\Author: WARNING !\Ref: TSANG, JPC REF. DATA, 16 !\Comment: WARNING 
+!C2H5O2+CH2O<=>C2H5O2H+HCO                         +1.99000000E+012 +0.00000000E+000 +1.16600000E+004 !\Author: WARNING !\Ref: TSANG AND HAMPSON, J. PHYS. CHEM. REF. DATA, 15 !\Comment: WARNING 
+!C2H5O2+CH4<=>C2H5O2H+CH3                          +1.24000000E+001 +3.69000000E+000 +2.13000000E+004 !\Author: SP !\Ref: H-H CARSTENSEN, A.M. DEAN, O. DEUTSCHMANN, PROC. COMBUST. INST. 31(2007) 149-157 !\Comment: WARNING 
+!C2H5O2+CH3OH<=>C2H5O2H+CH2OH                      +1.81000000E+012 +0.00000000E+000 +1.37100000E+004 !\Author: WARNING !\Ref: TSANG, JPC REF. DATA, 16 !\Comment: WARNING 
+!C2H5O2+H2<=>C2H5O2H+H                             +1.50000000E+014 +0.00000000E+000 +2.60300000E+004 !\Author: WARNING !\Ref: TSANG & HAMPSON, METHANE, J. PHYS. CHEM. REF. DATA, VOL 15, 1986 !\Comment: WARNING 
+!C2H5O2+H2O2<=>C2H5O2H+HO2                           +2.41000000E+012 +0.00000000E+000 +9.93600000E+003 !\Author: WARNING !\Ref: !REF !\Comment: ADDED 29 / 07 / 2015 
+!C2H5O2H+HO2<=>C2H5O2+H2O2            7.1E-3 4.517 11.58E3 !CH2O+HO2 EA+5 KCAL
 NC3H7O2H+HO2<=>NC3H7O2+H2O2            7.1E-3 4.517 11.58E3 !CH2O+HO2 EA+5 KCAL
 IC3H7O2H+HO2<=>IC3H7O2+H2O2            7.1E-3 4.517 11.58E3 !CH2O+HO2 EA+5 KCAL
 
@@ -7217,11 +7216,11 @@ IC3H5OH+HO2=SC3H4OH+H2O2    7.71E-2 4.4 1.3547E4
 !\Author: WARNING !\Ref: J. MENDES, C-W ZHOU, AND H. J. CURRAN. JPCA, 2014, 118, 12089-12104. !\Comment: WARNING
 TC3H6OH+O2=CH3COCH3+HO2    2.23E13 0.0 0.0E0
 !\Author: WARNING !\Ref: WARNING !\Comment: WARNING
-! AUTOMATIC PRUNING ! CHOCOHCH3+OH=>CH3CHCO+OH+H2O    6.13299E4 2.65 -4.5864E3
-! AUTOMATIC PRUNING ! !___________________________________________________________________________________________________________
-! AUTOMATIC PRUNING ! !\REACTIONCLASS: RO2(=)ALKENE+HO2
-! AUTOMATIC PRUNING ! !___________________________________________________________________________________________________________
-! AUTOMATIC PRUNING ! !\Author: WARNING !\Ref: BALLA ET AL., CHEM. PHYSICS, 99, 323(1985) !\Comment: WARNING
+CHOCOHCH3+OH=>CH3CHCO+OH+H2O    6.13299E4 2.65 -4.5864E3
+!___________________________________________________________________________________________________________
+!\REACTIONCLASS: RO2(=)ALKENE+HO2
+!___________________________________________________________________________________________________________
+!\Author: WARNING !\Ref: BALLA ET AL., CHEM. PHYSICS, 99, 323(1985) !\Comment: WARNING
 IC3H7O+O2=CH3COCH3+HO2    9.09E9 0.0 3.9E2
 !----------------------------------------------------------------------------------------------------------------------------------
 !\ENDSUBMECH: IC3H7OH
@@ -16452,8 +16451,8 @@ NC5KET31O=C2H5COCH2+CH2O            2.9000E+12  0.38000     11080.00
 ! R4395
 OCH2CHO=CH2O+HCO                    2.9000E+12  0.38000     11080.00
 ! R4396
-! AUTOMATIC PRUNING ! CH2CH2OCH2CH2CHO=>CH2O+C2H4+CH2CHO   1.6000E+13  0.00000     25500.00
-! AUTOMATIC PRUNING ! ! R4411
+CH2CH2OCH2CH2CHO=>CH2O+C2H4+CH2CHO   1.6000E+13  0.00000     25500.00
+! R4411
 CH2O+PC4H9=C5H11O-1                 5.0000E+10  0.00000      3457.00
 ! R4412
 CH3CHO+NC3H7=C5H11O-2               3.3300E+10  0.00000      6397.00
@@ -16670,11 +16669,11 @@ IC5KETDBO=CH3COCH3+CH2CHO    2.9E12 0.38 1.108E4
 !\Author: WARNING !\Ref: O. HERBINET ET AL. COMBUST. FLAME 2012, 159, 3455-3471 !\Comment: WARNING
 IC5KETDCO=IC3H7CHO+HCO    2.9E12 0.38 1.108E4
 !\Author: WARNING !\Ref: WARNING NO REFERENCE !\Comment: WARNING
-! AUTOMATIC PRUNING ! CH3COCH2OCH2CH2=>CH2O+C2H4+CH3CO    1.6E13 0.0 2.55E4
-! AUTOMATIC PRUNING ! !___________________________________________________________________________________________________________
-! AUTOMATIC PRUNING ! !\REACTIONCLASS: RO_DECOMPOSITION
-! AUTOMATIC PRUNING ! !___________________________________________________________________________________________________________
-! AUTOMATIC PRUNING ! !\Author: WARNING !\Ref: WARNING NO REFERENCE !\Comment: WARNING
+CH3COCH2OCH2CH2=>CH2O+C2H4+CH3CO    1.6E13 0.0 2.55E4
+!___________________________________________________________________________________________________________
+!\REACTIONCLASS: RO_DECOMPOSITION
+!___________________________________________________________________________________________________________
+!\Author: WARNING !\Ref: WARNING NO REFERENCE !\Comment: WARNING
 CH2O+SC4H9=AC5H11O    5.0E10 0.0 2.33E3
 !\Author: WARNING !\Ref: WARNING NO REFERENCE !\Comment: WARNING
 C2H5+CH3COCH3=BC5H11O    8.33E9 0.0 7.24E3
@@ -18870,37 +18869,37 @@ C5H81-3+OH=C2H3CHO+C2H5    1.0E12 0.0 0.0E0
 !\Author: WARNING !\Ref: WARNING NO REFERENCE !\Comment: WARNING
 C5H81-3+OH=CH3CHO+C3H5-S    1.0E12 0.0 0.0E0
 !\Author: WARNING !\Ref: WARNING !\Comment: WARNING
-! AUTOMATIC PRUNING ! C5H81KET34O=>C2H3CO+CH3CHO    2.9E12 0.38 1.108E4
-! AUTOMATIC PRUNING ! !\Author: WARNING !\Ref: WARNING !\Comment: WARNING
-! AUTOMATIC PRUNING ! C5H81KET35O=>C2H3+CH2CO+CH2O    2.9E12 0.38 1.108E4
-! AUTOMATIC PRUNING ! !\Author: WARNING !\Ref: WARNING !\Comment: WARNING
-! AUTOMATIC PRUNING ! C5H81KET43O=>C2H3CHO+CH3CO    2.9E12 0.38 1.108E4
-! AUTOMATIC PRUNING ! !\Author: WARNING !\Ref: WARNING !\Comment: WARNING
-! AUTOMATIC PRUNING ! C5H81KET45O=>C3H5-A+CO+CH2O    2.9E12 0.38 1.108E4
-! AUTOMATIC PRUNING ! !\Author: WARNING !\Ref: WARNING !\Comment: WARNING
+C5H81KET34O=>C2H3CO+CH3CHO    2.9E12 0.38 1.108E4
+!\Author: WARNING !\Ref: WARNING !\Comment: WARNING
+C5H81KET35O=>C2H3+CH2CO+CH2O    2.9E12 0.38 1.108E4
+!\Author: WARNING !\Ref: WARNING !\Comment: WARNING
+C5H81KET43O=>C2H3CHO+CH3CO    2.9E12 0.38 1.108E4
+!\Author: WARNING !\Ref: WARNING !\Comment: WARNING
+C5H81KET45O=>C3H5-A+CO+CH2O    2.9E12 0.38 1.108E4
+!\Author: WARNING !\Ref: WARNING !\Comment: WARNING
 C5H81KET53O=>C2H3CHO+CH2CHO    2.9E12 0.38 1.108E4
 !\Author: WARNING !\Ref: WARNING !\Comment: WARNING
-! AUTOMATIC PRUNING ! C5H81KET54O=>AC3H5CHO+HCO    2.9E12 0.38 1.108E4
-! AUTOMATIC PRUNING ! !\Author: WARNING !\Ref: WARNING !\Comment: WARNING
-! AUTOMATIC PRUNING ! C5H82KET41O=>C2H2+CH3CO+CH2O    2.9E12 0.38 1.108E4
-! AUTOMATIC PRUNING ! !\Author: WARNING !\Ref: WARNING !\Comment: WARNING
-! AUTOMATIC PRUNING ! C5H82KET51O=>C2H2+CH2CHO+CH2O    2.9E12 0.38 1.108E4
-! AUTOMATIC PRUNING ! !----------------------------------------------------------------------------------------------------------------------------------
-! AUTOMATIC PRUNING ! !\ENDSUBMECH: C5H81-3C5H8D14\CYC3H5CHCH2!TODO!
-! AUTOMATIC PRUNING ! !----------------------------------------------------------------------------------------------------------------------------------
-! AUTOMATIC PRUNING ! !----------------------------------------------------------------------------------------------------------------------------------
-! AUTOMATIC PRUNING ! !\SUBMECH: CC5H10BC5H10
-! AUTOMATIC PRUNING ! !\MECHCOMMENTS: KPS, 22 / 07 / 2015 REACTION CLASS \E_RADICAL_BETA_SCISSION IS EMPTY
-! AUTOMATIC PRUNING ! !\MECHCOMMENTS: KPS, 22 / 07 / 2015 WHEN COMBINING JBS PENTANE WITH CWS ISO-BUTENE KPS NOTICED THAT BOTH MECAHNISMS HAVE COMMON REACTIONS
-! AUTOMATIC PRUNING ! !\MECHCOMMENTS: FOR AC5H10 AND BOTH AUTHORS ARE USING DIFFERENT KINETIC PARAMETERS. THIS WILL HAVE TO BE DISCUSSED
-! AUTOMATIC PRUNING ! !\MECHCOMMENTS: I HAVE COMBINED JOHNS AC5H10 REACTIONS WITH CWS AND SEPERATED THEM INTO THEIR REACTION CLASSES MEANING THAT SOME REACTIONS
-! AUTOMATIC PRUNING ! !\MECHCOMMENTS: HAVE BEEN REMOVED FROM THIS SUBMECHANISM. EACH RATE CONSTANT IS COMMENTED
-! AUTOMATIC PRUNING ! !\MECHCOMMENTS: SEARCH FOR "!\\WARNING: DUPLICATED KINETICS" AT THE TOP OF THE AC5H10 SUBMECH. IT LOOKS LIKE CWS KINETICS ARE MUCH MORE DETAILED.
-! AUTOMATIC PRUNING ! !----------------------------------------------------------------------------------------------------------------------------------
-! AUTOMATIC PRUNING ! !___________________________________________________________________________________________________________
-! AUTOMATIC PRUNING ! !\REACTIONCLASS: RH(=)PRODUCTS
-! AUTOMATIC PRUNING ! !___________________________________________________________________________________________________________
-! AUTOMATIC PRUNING ! !\Author: WARNING !\Ref: WARNING NO REFERENCE !\Comment: WARNING
+C5H81KET54O=>AC3H5CHO+HCO    2.9E12 0.38 1.108E4
+!\Author: WARNING !\Ref: WARNING !\Comment: WARNING
+C5H82KET41O=>C2H2+CH3CO+CH2O    2.9E12 0.38 1.108E4
+!\Author: WARNING !\Ref: WARNING !\Comment: WARNING
+C5H82KET51O=>C2H2+CH2CHO+CH2O    2.9E12 0.38 1.108E4
+!----------------------------------------------------------------------------------------------------------------------------------
+!\ENDSUBMECH: C5H81-3C5H8D14\CYC3H5CHCH2!TODO!
+!----------------------------------------------------------------------------------------------------------------------------------
+!----------------------------------------------------------------------------------------------------------------------------------
+!\SUBMECH: CC5H10BC5H10
+!\MECHCOMMENTS: KPS, 22 / 07 / 2015 REACTION CLASS \E_RADICAL_BETA_SCISSION IS EMPTY
+!\MECHCOMMENTS: KPS, 22 / 07 / 2015 WHEN COMBINING JBS PENTANE WITH CWS ISO-BUTENE KPS NOTICED THAT BOTH MECAHNISMS HAVE COMMON REACTIONS
+!\MECHCOMMENTS: FOR AC5H10 AND BOTH AUTHORS ARE USING DIFFERENT KINETIC PARAMETERS. THIS WILL HAVE TO BE DISCUSSED
+!\MECHCOMMENTS: I HAVE COMBINED JOHNS AC5H10 REACTIONS WITH CWS AND SEPERATED THEM INTO THEIR REACTION CLASSES MEANING THAT SOME REACTIONS
+!\MECHCOMMENTS: HAVE BEEN REMOVED FROM THIS SUBMECHANISM. EACH RATE CONSTANT IS COMMENTED
+!\MECHCOMMENTS: SEARCH FOR "!\\WARNING: DUPLICATED KINETICS" AT THE TOP OF THE AC5H10 SUBMECH. IT LOOKS LIKE CWS KINETICS ARE MUCH MORE DETAILED.
+!----------------------------------------------------------------------------------------------------------------------------------
+!___________________________________________________________________________________________________________
+!\REACTIONCLASS: RH(=)PRODUCTS
+!___________________________________________________________________________________________________________
+!\Author: WARNING !\Ref: WARNING NO REFERENCE !\Comment: WARNING
 BC5H10=C4H72-2+CH3    2.4E23 -1.926 1.014E5
 !\Author: WARNING !\Ref: WARNING !\Comment: WARNING
 BC5H10=IC4H7-I1+CH3    4.3E64 -13.4 1.35E5
@@ -19959,30 +19958,30 @@ C5H9OH1-2,4=CVCCVCCOH+H    2.02E15 -0.34 4.603E4
 !DONG 0423!C5H9OH1-2,4=CCVCCVCOH+H                                 4.73E+11    0.636   42640 !BOND ENERGY OF HOC-H CLOSER TO SECONDARY THAN TO PRIMARY -) C5H91-3(=)C5H81-3+H
 !DONG 0423!REV /  2.50E+11    0.510    2620 /
 !\Author: SD !\Ref: ZHOU, CHONG-WEN, ET AL. THE JOURNAL OF PHYSICAL CHEMISTRY A 121.9(2017) !\Comment: WARNING
-! AUTOMATIC PRUNING ! C5H9OH1-3+O2=>C5H9OH1-2,4+HO2    6.06E1 3.45 3.46E4
-! AUTOMATIC PRUNING ! !\Author: SD !\Ref: VASU, SUBITH S., ET AL. THE JOURNAL OF PHYSICAL CHEMISTRY A 115.12(2011) !\Comment: SD, ANALOGY FROM C4H8-1+OH=C4H71-3+H2O
-! AUTOMATIC PRUNING ! C5H9OH1-3+OH=>C5H9OH1-2,4+H2O    2.02E6 2.2 -4.372E2
-! AUTOMATIC PRUNING ! !\Author: JP /KPS !\Ref: THIS WORK !\Comment: WB97XD /AUG-CC-PTVZ+CCSD(T) /TZ+MP2 /CBS CORRECTION
-! AUTOMATIC PRUNING ! C5H9OH1-3+H=>C5H9OH1-2,4+H2    4.533E5 2.487 2.48324E3
-! AUTOMATIC PRUNING ! !\Author: WARNING !\Ref: BEDJANIAN, YURI, AND JULIEN MORIN. THE JOURNAL OF PHYSICAL CHEMISTRY A 121.8(2017) !\Comment: WARNING
-! AUTOMATIC PRUNING ! C5H9OH1-3+O=>C5H9OH1-2,4+OH    6.47E-3 4.54 -4.6698E3
-! AUTOMATIC PRUNING ! !\Author: WARNING !\Ref: ZADOR, KLIPPENSTEIN, AND MILLER - J. PHYS. CHEM. A, 2011, 115(36), PP 10218-10225 !\Comment: WARNING
-! AUTOMATIC PRUNING ! C5H9OH1-3+HO2=>C5H9OH1-2,4+H2O2    7.82E-1 3.97 1.1702E4
-! AUTOMATIC PRUNING ! !\Author: SD !\Ref: WANG, KUN, ET AL. PHYSICAL CHEMISTRY CHEMICAL PHYSICS 17.9(2015) !\Comment: WARNING
-! AUTOMATIC PRUNING ! C5H9OH1-3+CH3=>C5H9OH1-2,4+CH4    1.694E2 3.12 5.78E3
-! AUTOMATIC PRUNING ! !\Author: SD !\Ref: ZHOU, CHONG-WEN, ET AL. THE JOURNAL OF PHYSICAL CHEMISTRY A 121.9(2017) !\Comment: WARNING
-! AUTOMATIC PRUNING ! C5H9OH1-4+O2=>C5H9OH1-4,3+HO2    6.06E1 3.45 3.46E4
-! AUTOMATIC PRUNING ! !\Author: SD !\Ref: VASU, SUBITH S., ET AL. THE JOURNAL OF PHYSICAL CHEMISTRY A 115.12(2011) !\Comment: SD, ANALOGY FROM C4H8-1+OH=C4H71-3+H2O
-! AUTOMATIC PRUNING ! C5H9OH1-4+OH=>C5H9OH1-4,3+H2O    2.02E6 2.2 -4.372E2
-! AUTOMATIC PRUNING ! !\Author: JP /KPS !\Ref: THIS WORK !\Comment: WB97XD /AUG-CC-PTVZ+CCSD(T) /TZ+MP2 /CBS CORRECTION
-! AUTOMATIC PRUNING ! C5H9OH1-4+H=>C5H9OH1-4,3+H2    4.533E5 2.487 2.48324E3
-! AUTOMATIC PRUNING ! !\Author: WARNING !\Ref: BEDJANIAN, YURI, AND JULIEN MORIN. THE JOURNAL OF PHYSICAL CHEMISTRY A 121.8(2017) !\Comment: WARNING
-! AUTOMATIC PRUNING ! C5H9OH1-4+O=>C5H9OH1-4,3+OH    6.47E-3 4.54 -4.6698E3
-! AUTOMATIC PRUNING ! !\Author: WARNING !\Ref: ZADOR, KLIPPENSTEIN, AND MILLER - J. PHYS. CHEM. A, 2011, 115(36), PP 10218-10225 !\Comment: WARNING
-! AUTOMATIC PRUNING ! C5H9OH1-4+HO2=>C5H9OH1-4,3+H2O2    7.82E-1 3.97 1.1702E4
-! AUTOMATIC PRUNING ! !\Author: SD !\Ref: WANG, KUN, ET AL. PHYSICAL CHEMISTRY CHEMICAL PHYSICS 17.9(2015) !\Comment: WARNING
-! AUTOMATIC PRUNING ! C5H9OH1-4+CH3=>C5H9OH1-4,3+CH4    1.694E2 3.12 5.78E3
-! AUTOMATIC PRUNING ! !\Author: WARNING !\Ref: GOLDSMITH, C. FRANKLIN, ET AL. PROCEEDINGS OF THE COMBUSTION INSTITUTE 33.1(2011) !\Comment: WARNING
+C5H9OH1-3+O2=>C5H9OH1-2,4+HO2    6.06E1 3.45 3.46E4
+!\Author: SD !\Ref: VASU, SUBITH S., ET AL. THE JOURNAL OF PHYSICAL CHEMISTRY A 115.12(2011) !\Comment: SD, ANALOGY FROM C4H8-1+OH=C4H71-3+H2O
+C5H9OH1-3+OH=>C5H9OH1-2,4+H2O    2.02E6 2.2 -4.372E2
+!\Author: JP /KPS !\Ref: THIS WORK !\Comment: WB97XD /AUG-CC-PTVZ+CCSD(T) /TZ+MP2 /CBS CORRECTION
+C5H9OH1-3+H=>C5H9OH1-2,4+H2    4.533E5 2.487 2.48324E3
+!\Author: WARNING !\Ref: BEDJANIAN, YURI, AND JULIEN MORIN. THE JOURNAL OF PHYSICAL CHEMISTRY A 121.8(2017) !\Comment: WARNING
+C5H9OH1-3+O=>C5H9OH1-2,4+OH    6.47E-3 4.54 -4.6698E3
+!\Author: WARNING !\Ref: ZADOR, KLIPPENSTEIN, AND MILLER - J. PHYS. CHEM. A, 2011, 115(36), PP 10218-10225 !\Comment: WARNING
+C5H9OH1-3+HO2=>C5H9OH1-2,4+H2O2    7.82E-1 3.97 1.1702E4
+!\Author: SD !\Ref: WANG, KUN, ET AL. PHYSICAL CHEMISTRY CHEMICAL PHYSICS 17.9(2015) !\Comment: WARNING
+C5H9OH1-3+CH3=>C5H9OH1-2,4+CH4    1.694E2 3.12 5.78E3
+!\Author: SD !\Ref: ZHOU, CHONG-WEN, ET AL. THE JOURNAL OF PHYSICAL CHEMISTRY A 121.9(2017) !\Comment: WARNING
+C5H9OH1-4+O2=>C5H9OH1-4,3+HO2    6.06E1 3.45 3.46E4
+!\Author: SD !\Ref: VASU, SUBITH S., ET AL. THE JOURNAL OF PHYSICAL CHEMISTRY A 115.12(2011) !\Comment: SD, ANALOGY FROM C4H8-1+OH=C4H71-3+H2O
+C5H9OH1-4+OH=>C5H9OH1-4,3+H2O    2.02E6 2.2 -4.372E2
+!\Author: JP /KPS !\Ref: THIS WORK !\Comment: WB97XD /AUG-CC-PTVZ+CCSD(T) /TZ+MP2 /CBS CORRECTION
+C5H9OH1-4+H=>C5H9OH1-4,3+H2    4.533E5 2.487 2.48324E3
+!\Author: WARNING !\Ref: BEDJANIAN, YURI, AND JULIEN MORIN. THE JOURNAL OF PHYSICAL CHEMISTRY A 121.8(2017) !\Comment: WARNING
+C5H9OH1-4+O=>C5H9OH1-4,3+OH    6.47E-3 4.54 -4.6698E3
+!\Author: WARNING !\Ref: ZADOR, KLIPPENSTEIN, AND MILLER - J. PHYS. CHEM. A, 2011, 115(36), PP 10218-10225 !\Comment: WARNING
+C5H9OH1-4+HO2=>C5H9OH1-4,3+H2O2    7.82E-1 3.97 1.1702E4
+!\Author: SD !\Ref: WANG, KUN, ET AL. PHYSICAL CHEMISTRY CHEMICAL PHYSICS 17.9(2015) !\Comment: WARNING
+C5H9OH1-4+CH3=>C5H9OH1-4,3+CH4    1.694E2 3.12 5.78E3
+!\Author: WARNING !\Ref: GOLDSMITH, C. FRANKLIN, ET AL. PROCEEDINGS OF THE COMBUSTION INSTITUTE 33.1(2011) !\Comment: WARNING
 C5H9OH1-4,3+HO2=C5H9OH1-4,3O+OH    1.64E4 2.74 1.1444E3
     PLOG/1.0E-2 1.02E13 -1.58E-1 -1.417E3/
     PLOG/1.0E-1 4.98E14 -6.42E-1 -3.491E2/
@@ -20025,46 +20024,46 @@ C5H9OH2-2+HO2=>NC52ONE-3+H+H2O2    7.82E-1 3.97 1.1702E4
 !\Author: SD !\Ref: WANG, KUN, ET AL. PHYSICAL CHEMISTRY CHEMICAL PHYSICS 17.9(2015) !\Comment: WARNING
 C5H9OH2-2+CH3=>NC52ONE-3+H+CH4    1.694E2 3.12 5.78E3
 !\Author: WARNING !\Ref: ZHOU, CHONG-WEN, ET AL. THE JOURNAL OF PHYSICAL CHEMISTRY A 121.9(2017) !\Comment: WARNING
-! AUTOMATIC PRUNING ! C5H9OH2-3+O2=>NC52ONE-3+H+HO2    3.03E1 3.45 3.36E4
-! AUTOMATIC PRUNING ! !\Author: WARNING !\Ref: VASU, SUBITH S., ET AL. THE JOURNAL OF PHYSICAL CHEMISTRY A 115.12(2011) !\Comment: SD, ANALOGY FROM C4H8-1+OH=C4H71-3+H2O
-! AUTOMATIC PRUNING ! C5H9OH2-3+OH=>NC52ONE-3+H+H2O    1.01E6 2.2 -1.4372E3
-! AUTOMATIC PRUNING ! !\Author: WARNING !\Ref: THIS WORK !\Comment: WB97XD / AUG-CC-PTVZ+CCSD(T) / TZ+MP2 / CBS CORRECTION
-! AUTOMATIC PRUNING ! C5H9OH2-3+H=>NC52ONE-3+H+H2    2.266E5 2.487 1.48324E3
-! AUTOMATIC PRUNING ! !\Author: WARNING !\Ref: BEDJANIAN, YURI, AND JULIEN MORIN. THE JOURNAL OF PHYSICAL CHEMISTRY A 121.8(2017) !\Comment: WARNING
-! AUTOMATIC PRUNING ! C5H9OH2-3+O=>NC52ONE-3+H+OH    3.235E-3 4.54 -5.6698E3
-! AUTOMATIC PRUNING ! !\Author: WARNING !\Ref: ZADOR, KLIPPENSTEIN, AND MILLER - J. PHYS. CHEM. A, 2011, 115(36), PP 10218-10225 !\Comment: WARNING
-! AUTOMATIC PRUNING ! C5H9OH2-3+HO2=>NC52ONE-3+H+H2O2    3.91E-1 3.97 1.0702E4
-! AUTOMATIC PRUNING ! !\Author: WARNING !\Ref: WANG, KUN, ET AL. PHYSICAL CHEMISTRY CHEMICAL PHYSICS 17.9(2015) !\Comment: WARNING
-! AUTOMATIC PRUNING ! C5H9OH2-3+CH3=>NC52ONE-3+H+CH4    8.47E1 3.12 4.78E3
-! AUTOMATIC PRUNING ! !\Author: WARNING !\Ref: ZHOU, CHONG-WEN, ET AL. THE JOURNAL OF PHYSICAL CHEMISTRY A 121.9(2017) !\Comment: WARNING
-! AUTOMATIC PRUNING ! C5H9OH3-2+O2=>NC53ONE-1+H+HO2    3.87E1 3.52 3.62E4
-! AUTOMATIC PRUNING ! !\Author: SD !\Ref: ANALOGY FROM C3H6+OH(=)C3H5-A+H2O !\Comment: WARNING
-! AUTOMATIC PRUNING ! C5H9OH3-2+OH=>NC53ONE-1+H+H2O    4.46E6 2.072 1.0508E3
-! AUTOMATIC PRUNING ! !\Author: JP /KPS !\Ref: THIS WORK !\Comment: WB97XD /AUG-CC-PTVZ+CCSD(T) /TZ+MP2 /CBS CORRECTION
-! AUTOMATIC PRUNING ! C5H9OH3-2+H=>NC53ONE-1+H+H2    1.059E4 2.98 3.3779E3
-! AUTOMATIC PRUNING ! !\Author: SD !\Ref: BEDJANIAN, YURI, AND JULIEN MORIN. THE JOURNAL OF PHYSICAL CHEMISTRY A 121.8(2017) !\Comment: WARNING
-! AUTOMATIC PRUNING ! C5H9OH3-2+O=>NC53ONE-1+H+OH    9.68E-3 4.54 -2.4698E3
-! AUTOMATIC PRUNING ! !\Author: WARNING !\Ref: ZADOR, KLIPPENSTEIN, AND MILLER - J. PHYS. CHEM. A, 2011, 115(36), PP 10218-10225 !\Comment: WARNING
-! AUTOMATIC PRUNING ! C5H9OH3-2+HO2=>NC53ONE-1+H+H2O2    3.44E-1 4.0 1.2103E4
-! AUTOMATIC PRUNING ! !\Author: SD !\Ref: WANG, KUN, ET AL. PHYSICAL CHEMISTRY CHEMICAL PHYSICS 17.9(2015) !\Comment: WARNING
-! AUTOMATIC PRUNING ! C5H9OH3-2+CH3=>NC53ONE-1+H+CH4    7.89E1 3.24 7.03E3
-! AUTOMATIC PRUNING ! !\Author: WARNING !\Ref: ZHOU, CHONG-WEN, ET AL. THE JOURNAL OF PHYSICAL CHEMISTRY A 121.9(2017) !\Comment: WARNING
-! AUTOMATIC PRUNING ! C5H9OH3-1+O2=>NC53ONE-1+H+HO2    3.03E1 3.45 3.36E4
-! AUTOMATIC PRUNING ! !\Author: WARNING !\Ref: VASU, SUBITH S., ET AL. THE JOURNAL OF PHYSICAL CHEMISTRY A 115.12(2011) !\Comment: SD, ANALOGY FROM C4H8-1+OH=C4H71-3+H2O
-! AUTOMATIC PRUNING ! C5H9OH3-1+OH=>NC53ONE-1+H+H2O    1.01E6 2.2 -1.4372E3
-! AUTOMATIC PRUNING ! !\Author: WARNING !\Ref: THIS WORK !\Comment: WB97XD / AUG-CC-PTVZ+CCSD(T) / TZ+MP2 / CBS CORRECTION
-! AUTOMATIC PRUNING ! C5H9OH3-1+H=>NC53ONE-1+H+H2    2.266E5 2.487 1.48324E3
-! AUTOMATIC PRUNING ! !\Author: WARNING !\Ref: BEDJANIAN, YURI, AND JULIEN MORIN. THE JOURNAL OF PHYSICAL CHEMISTRY A 121.8(2017) !\Comment: WARNING
-! AUTOMATIC PRUNING ! C5H9OH3-1+O=>NC53ONE-1+H+OH    3.235E-3 4.54 -5.6698E3
-! AUTOMATIC PRUNING ! !\Author: WARNING !\Ref: ZADOR, KLIPPENSTEIN, AND MILLER - J. PHYS. CHEM. A, 2011, 115(36), PP 10218-10225 !\Comment: WARNING
-! AUTOMATIC PRUNING ! C5H9OH3-1+HO2=>NC53ONE-1+H+H2O2    3.91E-1 3.97 1.0702E4
-! AUTOMATIC PRUNING ! !\Author: WARNING !\Ref: WANG, KUN, ET AL. PHYSICAL CHEMISTRY CHEMICAL PHYSICS 17.9(2015) !\Comment: WARNING
-! AUTOMATIC PRUNING ! C5H9OH3-1+CH3=>NC53ONE-1+H+CH4    8.47E1 3.12 4.78E3
-! AUTOMATIC PRUNING ! !\Author: WARNING !\Ref: ESTIMATE !\Comment: WARNING
-! AUTOMATIC PRUNING ! CH3COCOHCH2+OH=>CH2CO+CH2CHO+H2O    6.25E4 2.483 4.45E2
-! AUTOMATIC PRUNING ! !\Author: WARNING !\Ref: ANALOGY TO ETHANE !\Comment: WARNING
-! AUTOMATIC PRUNING ! CH3COCOHCH2+HO2=>CH2CO+CH2CHO+H2O2    8.5E12 0.0 2.046E4
-! AUTOMATIC PRUNING ! !\Author: SD !\Ref: FROM C3H5-A+HO2=C3H5O+OH ! !KUKKADAPU1@LLNL.GOV !\Comment: WARNING
+C5H9OH2-3+O2=>NC52ONE-3+H+HO2    3.03E1 3.45 3.36E4
+!\Author: WARNING !\Ref: VASU, SUBITH S., ET AL. THE JOURNAL OF PHYSICAL CHEMISTRY A 115.12(2011) !\Comment: SD, ANALOGY FROM C4H8-1+OH=C4H71-3+H2O
+C5H9OH2-3+OH=>NC52ONE-3+H+H2O    1.01E6 2.2 -1.4372E3
+!\Author: WARNING !\Ref: THIS WORK !\Comment: WB97XD / AUG-CC-PTVZ+CCSD(T) / TZ+MP2 / CBS CORRECTION
+C5H9OH2-3+H=>NC52ONE-3+H+H2    2.266E5 2.487 1.48324E3
+!\Author: WARNING !\Ref: BEDJANIAN, YURI, AND JULIEN MORIN. THE JOURNAL OF PHYSICAL CHEMISTRY A 121.8(2017) !\Comment: WARNING
+C5H9OH2-3+O=>NC52ONE-3+H+OH    3.235E-3 4.54 -5.6698E3
+!\Author: WARNING !\Ref: ZADOR, KLIPPENSTEIN, AND MILLER - J. PHYS. CHEM. A, 2011, 115(36), PP 10218-10225 !\Comment: WARNING
+C5H9OH2-3+HO2=>NC52ONE-3+H+H2O2    3.91E-1 3.97 1.0702E4
+!\Author: WARNING !\Ref: WANG, KUN, ET AL. PHYSICAL CHEMISTRY CHEMICAL PHYSICS 17.9(2015) !\Comment: WARNING
+C5H9OH2-3+CH3=>NC52ONE-3+H+CH4    8.47E1 3.12 4.78E3
+!\Author: WARNING !\Ref: ZHOU, CHONG-WEN, ET AL. THE JOURNAL OF PHYSICAL CHEMISTRY A 121.9(2017) !\Comment: WARNING
+C5H9OH3-2+O2=>NC53ONE-1+H+HO2    3.87E1 3.52 3.62E4
+!\Author: SD !\Ref: ANALOGY FROM C3H6+OH(=)C3H5-A+H2O !\Comment: WARNING
+C5H9OH3-2+OH=>NC53ONE-1+H+H2O    4.46E6 2.072 1.0508E3
+!\Author: JP /KPS !\Ref: THIS WORK !\Comment: WB97XD /AUG-CC-PTVZ+CCSD(T) /TZ+MP2 /CBS CORRECTION
+C5H9OH3-2+H=>NC53ONE-1+H+H2    1.059E4 2.98 3.3779E3
+!\Author: SD !\Ref: BEDJANIAN, YURI, AND JULIEN MORIN. THE JOURNAL OF PHYSICAL CHEMISTRY A 121.8(2017) !\Comment: WARNING
+C5H9OH3-2+O=>NC53ONE-1+H+OH    9.68E-3 4.54 -2.4698E3
+!\Author: WARNING !\Ref: ZADOR, KLIPPENSTEIN, AND MILLER - J. PHYS. CHEM. A, 2011, 115(36), PP 10218-10225 !\Comment: WARNING
+C5H9OH3-2+HO2=>NC53ONE-1+H+H2O2    3.44E-1 4.0 1.2103E4
+!\Author: SD !\Ref: WANG, KUN, ET AL. PHYSICAL CHEMISTRY CHEMICAL PHYSICS 17.9(2015) !\Comment: WARNING
+C5H9OH3-2+CH3=>NC53ONE-1+H+CH4    7.89E1 3.24 7.03E3
+!\Author: WARNING !\Ref: ZHOU, CHONG-WEN, ET AL. THE JOURNAL OF PHYSICAL CHEMISTRY A 121.9(2017) !\Comment: WARNING
+C5H9OH3-1+O2=>NC53ONE-1+H+HO2    3.03E1 3.45 3.36E4
+!\Author: WARNING !\Ref: VASU, SUBITH S., ET AL. THE JOURNAL OF PHYSICAL CHEMISTRY A 115.12(2011) !\Comment: SD, ANALOGY FROM C4H8-1+OH=C4H71-3+H2O
+C5H9OH3-1+OH=>NC53ONE-1+H+H2O    1.01E6 2.2 -1.4372E3
+!\Author: WARNING !\Ref: THIS WORK !\Comment: WB97XD / AUG-CC-PTVZ+CCSD(T) / TZ+MP2 / CBS CORRECTION
+C5H9OH3-1+H=>NC53ONE-1+H+H2    2.266E5 2.487 1.48324E3
+!\Author: WARNING !\Ref: BEDJANIAN, YURI, AND JULIEN MORIN. THE JOURNAL OF PHYSICAL CHEMISTRY A 121.8(2017) !\Comment: WARNING
+C5H9OH3-1+O=>NC53ONE-1+H+OH    3.235E-3 4.54 -5.6698E3
+!\Author: WARNING !\Ref: ZADOR, KLIPPENSTEIN, AND MILLER - J. PHYS. CHEM. A, 2011, 115(36), PP 10218-10225 !\Comment: WARNING
+C5H9OH3-1+HO2=>NC53ONE-1+H+H2O2    3.91E-1 3.97 1.0702E4
+!\Author: WARNING !\Ref: WANG, KUN, ET AL. PHYSICAL CHEMISTRY CHEMICAL PHYSICS 17.9(2015) !\Comment: WARNING
+C5H9OH3-1+CH3=>NC53ONE-1+H+CH4    8.47E1 3.12 4.78E3
+!\Author: WARNING !\Ref: ESTIMATE !\Comment: WARNING
+CH3COCOHCH2+OH=>CH2CO+CH2CHO+H2O    6.25E4 2.483 4.45E2
+!\Author: WARNING !\Ref: ANALOGY TO ETHANE !\Comment: WARNING
+CH3COCOHCH2+HO2=>CH2CO+CH2CHO+H2O2    8.5E12 0.0 2.046E4
+!\Author: SD !\Ref: FROM C3H5-A+HO2=C3H5O+OH ! !KUKKADAPU1@LLNL.GOV !\Comment: WARNING
 HOCH2COCH2+HO2=HOCH2COCH2O+OH    8.05E17 -1.503 4.82E3
 !----------------------------------------------------------------------------------------------------------------------------------
 !\ENDSUBMECH: NC5H11OH
@@ -21455,12 +21454,12 @@ CPN-3R=CPND3+H    8.84E11 0.69 3.6624E4
     PLOG/1.0E1 4.44E49 -1.1E1 5.08E4/
     PLOG/2.0E1 1.32E43 -9.0E0 4.8E4/
 !\Author: WARNING !\Ref: !WAGNON1@LLNL.GOV !AS C3H5-A+HO2=C3H5O+OH GOLDSMITH PROC.COMBUST.INST. 33(2011) 273-282 !\Comment: WARNING
-! AUTOMATIC PRUNING ! C5H5O+HO2=>CO+CJVCC(C)VO+OH    4.81E17 -1.228 7.798E3
-! AUTOMATIC PRUNING !     PLOG/1.0E-1 7.98E9 7.83E-1 -2.33E3/
-! AUTOMATIC PRUNING !     PLOG/1.0E0 1.01E13 -8.7E-2 -1.1E1/
-! AUTOMATIC PRUNING !     PLOG/1.0E1 1.61E18 -1.503E0 4.824E3/
-! AUTOMATIC PRUNING !     PLOG/1.0E2 4.81E17 -1.228E0 7.798E3/
-! AUTOMATIC PRUNING ! !\Author: WARNING !\Ref: WARNING !\Comment: WARNING
+C5H5O+HO2=>CO+CJVCC(C)VO+OH    4.81E17 -1.228 7.798E3
+    PLOG/1.0E-1 7.98E9 7.83E-1 -2.33E3/
+    PLOG/1.0E0 1.01E13 -8.7E-2 -1.1E1/
+    PLOG/1.0E1 1.61E18 -1.503E0 4.824E3/
+    PLOG/1.0E2 4.81E17 -1.228E0 7.798E3/
+!\Author: WARNING !\Ref: WARNING !\Comment: WARNING
 PC3H6CHCO=C5D2Y1-1R    3.8E10 0.7 2.84E4
 !\Author: WARNING !\Ref: WARNING !\Comment: WARNING
 C4H7CO1-4=C4H6CHO-4,3    3.8E10 0.7 2.84E4
@@ -21677,14 +21676,14 @@ CH3COOH=>CO+OH+CH3    7.5E15 0.0 9.16E4
 !\Author: WARNING !\Ref: WARNING !\Comment: WARNING
 CH3COOH=>CH3+CO2+H    2.5E14 0.0 8.8E4
 !\Author: WARNING !\Ref: WARNING !\Comment: WARNING
-! AUTOMATIC PRUNING ! C2H5COOH=>C2H6+CO2    1.5E13 0.0 7.0E4
-! AUTOMATIC PRUNING ! !\Author: WARNING !\Ref: WARNING !\Comment: WARNING
-! AUTOMATIC PRUNING ! C2H5COOH=>H2O+CH3CHCO    1.4E12 0.0 6.5E4
-! AUTOMATIC PRUNING ! !\Author: WARNING !\Ref: WARNING !\Comment: WARNING
-! AUTOMATIC PRUNING ! C2H5COOH=>CO+OH+C2H5    7.5E15 0.0 9.16E4
-! AUTOMATIC PRUNING ! !\Author: WARNING !\Ref: WARNING !\Comment: WARNING
-! AUTOMATIC PRUNING ! C2H5COOH=>CO2+C2H5+H    2.5E14 0.0 8.8E4
-! AUTOMATIC PRUNING ! !\Author: WARNING !\Ref: WARNING !\Comment: WARNING
+C2H5COOH=>C2H6+CO2    1.5E13 0.0 7.0E4
+!\Author: WARNING !\Ref: WARNING !\Comment: WARNING
+C2H5COOH=>H2O+CH3CHCO    1.4E12 0.0 6.5E4
+!\Author: WARNING !\Ref: WARNING !\Comment: WARNING
+C2H5COOH=>CO+OH+C2H5    7.5E15 0.0 9.16E4
+!\Author: WARNING !\Ref: WARNING !\Comment: WARNING
+C2H5COOH=>CO2+C2H5+H    2.5E14 0.0 8.8E4
+!\Author: WARNING !\Ref: WARNING !\Comment: WARNING
 C5H8D14+OH=CH2O+C4H71-3    1.0E12 0.0 0.0E0
 !\Author: WARNING !\Ref: WARNING !\Comment: WARNING
 C5H8D14+OH=C2H3CHO+C2H5    1.0E12 0.0 0.0E0
@@ -22884,42 +22883,42 @@ C6H10D14+OH=C6H9-A+H2O    3.12E6 2.0 -2.98E2
 !\Author: WARNING !\Ref: WARNING !\Comment: WARNING
 C6H10D14+HO2=C6H9-A+H2O2    1.73E-1 4.0 1.2103E4
 !\Author: WARNING !\Ref: WARNING !\Comment: WARNING
-! AUTOMATIC PRUNING ! NC6D1KET34O=>C2H3CO+C2H5CHO    2.9E12 0.38 1.108E4
-! AUTOMATIC PRUNING ! !\Author: WARNING !\Ref: WARNING !\Comment: WARNING
-! AUTOMATIC PRUNING ! NC6D1KET35O=>C2H3+CH2CO+CH3CHO    2.9E12 0.38 1.108E4
-! AUTOMATIC PRUNING ! !\Author: WARNING !\Ref: WARNING !\Comment: WARNING
-! AUTOMATIC PRUNING ! NC6D1KET36O=>C2H4+CH2O+C2H3CO    2.9E12 0.38 1.108E4
-! AUTOMATIC PRUNING ! !
-! AUTOMATIC PRUNING ! !\Author: WARNING !\Ref: WARNING !\Comment: WARNING
-! AUTOMATIC PRUNING ! NC6D1KET43O=>C2H3CHO+C2H5CO    2.9E12 0.38 1.108E4
-! AUTOMATIC PRUNING ! !\Author: WARNING !\Ref: WARNING !\Comment: WARNING
-! AUTOMATIC PRUNING ! NC6D1KET45O=>C3H5-A+CO+CH3CHO    2.9E12 0.38 1.108E4
-! AUTOMATIC PRUNING ! !\Author: WARNING !\Ref: WARNING !\Comment: WARNING
-! AUTOMATIC PRUNING ! NC6D1KET46O=>C3H5-A+CH2O+CH2CO    2.9E12 0.38 1.108E4
-! AUTOMATIC PRUNING ! !
-! AUTOMATIC PRUNING ! !\Author: WARNING !\Ref: WARNING !\Comment: WARNING
-! AUTOMATIC PRUNING ! NC6D1KET53O=>C2H3CHO+CH3COCH2    2.9E12 0.38 1.108E4
-! AUTOMATIC PRUNING ! !\Author: WARNING !\Ref: WARNING !\Comment: WARNING
-! AUTOMATIC PRUNING ! NC6D1KET54O=>AC3H5CHO+CH3CO    2.9E12 0.38 1.108E4
-! AUTOMATIC PRUNING ! !\Author: WARNING !\Ref: WARNING !\Comment: WARNING
-! AUTOMATIC PRUNING ! NC6D1KET56O=>C3H5-A+CH2CO+CH2O    2.9E12 0.38 1.108E4
-! AUTOMATIC PRUNING ! !\Author: WARNING !\Ref: WARNING !\Comment: WARNING
-! AUTOMATIC PRUNING ! !!NC6D1KET63O=>C2H3CHO+CH2CH2CHO    2.9E12 0.38 1.108E4 !! Removed, Yuki Murakami 31 March 2024, Same reaction in C6cy module
-! AUTOMATIC PRUNING ! !\Author: WARNING !\Ref: WARNING !\Comment: WARNING
-! AUTOMATIC PRUNING ! NC6D1KET64O=>AC3H5CHO+CH3CO    2.9E12 0.38 1.108E4
-! AUTOMATIC PRUNING ! !\Author: WARNING !\Ref: WARNING !\Comment: WARNING
-! AUTOMATIC PRUNING ! NC6D1KET65O=>C4H7CHO-4+HCO    2.9E12 0.38 1.108E4
-! AUTOMATIC PRUNING ! !DONG 0318, NOT PRODUCED, REMOVE!OVCCCJVO+H=OVCCCVO                                +1.00000000E+014 +0.00000000E+000 +0.00000000E+000 !\Author: WARNING !\Ref: WARNING !\Comment: WARNING
-! AUTOMATIC PRUNING ! !DONG 0318, NOT PRODUCED, REMOVE!CH2CHO+HCO=OVCCCVO                                +1.81000000E+013 +0.00000000E+000 +0.00000000E+000 !\Author: WARNING !\Ref: WARNING !\Comment: WARNING
-! AUTOMATIC PRUNING ! !DONG 0318, NOT PRODUCED, REMOVE!OVCCCVO+O2=OVCCCJVO+HO2                           +1.80000000E+016 +0.00000000E+000 +4.38440000E+004 !\Author: WARNING !\Ref: WARNING !\Comment: WARNING
-! AUTOMATIC PRUNING ! !DONG 0318, NOT PRODUCED, REMOVE!OVCCCVO+H=OVCCCJVO+H2                             +2.62000000E+005 +2.58000000E+000 +1.22000000E+003 !\Author: WARNING !\Ref: WARNING !\Comment: WARNING
-! AUTOMATIC PRUNING ! !DONG 0318, NOT PRODUCED, REMOVE!OVCCCVO+O=OVCCCJVO+OH                             +1.19000000E+013 +0.00000000E+000 +1.86800000E+003 !\Author: WARNING !\Ref: WARNING !\Comment: WARNING
-! AUTOMATIC PRUNING ! !DONG 0318, NOT PRODUCED, REMOVE!OVCCCVO+OH=OVCCCJVO+H2O                           +7.46000000E+004 +2.60000000E+000 -2.30000000E+003 !\Author: WARNING !\Ref: WARNING !\Comment: WARNING
-! AUTOMATIC PRUNING ! !DONG 0318, NOT PRODUCED, REMOVE!OVCCCVO+HO2=OVCCCJVO+H2O2                         +6.02000000E+012 +0.00000000E+000 +1.19230000E+004 !\Author: WARNING !\Ref: WARNING !\Comment: WARNING
-! AUTOMATIC PRUNING ! !DONG 0318, NOT PRODUCED, REMOVE!OVCCCVO+CH3=OVCCCJVO+CH4                          +1.42000000E-003 +4.58000000E+000 +1.96600000E+003 !\Author: WARNING !\Ref: WARNING !\Comment: WARNING
-! AUTOMATIC PRUNING ! !DONG 0318, NOT PRODUCED, REMOVE!CH2CHO+CO=OVCCCJVO                                +1.51000000E+011 +0.00000000E+000 +4.18000000E+003 !\Author: WARNING !\Ref: WARNING !\Comment: WARNING
-! AUTOMATIC PRUNING ! !DONG 0818!C6H11-1D4O=C2H5CHO+C3H5-A                         +3.13000000E+019 -1.90000000E+000 +1.06700000E+004 !\Author: WARNING !\Ref: WARNING !\Comment: WARNING
-! AUTOMATIC PRUNING ! !\Author: WARNING !\Ref: WARNING !\Comment: WARNING
+NC6D1KET34O=>C2H3CO+C2H5CHO    2.9E12 0.38 1.108E4
+!\Author: WARNING !\Ref: WARNING !\Comment: WARNING
+NC6D1KET35O=>C2H3+CH2CO+CH3CHO    2.9E12 0.38 1.108E4
+!\Author: WARNING !\Ref: WARNING !\Comment: WARNING
+NC6D1KET36O=>C2H4+CH2O+C2H3CO    2.9E12 0.38 1.108E4
+!
+!\Author: WARNING !\Ref: WARNING !\Comment: WARNING
+NC6D1KET43O=>C2H3CHO+C2H5CO    2.9E12 0.38 1.108E4
+!\Author: WARNING !\Ref: WARNING !\Comment: WARNING
+NC6D1KET45O=>C3H5-A+CO+CH3CHO    2.9E12 0.38 1.108E4
+!\Author: WARNING !\Ref: WARNING !\Comment: WARNING
+NC6D1KET46O=>C3H5-A+CH2O+CH2CO    2.9E12 0.38 1.108E4
+!
+!\Author: WARNING !\Ref: WARNING !\Comment: WARNING
+NC6D1KET53O=>C2H3CHO+CH3COCH2    2.9E12 0.38 1.108E4
+!\Author: WARNING !\Ref: WARNING !\Comment: WARNING
+NC6D1KET54O=>AC3H5CHO+CH3CO    2.9E12 0.38 1.108E4
+!\Author: WARNING !\Ref: WARNING !\Comment: WARNING
+NC6D1KET56O=>C3H5-A+CH2CO+CH2O    2.9E12 0.38 1.108E4
+!\Author: WARNING !\Ref: WARNING !\Comment: WARNING
+!!NC6D1KET63O=>C2H3CHO+CH2CH2CHO    2.9E12 0.38 1.108E4 !! Removed, Yuki Murakami 31 March 2024, Same reaction in C6cy module
+!\Author: WARNING !\Ref: WARNING !\Comment: WARNING
+NC6D1KET64O=>AC3H5CHO+CH3CO    2.9E12 0.38 1.108E4
+!\Author: WARNING !\Ref: WARNING !\Comment: WARNING
+NC6D1KET65O=>C4H7CHO-4+HCO    2.9E12 0.38 1.108E4
+!DONG 0318, NOT PRODUCED, REMOVE!OVCCCJVO+H=OVCCCVO                                +1.00000000E+014 +0.00000000E+000 +0.00000000E+000 !\Author: WARNING !\Ref: WARNING !\Comment: WARNING
+!DONG 0318, NOT PRODUCED, REMOVE!CH2CHO+HCO=OVCCCVO                                +1.81000000E+013 +0.00000000E+000 +0.00000000E+000 !\Author: WARNING !\Ref: WARNING !\Comment: WARNING
+!DONG 0318, NOT PRODUCED, REMOVE!OVCCCVO+O2=OVCCCJVO+HO2                           +1.80000000E+016 +0.00000000E+000 +4.38440000E+004 !\Author: WARNING !\Ref: WARNING !\Comment: WARNING
+!DONG 0318, NOT PRODUCED, REMOVE!OVCCCVO+H=OVCCCJVO+H2                             +2.62000000E+005 +2.58000000E+000 +1.22000000E+003 !\Author: WARNING !\Ref: WARNING !\Comment: WARNING
+!DONG 0318, NOT PRODUCED, REMOVE!OVCCCVO+O=OVCCCJVO+OH                             +1.19000000E+013 +0.00000000E+000 +1.86800000E+003 !\Author: WARNING !\Ref: WARNING !\Comment: WARNING
+!DONG 0318, NOT PRODUCED, REMOVE!OVCCCVO+OH=OVCCCJVO+H2O                           +7.46000000E+004 +2.60000000E+000 -2.30000000E+003 !\Author: WARNING !\Ref: WARNING !\Comment: WARNING
+!DONG 0318, NOT PRODUCED, REMOVE!OVCCCVO+HO2=OVCCCJVO+H2O2                         +6.02000000E+012 +0.00000000E+000 +1.19230000E+004 !\Author: WARNING !\Ref: WARNING !\Comment: WARNING
+!DONG 0318, NOT PRODUCED, REMOVE!OVCCCVO+CH3=OVCCCJVO+CH4                          +1.42000000E-003 +4.58000000E+000 +1.96600000E+003 !\Author: WARNING !\Ref: WARNING !\Comment: WARNING
+!DONG 0318, NOT PRODUCED, REMOVE!CH2CHO+CO=OVCCCJVO                                +1.51000000E+011 +0.00000000E+000 +4.18000000E+003 !\Author: WARNING !\Ref: WARNING !\Comment: WARNING
+!DONG 0818!C6H11-1D4O=C2H5CHO+C3H5-A                         +3.13000000E+019 -1.90000000E+000 +1.06700000E+004 !\Author: WARNING !\Ref: WARNING !\Comment: WARNING
+!\Author: WARNING !\Ref: WARNING !\Comment: WARNING
 C6H11-1D5O=CH3CHO+C4H71-4    2.9E12 0.4 1.108E4
 !DONG 0818!C6H11-1D6O=CH2O+C5H91-5                           +2.90000000E+012 +4.00000000E-001 +1.10800000E+004 !\Author: WARNING !\Ref: WARNING !\Comment: WARNING
 !DONG 0818!C6H11-2D5O=CH3CHO+C4H71-3                         +3.13000000E+019 -1.90000000E+000 +1.06700000E+004 !\Author: WARNING !\Ref: WARNING !\Comment: WARNING
@@ -23928,8 +23927,8 @@ IC6KET5-3O=IC3H7CHO+CH2CHO    2.9E12 0.4 1.108E4
 !\Author: WARNING !\Ref: WARNING !\Comment: WARNING
 IC6KET5-4O=HCO+DC5H10O    2.9E12 0.4 1.108E4
 !DONG 0423
-! AUTOMATIC PRUNING ! IC3H7CHCO+OH=>PC4H9+CO2    3.0E12 0.0 0.0E0
-! AUTOMATIC PRUNING ! !\Author: WARNING !\Ref: WARNING !\Comment: WARNING
+IC3H7CHCO+OH=>PC4H9+CO2    3.0E12 0.0 0.0E0
+!\Author: WARNING !\Ref: WARNING !\Comment: WARNING
 C4H8CHO4-2=CH3CHCHO+C2H4    1.33E21 -2.3 2.5084E4
 !\Author: WARNING !\Ref: WARNING !\Comment: WARNING
 CC5H9-AO=C4H71-3+CH2O    1.33E21 -2.3 2.5084E4
@@ -24605,8 +24604,8 @@ NEC6KET3-1O=IC5Y3-2J+CH2O    2.9E12 0.38 1.108E4
 !\Author: WARNING !\Ref: WARNING !\Comment: WARNING
 NEC6KET3-4O=TC4H9CO+CH2O    2.9E12 0.38 1.108E4
 !\Author: WARNING !\Ref: WARNING !\Comment: WARNING
-! AUTOMATIC PRUNING ! NEC6KET4-1O=>IC4H8+CH2O+HCO    2.9E12 0.38 1.108E4
-! AUTOMATIC PRUNING ! !\Author: WARNING !\Ref: WARNING !\Comment: WARNING
+NEC6KET4-1O=>IC4H8+CH2O+HCO    2.9E12 0.38 1.108E4
+!\Author: WARNING !\Ref: WARNING !\Comment: WARNING
 NEC6KET4-3O=TC4H9CHO+HCO    2.9E12 0.38 1.108E4
 !\Author: WARNING !\Ref: WARNING !\Comment: WARNING
 TC4H9CHO+O2=TC4H9CO+HO2    1.2E5 2.5 3.756E4
@@ -24820,14 +24819,14 @@ XC6-2O=CH3COCH3+IC3H7    2.46E18 -1.28 1.77E4
 !\Author: WARNING !\Ref: WARNING !\Comment: WARNING
 XC6-2O=CH3+IC5Y3    4.92E18 -1.28 1.77E4
 !\Author: WARNING !\Ref: WARNING !\Comment: WARNING
-! AUTOMATIC PRUNING ! XC6KET1-1AO=>DC5H9O-C+CH2O    2.9E12 0.4 1.108E4
-! AUTOMATIC PRUNING ! !\Author: WARNING !\Ref: WARNING !\Comment: WARNING
-! AUTOMATIC PRUNING ! XC6KET1-2O=>IC5Y3+HCO    2.9E12 0.4 1.108E4
-! AUTOMATIC PRUNING ! !\Author: WARNING !\Ref: WARNING !\Comment: WARNING
-! AUTOMATIC PRUNING ! XC6KET1-3O=>CH3CHCHO+CH3COCH3    2.9E12 0.4 1.108E4
-! AUTOMATIC PRUNING ! !\Author: WARNING !\Ref: WARNING !\Comment: WARNING
-! AUTOMATIC PRUNING ! XC6KET1-4O=>SC4H8CHO-3+CH2O    2.9E12 0.4 1.108E4
-! AUTOMATIC PRUNING ! !\Author: WARNING !\Ref: WARNING !\Comment: WARNING
+XC6KET1-1AO=>DC5H9O-C+CH2O    2.9E12 0.4 1.108E4
+!\Author: WARNING !\Ref: WARNING !\Comment: WARNING
+XC6KET1-2O=>IC5Y3+HCO    2.9E12 0.4 1.108E4
+!\Author: WARNING !\Ref: WARNING !\Comment: WARNING
+XC6KET1-3O=>CH3CHCHO+CH3COCH3    2.9E12 0.4 1.108E4
+!\Author: WARNING !\Ref: WARNING !\Comment: WARNING
+XC6KET1-4O=>SC4H8CHO-3+CH2O    2.9E12 0.4 1.108E4
+!\Author: WARNING !\Ref: WARNING !\Comment: WARNING
 IC5Y3+OH=IC5Y3-1J+H2O    5.52E2 3.12 -1.176E3
 !\Author: WARNING !\Ref: WARNING !\Comment: WARNING
 IC5Y3+OH=IC5Y3-2J+H2O    4.68E7 1.61 -3.5E1
@@ -26162,15 +26161,15 @@ C7H14-3+OH=C7H14OH-3J4    4.75E12 0.0 -7.82E2
 !\Author: WARNING !\Ref: WARNING !\Comment: WARNING
 C7H14-3+OH=C7H14OH-4J3    4.75E12 0.0 -7.82E2
 !\Author: SD !\Ref: S. S. VASU ET AL. J. PHYS. CHEM. A, 2011, 115, 2549?556 !\Comment: ANALOGY TO C4H8-1+OH(=)C4H71-3+H2O. DIVIDED BY 2. ALLYLIC H-ATOM ABSTRA
-! AUTOMATIC PRUNING ! C7H13OH1-1+OH=>NC3H7+C2H3+C2H2OH+H2O    1.01E6 2.2 -4.372E2
-! AUTOMATIC PRUNING ! !\Author: SD !\Ref: S. S. VASU ET AL. J. PHYS. CHEM. A, 2011, 115, 2549?556 !\Comment: ANALOGY TO C4H8-1+OH(=)C4H71-3+H2O. DIVIDED BY 2. ALLYLIC H-ATOM ABSTRA
-! AUTOMATIC PRUNING ! C7H13OH1-2+OH=>C2H5+C2H3+PC3H4OH-2+H2O    1.01E6 2.2 -4.372E2
-! AUTOMATIC PRUNING ! !\Author: SD !\Ref: S. S. VASU ET AL. J. PHYS. CHEM. A, 2011, 115, 2549?556 !\Comment: ANALOGY TO C4H8-1+OH(=)C4H71-3+H2O. DIVIDED BY 2. ALLYLIC H-ATOM ABSTRA
-! AUTOMATIC PRUNING ! C7H13OH2-1+OH=>NC3H7+C4H5-I+OH+H2O    1.01E6 2.2 -4.372E2
-! AUTOMATIC PRUNING ! !___________________________________________________________________________________________________________
-! AUTOMATIC PRUNING ! !\REACTIONCLASS: 8.ER_DECOMPOSITION!REF
-! AUTOMATIC PRUNING ! !___________________________________________________________________________________________________________
-! AUTOMATIC PRUNING ! !\Author: WARNING !\Ref: WARNING !\Comment: WARNING
+C7H13OH1-1+OH=>NC3H7+C2H3+C2H2OH+H2O    1.01E6 2.2 -4.372E2
+!\Author: SD !\Ref: S. S. VASU ET AL. J. PHYS. CHEM. A, 2011, 115, 2549?556 !\Comment: ANALOGY TO C4H8-1+OH(=)C4H71-3+H2O. DIVIDED BY 2. ALLYLIC H-ATOM ABSTRA
+C7H13OH1-2+OH=>C2H5+C2H3+PC3H4OH-2+H2O    1.01E6 2.2 -4.372E2
+!\Author: SD !\Ref: S. S. VASU ET AL. J. PHYS. CHEM. A, 2011, 115, 2549?556 !\Comment: ANALOGY TO C4H8-1+OH(=)C4H71-3+H2O. DIVIDED BY 2. ALLYLIC H-ATOM ABSTRA
+C7H13OH2-1+OH=>NC3H7+C4H5-I+OH+H2O    1.01E6 2.2 -4.372E2
+!___________________________________________________________________________________________________________
+!\REACTIONCLASS: 8.ER_DECOMPOSITION!REF
+!___________________________________________________________________________________________________________
+!\Author: WARNING !\Ref: WARNING !\Comment: WARNING
 C4H6+NC3H7=C7H131-3    1.0E11 0.0 7.8E3
 !\Author: WARNING !\Ref: WARNING !\Comment: WARNING
 C3H5-A+C4H8-1=C7H131-5    1.0E11 0.0 7.8E3
@@ -26266,53 +26265,53 @@ C7H131-3+O2=C7H121-3+HO2    3.276E-7 5.425 7.582E3
 !\Author: WARNING !\Ref: !JET SURF 2.0, ADD 2505 KWZ !\Comment: WARNING
 C7H131-4+O2=C7H121-3+HO2    1.0E11 0.0 0.0E0
 !\Author: WARNING !\Ref: WARNING !\Comment: WARNING
-! AUTOMATIC PRUNING ! C7H121KET34O=>C2H3CO+NC3H7CHO    2.9E12 0.38 1.108E4
-! AUTOMATIC PRUNING ! !\Author: WARNING !\Ref: WARNING !\Comment: WARNING
-! AUTOMATIC PRUNING ! C7H121KET35O=>C2H3+CH2CO+C2H5CHO    2.9E12 0.38 1.108E4
-! AUTOMATIC PRUNING ! !\Author: WARNING !\Ref: WARNING !\Comment: WARNING
-! AUTOMATIC PRUNING ! C7H121KET36O=>C2H4+CH3CHO+C2H3CO    2.9E12 0.38 1.108E4
-! AUTOMATIC PRUNING ! !\Author: WARNING !\Ref: WARNING !\Comment: WARNING
-! AUTOMATIC PRUNING ! C7H121KET43O=>C2H3CHO+NC3H7CO    2.9E12 0.38 1.108E4
-! AUTOMATIC PRUNING ! !\Author: WARNING !\Ref: WARNING !\Comment: WARNING
-! AUTOMATIC PRUNING ! C7H121KET45O=>C3H5-A+CO+C2H5CHO    2.9E12 0.38 1.108E4
-! AUTOMATIC PRUNING ! !\Author: WARNING !\Ref: WARNING !\Comment: WARNING
-! AUTOMATIC PRUNING ! C7H121KET46O=>C3H5-A+CH3CHO+CH2CO    2.9E12 0.38 1.108E4
-! AUTOMATIC PRUNING ! !\Author: WARNING !\Ref: WARNING !\Comment: WARNING
-! AUTOMATIC PRUNING ! C7H121KET47O=>C2H3+CH2CO+C2H4+CH2O    2.9E12 0.38 1.108E4
-! AUTOMATIC PRUNING ! !\Author: WARNING !\Ref: WARNING !\Comment: WARNING
-! AUTOMATIC PRUNING ! C7H121KET53O=>C2H3CHO+C2H5COCH2    2.9E12 0.38 1.108E4
-! AUTOMATIC PRUNING ! !\Author: WARNING !\Ref: WARNING !\Comment: WARNING
-! AUTOMATIC PRUNING ! C7H121KET54O=>AC3H5CHO+C2H5CO    2.9E12 0.38 1.108E4
-! AUTOMATIC PRUNING ! !\Author: WARNING !\Ref: WARNING !\Comment: WARNING
-! AUTOMATIC PRUNING ! C7H121KET56O=>C3H5-A+CH2CO+CH3CHO    2.9E12 0.38 1.108E4
-! AUTOMATIC PRUNING ! !\Author: WARNING !\Ref: WARNING !\Comment: WARNING
-! AUTOMATIC PRUNING ! C7H121KET57O=>C4H71-4+CH2CO+CH2O    2.9E12 0.38 1.108E4
-! AUTOMATIC PRUNING ! !\Author: WARNING !\Ref: WARNING !\Comment: WARNING
-! AUTOMATIC PRUNING ! C7H121KET63O=>C2H3CHO+CH2CH2COCH3    2.9E12 0.38 1.108E4
-! AUTOMATIC PRUNING ! !\Author: WARNING !\Ref: WARNING !\Comment: WARNING
-! AUTOMATIC PRUNING ! C7H121KET64O=>AC3H5CHO+CH3COCH2    2.9E12 0.38 1.108E4
-! AUTOMATIC PRUNING ! !\Author: WARNING !\Ref: WARNING !\Comment: WARNING
-! AUTOMATIC PRUNING ! C7H121KET65O=>C4H7CHO-4+CH3CO    2.9E12 0.38 1.108E4
-! AUTOMATIC PRUNING ! !\Author: WARNING !\Ref: WARNING !\Comment: WARNING
-! AUTOMATIC PRUNING ! C7H121KET67O=>C4H71-4+CH2CO+CH2O    2.9E12 0.38 1.108E4
-! AUTOMATIC PRUNING ! !\Author: WARNING !\Ref: WARNING !\Comment: WARNING
-! AUTOMATIC PRUNING ! C7H121KET74O=>AC3H5CHO+CH2CH2CHO    2.9E12 0.38 1.108E4
-! AUTOMATIC PRUNING ! !___________________________________________________________________________________________________________
-! AUTOMATIC PRUNING ! !\REACTIONCLASS: ALKENYL-PEROXYREACTIONPATHWAYSQOOH(=)PRODUCTS
-! AUTOMATIC PRUNING ! !___________________________________________________________________________________________________________
-! AUTOMATIC PRUNING ! !C7H121-3+O2(=)CVCCVCCJCC+HO2                      +3.87000000E+001 +3.52000000E+000 +3.62000000E+004 !\Author: WARNING !\Ref: ZHOU, CHONG-WEN, ET AL. THE JOURNAL OF PHYSICAL CHEMISTRY A 121.9(2017) !\Comment: WARNING:
-! AUTOMATIC PRUNING ! !C7H121-3+H(=)CVCCVCCJCC+H2                        +3.39900000E+005 +2.65300000E+000 +4.86869600E+003 !\Author: WARNING !\Ref: WARNING !\Comment: WARNING
-! AUTOMATIC PRUNING ! !C7H121-3+O(=)CVCCVCCJCC+OH                        +9.68000000E-003 +4.54000000E+000 -2.46980000E+003 !\Author: WARNING !\Ref: BEDJANIAN, YURI, AND JULIEN MORIN. THE JOURNAL OF PHYSICAL CHEMISTRY A 121.8(2017) !\Comment: WARNING
-! AUTOMATIC PRUNING ! !C7H121-3+OH(=)CVCCVCCJCC+H2O                      +4.46000000E+006 +2.07200000E+000 +1.05080000E+003 !\Author: WARNING !\Ref: WARNING !\Comment: WARNING
-! AUTOMATIC PRUNING ! !C7H121-3+HO2(=)CVCCVCCJCC+H2O2                    +1.72000000E-001 +4.00000000E+000 +1.21030000E+004 !\Author: WARNING !\Ref: ZADOR, KLIPPENSTEIN, AND MILLER - J. PHYS. CHEM. A, 2011, 115(36), PP 10218-10225 !\Comment: WARNINGG
-! AUTOMATIC PRUNING ! !C7H121-3+CH3=CVCCVCCJCC+CH4                       +8.99000000E+002 +2.84000000E+000 +5.77000000E+003 !\Author: WARNING !\Ref: WARNING !\Comment: WARNING
-! AUTOMATIC PRUNING ! !CVCCVCCJCC+HO2(=)CVCCVCCOJCC+OH                   +1.64000000E+004 +2.74000000E+000 +1.14440000E+003 !\Author: WARNING !\Ref: GOLDSMITH, C. FRANKLIN, ET AL. PROCEEDINGS OF THE COMBUSTION INSTITUTE 33.1(2011) !\Comment: WARNINGG
-! AUTOMATIC PRUNING ! !PLOG /                           +1.00000000E-002 +1.02000000E+013 -1.58000000E-001 -1.41700000E+003 /
-! AUTOMATIC PRUNING ! !PLOG /                           +1.00000000E-001 +4.98000000E+014 -6.42000000E-001 -3.49100000E+002 /
-! AUTOMATIC PRUNING ! !PLOG /                           +1.00000000E+000 +7.77000000E+017 -1.52000000E+000 +2.37920000E+003 /
-! AUTOMATIC PRUNING ! !PLOG /                           +1.00000000E+001 +2.93000000E+015 -6.84000000E-001 +3.61530000E+003 /
-! AUTOMATIC PRUNING ! !PLOG /                           +1.00000000E+002 +1.64000000E+004 +2.74000000E+000 +1.14440000E+003 /
-! AUTOMATIC PRUNING ! !\Author: WARNING !\Ref: ZHOU, CHONG-WEN, ET AL. THE JOURNAL OF PHYSICAL CHEMISTRY A 121.9(2017) !\Comment: WARNING
+C7H121KET34O=>C2H3CO+NC3H7CHO    2.9E12 0.38 1.108E4
+!\Author: WARNING !\Ref: WARNING !\Comment: WARNING
+C7H121KET35O=>C2H3+CH2CO+C2H5CHO    2.9E12 0.38 1.108E4
+!\Author: WARNING !\Ref: WARNING !\Comment: WARNING
+C7H121KET36O=>C2H4+CH3CHO+C2H3CO    2.9E12 0.38 1.108E4
+!\Author: WARNING !\Ref: WARNING !\Comment: WARNING
+C7H121KET43O=>C2H3CHO+NC3H7CO    2.9E12 0.38 1.108E4
+!\Author: WARNING !\Ref: WARNING !\Comment: WARNING
+C7H121KET45O=>C3H5-A+CO+C2H5CHO    2.9E12 0.38 1.108E4
+!\Author: WARNING !\Ref: WARNING !\Comment: WARNING
+C7H121KET46O=>C3H5-A+CH3CHO+CH2CO    2.9E12 0.38 1.108E4
+!\Author: WARNING !\Ref: WARNING !\Comment: WARNING
+C7H121KET47O=>C2H3+CH2CO+C2H4+CH2O    2.9E12 0.38 1.108E4
+!\Author: WARNING !\Ref: WARNING !\Comment: WARNING
+C7H121KET53O=>C2H3CHO+C2H5COCH2    2.9E12 0.38 1.108E4
+!\Author: WARNING !\Ref: WARNING !\Comment: WARNING
+C7H121KET54O=>AC3H5CHO+C2H5CO    2.9E12 0.38 1.108E4
+!\Author: WARNING !\Ref: WARNING !\Comment: WARNING
+C7H121KET56O=>C3H5-A+CH2CO+CH3CHO    2.9E12 0.38 1.108E4
+!\Author: WARNING !\Ref: WARNING !\Comment: WARNING
+C7H121KET57O=>C4H71-4+CH2CO+CH2O    2.9E12 0.38 1.108E4
+!\Author: WARNING !\Ref: WARNING !\Comment: WARNING
+C7H121KET63O=>C2H3CHO+CH2CH2COCH3    2.9E12 0.38 1.108E4
+!\Author: WARNING !\Ref: WARNING !\Comment: WARNING
+C7H121KET64O=>AC3H5CHO+CH3COCH2    2.9E12 0.38 1.108E4
+!\Author: WARNING !\Ref: WARNING !\Comment: WARNING
+C7H121KET65O=>C4H7CHO-4+CH3CO    2.9E12 0.38 1.108E4
+!\Author: WARNING !\Ref: WARNING !\Comment: WARNING
+C7H121KET67O=>C4H71-4+CH2CO+CH2O    2.9E12 0.38 1.108E4
+!\Author: WARNING !\Ref: WARNING !\Comment: WARNING
+C7H121KET74O=>AC3H5CHO+CH2CH2CHO    2.9E12 0.38 1.108E4
+!___________________________________________________________________________________________________________
+!\REACTIONCLASS: ALKENYL-PEROXYREACTIONPATHWAYSQOOH(=)PRODUCTS
+!___________________________________________________________________________________________________________
+!C7H121-3+O2(=)CVCCVCCJCC+HO2                      +3.87000000E+001 +3.52000000E+000 +3.62000000E+004 !\Author: WARNING !\Ref: ZHOU, CHONG-WEN, ET AL. THE JOURNAL OF PHYSICAL CHEMISTRY A 121.9(2017) !\Comment: WARNING:
+!C7H121-3+H(=)CVCCVCCJCC+H2                        +3.39900000E+005 +2.65300000E+000 +4.86869600E+003 !\Author: WARNING !\Ref: WARNING !\Comment: WARNING
+!C7H121-3+O(=)CVCCVCCJCC+OH                        +9.68000000E-003 +4.54000000E+000 -2.46980000E+003 !\Author: WARNING !\Ref: BEDJANIAN, YURI, AND JULIEN MORIN. THE JOURNAL OF PHYSICAL CHEMISTRY A 121.8(2017) !\Comment: WARNING
+!C7H121-3+OH(=)CVCCVCCJCC+H2O                      +4.46000000E+006 +2.07200000E+000 +1.05080000E+003 !\Author: WARNING !\Ref: WARNING !\Comment: WARNING
+!C7H121-3+HO2(=)CVCCVCCJCC+H2O2                    +1.72000000E-001 +4.00000000E+000 +1.21030000E+004 !\Author: WARNING !\Ref: ZADOR, KLIPPENSTEIN, AND MILLER - J. PHYS. CHEM. A, 2011, 115(36), PP 10218-10225 !\Comment: WARNINGG
+!C7H121-3+CH3=CVCCVCCJCC+CH4                       +8.99000000E+002 +2.84000000E+000 +5.77000000E+003 !\Author: WARNING !\Ref: WARNING !\Comment: WARNING
+!CVCCVCCJCC+HO2(=)CVCCVCCOJCC+OH                   +1.64000000E+004 +2.74000000E+000 +1.14440000E+003 !\Author: WARNING !\Ref: GOLDSMITH, C. FRANKLIN, ET AL. PROCEEDINGS OF THE COMBUSTION INSTITUTE 33.1(2011) !\Comment: WARNINGG
+!PLOG /                           +1.00000000E-002 +1.02000000E+013 -1.58000000E-001 -1.41700000E+003 /
+!PLOG /                           +1.00000000E-001 +4.98000000E+014 -6.42000000E-001 -3.49100000E+002 /
+!PLOG /                           +1.00000000E+000 +7.77000000E+017 -1.52000000E+000 +2.37920000E+003 /
+!PLOG /                           +1.00000000E+001 +2.93000000E+015 -6.84000000E-001 +3.61530000E+003 /
+!PLOG /                           +1.00000000E+002 +1.64000000E+004 +2.74000000E+000 +1.14440000E+003 /
+!\Author: WARNING !\Ref: ZHOU, CHONG-WEN, ET AL. THE JOURNAL OF PHYSICAL CHEMISTRY A 121.9(2017) !\Comment: WARNING
 C7H121-3+O2=CVCCJCVCCC+HO2    3.87E1 3.52 3.62E4
 !\Author: WARNING !\Ref: WARNING !\Comment: WARNING
 C7H121-3+H=CVCCJCVCCC+H2    3.399E5 2.653 4.868696E3
@@ -26650,17 +26649,17 @@ IC8-3OR=>IC3H7+TC4H9CHO    2.0E13 0.0 1.5E4
 IC8-4OR=>CH3COCH3+NEOC5H11    2.0E13 0.0 1.5E4
 IC8-4OR=>CH3+NEC7Y4    2.0E13 0.0 1.5E4
 IC8-5OR=>CH2O+NEC7-4R    2.0E13 0.0 1.5E4
-! AUTOMATIC PRUNING ! IC8KET1-1AO=>CH2O+IC3H7+IC3H5CHO    2.9E12 0.4 1.108E4
+IC8KET1-1AO=>CH2O+IC3H7+IC3H5CHO    2.9E12 0.4 1.108E4
 IC8KET1-3O=IC3H7CHO+TC3H6CHO    2.9E12 0.4 1.108E4
 IC8KET1-4O=CH3COCH3+TC4H8CHO    2.9E12 0.4 1.108E4
-! AUTOMATIC PRUNING ! IC8KET1-5O=>CH2O+C3H6+TC3H6CHO    2.9E12 0.4 1.108E4
-! AUTOMATIC PRUNING ! IC8KET3-1O=>CH2O+IC3H7+IC3H6CO    2.9E12 0.4 1.108E4
+IC8KET1-5O=>CH2O+C3H6+TC3H6CHO    2.9E12 0.4 1.108E4
+IC8KET3-1O=>CH2O+IC3H7+IC3H6CO    2.9E12 0.4 1.108E4
 IC8KET3-4O=CH3COCH3+TC4H9CO    2.9E12 0.4 1.108E4
-! AUTOMATIC PRUNING ! IC8KET3-5O=>CH2O+CH3CHCO+TC4H9    2.9E12 0.4 1.108E4
-! AUTOMATIC PRUNING ! IC8KET5-1O=>CH2O+CH3CHCHO+IC4H8    2.9E12 0.4 1.108E4
+IC8KET3-5O=>CH2O+CH3CHCO+TC4H9    2.9E12 0.4 1.108E4
+IC8KET5-1O=>CH2O+CH3CHCHO+IC4H8    2.9E12 0.4 1.108E4
 IC8KET5-3O=CH3CHCHO+TC4H9CHO    2.9E12 0.4 1.108E4
 IC8KET5-4O=HCO+NEC7Y4    2.9E12 0.4 1.108E4
-! AUTOMATIC PRUNING ! IC8KET5-5AO=>CH2O+C2H3CHO+TC4H9    2.9E12 0.4 1.108E4
+IC8KET5-5AO=>CH2O+C2H3CHO+TC4H9    2.9E12 0.4 1.108E4
 CH3+IC6D2Y4=I24C7D2-4OR    9.45E2 2.7 6.85E3
 NEC7Y4-3R=CH3+IC6D2Y4    1.93E19 -1.9 4.844E4
 NEC7Y4-5R=CH2CO+NEOC5H11    1.0E14 0.0 3.5E4
@@ -27216,8 +27215,8 @@ IC8D4-5R+H=>CH3+NEC7D4-4R    4.57E38 -6.21 4.066E4
     PLOG/1.0E2 4.57E38 -6.21E0 4.0659E4/
     PLOG/1.0E2 1.42E11 1.06E0 1.651E4/
 !\Author: WARNING
-! AUTOMATIC PRUNING ! DIB4-1OR=>CH2O+IC4H8+C3H5-T                            2.90E+12    0.400   11080 
-! AUTOMATIC PRUNING ! !\Author: WARNING
+DIB4-1OR=>CH2O+IC4H8+C3H5-T                            2.90E+12    0.400   11080 
+!\Author: WARNING
 IC7D1Y5-4J=H+I24C7D13Y5    6.41E20 -2.84 3.654E4
     PLOG/1.0E-2 6.57E61 -1.534E1 5.351E4/
     PLOG/1.0E-2 2.48E31 -6.49E0 3.863E4/
@@ -27313,14 +27312,14 @@ IC8D4+OH=IC8OH5-4R    1.53E48 -10.23 2.377E4
     PLOG/1.0E2 1.53E48 -1.023E1 2.3772E4/
     PLOG/1.0E2 2.45E32 -6.31E0 6.088E3/
 !\Author: YZ
-! AUTOMATIC PRUNING ! NEC7Y3OH4-4J+O2=>HO2+NEC7Y34    3.78E20 -2.429 3.09E3
-! AUTOMATIC PRUNING !     PLOG/1.0E-3 5.26E17 -1.637E0 8.38E2/
-! AUTOMATIC PRUNING !     PLOG/1.0E-2 5.26E17 -1.637E0 8.38E2/
-! AUTOMATIC PRUNING !     PLOG/1.0E-1 5.26E17 -1.637E0 8.38E2/
-! AUTOMATIC PRUNING !     PLOG/1.0E0 5.28E17 -1.638E0 8.39E2/
-! AUTOMATIC PRUNING !     PLOG/1.0E1 1.54E18 -1.771E0 1.12E3/
-! AUTOMATIC PRUNING !     PLOG/1.0E2 3.78E20 -2.429E0 3.09E3/
-! AUTOMATIC PRUNING ! !\Author: WARNING
+NEC7Y3OH4-4J+O2=>HO2+NEC7Y34    3.78E20 -2.429 3.09E3
+    PLOG/1.0E-3 5.26E17 -1.637E0 8.38E2/
+    PLOG/1.0E-2 5.26E17 -1.637E0 8.38E2/
+    PLOG/1.0E-1 5.26E17 -1.637E0 8.38E2/
+    PLOG/1.0E0 5.28E17 -1.638E0 8.39E2/
+    PLOG/1.0E1 1.54E18 -1.771E0 1.12E3/
+    PLOG/1.0E2 3.78E20 -2.429E0 3.09E3/
+!\Author: WARNING
 NEC7Y34+H=NEC7Y34-1J+H2    5.22E5 2.7 6.45E3
 !\Author: WARNING
 NEC7Y34+O=NEC7Y34-1J+OH    3.15E6 2.4 4.766E3
@@ -27339,17 +27338,17 @@ NEC7Y34+C2H3=NEC7Y34-1J+C2H4    1.5E12 0.0 1.8E4
 !\Author: WARNING
 NEC7Y34-1J=>IC4H8+CO+CH3CO    3.08E13 0.0 2.199E4
 !\Author: WARNING
-! AUTOMATIC PRUNING ! IC8D4-3OH+OH=>H2O+IC4H8+IC4H6OH    8.0E12 0.0 0.0E0
-! AUTOMATIC PRUNING ! !\Author: WARNING
+IC8D4-3OH+OH=>H2O+IC4H8+IC4H6OH    8.0E12 0.0 0.0E0
+!\Author: WARNING
 IC8D3-5OH+OH=>H2O+IC8D3-5OR    8.0E12 0.0 0.0E0
 !\Author: WARNING
 IC8D4-5AOH+OH=>H2O+IC4H8+IC4H6OH    8.0E12 0.0 0.0E0
 !\Author: WARNING
-! AUTOMATIC PRUNING ! IC8D3-3OH=>IC8Y3    2.9E27 -4.35 6.161E4
-! AUTOMATIC PRUNING !     PLOG/1.0E-1 7.42E46 -1.056E1 6.742E4/
-! AUTOMATIC PRUNING !     PLOG/1.0E0 4.42E42 -9.09E0 6.70692E4/
-! AUTOMATIC PRUNING !     PLOG/1.0E2 2.9E27 -4.35E0 6.16129E4/
-! AUTOMATIC PRUNING ! !\Author: WARNING
+IC8D3-3OH=>IC8Y3    2.9E27 -4.35 6.161E4
+    PLOG/1.0E-1 7.42E46 -1.056E1 6.742E4/
+    PLOG/1.0E0 4.42E42 -9.09E0 6.70692E4/
+    PLOG/1.0E2 2.9E27 -4.35E0 6.16129E4/
+!\Author: WARNING
 IC8Y3+OH=>IC4H8+CO+IC3H7+H2O    4.92E7 1.76 7.43E2
 !\Author: WARNING
 IC8Y3+OH=>C3H6+CO+TC4H9+H2O    3.35E6 2.08 3.76E2
@@ -27364,16 +27363,16 @@ IC8OH4-5R=IC3H5OH+NEOC5H11    3.734E8 1.57 2.702E4
 !\Author: WARNING
 !! RL's patch3 IC8D4Y3-5J=>CO+TC4H9COCCH2    1.37E21 -2.179 3.941E4
 !\Author: WARNING
-! AUTOMATIC PRUNING ! TC4H9COCCH2+O2=>CH2O+TC4H9CO+CO    9.27E21 -2.74 9.364E3
-! AUTOMATIC PRUNING !     PLOG/1.0E-2 4.13E20 -2.57E0 2.366E3/
-! AUTOMATIC PRUNING !     PLOG/1.0E-1 5.55E20 -2.61E0 2.458E3/
-! AUTOMATIC PRUNING !     PLOG/3.16E-1 2.55E21 -2.79E0 2.974E3/
-! AUTOMATIC PRUNING !     PLOG/1.0E0 9.03E22 -3.21E0 4.296E3/
-! AUTOMATIC PRUNING !     PLOG/3.16E0 7.37E24 -3.73E0 6.259E3/
-! AUTOMATIC PRUNING !     PLOG/1.0E1 1.36E25 -3.76E0 7.614E3/
-! AUTOMATIC PRUNING !     PLOG/3.16E1 9.7E24 -3.66E0 9.232E3/
-! AUTOMATIC PRUNING !     PLOG/1.0E2 9.27E21 -2.74E0 9.364E3/
-! AUTOMATIC PRUNING ! !\Author: WARNING
+TC4H9COCCH2+O2=>CH2O+TC4H9CO+CO    9.27E21 -2.74 9.364E3
+    PLOG/1.0E-2 4.13E20 -2.57E0 2.366E3/
+    PLOG/1.0E-1 5.55E20 -2.61E0 2.458E3/
+    PLOG/3.16E-1 2.55E21 -2.79E0 2.974E3/
+    PLOG/1.0E0 9.03E22 -3.21E0 4.296E3/
+    PLOG/3.16E0 7.37E24 -3.73E0 6.259E3/
+    PLOG/1.0E1 1.36E25 -3.76E0 7.614E3/
+    PLOG/3.16E1 9.7E24 -3.66E0 9.232E3/
+    PLOG/1.0E2 9.27E21 -2.74E0 9.364E3/
+!\Author: WARNING
 C7H11O+HO2=C7H11O2+OH    1.64E4 2.74 1.144E3
     PLOG/1.0E-2 1.02E13 -1.58E-1 -1.417E3/
     PLOG/1.0E-1 4.98E14 -6.42E-1 -3.491E2/
@@ -27956,46 +27955,46 @@ IC8D4-5R+OH=IC8D4-5AOH    5.56E13 -0.47 -1.979E3
     PLOG/1.0E1 7.45E4 2.28E0 -3.326E3/
     PLOG/1.0E2 5.56E13 -4.7E-1 -1.979E3/
 !\Author:
-! AUTOMATIC PRUNING ! IC6D13+OH=>IC6D3OH1-2R    1.0E12 0.0 -1.042E3
-! AUTOMATIC PRUNING !     PLOG/1.3E-3 2.14E59 -1.584E1 1.1594E4/
-! AUTOMATIC PRUNING !     PLOG/1.3E-3 7.68E77 -2.07E1 3.2402E4/
-! AUTOMATIC PRUNING !     PLOG/1.0E-2 2.43E59 -1.551E1 1.2898E4/
-! AUTOMATIC PRUNING !     PLOG/1.0E-2 9.13E76 -2.0E1 3.3874E4/
-! AUTOMATIC PRUNING !     PLOG/1.3E-2 9.3E58 -1.534E1 1.2913E4/
-! AUTOMATIC PRUNING !     PLOG/1.3E-2 3.55E75 -1.958E1 3.2874E4/
-! AUTOMATIC PRUNING !     PLOG/2.5E-2 8.83E57 -1.493E1 1.2936E4/
-! AUTOMATIC PRUNING !     PLOG/2.5E-2 1.23E73 -1.879E1 3.1361E4/
-! AUTOMATIC PRUNING !     PLOG/1.0E-1 4.5E55 -1.404E1 1.2945E4/
-! AUTOMATIC PRUNING !     PLOG/1.0E-1 3.45E67 -1.701E1 2.7909E4/
-! AUTOMATIC PRUNING !     PLOG/1.32E-1 1.33E55 -1.385E1 1.2887E4/
-! AUTOMATIC PRUNING !     PLOG/1.32E-1 2.41E66 -1.664E1 2.7162E4/
-! AUTOMATIC PRUNING !     PLOG/1.0E0 5.18E49 -1.204E1 1.1493E4/
-! AUTOMATIC PRUNING !     PLOG/1.0E0 6.5E58 -1.417E1 2.3079E4/
-! AUTOMATIC PRUNING !     PLOG/1.0E1 2.14E41 -9.35E0 8.921E3/
-! AUTOMATIC PRUNING !     PLOG/1.0E1 2.53E53 -1.223E1 2.2976E4/
-! AUTOMATIC PRUNING !     PLOG/1.0E2 7.65E31 -6.31E0 6.088E3/
-! AUTOMATIC PRUNING !     PLOG/1.0E2 4.78E47 -1.023E1 2.3772E4/
-! AUTOMATIC PRUNING ! !\Author:
-! AUTOMATIC PRUNING ! IC6D13+OH=>IC6OH2D3-1R    1.0E12 0.0 -1.042E3
-! AUTOMATIC PRUNING !     PLOG/1.3E-3 2.3E78 -2.07E1 3.2402E4/
-! AUTOMATIC PRUNING !     PLOG/1.3E-3 6.41E59 -1.584E1 1.1594E4/
-! AUTOMATIC PRUNING !     PLOG/1.0E-2 2.74E77 -2.0E1 3.3874E4/
-! AUTOMATIC PRUNING !     PLOG/1.0E-2 7.28E59 -1.551E1 1.2898E4/
-! AUTOMATIC PRUNING !     PLOG/1.3E-2 1.07E76 -1.958E1 3.2874E4/
-! AUTOMATIC PRUNING !     PLOG/1.3E-2 2.79E59 -1.534E1 1.2913E4/
-! AUTOMATIC PRUNING !     PLOG/2.5E-2 3.68E73 -1.879E1 3.1361E4/
-! AUTOMATIC PRUNING !     PLOG/2.5E-2 2.65E58 -1.493E1 1.2936E4/
-! AUTOMATIC PRUNING !     PLOG/1.0E-1 1.04E68 -1.701E1 2.7909E4/
-! AUTOMATIC PRUNING !     PLOG/1.0E-1 1.35E56 -1.404E1 1.2945E4/
-! AUTOMATIC PRUNING !     PLOG/1.32E-1 7.23E66 -1.664E1 2.7162E4/
-! AUTOMATIC PRUNING !     PLOG/1.32E-1 3.98E55 -1.385E1 1.2887E4/
-! AUTOMATIC PRUNING !     PLOG/1.0E0 1.95E59 -1.417E1 2.3079E4/
-! AUTOMATIC PRUNING !     PLOG/1.0E0 1.55E50 -1.204E1 1.1493E4/
-! AUTOMATIC PRUNING !     PLOG/1.0E1 7.58E53 -1.223E1 2.2976E4/
-! AUTOMATIC PRUNING !     PLOG/1.0E1 6.41E41 -9.35E0 8.921E3/
-! AUTOMATIC PRUNING !     PLOG/1.0E2 1.43E48 -1.023E1 2.3772E4/
-! AUTOMATIC PRUNING !     PLOG/1.0E2 2.3E32 -6.31E0 6.088E3/
-! AUTOMATIC PRUNING ! !\Author: WARNING
+IC6D13+OH=>IC6D3OH1-2R    1.0E12 0.0 -1.042E3
+    PLOG/1.3E-3 2.14E59 -1.584E1 1.1594E4/
+    PLOG/1.3E-3 7.68E77 -2.07E1 3.2402E4/
+    PLOG/1.0E-2 2.43E59 -1.551E1 1.2898E4/
+    PLOG/1.0E-2 9.13E76 -2.0E1 3.3874E4/
+    PLOG/1.3E-2 9.3E58 -1.534E1 1.2913E4/
+    PLOG/1.3E-2 3.55E75 -1.958E1 3.2874E4/
+    PLOG/2.5E-2 8.83E57 -1.493E1 1.2936E4/
+    PLOG/2.5E-2 1.23E73 -1.879E1 3.1361E4/
+    PLOG/1.0E-1 4.5E55 -1.404E1 1.2945E4/
+    PLOG/1.0E-1 3.45E67 -1.701E1 2.7909E4/
+    PLOG/1.32E-1 1.33E55 -1.385E1 1.2887E4/
+    PLOG/1.32E-1 2.41E66 -1.664E1 2.7162E4/
+    PLOG/1.0E0 5.18E49 -1.204E1 1.1493E4/
+    PLOG/1.0E0 6.5E58 -1.417E1 2.3079E4/
+    PLOG/1.0E1 2.14E41 -9.35E0 8.921E3/
+    PLOG/1.0E1 2.53E53 -1.223E1 2.2976E4/
+    PLOG/1.0E2 7.65E31 -6.31E0 6.088E3/
+    PLOG/1.0E2 4.78E47 -1.023E1 2.3772E4/
+!\Author:
+IC6D13+OH=>IC6OH2D3-1R    1.0E12 0.0 -1.042E3
+    PLOG/1.3E-3 2.3E78 -2.07E1 3.2402E4/
+    PLOG/1.3E-3 6.41E59 -1.584E1 1.1594E4/
+    PLOG/1.0E-2 2.74E77 -2.0E1 3.3874E4/
+    PLOG/1.0E-2 7.28E59 -1.551E1 1.2898E4/
+    PLOG/1.3E-2 1.07E76 -1.958E1 3.2874E4/
+    PLOG/1.3E-2 2.79E59 -1.534E1 1.2913E4/
+    PLOG/2.5E-2 3.68E73 -1.879E1 3.1361E4/
+    PLOG/2.5E-2 2.65E58 -1.493E1 1.2936E4/
+    PLOG/1.0E-1 1.04E68 -1.701E1 2.7909E4/
+    PLOG/1.0E-1 1.35E56 -1.404E1 1.2945E4/
+    PLOG/1.32E-1 7.23E66 -1.664E1 2.7162E4/
+    PLOG/1.32E-1 3.98E55 -1.385E1 1.2887E4/
+    PLOG/1.0E0 1.95E59 -1.417E1 2.3079E4/
+    PLOG/1.0E0 1.55E50 -1.204E1 1.1493E4/
+    PLOG/1.0E1 7.58E53 -1.223E1 2.2976E4/
+    PLOG/1.0E1 6.41E41 -9.35E0 8.921E3/
+    PLOG/1.0E2 1.43E48 -1.023E1 2.3772E4/
+    PLOG/1.0E2 2.3E32 -6.31E0 6.088E3/
+!\Author: WARNING
 DIBD3-DIMER+OH=DIB3DIMER-OHJ    4.29E48 -10.23 2.377E4
     PLOG/1.3E-3 6.9E78 -2.07E1 3.2402E4/
     PLOG/1.3E-3 1.92E60 -1.584E1 1.1594E4/
@@ -28352,50 +28351,50 @@ I24C7D13-1AR+H=I24C7D13    2.0E14 0.0 0.0E0
 !!RATE FROM YE, PROCI (2015), 223-230
 !!RATE FROM YE, PROCI (2015), 223-230
 !!RATE FROM YE, PROCI (2015), 223-230
-! AUTOMATIC PRUNING ! I24C7D13-1AR+H=>CH3+IC6D24-4R    4.57E38 -6.21 4.066E4
-! AUTOMATIC PRUNING !     PLOG/1.0E-2 2.8E36 -6.21E0 2.2598E4/
-! AUTOMATIC PRUNING !     PLOG/1.0E-2 6.29E22 -2.17E0 1.5669E4/
-! AUTOMATIC PRUNING !     PLOG/1.0E-1 3.78E38 -6.65E0 2.6214E4/
-! AUTOMATIC PRUNING !     PLOG/1.0E-1 3.79E20 -1.54E0 1.5995E4/
-! AUTOMATIC PRUNING !     PLOG/1.0E0 6.68E37 -6.26E0 2.9403E4/
-! AUTOMATIC PRUNING !     PLOG/1.0E0 1.62E18 -9.6E-1 1.6085E4/
-! AUTOMATIC PRUNING !     PLOG/1.0E1 4.66E42 -7.45E0 3.8323E4/
-! AUTOMATIC PRUNING !     PLOG/1.0E1 3.04E21 -1.86E0 1.9953E4/
-! AUTOMATIC PRUNING !     PLOG/1.0E2 4.57E38 -6.21E0 4.0659E4/
-! AUTOMATIC PRUNING !     PLOG/1.0E2 1.42E11 1.06E0 1.651E4/
-! AUTOMATIC PRUNING ! !!PRODUCT SHOULD BE IC6D14-4R
-! AUTOMATIC PRUNING ! !!RATE FROM YE, PROCI (2015), 223-230
-! AUTOMATIC PRUNING ! !!RATE FROM YE, PROCI (2015), 223-230
-! AUTOMATIC PRUNING ! !!RATE FROM YE, PROCI (2015), 223-230
-! AUTOMATIC PRUNING ! !!RATE FROM YE, PROCI (2015), 223-230
-! AUTOMATIC PRUNING ! !!RATE FROM YE, PROCI (2015), 223-230
-! AUTOMATIC PRUNING ! !!RATE FROM YE, PROCI (2015), 223-230
-! AUTOMATIC PRUNING ! !!RATE FROM YE, PROCI (2015), 223-230
-! AUTOMATIC PRUNING ! !!RATE FROM YE, PROCI (2015), 223-230
-! AUTOMATIC PRUNING ! !!RATE FROM YE, PROCI (2015), 223-230
-! AUTOMATIC PRUNING ! !!RATE FROM YE, PROCI (2015), 223-230
-! AUTOMATIC PRUNING ! I24C7D14-3R+H=>CH3+IC6D24-4R    4.57E38 -6.21 4.066E4
-! AUTOMATIC PRUNING !     PLOG/1.0E-2 2.8E36 -6.21E0 2.2598E4/
-! AUTOMATIC PRUNING !     PLOG/1.0E-2 6.29E22 -2.17E0 1.5669E4/
-! AUTOMATIC PRUNING !     PLOG/1.0E-1 3.78E38 -6.65E0 2.6214E4/
-! AUTOMATIC PRUNING !     PLOG/1.0E-1 3.79E20 -1.54E0 1.5995E4/
-! AUTOMATIC PRUNING !     PLOG/1.0E0 6.68E37 -6.26E0 2.9403E4/
-! AUTOMATIC PRUNING !     PLOG/1.0E0 1.62E18 -9.6E-1 1.6085E4/
-! AUTOMATIC PRUNING !     PLOG/1.0E1 4.66E42 -7.45E0 3.8323E4/
-! AUTOMATIC PRUNING !     PLOG/1.0E1 3.04E21 -1.86E0 1.9953E4/
-! AUTOMATIC PRUNING !     PLOG/1.0E2 4.57E38 -6.21E0 4.0659E4/
-! AUTOMATIC PRUNING !     PLOG/1.0E2 1.42E11 1.06E0 1.651E4/
-! AUTOMATIC PRUNING ! !!
-! AUTOMATIC PRUNING ! !!RATE FROM YE, PROCI (2015), 223-230
-! AUTOMATIC PRUNING ! !!RATE FROM YE, PROCI (2015), 223-230
-! AUTOMATIC PRUNING ! !!RATE FROM YE, PROCI (2015), 223-230
-! AUTOMATIC PRUNING ! !!RATE FROM YE, PROCI (2015), 223-230
-! AUTOMATIC PRUNING ! !!RATE FROM YE, PROCI (2015), 223-230
-! AUTOMATIC PRUNING ! !!RATE FROM YE, PROCI (2015), 223-230
-! AUTOMATIC PRUNING ! !!RATE FROM YE, PROCI (2015), 223-230
-! AUTOMATIC PRUNING ! !!RATE FROM YE, PROCI (2015), 223-230
-! AUTOMATIC PRUNING ! !!RATE FROM YE, PROCI (2015), 223-230
-! AUTOMATIC PRUNING ! !!RATE FROM YE, PROCI (2015), 223-230
+I24C7D13-1AR+H=>CH3+IC6D24-4R    4.57E38 -6.21 4.066E4
+    PLOG/1.0E-2 2.8E36 -6.21E0 2.2598E4/
+    PLOG/1.0E-2 6.29E22 -2.17E0 1.5669E4/
+    PLOG/1.0E-1 3.78E38 -6.65E0 2.6214E4/
+    PLOG/1.0E-1 3.79E20 -1.54E0 1.5995E4/
+    PLOG/1.0E0 6.68E37 -6.26E0 2.9403E4/
+    PLOG/1.0E0 1.62E18 -9.6E-1 1.6085E4/
+    PLOG/1.0E1 4.66E42 -7.45E0 3.8323E4/
+    PLOG/1.0E1 3.04E21 -1.86E0 1.9953E4/
+    PLOG/1.0E2 4.57E38 -6.21E0 4.0659E4/
+    PLOG/1.0E2 1.42E11 1.06E0 1.651E4/
+!!PRODUCT SHOULD BE IC6D14-4R
+!!RATE FROM YE, PROCI (2015), 223-230
+!!RATE FROM YE, PROCI (2015), 223-230
+!!RATE FROM YE, PROCI (2015), 223-230
+!!RATE FROM YE, PROCI (2015), 223-230
+!!RATE FROM YE, PROCI (2015), 223-230
+!!RATE FROM YE, PROCI (2015), 223-230
+!!RATE FROM YE, PROCI (2015), 223-230
+!!RATE FROM YE, PROCI (2015), 223-230
+!!RATE FROM YE, PROCI (2015), 223-230
+!!RATE FROM YE, PROCI (2015), 223-230
+I24C7D14-3R+H=>CH3+IC6D24-4R    4.57E38 -6.21 4.066E4
+    PLOG/1.0E-2 2.8E36 -6.21E0 2.2598E4/
+    PLOG/1.0E-2 6.29E22 -2.17E0 1.5669E4/
+    PLOG/1.0E-1 3.78E38 -6.65E0 2.6214E4/
+    PLOG/1.0E-1 3.79E20 -1.54E0 1.5995E4/
+    PLOG/1.0E0 6.68E37 -6.26E0 2.9403E4/
+    PLOG/1.0E0 1.62E18 -9.6E-1 1.6085E4/
+    PLOG/1.0E1 4.66E42 -7.45E0 3.8323E4/
+    PLOG/1.0E1 3.04E21 -1.86E0 1.9953E4/
+    PLOG/1.0E2 4.57E38 -6.21E0 4.0659E4/
+    PLOG/1.0E2 1.42E11 1.06E0 1.651E4/
+!!
+!!RATE FROM YE, PROCI (2015), 223-230
+!!RATE FROM YE, PROCI (2015), 223-230
+!!RATE FROM YE, PROCI (2015), 223-230
+!!RATE FROM YE, PROCI (2015), 223-230
+!!RATE FROM YE, PROCI (2015), 223-230
+!!RATE FROM YE, PROCI (2015), 223-230
+!!RATE FROM YE, PROCI (2015), 223-230
+!!RATE FROM YE, PROCI (2015), 223-230
+!!RATE FROM YE, PROCI (2015), 223-230
+!!RATE FROM YE, PROCI (2015), 223-230
 I24C7D2-4R+H=I24C7D2    4.57E38 -6.21 4.066E4
     PLOG/1.0E-2 2.8E36 -6.21E0 2.2598E4/
     PLOG/1.0E-2 6.29E22 -2.17E0 1.5669E4/
@@ -28448,31 +28447,31 @@ I24C7D13+CH3=I24C7D14-3R+CH4    1.56E2 3.242 7.01E3
 !!ANALOGOUS RATE TAKEN FROM KUN WANG'S MECHANISM
 !!ANALOGOUS RATE TAKEN FROM KUN WANG'S MECHANISM
 !!ANALOGOUS RATE TAKEN FROM KUN WANG'S MECHANISM
-! AUTOMATIC PRUNING ! I24C7D14-3R=>DMCPD+H    1.0E0 0.0 0.0E0
-! AUTOMATIC PRUNING !     DUP
-! AUTOMATIC PRUNING !     PLOG/1.0E-3 2.3E58 -1.541E1 4.4473E4/
-! AUTOMATIC PRUNING !     PLOG/1.0E-2 7.53E59 -1.5359E1 4.8239E4/
-! AUTOMATIC PRUNING !     PLOG/1.0E-1 2.67E62 -1.5612E1 5.2958E4/
-! AUTOMATIC PRUNING !     PLOG/1.0E0 1.36E58 -1.3923E1 5.4075E4/
-! AUTOMATIC PRUNING !     PLOG/1.0E1 1.22E43 -9.184E0 4.8981E4/
-! AUTOMATIC PRUNING !     PLOG/1.0E2 4.69E27 -4.474E0 4.2601E4/
-! AUTOMATIC PRUNING ! !!!! SHOULD PROCEED THROUGH FORMATION OF DIMETHYL-CYLCOPENTADIENE
-! AUTOMATIC PRUNING ! !!ANALOGOUS RATE TAKEN FROM KUN WANG'S MECHANISM
-! AUTOMATIC PRUNING ! !!ANALOGOUS RATE TAKEN FROM KUN WANG'S MECHANISM
-! AUTOMATIC PRUNING ! !!ANALOGOUS RATE TAKEN FROM KUN WANG'S MECHANISM
-! AUTOMATIC PRUNING ! !!ANALOGOUS RATE TAKEN FROM KUN WANG'S MECHANISM
-! AUTOMATIC PRUNING ! !!ANALOGOUS RATE TAKEN FROM KUN WANG'S MECHANISM
-! AUTOMATIC PRUNING ! !!ANALOGOUS RATE TAKEN FROM KUN WANG'S MECHANISM
-! AUTOMATIC PRUNING ! I24C7D14-3R=>DMCPD+H    1.0E0 0.0 0.0E0
-! AUTOMATIC PRUNING !     DUP
-! AUTOMATIC PRUNING !     PLOG/1.0E-3 2.3E58 -1.541E1 4.4473E4/
-! AUTOMATIC PRUNING !     PLOG/1.0E-2 7.53E59 -1.5359E1 4.8239E4/
-! AUTOMATIC PRUNING !     PLOG/1.0E-1 2.67E62 -1.5612E1 5.2958E4/
-! AUTOMATIC PRUNING !     PLOG/1.0E0 1.36E58 -1.3923E1 5.4075E4/
-! AUTOMATIC PRUNING !     PLOG/1.0E1 1.22E43 -9.184E0 4.8981E4/
-! AUTOMATIC PRUNING !     PLOG/1.0E2 4.69E27 -4.474E0 4.2601E4/
-! AUTOMATIC PRUNING ! !
-! AUTOMATIC PRUNING ! !!
+I24C7D14-3R=>DMCPD+H    1.0E0 0.0 0.0E0
+    DUP
+    PLOG/1.0E-3 2.3E58 -1.541E1 4.4473E4/
+    PLOG/1.0E-2 7.53E59 -1.5359E1 4.8239E4/
+    PLOG/1.0E-1 2.67E62 -1.5612E1 5.2958E4/
+    PLOG/1.0E0 1.36E58 -1.3923E1 5.4075E4/
+    PLOG/1.0E1 1.22E43 -9.184E0 4.8981E4/
+    PLOG/1.0E2 4.69E27 -4.474E0 4.2601E4/
+!!!! SHOULD PROCEED THROUGH FORMATION OF DIMETHYL-CYLCOPENTADIENE
+!!ANALOGOUS RATE TAKEN FROM KUN WANG'S MECHANISM
+!!ANALOGOUS RATE TAKEN FROM KUN WANG'S MECHANISM
+!!ANALOGOUS RATE TAKEN FROM KUN WANG'S MECHANISM
+!!ANALOGOUS RATE TAKEN FROM KUN WANG'S MECHANISM
+!!ANALOGOUS RATE TAKEN FROM KUN WANG'S MECHANISM
+!!ANALOGOUS RATE TAKEN FROM KUN WANG'S MECHANISM
+I24C7D14-3R=>DMCPD+H    1.0E0 0.0 0.0E0
+    DUP
+    PLOG/1.0E-3 2.3E58 -1.541E1 4.4473E4/
+    PLOG/1.0E-2 7.53E59 -1.5359E1 4.8239E4/
+    PLOG/1.0E-1 2.67E62 -1.5612E1 5.2958E4/
+    PLOG/1.0E0 1.36E58 -1.3923E1 5.4075E4/
+    PLOG/1.0E1 1.22E43 -9.184E0 4.8981E4/
+    PLOG/1.0E2 4.69E27 -4.474E0 4.2601E4/
+!
+!!
 I24C7D13-1AR=I24C7D14-3R    6.66E6 1.64 2.4E4
 !!I24C7D13+H=IC4H8+C3H5-T                                7.30E+29   -4.300   21647
 C3H4-A+IC4H7-I1=I24C7D13-1AR    2.0E11 0.0 2.01E3
@@ -29490,29 +29489,29 @@ C8H17223-4O=>NEC6-3+CH3CHO    2.0E13 0.0 1.5E4
 C8H17223-4O=>CH3+C7-223O4    2.0E13 0.0 1.5E4
 C8H17223-5O=>CH2O+C7-223-4    2.0E13 0.0 1.5E4
 C8H17223-6O=>CH2O+NEC7-3R    2.0E13 0.0 1.5E4
-! AUTOMATIC PRUNING ! C8223KETO1-1=>CH2O+C7-23-21D    2.9E12 0.4 1.108E4
-! AUTOMATIC PRUNING ! C8223KETO1-3=>TC3H6CHO+C2H5COCH3    2.9E12 0.4 1.108E4
-! AUTOMATIC PRUNING ! C8223KETO1-4=>CH3CHO+C6-22-31O    2.9E12 0.4 1.108E4
-! AUTOMATIC PRUNING ! C8223KETO1-5=>CH2O+C7-223-41O    2.9E12 0.4 1.108E4
-! AUTOMATIC PRUNING ! C8223KETO1-6=>CH2O+C7-22-31O    2.9E12 0.4 1.108E4
-! AUTOMATIC PRUNING ! C8223KETO4-1=>CH2O+C7-23-24O    2.9E12 0.4 1.108E4
-! AUTOMATIC PRUNING ! C8223KETO4-3=>TC4H9COCH3+CH3CO    2.9E12 0.4 1.108E4
-! AUTOMATIC PRUNING ! C8223KETO4-5=>CH2O+C7-223-44O    2.9E12 0.4 1.108E4
-! AUTOMATIC PRUNING ! C8223KETO4-6=>CH2O+NEC7Y4-3R    2.9E12 0.4 1.108E4
-! AUTOMATIC PRUNING ! C8223KETO5-1=>CH2O+C7-23-25O    2.9E12 0.4 1.108E4
-! AUTOMATIC PRUNING ! C8223KETO5-3=>TC4H9COCH3+CH2CHO    2.9E12 0.4 1.108E4
-! AUTOMATIC PRUNING ! C8223KETO5-4=>C7-223O4+HCO    2.9E12 0.4 1.108E4
-! AUTOMATIC PRUNING ! C8223KETO5-6=>CH2O+C7-22-35O    2.9E12 0.4 1.108E4
-! AUTOMATIC PRUNING ! C8223KETO6-1=>CH2O+C7-23-26O    2.9E12 0.4 1.108E4
-! AUTOMATIC PRUNING ! C8223KETO6-3=>HCO+TC4H9COC2H5    2.9E12 0.4 1.108E4
-! AUTOMATIC PRUNING ! C8223KETO6-4=>CH3CHO+NEOC5H10CHO-3    2.9E12 0.4 1.108E4
-! AUTOMATIC PRUNING ! C8223KETO6-5=>CH2O+C7-223-45O    2.9E12 0.4 1.108E4
-! AUTOMATIC PRUNING ! !___________________________________________________________________________________________________________
-! AUTOMATIC PRUNING ! !\REACTIONCLASS: X2.O2QOOH+R'=OQOOH+R'O,ETC!REF
-! AUTOMATIC PRUNING ! !___________________________________________________________________________________________________________
-! AUTOMATIC PRUNING ! !___________________________________________________________________________________________________________
-! AUTOMATIC PRUNING ! !\REACTIONCLASS: X2.O2QOOH+R'=OQOOH+R'O,ETC!REF
-! AUTOMATIC PRUNING ! !___________________________________________________________________________________________________________
+C8223KETO1-1=>CH2O+C7-23-21D    2.9E12 0.4 1.108E4
+C8223KETO1-3=>TC3H6CHO+C2H5COCH3    2.9E12 0.4 1.108E4
+C8223KETO1-4=>CH3CHO+C6-22-31O    2.9E12 0.4 1.108E4
+C8223KETO1-5=>CH2O+C7-223-41O    2.9E12 0.4 1.108E4
+C8223KETO1-6=>CH2O+C7-22-31O    2.9E12 0.4 1.108E4
+C8223KETO4-1=>CH2O+C7-23-24O    2.9E12 0.4 1.108E4
+C8223KETO4-3=>TC4H9COCH3+CH3CO    2.9E12 0.4 1.108E4
+C8223KETO4-5=>CH2O+C7-223-44O    2.9E12 0.4 1.108E4
+C8223KETO4-6=>CH2O+NEC7Y4-3R    2.9E12 0.4 1.108E4
+C8223KETO5-1=>CH2O+C7-23-25O    2.9E12 0.4 1.108E4
+C8223KETO5-3=>TC4H9COCH3+CH2CHO    2.9E12 0.4 1.108E4
+C8223KETO5-4=>C7-223O4+HCO    2.9E12 0.4 1.108E4
+C8223KETO5-6=>CH2O+C7-22-35O    2.9E12 0.4 1.108E4
+C8223KETO6-1=>CH2O+C7-23-26O    2.9E12 0.4 1.108E4
+C8223KETO6-3=>HCO+TC4H9COC2H5    2.9E12 0.4 1.108E4
+C8223KETO6-4=>CH3CHO+NEOC5H10CHO-3    2.9E12 0.4 1.108E4
+C8223KETO6-5=>CH2O+C7-223-45O    2.9E12 0.4 1.108E4
+!___________________________________________________________________________________________________________
+!\REACTIONCLASS: X2.O2QOOH+R'=OQOOH+R'O,ETC!REF
+!___________________________________________________________________________________________________________
+!___________________________________________________________________________________________________________
+!\REACTIONCLASS: X2.O2QOOH+R'=OQOOH+R'O,ETC!REF
+!___________________________________________________________________________________________________________
 C7-22-3D3=TC4H9+C3H4-A    1.0E13 0.0 4.5E4
 NEC7D4-3R=TC4H9+C3H4-A    1.0E13 0.0 4.5E4
 
@@ -29558,8 +29557,8 @@ C7-23-24O=BC5H10+CH2CHO    1.0E14 0.0 1.8E4
 C7-223-45O=HCO+NEC6D3    1.0E14 0.0 1.8E4
 C7-223-44O=NEC6-3+CO    1.0E11 0.0 9.6E3
 !NEC7Y4-3R+OH=>CH3+CO2+NEOC5H11    3.0E12 0.0 0.0E0
-! AUTOMATIC PRUNING ! C7-223-4OD3+OH=>CO2+NEC6-3    3.0E12 0.0 0.0E0
-! AUTOMATIC PRUNING ! C7-223-34O+OH=>CH3+CO2+BC5H11    3.0E12 0.0 0.0E0
+C7-223-4OD3+OH=>CO2+NEC6-3    3.0E12 0.0 0.0E0
+C7-223-34O+OH=>CH3+CO2+BC5H11    3.0E12 0.0 0.0E0
 TC4H9+C3H3O=C7-233-1OD4    1.0E13 0.0 0.0E0
 !----------------------------------------------------------------------------------------------------------------------------------
 !----------------------------------------------------------------------------------------------------------------------------------
@@ -29884,13 +29883,13 @@ C8H16234-A+OH=C8234AOHBJ    1.0E12 0.0 -1.042E3
 !
 !    ASSUME H ABSTRACTION FROM TERTIARY SITE
 !
-! AUTOMATIC PRUNING ! CH3CODC5H11+H=>CH3CO+BC5H10+H2    6.02E5 2.4 2.583E3
-! AUTOMATIC PRUNING ! CH3CODC5H11+O=>CH3CO+BC5H10+OH    3.968E5 2.4 1.15E3
-! AUTOMATIC PRUNING ! CH3CODC5H11+OH=>CH3CO+BC5H10+H2O    5.73E10 0.51 6.3E1
-! AUTOMATIC PRUNING ! CH3CODC5H11+HO2=>CH3CO+BC5H10+H2O2    2.8E12 0.0 1.601E4
-! AUTOMATIC PRUNING ! !___________________________________________________________________________________________________________
-! AUTOMATIC PRUNING ! !\REACTIONCLASS: 6E. ALKENYL RADICAL DECOMPOSITIONS!REF
-! AUTOMATIC PRUNING ! !___________________________________________________________________________________________________________
+CH3CODC5H11+H=>CH3CO+BC5H10+H2    6.02E5 2.4 2.583E3
+CH3CODC5H11+O=>CH3CO+BC5H10+OH    3.968E5 2.4 1.15E3
+CH3CODC5H11+OH=>CH3CO+BC5H10+H2O    5.73E10 0.51 6.3E1
+CH3CODC5H11+HO2=>CH3CO+BC5H10+H2O2    2.8E12 0.0 1.601E4
+!___________________________________________________________________________________________________________
+!\REACTIONCLASS: 6E. ALKENYL RADICAL DECOMPOSITIONS!REF
+!___________________________________________________________________________________________________________
 C3H4-A+CC5H11=C8H15234A-A    1.0E11 0.0 7.8E3
 !
 CH3+C7H1223-DCD=C8H15234A-C    1.0E11 0.0 7.8E3
@@ -30051,18 +30050,18 @@ C8H17234-BO=>CH3COCH3+C4H8-2+CH3    2.0E13 0.0 1.5E4
 C8H17234-CO=>IC3H7+CH3CHCOCH3+CH3    2.0E13 0.0 1.5E4
 C8H17234-FO=>IC3H7+IC4H8+CH2O    2.0E13 0.0 1.5E4
 !
-! AUTOMATIC PRUNING ! C8234KETOA-A=>CH2O+IC3H7+AC3H5CHO    2.9E12 0.4 1.108E4
-! AUTOMATIC PRUNING ! C8234KETOA-B=>HCO+IC3H7+CH3CHCOCH3    2.9E12 0.4 1.108E4
-! AUTOMATIC PRUNING ! C8234KETOA-C=>CH3CHCHO+IC5Y3    2.9E12 0.4 1.108E4
-! AUTOMATIC PRUNING ! C8234KETOA-D=>CH3COCH3+SC4H8CHO-3    2.9E12 0.4 1.108E4
-! AUTOMATIC PRUNING ! C8234KETOA-E=>CH3CHCHO+C4H8-2+CH2O    2.9E12 0.4 1.108E4
-! AUTOMATIC PRUNING ! C8234KETOA-F=>CH2O+HCO+IC6D3    2.9E12 0.4 1.108E4
-! AUTOMATIC PRUNING ! !
-! AUTOMATIC PRUNING ! C8234KETOF-A=>CH2O+AC3H5CHO+IC3H7    2.9E12 0.4 1.108E4
-! AUTOMATIC PRUNING ! C8234KETOF-B=>DC5H9O-C+CH3COCH3    2.9E12 0.4 1.108E4
-! AUTOMATIC PRUNING ! C8234KETOF-C=>IC3H7CO+IC3H7+HCO    2.9E12 0.4 1.108E4
-! AUTOMATIC PRUNING ! !
-! AUTOMATIC PRUNING ! !
+C8234KETOA-A=>CH2O+IC3H7+AC3H5CHO    2.9E12 0.4 1.108E4
+C8234KETOA-B=>HCO+IC3H7+CH3CHCOCH3    2.9E12 0.4 1.108E4
+C8234KETOA-C=>CH3CHCHO+IC5Y3    2.9E12 0.4 1.108E4
+C8234KETOA-D=>CH3COCH3+SC4H8CHO-3    2.9E12 0.4 1.108E4
+C8234KETOA-E=>CH3CHCHO+C4H8-2+CH2O    2.9E12 0.4 1.108E4
+C8234KETOA-F=>CH2O+HCO+IC6D3    2.9E12 0.4 1.108E4
+!
+C8234KETOF-A=>CH2O+AC3H5CHO+IC3H7    2.9E12 0.4 1.108E4
+C8234KETOF-B=>DC5H9O-C+CH3COCH3    2.9E12 0.4 1.108E4
+C8234KETOF-C=>IC3H7CO+IC3H7+HCO    2.9E12 0.4 1.108E4
+!
+!
 IC6D3-1=>C3H6+C3H5-S    2.9E12 0.4 1.108E4
 IC6D3-2+OH=CH3COCH3+C3H6    1.0E12 0.0 5.0E3
 !
@@ -31028,108 +31027,108 @@ OH+C2H5CHO=HOCHO+C2H5    6.32E6 1.63 4.28E3
 OH+NC3H7CHO=HOCHO+NC3H7    6.32E6 1.63 4.28E3
 OH+PC4H9CHO=HOCHO+PC4H9    6.32E6 1.63 4.28E3
 OH+NC5H11CHO=HOCHO+C5H11-1    6.32E6 1.63 4.28E3
-! AUTOMATIC PRUNING ! H+C5H11COC2H3=>H2+C2H3CO+C5H10-1    3.0E12 0.0 0.0E0
-! AUTOMATIC PRUNING ! OH+C5H11COC2H3=>H2O+C2H3CO+C5H10-1    3.0E12 0.0 0.0E0
-! AUTOMATIC PRUNING ! O+C5H11COC2H3=>OH+C2H3CO+C5H10-1    3.0E12 0.0 0.0E0
-! AUTOMATIC PRUNING ! HO2+C5H11COC2H3=>H2O2+C2H3CO+C5H10-1    5.0E12 0.0 1.5E4
-! AUTOMATIC PRUNING ! H+C5H11COC2H3=>H2+C2H3+NC4H9CHCO    3.0E12 0.0 0.0E0
-! AUTOMATIC PRUNING ! OH+C5H11COC2H3=>H2O+C2H3+NC4H9CHCO    3.0E12 0.0 0.0E0
-! AUTOMATIC PRUNING ! O+C5H11COC2H3=>OH+C2H3+NC4H9CHCO    3.0E12 0.0 0.0E0
-! AUTOMATIC PRUNING ! HO2+C5H11COC2H3=>H2O2+C2H3+NC4H9CHCO    5.0E12 0.0 1.5E4
-! AUTOMATIC PRUNING ! H+C6H13COC2H3=>H2+C2H3CO+C6H12-1    3.0E12 0.0 0.0E0
-! AUTOMATIC PRUNING ! OH+C6H13COC2H3=>H2O+C2H3CO+C6H12-1    3.0E12 0.0 0.0E0
-! AUTOMATIC PRUNING ! O+C6H13COC2H3=>OH+C2H3CO+C6H12-1    3.0E12 0.0 0.0E0
-! AUTOMATIC PRUNING ! HO2+C6H13COC2H3=>H2O2+C2H3CO+C6H12-1    5.0E12 0.0 1.5E4
-! AUTOMATIC PRUNING ! H+C6H13COC2H3=>H2+C2H3+C5H11CHCO    3.0E12 0.0 0.0E0
-! AUTOMATIC PRUNING ! OH+C6H13COC2H3=>H2O+C2H3+C5H11CHCO    3.0E12 0.0 0.0E0
-! AUTOMATIC PRUNING ! O+C6H13COC2H3=>OH+C2H3+C5H11CHCO    3.0E12 0.0 0.0E0
-! AUTOMATIC PRUNING ! HO2+C6H13COC2H3=>H2O2+C2H3+C5H11CHCO    5.0E12 0.0 1.5E4
-! AUTOMATIC PRUNING ! H+NC3H7CHCO=>H2+HCCO+C3H6    3.0E12 0.0 0.0E0
-! AUTOMATIC PRUNING ! O+NC3H7CHCO=>OH+HCCO+C3H6    3.0E12 0.0 0.0E0
-! AUTOMATIC PRUNING ! OH+NC3H7CHCO=>H2O+HCCO+C3H6    3.0E12 0.0 0.0E0
-! AUTOMATIC PRUNING ! HO2+NC3H7CHCO=>H2O2+HCCO+C3H6    5.0E12 0.0 1.5E4
-! AUTOMATIC PRUNING ! H+NC3H7CHCO=>CO+PC4H9    3.0E12 0.0 0.0E0
-! AUTOMATIC PRUNING ! O+NC3H7CHCO=>CO2+C4H8-1    3.0E12 0.0 0.0E0
-! AUTOMATIC PRUNING ! OH+NC3H7CHCO=>CO2+PC4H9    3.0E12 0.0 0.0E0
-! AUTOMATIC PRUNING ! H+NC4H9CHCO=>H2+HCCO+C4H8-1    3.0E12 0.0 0.0E0
-! AUTOMATIC PRUNING ! O+NC4H9CHCO=>OH+HCCO+C4H8-1    3.0E12 0.0 0.0E0
-! AUTOMATIC PRUNING ! OH+NC4H9CHCO=>H2O+HCCO+C4H8-1    3.0E12 0.0 0.0E0
-! AUTOMATIC PRUNING ! HO2+NC4H9CHCO=>H2O2+HCCO+C4H8-1    5.0E12 0.0 1.5E4
-! AUTOMATIC PRUNING ! H+NC4H9CHCO=>CO+C5H11-1    3.0E12 0.0 0.0E0
-! AUTOMATIC PRUNING ! O+NC4H9CHCO=>CO2+C5H10-1    3.0E12 0.0 0.0E0
-! AUTOMATIC PRUNING ! OH+NC4H9CHCO=>CO2+C5H11-1    3.0E12 0.0 0.0E0
-! AUTOMATIC PRUNING ! H+C5H11CHCO=>H2+HCCO+C5H10-1    3.0E12 0.0 0.0E0
-! AUTOMATIC PRUNING ! O+C5H11CHCO=>OH+HCCO+C5H10-1    3.0E12 0.0 0.0E0
-! AUTOMATIC PRUNING ! OH+C5H11CHCO=>H2O+HCCO+C5H10-1    3.0E12 0.0 0.0E0
-! AUTOMATIC PRUNING ! HO2+C5H11CHCO=>H2O2+HCCO+C5H10-1    5.0E12 0.0 1.5E4
-! AUTOMATIC PRUNING ! H+C5H11CHCO=>CO+C6H13-1    3.0E12 0.0 0.0E0
-! AUTOMATIC PRUNING ! O+C5H11CHCO=>CO2+C6H12-1    3.0E12 0.0 0.0E0
-! AUTOMATIC PRUNING ! OH+C5H11CHCO=>CO2+C6H13-1    3.0E12 0.0 0.0E0
-! AUTOMATIC PRUNING ! H+C6H13CHCO=>H2+HCCO+C6H12-1    3.0E12 0.0 0.0E0
-! AUTOMATIC PRUNING ! O+C6H13CHCO=>OH+HCCO+C6H12-1    3.0E12 0.0 0.0E0
-! AUTOMATIC PRUNING ! OH+C6H13CHCO=>H2O+HCCO+C6H12-1    3.0E12 0.0 0.0E0
-! AUTOMATIC PRUNING ! HO2+C6H13CHCO=>H2O2+HCCO+C6H12-1    5.0E12 0.0 1.5E4
-! AUTOMATIC PRUNING ! H+C6H13CHCO=>CO+C7H15-1    3.0E12 0.0 0.0E0
-! AUTOMATIC PRUNING ! O+C6H13CHCO=>CO2+C7H14-1    3.0E12 0.0 0.0E0
-! AUTOMATIC PRUNING ! OH+C6H13CHCO=>CO2+C7H15-1    3.0E12 0.0 0.0E0
-! AUTOMATIC PRUNING ! H+C7H15CHCO=>H2+HCCO+C7H14-1    3.0E12 0.0 0.0E0
-! AUTOMATIC PRUNING ! O+C7H15CHCO=>OH+HCCO+C7H14-1    3.0E12 0.0 0.0E0
-! AUTOMATIC PRUNING ! OH+C7H15CHCO=>H2O+HCCO+C7H14-1    3.0E12 0.0 0.0E0
-! AUTOMATIC PRUNING ! HO2+C7H15CHCO=>H2O2+HCCO+C7H14-1    5.0E12 0.0 1.5E4
-! AUTOMATIC PRUNING ! H+C7H15CHCO=>CO+C8H17-1    3.0E12 0.0 0.0E0
-! AUTOMATIC PRUNING ! O+C7H15CHCO=>CO2+C8H16-1    3.0E12 0.0 0.0E0
-! AUTOMATIC PRUNING ! OH+C7H15CHCO=>CO2+C8H17-1    3.0E12 0.0 0.0E0
-! AUTOMATIC PRUNING ! H+C8H17CHCO=>H2+HCCO+C8H16-1    3.0E12 0.0 0.0E0
-! AUTOMATIC PRUNING ! O+C8H17CHCO=>OH+HCCO+C8H16-1    3.0E12 0.0 0.0E0
-! AUTOMATIC PRUNING ! OH+C8H17CHCO=>H2O+HCCO+C8H16-1    3.0E12 0.0 0.0E0
-! AUTOMATIC PRUNING ! HO2+C8H17CHCO=>H2O2+HCCO+C8H16-1    5.0E12 0.0 1.5E4
-! AUTOMATIC PRUNING ! H+C8H17CHCO=>CO+C9H19-1    3.0E12 0.0 0.0E0
-! AUTOMATIC PRUNING ! O+C8H17CHCO=>CO2+C9H18-1    3.0E12 0.0 0.0E0
-! AUTOMATIC PRUNING ! OH+C8H17CHCO=>CO2+C9H19-1    3.0E12 0.0 0.0E0
-! AUTOMATIC PRUNING ! H+C9H19CHCO=>H2+HCCO+C9H18-1    3.0E12 0.0 0.0E0
-! AUTOMATIC PRUNING ! O+C9H19CHCO=>OH+HCCO+C9H18-1    3.0E12 0.0 0.0E0
-! AUTOMATIC PRUNING ! OH+C9H19CHCO=>H2O+HCCO+C9H18-1    3.0E12 0.0 0.0E0
-! AUTOMATIC PRUNING ! HO2+C9H19CHCO=>H2O2+HCCO+C9H18-1    5.0E12 0.0 1.5E4
-! AUTOMATIC PRUNING ! H+C9H19CHCO=>CO+C10H21-1    3.0E12 0.0 0.0E0
-! AUTOMATIC PRUNING ! O+C9H19CHCO=>CO2+C10H20-1    3.0E12 0.0 0.0E0
-! AUTOMATIC PRUNING ! OH+C9H19CHCO=>CO2+C10H21-1    3.0E12 0.0 0.0E0
-! AUTOMATIC PRUNING ! H+C10H21CHCO=>H2+HCCO+C10H20-1    3.0E12 0.0 0.0E0
-! AUTOMATIC PRUNING ! O+C10H21CHCO=>OH+HCCO+C10H20-1    3.0E12 0.0 0.0E0
-! AUTOMATIC PRUNING ! OH+C10H21CHCO=>H2O+HCCO+C10H20-1    3.0E12 0.0 0.0E0
-! AUTOMATIC PRUNING ! HO2+C10H21CHCO=>H2O2+HCCO+C10H20-1    5.0E12 0.0 1.5E4
-! AUTOMATIC PRUNING ! H+C10H21CHCO=>CO+C11H23-1    3.0E12 0.0 0.0E0
-! AUTOMATIC PRUNING ! O+C10H21CHCO=>CO2+C11H22-1    3.0E12 0.0 0.0E0
-! AUTOMATIC PRUNING ! OH+C10H21CHCO=>CO2+C11H23-1    3.0E12 0.0 0.0E0
-! AUTOMATIC PRUNING ! H+C11H23CHCO=>H2+HCCO+C11H22-1    3.0E12 0.0 0.0E0
-! AUTOMATIC PRUNING ! O+C11H23CHCO=>OH+HCCO+C11H22-1    3.0E12 0.0 0.0E0
-! AUTOMATIC PRUNING ! OH+C11H23CHCO=>H2O+HCCO+C11H22-1    3.0E12 0.0 0.0E0
-! AUTOMATIC PRUNING ! HO2+C11H23CHCO=>H2O2+HCCO+C11H22-1    5.0E12 0.0 1.5E4
-! AUTOMATIC PRUNING ! H+C11H23CHCO=>CO+C12H25-1    3.0E12 0.0 0.0E0
-! AUTOMATIC PRUNING ! O+C11H23CHCO=>CO2+C12H24-1    3.0E12 0.0 0.0E0
-! AUTOMATIC PRUNING ! OH+C11H23CHCO=>CO2+C12H25-1    3.0E12 0.0 0.0E0
-! AUTOMATIC PRUNING ! C10H21COCH2=>CH2CO+C10H21-1    3.4E29 -4.824 4.192E4
-! AUTOMATIC PRUNING ! C11H23COCH2=>CH2CO+C11H23-1    3.4E29 -4.824 4.192E4
+H+C5H11COC2H3=>H2+C2H3CO+C5H10-1    3.0E12 0.0 0.0E0
+OH+C5H11COC2H3=>H2O+C2H3CO+C5H10-1    3.0E12 0.0 0.0E0
+O+C5H11COC2H3=>OH+C2H3CO+C5H10-1    3.0E12 0.0 0.0E0
+HO2+C5H11COC2H3=>H2O2+C2H3CO+C5H10-1    5.0E12 0.0 1.5E4
+H+C5H11COC2H3=>H2+C2H3+NC4H9CHCO    3.0E12 0.0 0.0E0
+OH+C5H11COC2H3=>H2O+C2H3+NC4H9CHCO    3.0E12 0.0 0.0E0
+O+C5H11COC2H3=>OH+C2H3+NC4H9CHCO    3.0E12 0.0 0.0E0
+HO2+C5H11COC2H3=>H2O2+C2H3+NC4H9CHCO    5.0E12 0.0 1.5E4
+H+C6H13COC2H3=>H2+C2H3CO+C6H12-1    3.0E12 0.0 0.0E0
+OH+C6H13COC2H3=>H2O+C2H3CO+C6H12-1    3.0E12 0.0 0.0E0
+O+C6H13COC2H3=>OH+C2H3CO+C6H12-1    3.0E12 0.0 0.0E0
+HO2+C6H13COC2H3=>H2O2+C2H3CO+C6H12-1    5.0E12 0.0 1.5E4
+H+C6H13COC2H3=>H2+C2H3+C5H11CHCO    3.0E12 0.0 0.0E0
+OH+C6H13COC2H3=>H2O+C2H3+C5H11CHCO    3.0E12 0.0 0.0E0
+O+C6H13COC2H3=>OH+C2H3+C5H11CHCO    3.0E12 0.0 0.0E0
+HO2+C6H13COC2H3=>H2O2+C2H3+C5H11CHCO    5.0E12 0.0 1.5E4
+H+NC3H7CHCO=>H2+HCCO+C3H6    3.0E12 0.0 0.0E0
+O+NC3H7CHCO=>OH+HCCO+C3H6    3.0E12 0.0 0.0E0
+OH+NC3H7CHCO=>H2O+HCCO+C3H6    3.0E12 0.0 0.0E0
+HO2+NC3H7CHCO=>H2O2+HCCO+C3H6    5.0E12 0.0 1.5E4
+H+NC3H7CHCO=>CO+PC4H9    3.0E12 0.0 0.0E0
+O+NC3H7CHCO=>CO2+C4H8-1    3.0E12 0.0 0.0E0
+OH+NC3H7CHCO=>CO2+PC4H9    3.0E12 0.0 0.0E0
+H+NC4H9CHCO=>H2+HCCO+C4H8-1    3.0E12 0.0 0.0E0
+O+NC4H9CHCO=>OH+HCCO+C4H8-1    3.0E12 0.0 0.0E0
+OH+NC4H9CHCO=>H2O+HCCO+C4H8-1    3.0E12 0.0 0.0E0
+HO2+NC4H9CHCO=>H2O2+HCCO+C4H8-1    5.0E12 0.0 1.5E4
+H+NC4H9CHCO=>CO+C5H11-1    3.0E12 0.0 0.0E0
+O+NC4H9CHCO=>CO2+C5H10-1    3.0E12 0.0 0.0E0
+OH+NC4H9CHCO=>CO2+C5H11-1    3.0E12 0.0 0.0E0
+H+C5H11CHCO=>H2+HCCO+C5H10-1    3.0E12 0.0 0.0E0
+O+C5H11CHCO=>OH+HCCO+C5H10-1    3.0E12 0.0 0.0E0
+OH+C5H11CHCO=>H2O+HCCO+C5H10-1    3.0E12 0.0 0.0E0
+HO2+C5H11CHCO=>H2O2+HCCO+C5H10-1    5.0E12 0.0 1.5E4
+H+C5H11CHCO=>CO+C6H13-1    3.0E12 0.0 0.0E0
+O+C5H11CHCO=>CO2+C6H12-1    3.0E12 0.0 0.0E0
+OH+C5H11CHCO=>CO2+C6H13-1    3.0E12 0.0 0.0E0
+H+C6H13CHCO=>H2+HCCO+C6H12-1    3.0E12 0.0 0.0E0
+O+C6H13CHCO=>OH+HCCO+C6H12-1    3.0E12 0.0 0.0E0
+OH+C6H13CHCO=>H2O+HCCO+C6H12-1    3.0E12 0.0 0.0E0
+HO2+C6H13CHCO=>H2O2+HCCO+C6H12-1    5.0E12 0.0 1.5E4
+H+C6H13CHCO=>CO+C7H15-1    3.0E12 0.0 0.0E0
+O+C6H13CHCO=>CO2+C7H14-1    3.0E12 0.0 0.0E0
+OH+C6H13CHCO=>CO2+C7H15-1    3.0E12 0.0 0.0E0
+H+C7H15CHCO=>H2+HCCO+C7H14-1    3.0E12 0.0 0.0E0
+O+C7H15CHCO=>OH+HCCO+C7H14-1    3.0E12 0.0 0.0E0
+OH+C7H15CHCO=>H2O+HCCO+C7H14-1    3.0E12 0.0 0.0E0
+HO2+C7H15CHCO=>H2O2+HCCO+C7H14-1    5.0E12 0.0 1.5E4
+H+C7H15CHCO=>CO+C8H17-1    3.0E12 0.0 0.0E0
+O+C7H15CHCO=>CO2+C8H16-1    3.0E12 0.0 0.0E0
+OH+C7H15CHCO=>CO2+C8H17-1    3.0E12 0.0 0.0E0
+H+C8H17CHCO=>H2+HCCO+C8H16-1    3.0E12 0.0 0.0E0
+O+C8H17CHCO=>OH+HCCO+C8H16-1    3.0E12 0.0 0.0E0
+OH+C8H17CHCO=>H2O+HCCO+C8H16-1    3.0E12 0.0 0.0E0
+HO2+C8H17CHCO=>H2O2+HCCO+C8H16-1    5.0E12 0.0 1.5E4
+H+C8H17CHCO=>CO+C9H19-1    3.0E12 0.0 0.0E0
+O+C8H17CHCO=>CO2+C9H18-1    3.0E12 0.0 0.0E0
+OH+C8H17CHCO=>CO2+C9H19-1    3.0E12 0.0 0.0E0
+H+C9H19CHCO=>H2+HCCO+C9H18-1    3.0E12 0.0 0.0E0
+O+C9H19CHCO=>OH+HCCO+C9H18-1    3.0E12 0.0 0.0E0
+OH+C9H19CHCO=>H2O+HCCO+C9H18-1    3.0E12 0.0 0.0E0
+HO2+C9H19CHCO=>H2O2+HCCO+C9H18-1    5.0E12 0.0 1.5E4
+H+C9H19CHCO=>CO+C10H21-1    3.0E12 0.0 0.0E0
+O+C9H19CHCO=>CO2+C10H20-1    3.0E12 0.0 0.0E0
+OH+C9H19CHCO=>CO2+C10H21-1    3.0E12 0.0 0.0E0
+H+C10H21CHCO=>H2+HCCO+C10H20-1    3.0E12 0.0 0.0E0
+O+C10H21CHCO=>OH+HCCO+C10H20-1    3.0E12 0.0 0.0E0
+OH+C10H21CHCO=>H2O+HCCO+C10H20-1    3.0E12 0.0 0.0E0
+HO2+C10H21CHCO=>H2O2+HCCO+C10H20-1    5.0E12 0.0 1.5E4
+H+C10H21CHCO=>CO+C11H23-1    3.0E12 0.0 0.0E0
+O+C10H21CHCO=>CO2+C11H22-1    3.0E12 0.0 0.0E0
+OH+C10H21CHCO=>CO2+C11H23-1    3.0E12 0.0 0.0E0
+H+C11H23CHCO=>H2+HCCO+C11H22-1    3.0E12 0.0 0.0E0
+O+C11H23CHCO=>OH+HCCO+C11H22-1    3.0E12 0.0 0.0E0
+OH+C11H23CHCO=>H2O+HCCO+C11H22-1    3.0E12 0.0 0.0E0
+HO2+C11H23CHCO=>H2O2+HCCO+C11H22-1    5.0E12 0.0 1.5E4
+H+C11H23CHCO=>CO+C12H25-1    3.0E12 0.0 0.0E0
+O+C11H23CHCO=>CO2+C12H24-1    3.0E12 0.0 0.0E0
+OH+C11H23CHCO=>CO2+C12H25-1    3.0E12 0.0 0.0E0
+C10H21COCH2=>CH2CO+C10H21-1    3.4E29 -4.824 4.192E4
+C11H23COCH2=>CH2CO+C11H23-1    3.4E29 -4.824 4.192E4
 C5H11COCH2=>CH2CO+C5H11-1    3.4E29 -4.824 4.192E4
 C6H13COCH2=>CH2CO+C6H13-1    3.4E29 -4.824 4.192E4
 C7H15COCH2=>CH2CO+C7H15-1    3.4E29 -4.824 4.192E4
-! AUTOMATIC PRUNING ! C8H17COCH2=>CH2CO+C8H17-1    3.4E29 -4.824 4.192E4
-! AUTOMATIC PRUNING ! C9H19COCH2=>CH2CO+C9H19-1    3.4E29 -4.824 4.192E4
-! AUTOMATIC PRUNING ! H+NC3H7COC2H3=>H2+C3H6+C2H3CO    3.0E12 0.0 0.0E0
-! AUTOMATIC PRUNING ! OH+NC3H7COC2H3=>H2O+C3H6+C2H3CO    3.0E12 0.0 0.0E0
-! AUTOMATIC PRUNING ! O+NC3H7COC2H3=>OH+C3H6+C2H3CO    3.0E12 0.0 0.0E0
-! AUTOMATIC PRUNING ! HO2+NC3H7COC2H3=>H2O2+C3H6+C2H3CO    5.0E12 0.0 1.5E4
-! AUTOMATIC PRUNING ! H+NC3H7COC2H3=>H2+C2H3+C2H5CHCO    3.0E12 0.0 0.0E0
-! AUTOMATIC PRUNING ! OH+NC3H7COC2H3=>H2O+C2H3+C2H5CHCO    3.0E12 0.0 0.0E0
-! AUTOMATIC PRUNING ! O+NC3H7COC2H3=>OH+C2H3+C2H5CHCO    3.0E12 0.0 0.0E0
-! AUTOMATIC PRUNING ! HO2+NC3H7COC2H3=>H2O2+C2H3+C2H5CHCO    5.0E12 0.0 1.5E4
-! AUTOMATIC PRUNING ! H+NC4H9COC2H3=>H2+C2H3CO+C4H8-1    3.0E12 0.0 0.0E0
-! AUTOMATIC PRUNING ! OH+NC4H9COC2H3=>H2O+C2H3CO+C4H8-1    3.0E12 0.0 0.0E0
-! AUTOMATIC PRUNING ! O+NC4H9COC2H3=>OH+C2H3CO+C4H8-1    3.0E12 0.0 0.0E0
-! AUTOMATIC PRUNING ! HO2+NC4H9COC2H3=>H2O2+C2H3CO+C4H8-1    5.0E12 0.0 1.5E4
-! AUTOMATIC PRUNING ! H+NC4H9COC2H3=>H2+C2H3+NC3H7CHCO    3.0E12 0.0 0.0E0
-! AUTOMATIC PRUNING ! OH+NC4H9COC2H3=>H2O+C2H3+NC3H7CHCO    3.0E12 0.0 0.0E0
-! AUTOMATIC PRUNING ! O+NC4H9COC2H3=>OH+C2H3+NC3H7CHCO    3.0E12 0.0 0.0E0
-! AUTOMATIC PRUNING ! HO2+NC4H9COC2H3=>H2O2+C2H3+NC3H7CHCO    5.0E12 0.0 1.5E4
+C8H17COCH2=>CH2CO+C8H17-1    3.4E29 -4.824 4.192E4
+C9H19COCH2=>CH2CO+C9H19-1    3.4E29 -4.824 4.192E4
+H+NC3H7COC2H3=>H2+C3H6+C2H3CO    3.0E12 0.0 0.0E0
+OH+NC3H7COC2H3=>H2O+C3H6+C2H3CO    3.0E12 0.0 0.0E0
+O+NC3H7COC2H3=>OH+C3H6+C2H3CO    3.0E12 0.0 0.0E0
+HO2+NC3H7COC2H3=>H2O2+C3H6+C2H3CO    5.0E12 0.0 1.5E4
+H+NC3H7COC2H3=>H2+C2H3+C2H5CHCO    3.0E12 0.0 0.0E0
+OH+NC3H7COC2H3=>H2O+C2H3+C2H5CHCO    3.0E12 0.0 0.0E0
+O+NC3H7COC2H3=>OH+C2H3+C2H5CHCO    3.0E12 0.0 0.0E0
+HO2+NC3H7COC2H3=>H2O2+C2H3+C2H5CHCO    5.0E12 0.0 1.5E4
+H+NC4H9COC2H3=>H2+C2H3CO+C4H8-1    3.0E12 0.0 0.0E0
+OH+NC4H9COC2H3=>H2O+C2H3CO+C4H8-1    3.0E12 0.0 0.0E0
+O+NC4H9COC2H3=>OH+C2H3CO+C4H8-1    3.0E12 0.0 0.0E0
+HO2+NC4H9COC2H3=>H2O2+C2H3CO+C4H8-1    5.0E12 0.0 1.5E4
+H+NC4H9COC2H3=>H2+C2H3+NC3H7CHCO    3.0E12 0.0 0.0E0
+OH+NC4H9COC2H3=>H2O+C2H3+NC3H7CHCO    3.0E12 0.0 0.0E0
+O+NC4H9COC2H3=>OH+C2H3+NC3H7CHCO    3.0E12 0.0 0.0E0
+HO2+NC4H9COC2H3=>H2O2+C2H3+NC3H7CHCO    5.0E12 0.0 1.5E4
 C8COC2H4P=C2H4+NC8H17CO    5.0E17 -1.5 2.6E4
     REV/2.5E11 0.0E0 7.8E3/
 C7COC2H4P=C2H4+NC7H15CO    5.0E17 -1.5 2.6E4
@@ -31150,14 +31149,14 @@ C4COC3H6P=C2H4+C6Y2-1J    5.0E17 -1.5 2.6E4
     REV/2.5E11 0.0E0 7.8E3/
 C3COC3H6P=C2H4+NC3H7COCH2    5.0E17 -1.5 2.6E4
     REV/2.5E11 0.0E0 7.8E3/
-! AUTOMATIC PRUNING ! HO2+C10H21COCH2=>OH+CH2O+NC10H21CO    1.47E15 -0.684 3.62E3
-! AUTOMATIC PRUNING ! HO2+C11H23COCH2=>OH+CH2O+NC11H23CO    1.47E15 -0.684 3.62E3
-! AUTOMATIC PRUNING ! HO2+C12H25COCH2=>OH+CH2O+NC12H25CO    1.47E15 -0.684 3.62E3
+HO2+C10H21COCH2=>OH+CH2O+NC10H21CO    1.47E15 -0.684 3.62E3
+HO2+C11H23COCH2=>OH+CH2O+NC11H23CO    1.47E15 -0.684 3.62E3
+HO2+C12H25COCH2=>OH+CH2O+NC12H25CO    1.47E15 -0.684 3.62E3
 HO2+C5H11COCH2=>OH+CH2O+NC5H11CO    1.47E15 -0.684 3.62E3
 HO2+C6H13COCH2=>OH+CH2O+NC6H13CO    1.47E15 -0.684 3.62E3
 HO2+C7H15COCH2=>OH+CH2O+NC7H15CO    1.47E15 -0.684 3.62E3
-! AUTOMATIC PRUNING ! HO2+C8H17COCH2=>OH+CH2O+NC8H17CO    1.47E15 -0.684 3.62E3
-! AUTOMATIC PRUNING ! HO2+C9H19COCH2=>OH+CH2O+NC9H19CO    1.47E15 -0.684 3.62E3
+HO2+C8H17COCH2=>OH+CH2O+NC8H17CO    1.47E15 -0.684 3.62E3
+HO2+C9H19COCH2=>OH+CH2O+NC9H19CO    1.47E15 -0.684 3.62E3
 CH3+CH2CO=C2H5CO    3.3E2 2.73 1.4E4
 CH2CO+PC4H9=NC5H11CO    3.3E2 2.73 1.4E4
 CH2CO+C5H11-1=NC6H13CO    3.3E2 2.73 1.4E4
@@ -37439,12 +37438,12 @@ RDECALIN+H=DECALIN                                2.0E+14  0.0   0
 DECALIN=>ODECAL                                      1.00E+16    .000  73000.0   !!1.0E+17 0.0   88000   !!
 !DECALIN=>CYC6H10+C4H8-1                                 1.0E+17 0.0   82000 
 RDECALIN=>RODECA                          1.500E+13    .000  30000.0   !/6
-! AUTOMATIC PRUNING ! RDECALIN=>H+C10H16               .2000E+15    .000  38000.0
+RDECALIN=>H+C10H16               .2000E+15    .000  38000.0
 C10H15=TETRALIN+H2+H                                5.000E+13    .000  38000.0
 ODECAL=>PC4H9+CYHEXEN-4J                     .1000E+16    .000  71000.0
-! AUTOMATIC PRUNING ! ODECAL=>C3H5-A+RMCYC6                     .1000E+16    .000  71000.0
+ODECAL=>C3H5-A+RMCYC6                     .1000E+16    .000  71000.0
 RODECA=>CH3+C6H5CH3+H2+C2H4            .250E+13    .000  37000.0
-! AUTOMATIC PRUNING ! RODECA=>MCYC6+C3H3                  .250E+13    .000  37000.0
+RODECA=>MCYC6+C3H3                  .250E+13    .000  37000.0
 RODECA=>C4H6+CYC6H11                .200E+13    .000  37000.0
 RODECA=>H2+C2H5+XYLENE              .200E+12    .000  37000.0
 HO2+RODECA=>OH+NC3H7CHO+CYHEXEN-4J      .500E+13   .000   0.0

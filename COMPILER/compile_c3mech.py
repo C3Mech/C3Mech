@@ -80,7 +80,7 @@ def parse_args():
                       dest='prune',
                       action='store_false',
                       help='Disable pruning of the model')
-  parser.set_defaults(prune=True)
+  parser.set_defaults(prune=False)
 
   parser.add_argument(
       '--process-cantera',
