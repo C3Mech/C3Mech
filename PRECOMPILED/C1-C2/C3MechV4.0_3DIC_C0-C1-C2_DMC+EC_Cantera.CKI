@@ -54,7 +54,7 @@
 !                              !!! Please do not remove this header !!!                              !
 ! ================================================================================================== !
 
-! Kinetics data for C3MechV4.0, generated on 21/08/2025 21:54:45.
+! Kinetics data for C3MechV4.0, generated on 09/03/2026 21:10:18.
 
 ! The following sub-modules were considered in this file:
 ! - UOG_C0_LT-HT_Cantera.MECH
@@ -62,8 +62,8 @@
 ! - LLNL_BLOCK_DMC_EC.CKI
 
 ! MID: 3DIC
-! number of species: 108
-! number of reactions: 696
+! number of species: 115
+! number of reactions: 701
 
 !\START_ELEMENTS_LIST
 ELEMENTS
@@ -98,29 +98,28 @@ HOCHO                         HOCH2O                        OCH2O2H
 HOCH2O2                       HOCH2O2H                      C2H5                          
 C2H6                          C2H5O2                        C2H5O2H                       
 C2H3                          C2H5O                         C2H4O2H                       
-C2H4O1-2                      C2-OOQOOH                     NC3H7O2H                      
-NC3H7O2                       IC3H7O2H                      IC3H7O2                       
-C2H5OH                        CH3CHO                        CH3CHOOH                      
-C2H3O1-2                      CH3CO                         CH2CHO                        
-H2CC                          CH3CO3                        CH3CO3H                       
-C2H3OO                        C2H3OOH                       C2H3OH                        
-PC2H4OH                       CHCHO                         CHOCHO                        
-C2H                           HCCOH                         C2H2OH                        
-HCCO                          C2                            C2O                           
-CH3CHOHOJ                     CH3COOH                       CH2CO2                        
-O2CH2CHO                      HO2CH2CO                      CH3CO2                        
-CH2COOH                       SC2H4OH                       O2C2H4OH                      
-CH3OCH3                       CH3OCH2                       CH3OCH2O2                     
-CH3OCH2O2H                    CH2OCHO                       CH3OCHO                       
-CH3OCO                        CH2OCH2O2H                    O2CH2OCH2O2H                  
-HO2CH2OCHO                    CH3OCH2O                      OCH2OCHO                      
-CH2OO                         HOCH2OCO                      COC(VO)OC                     
-COC(VO)OJ                     COC(VO)OCJ                    CY(COCVOOC)                   
-CY(CJOCVOOC)                  OVCCOCJVO                     OCH2CHO                       
-
-! AUTOMATIC PRUNING ! HO2CH2CHO                     NC3H7O                        NC3H7OH                       
-! AUTOMATIC PRUNING ! C2H5CHO                       IC3H7O                        IC3H7OH                       
-! AUTOMATIC PRUNING ! CH3COCH3                      
+C2H4O1-2                      C2-OOQOOH                     HO2CH2CHO                     
+NC3H7O2H                      NC3H7O2                       IC3H7O2H                      
+IC3H7O2                       C2H5OH                        CH3CHO                        
+NC3H7O                        NC3H7OH                       C2H5CHO                       
+IC3H7O                        IC3H7OH                       CH3COCH3                      
+CH3CHOOH                      C2H3O1-2                      CH3CO                         
+CH2CHO                        H2CC                          CH3CO3                        
+CH3CO3H                       C2H3OO                        C2H3OOH                       
+C2H3OH                        PC2H4OH                       CHCHO                         
+CHOCHO                        C2H                           HCCOH                         
+C2H2OH                        HCCO                          C2                            
+C2O                           CH3CHOHOJ                     CH3COOH                       
+CH2CO2                        O2CH2CHO                      HO2CH2CO                      
+CH3CO2                        CH2COOH                       SC2H4OH                       
+O2C2H4OH                      CH3OCH3                       CH3OCH2                       
+CH3OCH2O2                     CH3OCH2O2H                    CH2OCHO                       
+CH3OCHO                       CH3OCO                        CH2OCH2O2H                    
+O2CH2OCH2O2H                  HO2CH2OCHO                    CH3OCH2O                      
+OCH2OCHO                      CH2OO                         HOCH2OCO                      
+COC(VO)OC                     COC(VO)OJ                     COC(VO)OCJ                    
+CY(COCVOOC)                   CY(CJOCVOOC)                  OVCCOCJVO                     
+OCH2CHO                       
 !+++++++++++++++++++++ 
 !\END_SPECIES_MODULE: ALL 
 !+++++++++++++++++++++ 
@@ -1386,23 +1385,23 @@ O2+C2H4O2H=C2-OOQOOH    7.95E+29    -5.56   5.91E+03    !\Author: PW !\Ref: anal
     PLOG/1.0E1  1.08E+37    -7.95E+00   7.525E3/
     PLOG/3.0E1  7.95E+33    -6.88E+00   6.913E3/
     PLOG/1.0E2  7.95E+29    -5.56E+00   5.909E3/
-! AUTOMATIC PRUNING ! C2-OOQOOH=>HO2CH2CHO+OH    2.47E+12    -2.40E-01    2.80E+04!1.0E12  0.0     2.85E4
-! AUTOMATIC PRUNING ! !C2-OQOOH=>OH+CH2O+HCO    2.0E+15   0.00    42500
-! AUTOMATIC PRUNING ! !C2H4O2H=>CH2OH+CH2O    2.0E13 0.0 2.75E4
-! AUTOMATIC PRUNING ! 
-! AUTOMATIC PRUNING ! !===========================================================================================================
-! AUTOMATIC PRUNING ! !\SUBSPECIES: C2H5O2H
-! AUTOMATIC PRUNING ! !===========================================================================================================
-! AUTOMATIC PRUNING ! !___________________________________________________________________________________________________________ 
-! AUTOMATIC PRUNING ! !\REACTIONCLASS: RH+R_ABSTRACTION
-! AUTOMATIC PRUNING ! !___________________________________________________________________________________________________________ 
-! AUTOMATIC PRUNING ! !C2H5O2+HO2<=>C2H5O2H+O2                           +1.05000000E+010 +0.00000000E+000 -3.27500000E+003 !\Author: WARNING !\Ref: TSANG, JPC REF. DATA, 16 !\Comment: WARNING 
-! AUTOMATIC PRUNING ! !C2H5O2+CH2O<=>C2H5O2H+HCO                         +1.99000000E+012 +0.00000000E+000 +1.16600000E+004 !\Author: WARNING !\Ref: TSANG AND HAMPSON, J. PHYS. CHEM. REF. DATA, 15 !\Comment: WARNING 
-! AUTOMATIC PRUNING ! !C2H5O2+CH4<=>C2H5O2H+CH3                          +1.24000000E+001 +3.69000000E+000 +2.13000000E+004 !\Author: SP !\Ref: H-H CARSTENSEN, A.M. DEAN, O. DEUTSCHMANN, PROC. COMBUST. INST. 31(2007) 149-157 !\Comment: WARNING 
-! AUTOMATIC PRUNING ! !C2H5O2+CH3OH<=>C2H5O2H+CH2OH                      +1.81000000E+012 +0.00000000E+000 +1.37100000E+004 !\Author: WARNING !\Ref: TSANG, JPC REF. DATA, 16 !\Comment: WARNING 
-! AUTOMATIC PRUNING ! !C2H5O2+H2<=>C2H5O2H+H                             +1.50000000E+014 +0.00000000E+000 +2.60300000E+004 !\Author: WARNING !\Ref: TSANG & HAMPSON, METHANE, J. PHYS. CHEM. REF. DATA, VOL 15, 1986 !\Comment: WARNING 
-! AUTOMATIC PRUNING ! !C2H5O2+H2O2<=>C2H5O2H+HO2                           +2.41000000E+012 +0.00000000E+000 +9.93600000E+003 !\Author: WARNING !\Ref: !REF !\Comment: ADDED 29 / 07 / 2015 
-! AUTOMATIC PRUNING ! !C2H5O2H+HO2<=>C2H5O2+H2O2            7.1E-3 4.517 11.58E3 !CH2O+HO2 EA+5 KCAL
+C2-OOQOOH=>HO2CH2CHO+OH    2.47E+12    -2.40E-01    2.80E+04!1.0E12  0.0     2.85E4
+!C2-OQOOH=>OH+CH2O+HCO    2.0E+15   0.00    42500
+!C2H4O2H=>CH2OH+CH2O    2.0E13 0.0 2.75E4
+
+!===========================================================================================================
+!\SUBSPECIES: C2H5O2H
+!===========================================================================================================
+!___________________________________________________________________________________________________________ 
+!\REACTIONCLASS: RH+R_ABSTRACTION
+!___________________________________________________________________________________________________________ 
+!C2H5O2+HO2<=>C2H5O2H+O2                           +1.05000000E+010 +0.00000000E+000 -3.27500000E+003 !\Author: WARNING !\Ref: TSANG, JPC REF. DATA, 16 !\Comment: WARNING 
+!C2H5O2+CH2O<=>C2H5O2H+HCO                         +1.99000000E+012 +0.00000000E+000 +1.16600000E+004 !\Author: WARNING !\Ref: TSANG AND HAMPSON, J. PHYS. CHEM. REF. DATA, 15 !\Comment: WARNING 
+!C2H5O2+CH4<=>C2H5O2H+CH3                          +1.24000000E+001 +3.69000000E+000 +2.13000000E+004 !\Author: SP !\Ref: H-H CARSTENSEN, A.M. DEAN, O. DEUTSCHMANN, PROC. COMBUST. INST. 31(2007) 149-157 !\Comment: WARNING 
+!C2H5O2+CH3OH<=>C2H5O2H+CH2OH                      +1.81000000E+012 +0.00000000E+000 +1.37100000E+004 !\Author: WARNING !\Ref: TSANG, JPC REF. DATA, 16 !\Comment: WARNING 
+!C2H5O2+H2<=>C2H5O2H+H                             +1.50000000E+014 +0.00000000E+000 +2.60300000E+004 !\Author: WARNING !\Ref: TSANG & HAMPSON, METHANE, J. PHYS. CHEM. REF. DATA, VOL 15, 1986 !\Comment: WARNING 
+!C2H5O2+H2O2<=>C2H5O2H+HO2                           +2.41000000E+012 +0.00000000E+000 +9.93600000E+003 !\Author: WARNING !\Ref: !REF !\Comment: ADDED 29 / 07 / 2015 
+!C2H5O2H+HO2<=>C2H5O2+H2O2            7.1E-3 4.517 11.58E3 !CH2O+HO2 EA+5 KCAL
 NC3H7O2H+HO2<=>NC3H7O2+H2O2            7.1E-3 4.517 11.58E3 !CH2O+HO2 EA+5 KCAL
 IC3H7O2H+HO2<=>IC3H7O2+H2O2            7.1E-3 4.517 11.58E3 !CH2O+HO2 EA+5 KCAL
 
@@ -1461,13 +1460,13 @@ C2H5O2+C2H5O2=CH3CHO+C2H5OH+O2    3.11E14 -1.61 -1.051E3   !5.59E+10    0.0     
     ! (221-296 K) Noell et al., J. Phys. Chem. A 2010, 114, 6983-6995
 
 
-! AUTOMATIC PRUNING ! 2NC3H7O2=>2NC3H7O+O2    7.00000000E+016 -1.61000000E+000 +1.86000000E+003 
-! AUTOMATIC PRUNING ! 2NC3H7O2=>NC3H7OH+O2+C2H5CHO  1.5e11   0  0
-! AUTOMATIC PRUNING ! 2IC3H7O2=>2IC3H7O+O2    7.00000000E+016 -1.61000000E+000 +1.86000000E+003 
-! AUTOMATIC PRUNING ! 2IC3H7O2=>IC3H7OH+O2+CH3COCH3   1.5e11   0  0
-! AUTOMATIC PRUNING ! 
-! AUTOMATIC PRUNING ! 
-! AUTOMATIC PRUNING ! 
+2NC3H7O2=>2NC3H7O+O2    7.00000000E+016 -1.61000000E+000 +1.86000000E+003 
+2NC3H7O2=>NC3H7OH+O2+C2H5CHO  1.5e11   0  0
+2IC3H7O2=>2IC3H7O+O2    7.00000000E+016 -1.61000000E+000 +1.86000000E+003 
+2IC3H7O2=>IC3H7OH+O2+CH3COCH3   1.5e11   0  0
+
+
+
 C2H5O2H+H=CH3CHOOH+H2              6.5E10   0.000    1860
     ! est CH3OOH+H
 ! ------ ------ ------ !
@@ -3852,5 +3851,6 @@ OVCCOCJVO=OCH2CHO+CO    1.096E27 -5.216E0 2.34771E4   ! [CAL2022] 500.0-2200.0K;
 !++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 !\END_KINETICS_MODULE: DMC, EC
 !++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
 END
 
