@@ -86,7 +86,7 @@ description: |2-
 
    model ID (MID): 3XR0
    number of species: 1474
-   number of reactions: 7693
+   number of reactions: 7695
 
    REVISION FOR C3MechV4.0.1:
    SEARCH FOR "YZ_251026"
@@ -61797,9 +61797,7 @@ reactions:
      ADDITION OF C2H3 (VINYLIC TYPE RAD) TO C OF C=C
     ! C2H4+C4H5-N=HX13EN6J    2.0E11 0.0 2.01E3 !! removed Yuki Murakami, 31 March 2024, Same reaction in C6 module
     WAGNON1@LLNL.GOV! HPL SUP.MAT. BURAS JPCA 119 (2015) 7325-7338
-    !CYHEXEN-4J=CYHX13ENE+H    7.49E8 1.395 3.3132E4 !! Removed Yuki Murakami, 31 March 2024, same reaction in C4 module
     WAGNON1@LLNL.GOV! HPL SUP.MAT. BURAS JPCA 119 (2015) 7325-7338
-    !CYHEXEN-4J=CYHX14ENE+H    2.1E9 1.299 3.3394E4  !! Removed Yuki Murakami, 31 March 2024, same reaction in C4 module
     WAGNON1@LLNL.GOV! TABLE 4 #3.1 1,6ENDO WANG PHYS.CHEM.CHEM.PHYS. 18 (2016) 8437-8452
     ! C6H9-A=CYHEXEN-4J    2.31E8 0.78 1.99E4  !! Removed Yuki Murakami, 31 March 2024, same reaction in C4 module
     TODO(?)!LIKELY MINOR AND NEGLIGIBLE! CYHEXEN-4J=CVCCCCV[CH]
@@ -72764,3 +72762,9 @@ reactions:
     ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     \END_KINETICS_MODULE: DMC, EC
     ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+- equation: CYHEXEN-4J <=> CYHX13ENE + H  # Reaction 7852
+  rate-constant: {A: 7.49e+08, b: 1.395, Ea: 3.3132e+04}
+  note: WAGNON1@LLNL.GOV! HPL SUP.MAT. BURAS JPCA 119 (2015) 7325-7338
+- equation: CYHEXEN-4J <=> CYHX14ENE + H  # Reaction 7853
+  rate-constant: {A: 2.1e+09, b: 1.299, Ea: 3.3394e+04}
+  note: WAGNON1@LLNL.GOV! HPL SUP.MAT. BURAS JPCA 119 (2015) 7325-7338
