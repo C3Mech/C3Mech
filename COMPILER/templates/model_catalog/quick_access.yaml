@@ -1,0 +1,14 @@
+quick_access:
+  - label: Hydrogen and ammonia
+    modules: [C0, UOG_N]
+  - label: Methane
+    modules: [C0, C1-C2]
+  - label: C0 to C4 fuels
+    modules: [C0, C1-C2, C3-C4]
+  - label: Aromatic and cyclic fuels
+    modules: [C0, C1-C2, C3-C4, C5cy, C6cy, PAH_BLOCK]
+    note: Includes benzene, toluene, phenol, indene, naphthalene, xylene, alpha-methylnaphthalene, C1 through CY5 species, and polycyclic aromatic hydrocarbons.
+  - label: Cyclopentadiene
+    modules: [C0, C1-C2, C3-C4, C5, C5cy, C6cy, PAH_BLOCK]
+  - label: Toluene Primary Reference Fuel
+    modules: [C0, C1-C2, C3-C4, C5, C5cy, C6, C6cy, C7, LLNL_BLOCK, PAH_BLOCK]

@@ -1,7 +1,18 @@
 name: c3-compiler
+
 channels:
   - conda-forge
+  - nodefaults
+
 dependencies:
-  - python>=3.8
-  - cantera
+  - python>=3.10
+  - cantera>=3.0
+  - cairosvg
+  - gitpython
+  - jsonschema>=4.18,<5
+  - numpy
+  - pandas
   - pyyaml
+  - pypdf
+  - matplotlib-base
+  - rdkit>=2023.09.5

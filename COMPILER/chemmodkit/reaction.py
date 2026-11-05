@@ -18,6 +18,13 @@ def compute_elem(reac_prod, species_compo_dict):
 
 
 class ChemicalReaction:
+  """Parsed CHEMKIN reaction plus auxiliary dependence metadata.
+
+  `explicit_dependence` stores species that are explicitly present in the
+  reaction expression but cancel with net-zero stoichiometry between both
+  sides (for example `A+AR=B+AR`, or parsed `(+N2)` dependence terms).
+  """
+
   def __init__(self, reaction_string, reaction_string_orig, species_dict):
     self.species_dict = species_dict
     self.reaction_string = reaction_string
@@ -32,7 +39,8 @@ class ChemicalReaction:
     self.products = []
     self.product_set = set()
     self.reacting = set()
-    # A+Ar=B+Ar adds an explicit dependence on Ar
+    # A+Ar=B+Ar yields net-zero stoichiometry for Ar, but keeps explicit
+    # collider dependence information for matching and diagnostics.
     self.explicit_dependence = set()
     self.tb_efficiencies = {}
     self.reaction_type = ""
@@ -43,6 +51,7 @@ class ChemicalReaction:
 
     self.canonical_reactants = None
     self.canonical_products = None
+    self.source_order = -1
     self.idx = -1
     self.increment = {}
     self.reac_most_elem = {}
@@ -57,6 +66,7 @@ class ChemicalReaction:
                                     self.species_dict)
 
     # Copy other attributes explicitly
+    new_instance.source_order = self.source_order
     new_instance.inverted = self.inverted
     new_instance.reactants = copy.deepcopy(self.reactants)
     new_instance.reactant_set = copy.deepcopy(self.reactant_set)
@@ -261,6 +271,40 @@ class ChemicalReaction:
 
     return " + ".join(reactant_parts) + separator + " + ".join(product_parts)
 
+  @property
+  def collider_dependence(self) -> set[str]:
+    """Alias for explicit net-zero collider dependence species."""
+    return self.explicit_dependence
+
+  @collider_dependence.setter
+  def collider_dependence(self, value: set[str]):
+    self.explicit_dependence = value
+
+  @property
+  def eq_collider_dep(self) -> set[str]:
+    """Concise alias: equation-level collider dependence species."""
+    return self.explicit_dependence
+
+  @eq_collider_dep.setter
+  def eq_collider_dep(self, value: set[str]):
+    self.explicit_dependence = value
+
+  def participating_species(self,
+                            include_explicit_dependence: bool = True,
+                            include_third_body: bool = False) -> set[str]:
+    """Return species symbols involved in this reaction object.
+
+    By default this includes reactants/products and explicit dependence species.
+    Third-body efficiency species are included only when requested.
+    """
+    species = set([sp for _, sp in self.reactants] +
+                  [sp for _, sp in self.products])
+    if include_explicit_dependence:
+      species.update(self.explicit_dependence)
+    if include_third_body:
+      species.update(self.tb_efficiencies.keys())
+    return species
+
   def extract_species(self, species_part, line):
     """Extracts species (reactants or products) from a given part of the reaction."""
     species = []
@@ -328,7 +372,8 @@ class ChemicalReaction:
     line = inp.remove_trailing_numbers(line.strip())
     self.reaction_definition = line
     line = re.sub(r'\s*\(\s*\+\s*M\s*\)\s*', '', line)  # Matches "(+ M)"
-    line = re.sub(r'\s*\+\s*M(?=\s*(?:[+<=]|$))', '', line)  # Matches "+ M" or "+   M"
+    line = re.sub(r'\s*\+\s*M(?=\s*(?:[+<=]|$))', '',
+                  line)  # Matches "+ M" or "+   M"
     line = re.sub(r'\s*\(\s*\+\s*([\w\-\(\),\#]+)\s*\)\s*', r'+\1',
                   line)  # Replace "(+N2)" with " + N2 "
     # Determine reaction type and split into reactants and products

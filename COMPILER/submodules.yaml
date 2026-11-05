@@ -1,25 +1,26 @@
 # the yaml_tag is used in the python script (don't change this)
 !SubModulesFiles
 
-# A core mechanism is required. The choice depends only on the employed 
-# simulation code. The following version works with Cantera or FlameMaster:
-core: UOG/LT-HT/UOG_C0_LT-HT_Cantera.MECH
-# The following option can be used with CHEMKIN-PRO or OpenSMOKE++:
+# A core mechanism is required. Select its collider formulation explicitly.
+# Independent-collider (IC) input:
+core: UOG/LT-HT/UOG_C0_LT-HT_IC.MECH
+# LOWMX/LOWSP input for LMR-R (LMRR) or LMR-P (LMRP), selected by the solver:
 #core: UOG/LT-HT/UOG_C0_LT-HT.MECH
 
 submodules:
 ## 
-## C3MechV4.0.1 (all sub-modules):
+## C3Mech (all sub-modules):
 
-  - UOG/LT-HT/UOG_C1-C2_LT-HT_Cantera.MECH 
+  - UOG/LT-HT/UOG_C1-C2_LT-HT_IC.MECH
   - UOG/LT-HT/UOG_C3-C4_LT-HT.MECH
   - UOG/LT-HT/UOG_C5_LT-HT.MECH
   - UOG/LT-HT/UOG_C5cy_LT-HT.MECH
   - UOG/LT-HT/UOG_C6_LT-HT.MECH
   - UOG/LT-HT/UOG_C6cy_LT-HT.MECH
   - UOG/LT-HT/UOG_C7_LT-HT.MECH
-  - UOG/LT-HT/UOG_N_LT-HT.MECH
+  - UOG/LT-HT/UOG_N_LT-HT_IC.MECH
   - UOG/LT-HT/UOG_C-N_LT-HT.MECH
+
 
   - ITV_POLIMI/PAH_BLOCK.CKI
 

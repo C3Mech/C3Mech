@@ -1,4 +1,25 @@
 !\KINETICS_MODULE: PAH
+
+!! RL TODO
+!! [ ] Ask LPM about the of these reactions
+!!     IC4H7+IC4H8=>C6H5CH3+CH3+2.H2    
+!!     IC4H7+IC4H7=>C6H5CH3+H+CH3+H2    
+!!     C4H71-3+C4H6=>C6H5CH3+H2+CH3     
+!!     C4H71-3+C4H71-3=>CH3+H+C6H5CH3+H2
+!! [ ] Ask LPM about plans for C4H4+C3H3. From Marti et al. (https://doi.org/10.1021/acs.jpca.2c08035) 
+!!     and from what I've seen, C3H3+C4H4 should produce C7H6+H, C5H5+C2H2, or, at lower temperatures
+!!     (<1000K) VINYLCPDYL. It should never produce C6H5CH2. The update would also affect C/L-C6H4+CH3
+!! [ ] What's the source of C4H3-I+C3H4-P=C6H4CH3
+!! Check:
+!! [ ] C3H3+C6H4CH3
+!! [ ] C4H5-I+C6H4CH3
+!! [ ] C2H2+C6H4CH3
+!! [ ] C3H4-A+C6H4CH3
+!! [ ] C3H4-P+C6H4CH3
+!! 
+!! [ ] What's the source for "C-C6H4=C2H2+C4H2 UPDATED FROM MILANO"?
+!! [ ] Introduce detailed A2R5
+
 !************************ ITV CRECK SUBMODULE  **************************************************************************************************************************
 !!==========================================================================!
 !!                                                                          !
@@ -3089,7 +3110,7 @@ PLOG	/	1.00E+02	2.09E-22	10.09	44894	/
 !RXYLENE=>C6H5C2H3+H                              1.5E+13   0.128 70300 ! LPM AS IN SUN 2022 / 2, SHOULD FORM CH2C6H4CH2, THEN GOES TO C6H5C2H3 !da Silva et al. JPCA 113(2009) 10264-10278! WAS 6H6H+H+C2H2 8.200E+14    0.000  80676.39 !\REF: !\COMMENT:!REF: Path from Bournaceur et al. 2005
 !RXYLENE=>C6H6+C2H2+H                             1.5E+13   0.128 70300 ! LPM AS ABOVE , DIFFERENT PRODUCTS; SIMILAR TO GAIL DAGAUT CST 2007 (6E13 0 70000)
 !RXYLENE=>CYC6H4+C2H4+H                             0.5E+13   0.128 70300 ! LPM AS ABOVE , prod from ortho-CH2C6H4CH2 + H
-!RXYLENE = C5H6+C3H3                              0.3E+13 0.0 71000  !LPM FROM SUN 2022 / 10 (META ISOMER) Gail and Dagaut Combust. Sci. and Tech., 179: 813–844, 2007, A/3  1.00E+14									   
+!RXYLENE = C5H6+C3H3                              0.3E+13 0.0 71000  !LPM FROM SUN 2022 / 10 (META ISOMER) Gail and Dagaut Combust. Sci. and Tech., 179: 813-844, 2007, A/3  1.00E+14
 !#[ENDREACTIONCLASS][A1CH2,CH3-RSR][BSCISS_CH]
 
 
@@ -4660,13 +4681,12 @@ C7H5+C4H2=C9H6-C2H                       3.0e+38 -8.1 27000.00         !! Jin et
                                                                        !! Using the rate of C7H5=C4H2+C3H3 this would be much faster, but
                                                                        !! that's probably less accurate 
 
-RFLUORENE=C9H6-C2H+C2H2             1.0     1.0       1.0   !! analogy with C9H7=C7H5+C2H2
-PLOG / 0.01    9.99E+136    -34.28  1.9510E+05 /
-PLOG / 0.10    2.91E+156    -39.02  2.2525E+05 /
-PLOG / 1.00    4.61E+141    -34.61  2.1984E+05 /
-PLOG / 10.00   3.50E+122    -29.04  2.1112E+05 /
-PLOG / 100.00  1.56E+54     -10.53  1.4403E+05 /
-
+C9H6-C2H+C2H2=>0.5C12H9+0.5C14H9       1.10E+86  -21.259    65862   !! estimate from the analogous C2H2+C7H5=>C9H7 PLOG rate, Matsugi and Miyoshi, doi:10.1039/C2CP41002H, Physical Chemistry Chemical Physics 14 (2012), 9722-9728
+PLOG / 0.0132  1.10E+86  -21.259  65862 /
+PLOG / 0.1320  2.29E+65  -15.332  52600 /
+PLOG / 1.0000  2.58E+46   -9.963  39426 /
+PLOG / 10.000  5.47E+28   -4.989  26622 /
+PLOG / 100.00  2.50E+18   -2.092  18906 /
 
 C9H6-C2H+H=>C9H7C2H  6.40E+13    0.102     -31 !!! !! MILLER &KLIPPENSTEIN, JPCA, 107 (2003),2680-2692
 PLOG /  3.95E-02  3.62E+36   -7.360    6040 / !!
@@ -5615,21 +5635,23 @@ H+BZFUR=>C6H6+HCCO                        .5000E+13    .000   2000.0
 HO2+BZFUR=>CO+C4H4+CH2O+HCCO              .5000E+13    .000  13000.0
 C6H5O+C6H5O=>DIBZFUR+H2O                  .1500E+14    .000  15000.0   !   KS 1800
 OH+DIBZFUR=>HCO+CO+NAPH                  .0500E+14    .000       .0
-RDECALIN+H=DECALIN                                2.0E+14  0.0   0 
-DECALIN=>ODECAL                                      1.00E+16    .000  73000.0   !!1.0E+17 0.0   88000   !!
-!DECALIN=>CYC6H10+C4H8-1                                 1.0E+17 0.0   82000 
-RDECALIN=>RODECA                          1.500E+13    .000  30000.0   !/6
-RDECALIN=>H+C10H16               .2000E+15    .000  38000.0
-C10H15=TETRALIN+H2+H                                5.000E+13    .000  38000.0
-ODECAL=>PC4H9+CYHEXEN-4J                     .1000E+16    .000  71000.0
-ODECAL=>C3H5-A+RMCYC6                     .1000E+16    .000  71000.0
-RODECA=>CH3+C6H5CH3+H2+C2H4            .250E+13    .000  37000.0
-RODECA=>MCYC6+C3H3                  .250E+13    .000  37000.0
-RODECA=>C4H6+CYC6H11                .200E+13    .000  37000.0
-RODECA=>H2+C2H5+XYLENE              .200E+12    .000  37000.0
-HO2+RODECA=>OH+NC3H7CHO+CYHEXEN-4J      .500E+13   .000   0.0
-HO2+RODECA=>OH+C2H5CHO+0.5C2H4+CYHEXEN-4J      .500E+13   .000   0.0
-HO2+RODECA=>OH+CH3+CYC6H10+C2H4+CO      1.00E+13   .000   0.0
+
+!decalin: removed
+!RDECALIN+H=DECALIN                                2.0E+14  0.0   0 
+!DECALIN=>ODECAL                                      1.00E+16    .000  73000.0   !!1.0E+17 0.0   88000   !!
+!!DECALIN=>CYC6H10+C4H8-1                                 1.0E+17 0.0   82000 
+!RDECALIN=>RODECA                          1.500E+13    .000  30000.0   !/6
+!RDECALIN=>H+C10H16               .2000E+15    .000  38000.0 !decomposed product
+!C10H15=TETRALIN+H2+H                                5.000E+13    .000  38000.0
+!ODECAL=>PC4H9+CYHEXEN-4J                     .1000E+16    .000  71000.0
+!ODECAL=>C3H5-A+RMCYC6                     .1000E+16    .000  71000.0
+!RODECA=>CH3+C6H5CH3+H2+C2H4            .250E+13    .000  37000.0
+!RODECA=>MCYC6+C3H3                  .250E+13    .000  37000.0
+!RODECA=>C4H6+CYC6H11                .200E+13    .000  37000.0
+!RODECA=>H2+C2H5+XYLENE              .200E+12    .000  37000.0
+!HO2+RODECA=>OH+NC3H7CHO+CYHEXEN-4J      .500E+13   .000   0.0
+!HO2+RODECA=>OH+C2H5CHO+0.5C2H4+CYHEXEN-4J      .500E+13   .000   0.0
+!HO2+RODECA=>OH+CH3+CYC6H10+C2H4+CO      1.00E+13   .000   0.0
 
 ! ABSTRACTION REACTIONS
 !
@@ -5777,74 +5799,110 @@ HO2+RODECA=>OH+CH3+CYC6H10+C2H4+CO      1.00E+13   .000   0.0
 ! ABSTRACTION REACTION: R + DECALIN=>RDECALIN + RH 
 ! Number of H abstracted: 20.00
 ! Type of H abstracted:   [1] 
-  H         + DECALIN=>RDECALIN + H2           6.00000e+07       2.000    4000.000
-  CH3       + DECALIN=>RDECALIN + CH4          6.00000e+05       2.000    5000.000
-  C2H3      + DECALIN=>RDECALIN + C2H4         1.35600e+06       2.000    3900.000
-  C2H5      + DECALIN=>RDECALIN + C2H6         4.00000e+05       2.000    6700.000
-  C3H5-S    + DECALIN=>RDECALIN + C3H6         5.40000e+05       2.000    4500.000
-  C3H5-T    + DECALIN=>RDECALIN + C3H6         5.40000e+05       2.000    4500.000
-  C3H5-A    + DECALIN=>RDECALIN + C3H6         1.07800e+06       2.000   12800.000
-  C4H71-4   + DECALIN=>RDECALIN + C4H8-1       2.70000e+05       2.000    6600.000
-  C4H71-3   + DECALIN=>RDECALIN + C4H8-2       6.80000e+05       2.000   13700.000
-  IC4H7     + DECALIN=>RDECALIN + IC4H8        5.40000e+05       2.000   13700.000
-  C4H3-I      + DECALIN=>RDECALIN + C4H4         8.18000e+05       2.000    5200.000
-  C6H5      + DECALIN=>RDECALIN + C6H6         7.40000e+08       1.000    2000.000
-  C5H5      + DECALIN=>RDECALIN + C5H6         6.80000e+05       2.000   14000.000
-  O         + DECALIN=>RDECALIN + OH           4.70000e+07       2.000    2500.000
-! O2        + DECALIN=>RDECALIN + HO2          3.40000e+07       2.000   44000.000    OVERWRITTEN
-  OH        + DECALIN=>RDECALIN + H2O          3.00000e+10       1.000      50.000
-  HO2       + DECALIN=>RDECALIN + H2O2         1.60000e+07       2.000   16000.000
-  C3H3      + DECALIN=>RDECALIN + C3H4-A       5.40000e+05       2.000   14000.000
-  C6H5O     + DECALIN=>RDECALIN + C6H5OH       1.08000e+06       2.000   12500.000
-  C6H4OH    + DECALIN=>RDECALIN + C6H5OH       7.40000e+08       1.000    2000.000
-  C6H5CH2      + DECALIN=>RDECALIN + C6H5CH3         2.70000e+05       2.000   16000.000
-  C6H4CH3   + DECALIN=>RDECALIN + C6H5CH3         7.40000e+08       1.000    2000.000
-  OC6H4CH3  + DECALIN=>RDECALIN + HOC6H4CH3       5.40000e+05       2.000   12800.000
-  NAPH-A    + DECALIN=>RDECALIN + NAPH        7.40000e+08       1.000    2000.000
-  NAPH-B    + DECALIN=>RDECALIN + NAPH        7.40000e+08       1.000    2000.000
-  C6H5CH2CH2  + DECALIN=>RDECALIN + C6H5C2H5     5.00000e+05       2.000   12500.000
-  C6H5CHCH3 + DECALIN=>RDECALIN + C6H5C2H5     3.60000e+05       2.000   16000.000
-  C9H7   + DECALIN=>RDECALIN + IND       2.60000e+05       2.000   16000.000
-  C10H6CH3-A + DECALIN=>RDECALIN + C10H7CH3-A    7.40000e+08       1.000    2000.000
-  C10H6CH3-B + DECALIN=>RDECALIN + C10H7CH3-B    7.40000e+08       1.000    2000.000
+!  H         + DECALIN=>RDECALIN + H2           6.00000e+07       2.000    4000.000
+!  CH3       + DECALIN=>RDECALIN + CH4          6.00000e+05       2.000    5000.000
+!  C2H3      + DECALIN=>RDECALIN + C2H4         1.35600e+06       2.000    3900.000
+!  C2H5      + DECALIN=>RDECALIN + C2H6         4.00000e+05       2.000    6700.000
+!  C3H5-S    + DECALIN=>RDECALIN + C3H6         5.40000e+05       2.000    4500.000
+!  C3H5-T    + DECALIN=>RDECALIN + C3H6         5.40000e+05       2.000    4500.000
+!  C3H5-A    + DECALIN=>RDECALIN + C3H6         1.07800e+06       2.000   12800.000
+!  C4H71-4   + DECALIN=>RDECALIN + C4H8-1       2.70000e+05       2.000    6600.000
+!  C4H71-3   + DECALIN=>RDECALIN + C4H8-2       6.80000e+05       2.000   13700.000
+!  IC4H7     + DECALIN=>RDECALIN + IC4H8        5.40000e+05       2.000   13700.000
+!  C4H3-I      + DECALIN=>RDECALIN + C4H4         8.18000e+05       2.000    5200.000
+!  C6H5      + DECALIN=>RDECALIN + C6H6         7.40000e+08       1.000    2000.000
+!  C5H5      + DECALIN=>RDECALIN + C5H6         6.80000e+05       2.000   14000.000
+!  O         + DECALIN=>RDECALIN + OH           4.70000e+07       2.000    2500.000
+!! O2        + DECALIN=>RDECALIN + HO2          3.40000e+07       2.000   44000.000    OVERWRITTEN
+!  OH        + DECALIN=>RDECALIN + H2O          3.00000e+10       1.000      50.000
+!  HO2       + DECALIN=>RDECALIN + H2O2         1.60000e+07       2.000   16000.000
+!  C3H3      + DECALIN=>RDECALIN + C3H4-A       5.40000e+05       2.000   14000.000
+!  C6H5O     + DECALIN=>RDECALIN + C6H5OH       1.08000e+06       2.000   12500.000
+!  C6H4OH    + DECALIN=>RDECALIN + C6H5OH       7.40000e+08       1.000    2000.000
+!  C6H5CH2      + DECALIN=>RDECALIN + C6H5CH3         2.70000e+05       2.000   16000.000
+!  C6H4CH3   + DECALIN=>RDECALIN + C6H5CH3         7.40000e+08       1.000    2000.000
+!  OC6H4CH3  + DECALIN=>RDECALIN + HOC6H4CH3       5.40000e+05       2.000   12800.000
+!  NAPH-A    + DECALIN=>RDECALIN + NAPH        7.40000e+08       1.000    2000.000
+!  NAPH-B    + DECALIN=>RDECALIN + NAPH        7.40000e+08       1.000    2000.000
+!  C6H5CH2CH2  + DECALIN=>RDECALIN + C6H5C2H5     5.00000e+05       2.000   12500.000
+!  C6H5CHCH3 + DECALIN=>RDECALIN + C6H5C2H5     3.60000e+05       2.000   16000.000
+!  C9H7   + DECALIN=>RDECALIN + IND       2.60000e+05       2.000   16000.000
+!  C10H6CH3-A + DECALIN=>RDECALIN + C10H7CH3-A    7.40000e+08       1.000    2000.000
+!  C10H6CH3-B + DECALIN=>RDECALIN + C10H7CH3-B    7.40000e+08       1.000    2000.000
+!
+! O2    +DECALIN=>HO2     +RDECALIN  2.0005E+08 2.0  40722.49  
+!
+!! ABSTRACTION REACTION: R + ODECAL=>RODECA + RH 
+!! Number of H abstracted: 22.00
+!! Type of H abstracted:   [1] 
+!  H         + ODECAL=>RODECA + H2           6.60000e+07       2.000    4000.000
+!  CH3       + ODECAL=>RODECA + CH4          6.60000e+05       2.000    5000.000
+!  C2H3      + ODECAL=>RODECA + C2H4         1.49160e+06       2.000    3900.000
+!  C2H5      + ODECAL=>RODECA + C2H6         4.40000e+05       2.000    6700.000
+!  C3H5-S    + ODECAL=>RODECA + C3H6         5.94000e+05       2.000    4500.000
+!  C3H5-T    + ODECAL=>RODECA + C3H6         5.94000e+05       2.000    4500.000
+!  C3H5-A    + ODECAL=>RODECA + C3H6         1.18580e+06       2.000   12800.000
+!  C4H71-4   + ODECAL=>RODECA + C4H8-1       2.97000e+05       2.000    6600.000
+!  C4H71-3   + ODECAL=>RODECA + C4H8-2       7.48000e+05       2.000   13700.000
+!  IC4H7     + ODECAL=>RODECA + IC4H8        5.94000e+05       2.000   13700.000
+!  C4H3-I      + ODECAL=>RODECA + C4H4         8.99800e+05       2.000    5200.000
+!  C6H5      + ODECAL=>RODECA + C6H6         8.14000e+08       1.000    2000.000
+!  C5H5      + ODECAL=>RODECA + C5H6         7.48000e+05       2.000   14000.000
+!  O         + ODECAL=>RODECA + OH           5.17000e+07       2.000    2500.000
+!  O2        + ODECAL=>RODECA + HO2          3.74000e+07       2.000   44000.000
+!  OH        + ODECAL=>RODECA + H2O          3.30000e+10       1.000      50.000
+!  HO2       + ODECAL=>RODECA + H2O2         1.76000e+07       2.000   16000.000
+!  C3H3      + ODECAL=>RODECA + C3H4-A       5.94000e+05       2.000   14000.000
+!  C6H5O     + ODECAL=>RODECA + C6H5OH       1.18800e+06       2.000   12500.000
+!  C6H4OH    + ODECAL=>RODECA + C6H5OH       8.14000e+08       1.000    2000.000
+!  C6H5CH2      + ODECAL=>RODECA + C6H5CH3         2.97000e+05       2.000   16000.000
+!  C6H4CH3   + ODECAL=>RODECA + C6H5CH3         8.14000e+08       1.000    2000.000
+!  OC6H4CH3  + ODECAL=>RODECA + HOC6H4CH3       5.94000e+05       2.000   12800.000
+!  NAPH-A    + ODECAL=>RODECA + NAPH        8.14000e+08       1.000    2000.000
+!  NAPH-B    + ODECAL=>RODECA + NAPH        8.14000e+08       1.000    2000.000
+!  C6H5CH2CH2  + ODECAL=>RODECA + C6H5C2H5     5.50000e+05       2.000   12500.000
+!  C6H5CHCH3 + ODECAL=>RODECA + C6H5C2H5     3.96000e+05       2.000   16000.000
+!  C9H7   + ODECAL=>RODECA + IND       2.86000e+05       2.000   16000.000
+!  C10H6CH3-A + ODECAL=>RODECA + C10H7CH3-A    8.14000e+08       1.000    2000.000
+!  C10H6CH3-B + ODECAL=>RODECA + C10H7CH3-B    8.14000e+08       1.000    2000.000
+!
+! !ADD: R+C10H16
+! 
+!H+C10H16=>H2+C10H15                                     4.8000e+07    2.000      4000.00
+!O+C10H16=>OH+C10H15                                     3.7600e+07    2.000      2500.00
+!O2+C10H16=>HO2+C10H15                                   2.7200e+07    2.000     44000.00
+!OH+C10H16=>H2O+C10H15                                   2.4000e+10    1.000        50.00
+!HO2+C10H16=>H2O2+C10H15                                 1.2800e+07    2.000     16000.00
+!HCO+C10H16=>CH2O+C10H15                                 2.0160e+06    2.000     12300.00
+!CH3+C10H16=>CH4+C10H15                                  4.8000e+05    2.000      5000.00
+!CH3O+C10H16=>CH3OH+C10H15                               6.8480e+05    2.000      1500.00
+!C2H3+C10H16=>C2H4+C10H15                                1.0848e+06    2.000      3900.00
+!C2H5+C10H16=>C2H6+C10H15                                3.2000e+05    2.000      6700.00
+!C3H5-S+C10H16=>C3H6+C10H15                              4.3200e+05    2.000      4500.00
+!C3H5-T+C10H16=>C3H6+C10H15                              4.3200e+05    2.000      4500.00
+!C3H5-A+C10H16=>C3H6+C10H15                              8.6240e+05    2.000     12800.00
+!C4H71-4+C10H16=>C4H8-1+C10H15                           2.1600e+05    2.000      6600.00
+!C4H71-3+C10H16=>C4H8-2+C10H15                           5.4400e+05    2.000     13700.00
+!IC4H7+C10H16=>IC4H8+C10H15                              4.3200e+05    2.000     13700.00
+!C4H3-I+C10H16=>C4H4+C10H15                                6.5440e+05    2.000      5200.00
+!C6H5+C10H16=>C6H6+C10H15                                5.9200e+08    1.000      2000.00
+!C5H5+C10H16=>C5H6+C10H15                                5.4400e+05    2.000     14000.00
+!C3H3+C10H16=>C3H4-A+C10H15                              4.3200e+05    2.000     14000.00
+!C3H3+C10H16=>C3H4-P+C10H15                              4.3200e+05    2.000     14000.00
+!C6H5CH2+C10H16=>C7H8+C10H15                                2.1600e+05    2.000     16000.00
+!C6H4CH3+C10H16=>C7H8+C10H15                             5.9200e+08    1.000      2000.00
+!C6H5O+C10H16=>C6H5OH+C10H15                             8.6400e+05    2.000     12500.00
+!C6H4OH+C10H16=>C6H5OH+C10H15                            5.9200e+08    1.000      2000.00
+!OC6H4CH3+C10H16=>CRESOL+C10H15                          4.3200e+05    2.000     12800.00
+!NAPH-A+C10H16=>C10H8+C10H15                              5.9200e+08    1.000      2000.00
+!NAPH-B+C10H16=>C10H8+C10H15                              5.9200e+08    1.000      2000.00
+!C6H4C2H+C10H16=>C6H5C2H+C10H15                          5.9200e+08    1.000      2000.00
+!C6H5CHCH+C10H16=>C6H5C2H5+C10H15                        4.0000e+05    2.000     12500.00
+!C6H5CHCH3+C10H16=>C6H5C2H5+C10H15                       2.8800e+05    2.000     16000.0
+!C9H7+C10H16=>INDENE+C10H15                           2.0800e+05    2.000     16000.00
+!C10H6CH3-A+C10H16=>C10H7CH3+C10H15                        5.9200e+08    1.000      2000.00
+!C10H6CH3-B+C10H16=>C10H7CH3+C10H15                        5.9200e+08    1.000      2000.00
 
- O2    +DECALIN=>HO2     +RDECALIN  2.0005E+08 2.0  40722.49  
-
-! ABSTRACTION REACTION: R + ODECAL=>RODECA + RH 
-! Number of H abstracted: 22.00
-! Type of H abstracted:   [1] 
-  H         + ODECAL=>RODECA + H2           6.60000e+07       2.000    4000.000
-  CH3       + ODECAL=>RODECA + CH4          6.60000e+05       2.000    5000.000
-  C2H3      + ODECAL=>RODECA + C2H4         1.49160e+06       2.000    3900.000
-  C2H5      + ODECAL=>RODECA + C2H6         4.40000e+05       2.000    6700.000
-  C3H5-S    + ODECAL=>RODECA + C3H6         5.94000e+05       2.000    4500.000
-  C3H5-T    + ODECAL=>RODECA + C3H6         5.94000e+05       2.000    4500.000
-  C3H5-A    + ODECAL=>RODECA + C3H6         1.18580e+06       2.000   12800.000
-  C4H71-4   + ODECAL=>RODECA + C4H8-1       2.97000e+05       2.000    6600.000
-  C4H71-3   + ODECAL=>RODECA + C4H8-2       7.48000e+05       2.000   13700.000
-  IC4H7     + ODECAL=>RODECA + IC4H8        5.94000e+05       2.000   13700.000
-  C4H3-I      + ODECAL=>RODECA + C4H4         8.99800e+05       2.000    5200.000
-  C6H5      + ODECAL=>RODECA + C6H6         8.14000e+08       1.000    2000.000
-  C5H5      + ODECAL=>RODECA + C5H6         7.48000e+05       2.000   14000.000
-  O         + ODECAL=>RODECA + OH           5.17000e+07       2.000    2500.000
-  O2        + ODECAL=>RODECA + HO2          3.74000e+07       2.000   44000.000
-  OH        + ODECAL=>RODECA + H2O          3.30000e+10       1.000      50.000
-  HO2       + ODECAL=>RODECA + H2O2         1.76000e+07       2.000   16000.000
-  C3H3      + ODECAL=>RODECA + C3H4-A       5.94000e+05       2.000   14000.000
-  C6H5O     + ODECAL=>RODECA + C6H5OH       1.18800e+06       2.000   12500.000
-  C6H4OH    + ODECAL=>RODECA + C6H5OH       8.14000e+08       1.000    2000.000
-  C6H5CH2      + ODECAL=>RODECA + C6H5CH3         2.97000e+05       2.000   16000.000
-  C6H4CH3   + ODECAL=>RODECA + C6H5CH3         8.14000e+08       1.000    2000.000
-  OC6H4CH3  + ODECAL=>RODECA + HOC6H4CH3       5.94000e+05       2.000   12800.000
-  NAPH-A    + ODECAL=>RODECA + NAPH        8.14000e+08       1.000    2000.000
-  NAPH-B    + ODECAL=>RODECA + NAPH        8.14000e+08       1.000    2000.000
-  C6H5CH2CH2  + ODECAL=>RODECA + C6H5C2H5     5.50000e+05       2.000   12500.000
-  C6H5CHCH3 + ODECAL=>RODECA + C6H5C2H5     3.96000e+05       2.000   16000.000
-  C9H7   + ODECAL=>RODECA + IND       2.86000e+05       2.000   16000.000
-  C10H6CH3-A + ODECAL=>RODECA + C10H7CH3-A    8.14000e+08       1.000    2000.000
-  C10H6CH3-B + ODECAL=>RODECA + C10H7CH3-B    8.14000e+08       1.000    2000.000
-
- 
 !REAL_FUELS_C9ARO_HT
 
 !              ----------Naphthalene -------
@@ -6590,14 +6648,13 @@ PLOG /  1.00E+02 6.489E+23   -3.120    4320  / !! A*0.7
 C3H3+C6H5CHCH=>C10H7CH3-A                                                                 +5.00000E+012 +0.00000E+000 +3.00000E+003 
 C3H3+C6H5CHCH=>C10H7CH3-B                                                                 +5.00000E+012 +0.00000E+000 +3.00000E+003 
 !! C3H3+NAPH-A=>FLUORENE                                                                      +5.00000E+012 +0.00000E+000 +2.00000E+003 
-!! RL-TODO products
 NAPH-A+C3H3=>FLUORENE	3.01e+41	-8.33	12797.81	! C6H5+C3H3=C6H5C3H3
 PLOG /                1.000E-01   3.010E+41    -8.330    12798 /
 PLOG /                1.000E+00   9.260E+26    -3.970     6355 /
 PLOG /                1.000E+01   7.840E+17    -1.250     2192 /
 PLOG /                1.000E+02   1.170E+14    -0.110      407 /
 DUPLICATE
-NAPH-A+C3H3=>RFLUORENE+H         2.990E+00     4.370    15108 ! C6H5+C3H3=C6H5C3H2+H
+NAPH-A+C3H3=>0.5C12H9+0.5C14H9+H         2.990E+00     4.370    15108 ! C6H5+C3H3=C6H5C3H2+H
   PLOG /                1.000E-01   8.500E+17    -0.700    21508 /
   PLOG /                1.000E+00   2.990E+00     4.370    15108 /
   PLOG /                1.000E+01   1.490E-17     9.300     8100 /
@@ -6610,7 +6667,7 @@ PLOG/10.0	7.00e-54	18.88	-28397	/ ! R2_adj=0.72 , T RANGE=500 - 2000 K
 PLOG/100.0	2.25e-86	28.17	-44372	/ ! R2_adj=0.72 , T RANGE=500 - 2000 K
 DUPLICATE
 
-NAPH-A+C3H3=>RFLUORENE+H	1.47e+35	-5.73	29205.35	! C6H5+C3H3=>C9H7+H
+NAPH-A+C3H3=>0.5C12H9+0.5C14H9+H	1.47e+35	-5.73	29205.35	! C6H5+C3H3=>C9H7+H
 PLOG/0.1	1.47e+35	-5.73	29205	/ ! R2_adj=0.99 , T RANGE=500 - 2000 K
 PLOG/1.0	2.24e+13	0.68	23525	/ ! R2_adj=0.99 , T RANGE=500 - 2000 K
 PLOG/10.0	1.95e-17	9.32	12271	/ ! R2_adj=0.99 , T RANGE=500 - 2000 K
@@ -6625,7 +6682,7 @@ PLOG /                1.000E+01   7.840E+17    -1.250     2192 /
 PLOG /                1.000E+02   1.170E+14    -0.110      407 /
 DUPLICATE
 
-NAPH-B+C3H3=>RFLUORENE+H         2.990E+00     4.370    15108 ! C6H5+C3H3=C6H5C3H2+H
+NAPH-B+C3H3=>0.5C12H9+0.5C14H9+H         2.990E+00     4.370    15108 ! C6H5+C3H3=C6H5C3H2+H
   PLOG /                1.000E-01   8.500E+17    -0.700    21508 /
   PLOG /                1.000E+00   2.990E+00     4.370    15108 /
   PLOG /                1.000E+01   1.490E-17     9.300     8100 /
@@ -6639,15 +6696,12 @@ PLOG/10.0	7.00e-54	18.88	-28397	/ ! R2_adj=0.72 , T RANGE=500 - 2000 K
 PLOG/100.0	2.25e-86	28.17	-44372	/ ! R2_adj=0.72 , T RANGE=500 - 2000 K
 DUPLICATE
 
-NAPH-B+C3H3=>RFLUORENE+H	1.47e+35	-5.73	29205.35	! C6H5+C3H3=>C9H7+H
+NAPH-B+C3H3=>0.5C12H9+0.5C14H9+H	1.47e+35	-5.73	29205.35	! C6H5+C3H3=>C9H7+H
 PLOG/0.1	1.47e+35	-5.73	29205	/ ! R2_adj=0.99 , T RANGE=500 - 2000 K
 PLOG/1.0	2.24e+13	0.68	23525	/ ! R2_adj=0.99 , T RANGE=500 - 2000 K
 PLOG/10.0	1.95e-17	9.32	12271	/ ! R2_adj=0.99 , T RANGE=500 - 2000 K
 PLOG/100.0	8.72e-48	17.79	-1745	/ ! R2_adj=1.00 , T RANGE=500 - 2000 K
 DUPLICATE
-
-RFLUORENE+O=>C12H9+CO                                  5.75E+14   -0.280    6180
-RFLUORENE+O2=>C12H9+CO2                                6.60E+16   -1.440   31300 !! FROM SINGH ET AL., JPCA, 119 (2015),7528-757
 
 C3H3+C10H6CH3-A=>PHNTHRN+H+H                                                               +5.00000E+012 +0.00000E+000 +6.00000E+003 
 C3H3+C10H6CH3-B=>PHNTHRN+H+H                                                               +5.00000E+012 +0.00000E+000 +6.00000E+003 
@@ -8843,4 +8897,3 @@ C9H7+C9H7=>NAPH+C6H5C2H                                                         
 C9H7+IND=>C5H5+FLUORENE                                                             +1.50000E+011 +0.00000E+000 +1.90000E+004 
 
 !\END_KINETICS_MODULE: PAH
-

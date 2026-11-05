@@ -1,0 +1,49 @@
+##############################################################################
+# Default: let Git decide (its heuristic classifies obvious binaries as such)
+##############################################################################
+*       text=auto
+
+##############################################################################
+# Text files that must ALWAYS be stored with LF in the repo
+##############################################################################
+# sub-module files
+*.cki      text eol=lf
+*.CKI      text eol=lf
+*.therm    text eol=lf
+*.THERM    text eol=lf
+*.tran     text eol=lf
+*.TRAN     text eol=lf
+*.yaml     text eol=lf
+*.YAML     text eol=lf
+
+# data / documentation / code
+*.csv      text eol=lf
+*.CSV      text eol=lf
+*.md       text eol=lf
+*.MD       text eol=lf
+*.txt      text eol=lf
+*.TXT      text eol=lf
+*.tex      text eol=lf
+*.TEX      text eol=lf
+*.py       text eol=lf
+*.PY       text eol=lf
+*.DIC      text eol=lf
+*.dic      text eol=lf
+*.bat      text eol=lf
+*.BAT      text eol=lf
+
+# repository metadata files (always text, keep LF)
+.gitattributes   text eol=lf
+.gitignore       text eol=lf
+
+##############################################################################
+# Known binary formats – never treat as text
+##############################################################################
+*.pptx     -text
+*.ppt      -text
+*.xlsx     -text
+*.xls      -text
+*.docx     -text
+*.pdf      -text
+*.png      -text
+*.jpg      -text

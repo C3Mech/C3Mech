@@ -1,11 +1,14 @@
-name: c3
+name: c3-rmg
 
 channels:
+  - rmg
   - conda-forge
- 
+  - nodefaults
+
 dependencies:
-  - python>=3.8
+  - python=3.11
   - pip
+  - rmg=4.0.0
   - rdkit>=2023.09.5
   - cairosvg
   - gitpython

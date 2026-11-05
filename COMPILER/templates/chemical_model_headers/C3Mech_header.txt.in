@@ -1,0 +1,24 @@
+{{SEPARATOR_BLOCK}}
+
+{{TITLE_BLOCK}}
+
+{{SEPARATOR_BLOCK}}
+
+This work was performed by the {{CONSORTIUM_NAME}}
+({{CONSORTIUM_ABBREVIATION}}), a collaborative research organization
+including the {{INTRODUCTORY_ORGANIZATIONS}}.
+
+{{MODEL_NAME}} is available from the {{REPOSITORY_SERVICE}} repository:
+{{SOURCE_URL_BLOCK}}
+
+For more information, please visit {{INFORMATION_ADDRESS}}.
+
+How to cite {{MODEL_NAME}}:
+{{CITATIONS_BLOCK}}
+
+{{WORKING_GROUPS_BLOCK}}
+
+{{AUTHORS_BLOCK}}
+{{SEPARATOR_BLOCK}}
+{{WARNING_BLOCK}}
+{{SEPARATOR_BLOCK}}

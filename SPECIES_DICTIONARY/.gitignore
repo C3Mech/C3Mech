@@ -1,13 +1,6 @@
 *.sty
 __pycache__/
 
-# Files converted to text files by Raymond Langer to make them searchable
-old/LLNL_BLOCK_species_dictionary.txt
-old/NUIGMech1.3.csv
-old/NUIGMech1.3_Glossary_220614.csv
-old/missingin4.0.csv
-old/C3MechV3.3_species_dictionary_20210629_with-figures.csv
-
 # Raymond Langer's ignore files
 extend_species_dict.py
 new_species_dict.csv

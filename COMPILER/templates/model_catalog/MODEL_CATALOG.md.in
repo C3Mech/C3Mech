@@ -1,0 +1,70 @@
+# Generated model catalog
+
+This directory contains generated chemical kinetic sub-models of
+{{MODEL_NAME}}. Each sub-model contains a defined selection of the available
+submodules.
+
+{{DEBUG_WARNING}}
+
+## Quick start
+
+- For typical cases, use the quick-access table below and follow its linked model identifier (MID).
+- For another available submodule combination, use the detailed carbon-group tables.
+
+{{FULL_MODEL}}
+
+## Terminology and background
+
+The source reactions are grouped into submodules based on the number of carbon atoms and chemical scope. The `CY` label identifies non-aromatic cyclic fuel components. The `N` label includes the nitrogen and carbon-nitrogen submodules when carbon-containing chemistry is selected. The `PAH` label identifies polycyclic aromatic hydrocarbon chemistry.
+
+Many sub-models are available as a high-temperature (HT) version and as a
+combined low-temperature and high-temperature (LT-HT) version. The LT-HT
+version is the reference for each submodule selection. The corresponding HT
+version excludes the additional low-temperature chemistry where the versions
+differ. The HT and LT-HT names describe the included chemistry. They indicate
+the temperature regimes where that chemistry is typically relevant, but they
+do not establish fixed applicability limits. The user must assess whether a
+selected sub-model is appropriate for the intended simulation. When the
+suitability of an HT version is uncertain, the corresponding LT-HT version
+provides the reference.
+
+`CHEMKIN NS(HT/LT-HT)` and `CHEMKIN NR(HT/LT-HT)` give the corresponding
+numbers of species and reaction records in the
+LOWMX/LOWSP files for LMR-R (LMRR) or LMR-P (LMRP), as selected by the solver.
+The generated Cantera files use the independent-collider (IC) formulation.
+Each version has a MID that identifies its exact submodule selection.
+
+## Notes and recommendations
+
+- Select only the submodules required for the simulation case to reduce computational cost.
+- The user is responsible for selecting an appropriate sub-model.
+- State the MID when documenting the use of a C3Mech sub-model.
+
+{{CONTACT_LINE}}
+
+## Verify generated files
+
+`MODEL_MANIFEST.json` records digest values calculated with the Secure Hash
+Algorithm with a 256 bit output (SHA-256).
+`c3mech_configuration_sha256` is calculated from the exact bytes of the
+selected C3Mech configuration file. It identifies the selected configuration
+associated with this inventory and used to render this catalog.
+
+The manifest records two SHA-256 hashes for every generated file.
+`sha256` verifies the exact file bytes, including the generation timestamp and
+line endings. `normalized_sha256` replaces recognized compiler and
+Cantera-converter timestamps with fixed values and converts CRLF line endings
+to LF before hashing. Use `normalized_sha256` to compare model content
+generated at different times or on different platforms.
+
+## Available generated models
+
+{{FILE_LAYOUT}}
+
+## Quick access table with commonly used sub-models
+
+{{QUICK_ACCESS_TABLE}}
+
+## Detailed tables
+
+{{DETAILED_TABLES}}

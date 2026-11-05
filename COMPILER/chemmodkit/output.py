@@ -2,15 +2,23 @@ import datetime
 import os
 import re
 import subprocess
-import sys
 from collections import defaultdict
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from dataclasses import dataclass
+
+if __package__ and "." in __package__:
+  from .. import c3mech_data
+else:
+  import c3mech_data
 
 pruned_comment = "! AUTOMATIC PRUNING ! "
 
 from . import input as inp
 from . import reaction as rxn
+from . import __version__ as compiler_version
+from . import distribution
+from .errors import ExternalToolError
+from .generation_timestamp import format_generation_timestamp_line
 
 _REACTION_KEYWORD_ALIASES = {
     "LOW": "LOW",
@@ -30,6 +38,22 @@ _REACTION_KEYWORD_ALIASES = {
     "DUP": "DUPLICATE",
     "DUPLICATE": "DUPLICATE",
 }
+
+
+def _validate_ck2yaml_result(tool_dependent_submodel_key, returncode, stdout,
+                             stderr):
+  if returncode != 0:
+    details = stderr.strip() or stdout.strip()
+    suffix = ": " + details if details else ""
+    raise ExternalToolError(
+        "ck2yaml failed for " + str(tool_dependent_submodel_key) +
+        " with exit status " + str(returncode) + suffix)
+  try:
+    distribution.validate_cantera_success(stdout)
+  except ValueError as exc:
+    raise ExternalToolError(
+        "ck2yaml validation failed for " +
+        str(tool_dependent_submodel_key) + ": " + str(exc)) from exc
 
 
 @dataclass(frozen=True)
@@ -75,6 +99,17 @@ class UnmatchedReactionDetail:
   reason: str
 
 
+class SpeciesDictionary(dict):
+  """Species lookup that retains collider-only output classification."""
+
+  def __init__(self, *args, collider_only=(), **kwargs):
+    super().__init__(*args, **kwargs)
+    self.collider_only = tuple(collider_only)
+
+  def copy(self):
+    return SpeciesDictionary(self, collider_only=self.collider_only)
+
+
 def write_species_list(species_list, species_pruned, filename):
   # write spc str
   commentstr = '\n!+++++++++++++++++++++ '
@@ -83,7 +118,29 @@ def write_species_list(species_list, species_pruned, filename):
   allspcstr = '\n'
   count = 0
   spcsperline = 3
-  for spc in species_list:
+  collider_only = set(getattr(species_list, "collider_only", ()))
+  regular_species = [
+      spc for spc in species_list
+      if spc not in species_pruned and spc not in collider_only
+  ]
+  collider_species = [
+      spc for spc in species_list
+      if spc not in species_pruned and spc in collider_only
+  ]
+
+  for spc in regular_species:
+    count += 1
+    allspcstr += spc
+    allspcstr += ' ' * (30 - len(spc))
+    if count % spcsperline == 0:
+      allspcstr += '\n'
+
+  if collider_species:
+    if not allspcstr.endswith('\n'):
+      allspcstr += '\n'
+    allspcstr += '! BEGIN COLLIDER-ONLY SPECIES\n'
+    count = 0
+  for spc in collider_species:
     if spc in species_pruned:
       continue
     count += 1
@@ -91,6 +148,10 @@ def write_species_list(species_list, species_pruned, filename):
     allspcstr += ' ' * (30 - len(spc))
     if count % spcsperline == 0:
       allspcstr += '\n'
+  if collider_species:
+    if not allspcstr.endswith('\n'):
+      allspcstr += '\n'
+    allspcstr += '! END COLLIDER-ONLY SPECIES\n'
 
   if len(species_pruned):
     allspcstr += '\n' + pruned_comment
@@ -110,325 +171,9 @@ def write_species_list(species_list, species_pruned, filename):
   return total_str
 
 
-def detect_cantera_mode(submodules_filenames):
-  """
-  Prefer 'LT-HT' entry; fall back to 'HT' if needed.
-  Returns True if the core_path basename contains 'cantera', else False.
-  """
-  for temp in ("LT-HT", "HT"):
-    if temp in submodules_filenames and "C0" in submodules_filenames[temp]:
-      core_path = submodules_filenames[temp]["C0"]
-      return "cantera" in os.path.basename(core_path).lower()
-  return False
-
-
-def get_subtitel_with_directory(prev_cnum, cnum, directory):
-  label = " [" + directory + "/](" + directory + "/) "
-  if prev_cnum + 1 != cnum:
-    label += f"(Number of carbon atoms: {prev_cnum+1}–{cnum})" if cnum <= 7 else "(Number of carbon atoms: 8+)"
-  else:
-    label += f"(Number of carbon atoms: {cnum})" if cnum <= 7 else f"(Number of carbon atoms: 8+)"
-  return label
-
-
-def generate_readme(grouped_selections, columns, counters):
-  # Print one table per carbon group (sorted by increasing C count)
-  readme = list()
-  readme.append("# Precompiled models ")
-  readme.append("")
-  readme.append(
-      "This directory provides precompiled chemical kinetic sub-models of C3MechV4.0.1, "
-      +
-      "tailored to specific fuel compositions and conditions, and the full " +
-      "version of C3MechV4.0.1. The sub-models were compiled from the sub-modules "
-      +
-      "in the directory [`SUBMODULES/`](../SUBMODULES/). The reactions in the "
-      + "sub-modules are grouped " +
-      "based on the number of carbon atoms in the species (C0, C1-C2, C3-C4, C5, "
-      +
-      "C6, C7, C8+, C5CY, C6CY), with aromatic species being managed separately. "
-      +
-      "Here, 'CY' refers to non-aromatic, cyclic fuel components. Additionally, sub-modules "
-      +
-      "for dimethyl carbonate and ethylene carbonate (DMC+EC), nitrogen-containing "
-      +
-      "species (N), and polycyclic aromatic hydrocarbons (PAH) are available. The tables "
-      +
-      "below list all precompiled sub-models, where in this subdirectory \"N\" refers to the "
-      + "combined N- and N-C sub-modules " +
-      "if a sub-model contains carbon atoms.\n " +
-      "\nMany sub-models are available as smaller high-temperature (HT) versions, which "
-      +
-      "are suitable for simulations of unstretched premixed and counterflow flames, "
-      +
-      "high-temperature flow reactors, and shock tubes. Low-temperature (LT) chemistry "
-      +
-      "is, for example, required to simulate jet-stirred reactors, flow reactors under "
-      +
-      "lower-temperature conditions, and rapid compression machine (RCM) experiments. "
-      +
-      "The columns NS(HT/LT-HT) and NR(HT/LT-HT) in the tables below refer to the number "
-      + "of species and reactions in the respective sub-models.\n " +
-      "\nEach HT and LT-HT version is assigned a unique model ID (MID(HT/LT-HT)) that encodes "
-      +
-      "the specific sub-module combination; if a single model is used across all temperatures, "
-      +
-      "the counts (NS and NR) and MIDs are the same. If you need a combination not listed here, "
-      +
-      "see [`COMPILER/`](../COMPILER/) directory for an easy-to-use script to create "
-      + "custom sub-models.")
-  readme.append("")
-  readme.append("## Notes and recommendations ")
-  readme.append(
-      "- **Selecting a sub-model:** Selecting a sub-model with only the necessary sub-modules facilitates and speeds up kinetic simulations. "
-  )
-  readme.append(
-      "- **User responsibility:** The user must select an _appropriate_ sub-model for a simulation case. "
-  )
-  readme.append("")
-  readme.append("For questions or suggestions, please open an issue or ")
-  readme.append("[contact us](mailto:r.langer@itv.rwth-aachen.de). ")
-  readme.append("")
-  readme.append("## Available precompiled models ")
-  readme.append("")
-  readme.append(
-      "You can download individual files in your web browser or clone all files. "
-      + "For each sub-model, there are CHEMKIN (.CKI, .THERM, and .TRAN) " +
-      "and Cantera (.yaml) files. The .CKI files are provided as CHEMKIN-PRO/"
-      + "OpenSMOKE++-compatible versions " +
-      "as well as Cantera/FlameMaster-compatible versions " +
-      "(filename contains the string 'Cantera'). " +
-      "Once you found a suitable sub-model, you can use its MID to " +
-      "find the corresponding files. It is recommended to refer to a " +
-      " model's MID when using a sub-model of C3MechV4.0.1. " + "")
-
-  prev_cnum = -1
-  for cnum, group_combos in grouped_selections.items():
-
-    # Print table per group to stdout (optional)
-    label = get_subtitel_with_directory(
-        prev_cnum, cnum, os.path.basename(group_combos["output_dir"]))
-    print_markdown_table(readme,
-                         group_combos,
-                         columns,
-                         title=label,
-                         counters=counters)
-    prev_cnum = cnum
-
-  return readme
-
-
-def print_markdown_table(readme,
-                         all_combos,
-                         columns,
-                         title=None,
-                         counters=None):
-  YES = "✓"
-  NO = " "
-  columns_aux = columns.copy()
-  if counters != None:
-    columns_aux += [("NS(HT/LT-HT)", "NS(HT/LT-HT)"),
-                    ("NR(HT/LT-HT)", "NR(HT/LT-HT)"),
-                    ("MID(HT/LT-HT)", "MID(HT/LT-HT)")]
-
-  # print("len(counters)", len(counters))
-  # for mid in counters:
-  #   print(mid)
-  # print("len(combos)", len(combos))
-  # print(combos)
-  # for idx, data_dict in enumerate(all_combos['modules']):
-  # for cnum, data_dict in combos:
-  #     print(data_dict)
-  #     mid = data_dict["mid"][cnum]
-  #     selection = data_dict["modules"][cnum]
-  # combos = [comb for comb in combos['modules']]
-
-  # Carbon-group directory name, e.g. "C0", "C1-C2", ...
-  group_dir = os.path.basename(all_combos["output_dir"])
-
-  unique = {}
-  for idx, selection in enumerate(all_combos["modules"]):
-    modules_keys = tuple(sorted(set(list(selection.keys()))))
-    if modules_keys not in unique:
-      unique[modules_keys] = {}
-
-    # Derive combination directory name from output_chunks and temperature
-    name_with_temp = all_combos["output_chunks"][idx]
-    temp = all_combos["temperature"][idx]
-    if temp in ("HT", "LT-HT"):
-      combo_dir = name_with_temp.rsplit("_", 1)[0]
-    else:
-      combo_dir = name_with_temp
-
-    # Store combo_dir once per modules_keys; verify consistency
-    if "combo_dir" not in unique[modules_keys]:
-      unique[modules_keys]["combo_dir"] = combo_dir
-    elif unique[modules_keys]["combo_dir"] != combo_dir:
-      raise Exception("Inconsistent combo_dir for " + str(modules_keys))
-
-    if all_combos["temperature"][idx] == "HT":
-      if "HT" in unique[modules_keys] and unique[modules_keys][
-          "HT"] != all_combos["mid"][idx]:
-        raise Exception("HT with unexpected MID '" + all_combos["mid"][idx] +
-                        "' for " + str(modules_keys))
-
-      mid = all_combos["mid"][idx]
-      if modules_keys != tuple(sorted(set(list(counters[mid][0].keys())))):
-        raise Exception("Inconsistent selection for " + str(modules_keys))
-
-      unique[modules_keys]["HT"] = {}
-      unique[modules_keys]["HT"]["MID"] = mid
-      unique[modules_keys]["HT"]["NS"] = counters[mid][1]
-      unique[modules_keys]["HT"]["NR"] = counters[mid][2]
-    elif all_combos["temperature"][idx] == "LT-HT":
-      if "LT-HT" in unique[modules_keys] and unique[modules_keys][
-          "LT-HT"] != all_combos["mid"][idx]:
-        raise Exception("LT-HT with unexpected MID '" +
-                        all_combos["mid"][idx] + "' for " + str(modules_keys))
-
-      mid = all_combos["mid"][idx]
-      if modules_keys != tuple(sorted(set(list(counters[mid][0].keys())))):
-        raise Exception("Inconsistent selection for " + str(modules_keys))
-      unique[modules_keys]["LT-HT"] = {}
-      unique[modules_keys]["LT-HT"]["MID"] = mid
-      unique[modules_keys]["LT-HT"]["NS"] = counters[mid][1]
-      unique[modules_keys]["LT-HT"]["NR"] = counters[mid][2]
-    else:
-      raise Exception("Unexpected temperature field '" +
-                      all_combos["temperature"][idx] + "'")
-
-  # --- Sort section ---
-  if counters is not None:
-    # Extract HT counts and build sortable tuples
-    sort_tuples = []
-    for module_key in unique:
-      # sort by number of species in the HT version
-      sort_tuples.append((unique[module_key]["HT"]["NS"], module_key))
-    # Sort by HT count ascending
-    sort_tuples.sort()
-    # Reorder combos and counters accordingly
-    sorted_combos = [i for _, i in sort_tuples]
-    sorted_ns = [
-        str(unique[i]["HT"]["NS"]) + "/" + str(unique[i]["LT-HT"]["NS"])
-        for _, i in sort_tuples
-    ]
-    sorted_nr = [
-        str(unique[i]["HT"]["NR"]) + "/" + str(unique[i]["LT-HT"]["NR"])
-        for _, i in sort_tuples
-    ]
-
-    # Turn MID(HT/LT-HT) into a link to the combination directory
-    sorted_mid = []
-    for _, key in sort_tuples:
-      mid_ht = str(unique[key]["HT"]["MID"])
-      mid_lt = str(unique[key]["LT-HT"]["MID"])
-      combo_dir = unique[key]["combo_dir"]
-      # new layout: C-group/combo_dir/ (Chemkin/ and Cantera/ below)
-      target_rel = f"{group_dir}/{combo_dir}/"
-      link_text = f"{mid_ht}/{mid_lt}"
-      link_md = f"[{link_text}]({target_rel})"
-      sorted_mid.append(link_md)
-  else:
-    sorted_combos = [modules_keys for modules_keys in unique]
-    sorted_ns = []
-    sorted_nr = []
-    sorted_mid = []
-
-  # --- Compute column widths, including cell content lengths ---
-  col_widths = [max(len(colname), 1) for _, colname in columns_aux]
-  if counters is not None and sorted_combos:
-    # NS column
-    idx_ns = len(columns_aux) - 3
-    col_widths[idx_ns] = max(
-        col_widths[idx_ns],
-        max(len(s) for s in sorted_ns) if sorted_ns else 1,
-    )
-    # NR column
-    idx_nr = len(columns_aux) - 2
-    col_widths[idx_nr] = max(
-        col_widths[idx_nr],
-        max(len(s) for s in sorted_nr) if sorted_nr else 1,
-    )
-    # MID column
-    idx_mid = len(columns_aux) - 1
-    col_widths[idx_mid] = max(
-        col_widths[idx_mid],
-        max(len(s) for s in sorted_mid) if sorted_mid else 1,
-    )
-
-  header = "| " + " | ".join(
-      f"{colname:<{w}}"
-      for (_, colname), w in zip(columns_aux, col_widths)) + " |"
-
-  sep = "|" + "|".join(f":{'-'*max(1,w)}:" for w in col_widths) + "|"
-
-  rows = []
-  count = 0
-  for combo in sorted_combos:
-    s = set(combo)
-    n_col_check = (YES if "UOG_N" in s else NO)
-
-    row_cells = []
-    for i, (key, _) in enumerate(columns_aux):
-      if counters is not None and i == len(columns_aux) - 3:
-        tmp = sorted_ns[count]
-        row_cells.append(f"{tmp:^{col_widths[i]}}")  # center align
-      elif counters is not None and i == len(columns_aux) - 2:
-        tmp = sorted_nr[count]
-        row_cells.append(f"{tmp:^{col_widths[i]}}")  # center align
-      elif counters is not None and i == len(columns_aux) - 1:
-        tmp = sorted_mid[count]
-        # LEFT align the MID link so '[' lines up
-        row_cells.append(f"{tmp:<{col_widths[i]}}")
-      else:
-        if key == "UOG_N":
-          cell = n_col_check
-        else:
-          cell = YES if key in s else NO
-        row_cells.append(f"{cell:^{col_widths[i]}}")  # center align
-
-    row_str = "| " + " | ".join(row_cells) + " |"
-    rows.append(row_str)
-    count += 1
-
-  if title:
-    readme.append(f"\n### {title}\n")
-
-  readme.append(header)
-  readme.append(sep)
-  readme.append('\n'.join(rows))
-
-  # rows = []
-  # count = 0
-  # for combo in combos:
-  #   s = set(combo)
-  #   n_col_check = (YES if "UOG_N" in s else NO)
-
-  #   row_cells = []
-  #   for i, (key, _) in enumerate(columns_aux):
-  #     if counters != None and i == len(columns_aux) - 2:
-  #       tmp = counters["NS"][count]
-  #       row_cells.append(f"{tmp:^{col_widths[i]}}")  # center align
-  #     elif counters != None and i == len(columns_aux) - 1:
-  #       tmp = counters["NR"][count]
-  #       row_cells.append(f"{tmp:^{col_widths[i]}}")  # center align
-  #     else:
-  #       if key == "UOG_N":
-  #         cell = n_col_check
-  #       else:
-  #         cell = YES if key in s else NO
-  #       row_cells.append(f"{cell:^{col_widths[i]}}")  # center align
-
-  #   row_str = "| " + " | ".join(row_cells) + " |"
-  #   rows.append(row_str)
-  #   count += 1
-
-  # if title:
-  #   readme.append(f"\n### {title}\n")
-
-  # readme.append(header)
-  # readme.append(sep)
-  # readme.append('\n'.join(rows))
+def _is_cantera_compatible_kinetics_filename(filename):
+  """Return whether a kinetics filename marks Cantera compatibility."""
+  return os.path.basename(filename).lower().endswith("_cantera.cki")
 
 
 def insert_species_list(species_list, file_path, new_lines):
@@ -462,18 +207,29 @@ def insert_species_list(species_list, file_path, new_lines):
   return new_lines
 
 
-def insert_header(lines, header_filename):
-  with open(header_filename, 'r') as f:
-    for line in f:
-      lines.append(line)
-    lines.append("\n")
-    lines.append("\n")
+def insert_header(lines, header_filename, header_text=None):
+  if header_text is None:
+    with open(header_filename, 'r', encoding="utf-8") as header_file:
+      header_text = header_file.read()
+  normalized_header_text = header_text.replace("\r\n", "\n").replace(
+      "\r", "\n")
+  for line_number, line in enumerate(
+      normalized_header_text.split("\n"), start=1):
+    invalid = next(
+        (character for character in line
+         if not character.isascii() or not character.isprintable()), None)
+    if invalid is not None:
+      raise c3mech_data.UserInputError(
+          "CHEMKIN-format header contains unsupported character " +
+          repr(invalid) + " on line " + str(line_number))
+  ascii_header_text = ascii_tab_space(normalized_header_text)
+  lines.extend(ascii_header_text.splitlines(keepends=True))
+  lines.append("\n")
+  lines.append("\n")
 
 
 def insert_time(lines, filetype, name, datetime):
-  lines.append('! ' + filetype + ' data for ' + name +
-               ', generated on {0:%d/%m/%Y %H:%M:%S}.\n'.format(datetime) +
-               '\n')
+  lines.append(format_generation_timestamp_line(filetype, name, datetime))
 
 
 def insert_submodule_list(lines, submodules_files, mid):
@@ -487,25 +243,37 @@ def insert_submodule_list(lines, submodules_files, mid):
 
 
 def insert_boiler_plate(filetype, name, submodules_files, datetime, mid,
-                        header_filename):
+                        header_filename, header_text=None):
   lines = []
-  insert_header(lines, header_filename)
+  insert_header(lines, header_filename, header_text=header_text)
   insert_time(lines, filetype, name, datetime)
   insert_submodule_list(lines, submodules_files, mid)
   return lines
 
 
 def ascii_tab_space(s: str) -> str:
-    return ''.join(
-        ch if (ch in '\r\n' or (ord(ch) < 128 and not ch.isspace())) else ' '
-        for ch in s
-    )
+  """Replace tabs and reject unsupported CHEMKIN-format output characters."""
+  non_ascii = next((ch for ch in s if not ch.isascii()), None)
+  if non_ascii is not None:
+    raise c3mech_data.UserInputError(
+        "CHEMKIN-format output contains a non-ASCII character: " +
+        repr(non_ascii))
+  nonprinting = next(
+      (ch for ch in s
+       if ch not in '\r\n\t' and not 32 <= ord(ch) <= 126), None)
+  if nonprinting is not None:
+    raise c3mech_data.UserInputError(
+        "CHEMKIN-format output contains a nonprinting ASCII character: " +
+        repr(nonprinting))
+  return ''.join(
+      ch if ch in '\r\n' or 32 <= ord(ch) <= 126 else ' '
+      for ch in s)
 
 
 def _is_ht_submodule_file(path):
   base = os.path.basename(path).upper()
-  return base == "LLNL_BLOCK_HT.CKI" or ("_HT." in base and
-                                         "_LT-HT." not in base)
+  return base == "LLNL_BLOCK_HT.CKI" or ("_HT." in base
+                                         and "_LT-HT." not in base)
 
 
 def _infer_ltht_parent_path(ht_path):
@@ -574,8 +342,12 @@ def _parse_reactions_from_submodule(file_path, species_list):
     lines = file.readlines()
   reactions, reactions_check = {}, {}
   n_reactions, _, reactions, reactions_check, species_dict = inp.count_reactions(
-      lines, os.path.basename(file_path), species_dict, reactions,
-      reactions_check, print_summary=False)
+      lines,
+      os.path.basename(file_path),
+      species_dict,
+      reactions,
+      reactions_check,
+      print_summary=False)
   species_used = sum(1 for _, used in species_dict.items() if used != 0)
   return reactions, species_used, n_reactions
 
@@ -627,6 +399,7 @@ def _reaction_metadata_signature(rr):
       sorted((sp, round(val, 12)) for sp, val in rr.tb_efficiencies.items()))
   keywords = _extract_reaction_keywords(rr)
   return (explicit_dependence, tb_efficiencies, keywords)
+
 
 def _force_irreversible_separator(text):
   if '<=>' in text:
@@ -681,7 +454,8 @@ def _build_reaction_trace_index(file_path, species_list):
 
       candidate_upper = candidate.upper()
       try:
-        rr = rxn.ChemicalReaction(candidate_upper, candidate_upper, species_dict)
+        rr = rxn.ChemicalReaction(candidate_upper, candidate_upper,
+                                  species_dict)
       except Exception:
         continue
 
@@ -702,8 +476,8 @@ def _consume_ht_trace(rr, ht_trace_index, used_trace_ids):
       continue
     if trace.is_comment:
       continue
-    if (trace.reaction_definition == rr.reaction_definition and
-        trace.reaction_type == rr.reaction_type):
+    if (trace.reaction_definition == rr.reaction_definition
+        and trace.reaction_type == rr.reaction_type):
       used_trace_ids[eq_key].add(i)
       return trace
   for i, trace in enumerate(traces):
@@ -721,6 +495,7 @@ def _consume_ht_trace(rr, ht_trace_index, used_trace_ids):
 
 def _classify_unmatched_reason(rr, canonical, parent_signatures, parent_used,
                                parent_reaction_index):
+
   def _has_unused(candidates):
     for canonical_parent, i, _ in candidates:
       if not parent_used[canonical_parent][i]:
@@ -737,9 +512,11 @@ def _classify_unmatched_reason(rr, canonical, parent_signatures, parent_used,
         return ("same stoichiometric reaction exists in parent with matching "
                 "third-body/keyword data, but arrow form differs "
                 "(direction/reversibility mismatch, e.g. A+B=C+D vs C+D=A+B)")
-      return ("matching parent reaction exists (same stoichiometry and "
-              "third-body/keyword data), but it was already used by another HT "
-              "reaction (HT has an extra duplicate, often from mixed REV/ '=' forms)")
+      return (
+          "matching parent reaction exists (same stoichiometry and "
+          "third-body/keyword data), but it was already used by another HT "
+          "reaction (HT has an extra duplicate, often from mixed REV/ '=' forms)"
+      )
 
     eq_candidates = parent_reaction_index.get(eq_key, [])
     if eq_candidates:
@@ -761,8 +538,9 @@ def _classify_unmatched_reason(rr, canonical, parent_signatures, parent_used,
   if has_unused_same_signature:
     return "internal matching inconsistency (unexpected unmatched state)"
   if has_unused_same_canonical:
-    return ("same arrow form exists in parent, but third-body terms or keyword "
-            "blocks differ (e.g. LOW/HIGH/TROE/SRI/PLOG/CHEB/DUPLICATE)")
+    return (
+        "same arrow form exists in parent, but third-body terms or keyword "
+        "blocks differ (e.g. LOW/HIGH/TROE/SRI/PLOG/CHEB/DUPLICATE)")
   if (eq_key, meta_key) in parent_reaction_index:
     return ("matching parent reaction exists (same stoichiometry and "
             "third-body/keyword data), but it was already used by another HT "
@@ -774,8 +552,8 @@ def _classify_unmatched_reason(rr, canonical, parent_signatures, parent_used,
   return "no active parent reaction with equivalent stoichiometry was found"
 
 
-def _collect_unmatched_ht_reactions(ht_reactions, parent_reactions, ht_basename,
-                                    parent_base, ht_trace_index,
+def _collect_unmatched_ht_reactions(ht_reactions, parent_reactions,
+                                    ht_basename, parent_base, ht_trace_index,
                                     parent_trace_index):
   parent_signatures = {}
   parent_used = {}
@@ -789,8 +567,8 @@ def _collect_unmatched_ht_reactions(ht_reactions, parent_reactions, ht_basename,
     for i, rr in enumerate(rr_list):
       relaxed_key = (_reaction_equivalence_key(rr),
                      _reaction_metadata_signature(rr))
-      parent_reaction_index[_reaction_equivalence_key(rr)].append((canonical, i,
-                                                                   rr))
+      parent_reaction_index[_reaction_equivalence_key(rr)].append(
+          (canonical, i, rr))
       parent_reaction_index[relaxed_key].append((canonical, i, rr))
       if rr.reaction_type == "irreversible":
         parent_relaxed[relaxed_key].append((canonical, i, rr))
@@ -836,8 +614,8 @@ def _collect_unmatched_ht_reactions(ht_reactions, parent_reactions, ht_basename,
       if not matched and rr.reaction_type == "reversible":
         relaxed_key = (_reaction_equivalence_key(rr),
                        _reaction_metadata_signature(rr))
-        for canonical_parent, i, rr_parent in parent_relaxed.get(relaxed_key,
-                                                                 []):
+        for canonical_parent, i, rr_parent in parent_relaxed.get(
+            relaxed_key, []):
           if parent_used[canonical_parent][i]:
             continue
           parent_used[canonical_parent][i] = True
@@ -852,9 +630,8 @@ def _collect_unmatched_ht_reactions(ht_reactions, parent_reactions, ht_basename,
                   parent_line=next(
                       (t.line_no for t in parent_trace_index.get(
                           _reaction_equivalence_key(rr_parent), [])
-                       if (not t.is_comment and
-                           t.reaction_definition == rr_parent.reaction_definition)),
-                      -1)))
+                       if (not t.is_comment and t.reaction_definition ==
+                           rr_parent.reaction_definition)), -1)))
           break
 
       if not matched:
@@ -888,8 +665,8 @@ def _prepare_ht_subset_pruning(species_list, submodules_files):
   restrictive_keys = set()
   unmatched_details = []
   restrictive_warnings = []
-  for ht_path, parent_path in sorted(ht_parent_map.items(),
-                                     key=lambda item: os.path.basename(item[0])):
+  for ht_path, parent_path in sorted(
+      ht_parent_map.items(), key=lambda item: os.path.basename(item[0])):
     ht_base = os.path.basename(ht_path)
     parent_base = os.path.basename(parent_path)
     print("HT subset check: '" + ht_base + "' against parent '" + parent_base +
@@ -1019,10 +796,12 @@ def _count_active_canonical_reactions(reactions, reactions_pruned_ids):
 
 def print_kinetics_file(species_list, species_pruned, header_filename,
                         submodules_files, model_name, mid, output_filename,
-                        datetime, reactions, reactions_pruned_ids):
+                        datetime, reactions, reactions_pruned_ids,
+                        header_text=None, reorder=True):
   species_section_str = write_species_list(species_list, species_pruned, '')
   new_lines = insert_boiler_plate("Kinetics", model_name, submodules_files,
-                                  datetime, mid, header_filename)
+                                  datetime, mid, header_filename,
+                                  header_text=header_text)
   n_species = len(species_list)
   # no pruned species (my be empty)
   n_species -= len(species_pruned)
@@ -1044,15 +823,15 @@ def print_kinetics_file(species_list, species_pruned, header_filename,
   #    insert_reaction_count + 1, "! number of reactions: " +
   #    str(cantera_count) + " (number of reactions given by cantera)\n\n")
 
-  for r in reactions:
-    for rr in reactions[r]:
-      #print("\n\n\n")
-      #print(rr.pretty() + ":")
-      for p_line in rr.get_orignal_CHEMKIN_text():
-        if id(rr) in reactions_pruned_ids and p_line != "":
-          new_lines.append(pruned_comment + p_line)
-        else:
-          new_lines.append(p_line)
+  ordered_reactions = [rr for group in reactions.values() for rr in group]
+  if not reorder:
+    ordered_reactions.sort(key=lambda rr: rr.source_order)
+  for rr in ordered_reactions:
+    for p_line in rr.get_orignal_CHEMKIN_text():
+      if id(rr) in reactions_pruned_ids and p_line != "":
+        new_lines.append(pruned_comment + p_line)
+      else:
+        new_lines.append(p_line)
 
   new_lines.append("\nEND\n\n")
 
@@ -1215,28 +994,67 @@ def prune_model(reactions, prune, initial_removed_reaction_ids=None):
 
 
 def make_clean_species_list(submodules_files):
-  species_list = inp.make_species_list('', submodules_files.get_files())
+  ordered_species = inp.make_species_list('', submodules_files.get_files())
 
-  species_dict = {k.upper(): 0 for k in species_list}
+  collider_only = [species.upper()
+                   for species in ordered_species.collider_only]
+  species_dict = SpeciesDictionary(
+      ((species.upper(), 0) for species in ordered_species),
+      collider_only=collider_only)
   for s in species_dict:
     species_dict[s] = 0
   return species_dict
 
 
-def get_identifier_model(identifier):
-  # removes the Tool-dependence of the identifier
-  return tuple([name.replace("_Cantera", "") for name in identifier] + ['mid'])
+def _build_tool_independent_submodel_key(tool_dependent_submodel_key):
+  """Return a tool-independent filename key for one submodel.
+
+  The key contains normalized submodule filenames. The mid encodes the
+  submodule selection. Hence, both can identify a submodel. The tools are
+  CHEMKIN-PRO and Cantera.
+  """
+  return tuple(sorted(
+      c3mech_data.normalize_submodule_filename_for_tool_independent_key(name)
+      for name in tool_dependent_submodel_key))
+
+
+def _register_mid(mid_by_tool_independent_submodel_key,
+                  tool_dependent_submodel_key, mid):
+  """Map a tool-independent submodel key to its mid."""
+  tool_independent_submodel_key = _build_tool_independent_submodel_key(
+      tool_dependent_submodel_key)
+  if tool_independent_submodel_key in mid_by_tool_independent_submodel_key:
+    registered_mid = mid_by_tool_independent_submodel_key[
+        tool_independent_submodel_key]
+    if registered_mid != mid:
+      raise RuntimeError(
+          "MID mismatch for tool-independent submodel key " +
+          str(tool_independent_submodel_key) + ": '" + registered_mid +
+          "' != '" + mid + "'")
+    print("Reusing MID ='" + mid + "'")
+    return
+  for registered_key, registered_mid in (
+      mid_by_tool_independent_submodel_key.items()):
+    if registered_mid == mid:
+      raise RuntimeError(
+          "MID '" + mid + "' identifies different tool-independent " +
+          "submodel keys: " + str(registered_key) + " and " +
+          str(tool_independent_submodel_key))
+  mid_by_tool_independent_submodel_key[
+      tool_independent_submodel_key] = mid
+  print("new MID ='" + mid + "'")
 
 
 def clean_therm(therm_output, species_list, species_pruned, header_filename,
-                submodules_files, model_name, mid, species_output, datetime):
+                submodules_files, model_name, mid, species_output, datetime,
+                header_text=None):
   print("writing '" + therm_output + "'")
-  with open(therm_output, 'w') as thermfile:
+  with open(therm_output, 'w', encoding="utf-8") as thermfile:
 
     thermfile.writelines(
         ascii_tab_space(line) for line in insert_boiler_plate(
             "Thermodynamic", model_name, submodules_files, datetime, mid,
-            header_filename))
+            header_filename, header_text=header_text))
 
     thermfile.write(ascii_tab_space('THERMO ALL\n'))
     thermfile.write(ascii_tab_space('300.   1000.   5000.\n'))
@@ -1255,18 +1073,19 @@ def clean_therm(therm_output, species_list, species_pruned, header_filename,
 
 
 def clean_tran(tran_file, tran_output, species_list, species_pruned,
-               header_filename, submodules_files, model_name, mid, datetime):
+               header_filename, submodules_files, model_name, mid, datetime,
+               header_text=None):
   tran = open(tran_file, 'r', encoding="utf-8")
   tranlines = tran.readlines()
   tran.close()
 
   species_dict = {s.upper(): 0 for s in species_list}
   print("writing '" + tran_output + "'")
-  with open(tran_output, 'w') as tranfile:
+  with open(tran_output, 'w', encoding="utf-8") as tranfile:
     tranfile.writelines(
         ascii_tab_space(line) for line in insert_boiler_plate(
             "Transport", model_name, submodules_files, datetime, mid,
-            header_filename))
+            header_filename, header_text=header_text))
 
     for i in range(len(tranlines)):
       wrk_line = tranlines[i].split("!")[0]
@@ -1312,7 +1131,7 @@ def compile_model(options,
                   output_chunk,
                   output_chunk_kin,
                   generated_combinations,
-                  identifier,
+                  tool_dependent_submodel_key,
                   mid,
                   write_therm_trans=True):
   species_list = make_clean_species_list(submodules_files)
@@ -1321,26 +1140,27 @@ def compile_model(options,
   species_missing_in_parent = set(species_list.keys()) - set(
       parent_species_list.keys())
   if options.require_ht_subset_no_change:
-    has_subset_effect = bool(subset_unmatched_keys or restrictive_fix_keys or
-                             species_missing_in_parent)
+    has_subset_effect = bool(subset_unmatched_keys or restrictive_fix_keys
+                             or species_missing_in_parent)
     if has_subset_effect:
+      print("#error: HT-vs-LT-HT subset checks found differences while "
+            "'--require-ht-subset-no-change' is enabled.")
       print(
-          "#error: HT-vs-LT-HT subset checks found differences while "
-          "'--require-ht-subset-no-change' is enabled.")
-      print("        This run is aborted to guarantee that subset logic has no "
-            "effect on the generated output.")
+          "        This run is aborted to guarantee that subset logic has no "
+          "effect on the generated output.")
       if len(subset_unmatched_keys):
         print("        unmatched HT reactions that would be commented out:",
               len(subset_unmatched_keys))
       if len(restrictive_fix_keys):
-        print("        reversible HT reactions that would be rewritten to "
-              "irreversible:", len(restrictive_fix_keys))
+        print(
+            "        reversible HT reactions that would be rewritten to "
+            "irreversible:", len(restrictive_fix_keys))
       if len(species_missing_in_parent):
-        print("        species present in HT selection but missing in LT-HT "
-              "parent:", len(species_missing_in_parent))
-      raise Exception(
-          "#error: aborting due to HT-vs-LT-HT subset differences "
-          "(strict no-change mode)")
+        print(
+            "        species present in HT selection but missing in LT-HT "
+            "parent:", len(species_missing_in_parent))
+      raise Exception("#error: aborting due to HT-vs-LT-HT subset differences "
+                      "(strict no-change mode)")
   if len(species_missing_in_parent):
     print("\n")
     print(
@@ -1472,69 +1292,72 @@ def compile_model(options,
   if output_chunk != "":
     output_chunk = "_" + output_chunk
 
-  def get_mid(generated_combinations, identifier):
-    identifier_model = get_identifier_model(identifier)
-    if identifier_model in generated_combinations:
-      reusing = generated_combinations[identifier_model]["mid"]
-      print("Reusing MID ='" + reusing + "'")
-      return reusing
-    generated_combinations[identifier_model] = {}
-    print("new MID ='" + mid + "'")
-    generated_combinations[identifier_model]["mid"] = mid
-    return mid
+  mid_with_leading_underscore = "_" + mid
 
-  SID = get_mid(generated_combinations, identifier)
-  USID = "_" + SID
-
-  kin_file = options.model_name + USID + output_chunk + output_chunk_kin + ".CKI"
+  kin_file = (options.model_name + mid_with_leading_underscore + output_chunk +
+              output_chunk_kin + ".CKI")
   output_filename_kin = os.path.join(options.output_dir, output, kin_file)
   ns_printed, nr_printed = print_kinetics_file(species_list, species_pruned,
                                                options.header,
                                                submodules_files,
                                                options.model_name, mid,
                                                output_filename_kin, datetime,
-                                               reactions, removed_reaction_ids)
+                                               reactions, removed_reaction_ids,
+                                               header_text=options.header_text,
+                                               reorder=getattr(options, "reorder", True))
 
-  therm_file = options.model_name + USID + output_chunk + ".THERM"
+  therm_file = (options.model_name + mid_with_leading_underscore +
+                output_chunk + ".THERM")
   output_filename_therm = os.path.join(options.output_dir, output, therm_file)
 
-  trans_filename = options.model_name + USID + output_chunk + ".TRAN"
+  trans_filename = (options.model_name + mid_with_leading_underscore +
+                    output_chunk + ".TRAN")
   output_filename_trans = os.path.join(options.output_dir, output,
                                        trans_filename)
 
   if write_therm_trans:
     clean_therm(output_filename_therm, species_list, species_pruned,
                 options.header, submodules_files, options.model_name, mid,
-                species_nasa_output, datetime)
+                species_nasa_output, datetime,
+                header_text=options.header_text)
 
     clean_tran(options.transfile, output_filename_trans, species_list,
                species_pruned, options.header, submodules_files,
-               options.model_name, mid, datetime)
+               options.model_name, mid, datetime,
+               header_text=options.header_text)
   else:
     # We deliberately do not write separate THERM/TRAN here.
     # The caller is responsible for pointing to canonical files.
     output_filename_therm = None
     output_filename_trans = None
 
-  generated_combinations[identifier] = {}
-  generated_combinations[identifier]["kin"] = output_filename_kin
-  generated_combinations[identifier]["therm"] = output_filename_therm
-  generated_combinations[identifier]["trans"] = output_filename_trans
-  generated_combinations[identifier]["dir"] = os.path.join(
+  generated_combinations[tool_dependent_submodel_key] = {}
+  generated_combinations[tool_dependent_submodel_key][
+      "kin"] = output_filename_kin
+  generated_combinations[tool_dependent_submodel_key][
+      "therm"] = output_filename_therm
+  generated_combinations[tool_dependent_submodel_key][
+      "trans"] = output_filename_trans
+  generated_combinations[tool_dependent_submodel_key]["dir"] = os.path.join(
       options.output_dir, output)
-  generated_combinations[identifier]["ns"] = ns_printed
-  generated_combinations[identifier]["nr"] = nr_printed
+  generated_combinations[tool_dependent_submodel_key]["ns"] = ns_printed
+  generated_combinations[tool_dependent_submodel_key]["nr"] = nr_printed
+  generated_combinations[tool_dependent_submodel_key]["mid"] = mid
 
   return ns_printed, nr_printed, generated_combinations
 
 
-def process_ck2yaml(identifier, generated_combinations):
+def process_ck2yaml(tool_dependent_submodel_key, generated_combinations):
 
-  output_filename_kin = generated_combinations[identifier]["kin"]
-  output_filename_therm = generated_combinations[identifier]["therm"]
-  output_filename_trans = generated_combinations[identifier]["trans"]
-  output_filename_dir = generated_combinations[identifier]["dir"]
-  if "cantera" in str(output_filename_kin).lower():
+  output_filename_kin = generated_combinations[
+      tool_dependent_submodel_key]["kin"]
+  output_filename_therm = generated_combinations[
+      tool_dependent_submodel_key]["therm"]
+  output_filename_trans = generated_combinations[
+      tool_dependent_submodel_key]["trans"]
+  output_filename_dir = generated_combinations[
+      tool_dependent_submodel_key]["dir"]
+  if _is_cantera_compatible_kinetics_filename(output_filename_kin):
     cmd = [
         "ck2yaml", f"--input={output_filename_kin}",
         f"--thermo={output_filename_therm}",
@@ -1544,46 +1367,48 @@ def process_ck2yaml(identifier, generated_combinations):
                             cwd=output_filename_dir,
                             capture_output=True,
                             text=True)
-    return identifier, result.returncode, result.stdout, result.stderr
+    return (tool_dependent_submodel_key, output_filename_kin,
+            result.returncode, result.stdout, result.stderr)
   else:
-    return identifier, 0, "", ""  # Not processed
+    return (tool_dependent_submodel_key, output_filename_kin, 0, "", "")
 
 
-def _generate_identifer(submodules_filenames, selection, cantera):
+def _require_tool_compatible_submodule_filename(path, cantera):
+  """Return the requested LOWMX/LOWSP or independent-collider (IC)
+  submodule filename and fail if the submodule file is unavailable.
+  """
+  candidate = c3mech_data.select_tool_compatible_submodule_filename(
+      path, cantera)
+  if not os.path.isfile(candidate):
+    tool = "IC" if cantera else "LOWMX/LOWSP"
+    raise FileNotFoundError("required " + tool +
+                            " submodule file not found: '" + candidate +
+                            "'")
+  return candidate
+
+
+def _build_tool_dependent_submodel_key(submodules_filenames, selection,
+                                       cantera):
+  """Return the key and submodule filenames for a tool-dependent variant
+  of a submodel.
+  """
   c0 = 'C0'
-  identifier_list = []
+  selected_non_core_submodule_filenames = []
   for smod, temp in selection.items():
     if smod.upper() == c0:
       continue
     path = submodules_filenames[temp][smod]
-    if smod == 'C1-C2':
-      if cantera:
-        # ensure we point to the Cantera-compatible file
-        cand = path.replace("UOG_C1-C2_LT-HT.MECH",
-                            "UOG_C1-C2_LT-HT_Cantera.MECH")
-        if os.path.isfile(cand):
-          path = cand
-      else:
-        # ensure we point to the non-Cantera file
-        cand = path.replace("UOG_C1-C2_LT-HT_Cantera.MECH",
-                            "UOG_C1-C2_LT-HT.MECH")
-        if os.path.isfile(cand):
-          path = cand
-    identifier_list.append(path)
+    path = _require_tool_compatible_submodule_filename(path, cantera)
+    selected_non_core_submodule_filenames.append(path)
 
   core_filename = submodules_filenames[selection[c0]][c0]
-  if not cantera:
-    # switch core to non-Cantera variant (as before, but more robust)
-    cand_core = core_filename.replace("UOG_C0_LT-HT_Cantera.MECH",
-                                      "UOG_C0_LT-HT.MECH")
-    if os.path.isfile(cand_core):
-      core_filename = cand_core
-    else:
-      print("#error: expected non-Cantera C0 core not found: " + cand_core)
-      sys.exit(1)
+  core_filename = _require_tool_compatible_submodule_filename(
+      core_filename, cantera)
 
-  identifier_list.append(core_filename)
-  return tuple(sorted(identifier_list)), core_filename
+  selected_submodule_filenames = (
+      [core_filename] + selected_non_core_submodule_filenames)
+  return (tuple(sorted(selected_submodule_filenames)), core_filename,
+          selected_non_core_submodule_filenames)
 
 
 def one_carbon_number(options,
@@ -1592,43 +1417,30 @@ def one_carbon_number(options,
                       cnum,
                       data_dict,
                       generated_combinations,
+                      mid_by_tool_independent_submodel_key,
                       counters=None,
                       cantera=True,
                       canonical_files=None):
   for selection_count, selection in enumerate(data_dict["modules"]):
-    identifier, core_filename = _generate_identifer(submodules_filenames,
-                                                    selection, cantera)
+    (tool_dependent_submodel_key, core_filename,
+     selected_non_core_submodule_filenames) = (
+        _build_tool_dependent_submodel_key(submodules_filenames, selection,
+                                           cantera))
 
-    submodules_list = []
-    for smod, temp in selection.items():
-      if smod.upper() == "C0":
-        continue
-      path = submodules_filenames[temp][smod]
-      if smod == "C1-C2":
-        if cantera:
-          cand = path.replace("UOG_C1-C2_LT-HT.MECH",
-                              "UOG_C1-C2_LT-HT_Cantera.MECH")
-          if os.path.isfile(cand):
-            path = cand
-        else:
-          cand = path.replace("UOG_C1-C2_LT-HT_Cantera.MECH",
-                              "UOG_C1-C2_LT-HT.MECH")
-          if os.path.isfile(cand):
-            path = cand
-      submodules_list.append(path)
-
-    submodules_files = inp.SubModulesFiles(core_filename, submodules_list)
+    submodules_files = inp.SubModulesFiles(
+        core_filename, selected_non_core_submodule_filenames)
     submodules_files.insert_model_path(options.submodules_dir)
 
     # --- Directory layout: carbon group / combo_dir / tool ---
     # Examples:
-    #   PRECOMPILED/C8+/C0-C8+_DMC+EC_N/Chemkin/
-    #   PRECOMPILED/C8+/C0-C8+_DMC+EC_N/Cantera/
-    carbon_dir = data_dict["output_dir"]  # absolute, e.g. PRECOMPILED/C8+
+    #   OUTPUT_ROOT/C8+/C0-C8+_DMC+EC_N/Chemkin/
+    #   OUTPUT_ROOT/C8+/C0-C8+_DMC+EC_N/Cantera/
+    carbon_dir = data_dict["output_dir"]  # absolute, e.g. OUTPUT_ROOT/C8+
     tool_dir = "Cantera" if cantera else "Chemkin"
 
     name_with_temp = data_dict["output_chunks"][selection_count]
-    temp_flag = data_dict["temperature"][selection_count]  # "HT", "LT-HT", or ""
+    temp_flag = data_dict["temperature"][
+        selection_count]  # "HT", "LT-HT", or ""
 
     # Strip trailing "_HT" / "_LT-HT" for the directory name
     if temp_flag in ("HT", "LT-HT"):
@@ -1644,8 +1456,10 @@ def one_carbon_number(options,
       out_chuck = "_Cantera"
 
     mid = data_dict["mid"][selection_count]
+    _register_mid(mid_by_tool_independent_submodel_key,
+                  tool_dependent_submodel_key, mid)
 
-    if identifier not in generated_combinations:
+    if tool_dependent_submodel_key not in generated_combinations:
       # In --generate-all:
       #   - Chemkin (cantera=False): write THERM/TRAN (canonical copies)
       #   - Cantera (cantera=True): do NOT write THERM/TRAN here; reuse Chemkin's
@@ -1661,14 +1475,16 @@ def one_carbon_number(options,
           output_chunk=name_with_temp,
           output_chunk_kin=out_chuck,
           generated_combinations=generated_combinations,
-          identifier=identifier,
+          tool_dependent_submodel_key=tool_dependent_submodel_key,
           mid=mid,
           write_therm_trans=write_therm_trans)
 
       # Track canonical THERM/TRAN by MID (where they are actually written)
       if canonical_files is not None:
-        therm_path = generated_combinations[identifier]["therm"]
-        trans_path = generated_combinations[identifier]["trans"]
+        therm_path = generated_combinations[tool_dependent_submodel_key][
+            "therm"]
+        trans_path = generated_combinations[tool_dependent_submodel_key][
+            "trans"]
         if therm_path is not None and trans_path is not None:
           canonical_files[mid] = {
               "therm": therm_path,
@@ -1680,10 +1496,10 @@ def one_carbon_number(options,
         if mid not in canonical_files:
           raise Exception("Canonical THERM/TRAN missing for MID '" + mid +
                           "' when generating Cantera files")
-        generated_combinations[identifier]["therm"] = canonical_files[mid][
-            "therm"]
-        generated_combinations[identifier]["trans"] = canonical_files[mid][
-            "trans"]
+        generated_combinations[tool_dependent_submodel_key][
+            "therm"] = canonical_files[mid]["therm"]
+        generated_combinations[tool_dependent_submodel_key][
+            "trans"] = canonical_files[mid]["trans"]
 
       if counters is not None:
         if mid in counters:
@@ -1693,22 +1509,23 @@ def one_carbon_number(options,
                             " (new) and " + str(counters[mid]))
         counters[mid] = (selection, ns_printed, nr_printed)
     else:
-      mid = data_dict["mid"][selection_count]
       if counters is not None and mid not in counters:
-        raise Exception("duplicate identifier " + str(identifier) +
+        raise Exception("duplicate tool-dependent submodel key " +
+                        str(tool_dependent_submodel_key) +
                         " must have counter but '" + mid + "' was not found")
       # if a sub-module combination was used before
       # this is because there is no distinction between
       # HT and LT-HT for this combination
       aux = ["kin", "therm", "trans"]
       for f in aux:
-        fname = generated_combinations[identifier][f]
+        fname = generated_combinations[tool_dependent_submodel_key][f]
         if fname is None:
           continue
-        if not cantera and "cantera" in fname.lower():
+        if (not cantera and
+            _is_cantera_compatible_kinetics_filename(fname)):
           raise Exception(
-              "fname " + fname +
-              "contains cantera, but cantera is FALSE. There is a bug.")
+              "CHEMKIN-PRO-compatible output has a Cantera-compatible " +
+              "kinetics filename: '" + fname + "'")
         dir_name = os.path.dirname(fname)
         base_name = os.path.basename(fname)
         new_base = base_name.replace('_LT-HT', '').replace('_HT', '')
@@ -1717,13 +1534,15 @@ def one_carbon_number(options,
           print(
               f"Renaming {os.path.basename(fname)} -> {os.path.basename(new_fname)}"
           )
-          generated_combinations[identifier][f] = new_fname
+          generated_combinations[tool_dependent_submodel_key][f] = new_fname
           os.rename(fname, new_fname)
 
       # After renaming, refresh canonical THERM/TRAN for this MID
       if canonical_files is not None:
-        therm_path = generated_combinations[identifier]["therm"]
-        trans_path = generated_combinations[identifier]["trans"]
+        therm_path = generated_combinations[tool_dependent_submodel_key][
+            "therm"]
+        trans_path = generated_combinations[tool_dependent_submodel_key][
+            "trans"]
         if therm_path is not None and trans_path is not None:
           canonical_files[mid] = {
               "therm": therm_path,
@@ -1732,14 +1551,49 @@ def one_carbon_number(options,
 
   return generated_combinations
 
+def _require_selected_species_data(options, submodules_filenames,
+                                   grouped_selections):
+  """Require thermochemistry and transport records before model generation.
 
-def run(options, submodules_filenames, grouped_selections, columns):
+  Read each distinct submodule once per core, including LOWMX/LOWSP
+  and independent-collider (IC) submodules for --generate-all. Use only selections
+  scheduled for generation, so excluded submodules and the carbon limit do not
+  add required species.
+  """
+  print("Checking thermochemistry and transport availability...", flush=True)
+  cantera_modes = ((False, True) if options.generate_all else
+                    (c3mech_data.detect_cantera_mode(submodules_filenames),))
+  submodules_by_core = {}
+  for cantera in cantera_modes:
+    for data_dict in grouped_selections.values():
+      for selection in data_dict["modules"]:
+        _, core, submodules = _build_tool_dependent_submodel_key(
+            submodules_filenames, selection, cantera)
+        selected = submodules_by_core.setdefault(core, {})
+        selected.update(dict.fromkeys(submodules))
+  if not submodules_by_core:
+    raise c3mech_data.UserInputError("no submodels selected for generation")
+
+  species = set()
+  for core, submodules in submodules_by_core.items():
+    species.update(name.upper() for name in inp.make_species_list(
+        "", [core, *submodules]))
+  inp.require_species_data(options.thermfile, options.transfile, species)
+  print("Thermochemistry and transport records available for all " +
+        str(len(species)) + " required species.", flush=True)
+
+
+def run(options, submodules_filenames, grouped_selections, columns, carbon_map,
+        included_keys, submodule_labels):
 
   print("read input...")
+  _require_selected_species_data(options, submodules_filenames,
+                                 grouped_selections)
   DATETIME = datetime.datetime.now()
 
   if options.generate_all:
     generated_combinations = {}
+    mid_by_tool_independent_submodel_key = {}
     submodules_filename = options.yaml_file_path
 
     counters = {}
@@ -1757,43 +1611,51 @@ def run(options, submodules_filenames, grouped_selections, columns):
             cnum,
             data_dict,
             generated_combinations,
+            mid_by_tool_independent_submodel_key,
             counters=counters,
             cantera=cantera,
             canonical_files=canonical_files)
 
-    readme = generate_readme(grouped_selections, columns, counters)
-    readme_file = os.path.join(options.output_dir, "README.md")
-    print("writing:", readme_file)
-    with open(readme_file, "w") as f:
-      f.write('\n'.join(readme))
-
     tasks = []
     with ThreadPoolExecutor(max_workers=options.max_threads) as executor:
-      for identifier in generated_combinations:
-        if "mid" in identifier:
-          continue
-        if options.process_cantera and "cantera" in str(
-            generated_combinations[identifier]["kin"]).lower():
+      for tool_dependent_submodel_key in generated_combinations:
+        if options.process_cantera and _is_cantera_compatible_kinetics_filename(
+            generated_combinations[tool_dependent_submodel_key]["kin"]):
           tasks.append(
-              executor.submit(process_ck2yaml, identifier,
+              executor.submit(process_ck2yaml, tool_dependent_submodel_key,
                               generated_combinations))
 
       for future in as_completed(tasks):
-        identifier, returncode, stdout, stderr = future.result()
-        print(f"\n=== {identifier} ===")
+        (tool_dependent_submodel_key, _, returncode, stdout,
+         stderr) = future.result()
+        print(f"\n=== {tool_dependent_submodel_key} ===")
         print(stdout)
         print(stderr)
-        if returncode != 0:
-          print(f"Error running ck2yaml for {identifier}:")
-          print(stderr)
-          sys.exit(1)
-        else:
-          print("processing with cantera was successful!")
+        _validate_ck2yaml_result(tool_dependent_submodel_key, returncode,
+                                 stdout, stderr)
+        print("processing with cantera was successful!")
+
+    template_root = os.path.join(
+        os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
+        "templates", "model_catalog")
+    inventory = distribution.build_inventory(
+        options, grouped_selections, included_keys, submodule_labels,
+        counters, compiler_version)
+    catalog, manifest = distribution.render_model_catalog(
+        options, inventory, columns, carbon_map, tuple(submodule_labels),
+        os.path.join(template_root, "MODEL_CATALOG.md.in"),
+        os.path.join(template_root, "quick_access.yaml"),
+        options.c3mech_configuration)
+    distribution.publish_model_catalog(options.output_dir, catalog, manifest)
+    print("writing:", os.path.join(options.output_dir,
+                                    "MODEL_MANIFEST.json"))
+    print("writing:", os.path.join(options.output_dir, "MODEL_CATALOG.md"))
   else:
 
     generated_combinations_single = {}
+    mid_by_tool_independent_submodel_key_single = {}
     canonical_files_single = {}
-    cantera_mode = detect_cantera_mode(submodules_filenames)
+    cantera_mode = c3mech_data.detect_cantera_mode(submodules_filenames)
     for cnum, data_dict in grouped_selections.items():
       generated_combinations_single = one_carbon_number(
           options,
@@ -1802,24 +1664,21 @@ def run(options, submodules_filenames, grouped_selections, columns):
           cnum,
           data_dict,
           generated_combinations_single,
+          mid_by_tool_independent_submodel_key_single,
           cantera=cantera_mode,
           canonical_files=canonical_files_single)
 
-    for identifier in generated_combinations_single:
-      if "mid" in identifier:
-        continue
+    for tool_dependent_submodel_key in generated_combinations_single:
       # --- Process with ck2yaml if requested ---
-      if options.process_cantera and "cantera" in str(
-          generated_combinations_single[identifier]["kin"]).lower():
-        result = process_ck2yaml(identifier, generated_combinations_single)
+      if options.process_cantera and _is_cantera_compatible_kinetics_filename(
+          generated_combinations_single[tool_dependent_submodel_key]["kin"]):
+        result = process_ck2yaml(tool_dependent_submodel_key,
+                                 generated_combinations_single)
 
-        _, returncode, stdout, stderr = result
+        _, _, returncode, stdout, stderr = result
         print(stdout)
         print(stderr)
 
-        if returncode != 0:
-          print(f"Error running ck2yaml for {identifier}:")
-          print(stderr)
-          sys.exit(1)
-        else:
-          print("processing with cantera was successful!")
+        _validate_ck2yaml_result(tool_dependent_submodel_key, returncode,
+                                 stdout, stderr)
+        print("processing with cantera was successful!")

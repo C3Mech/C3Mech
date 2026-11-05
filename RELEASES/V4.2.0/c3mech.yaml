@@ -1,0 +1,272 @@
+schema_version: 5
+
+model:
+  version: "4.2.0"
+  header_title: null
+
+project:
+  consortium_name: Computational Chemistry Consortium
+  consortium_abbreviation: C3
+  source_repository_url: https://github.com/C3Mech/C3Mech
+  information_url: https://fuelmech.org
+
+affiliations:
+  university_of_galway:
+    organization: University of Galway
+    address_lines:
+      - Combustion Chemistry Centre, School of Chemistry, Ryan Institute, MaREI,
+      - University of Galway, Ireland
+  politecnico_di_milano:
+    organization: Politecnico di Milano
+    address_lines:
+      - Dipartimento di Chimica, Materiali ed Ingegneria Chimica "G. Natta,"
+      - Politecnico di Milano, Italy
+  rwth_aachen_university:
+    organization: RWTH Aachen University
+    address_lines:
+      - Institute for Combustion Technology,
+      - RWTH Aachen University, Germany
+  lawrence_livermore_national_laboratory:
+    organization: Lawrence Livermore National Laboratory
+    address_lines:
+      - Lawrence Livermore National Laboratory, United States of America
+  argonne_national_laboratory:
+    organization: Argonne National Laboratory
+    address_lines:
+      - Chemical Sciences and Engineering Division,
+      - Argonne National Laboratory, United States of America
+  convergent_science:
+    organization: Convergent Science
+    address_lines:
+      - Convergent Science, United States of America
+
+authors:
+  - id: luna_pratali_maffei
+    name: Luna Pratali Maffei
+    affiliation_ids: [politecnico_di_milano]
+    email: luna.pratali@polimi.it
+  - id: raymond_langer
+    name: Raymond Langer
+    affiliation_ids: [rwth_aachen_university]
+    email: r.langer@itv.rwth-aachen.de
+  - id: yuki_murakami
+    name: Yuki Murakami
+    affiliation_ids: [university_of_galway]
+    email: null
+  - id: scott_w_wagnon
+    name: Scott W. Wagnon
+    affiliation_ids: [lawrence_livermore_national_laboratory]
+    email: null
+  - id: pengzhi_wang
+    name: Pengzhi Wang
+    affiliation_ids: [university_of_galway]
+    email: null
+  - id: jiaxin_liu
+    name: Jiaxin Liu
+    affiliation_ids: [university_of_galway]
+    email: null
+  - id: mohsin_raza
+    name: Mohsin Raza
+    affiliation_ids: [university_of_galway]
+    email: null
+  - id: yuxiang_zhu
+    name: Yuxiang Zhu
+    affiliation_ids: [university_of_galway]
+    email: null
+  - id: sanket_girhe
+    name: Sanket Girhe
+    affiliation_ids: [rwth_aachen_university]
+    email: null
+  - id: christian_schwenzer
+    name: Christian Schwenzer
+    affiliation_ids: [rwth_aachen_university]
+    email: null
+  - id: joachim_beeckmann
+    name: Joachim Beeckmann
+    affiliation_ids: [rwth_aachen_university]
+    email: null
+  - id: stephen_j_klippenstein
+    name: Stephen J. Klippenstein
+    affiliation_ids: [argonne_national_laboratory]
+    email: null
+  - id: tiziano_faravelli
+    name: Tiziano Faravelli
+    affiliation_ids: [politecnico_di_milano]
+    email: null
+  - id: heinz_pitsch
+    name: Heinz Pitsch
+    affiliation_ids: [rwth_aachen_university]
+    email: null
+  - id: peter_kelly_senecal
+    name: Peter Kelly Senecal
+    affiliation_ids: [convergent_science]
+    email: null
+  - id: henry_j_curran
+    name: Henry J. Curran
+    affiliation_ids: [university_of_galway]
+    email: null
+
+contact_author_ids:
+  - luna_pratali_maffei
+  - raymond_langer
+
+citation:
+  cff_title: C3Mech
+  major_versions:
+    "4":
+      preferred_publication_id: c3mech_v4_publication
+      publication_ids:
+        - c3mech_v4_publication
+      corrigendum_ids:
+        - c3mech_v4_corrigendum
+  minor_versions:
+    "4.1":
+      publication_ids:
+        - ammonia_pressure_dependence
+        - hydrogen_nitrogen_chemistry
+        - c3mech_v4_1_manuscript
+    "4.2":
+      publication_ids:
+        - c3mech_v4_2_manuscript
+  publications:
+    c3mech_v4_publication:
+      authors: &c3mech_v4_publication_authors
+        - given_names: Luna
+          family_names: Pratali Maffei
+          citation_name: Pratali Maffei, L.
+        - given_names: Raymond
+          family_names: Langer
+          citation_name: Langer, R.
+        - given_names: Yuki
+          family_names: Murakami
+          citation_name: Murakami, Y.
+        - given_names: Scott W.
+          family_names: Wagnon
+          citation_name: Wagnon, S. W.
+        - given_names: Pengzhi
+          family_names: Wang
+          citation_name: Wang, P.
+        - given_names: Jiaxin
+          family_names: Liu
+          citation_name: Liu, J.
+        - given_names: Mohsin
+          family_names: Raza
+          citation_name: Raza, M.
+        - given_names: Yuxiang
+          family_names: Zhu
+          citation_name: Zhu, Y.
+        - given_names: Sanket
+          family_names: Girhe
+          citation_name: Girhe, S.
+        - given_names: Christian
+          family_names: Schwenzer
+          citation_name: Schwenzer, C.
+        - given_names: Joachim
+          family_names: Beeckmann
+          citation_name: Beeckmann, J.
+        - given_names: Stephen J.
+          family_names: Klippenstein
+          citation_name: Klippenstein, S. J.
+        - given_names: Tiziano
+          family_names: Faravelli
+          citation_name: Faravelli, T.
+        - given_names: Heinz
+          family_names: Pitsch
+          citation_name: Pitsch, H.
+        - given_names: Peter Kelly
+          family_names: Senecal
+          citation_name: Senecal, P. K.
+        - given_names: Henry J.
+          family_names: Curran
+          citation_name: Curran, H. J.
+      year: 2025
+      title: "Modeling combustion chemistry using C3MechV4.0: An extension to mixtures of hydrogen, ammonia, alkanes, and cycloalkanes"
+      cff_title: null
+      journal: Applications in Energy and Combustion Science
+      volume: "24"
+      issue: null
+      article_number: "100385"
+      start_page: null
+      end_page: null
+      doi: 10.1016/j.jaecs.2025.100385
+      url: https://www.sciencedirect.com/science/article/pii/S2666352X25000664
+    c3mech_v4_corrigendum:
+      authors: *c3mech_v4_publication_authors
+      year: 2026
+      title: "Corrigendum to \"Modeling combustion chemistry using C3MechV4.0: An extension to mixtures of hydrogen, ammonia, alkanes, and cycloalkanes\" [Applications in Energy and Combustion Science, 2025, 24, 100385]"
+      cff_title: "Corrigendum to ‘Modeling combustion chemistry using C3MechV4.0: An extension to mixtures of hydrogen, ammonia, alkanes, and cycloalkanes’ [Applications in Energy and Combustion Science, 2025, 24, 100385]"
+      journal: Applications in Energy and Combustion Science
+      volume: "26"
+      issue: null
+      article_number: "100462"
+      start_page: null
+      end_page: null
+      doi: 10.1016/j.jaecs.2026.100462
+      url: https://doi.org/10.1016/j.jaecs.2026.100462
+    ammonia_pressure_dependence:
+      authors:
+        - given_names: Alessandro
+          family_names: Stagni
+          citation_name: Stagni, A.
+        - given_names: Timoteo
+          family_names: Dinelli
+          citation_name: Dinelli, T.
+      year: 2025
+      title: "Impact of third-body colliders on ammonia pyrolysis and oxidation: Detailed kinetic modeling and mechanistic insights"
+      cff_title: null
+      journal: Chemical Engineering Journal
+      volume: "526"
+      issue: null
+      article_number: "170737"
+      start_page: null
+      end_page: null
+      doi: 10.1016/j.cej.2025.170737
+      url: https://www.sciencedirect.com/science/article/pii/S1385894725115829
+    hydrogen_nitrogen_chemistry:
+      authors:
+        - given_names: Yang
+          family_names: Li
+          citation_name: Li, Y.
+        - given_names: S. Mani
+          family_names: Sarathy
+          citation_name: Sarathy, S. M.
+      year: 2020
+      title: "Probing hydrogen–nitrogen chemistry: A theoretical study of important reactions in NxHy, HCN and HNCO oxidation"
+      cff_title: null
+      journal: International Journal of Hydrogen Energy
+      volume: "45"
+      issue: "43"
+      article_number: null
+      start_page: "23624"
+      end_page: "23637"
+      doi: 10.1016/j.ijhydene.2020.06.083
+      url: https://www.sciencedirect.com/science/article/pii/S0360319920322205
+    c3mech_v4_1_manuscript:
+      type: unpublished
+      authors:
+        - given_names: Nadjib
+          family_names: Rais
+          citation_name: Rais, N.
+        - given_names: Chong-Wen
+          family_names: Zhou
+          citation_name: Zhou, C.-W.
+        - given_names: Henry J.
+          family_names: Curran
+          citation_name: Curran, H. J.
+      title: Paper in preparation
+    c3mech_v4_2_manuscript:
+      type: unpublished
+      authors:
+        - given_names: Sanket
+          family_names: Girhe
+          citation_name: Girhe, S.
+        - given_names: Raymond
+          family_names: Langer
+          citation_name: Langer, R.
+        - given_names: Francesca
+          family_names: Loffredo
+          citation_name: Loffredo, F.
+        - given_names: Heinz
+          family_names: Pitsch
+          citation_name: Pitsch, H.
+      title: "Ammonia combustion kinetic model optimization using elementary rate coefficient and global combustion data"

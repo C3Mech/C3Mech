@@ -1,0 +1,25 @@
+*DS_store
+*.bak
+*.cks
+*1entry.dat
+*.mlst
+*irrev.inp
+*mod.inp
+*roi.inp
+*to_keep.txt
+*THERM.dat
+*.xml
+# temporary Microsoft Office files
+~$*
+plot_ignore/
+2023-10-25_Luna_PAH*/
+.DS_Store
+# editor / IDE backups
+*~
+*.swp
+.vscode/
+#kdiff3
+*.orig
+__pycache__/
+*.exe
+RELEASES/build/

@@ -1,0 +1,16 @@
+name: c3-species-windows
+
+channels:
+  - conda-forge
+  - nodefaults
+
+dependencies:
+  - python=3.9
+  - pip
+  - rdkit>=2023.09.5
+  - cairosvg
+  - gitpython
+  - pyyaml
+  - pandas
+  - numpy
+  - yapf

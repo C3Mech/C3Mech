@@ -1,55 +1,99 @@
-# Species dictionary
+# Species Dictionary
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-All species in C3MechV4.0.1 are defined in `species_dict.csv`. This CSV file has
-seven columns with the following meanings:
-- `model_name`: name used in the CHEMKIN files (upper case ASCII string)
-- `inchi`:  International Chemical Identifier (ASCII string)
-- `smiles`: a string following the simplified molecular-input line-entry system 
-  (ASCII string)
-- `excited`: `1` if excited; otherwise, `0` (boolean)
-- `multiplicity`: multiplicity of a species' energy level (`0` if unspecified,
-  `1` for singlets, `2` for doublets, `3` for triplets, etc.) (non-negative 
-  integer)
-- `lumped`: `1` if the `model_name` represents multiple InChIs that should be 
-  tracked in the dictionary; otherwise, `0` (boolean)
-- `rdkit_stereochemistry`: `1` for RDKit-compatible stereochemistry information; 
-  otherwise `0` (boolean)
+All species in the C3 chemical kinetic model are defined in
+`species_dict.csv`. The comma-separated values (CSV) file has seven columns:
 
-The combination `inchi`-`excited`-`multiplicity` must be unique for each row.
-Simplified identifiers neglecting stereochemistry information derived from the
-values in the `inchi` and `smiles` columns must still be RDKit compatible and 
-consistent if the value in the `rdkit_stereochemistry` column is `0`.
+- `model_name`: name used in CHEMKIN files (uppercase ASCII string)
+- `inchi`: International Chemical Identifier (InChI) string (ASCII)
+- `smiles`: simplified molecular-input line-entry system (SMILES) string
+  (ASCII)
+- `excited`: `1` if excited, otherwise `0`
+- `multiplicity`: energy-level multiplicity (`0` if unspecified, otherwise `2S+1`)
+- `lumped`: `1` if one `model_name` maps to multiple structures, otherwise `0`
+- `rdkit_stereochemistry`: `1` if stereochemistry is RDKit-compatible, otherwise `0`
 
-# How to use
+The tuple (`inchi`, `excited`, `multiplicity`) must be unique per row.
 
-The following commands generate the output file `species_dict.pdf`:
+## Setup
+
+Run the commands in this README from `SPECIES_DICTIONARY/`.
+
+Create the `c3-rmg` environment for species-dictionary generation:
 
 ```sh
-# Select the relevant submodels for the species dictionary from the YAML input (default is submodels.yaml).
-# Species images will only be updated if they are older than the species dictionary CSV file. 
-# Erase the content of the output directory to force a regeneration of the species images. 
-./make_species_dict.py
-# use ./make_species_dict.py -d to perform checks without output generation (faster)
-cd output
-pdflatex species_dict.tex
+mamba env create -f environment.yaml
 ```
 
-# Installing dependencies
+`environment.yaml` provides the species-dictionary dependencies, including
+RMG (module `rmgpy`) for optional lumped-species radical/resonance checks.
 
-You can install the dependencies, for example, with:
+## Editing `species_dict.csv`
+
+`species_dict.csv` is the only data file that should be edited.
+
+Converts comma-separated SMILES strings to InChI strings. The converted
+structures are printed to the terminal:
 
 ```sh
-pip3 install rdkit CairoSVG gitpython pyyaml pandas numpy yapf --user
+mamba run -n c3-rmg python smiles2inchi.py \
+  "C=CCN([O])[O], C=C(C)N([O])[O]"
 ```
 
-Alternatively, you can use conda:
+Converts semicolon-separated InChI strings to SMILES strings. The converted
+structures are printed to the terminal:
 
 ```sh
-conda env create -f environment.yaml
+mamba run -n c3-rmg python inchi2smiles.py \
+  "InChI=1S/C3H7NO2/c1-3(2)4(5)6/h3H,1-2H3; InChI=1S/C2H4NO2/c1-2-5-3-4/h1-2H2"
 ```
 
-The scripts were tested with Python versions 3.8.5 and 3.9.6.
+## Use an existing model in CHEMKIN format
 
-If you have further questions or need additional help, please feel free to open an issue or [contact us](mailto:r.langer@itv.rwth-aachen.de).
+By default, `make_species_dict.py` obtains species names from the submodules
+listed in `submodules.yaml`. To instead read the species names from the
+`SPECIES` section of an existing CHEMKIN kinetics file, pass `--yaml ''` and
+provide the file with `--kinetics`. Without `--yaml ''`, the species names are
+obtained from the submodules listed in the YAML file.
+
+## Generate `species_dict.pdf`
+
+The PDF stored in this source directory is the earlier V4.0.1 snapshot.
+Use the PDF supplied with the V4.2.0-rc.3 release for the current candidate,
+or generate a new document from the current CSV using the commands below.
+
+Generates species images and `output/species_dict.tex`. The terminal reports
+the `pdflatex` command after successful generation:
+
+```sh
+mamba run -n c3-rmg python make_species_dict.py \
+  --missing-definition-policy warning
+```
+
+The optional `--provenance` flag records the source commit, source dirty state,
+and SHA-256 hash of the selected species dictionary CSV in the generated TeX
+source. It also regenerates every species image. `pdflatex` transfers these
+values into the PDF.
+
+The mamba environment does not install `pdflatex`. With a separate TeX
+installation that provides `pdflatex`, compile the generated TeX source from
+`SPECIES_DICTIONARY/output/`:
+
+```sh
+(cd output && pdflatex species_dict.tex)
+```
+
+Successful compilation reports `Output written on species_dict.pdf`.
+
+## Formatting
+
+Use `yapf` for formatting Python files:
+
+```sh
+mamba run -n c3-rmg yapf make_species_dict.py \
+  -i \
+  --style='{based_on_style: pep8, indent_width: 2}'
+```
+
+The formatting command is silent on success.

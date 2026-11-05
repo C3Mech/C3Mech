@@ -8,15 +8,29 @@
 # of cases. It is a quick and dirty implementation to make the species directory
 # more readable. Changes might also be required if you add new species.
 
-import os, sys, importlib, re, git, argparse, cairosvg, abc, yaml, pandas, time, copy
+import os
+import sys
+import importlib
+import re
+import argparse
+import abc
+import hashlib
+import yaml
+import time
+import copy
 from collections import defaultdict
 import numpy as np
 from shutil import copyfile
 from pathlib import Path
 
 DIR = os.path.dirname(os.path.abspath(__file__))
+REPOSITORY_ROOT = Path(DIR).resolve().parent
 sys.path.append(os.path.join(DIR, ".."))
 write_species = importlib.import_module("COMPILER.chemmodkit.input")
+c3mech_data = importlib.import_module("COMPILER.c3mech_data")
+species_c3mech_configuration = importlib.import_module(
+    "SPECIES_DICTIONARY.c3mech_configuration")
+from SPECIES_DICTIONARY.element_order import THERMO_SUM_FORMULA_ELEMENTS
 
 from rdkit import Chem
 from rdkit.Chem import AllChem
@@ -27,6 +41,574 @@ from rdkit.ML.Descriptors import MoleculeDescriptors
 from rdkit import RDLogger
 from rdkit.Chem import Draw
 from rdkit.Chem.Draw.MolDrawing import DrawingOptions
+
+_PAT_OO_RADICAL_GROUP = Chem.MolFromSmarts("[OX2][OX1]")
+_PAT_OOH_GROUP = Chem.MolFromSmarts("[OX2][OX2H1]")
+_RMG_MODULES = None
+
+
+def _normal_species_dictionary_identity(name, authors, configuration=None):
+  if name is not None and authors is not None:
+    return name, authors
+  if configuration is None:
+    configuration = c3mech_data.load_c3mech_configuration(
+        c3mech_data.CURRENT_CONFIGURATION_PATH)
+  return species_c3mech_configuration.resolve_identity(
+      name, authors, configuration)
+
+
+def _normal_species_dictionary_values(name, authors,
+                                      c3mech_configuration_sha256,
+                                      provenance):
+  """Resolve normal identity values and the provenance configuration digest."""
+  if not provenance and c3mech_configuration_sha256 is not None:
+    raise ValueError(
+        "--c3mech-configuration-sha256 requires --provenance")
+  configuration = None
+  if (name is None or authors is None
+      or (provenance and c3mech_configuration_sha256 is None)):
+    configuration = c3mech_data.load_c3mech_configuration(
+        c3mech_data.CURRENT_CONFIGURATION_PATH)
+    if provenance:
+      if c3mech_configuration_sha256 is None:
+        c3mech_configuration_sha256 = configuration.sha256
+      elif c3mech_configuration_sha256 != configuration.sha256:
+        raise ValueError(
+            "C3Mech configuration digest does not match the configuration "
+            "used for species dictionary defaults")
+  name, authors = _normal_species_dictionary_identity(
+      name, authors, configuration=configuration)
+  return name, authors, c3mech_configuration_sha256
+
+
+def _add_species_dictionary_name_argument(parser):
+  parser.add_argument('-n',
+                      '--name',
+                      help='exact LaTeX title of species dictionary',
+                      default=None)
+
+
+def _add_species_dictionary_authors_argument(parser):
+  parser.add_argument('-a',
+                      '--authors',
+                      help=('exact LaTeX author list, with \\\\ between '
+                            'author lines'),
+                      default=None)
+
+
+def _add_species_dictionary_provenance_arguments(parser):
+  parser.add_argument(
+      '--provenance',
+      action='store_true',
+      help=("embed the source commit, source clean state, CSV digest, and "
+            "C3Mech configuration digest in the PDF"))
+  parser.add_argument(
+      '--c3mech-configuration-sha256',
+      help=("SHA-256 digest of the exact selected C3Mech configuration "
+            "bytes, requires --provenance"),
+      default=None)
+_RMG_SIGNATURE_CACHE = {}
+
+DEFAULT_LUMPED_CONSTRAINT_POLICY = {
+    "composition_consistency": {
+        "enabled": True,
+        "severity": "error"
+    },
+    "oo_radical_group_consistency": {
+        "enabled": True,
+        "severity": "error"
+    },
+    "ooh_group_consistency": {
+        "enabled": True,
+        "severity": "error"
+    },
+    "oxygen_ring_consistency": {
+        "enabled": True,
+        "severity": "error"
+    },
+    "carbonyl_consistency": {
+        "enabled": True,
+        "severity": "warning"
+    },
+    "mixed_radical_nonradical": {
+        "enabled": True,
+        "severity": "error"
+    },
+    "mixed_radical_resonance": {
+        "enabled": True,
+        "severity": "warning"
+    },
+}
+
+
+def _mol_element_composition(mol):
+  comp = defaultdict(int)
+  for atom in mol.GetAtoms():
+    comp[atom.GetSymbol()] += 1
+  return tuple(sorted(comp.items()))
+
+
+def mol_element_composition(mol):
+  """Backward-compatible public alias for element composition extraction."""
+  return _mol_element_composition(mol)
+
+
+def _mol_sum_formula(mol):
+  return rdMolDescriptors.CalcMolFormula(mol)
+
+
+def _mol_carbonyl_oxygen_count(mol):
+  count = 0
+  for atom in mol.GetAtoms():
+    if atom.GetAtomicNum() != 8:
+      continue
+    for bond in atom.GetBonds():
+      if bond.GetBondType() != Chem.BondType.DOUBLE:
+        continue
+      if bond.GetOtherAtom(atom).GetAtomicNum() == 6:
+        count += 1
+        break
+  return count
+
+
+def _mol_oxygen_ring_count(mol):
+  """Count rings containing at least one oxygen atom."""
+  count = 0
+  for ring in mol.GetRingInfo().AtomRings():
+    if any(mol.GetAtomWithIdx(i).GetAtomicNum() == 8 for i in ring):
+      count += 1
+  return count
+
+
+def _mol_oo_radical_group_count(mol):
+  if _PAT_OO_RADICAL_GROUP is None:
+    return 0
+  return len(mol.GetSubstructMatches(_PAT_OO_RADICAL_GROUP))
+
+
+def _mol_oo_group_count(mol):
+  """Backward-compatible alias for O[O] (radical) group count."""
+  return _mol_oo_radical_group_count(mol)
+
+
+def _mol_is_radical(mol):
+  """Return True if any atom has radical electrons (RDKit-based)."""
+  return any(atom.GetNumRadicalElectrons() > 0 for atom in mol.GetAtoms())
+
+
+def _mol_ooh_group_count(mol):
+  if _PAT_OOH_GROUP is None:
+    return 0
+  return len(mol.GetSubstructMatches(_PAT_OOH_GROUP))
+
+
+def _get_rmg_modules():
+  global _RMG_MODULES
+  if _RMG_MODULES is not None:
+    return _RMG_MODULES
+  try:
+    from rmgpy.molecule.molecule import Molecule
+    from rmgpy.molecule import resonance
+  except Exception as exc:
+    print_error("RMG-Py is required for lumped radical/resonance checks. "
+                "Use environment 'c3-rmg'.")
+    print(
+        "hint: disable RMG-based resonance checks with '--disable-rmg-lumped-checks' "
+        "or pass enable_rmg_lumped_checks=False to read_csv_species_dict().")
+    print("import error:", exc)
+    sys.exit(1)
+  _RMG_MODULES = (Molecule, resonance)
+  return _RMG_MODULES
+
+
+def _rmg_radical_resonance_signature(smiles, model_name, line):
+  if smiles in _RMG_SIGNATURE_CACHE:
+    return _RMG_SIGNATURE_CACHE[smiles]
+
+  Molecule, resonance = _get_rmg_modules()
+  try:
+    mol = Molecule()
+    mol.from_smiles(smiles)
+  except Exception as exc:
+    print_error("RMG could not parse SMILES for lumped species '" +
+                model_name + "' at line " + str(line))
+    print("SMILES:", smiles)
+    print("RMG parse error:", exc)
+    sys.exit(1)
+
+  try:
+    res = resonance.generate_resonance_structures(mol,
+                                                  clar_structures=True,
+                                                  keep_isomorphic=False,
+                                                  filter_structures=True,
+                                                  save_order=False)
+  except Exception as exc:
+    print_error("RMG resonance generation failed for lumped species '" +
+                model_name + "' at line " + str(line))
+    print("SMILES:", smiles)
+    print("RMG resonance error:", exc)
+    sys.exit(1)
+
+  aromatic_reps = [m for m in res if m.is_aromatic()]
+  reps = aromatic_reps or res
+  rep_smiles = sorted(set(m.to_smiles() for m in reps))
+  sig = {
+      "is_radical": bool(mol.is_radical()),
+      "resonance_repr_count": int(len(rep_smiles)),
+      "has_resonance": bool(len(rep_smiles) > 1),
+      "resonance_representatives": rep_smiles,
+  }
+  _RMG_SIGNATURE_CACHE[smiles] = sig
+  return sig
+
+
+def _select_primary_molecule(inchi, smiles, model_name, line):
+  mol_inchi = None
+  if isinstance(inchi, str) and inchi.strip().startswith("InChI="):
+    mol_inchi = Chem.MolFromInchi(inchi)
+  mol_smiles = Chem.MolFromSmiles(smiles)
+  if mol_inchi is not None:
+    return mol_inchi
+  if mol_smiles is not None:
+    return mol_smiles
+  print_error("cannot parse InChI/SMILES for lumped species '" + model_name +
+              "' at line " + str(line))
+  print("InChI: " + str(inchi))
+  print("SMILES: " + str(smiles))
+  sys.exit(1)
+
+
+def _resonance_consistent_carbonyl_oxygen_count(inchi, smiles, model_name,
+                                                line,
+                                                resonance_representatives):
+  """
+  Return resonance-aware carbonyl oxygen count.
+  value >= 0: consistent count over all considered resonance representatives
+  value == -1: inconsistent count over resonance representatives
+  """
+  primary = _select_primary_molecule(inchi, smiles, model_name, line)
+  counts = set([_mol_carbonyl_oxygen_count(primary)])
+  for rep_smiles in resonance_representatives:
+    rep = Chem.MolFromSmiles(rep_smiles)
+    if rep is None:
+      print_error(
+          "cannot parse resonance-representative SMILES for lumped species '" +
+          model_name + "' at line " + str(line))
+      print("input SMILES:", smiles)
+      print("resonance representative SMILES:", rep_smiles)
+      sys.exit(1)
+    counts.add(_mol_carbonyl_oxygen_count(rep))
+  values = sorted(counts)
+  if len(values) > 1:
+    return -1, values
+  return int(values[0]), values
+
+
+def _row_to_lumped_signature(row, enable_rmg_lumped_checks=True):
+  mol = _select_primary_molecule(row["inchi"], row["smiles"],
+                                 row["model_name"], row["line"])
+  composition = _mol_element_composition(mol)
+  sum_formula = _mol_sum_formula(mol)
+  if enable_rmg_lumped_checks:
+    rmg_sig = _rmg_radical_resonance_signature(row["smiles"],
+                                               row["model_name"], row["line"])
+    carbonyl_o_count, carbonyl_o_values = _resonance_consistent_carbonyl_oxygen_count(
+        row["inchi"], row["smiles"], row["model_name"], row["line"],
+        rmg_sig["resonance_representatives"])
+  else:
+    carbonyl_o_count = _mol_carbonyl_oxygen_count(mol)
+    carbonyl_o_values = [int(carbonyl_o_count)]
+    rmg_sig = {
+        "is_radical": _mol_is_radical(mol),
+        "resonance_repr_count": 1,
+        "has_resonance": False,
+        "resonance_representatives": [],
+    }
+  oxygen_ring_count = _mol_oxygen_ring_count(mol)
+  oo_radical_group_count = _mol_oo_radical_group_count(mol)
+  ooh_group_count = _mol_ooh_group_count(mol)
+  carbon_count = dict(composition).get("C", 0)
+  return {
+      "composition": composition,
+      "sum_formula": sum_formula,
+      "carbon_count": int(carbon_count),
+      "oo_radical_group_count": int(oo_radical_group_count),
+      "ooh_group_count": int(ooh_group_count),
+      "carbonyl_o_count": int(carbonyl_o_count),
+      "carbonyl_o_values": list(carbonyl_o_values),
+      "oxygen_ring_count": int(oxygen_ring_count),
+      "is_radical": bool(rmg_sig["is_radical"]),
+      "resonance_repr_count": int(rmg_sig["resonance_repr_count"]),
+      "has_resonance": bool(rmg_sig["has_resonance"]),
+      "resonance_representatives": list(rmg_sig["resonance_representatives"]),
+  }
+
+
+def _all_equal_signatures(signatures, field):
+  base = signatures[0][1][field]
+  return all(sig[field] == base for _, sig in signatures[1:])
+
+
+def _all_radicals(signatures):
+  return all(bool(sig["is_radical"]) for _, sig in signatures)
+
+
+def _has_mixed_radical_resonance(signatures):
+  if not signatures:
+    return False
+  if not _all_radicals(signatures):
+    return False
+  return len(set(sig["has_resonance"] for _, sig in signatures)) > 1
+
+
+def _resolve_lumped_constraint_policy(enable_rmg_lumped_checks=True,
+                                      constraint_policy=None,
+                                      lumped_warnings_as_errors=False):
+  policy = copy.deepcopy(DEFAULT_LUMPED_CONSTRAINT_POLICY)
+  if constraint_policy is not None:
+    for name, override in constraint_policy.items():
+      if name not in policy:
+        raise Exception("unknown lumped constraint policy key: '" + str(name) +
+                        "'")
+      if not isinstance(override, dict):
+        raise Exception("constraint policy override for '" + str(name) +
+                        "' must be a dict")
+      if "enabled" in override:
+        policy[name]["enabled"] = bool(override["enabled"])
+      if "severity" in override:
+        severity = str(override["severity"]).lower()
+        if severity not in ["error", "warning"]:
+          raise Exception("invalid severity '" + str(override["severity"]) +
+                          "' for constraint '" + str(name) + "'")
+        policy[name]["severity"] = severity
+  if not enable_rmg_lumped_checks:
+    policy["mixed_radical_resonance"]["enabled"] = False
+  if lumped_warnings_as_errors:
+    for _, conf in policy.items():
+      if conf.get("severity") == "warning":
+        conf["severity"] = "error"
+  return policy
+
+
+def _build_lumped_constraints(policy):
+  return [
+      {
+          "name":
+          "composition_consistency",
+          "code":
+          "LMPD_COMPOSITION_CONSISTENCY",
+          "enabled":
+          bool(policy["composition_consistency"]["enabled"]),
+          "severity":
+          policy["composition_consistency"]["severity"],
+          "message":
+          "has an inconsistent element composition",
+          "check":
+          lambda signatures: not _all_equal_signatures(signatures,
+                                                       "composition"),
+      },
+      {
+          "name":
+          "oo_radical_group_consistency",
+          "code":
+          "LMPD_OO_RADICAL_GROUP_CONSISTENCY",
+          "enabled":
+          bool(policy["oo_radical_group_consistency"]["enabled"]),
+          "severity":
+          policy["oo_radical_group_consistency"]["severity"],
+          "message":
+          "has an inconsistent #O[O] count",
+          "check":
+          lambda signatures: not _all_equal_signatures(
+              signatures, "oo_radical_group_count"),
+      },
+      {
+          "name":
+          "ooh_group_consistency",
+          "code":
+          "LMPD_OOH_GROUP_CONSISTENCY",
+          "enabled":
+          bool(policy["ooh_group_consistency"]["enabled"]),
+          "severity":
+          policy["ooh_group_consistency"]["severity"],
+          "message":
+          "has an inconsistent #OOH count",
+          "check":
+          lambda signatures: not _all_equal_signatures(signatures,
+                                                       "ooh_group_count"),
+      },
+      {
+          "name":
+          "oxygen_ring_consistency",
+          "code":
+          "LMPD_OXYGEN_RING_CONSISTENCY",
+          "enabled":
+          bool(policy["oxygen_ring_consistency"]["enabled"]),
+          "severity":
+          policy["oxygen_ring_consistency"]["severity"],
+          "message":
+          "has an inconsistent #O-rings count",
+          "check":
+          lambda signatures: not _all_equal_signatures(signatures,
+                                                       "oxygen_ring_count"),
+      },
+      {
+          "name":
+          "carbonyl_consistency",
+          "code":
+          "LMPD_CARBONYL_CONSISTENCY",
+          "enabled":
+          bool(policy["carbonyl_consistency"]["enabled"]),
+          "severity":
+          policy["carbonyl_consistency"]["severity"],
+          "message":
+          "has an inconsistent =O count",
+          "check":
+          lambda signatures:
+          (not _all_equal_signatures(signatures, "carbonyl_o_count")) or any(
+              sig["carbonyl_o_count"] < 0 for _, sig in signatures),
+      },
+      {
+          "name":
+          "mixed_radical_nonradical",
+          "code":
+          "LMPD_MIXED_RADICAL_NONRADICAL",
+          "enabled":
+          bool(policy["mixed_radical_nonradical"]["enabled"]),
+          "severity":
+          policy["mixed_radical_nonradical"]["severity"],
+          "message":
+          "mixes radical and non-radical SMILES",
+          "check":
+          lambda signatures: len(
+              set(sig["is_radical"] for _, sig in signatures)) > 1,
+      },
+      {
+          "name": "mixed_radical_resonance",
+          "code": "LMPD_MIXED_RADICAL_RESONANCE",
+          "enabled": bool(policy["mixed_radical_resonance"]["enabled"]),
+          "severity": policy["mixed_radical_resonance"]["severity"],
+          "message":
+          "mixes radical SMILES with and without resonance-stabilized representation",
+          "check": _has_mixed_radical_resonance,
+      },
+  ]
+
+
+def _print_lumped_table(rows_out):
+  headers = [
+      "model_name", "line", "smiles", "sum_formula", "#O[O]", "#OOH", "#C=O",
+      "#O-rings", "radical", "radical_resonance", "#repr"
+  ]
+  str_rows = [[str(cell) for cell in r] for r in rows_out]
+  widths = [len(h) for h in headers]
+  for r in str_rows:
+    for i, cell in enumerate(r):
+      widths[i] = max(widths[i], len(cell))
+  fmt = " | ".join("{:" + str(w) + "}" for w in widths)
+  print(fmt.format(*headers))
+  print("-+-".join("-" * w for w in widths))
+  for r in str_rows:
+    print(fmt.format(*r))
+
+
+def check_lumped_species_constraints(df_duplicates,
+                                     enable_rmg_lumped_checks=True,
+                                     constraint_policy=None,
+                                     lumped_warnings_as_errors=False):
+  """
+  Enforce strict consistency for lumped species:
+  - identical element composition
+  - identical marker counts (#O[O], #OOH, #C=O, #O-rings)
+  - carbonyl oxygen count must be resonance-consistent per entry
+  - radical role consistency (all radical or all non-radical; RDKit-based)
+  - for radical groups: resonance-role consistency (all or none resonance-stabilized)
+  """
+  if len(df_duplicates.index) == 0:
+    return
+
+  policy = _resolve_lumped_constraint_policy(enable_rmg_lumped_checks,
+                                             constraint_policy,
+                                             lumped_warnings_as_errors)
+  constraints = _build_lumped_constraints(policy)
+
+  error_rows = []
+  warning_rows = []
+  error_messages = []
+  warning_messages = []
+  for model_name, group_df in df_duplicates.groupby("model_name"):
+    rows = group_df.to_dict("records")
+    signatures = []
+    for row in rows:
+      signatures.append(
+          (row, _row_to_lumped_signature(row, enable_rmg_lumped_checks)))
+
+    group_errors = []
+    group_warnings = []
+    for constraint in constraints:
+      if not constraint["enabled"]:
+        continue
+      if constraint["check"](signatures):
+        msg_with_code = "[" + str(constraint["code"]) + "] " + str(
+            constraint["message"])
+        sev = constraint["severity"]
+        if sev == "error":
+          group_errors.append(msg_with_code)
+        elif sev == "warning":
+          group_warnings.append(msg_with_code)
+        else:
+          raise Exception("invalid constraint severity '" + str(sev) + "'")
+
+    def _table_rows():
+      rows_out = []
+      for row, sig in signatures:
+        rows_out.append([
+            model_name, row["line"], row["smiles"], sig["sum_formula"],
+            sig["oo_radical_group_count"], sig["ooh_group_count"],
+            sig["carbonyl_o_count"], sig["oxygen_ring_count"],
+            sig["is_radical"], sig["has_resonance"],
+            sig.get("resonance_repr_count", 1)
+        ])
+      return rows_out
+
+    if group_errors:
+      for msg in sorted(set(group_errors)):
+        error_messages.append("pseudo species " + model_name + " " + msg)
+      error_rows.extend(_table_rows())
+
+    if group_warnings:
+      for msg in sorted(set(group_warnings)):
+        warning_messages.append("pseudo species " + model_name + " " + msg)
+      warning_rows.extend(_table_rows())
+
+  if error_rows:
+    print_error(
+        "lumped species entries violate strict composition/marker constraints")
+    print("")
+    for msg in sorted(set(error_messages)):
+      print(msg)
+    print("")
+    print("Summary of error-triggering species ('#' means count):")
+    print(
+        "#C=O = -1 means resonance-dependent =O; species with this value are not removed by the Chemkin HT two-C=O criterion."
+    )
+    print("")
+    _print_lumped_table(error_rows)
+    print("")
+    print("\nFix the above lumped-species constraint errors.")
+    sys.exit(1)
+
+  if warning_rows:
+    for msg in sorted(set(warning_messages)):
+      print(msg)
+    print("")
+    print("Summary of warning-triggering species ('#' means count):")
+    print(
+        "#C=O = -1 means resonance-dependent =O; species with this value are not removed by the Chemkin HT two-C=O criterion."
+    )
+    print("")
+    _print_lumped_table(warning_rows)
+    print("")
 
 
 def print_not_found(what, dir_or_file, path):
@@ -41,8 +623,12 @@ def print_warning(msg):
   print("\n#warning: " + msg)
 
 
+class SubModulesLoader(yaml.SafeLoader):
+  pass
+
+
 class SubModulesFiles(yaml.YAMLObject):
-  yaml_loader = yaml.SafeLoader
+  yaml_loader = SubModulesLoader
   yaml_tag = u'!SubModulesFiles'
 
   def __init__(self, files, species_dictionary, submodule_directory):
@@ -84,12 +670,15 @@ class SubModulesFiles(yaml.YAMLObject):
 def read_yaml_input(filename):
   """ returns a SubModulesFiles """
   yaml_input_options = None
-  with open(filename) as inp:
-    try:
-      yaml_input_options = yaml.safe_load(inp)
-    except yaml.YAMLError:
-      print_error("invalid syntax in yaml input '" + filename + "'")
-      sys.exit(1)
+  try:
+    lines, _ = write_species._read_text_lines(filename)
+    yaml_input_options = yaml.load(''.join(lines), Loader=SubModulesLoader)
+  except yaml.YAMLError:
+    print_error("invalid syntax in yaml input '" + filename + "'")
+    sys.exit(1)
+  except ValueError as exc:
+    print_error(str(exc))
+    sys.exit(1)
   if (not isinstance(yaml_input_options, SubModulesFiles)):
     print_error("yaml input '" + filename + "' must define !SubModulesFiles")
     sys.exit(1)
@@ -110,10 +699,10 @@ def make_submodulefiles_from_yaml(filename, cmd_submodule_dir,
   submodules = read_yaml_input(filename)
 
   allowed_yaml_keys = {"files", "species_dictionary", "submodule_directory"}
-  yaml_keys = set(vars(submodules).keys())
-  unknown_yaml_keys = sorted(yaml_keys - allowed_yaml_keys)
+  actual_yaml_keys = set(vars(submodules).keys())
+  unknown_yaml_keys = sorted(actual_yaml_keys - allowed_yaml_keys)
   if unknown_yaml_keys:
-    print_error("unknown key(s) in yaml input '" + filename + "': " +
+    print_error("yaml input '" + filename + "' has unknown key(s): " +
                 ", ".join(unknown_yaml_keys))
     sys.exit(1)
 
@@ -125,7 +714,6 @@ def make_submodulefiles_from_yaml(filename, cmd_submodule_dir,
   if (not hasattr(submodules, 'submodule_directory')
       or submodules.submodule_directory is None):
     submodules.submodule_directory = ''
-
   if (submodules.species_dictionary != ''
       and not os.path.isabs(submodules.species_dictionary)):
     submodules.species_dictionary = os.path.normpath(
@@ -156,6 +744,29 @@ def print_success():
   print("Success!\n")
 
 
+def report_missing_definitions(missing_definition_policy, header, items, footer):
+  if (len(items) == 0):
+    return
+
+  if (missing_definition_policy == "error"):
+    print_error(header)
+    for item in items:
+      print(item)
+    if (footer != ""):
+      print_error(footer)
+    sys.exit(1)
+  elif (missing_definition_policy == "warning"):
+    print_warning(header)
+    for item in items:
+      print(item)
+    if (footer != ""):
+      print_warning(footer)
+  else:
+    print_error("invalid missing definition policy '" +
+                str(missing_definition_policy) + "'")
+    sys.exit(1)
+
+
 def parse_composition(composition, elements):
   try:
     return write_species.parse_composition(composition, elements)
@@ -164,14 +775,18 @@ def parse_composition(composition, elements):
     sys.exit(1)
 
 
+def extract_therm_line1_composition_slots(line):
+  return write_species.extract_therm_line1_composition_slots(line)
+
+
 def get_sum_formula(composition):
   #
   # This is used for a sanity check for the provided InChI's
   #
   # generates a sum formula that can be compared to the
   # sum formula in the InChI's
-  elements = {'C': 1, 'H': 1, 'F': 1, 'N': 1, 'O': 1, 'HE': 1, 'AR': 1}
-  if not len(composition) == 20:
+  elements = THERMO_SUM_FORMULA_ELEMENTS
+  if len(composition) not in [20, 25]:
     print("composition:", composition)
     raise Exception("ERROR: the composition string has the wrong length")
   cur_compo = parse_composition(composition, elements)
@@ -207,10 +822,10 @@ def print_python_elements(name, composition):
   from the element composition given in the thermochemistry file
   """
 
-  if not len(composition) == 20:
+  if len(composition) not in [20, 25]:
     print("composition:", composition)
     raise Exception("ERROR: the composition string has the wrong length")
-  elements = {'C': 1, 'H': 1, 'O': 1, 'N': 1, 'HE': 1, 'AR': 1}
+  elements = THERMO_SUM_FORMULA_ELEMENTS
   cur_compo = parse_composition(composition, elements)
   py_info = "\"" + name + "\" : " + "[[], {"
   for elem in elements:
@@ -305,7 +920,30 @@ def add_other_inchis_and_smiles(lines, i, cur_inchi, cur_smiles, i_prev,
   return inchis_for_cur_species, smiles_for_cur_species
 
 
-def check_inchi(lines, i, inchis):
+def check_inchi(lines, i, inchis, allow_commented_annotations=False):
+  """Read an identifier annotation immediately before a thermochemistry entry.
+
+  With allow_commented_annotations=False (the default), an identifier
+  followed by a comment line is a fatal error. True skips that identifier
+  annotation when the following line starts with "!" after optional
+  whitespace and has text after the "!". For example::
+
+      !! InChI=1S/H2/h1H
+      !H2                      H   2               G   100.000  5000.000 1522.54      1
+
+  This also permits a discussion of an alternative identifier::
+
+      !! InChI=1S/H2/h1H
+      !! Alternative identifier retained for discussion.
+
+  In either example, True returns (-1, "", "") without registering the
+  identifier in inchis. It does not search past comments for an active entry
+  or activate commented thermochemistry. Identifiers immediately above
+  active entries are still parsed normally. All other validation remains
+  unchanged, including fatal errors for blank, missing, or malformed active
+  headers. Enable this option explicitly only for inputs that intentionally
+  retain these commented annotations.
+  """
   inchi = re.match("!!\\s*(InChI=[^!\\s]+)", lines[i])
   if (inchi):
     if re.match(".+skipped.*", inchi.group(1)):
@@ -323,6 +961,8 @@ def check_inchi(lines, i, inchis):
       sys.exit(1)
     line_below = lines[i + 1]
     if (re.match("\\s*!.+", line_below)):
+      if allow_commented_annotations:
+        return -1, "", ""
       print("search for", this_inchi)
       print(
           "ERROR: There must be a NASA polynomial coefficient set below every InChI"
@@ -349,9 +989,10 @@ def check_inchi(lines, i, inchis):
       sys.exit(1)
     re_species_name = re.match("^([^\\s]+)", line_below)
 
-    #print(print_python_elements(re_species_name.group(1), line_below[24:44]))
+    composition = extract_therm_line1_composition_slots(line_below)
+    #print(print_python_elements(re_species_name.group(1), composition))
 
-    sum_formula = get_sum_formula(line_below[24:44])
+    sum_formula = get_sum_formula(composition)
     check_inchi_composition_consistency(this_inchi, sum_formula,
                                         line_below[0:24])
     return i, this_inchi, re_species_name.group(1)
@@ -760,8 +1401,11 @@ def is_aromatic(mol):
 def draw_species(tex_file, mol, fig_dir, timestamp_species_dict, name,
                  tex_opts, smiles, inchi, species_in_cur_line,
                  rows_in_cur_fig):
+  import cairosvg
+
   fig_filename = os.path.join(fig_dir, name + ".pdf")
-  if (not os.path.isfile(fig_filename)
+  if (tex_opts.regenerate_species_images
+      or not os.path.isfile(fig_filename)
       or os.path.getmtime(fig_filename) <= timestamp_species_dict):
     Draw.MolToFile(mol, os.path.join(fig_dir, "temp.svg"))
     cairosvg.svg2pdf(url=os.path.join(fig_dir, "temp.svg"),
@@ -803,6 +1447,31 @@ class SpeciesDict:
     self.canonical2data = canonical2data
     self.fallback = fallback
 
+  def rename_species(self, old, new):
+    print("renaming species '" + old + "' -> '" + new + "'")
+    if new in self.species_name2inchi:
+      raise Exception("new species '" + new + "' already exists in self.species_name2inchi")
+    elif old in self.species_name2inchi:
+        self.species_name2inchi[new] = self.species_name2inchi.pop(old)
+    else:
+        print("#warning: original species name " + old + " was not found!")
+
+    if new in self.species_name2smiles:
+      raise Exception("new species '" + new + "' already exists in self.species_name2smiles")
+    elif old in self.species_name2smiles:
+        self.species_name2smiles[new] = self.species_name2smiles.pop(old)
+    
+    
+    for primary_key in self.canonical2data:
+      name = self.canonical2data[primary_key]['model_name']
+      if name == new:
+        raise Exception("new species '" + new + "' already exists in " + str(primary_key) + " from self.canonical2data")
+      elif name == old:
+        self.canonical2data[primary_key]['model_name'] = new
+    
+    if self.fallback:
+      self.fallback.rename_species(old, new)
+
   def get_valid_inchis(self):
     """ returns a dictionary; keys are model names, values are InChIs 
         lists of length 1 unless a species is lumped """
@@ -840,6 +1509,8 @@ class SpeciesDict:
     return species_name2primary_keys
 
   def get_dataframe(self, set_index):
+    import pandas
+
     model_names = []
     inchis = []
     smiles = []
@@ -892,6 +1563,29 @@ class FallBack:
     self.species_name2inchi_wo_stereo = species_name2inchi_wo_stereo
     self.species_name2smiles_wo_stereo = species_name2smiles_wo_stereo
 
+  def rename_species(self, old, new):
+    print("renaming species (fallback) '" + old + "' -> '" + new + "'")
+    if new in self.species_name2inchi_wo_stereo:
+      raise Exception("new species '" + new + "' already exists in self.species_name2inchi_wo_stereo")
+    elif old in self.species_name2inchi_wo_stereo:
+      self.species_name2inchi_wo_stereo[new] = self.species_name2inchi_wo_stereo.pop(
+          old)
+
+    if new in self.species_name2smiles_wo_stereo:
+      raise Exception("new species '" + new + "' already exists in self.species_name2smiles_wo_stereo")
+    elif old in self.species_name2smiles_wo_stereo:
+      self.species_name2smiles_wo_stereo[new] = self.species_name2smiles_wo_stereo.pop(old)
+
+    if new in self.invalid_stereo_inchi:
+      raise Exception("new species '" + new + "' already exists in self.invalid_stereo_inchi")
+    elif old in self.invalid_stereo_inchi:
+      self.invalid_stereo_inchi[new] = self.invalid_stereo_inchi.pop(old)
+      
+    if new in self.invalid_stereo_smiles:
+      raise Exception("new species '" + new + "' already exists in self.invalid_stereo_smiles")
+    elif old in self.invalid_stereo_smiles:
+      self.invalid_stereo_smiles[new] = self.invalid_stereo_smiles.pop(old)
+
 
 class Input:
   csv_filename = ""
@@ -900,13 +1594,17 @@ class Input:
   mech_filename = ""
   thermo_filename = ""
   style_file_dir = ""
+  csv_argument = ""
 
   def __init__(self, csv_filename, yaml_filename, submodule_dir, mech_filename,
                thermo_filename, style_file_dir):
-    self.csv_filename = csv_filename
+    self.csv_argument = csv_filename
+    self.csv_filename = csv_filename 
     if csv_filename != "":
       self.csv_filename = os.path.abspath(os.path.normpath(csv_filename))
-    self.yaml_filename = os.path.abspath(os.path.normpath(yaml_filename))
+    self.yaml_filename = yaml_filename
+    if yaml_filename != "":
+      self.yaml_filename = os.path.abspath(os.path.normpath(yaml_filename))
     self.submodule_dir = os.path.abspath(os.path.normpath(submodule_dir))
     self.mech_filename = os.path.abspath(os.path.normpath(mech_filename))
     self.thermo_filename = os.path.abspath(os.path.normpath(thermo_filename))
@@ -917,19 +1615,30 @@ class Output:
   output_dir = ""
   title = ""
   authors = ""
-  sha = ""
+  source_commit = None
+  source_clean = None
+  source_root = None
+  git_directory = ""
+  c3mech_configuration_sha256 = None
 
-  def __init__(self, output_dir, title, authors, sha):
+  def __init__(self, output_dir, title, authors, source_commit, source_clean,
+               source_root, git_directory,
+               c3mech_configuration_sha256=None):
     self.output_dir = output_dir
     self.title = title
     self.authors = authors
-    self.sha = sha
+    self.source_commit = source_commit
+    self.source_clean = source_clean
+    self.source_root = source_root
+    self.git_directory = git_directory
+    self.c3mech_configuration_sha256 = c3mech_configuration_sha256
 
 
 class TexOptions:
   rows = 7
   species_per_line = 5
   scale = 0.25
+  regenerate_species_images = False
   # distance between rows
   baselinestretch = 0.64
   side_margin = 0.60
@@ -1224,24 +1933,45 @@ def parse_species_line(species_dict, line):
 def make_species_from_kinetics_file(lines):
   species_dict = {}
   is_species_section = False
+  species_section_started = False
+  species_section_ended = False
+  species_section_invalid = False
+  forbidden_tokens = {
+      "REACTIONS", "REAC", "ELEM", "ELEMENTS", "THERM", "THERMO", "TRAN",
+      "TRANSPORT"
+  }
   for i in range(len(lines)):
-    if (re.match("\\s*SPECIES", lines[i])):
+    if (re.match("\\s*SPECIES\\b", lines[i], re.IGNORECASE)):
+      species_section_started = True
       is_species_section = True
-      print("start species")
-    if (is_species_section and re.match("\\s*END", lines[i])):
+    if (is_species_section and re.match("\\s*END\\b", lines[i], re.IGNORECASE)):
+      species_section_ended = True
       break
     if (is_species_section):
+      body = lines[i].split("!", 1)[0].strip()
+      if body != "" and "=" in body:
+        species_section_invalid = True
+        break
+      tokens = body.split()
+      for token in tokens:
+        if token.upper() in forbidden_tokens:
+          species_section_invalid = True
+          break
+      if species_section_invalid:
+        break
       species_dict = parse_species_line(species_dict, lines[i])
-  return species_dict
+  return species_dict, species_section_started, species_section_ended, species_section_invalid
 
 
 def get_thermo_lines(thermo_filename):
   check_file = Path(thermo_filename)
   lines_thermo = []
   if check_file.is_file():
-    thermo_file = open(thermo_filename)
-    lines_thermo = thermo_file.readlines()
-    thermo_file.close()
+    try:
+      lines_thermo, _ = write_species._read_text_lines(thermo_filename)
+    except ValueError as exc:
+      print_error(str(exc))
+      sys.exit(1)
     if (not len(lines_thermo)
         or all(not line.strip() for line in lines_thermo)):
       print_error("chemkin thermochemistry file '" + thermo_filename +
@@ -1265,7 +1995,13 @@ def get_thermo_lines(thermo_filename):
   return lines_thermo
 
 
-def itv_mode_check(dry_run, species_list, lines, sc):
+def itv_mode_check(dry_run, species_list, lines, sc,
+                   allow_commented_annotations=False):
+  """Read species definitions from thermochemistry annotations.
+
+  Forward allow_commented_annotations to check_inchi. The default is strict.
+  See check_inchi for examples of annotations skipped by the explicit opt-in.
+  """
   inchis = {}
   count_species = 0
   i_prev = -1
@@ -1273,7 +2009,9 @@ def itv_mode_check(dry_run, species_list, lines, sc):
   species_name2inchi = {}
   species_name2smiles = {}
   for i in range(len(lines)):
-    inchi_line, inchi, name = check_inchi(lines, i, inchis)
+    inchi_line, inchi, name = check_inchi(
+        lines, i, inchis,
+        allow_commented_annotations=allow_commented_annotations)
     inchi = get_real_inchi(inchi)
     if (inchi_line >= 0):
       if (name.upper() not in species_list):
@@ -1336,14 +2074,17 @@ def get_identifier2sum_formula(clean_lines):
         and len(clean_lines[i - 3]) >= 80 and clean_lines[i - 3][79] == '1'):
       the_line = clean_lines[i - 3]
       identifier = the_line[0:24].split(' ')[0].rstrip().upper()
-      composition = the_line[24:44]
+      composition = extract_therm_line1_composition_slots(the_line)
       sum_formula = get_sum_formula(composition)
       identifier2sum_formula[identifier] = sum_formula
   return identifier2sum_formula
 
 
-def get_species_name2sum_formula(lines, species_list_or_dict, thermo_filename,
-                                 silent):
+def get_species_name2sum_formula(lines,
+                                 species_list_or_dict,
+                                 thermo_filename,
+                                 silent,
+                                 missing_definition_policy="error"):
   """ returns a dict """
   clean_lines = make_clean_thermo_lines(lines)
   identifier2sum_formula = get_identifier2sum_formula(clean_lines)
@@ -1365,11 +2106,10 @@ def get_species_name2sum_formula(lines, species_list_or_dict, thermo_filename,
     print("found NASA polynomial coefficients for " + str(len(found_nasa)) +
           "/" + str(len(species_list_or_dict)) + " species")
   if (len(missing_nasa) > 0 and len(species_list_or_dict)):
-    print_warning("Could not find thermochemistry data for the following " +
-                  str(len(missing_nasa)) + " species:")
-    for identifier in missing_nasa:
-      print(identifier)
-    print_warning(
+    report_missing_definitions(
+        missing_definition_policy,
+        "Could not find thermochemistry data for the following " +
+        str(len(missing_nasa)) + " species:", list(missing_nasa.keys()),
         "Thermochemistry data are expected to be available for each species. Is the thermochemistry file '"
         + thermo_filename +
         "' intended for the provided kinetic submodule(s)?")
@@ -1380,7 +2120,7 @@ def get_species_name2sum_formula_from_file(thermo_filename):
   print("reading the thermochemistry file '" + thermo_filename + "'")
   lines = get_thermo_lines(thermo_filename)
   species_name2sum_formula, found_nasa = get_species_name2sum_formula(
-      lines, {}, thermo_filename, silent=True)
+      lines, {}, thermo_filename, silent=True, missing_definition_policy="error")
   if (len(species_name2sum_formula) == 0):
     print_warning("could not find thermochemistry data for any species")
   return species_name2sum_formula
@@ -1402,6 +2142,8 @@ def check_required_column(df, col):
 
 
 def check_numeric(df, col):
+  import pandas
+
   try:
     pandas.to_numeric(df[col])
   except ValueError:
@@ -1476,8 +2218,14 @@ def check_nonzero_zero_multiplicity(df, valid_multiplicity):
         sys.exit(1)
 
 
-def read_csv_species_dict(csv_filename, species_list, fatal_error_only,
-                          show_lumped):
+def read_csv_species_dict(csv_filename,
+                          species_list,
+                          fatal_error_only,
+                          show_lumped,
+                          enable_rmg_lumped_checks=True,
+                          lumped_warnings_as_errors=False):
+  import pandas
+
   """ returns two dicts dict mapping species names to identifiers """
   check_file = Path(csv_filename)
   required_columns = [
@@ -1520,7 +2268,7 @@ def read_csv_species_dict(csv_filename, species_list, fatal_error_only,
     )
     if (fatal_error_only):
       print_warning(
-          "fatal-only checks enabled (default): only species used in the selected submodule(s) are validated"
+          "fatal-only checks enabled: only species used in the selected submodule(s) are validated"
       )
       df = df[df['model_name'].isin(species_list)]
 
@@ -1565,6 +2313,10 @@ def read_csv_species_dict(csv_filename, species_list, fatal_error_only,
       check_valid(
           df_duplicates, 'rdkit_stereochemistry', [1],
           "stereochemistry must be RDKit-compatible for lumped species")
+      check_lumped_species_constraints(
+          df_duplicates,
+          enable_rmg_lumped_checks=enable_rmg_lumped_checks,
+          lumped_warnings_as_errors=lumped_warnings_as_errors)
       if (show_lumped):
         print("\n\nThe following species are lumped:")
         print_df_duplicates(df, ['model_name'])
@@ -1704,9 +2456,12 @@ def rdkit_check(species_name2inchi, species_name2smiles,
 def make_species_dictionary(csv_filename,
                             species_list,
                             fatal_error_only=False,
-                            show_lumped=False):
+                            show_lumped=False,
+                            enable_rmg_lumped_checks=True,
+                            lumped_warnings_as_errors=False):
   species_name2inchi, species_name2smiles, species_name2inchi_wo_stereo, species_name2smiles_wo_stereo, canonical2data = read_csv_species_dict(
-      csv_filename, species_list, fatal_error_only, show_lumped)
+      csv_filename, species_list, fatal_error_only, show_lumped,
+      enable_rmg_lumped_checks, lumped_warnings_as_errors)
 
   invalid_stereo_inchi, invalid_stereo_smiles = rdkit_check(
       species_name2inchi, species_name2smiles, species_name2inchi_wo_stereo,
@@ -1929,12 +2684,20 @@ def make_species_dictionary_itv(thermochemistry_filename,
         " entries for the new ITV species dictionary")
   itv_species_dict = SpeciesDict(species_name2inchi, species_name2smiles,
                                  itv_canonical2data, FallBack({}, {}, {}, {}))
-  df = itv_species_dict.write_to_csv('ITV_species_dict.csv')
   return itv_species_dict
 
 
-def make_species_classification(inp, sc, dry_run, species_list, itv_mode,
-                                fatal_error_only, show_lumped, silent):
+def make_species_classification(inp,
+                                sc,
+                                dry_run,
+                                species_list,
+                                itv_mode,
+                                fatal_error_only,
+                                show_lumped,
+                                silent,
+                                missing_definition_policy="error",
+                                enable_rmg_lumped_checks=True,
+                                lumped_warnings_as_errors=False):
   print("process InChIs and SMILES formulas...")
   count_species = 0
   timestamp_species_dict = 0.0
@@ -1948,7 +2711,9 @@ def make_species_classification(inp, sc, dry_run, species_list, itv_mode,
   else:
     timestamp_species_dict = os.path.getmtime(inp.csv_filename)
     spec_dict = make_species_dictionary(inp.csv_filename, species_list,
-                                        fatal_error_only, show_lumped)
+                                        fatal_error_only, show_lumped,
+                                        enable_rmg_lumped_checks,
+                                        lumped_warnings_as_errors)
     count = 0
     count_missing_inchi = 0
     # the thermochemistry file is optional in non-itv mode
@@ -1959,7 +2724,11 @@ def make_species_classification(inp, sc, dry_run, species_list, itv_mode,
       print("reading the thermochemistry file '" + inp.thermo_filename + "'")
       lines = get_thermo_lines(inp.thermo_filename)
       species_name2sum_formula, found_nasa = get_species_name2sum_formula(
-          lines, species_list, inp.thermo_filename, False)
+          lines,
+          species_list,
+          inp.thermo_filename,
+          False,
+          missing_definition_policy=missing_definition_policy)
       for species in species_list:
         if (species in spec_dict.species_name2inchi
             and species in species_name2sum_formula):
@@ -1988,36 +2757,64 @@ def make_species_classification(inp, sc, dry_run, species_list, itv_mode,
         missing_inchi[species] = 1
 
     if (len(missing_inchi) > 0):
-      print_warning("InChIs are missing for the following " +
-                    str(len(missing_inchi)) + " species:")
-      for species in missing_inchi:
-        print(species)
+      report_missing_definitions(
+          missing_definition_policy,
+          "InChIs are missing for the following " + str(len(missing_inchi)) +
+          " species:", list(missing_inchi.keys()), "")
   return sc, count_species, timestamp_species_dict
 
 
-def check_species_list(species_list, thermo_filename):
-  all_found = True
+def check_species_list(species_list, thermo_filename, missing_definition_policy):
+  missing_species = []
   for s in species_list:
     if (species_list[s] == 0):
-      if (all_found):
-        print_warning("Could not find the following species:")
-      print(s)
-      all_found = False
+      missing_species.append(s)
 
-  if (not all_found):
-    print_warning(
+  if (len(missing_species)):
+    report_missing_definitions(
+        missing_definition_policy, "Could not find the following species:",
+        missing_species,
         "COULD NOT FIND AN INCHI FOR EVERY SPECIES. CHECK THE THERMOCHEMISTRY INPUT: '"
         + thermo_filename + "'")
   else:
     print_success()
 
 
-def get_git_sha(path):
+def get_git_source_state(path):
+  import git
+
   try:
     repo = git.Repo(path, search_parent_directories=True)
-    return repo.head.object.hexsha
   except git.exc.InvalidGitRepositoryError:
-    return "no git repository found"
+    return None, None, None
+  if (repo.bare or repo.working_tree_dir is None
+      or not repo.head.is_valid()):
+    return None, None, None
+  commit = repo.head.object.hexsha.lower()
+  if re.fullmatch(r"[0-9a-f]{40}", commit) is None:
+    raise ValueError("species dictionary source commit must be 40 lowercase "
+                     "hexadecimal characters")
+  return (commit, not repo.is_dirty(untracked_files=True),
+          Path(repo.working_tree_dir).resolve())
+
+
+def get_species_dictionary_sha256(path):
+  return hashlib.sha256(Path(path).read_bytes()).hexdigest()
+
+
+def require_species_dictionary_provenance(git_directory, source_commit,
+                                          source_clean, csv_filename,
+                                          species_dictionary_sha256):
+  current_commit, current_clean, _ = get_git_source_state(git_directory)
+  if current_commit != source_commit:
+    raise ValueError("species dictionary source commit changed during "
+                     "generation")
+  if current_clean != source_clean:
+    raise ValueError("species dictionary source clean state changed during "
+                     "generation")
+  current_hash = get_species_dictionary_sha256(csv_filename)
+  if current_hash != species_dictionary_sha256:
+    raise ValueError("species dictionary CSV changed during generation")
 
 
 def copy_style_files(src_dir, dest_dir):
@@ -2040,7 +2837,41 @@ def set_RDKit_drawing_option():
   return
 
 
-def get_tex_begin_and_end(title, authors, sha, tex_opts):
+def get_tex_begin_and_end(title, authors, source_commit, source_clean,
+                          species_dictionary_sha256, tex_opts,
+                          c3mech_configuration_sha256=None):
+  provenance = []
+  if (source_commit is None or source_clean is None
+      or species_dictionary_sha256 is None
+      or c3mech_configuration_sha256 is None):
+    if (source_commit is not None or source_clean is not None
+        or species_dictionary_sha256 is not None
+        or c3mech_configuration_sha256 is not None):
+      raise ValueError("species dictionary provenance must be complete")
+  else:
+    if re.fullmatch(r"[0-9a-f]{40}", source_commit) is None:
+      raise ValueError("species dictionary source commit must be 40 lowercase "
+                       "hexadecimal characters")
+    if not isinstance(source_clean, bool):
+      raise ValueError("species dictionary source clean state must be Boolean")
+    if re.fullmatch(r"[0-9a-f]{64}", species_dictionary_sha256) is None:
+      raise ValueError("species dictionary SHA-256 must be 64 lowercase "
+                       "hexadecimal characters")
+    if re.fullmatch(r"[0-9a-f]{64}",
+                    c3mech_configuration_sha256) is None:
+      raise ValueError("C3Mech configuration SHA-256 must be 64 lowercase "
+                       "hexadecimal characters")
+    provenance = [
+        "\\pdfinfo{\n",
+        "  /C3MechSpeciesDictionaryProvenanceVersion (2)\n",
+        "  /C3MechSourceCommit (" + source_commit + ")\n",
+        "  /C3MechSourceClean (" + str(source_clean).lower() + ")\n",
+        "  /C3MechSpeciesDictionarySHA256 (" +
+        species_dictionary_sha256 + ")\n",
+        "  /C3MechConfigurationSHA256 (" +
+        c3mech_configuration_sha256 + ")\n",
+        "}\n",
+    ]
   species_dict_begin = [
       "\\let\\mypdfximage\\pdfximage\n",
       "\\def\\pdfximage{\\immediate\\mypdfximage}\n",
@@ -2069,6 +2900,7 @@ def get_tex_begin_and_end(title, authors, sha, tex_opts):
       "%\\pdfsuppresswarningpagegroup=1 % works only with newer pdflatex versions\n",
       "\n",
       "\\pdfminorversion=7\n",
+  ] + provenance + [
       "\\begin{document}\n",
       "\\maketitle\n"
       "Each figure shows a species with its name in the kinetic model,\n",
@@ -2081,11 +2913,19 @@ def get_tex_begin_and_end(title, authors, sha, tex_opts):
   return species_dict_begin, species_dict_end
 
 
-def write_dict(title, authors, sha, classification, tex_opts,
-               timestamp_species_dict, output_dir):
+def write_dict(title, authors, source_commit, source_clean,
+               species_dictionary_sha256, classification, tex_opts,
+               timestamp_species_dict, output_dir,
+               regenerate_species_images=False,
+               c3mech_configuration_sha256=None):
+  tex_opts.regenerate_species_images = regenerate_species_images
   species_dict_begin, species_dict_end = get_tex_begin_and_end(
-      title, authors, sha, tex_opts)
-  tex_file = open(os.path.join(output_dir, "species_dict.tex"), "w")
+      title, authors, source_commit, source_clean,
+      species_dictionary_sha256, tex_opts,
+      c3mech_configuration_sha256=c3mech_configuration_sha256)
+  tex_file = open(os.path.join(output_dir, "species_dict.tex"),
+                  "w",
+                  encoding="utf-8")
   for line in species_dict_begin:
     tex_file.write(line)
 
@@ -2116,13 +2956,32 @@ def get_species_list(kinetics_filename, silent=True):
   check_file = Path(kinetics_filename)
   lines_mech = []
   if check_file.is_file():
-    kinetics_file = open(kinetics_filename, encoding='cp1252')
-    lines_mech = kinetics_file.readlines()
-    kinetics_file.close()
+    try:
+      lines_mech, _ = write_species._read_text_lines(kinetics_filename)
+    except ValueError as exc:
+      print_error(str(exc))
+      sys.exit(1)
   else:
     print_not_found("chemkin kinetics", "file", kinetics_filename)
     sys.exit(1)
-  species_dict = make_species_from_kinetics_file(lines_mech)
+  species_dict, species_section_started, species_section_ended, species_section_invalid = make_species_from_kinetics_file(
+      lines_mech)
+  if not species_section_started:
+    print_error("chemkin kinetics file '" + kinetics_filename +
+                "' must contain a SPECIES section")
+    sys.exit(1)
+  if species_section_invalid:
+    print_error("chemkin kinetics file '" + kinetics_filename +
+                "' contains reaction-like content in the SPECIES section")
+    sys.exit(1)
+  if not species_section_ended:
+    print_error("chemkin kinetics file '" + kinetics_filename +
+                "' has an unterminated SPECIES section (missing END)")
+    sys.exit(1)
+  if len(species_dict) == 0:
+    print_error("chemkin kinetics file '" + kinetics_filename +
+                "' must contain at least one species in the SPECIES section")
+    sys.exit(1)
 
   species_dict = {k.upper(): v for k, v in species_dict.items()}
   for s in species_dict:
@@ -2137,12 +2996,29 @@ def write_species_dict(inp,
                        fatal_error_only,
                        show_lumped,
                        sc=None,
-                       silent=False):
+                       silent=False,
+                       missing_definition_policy="error",
+                       enable_rmg_lumped_checks=True,
+                       lumped_warnings_as_errors=False,
+                       provenance=False):
+
   if (not silent):
     print("Constructing the species list")
 
   if (sc is None):
     sc = DefaultClassification()
+
+  if provenance:
+    if dry_run:
+      raise ValueError("--provenance requires output generation")
+    if itv_mode:
+      raise ValueError("--provenance requires a CSV species dictionary")
+    if out.source_commit is None or not isinstance(out.source_clean, bool):
+      raise ValueError("--provenance requires a committed Git source")
+    if re.fullmatch(r"[0-9a-f]{64}",
+                    out.c3mech_configuration_sha256 or "") is None:
+      raise ValueError("--provenance requires a C3Mech configuration "
+                       "SHA-256 digest")
 
   start = time.time()
 
@@ -2155,7 +3031,20 @@ def write_species_dict(inp,
     inp.csv_filename = submodules_files.species_dictionary
   else:
     species_list = get_species_list(inp.mech_filename, silent)
-
+    if not itv_mode:
+      if inp.csv_filename == "":
+        inp.csv_filename = os.path.join(DIR, "species_dict.csv")
+      if not os.path.isfile(inp.csv_filename):
+        print_error("csv species dictionary file '" + inp.csv_filename +
+                    "' not found")
+        sys.exit(1)
+  species_dictionary_sha256 = None
+  if provenance:
+    species_dictionary_sha256 = get_species_dictionary_sha256(
+        inp.csv_filename)
+    require_species_dictionary_provenance(
+        out.git_directory, out.source_commit, out.source_clean,
+        inp.csv_filename, species_dictionary_sha256)
   output_dir = out.output_dir
   check_output_dir = Path(output_dir)
   if (not check_output_dir.is_dir()):
@@ -2185,19 +3074,33 @@ def write_species_dict(inp,
   start2 = time.time()
   sc, n_species_found, timestamp_species_dict = make_species_classification(
       inp, sc, dry_run, species_list, itv_mode, fatal_error_only, show_lumped,
-      silent)
+      silent, missing_definition_policy, enable_rmg_lumped_checks,
+      lumped_warnings_as_errors)
   end2 = time.time()
   ## print("Time required for make_species_classification:", end2 - start2)
   if (itv_mode):
-    check_species_list(species_list, inp.thermo_filename)
+    check_species_list(species_list, inp.thermo_filename,
+                       missing_definition_policy)
 
   if (dry_run):
     print("skipping output generation")
     return
   print("generating species images and tex input...")
   start_write_dict = time.time()
-  write_dict(out.title, out.authors, out.sha, sc, TexOptions(),
-             timestamp_species_dict, output_dir)
+  if provenance:
+    require_species_dictionary_provenance(
+        out.git_directory, out.source_commit, out.source_clean,
+        inp.csv_filename, species_dictionary_sha256)
+  write_dict(out.title, out.authors, out.source_commit, out.source_clean,
+             species_dictionary_sha256, sc, TexOptions(),
+             timestamp_species_dict, output_dir,
+             regenerate_species_images=provenance,
+             c3mech_configuration_sha256=
+             out.c3mech_configuration_sha256)
+  if provenance:
+    require_species_dictionary_provenance(
+        out.git_directory, out.source_commit, out.source_clean,
+        inp.csv_filename, species_dictionary_sha256)
   end_write_dict = time.time()
   ## print("Time required for output generation:",
   ##       end_write_dict - start_write_dict)
@@ -2223,8 +3126,8 @@ if __name__ == "__main__":
   parser.add_argument(
       '-k',
       '--kinetics',
-      help=
-      'chemkin kinetics file that can be used to read in the species. requires -y \'\' and will be ignored otherwise',
+      help=("CHEMKIN kinetics file whose SPECIES section supplies the species "
+            "names when --yaml '' is supplied"),
       default=os.path.join(preprocessor,
                            os.path.join("Input_Abstractions", "C3.dic")))
   parser.add_argument(
@@ -2248,8 +3151,8 @@ if __name__ == "__main__":
   parser.add_argument(
       '-c',
       '--csv',
-      help=
-      'csv file with the species definitions used to generate the species dictionary',
+      help=("CSV file containing species definitions. When --yaml '' is "
+            "supplied, the default is SPECIES_DICTIONARY/species_dict.csv"),
       default="")
   parser.add_argument('-i',
                       '--itv',
@@ -2263,22 +3166,10 @@ if __name__ == "__main__":
       '-f',
       '--fatal_error_only',
       help=
-      'disable default fatal-only filtering and validate all species in the CSV (including species not used in the selected submodule(s))',
-      action='store_false')
-  parser.add_argument('-n',
-                      '--name',
-                      help='name (title) of species dictionary',
-                      default="C3MechV4.0.1 species dictionary")
-  parser.add_argument(
-      '-a',
-      '--authors',
-      help='list of authors',
-      default=
-      ("Luna Pratali Maffei, Raymond Langer, Yuki Murakami, Scott W. Wagnon," +
-       "\\\\\nPengzhi Wang, Jiaxin Liu, Mohsin Raza, Yuxiang Zhu, Sanket Girhe,"
-       +
-       "\\\\\nChristian Schwenzer, Joachim Beeckmann, Stephen J. Klippenstein, Tiziano Faravelli,"
-       + "\\\\\nHeinz Pitsch, Peter Kelly Senecal, Henry J. Curran"))
+      'only species currently used in the selected submodule(s) are considered in the checks',
+      action='store_true')
+  _add_species_dictionary_name_argument(parser)
+  _add_species_dictionary_authors_argument(parser)
   parser.add_argument('-g',
                       '--git',
                       help='directory that contains the git repository',
@@ -2292,7 +3183,31 @@ if __name__ == "__main__":
       '--dry_run',
       action='store_true',
       help="perform only checks without output generation (runs faster)")
+  parser.add_argument(
+      '--disable-rmg-lumped-checks',
+      action='store_true',
+      help=("disable RMG-based lumped species checks "
+            "(resonance-dependent radical role checks and "
+            "resonance-consistent carbonyl checks)"))
+  parser.add_argument(
+      '--lumped-warnings-as-errors',
+      action='store_true',
+      help=("treat warning-level lumped species constraints as errors "
+            "(strict mode)"))
+  parser.add_argument(
+      '--missing-definition-policy',
+      choices=['error', 'warning'],
+      default='error',
+      help=
+      "policy for missing species definitions (InChI and thermochemistry checks)"
+  )
+  _add_species_dictionary_provenance_arguments(parser)
   args = vars(parser.parse_args())
+  (args['name'], args['authors'],
+   args['c3mech_configuration_sha256']) = (
+       _normal_species_dictionary_values(
+           args['name'], args['authors'],
+           args['c3mech_configuration_sha256'], args['provenance']))
 
   inp = Input(args['csv'], args['yaml'], args['submodule_dir'],
               args['kinetics'], args['thermo'],
@@ -2302,14 +3217,25 @@ if __name__ == "__main__":
   if (not check_git.is_dir()):
     raise Exception("The directory '" + args['git'] +
                     "' containing the git repository does not exist.")
+  source_commit = None
+  source_clean = None
+  source_root = None
+  if args['provenance']:
+    source_commit, source_clean, source_root = get_git_source_state(args['git'])
   out = Output(args['output_dir'], args['name'], args['authors'],
-               get_git_sha(args['git']))
+               source_commit, source_clean, source_root, args['git'],
+               args['c3mech_configuration_sha256'])
   silent = not args['verbose']
 
-  write_species_dict(inp,
-                     out,
-                     dry_run=args["dry_run"],
-                     itv_mode=args['itv'],
-                     fatal_error_only=args['fatal_error_only'],
-                     show_lumped=args['lumped'],
-                     silent=silent)
+  write_species_dict(
+      inp,
+      out,
+      dry_run=args["dry_run"],
+      itv_mode=args['itv'],
+      fatal_error_only=args['fatal_error_only'],
+      show_lumped=args['lumped'],
+      missing_definition_policy=args['missing_definition_policy'],
+      enable_rmg_lumped_checks=not args['disable_rmg_lumped_checks'],
+      lumped_warnings_as_errors=args['lumped_warnings_as_errors'],
+      provenance=args['provenance'],
+      silent=silent)
