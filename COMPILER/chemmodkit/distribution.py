@@ -31,7 +31,7 @@ COUNT_RE = re.compile(
     r"Mechanism contains\s+(\d+)\s+species\s+and\s+(\d+)\s+reactions",
     re.IGNORECASE)
 ARTIFACT_TIMESTAMP_TYPES = {
-    "cantera_reactions": ("Kinetics",),
+    "legacy_ic_reactions": ("Kinetics",),
     "cantera_yaml": ("Kinetics", "Thermodynamic"),
     "chemkin_reactions": ("Kinetics",),
     "thermochemistry": ("Thermodynamic",),
@@ -168,18 +168,18 @@ def _expected_paths(options, data, index, shared_temperature):
   temperature = "" if shared_temperature else "_" + data["temperature"][index]
   stem = options.model_name + "_" + mid + "_" + chunk + temperature
   combination_dir = os.path.join(data["output_dir"], chunk)
-  chemkin_dir = os.path.join(combination_dir, "Chemkin")
-  cantera_dir = os.path.join(combination_dir, "Cantera")
+  chemkin_dir = combination_dir
+  legacy_dir = os.path.join(combination_dir, "LEGACY")
   paths = {
       "chemkin_reactions": os.path.join(chemkin_dir, stem + ".CKI"),
       "thermochemistry": os.path.join(chemkin_dir, stem + ".THERM"),
       "transport": os.path.join(chemkin_dir, stem + ".TRAN"),
-      "cantera_reactions": os.path.join(cantera_dir,
-                                         stem + "_Cantera.CKI"),
+      "legacy_ic_reactions": os.path.join(legacy_dir,
+                                         stem + "_IC.CKI"),
   }
   if options.process_cantera:
-    paths["cantera_yaml"] = os.path.join(cantera_dir,
-                                          stem + "_Cantera.yaml")
+    paths["cantera_yaml"] = os.path.join(combination_dir,
+                                          stem + ".yaml")
   return combination_dir, paths
 
 
@@ -250,7 +250,7 @@ def build_inventory(options, grouped_selections, included_keys,
                                  item["temperature_range"]))
   source = source_identity(Path(__file__).resolve().parents[2])
   return {
-      "schema_version": 5,
+      "schema_version": 6,
       "model_name": options.model_name,
       "model_version": options.version,
       "c3mech_configuration_sha256": configuration.sha256,
@@ -450,20 +450,29 @@ def _full_model_section(inventory, paired, included_keys, carbon_map):
 
 def _file_layout(cantera_enabled, model_name):
   text = (
-      "Every sub-model directory has the same layout:\n\n"
-      "- `Chemkin/` contains a complete CHEMKIN-format chemical kinetic "
-      "model:\n"
-      "  - `" + model_name + "_*.CKI` contains species declarations and "
-      "reactions.\n"
-      "  - `" + model_name + "_*.THERM` contains thermochemistry data.\n"
-      "  - `" + model_name + "_*.TRAN` contains transport data.\n"
-      "- `Cantera/` contains the Cantera/FlameMaster-compatible `" +
-      model_name + "_*_Cantera.CKI` file.")
+      "Every submodel directory contains the following files:\n\n"
+      "```text\n"
+      "<model>.CKI       # Main kinetics (LMRR)\n"
+      "<model>.THERM     # Thermochemistry\n"
+      "<model>.TRAN      # Transport\n")
   if cantera_enabled:
-    text += ("\n  - `" + model_name +
-             "_*_Cantera.yaml` is the validated Cantera YAML file.")
+    text += "<model>.yaml      # Cantera model (LMRR)\n"
+  text += ("LEGACY/\n"
+           "  <model>_IC.CKI\n"
+           "```\n\n"
+           "Here, `<model>` contains the model name, model identifier and "
+           "temperature range where applicable. We recommend the "
+           "[linear mixture rule in reduced pressure (LMRR)]"
+           "(https://doi.org/10.1016/j.proci.2016.06.068). "
+           "For simulation software that reads mechanisms in CHEMKIN format "
+           "but does not support LMRR, `LEGACY/` provides an "
+           "independent-collider (IC) kinetics file. It uses the `.THERM` "
+           "and `.TRAN` files in its parent directory.")
+  if cantera_enabled:
+    text += (" The Cantera YAML file uses native LMRR and requires "
+             "Cantera 3.1 or later.")
   else:
-    text += "\n\nCantera YAML files were not generated."
+    text += " Cantera YAML files were not generated."
   return text
 
 

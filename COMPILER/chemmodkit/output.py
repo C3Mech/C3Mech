@@ -2,6 +2,7 @@ import datetime
 import os
 import re
 import subprocess
+import sys
 from collections import defaultdict
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from dataclasses import dataclass
@@ -171,9 +172,9 @@ def write_species_list(species_list, species_pruned, filename):
   return total_str
 
 
-def _is_cantera_compatible_kinetics_filename(filename):
-  """Return whether a kinetics filename marks Cantera compatibility."""
-  return os.path.basename(filename).lower().endswith("_cantera.cki")
+def _is_ic_kinetics_filename(filename):
+  """Return whether a kinetics filename identifies the legacy IC variant."""
+  return os.path.basename(filename).lower().endswith("_ic.cki")
 
 
 def insert_species_list(species_list, file_path, new_lines):
@@ -1308,11 +1309,12 @@ def compile_model(options,
 
   therm_file = (options.model_name + mid_with_leading_underscore +
                 output_chunk + ".THERM")
-  output_filename_therm = os.path.join(options.output_dir, output, therm_file)
+  property_output = os.path.dirname(output) if output_chunk_kin == "_IC" else output
+  output_filename_therm = os.path.join(options.output_dir, property_output, therm_file)
 
   trans_filename = (options.model_name + mid_with_leading_underscore +
                     output_chunk + ".TRAN")
-  output_filename_trans = os.path.join(options.output_dir, output,
+  output_filename_trans = os.path.join(options.output_dir, property_output,
                                        trans_filename)
 
   if write_therm_trans:
@@ -1357,11 +1359,13 @@ def process_ck2yaml(tool_dependent_submodel_key, generated_combinations):
       tool_dependent_submodel_key]["trans"]
   output_filename_dir = generated_combinations[
       tool_dependent_submodel_key]["dir"]
-  if _is_cantera_compatible_kinetics_filename(output_filename_kin):
+  if not _is_ic_kinetics_filename(output_filename_kin):
+    output_yaml = os.path.splitext(output_filename_kin)[0] + ".yaml"
+    converter = os.path.join(os.path.dirname(__file__), "lmrr.py")
     cmd = [
-        "ck2yaml", f"--input={output_filename_kin}",
+        sys.executable, converter, f"--input={output_filename_kin}",
         f"--thermo={output_filename_therm}",
-        f"--transport={output_filename_trans}"
+        f"--transport={output_filename_trans}", f"--output={output_yaml}"
     ]
     result = subprocess.run(cmd,
                             cwd=output_filename_dir,
@@ -1431,12 +1435,10 @@ def one_carbon_number(options,
         core_filename, selected_non_core_submodule_filenames)
     submodules_files.insert_model_path(options.submodules_dir)
 
-    # --- Directory layout: carbon group / combo_dir / tool ---
-    # Examples:
-    #   OUTPUT_ROOT/C8+/C0-C8+_DMC+EC_N/Chemkin/
-    #   OUTPUT_ROOT/C8+/C0-C8+_DMC+EC_N/Cantera/
-    carbon_dir = data_dict["output_dir"]  # absolute, e.g. OUTPUT_ROOT/C8+
-    tool_dir = "Cantera" if cantera else "Chemkin"
+    # Historical cantera=True selects IC source files. File format and
+    # collider formulation are independent; native Cantera YAML uses LMRR.
+    carbon_dir = data_dict["output_dir"]
+    tool_dir = "LEGACY" if cantera else ""
 
     name_with_temp = data_dict["output_chunks"][selection_count]
     temp_flag = data_dict["temperature"][
@@ -1451,9 +1453,9 @@ def one_carbon_number(options,
     target_dir = os.path.join(carbon_dir, combo_dir, tool_dir)
     os.makedirs(target_dir, exist_ok=True)
 
-    out_chuck = ""
+    out_chunk = ""
     if cantera:
-      out_chuck = "_Cantera"
+      out_chunk = "_IC"
 
     mid = data_dict["mid"][selection_count]
     _register_mid(mid_by_tool_independent_submodel_key,
@@ -1461,8 +1463,8 @@ def one_carbon_number(options,
 
     if tool_dependent_submodel_key not in generated_combinations:
       # In --generate-all:
-      #   - Chemkin (cantera=False): write THERM/TRAN (canonical copies)
-      #   - Cantera (cantera=True): do NOT write THERM/TRAN here; reuse Chemkin's
+      #   - LMRR (cantera=False): write canonical THERM/TRAN.
+      #   - IC (cantera=True): reuse those property files.
       write_therm_trans = True
       if options.generate_all and cantera:
         write_therm_trans = False
@@ -1473,7 +1475,7 @@ def one_carbon_number(options,
           output=target_dir,
           datetime=datetime,
           output_chunk=name_with_temp,
-          output_chunk_kin=out_chuck,
+          output_chunk_kin=out_chunk,
           generated_combinations=generated_combinations,
           tool_dependent_submodel_key=tool_dependent_submodel_key,
           mid=mid,
@@ -1491,11 +1493,11 @@ def one_carbon_number(options,
               "trans": trans_path,
           }
 
-      # For Cantera in --generate-all, point to canonical Chemkin THERM/TRAN
+      # For legacy IC in --generate-all, reuse the parent property files.
       if options.generate_all and cantera and canonical_files is not None:
         if mid not in canonical_files:
           raise Exception("Canonical THERM/TRAN missing for MID '" + mid +
-                          "' when generating Cantera files")
+                          "' when generating legacy IC files")
         generated_combinations[tool_dependent_submodel_key][
             "therm"] = canonical_files[mid]["therm"]
         generated_combinations[tool_dependent_submodel_key][
@@ -1522,9 +1524,9 @@ def one_carbon_number(options,
         if fname is None:
           continue
         if (not cantera and
-            _is_cantera_compatible_kinetics_filename(fname)):
+            _is_ic_kinetics_filename(fname)):
           raise Exception(
-              "CHEMKIN-PRO-compatible output has a Cantera-compatible " +
+              "LMRR output has an IC " +
               "kinetics filename: '" + fname + "'")
         dir_name = os.path.dirname(fname)
         base_name = os.path.basename(fname)
@@ -1600,7 +1602,7 @@ def run(options, submodules_filenames, grouped_selections, columns, carbon_map,
     # MID -> {"therm": path, "trans": path}
     canonical_files = {}
 
-    # Run Chemkin first (cantera=False), then Cantera (cantera=True)
+    # Compile LMRR first (cantera=False), then legacy IC (cantera=True).
     cantera_opts = [False, True]
     for cantera in cantera_opts:
       for cnum, data_dict in grouped_selections.items():
@@ -1619,7 +1621,7 @@ def run(options, submodules_filenames, grouped_selections, columns, carbon_map,
     tasks = []
     with ThreadPoolExecutor(max_workers=options.max_threads) as executor:
       for tool_dependent_submodel_key in generated_combinations:
-        if options.process_cantera and _is_cantera_compatible_kinetics_filename(
+        if options.process_cantera and not _is_ic_kinetics_filename(
             generated_combinations[tool_dependent_submodel_key]["kin"]):
           tasks.append(
               executor.submit(process_ck2yaml, tool_dependent_submodel_key,
@@ -1670,7 +1672,7 @@ def run(options, submodules_filenames, grouped_selections, columns, carbon_map,
 
     for tool_dependent_submodel_key in generated_combinations_single:
       # --- Process with ck2yaml if requested ---
-      if options.process_cantera and _is_cantera_compatible_kinetics_filename(
+      if options.process_cantera and not _is_ic_kinetics_filename(
           generated_combinations_single[tool_dependent_submodel_key]["kin"]):
         result = process_ck2yaml(tool_dependent_submodel_key,
                                  generated_combinations_single)

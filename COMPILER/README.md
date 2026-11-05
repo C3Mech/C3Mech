@@ -33,12 +33,13 @@ different package versions.
    solver. The adopted ammonia fit uses LMR-R. These labels describe the
    formulation rather than restricting the choice of simulation software.
 
-   Cantera supports native LMR-R through `linear-Burke` from version 3.1.
-   This compiler's generated `_Cantera.CKI` and Cantera YAML files use the IC
-   source variant; their suffix identifies the generated solver format.
-   When selecting a model by its identifier, use `--mid-ic` for IC or
-   `--no-mid-ic` for the LOWMX/LOWSP input. The former `--mid-cantera` and
-   `--no-mid-cantera` options remain accepted aliases.
+   We recommend the [linear mixture rule in reduced pressure (LMRR)](https://doi.org/10.1016/j.proci.2016.06.068).
+   The default source selection uses LOWMX/LOWSP input. Generated Cantera YAML
+   models use native LMRR (`linear-Burke`) and require Cantera 3.1 or later.
+   When selecting a model by its identifier, `--mid-ic` selects the IC source
+   variant; `--no-mid-ic` selects LOWMX/LOWSP input and is the default. The
+   former `--mid-cantera` and `--no-mid-cantera` options remain accepted aliases.
+   IC source selections generate a CHEMKIN kinetics file, without a Cantera YAML file.
 
 2. **Compile the chemical kinetic model**
 
@@ -48,8 +49,14 @@ different package versions.
    mamba run -n c3-compiler python compile_c3mech.py
    ```
 
-The command writes `.CKI`, `.THERM`, and `.TRAN` files to the `output/`
-directory. For more information, use:
+The command writes `.CKI`, `.THERM`, `.TRAN` and native LMRR `.yaml` files
+under `output/` when Cantera conversion is enabled. With `--generate-all`,
+each submodel also has `LEGACY/<model>_IC.CKI`. This file supports simulation
+software that reads mechanisms in CHEMKIN format but does not support LMRR.
+It uses the `.THERM` and `.TRAN` files in its parent directory. No separate
+IC Cantera YAML file is supplied.
+
+For more information, use:
 
 ```sh
 mamba run -n c3-compiler python compile_c3mech.py -h
@@ -96,7 +103,7 @@ mkdir output/V4.2.0-rc.3
 ```
 
 Generate every supported combination of the supplied public submodules and
-convert the IC models to Cantera YAML.
+generate native LMRR Cantera YAML.
 
 ```sh
 mamba run -n c3-compiler python compile_c3mech.py \

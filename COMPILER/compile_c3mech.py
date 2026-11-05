@@ -5,7 +5,7 @@ import os
 import sys
 import argparse
 import re
-import shutil
+from importlib.metadata import PackageNotFoundError, version as package_version
 from pathlib import Path
 
 if __package__:
@@ -128,11 +128,11 @@ def parse_args():
       '--process-cantera',
       dest='process_cantera',
       action='store_true',
-      help="Process output with Cantera's ck2yaml (default: True)")
+      help="Generate native Cantera LMRR YAML (default: True)")
   parser.add_argument('--no-process-cantera',
                       dest='process_cantera',
                       action='store_false',
-                      help="Do not process output with Cantera's ck2yaml")
+                      help="Do not generate Cantera YAML")
   parser.add_argument(
       '--require-ht-subset-no-change',
       action='store_true',
@@ -148,7 +148,7 @@ def parse_args():
       dest='mid_cantera',
       action='store_true',
       help=
-      "Use independent-collider (IC) submodules (default: True, only relevant when decoding an MID)"
+      "Use independent-collider (IC) submodules (default: False, only relevant when decoding an MID)"
   )
   parser.add_argument(
       '--no-mid-ic', '--no-mid-cantera',
@@ -213,7 +213,7 @@ def parse_args():
                       help="Model name to use in output files (default: " +
                       default_model_name + ")")
   parser.set_defaults(process_cantera=True)
-  parser.set_defaults(mid_cantera=True)
+  parser.set_defaults(mid_cantera=False)
 
   parser.add_argument('--version',
                       action='version',
@@ -310,10 +310,8 @@ def parse_args():
           )
         raise FileNotFoundError(f"Directory does not exist: {path}")
 
-  if args.process_cantera and shutil.which("ck2yaml") is None:
-    raise c3mech.UserInputError(
-        "Cantera processing was requested but ck2yaml was not found in PATH. "
-        "install ck2yaml or use --no-process-cantera")
+  if args.process_cantera:
+    _require_native_cantera()
 
   options = Options(generate_all=args.generate_all,
                  max_c=args.max_c,
@@ -430,6 +428,17 @@ def _require_ascii_header(header_text, source):
   return normalized_header_text
 
 
+def _require_native_cantera():
+  try:
+    native_version = package_version("cantera")
+  except PackageNotFoundError as exc:
+    raise c3mech.UserInputError(
+        "Cantera 3.1 or later is required for native LMRR YAML; "
+        "install Cantera or use --no-process-cantera") from exc
+  if tuple(int(part) for part in native_version.split('.')[:2]) < (3, 1):
+    raise c3mech.UserInputError("Cantera 3.1 or later is required for native LMRR YAML")
+
+
 def run_compiler(options):
   """Compile a YAML or MID selection, or every permitted selection."""
   if options.mid and options.generate_all:
@@ -443,10 +452,8 @@ def run_compiler(options):
   if options.max_c is not None and options.max_c < 0:
     raise c3mech.UserInputError("max_c must be at least 0")
   _prepare_header(options)
-  if options.process_cantera and shutil.which("ck2yaml") is None:
-    raise c3mech.UserInputError(
-        "Cantera processing was requested but ck2yaml was not found in PATH. "
-        "install ck2yaml or disable Cantera processing")
+  if options.process_cantera:
+    _require_native_cantera()
   if options.generate_all:
     try:
       distribution.require_empty_output_root(options.output_dir)

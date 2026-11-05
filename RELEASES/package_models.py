@@ -58,7 +58,7 @@ def main():
     shutil.copyfile(pdf, package / 'SPECIES_DICTIONARY/species_dict.pdf')
     files = [dict(path=path.relative_to(package).as_posix(), sha256=sha256(path))
              for path in sorted(package.rglob('*')) if path.is_file()]
-    manifest = dict(schema_version=1, model_name=inventory['model_name'],
+    manifest = dict(schema_version=2, model_name=inventory['model_name'],
                     model_version=version,
                     release_candidate=release['release_candidate'],
                     source_commit=inventory['source_commit'],

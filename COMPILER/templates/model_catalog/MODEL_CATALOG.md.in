@@ -31,7 +31,8 @@ provides the reference.
 `CHEMKIN NS(HT/LT-HT)` and `CHEMKIN NR(HT/LT-HT)` give the corresponding
 numbers of species and reaction records in the
 LOWMX/LOWSP files for LMR-R (LMRR) or LMR-P (LMRP), as selected by the solver.
-The generated Cantera files use the independent-collider (IC) formulation.
+The generated Cantera YAML files use native LMRR. The `LEGACY/` kinetics
+file uses the independent-collider (IC) formulation for compatible older solvers.
 Each version has a MID that identifies its exact submodule selection.
 
 ## Notes and recommendations

@@ -18,7 +18,7 @@ TIMESTAMP_PATTERN = re.compile(
 TIMESTAMP_CANDIDATE_PATTERN = re.compile(
     r"^(?:! ?| +)[^ \r\n]+ data for [^\r\n]+, generated on [^\r\n]*$",
     re.MULTILINE)
-CANTERA_GENERATOR_PATTERN = re.compile(r"^generator: ck2yaml$", re.MULTILINE)
+CANTERA_GENERATOR_PATTERN = re.compile(r"^generator: (?:ck2yaml|c3mech-lmrr)$", re.MULTILINE)
 CANTERA_DATE_PATTERN = re.compile(
     r"^date: (?P<date>[A-Z][a-z]{2}, [0-9]{2} [A-Z][a-z]{2} [0-9]{4} "
     r"[0-9]{2}:[0-9]{2}:[0-9]{2} [+-][0-9]{4})$", re.MULTILINE)

@@ -15,9 +15,9 @@ from urllib.parse import urlparse
 CURRENT_CONFIGURATION_PATH = Path(__file__).with_name("c3mech.yaml")
 
 DMC_EC_FEW = True
-# Default to independent-collider (IC) submodules for paired source keys.
+# Default to LOWMX/LOWSP submodules for native LMRR output.
 # The historical CANTERA_MODE flag selects source formulation, not solver support.
-CANTERA_MODE = True
+CANTERA_MODE = False
 
 TOOL_COMPATIBLE_SUBMODULE_BASENAMES = {
     "C0": {

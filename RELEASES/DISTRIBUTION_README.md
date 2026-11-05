@@ -5,10 +5,35 @@ The model and its supporting ammonia manuscript remain under review.
 
 Open [MODEL_CATALOG.md](MODEL_CATALOG.md) to choose a submodel. Each model
 has a model identifier, abbreviated MID, which should be reported when the
-model is used. CHEMKIN directories contain the kinetics, thermochemistry and
-transport files. Cantera directories contain independent-collider kinetics
-and YAML files. The CHEMKIN `LOWMX/LOWSP` input supports linear mixture rules
-in reduced pressure or pressure, as selected by the solver.
+model is used. Each submodel provides CHEMKIN kinetics, thermochemistry and
+transport files, together with a Cantera YAML model.
+
+We recommend the [linear mixture rule in reduced pressure (LMRR)](https://doi.org/10.1016/j.proci.2016.06.068). The Cantera
+YAML models use LMRR. For simulation software that reads mechanisms in CHEMKIN
+format but does not support LMRR, `LEGACY/` provides an independent-collider
+(IC) kinetics file. It uses the same thermochemistry and transport data as
+the main model.
+
+The release keeps carbon folders such as `C0/` and `C1-C2/` at the top level.
+Each submodel uses the following layout. Here,
+`<model>` stands for the filename prefix, which includes the C3Mech version,
+model identifier and temperature range where applicable.
+
+```text
+<carbon-group>/
+└── <submodel>/
+    ├── <model>.CKI       # Main kinetics (LMRR)
+    ├── <model>.THERM     # Thermochemistry
+    ├── <model>.TRAN      # Transport
+    ├── <model>.yaml      # Cantera model (LMRR)
+    └── LEGACY/
+        └── <model>_IC.CKI
+```
+
+For Cantera, load the `.yaml` file using Cantera 3.1 or later. For software
+that reads CHEMKIN format, use the `.CKI` file together with its matching
+`.THERM` and `.TRAN` files. Use `LEGACY/<model>_IC.CKI` when the solver does
+not support LMRR, together with the property files in its parent directory.
 
 The current species dictionary is in
 [SPECIES_DICTIONARY/species_dict.pdf](SPECIES_DICTIONARY/species_dict.pdf).
