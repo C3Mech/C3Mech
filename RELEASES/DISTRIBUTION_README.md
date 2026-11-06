@@ -1,4 +1,4 @@
-# C3MechV4.2.0 — public release candidate 3
+# C3MechV4.2.0
 
 This distribution contains the compiled public submodels of C3MechV4.2.0-rc.3.
 The model and its supporting ammonia manuscript remain under review.
@@ -11,16 +11,16 @@ transport files, together with a Cantera YAML model.
 We recommend the [linear mixture rule in reduced pressure (LMRR)](https://doi.org/10.1016/j.proci.2016.06.068). The Cantera
 YAML models use LMRR. For simulation software that reads mechanisms in CHEMKIN
 format but does not support LMRR, `LEGACY/` provides an independent-collider
-(IC) kinetics file. It uses the same thermochemistry and transport data as
+(IC) mechanism file. It uses the same thermochemistry and transport data as
 the main model.
 
-The release keeps carbon folders such as `C0/` and `C1-C2/` at the top level.
+Compiled models are organized in folders such as `C0/` and `C1-C2/`.
 Each submodel uses the following layout. Here,
 `<model>` stands for the filename prefix, which includes the C3Mech version,
 model identifier and temperature range where applicable.
 
 ```text
-<carbon-group>/
+<group>/
 └── <submodel>/
     ├── <model>.CKI       # Main kinetics (LMRR)
     ├── <model>.THERM     # Thermochemistry

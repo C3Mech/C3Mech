@@ -1,4 +1,4 @@
-# C3MechV4.2.0 — release candidate 3
+# C3MechV4.2.0
 
 [![License: CC BY 4.0](https://img.shields.io/badge/License-CC_BY_4.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
 
@@ -13,41 +13,42 @@ This release candidate may change before the final C3MechV4.2.0 release.
 
 ## Download compiled models
 
-The [V4.2.0-rc.3 release](https://github.com/C3Mech/C3Mech/releases/tag/V4.2.0-rc.3)
-provides compiled models in CHEMKIN and Cantera YAML formats, together with
-the model catalogue and current species dictionary. Use the model catalogue to
-select a submodel and report its model identifier when using it.
+Browse [PRECOMPILED/](PRECOMPILED/) for the compiled submodels or
+[FULL_MODEL/](FULL_MODEL/) for the complete model. The
+[model catalogue](PRECOMPILED/MODEL_CATALOG.md) helps you select a submodel;
+report its model identifier when using it. The same model files and current
+species dictionary are also available in the
+[V4.2.0-rc.3 release download](https://github.com/C3Mech/C3Mech/releases/tag/V4.2.0-rc.3).
 
 We recommend the [linear mixture rule in reduced pressure (LMRR)](https://doi.org/10.1016/j.proci.2016.06.068). The Cantera
 YAML models use LMRR. For simulation software that reads mechanisms in CHEMKIN
 format but does not support LMRR, `LEGACY/` provides an independent-collider
-(IC) kinetics file. It uses the same thermochemistry and transport data as
+(IC) mechanism file. It uses the same thermochemistry and transport data as
 the main model.
 
-The release keeps carbon folders such as `C0/` and `C1-C2/` at the top level.
+In `PRECOMPILED/`, models are organized in folders such as `C0/` and `C1-C2/`.
 Each submodel uses the following layout. Here,
 `<model>` stands for the filename prefix, which includes the C3Mech version,
 model identifier and temperature range where applicable.
 
 ```text
-<carbon-group>/
-└── <submodel>/
-    ├── <model>.CKI       # Main kinetics (LMRR)
-    ├── <model>.THERM     # Thermochemistry
-    ├── <model>.TRAN      # Transport
-    ├── <model>.yaml      # Cantera model (LMRR)
-    └── LEGACY/
-        └── <model>_IC.CKI
+PRECOMPILED/
+└── <group>/
+    └── <submodel>/
+        ├── <model>.CKI       # Main kinetics (LMRR)
+        ├── <model>.THERM     # Thermochemistry
+        ├── <model>.TRAN      # Transport
+        ├── <model>.yaml      # Cantera model (LMRR)
+        └── LEGACY/
+            └── <model>_IC.CKI
 ```
+
+The release ZIP places the `<group>/` folders directly at its top level.
 
 For Cantera, load the `.yaml` file using Cantera 3.1 or later. For software
 that reads CHEMKIN format, use the `.CKI` file together with its matching
 `.THERM` and `.TRAN` files. Use `LEGACY/<model>_IC.CKI` when the solver does
 not support LMRR, together with the property files in its parent directory.
-
-The existing `FULL_MODEL/` and `PRECOMPILED/` directories retain the earlier
-C3MechV4.0.1 files, whose filenames identify that version. They are historical
-outputs; use the candidate release download for V4.2.0-rc.3.
 
 ## Compile models
 
@@ -60,8 +61,8 @@ Source pairs identify their collider formulation. `_IC.MECH` uses the
 independent-collider formulation. The unsuffixed counterpart contains
 `LOWMX/LOWSP` input for the linear mixture rule in reduced pressure
 (LMR-R, also called LMRR) or pressure (LMR-P, also called LMRP), as selected by
-the solver. The adopted ammonia fit uses LMR-R. Collider formulations and
-solver file formats are separate choices.
+the solver. The adopted ammonia chemistry was optimized using LMR-R reaction
+rates. Collider formulations and solver file formats are separate choices.
 
 The [species dictionary instructions](SPECIES_DICTIONARY/README.md) explain
 how to generate the document from the current species CSV. The

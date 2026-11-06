@@ -30,8 +30,9 @@ different package versions.
    independent-collider (IC) formulation. The unsuffixed counterpart contains
    collider-specific `LOWMX/LOWSP` input for the linear mixture rule in reduced
    pressure (LMR-R, or LMRR) or in pressure (LMR-P, or LMRP), as selected by the
-   solver. The adopted ammonia fit uses LMR-R. These labels describe the
-   formulation rather than restricting the choice of simulation software.
+   solver. The adopted ammonia chemistry was optimized using LMR-R reaction
+   rates. These labels describe the formulation rather than restricting the
+   choice of simulation software.
 
    We recommend the [linear mixture rule in reduced pressure (LMRR)](https://doi.org/10.1016/j.proci.2016.06.068).
    The default source selection uses LOWMX/LOWSP input. Generated Cantera YAML
@@ -39,7 +40,7 @@ different package versions.
    When selecting a model by its identifier, `--mid-ic` selects the IC source
    variant; `--no-mid-ic` selects LOWMX/LOWSP input and is the default. The
    former `--mid-cantera` and `--no-mid-cantera` options remain accepted aliases.
-   IC source selections generate a CHEMKIN kinetics file, without a Cantera YAML file.
+   IC source selections generate a CHEMKIN mechanism file, without a Cantera YAML file.
 
 2. **Compile the chemical kinetic model**
 

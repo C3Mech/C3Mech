@@ -23,7 +23,7 @@ python COMPILER/compile_c3mech.py \
 ```
 
 The compiler writes the main CHEMKIN and native LMRR Cantera models, legacy
-IC CHEMKIN kinetics, `MODEL_CATALOG.md` and
+IC CHEMKIN mechanism files, `MODEL_CATALOG.md` and
 `MODEL_MANIFEST.json`. Normal parsing and Cantera conversion remain part of
 compilation. No `VALIDATION` or `CHECKS` directory is required.
 

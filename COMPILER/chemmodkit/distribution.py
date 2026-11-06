@@ -466,7 +466,7 @@ def _file_layout(cantera_enabled, model_name):
            "(https://doi.org/10.1016/j.proci.2016.06.068). "
            "For simulation software that reads mechanisms in CHEMKIN format "
            "but does not support LMRR, `LEGACY/` provides an "
-           "independent-collider (IC) kinetics file. It uses the `.THERM` "
+           "independent-collider (IC) mechanism file. It uses the `.THERM` "
            "and `.TRAN` files in its parent directory.")
   if cantera_enabled:
     text += (" The Cantera YAML file uses native LMRR and requires "

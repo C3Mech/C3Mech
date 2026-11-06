@@ -9,7 +9,7 @@ submodules.
 ## Quick start
 
 - For typical cases, use the quick-access table below and follow its linked model identifier (MID).
-- For another available submodule combination, use the detailed carbon-group tables.
+- For another available submodule combination, use the detailed tables.
 
 {{FULL_MODEL}}
 
@@ -31,7 +31,7 @@ provides the reference.
 `CHEMKIN NS(HT/LT-HT)` and `CHEMKIN NR(HT/LT-HT)` give the corresponding
 numbers of species and reaction records in the
 LOWMX/LOWSP files for LMR-R (LMRR) or LMR-P (LMRP), as selected by the solver.
-The generated Cantera YAML files use native LMRR. The `LEGACY/` kinetics
+The generated Cantera YAML files use native LMRR. The `LEGACY/` mechanism
 file uses the independent-collider (IC) formulation for compatible older solvers.
 Each version has a MID that identifies its exact submodule selection.
 

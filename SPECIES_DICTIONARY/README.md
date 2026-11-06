@@ -59,9 +59,9 @@ obtained from the submodules listed in the YAML file.
 
 ## Generate `species_dict.pdf`
 
-The PDF stored in this source directory is the earlier V4.0.1 snapshot.
-Use the PDF supplied with the V4.2.0-rc.3 release for the current candidate,
-or generate a new document from the current CSV using the commands below.
+The PDF stored in this directory matches the document supplied with the
+V4.2.0-rc.3 release and uses the current species definitions. To regenerate
+the document from `species_dict.csv`, use the commands below.
 
 Generates species images and `output/species_dict.tex`. The terminal reports
 the `pdflatex` command after successful generation:

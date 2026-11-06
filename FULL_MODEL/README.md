@@ -1,16 +1,18 @@
-# Full C3MechV4.0.1 model
+# Full C3MechV4.2.0 model
 
-This directory provides the full C3MechV4.0.1 model in a format consistent
-with the distribution on fuelmech.org.
+This directory provides the complete C3MechV4.2.0 model supplied with
+[V4.2.0-rc.3](https://github.com/C3Mech/C3Mech/releases/tag/V4.2.0-rc.3).
+Its model identifier is `4HZZ`, and it includes the combined low-temperature
+and high-temperature chemistry. These files are identical to the corresponding
+[precompiled model](../PRECOMPILED/C8+/C0-C8+_C5CY_C6CY_DMC+EC_N_PAH/).
 
-The files are:
+- [C3MechV4.2.0_4HZZ_C0-C8+_C5CY_C6CY_DMC+EC_N_PAH_LT-HT.CKI](C3MechV4.2.0_4HZZ_C0-C8+_C5CY_C6CY_DMC+EC_N_PAH_LT-HT.CKI) is the main CHEMKIN mechanism.
+- [C3MechV4.2.0_4HZZ_C0-C8+_C5CY_C6CY_DMC+EC_N_PAH_LT-HT.THERM](C3MechV4.2.0_4HZZ_C0-C8+_C5CY_C6CY_DMC+EC_N_PAH_LT-HT.THERM) contains the thermochemistry.
+- [C3MechV4.2.0_4HZZ_C0-C8+_C5CY_C6CY_DMC+EC_N_PAH_LT-HT.TRAN](C3MechV4.2.0_4HZZ_C0-C8+_C5CY_C6CY_DMC+EC_N_PAH_LT-HT.TRAN) contains the transport data.
+- [C3MechV4.2.0_4HZZ_C0-C8+_C5CY_C6CY_DMC+EC_N_PAH_LT-HT.yaml](C3MechV4.2.0_4HZZ_C0-C8+_C5CY_C6CY_DMC+EC_N_PAH_LT-HT.yaml) is the Cantera model.
+- [LEGACY/C3MechV4.2.0_4HZZ_C0-C8+_C5CY_C6CY_DMC+EC_N_PAH_LT-HT_IC.CKI](LEGACY/C3MechV4.2.0_4HZZ_C0-C8+_C5CY_C6CY_DMC+EC_N_PAH_LT-HT_IC.CKI) is the independent-collider (IC) mechanism file.
 
-- C3MechV4.0.1.CKI   - kinetics file in CHEMKIN-format (MID 4HZZ)
-- C3MechV4.0.1.THERM - thermochemistry data
-- C3MechV4.0.1.TRAN  - transport data
-
-These correspond to the C8+ sub-model with C5CY, C6CY, DMC+EC, nitrogen,
-and PAH chemistry included (row with MID 3XR9/4HZZ in the C8+ table in
-PRECOMPILED/README.md).
-
-If you need a Cantera .yaml file for this model, go to [`PRECOMPILED/C8+/C0-C8+_C5CY_C6CY_DMC+EC_N_PAH/Cantera`](../PRECOMPILED/C8+/C0-C8+_C5CY_C6CY_DMC+EC_N_PAH/Cantera).
+We recommend the linear mixture rule in reduced pressure (LMRR). The Cantera
+model uses LMRR and requires Cantera 3.1 or later. For simulation software that
+reads mechanisms in CHEMKIN format but does not support LMRR, use the IC file
+in `LEGACY/` with the thermochemistry and transport files above.
