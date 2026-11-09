@@ -1,7 +1,8 @@
 # Generate the public release candidate
 
 The public repository contains the compiler and inputs needed to generate
-all supported public submodels. Scientific validation and release audits are
+all supported public submodels. Generated models belong in the release ZIP,
+not in the source repository. Scientific validation and release audits are
 performed internally. The commands here compile models, generate the species
 dictionary and package the results. They do not push branches, create tags or
 publish releases.
@@ -61,6 +62,11 @@ python RELEASES/package_models.py \
 The helper copies the models, current species CSV and PDF, release notes,
 public terms, license and citation file into `C3MechV4.2.0/`. It creates
 `C3MechV4.2.0.zip`, a checksum file and a manifest of the package contents.
+The ZIP includes `FULL_MODEL/` with the simple filenames
+`C3MechV4.2.0.CKI`, `.THERM`, `.TRAN` and `.yaml`, plus
+`FULL_MODEL/LEGACY/C3MechV4.2.0_IC.CKI`. These files are byte-for-byte copies
+of the complete low- and high-temperature model in the generated collection.
+The other model folders and their catalogue retain the generated filenames.
 Internal scientific checks and publication review are separate steps.
 
 The fixed public candidate is `V4.2.0-rc.3`. The public `main` branch remains

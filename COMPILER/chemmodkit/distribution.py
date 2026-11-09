@@ -452,11 +452,12 @@ def _file_layout(cantera_enabled, model_name):
   text = (
       "Every submodel directory contains the following files:\n\n"
       "```text\n"
-      "<model>.CKI       # Main kinetics (LMRR)\n"
+      "<model>.CKI       # CHEMKIN-format mechanism "
+      "(LMRR; uses LOWMX/LOWSP keywords)\n"
       "<model>.THERM     # Thermochemistry\n"
       "<model>.TRAN      # Transport\n")
   if cantera_enabled:
-    text += "<model>.yaml      # Cantera model (LMRR)\n"
+    text += "<model>.yaml      # Cantera YAML mechanism (LMRR)\n"
   text += ("LEGACY/\n"
            "  <model>_IC.CKI\n"
            "```\n\n"
@@ -469,8 +470,8 @@ def _file_layout(cantera_enabled, model_name):
            "independent-collider (IC) mechanism file. It uses the `.THERM` "
            "and `.TRAN` files in its parent directory.")
   if cantera_enabled:
-    text += (" The Cantera YAML file uses native LMRR and requires "
-             "Cantera 3.1 or later.")
+    text += (" The Cantera YAML mechanism uses native LMRR "
+             "(`linear-Burke`) and requires Cantera 3.1 or later.")
   else:
     text += " Cantera YAML files were not generated."
   return text

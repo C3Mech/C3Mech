@@ -23,3 +23,8 @@ plot_ignore/
 __pycache__/
 *.exe
 RELEASES/build/
+
+# Generated models are distributed as release assets.
+/PRECOMPILED/
+/FULL_MODEL/
+/COMPILER/output/

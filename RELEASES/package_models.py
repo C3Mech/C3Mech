@@ -19,6 +19,34 @@ def sha256(path):
     return digest.hexdigest()
 
 
+def full_model_record(inventory):
+    included = {module['key'] for module in inventory['included_submodules']}
+    matches = [model for model in inventory['models']
+               if set(model['modules']) == included
+               and model['temperature_range'] == 'LT-HT']
+    if len(matches) != 1:
+        raise ValueError('Expected one complete low- and high-temperature model')
+    return matches[0]
+
+
+def copy_full_model(models, package, model, model_name):
+    names = {
+        'chemkin_reactions': model_name + '.CKI',
+        'thermochemistry': model_name + '.THERM',
+        'transport': model_name + '.TRAN',
+        'cantera_yaml': model_name + '.yaml',
+        'legacy_ic_reactions': 'LEGACY/' + model_name + '_IC.CKI',
+    }
+    artifacts = {}
+    for kind, artifact in model['artifacts'].items():
+        relative = Path('FULL_MODEL') / names[kind]
+        destination = package / relative
+        destination.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copyfile(models / artifact['path'], destination)
+        artifacts[kind] = dict(artifact, path=relative.as_posix())
+    return dict(model, directory='FULL_MODEL', artifacts=artifacts)
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--models-dir', type=Path, required=True,
@@ -41,9 +69,17 @@ def main():
     version = configuration['model']['version']
     if inventory['model_version'] != version:
         parser.error('Generated models and release metadata use different versions')
+    full_model = full_model_record(inventory)
     output.mkdir(parents=True, exist_ok=False)
     package = output / inventory['model_name']
     shutil.copytree(models, package, ignore=shutil.ignore_patterns('.gitignore'))
+    full_model = copy_full_model(models, package, full_model,
+                                 inventory['model_name'])
+    catalog = package / 'MODEL_CATALOG.md'
+    heading, _, body = catalog.read_text().partition('\n')
+    catalog.write_text(heading + '\n\nThe complete model is available in '
+                       '[FULL_MODEL/](FULL_MODEL/) with simple filenames.\n\n'
+                       + body.lstrip('\n'))
     for source, destination in [
         ('RELEASES/DISTRIBUTION_README.md', 'README.md'),
         ('RELEASES/V4.2.0/RELEASE_NOTES.md', 'RELEASE_NOTES.md'),
@@ -67,7 +103,8 @@ def main():
                     compiler_version=inventory['compiler_version'],
                     maximum_carbon_count=inventory['maximum_carbon_count'],
                     cantera_yaml_generated=inventory['cantera_yaml_generated'],
-                    models=inventory['models'], files=files)
+                    models=inventory['models'], full_model=full_model,
+                    files=files)
     (package / 'MANIFEST.json').write_text(json.dumps(manifest, indent=2) + '\n')
     archive = output / (inventory['model_name'] + '.zip')
     with zipfile.ZipFile(archive, 'x', compression=zipfile.ZIP_DEFLATED) as zipped:

@@ -2,83 +2,48 @@
 
 [![License: CC BY 4.0](https://img.shields.io/badge/License-CC_BY_4.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
 
-This is a prerelease of C3MechV4.2.0, which will supersede C3MechV4.0.1.
-It adopts the optimized ammonia chemistry described in the
-[release notes](RELEASES/V4.2.0/RELEASE_NOTES.md). The associated ammonia paper
-is being prepared for submission to *Combustion and Flame*. The preprint
-citation will be added when available.
+C3Mech is a comprehensive chemical kinetic model for conventional and renewable
+fuels, including hydrocarbons, hydrogen, ammonia and oxygenated fuels. Its
+modular structure supports models tailored to different fuel mixtures.
 
-The stable model remains available on the [main branch](https://github.com/C3Mech/C3Mech/tree/main).
-This release candidate may change before the final C3MechV4.2.0 release.
+## Download models
 
-## Download compiled models
+**[Download C3MechV4.2.0-rc.3](https://github.com/C3Mech/C3Mech/releases/tag/V4.2.0-rc.3)**
 
-Browse [PRECOMPILED/](PRECOMPILED/) for the compiled submodels or
-[FULL_MODEL/](FULL_MODEL/) for the complete model. The
-[model catalogue](PRECOMPILED/MODEL_CATALOG.md) helps you select a submodel;
-report its model identifier when using it. The same model files and current
-species dictionary are also available in the
-[V4.2.0-rc.3 release download](https://github.com/C3Mech/C3Mech/releases/tag/V4.2.0-rc.3).
+The release ZIP contains the full model and smaller submodels in CHEMKIN and
+Cantera YAML formats, with thermochemistry and transport data. No compilation
+is needed. The README inside the ZIP explains which files to use.
 
-We recommend the [linear mixture rule in reduced pressure (LMRR)](https://doi.org/10.1016/j.proci.2016.06.068). The Cantera
-YAML models use LMRR. For simulation software that reads mechanisms in CHEMKIN
-format but does not support LMRR, `LEGACY/` provides an independent-collider
-(IC) mechanism file. It uses the same thermochemistry and transport data as
-the main model.
+This prerelease of C3MechV4.2.0 incorporates optimized ammonia chemistry and
+will supersede C3MechV4.0.1. See the
+[release notes](RELEASES/V4.2.0/RELEASE_NOTES.md) for the changes.
+[All releases](https://github.com/C3Mech/C3Mech/releases) include earlier versions.
 
-In `PRECOMPILED/`, models are organized in folders such as `C0/` and `C1-C2/`.
-Each submodel uses the following layout. Here,
-`<model>` stands for the filename prefix, which includes the C3Mech version,
-model identifier and temperature range where applicable.
+## What to cite
 
-```text
-PRECOMPILED/
-└── <group>/
-    └── <submodel>/
-        ├── <model>.CKI       # Main kinetics (LMRR)
-        ├── <model>.THERM     # Thermochemistry
-        ├── <model>.TRAN      # Transport
-        ├── <model>.yaml      # Cantera model (LMRR)
-        └── LEGACY/
-            └── <model>_IC.CKI
-```
+When using the adopted ammonia chemistry, cite the submitted paper alongside
+the C3Mech publication and its corrigendum:
 
-The release ZIP places the `<group>/` folders directly at its top level.
+- S. Girhe, F. Loffredo, R. Langer, H. Pitsch (2026).
+  *Ammonia combustion kinetic model optimization using elementary rate
+  coefficient and global combustion data*. Submitted to *Combustion and Flame*.
+  The preprint link will be added when available.
+- L. Pratali Maffei et al. (2025).
+  [Modeling combustion chemistry using C3MechV4.0: An extension to mixtures of
+  hydrogen, ammonia, alkanes, and cycloalkanes](https://doi.org/10.1016/j.jaecs.2025.100385).
+  *Applications in Energy and Combustion Science*, 24, 100385.
+- [Corrigendum (2026)](https://doi.org/10.1016/j.jaecs.2026.100462).
+  *Applications in Energy and Combustion Science*, 26, 100462.
 
-For Cantera, load the `.yaml` file using Cantera 3.1 or later. For software
-that reads CHEMKIN format, use the `.CKI` file together with its matching
-`.THERM` and `.TRAN` files. Use `LEGACY/<model>_IC.CKI` when the solver does
-not support LMRR, together with the property files in its parent directory.
+Citation metadata are available in [CITATION.cff](CITATION.cff).
 
-## Compile models
+## Source and support
 
-The public compiler supports all valid combinations of the supplied public
-submodules. See [COMPILER/README.md](COMPILER/README.md) for environment setup,
-model selection and generation of all combinations. No separate validation
-repository or internal source tree is required.
+For custom model combinations, see the [compiler instructions](COMPILER/README.md).
+Ready-to-use compiled models are distributed through the releases.
 
-Source pairs identify their collider formulation. `_IC.MECH` uses the
-independent-collider formulation. The unsuffixed counterpart contains
-`LOWMX/LOWSP` input for the linear mixture rule in reduced pressure
-(LMR-R, also called LMRR) or pressure (LMR-P, also called LMRP), as selected by
-the solver. The adopted ammonia chemistry was optimized using LMR-R reaction
-rates. Collider formulations and solver file formats are separate choices.
-
-The [species dictionary instructions](SPECIES_DICTIONARY/README.md) explain
-how to generate the document from the current species CSV. The
-[release instructions](RELEASES/README.md) describe compilation and packaging.
-Scientific validation and release audits are carried out internally.
-
-## Citation and license
-
-Cite the applicable C3Mech publications and the adopted ammonia work listed
-in [CITATION.cff](CITATION.cff) and the release notes. The C3MechV4.0 baseline
-is described in [Pratali Maffei et al. (2025)](https://doi.org/10.1016/j.jaecs.2025.100385)
-and its [corrigendum](https://doi.org/10.1016/j.jaecs.2026.100462).
-
-Model files use the existing [CC BY 4.0 license](LICENSE). The compiler and
-species-dictionary tools retain their MIT licenses.
-
-For questions, open an issue or contact
+For questions, [open an issue](https://github.com/C3Mech/C3Mech/issues) or contact
 [Luna Pratali Maffei](mailto:luna.pratali@polimi.it) or
 [Raymond Langer](mailto:r.langer@itv.rwth-aachen.de).
+Model files are licensed under [CC BY 4.0](LICENSE); the compiler and
+species-dictionary tools retain their MIT licenses.
