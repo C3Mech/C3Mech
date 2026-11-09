@@ -11,8 +11,8 @@ modular structure supports models tailored to different fuel mixtures.
 **[Download C3MechV4.2.0-rc.3](https://github.com/C3Mech/C3Mech/releases/tag/V4.2.0-rc.3)**
 
 The release ZIP contains the full model and smaller submodels in CHEMKIN and
-Cantera YAML formats, with thermochemistry and transport data. No compilation
-is needed. The README inside the ZIP explains which files to use.
+Cantera YAML formats, with thermochemistry and transport data.
+The README inside the ZIP explains which files to use.
 
 This prerelease of C3MechV4.2.0 incorporates optimized ammonia chemistry and
 will supersede C3MechV4.0.1. See the
