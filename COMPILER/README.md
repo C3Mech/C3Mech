@@ -142,3 +142,14 @@ The final terminal line again reports that `MODEL_CATALOG.md` was written.
 
 If you have further questions or need additional help, please feel free to open
 an issue or [contact us](mailto:r.langer@itv.rwth-aachen.de).
+
+## Model header citations
+
+Generated model headers list the publication for the current minor-version
+update first, followed by the C3Mech model-family publication and its
+corrigendum. The preferred publication in citation metadata remains the
+publication introducing the model family.
+
+The adopted ammonia source pair is in `SUBMODULES/ITV_UOG/`, matching the
+internal source layout. `_IC.MECH` identifies the independent-collider
+mechanism; its unsuffixed counterpart uses LOWMX/LOWSP input.

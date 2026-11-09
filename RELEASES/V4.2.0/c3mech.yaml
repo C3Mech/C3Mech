@@ -260,12 +260,12 @@ citation:
         - given_names: Sanket
           family_names: Girhe
           citation_name: Girhe, S.
-        - given_names: Raymond
-          family_names: Langer
-          citation_name: Langer, R.
         - given_names: Francesca
           family_names: Loffredo
           citation_name: Loffredo, F.
+        - given_names: Raymond
+          family_names: Langer
+          citation_name: Langer, R.
         - given_names: Heinz
           family_names: Pitsch
           citation_name: Pitsch, H.

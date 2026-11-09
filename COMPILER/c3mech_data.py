@@ -40,7 +40,7 @@ TOOL_COMPATIBLE_SUBMODULE_BASENAMES = {
 TOOL_COMPATIBLE_SUBMODULE_DIRS = {
     "C0": ("UOG", "LT-HT"),
     "C1-C2": ("UOG", "LT-HT"),
-    "UOG_N": ("UOG", "LT-HT"),
+    "UOG_N": ("ITV_UOG",),
 }
 
 
@@ -345,7 +345,8 @@ class C3MechCitationCatalog:
   """Accumulated publications and version-specific citation selections.
 
   Mapping order has no presentation significance. Publication identifier
-  lists retain YAML order and control generated citation order.
+  lists retain YAML order within each role. The current minor-version
+  update precedes model-family publications and their corrigenda.
   """
   cff_title: str
   major_versions: Mapping[str, C3MechMajorCitationVersion]
@@ -471,9 +472,9 @@ _MODEL_VERSION_PATTERN = re.compile(r"^[0-9]+\.[0-9]+\.[0-9]+$")
 _MAJOR_VERSION_PATTERN = re.compile(r"^[0-9]+$")
 _MINOR_VERSION_PATTERN = re.compile(r"^[0-9]+\.[1-9][0-9]*$")
 HEADER_CITATION_ROLE_ORDER = (
+    "minor_version_publication",
     "major_version_publication",
     "corrigendum",
-    "minor_version_publication",
 )
 
 
@@ -957,7 +958,7 @@ def _selected_citations(model, major_versions, minor_versions, publications):
     raise C3MechConfigurationError(
         "citation.major_versions is missing model major version " + major)
   major_selection = major_versions[major]
-  major_role, corrigendum_role, minor_role = HEADER_CITATION_ROLE_ORDER
+  minor_role, major_role, corrigendum_role = HEADER_CITATION_ROLE_ORDER
   selections = [
       (major_role, major_selection.publication_ids),
       (corrigendum_role, major_selection.corrigendum_ids),
@@ -968,7 +969,7 @@ def _selected_citations(model, major_versions, minor_versions, publications):
       raise C3MechConfigurationError(
           "citation.minor_versions is missing model minor version " +
           minor_version)
-    selections.append((
+    selections.insert(0, (
         minor_role,
         minor_versions[minor_version].publication_ids))
   citations = []

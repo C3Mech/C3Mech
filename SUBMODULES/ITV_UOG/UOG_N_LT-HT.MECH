@@ -1,51 +1,51 @@
-! Collider formulation: independent collider (IC).
-! The paired LOWMX/LOWSP input supports LMR-R (LMRR) or LMR-P (LMRP), selected by the solver.
+! Collider input: LOWMX/LOWSP for LMR-R (LMRR) or LMR-P (LMRP), selected by the solver.
+! LMR-R is the linear mixture rule in reduced pressure; LMR-P is the linear mixture rule in pressure.
 
 !++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 !\KINETICS_MODULE: NH3+NOX
 !++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 ! Updated NH3/H2/NOx chemistry by Yuxiang Zhu, 17 November 2023
 ! When using this NH3 submodule, cite:
-! S. Girhe, R. Langer, F. Loffredo, and H. Pitsch, "Ammonia combustion kinetic model
-! optimization using elementary rate coefficient and global combustion data", manuscript in preparation for submission to Combustion and Flame (C&F).
+! S. Girhe, F. Loffredo, R. Langer, and H. Pitsch, "Ammonia combustion kinetic model
+! optimization using elementary rate coefficient and global combustion data", submitted to Combustion and Flame (C&F).
 ! Built on C3MechV4.0.1. Rate parameters of 70 reactions were optimized using experimental and
-! theoretical rate determinations from 140 publications and 11,273 indirect combustion measurements
-! from 114 publications. Optimized lines are marked "!Girhe et al. (2026), C&F".
+! theoretical rate determinations from 142 publications and 11,232 indirect combustion measurements
+! from 113 publications. Optimized lines are marked "!Girhe et al. (2026), C&F".
 ! Collider-specific falloff (LOWMX/LOWSP) was fitted
 ! with the linear mixture rule of Burke (LMR-R).
 !
-    !!! =========== LMR-R (LMRR) / LMR-P (LMRP) collider-specific input ===========
-    !NH2+H(+M)=NH3(+M)                      1.50000000E+14    1.67000000E-01    0.00000000E+00 !k_inf: Glarborg et al., Fuel Commun. 10 (2022) 100049
-    !AR/ 1/ NH3/ 1/ O2/ 1/ H2O/ 1/
-    !     LOWMX  /  8.90713549E+26 -3.16167932E+00 5.26064380E+02 / !Girhe et al. (2026), C&F
-    !     TROEMX /  5.00000000E-01 1.00000000E-30 1.00000000E+30 1.00000000E+30 /
-    !     LOWSP  /  AR 9.03689854E+25 -2.85554228E+00 1.31822018E+03 / !Girhe et al. (2026), C&F
-    !     TROESP /  AR 5.00000000E-01 1.00000000E-30 1.00000000E+30 1.00000000E+30 /
-    !     LOWSP  /  NH3 5.97793483E+16 1.31277641E-01 -2.25792508E+03 / !Girhe et al. (2026), C&F
-    !     TROESP /  NH3 5.00000000E-01 1.00000000E-30 1.00000000E+30 1.00000000E+30 /
-    !     LOWSP  /  O2 3.45630000E+21 -1.55880000E+00 -3.89200000E+02 / !Jasper (2022)
-    !     TROESP /  O2 5.00000000E-01 1.00000000E-30 1.00000000E+30 1.00000000E+30 /
-    !     LOWSP  /  H2O 5.89246839E+15 4.18674627E-01 -3.11148506E+03 / !Girhe et al. (2026), C&F
-    !     TROESP /  H2O 5.00000000E-01 1.00000000E-30 1.00000000E+30 1.00000000E+30 /
-    !!! =========== LMR-R / LMR-P input END ==========
-!! =========== Independent-collider (IC) formulation ===========
+!! =========== LMR-R (LMRR) / LMR-P (LMRP) collider-specific input ===========
 NH2+H(+M)=NH3(+M)                      1.50000000E+14    1.67000000E-01    0.00000000E+00 !k_inf: Glarborg et al., Fuel Commun. 10 (2022) 100049
-     LOW    /  8.90713549E+26 -3.16167932E+00 5.26064380E+02 / !Girhe et al. (2026), C&F
-     TROE   /  5.00000000E-01 1.00000000E-30 1.00000000E+30 1.00000000E+30 /
-AR/ 0/ NH3/ 0/ O2/ 0/ H2O/ 0/
-NH2+H(+AR)=NH3(+AR)                    1.50000000E+14    1.67000000E-01    0.00000000E+00 !collider AR
-     LOW    /  9.03689854E+25 -2.85554228E+00 1.31822018E+03 / !Girhe et al. (2026), C&F
-     TROE   /  5.00000000E-01 1.00000000E-30 1.00000000E+30 1.00000000E+30 /
-NH2+H(+NH3)=NH3(+NH3)                  1.50000000E+14    1.67000000E-01    0.00000000E+00 !collider NH3
-     LOW    /  5.97793483E+16 1.31277641E-01 -2.25792508E+03 / !Girhe et al. (2026), C&F
-     TROE   /  5.00000000E-01 1.00000000E-30 1.00000000E+30 1.00000000E+30 /
-NH2+H(+O2)=NH3(+O2)                    1.50000000E+14    1.67000000E-01    0.00000000E+00 !collider O2
-     LOW    /  3.45630000E+21 -1.55880000E+00 -3.89200000E+02 / !Jasper (2022)
-     TROE   /  5.00000000E-01 1.00000000E-30 1.00000000E+30 1.00000000E+30 /
-NH2+H(+H2O)=NH3(+H2O)                  1.50000000E+14    1.67000000E-01    0.00000000E+00 !collider H2O
-     LOW    /  5.89246839E+15 4.18674627E-01 -3.11148506E+03 / !Girhe et al. (2026), C&F
-     TROE   /  5.00000000E-01 1.00000000E-30 1.00000000E+30 1.00000000E+30 /
-!! =========== IC formulation END ==========
+AR/ 1/ NH3/ 1/ O2/ 1/ H2O/ 1/
+     LOWMX  /  8.90713549E+26 -3.16167932E+00 5.26064380E+02 / !Girhe et al. (2026), C&F
+     TROEMX /  5.00000000E-01 1.00000000E-30 1.00000000E+30 1.00000000E+30 /
+     LOWSP  /  AR 9.03689854E+25 -2.85554228E+00 1.31822018E+03 / !Girhe et al. (2026), C&F
+     TROESP /  AR 5.00000000E-01 1.00000000E-30 1.00000000E+30 1.00000000E+30 /
+     LOWSP  /  NH3 5.97793483E+16 1.31277641E-01 -2.25792508E+03 / !Girhe et al. (2026), C&F
+     TROESP /  NH3 5.00000000E-01 1.00000000E-30 1.00000000E+30 1.00000000E+30 /
+     LOWSP  /  O2 3.45630000E+21 -1.55880000E+00 -3.89200000E+02 / !Jasper (2022)
+     TROESP /  O2 5.00000000E-01 1.00000000E-30 1.00000000E+30 1.00000000E+30 /
+     LOWSP  /  H2O 5.89246839E+15 4.18674627E-01 -3.11148506E+03 / !Girhe et al. (2026), C&F
+     TROESP /  H2O 5.00000000E-01 1.00000000E-30 1.00000000E+30 1.00000000E+30 /
+!! =========== LMR-R / LMR-P input END ==========
+    !!! =========== Independent-collider (IC) formulation ===========
+    !NH2+H(+M)=NH3(+M)                      1.50000000E+14    1.67000000E-01    0.00000000E+00 !k_inf: Glarborg et al., Fuel Commun. 10 (2022) 100049
+    !     LOW    /  8.90713549E+26 -3.16167932E+00 5.26064380E+02 / !Girhe et al. (2026), C&F
+    !     TROE   /  5.00000000E-01 1.00000000E-30 1.00000000E+30 1.00000000E+30 /
+    !AR/ 0/ NH3/ 0/ O2/ 0/ H2O/ 0/
+    !NH2+H(+AR)=NH3(+AR)                    1.50000000E+14    1.67000000E-01    0.00000000E+00 !collider AR
+    !     LOW    /  9.03689854E+25 -2.85554228E+00 1.31822018E+03 / !Girhe et al. (2026), C&F
+    !     TROE   /  5.00000000E-01 1.00000000E-30 1.00000000E+30 1.00000000E+30 /
+    !NH2+H(+NH3)=NH3(+NH3)                  1.50000000E+14    1.67000000E-01    0.00000000E+00 !collider NH3
+    !     LOW    /  5.97793483E+16 1.31277641E-01 -2.25792508E+03 / !Girhe et al. (2026), C&F
+    !     TROE   /  5.00000000E-01 1.00000000E-30 1.00000000E+30 1.00000000E+30 /
+    !NH2+H(+O2)=NH3(+O2)                    1.50000000E+14    1.67000000E-01    0.00000000E+00 !collider O2
+    !     LOW    /  3.45630000E+21 -1.55880000E+00 -3.89200000E+02 / !Jasper (2022)
+    !     TROE   /  5.00000000E-01 1.00000000E-30 1.00000000E+30 1.00000000E+30 /
+    !NH2+H(+H2O)=NH3(+H2O)                  1.50000000E+14    1.67000000E-01    0.00000000E+00 !collider H2O
+    !     LOW    /  5.89246839E+15 4.18674627E-01 -3.11148506E+03 / !Girhe et al. (2026), C&F
+    !     TROE   /  5.00000000E-01 1.00000000E-30 1.00000000E+30 1.00000000E+30 /
+    !!! =========== IC formulation END ==========
 H+NH3<=>H2+NH2                         1.83591679E+02    3.40136485E+00    8.21709271E+03 !Girhe et al. (2026), C&F
 NH3+O<=>NH2+OH                         3.29039232E+04    2.54330567E+00    4.37988464E+03 !Girhe et al. (2026), C&F
 NH3+OH<=>H2O+NH2                       9.09627696E+00    3.57702932E+00   -1.04030587E+03 !Girhe et al. (2026), C&F
@@ -112,38 +112,38 @@ N+NO=N2+O                              2.17808036E+17   -1.10543456E+00    3.807
 DUP
 N+NO=N2+O                              3.22982000E+18    -1.88075000E+00    7.56899750E+02 ! Yuxiang Zhu; REFIT NIST, !NEW 6-PARA ARRHENIUS FIT 07/2024 (AVOID NEGATIVE A-FACTOR)
 DUP
-    !!! =========== LMR-R (LMRR) / LMR-P (LMRP) collider-specific input ===========
-    !2NH2(+M)<=>N2H4(+M)                    5.62000000E+14   -4.14000000E-01    6.56000000E+01 !k_inf: Klippenstein et al., J. Phys. Chem. A 113 (2009) 10241-10259
-    !N2/ 1/ O2/ 1/ NH3/ 1/ H2O/ 1/
-    !     LOWMX  /  1.80666305E+32 -4.90222508E+00 5.18346345E+02 / !Girhe et al. (2026), C&F
-    !     TROEMX /  3.10000000E-01 1.00000000E-30 1.00000000E+30 1.00000000E+30 /
-    !     LOWSP  /  N2 3.63019233E+32 -4.81931685E+00 1.77966123E+03 / !Girhe et al. (2026), C&F
-    !     TROESP /  N2 3.10000000E-01 1.00000000E-30 1.00000000E+30 1.00000000E+30 /
-    !     LOWSP  /  O2 2.32730000E+34 -5.52000000E+00 1.97590000E+03 / !Stagni & Dinelli (2025)
-    !     TROESP /  O2 3.10000000E-01 1.00000000E-30 1.00000000E+30 1.00000000E+30 /
-    !     LOWSP  /  NH3 6.48780000E+35 -5.67500000E+00 2.57210000E+03 / !Stagni & Dinelli (2025)
-    !     TROESP /  NH3 3.10000000E-01 1.00000000E-30 1.00000000E+30 1.00000000E+30 /
-    !     LOWSP  /  H2O 9.62930000E+35 -5.73100000E+00 2.65190000E+03 / !Stagni & Dinelli (2025)
-    !     TROESP /  H2O 3.10000000E-01 1.00000000E-30 1.00000000E+30 1.00000000E+30 /
-    !!! =========== LMR-R / LMR-P input END ==========
-!! =========== Independent-collider (IC) formulation ===========
+!! =========== LMR-R (LMRR) / LMR-P (LMRP) collider-specific input ===========
 2NH2(+M)<=>N2H4(+M)                    5.62000000E+14   -4.14000000E-01    6.56000000E+01 !k_inf: Klippenstein et al., J. Phys. Chem. A 113 (2009) 10241-10259
-     LOW    /  1.80666305E+32 -4.90222508E+00 5.18346345E+02 / !Girhe et al. (2026), C&F
-     TROE   /  3.10000000E-01 1.00000000E-30 1.00000000E+30 1.00000000E+30 /
-N2/ 0/ O2/ 0/ NH3/ 0/ H2O/ 0/
-2NH2(+N2)<=>N2H4(+N2)                  5.62000000E+14   -4.14000000E-01    6.56000000E+01 !collider N2
-     LOW    /  3.63019233E+32 -4.81931685E+00 1.77966123E+03 / !Girhe et al. (2026), C&F
-     TROE   /  3.10000000E-01 1.00000000E-30 1.00000000E+30 1.00000000E+30 /
-2NH2(+O2)<=>N2H4(+O2)                  5.62000000E+14   -4.14000000E-01    6.56000000E+01 !collider O2
-     LOW    /  2.32730000E+34 -5.52000000E+00 1.97590000E+03 / !Stagni & Dinelli (2025)
-     TROE   /  3.10000000E-01 1.00000000E-30 1.00000000E+30 1.00000000E+30 /
-2NH2(+NH3)<=>N2H4(+NH3)                5.62000000E+14   -4.14000000E-01    6.56000000E+01 !collider NH3
-     LOW    /  6.48780000E+35 -5.67500000E+00 2.57210000E+03 / !Stagni & Dinelli (2025)
-     TROE   /  3.10000000E-01 1.00000000E-30 1.00000000E+30 1.00000000E+30 /
-2NH2(+H2O)<=>N2H4(+H2O)                5.62000000E+14   -4.14000000E-01    6.56000000E+01 !collider H2O
-     LOW    /  9.62930000E+35 -5.73100000E+00 2.65190000E+03 / !Stagni & Dinelli (2025)
-     TROE   /  3.10000000E-01 1.00000000E-30 1.00000000E+30 1.00000000E+30 /
-!! =========== IC formulation END ==========
+N2/ 1/ O2/ 1/ NH3/ 1/ H2O/ 1/
+     LOWMX  /  1.80666305E+32 -4.90222508E+00 5.18346345E+02 / !Girhe et al. (2026), C&F
+     TROEMX /  3.10000000E-01 1.00000000E-30 1.00000000E+30 1.00000000E+30 /
+     LOWSP  /  N2 3.63019233E+32 -4.81931685E+00 1.77966123E+03 / !Girhe et al. (2026), C&F
+     TROESP /  N2 3.10000000E-01 1.00000000E-30 1.00000000E+30 1.00000000E+30 /
+     LOWSP  /  O2 2.32730000E+34 -5.52000000E+00 1.97590000E+03 / !Stagni & Dinelli (2025)
+     TROESP /  O2 3.10000000E-01 1.00000000E-30 1.00000000E+30 1.00000000E+30 /
+     LOWSP  /  NH3 6.48780000E+35 -5.67500000E+00 2.57210000E+03 / !Stagni & Dinelli (2025)
+     TROESP /  NH3 3.10000000E-01 1.00000000E-30 1.00000000E+30 1.00000000E+30 /
+     LOWSP  /  H2O 9.62930000E+35 -5.73100000E+00 2.65190000E+03 / !Stagni & Dinelli (2025)
+     TROESP /  H2O 3.10000000E-01 1.00000000E-30 1.00000000E+30 1.00000000E+30 /
+!! =========== LMR-R / LMR-P input END ==========
+    !!! =========== Independent-collider (IC) formulation ===========
+    !2NH2(+M)<=>N2H4(+M)                    5.62000000E+14   -4.14000000E-01    6.56000000E+01 !k_inf: Klippenstein et al., J. Phys. Chem. A 113 (2009) 10241-10259
+    !     LOW    /  1.80666305E+32 -4.90222508E+00 5.18346345E+02 / !Girhe et al. (2026), C&F
+    !     TROE   /  3.10000000E-01 1.00000000E-30 1.00000000E+30 1.00000000E+30 /
+    !N2/ 0/ O2/ 0/ NH3/ 0/ H2O/ 0/
+    !2NH2(+N2)<=>N2H4(+N2)                  5.62000000E+14   -4.14000000E-01    6.56000000E+01 !collider N2
+    !     LOW    /  3.63019233E+32 -4.81931685E+00 1.77966123E+03 / !Girhe et al. (2026), C&F
+    !     TROE   /  3.10000000E-01 1.00000000E-30 1.00000000E+30 1.00000000E+30 /
+    !2NH2(+O2)<=>N2H4(+O2)                  5.62000000E+14   -4.14000000E-01    6.56000000E+01 !collider O2
+    !     LOW    /  2.32730000E+34 -5.52000000E+00 1.97590000E+03 / !Stagni & Dinelli (2025)
+    !     TROE   /  3.10000000E-01 1.00000000E-30 1.00000000E+30 1.00000000E+30 /
+    !2NH2(+NH3)<=>N2H4(+NH3)                5.62000000E+14   -4.14000000E-01    6.56000000E+01 !collider NH3
+    !     LOW    /  6.48780000E+35 -5.67500000E+00 2.57210000E+03 / !Stagni & Dinelli (2025)
+    !     TROE   /  3.10000000E-01 1.00000000E-30 1.00000000E+30 1.00000000E+30 /
+    !2NH2(+H2O)<=>N2H4(+H2O)                5.62000000E+14   -4.14000000E-01    6.56000000E+01 !collider H2O
+    !     LOW    /  9.62930000E+35 -5.73100000E+00 2.65190000E+03 / !Stagni & Dinelli (2025)
+    !     TROE   /  3.10000000E-01 1.00000000E-30 1.00000000E+30 1.00000000E+30 /
+    !!! =========== IC formulation END ==========
 N2H4<=>H2+H2NN                                    1.0               0.0               0.0 !A. Dean, J. Bozzelli, Combustion Chemistry of Nitrogen, (2000).
 PLOG / 1.00000000E-01                  7.76918397E+43   -9.73176136E+00    7.10492171E+04 / !Girhe et al. (2026), C&F
 PLOG / 1.00000000E+00                  1.02941688E+39   -8.23176136E+00    6.90032171E+04 / !Girhe et al. (2026), C&F
@@ -263,43 +263,43 @@ N2O+O<=>N2+O2                          3.69000000E+12    0.00000000E+00    1.593
 N2O+OH<=>HO2+N2                        1.30000000E-02    4.72000000E+00    3.65600000E+04 !\Author: YJZ !\Ref: MEBEL ET AL., IJCK, 1996, 28(9) !\Comment: WARNING
 N2O+OH<=>HNO+NO                        1.20000000E-04    4.33000000E+00    2.50800000E+04 !\Author: YJZ !\Ref: MEBEL ET AL., IJCK, 1996, 28(9) !\Comment: WARNING
 N2O+NO<=>N2+NO2                        5.30000000E+05    2.23000000E+00    4.62810000E+04 !\Author: YJZ !\Ref: MEBEL ET AL., IJCK, 1996, 28(9) !\Comment: WARNING
-    !!! =========== LMR-R (LMRR) / LMR-P (LMRP) collider-specific input ===========
-    !H+NO(+M)=HNO(+M)                       1.50000000E+15   -4.10000000E-01    0.00000000E+00 !k_inf: Tsang & Herron (1991) via Stagni & Dinelli (2025)
-    !AR/ 1/ HE/ 1/ H2/ 1/ NH3/ 1/ H2O/ 1/
-    !     LOWMX  /  1.84934608E+19 -1.45518729E+00 -1.06742549E+03 / !Girhe et al. (2026), C&F
-    !     TROEMX /  6.22897000E-01 6.62505000E+03 1.86662000E+02 4.65939000E+03 /
-    !     LOWSP  /  AR 3.39238477E+22 -2.42836730E+00 8.00184102E+02 / !Girhe et al. (2026), C&F
-    !     TROESP /  AR 6.22897000E-01 6.62505000E+03 1.86662000E+02 4.65939000E+03 /
-    !     LOWSP  /  HE 6.76783867E+32 -5.27979560E+00 5.20450491E+03 / !Girhe et al. (2026), C&F
-    !     TROESP /  HE 6.22897000E-01 6.62505000E+03 1.86662000E+02 4.65939000E+03 /
-    !     LOWSP  /  H2 3.42340000E+22 -2.27800000E+00 2.04000000E+01 / !Jian et al. (2024)
-    !     TROESP /  H2 6.22897000E-01 6.62505000E+03 1.86662000E+02 4.65939000E+03 /
-    !     LOWSP  /  NH3 8.13220000E+21 -1.97800000E+00 -1.38500000E+02 / !Jian et al. (2024)
-    !     TROESP /  NH3 6.22897000E-01 6.62505000E+03 1.86662000E+02 4.65939000E+03 /
-    !     LOWSP  /  H2O 1.25591547E+18 -9.05373972E-01 -2.31000958E+03 / !Girhe et al. (2026), C&F
-    !     TROESP /  H2O 6.22897000E-01 6.62505000E+03 1.86662000E+02 4.65939000E+03 /
-    !!! =========== LMR-R / LMR-P input END ==========
-!! =========== Independent-collider (IC) formulation ===========
+!! =========== LMR-R (LMRR) / LMR-P (LMRP) collider-specific input ===========
 H+NO(+M)=HNO(+M)                       1.50000000E+15   -4.10000000E-01    0.00000000E+00 !k_inf: Tsang & Herron (1991) via Stagni & Dinelli (2025)
-     LOW    /  1.84934608E+19 -1.45518729E+00 -1.06742549E+03 / !Girhe et al. (2026), C&F
-     TROE   /  6.22897000E-01 6.62505000E+03 1.86662000E+02 4.65939000E+03 /
-AR/ 0/ HE/ 0/ H2/ 0/ NH3/ 0/ H2O/ 0/
-H+NO(+AR)=HNO(+AR)                     1.50000000E+15   -4.10000000E-01    0.00000000E+00 !collider AR
-     LOW    /  3.39238477E+22 -2.42836730E+00 8.00184102E+02 / !Girhe et al. (2026), C&F
-     TROE   /  6.22897000E-01 6.62505000E+03 1.86662000E+02 4.65939000E+03 /
-H+NO(+HE)=HNO(+HE)                     1.50000000E+15   -4.10000000E-01    0.00000000E+00 !collider HE
-     LOW    /  6.76783867E+32 -5.27979560E+00 5.20450491E+03 / !Girhe et al. (2026), C&F
-     TROE   /  6.22897000E-01 6.62505000E+03 1.86662000E+02 4.65939000E+03 /
-H+NO(+H2)=HNO(+H2)                     1.50000000E+15   -4.10000000E-01    0.00000000E+00 !collider H2
-     LOW    /  3.42340000E+22 -2.27800000E+00 2.04000000E+01 / !Jian et al. (2024)
-     TROE   /  6.22897000E-01 6.62505000E+03 1.86662000E+02 4.65939000E+03 /
-H+NO(+NH3)=HNO(+NH3)                   1.50000000E+15   -4.10000000E-01    0.00000000E+00 !collider NH3
-     LOW    /  8.13220000E+21 -1.97800000E+00 -1.38500000E+02 / !Jian et al. (2024)
-     TROE   /  6.22897000E-01 6.62505000E+03 1.86662000E+02 4.65939000E+03 /
-H+NO(+H2O)=HNO(+H2O)                   1.50000000E+15   -4.10000000E-01    0.00000000E+00 !collider H2O
-     LOW    /  1.25591547E+18 -9.05373972E-01 -2.31000958E+03 / !Girhe et al. (2026), C&F
-     TROE   /  6.22897000E-01 6.62505000E+03 1.86662000E+02 4.65939000E+03 /
-!! =========== IC formulation END ==========
+AR/ 1/ HE/ 1/ H2/ 1/ NH3/ 1/ H2O/ 1/
+     LOWMX  /  1.84934608E+19 -1.45518729E+00 -1.06742549E+03 / !Girhe et al. (2026), C&F
+     TROEMX /  6.22897000E-01 6.62505000E+03 1.86662000E+02 4.65939000E+03 /
+     LOWSP  /  AR 3.39238477E+22 -2.42836730E+00 8.00184102E+02 / !Girhe et al. (2026), C&F
+     TROESP /  AR 6.22897000E-01 6.62505000E+03 1.86662000E+02 4.65939000E+03 /
+     LOWSP  /  HE 6.76783867E+32 -5.27979560E+00 5.20450491E+03 / !Girhe et al. (2026), C&F
+     TROESP /  HE 6.22897000E-01 6.62505000E+03 1.86662000E+02 4.65939000E+03 /
+     LOWSP  /  H2 3.42340000E+22 -2.27800000E+00 2.04000000E+01 / !Jian et al. (2024)
+     TROESP /  H2 6.22897000E-01 6.62505000E+03 1.86662000E+02 4.65939000E+03 /
+     LOWSP  /  NH3 8.13220000E+21 -1.97800000E+00 -1.38500000E+02 / !Jian et al. (2024)
+     TROESP /  NH3 6.22897000E-01 6.62505000E+03 1.86662000E+02 4.65939000E+03 /
+     LOWSP  /  H2O 1.25591547E+18 -9.05373972E-01 -2.31000958E+03 / !Girhe et al. (2026), C&F
+     TROESP /  H2O 6.22897000E-01 6.62505000E+03 1.86662000E+02 4.65939000E+03 /
+!! =========== LMR-R / LMR-P input END ==========
+    !!! =========== Independent-collider (IC) formulation ===========
+    !H+NO(+M)=HNO(+M)                       1.50000000E+15   -4.10000000E-01    0.00000000E+00 !k_inf: Tsang & Herron (1991) via Stagni & Dinelli (2025)
+    !     LOW    /  1.84934608E+19 -1.45518729E+00 -1.06742549E+03 / !Girhe et al. (2026), C&F
+    !     TROE   /  6.22897000E-01 6.62505000E+03 1.86662000E+02 4.65939000E+03 /
+    !AR/ 0/ HE/ 0/ H2/ 0/ NH3/ 0/ H2O/ 0/
+    !H+NO(+AR)=HNO(+AR)                     1.50000000E+15   -4.10000000E-01    0.00000000E+00 !collider AR
+    !     LOW    /  3.39238477E+22 -2.42836730E+00 8.00184102E+02 / !Girhe et al. (2026), C&F
+    !     TROE   /  6.22897000E-01 6.62505000E+03 1.86662000E+02 4.65939000E+03 /
+    !H+NO(+HE)=HNO(+HE)                     1.50000000E+15   -4.10000000E-01    0.00000000E+00 !collider HE
+    !     LOW    /  6.76783867E+32 -5.27979560E+00 5.20450491E+03 / !Girhe et al. (2026), C&F
+    !     TROE   /  6.22897000E-01 6.62505000E+03 1.86662000E+02 4.65939000E+03 /
+    !H+NO(+H2)=HNO(+H2)                     1.50000000E+15   -4.10000000E-01    0.00000000E+00 !collider H2
+    !     LOW    /  3.42340000E+22 -2.27800000E+00 2.04000000E+01 / !Jian et al. (2024)
+    !     TROE   /  6.22897000E-01 6.62505000E+03 1.86662000E+02 4.65939000E+03 /
+    !H+NO(+NH3)=HNO(+NH3)                   1.50000000E+15   -4.10000000E-01    0.00000000E+00 !collider NH3
+    !     LOW    /  8.13220000E+21 -1.97800000E+00 -1.38500000E+02 / !Jian et al. (2024)
+    !     TROE   /  6.22897000E-01 6.62505000E+03 1.86662000E+02 4.65939000E+03 /
+    !H+NO(+H2O)=HNO(+H2O)                   1.50000000E+15   -4.10000000E-01    0.00000000E+00 !collider H2O
+    !     LOW    /  1.25591547E+18 -9.05373972E-01 -2.31000958E+03 / !Girhe et al. (2026), C&F
+    !     TROE   /  6.22897000E-01 6.62505000E+03 1.86662000E+02 4.65939000E+03 /
+    !!! =========== IC formulation END ==========
 H+HNO<=>H2+NO                          1.56934873E+12    6.82566590E-01    4.98221070E+02 !Girhe et al. (2026), C&F
 NH3+NO<=>HNO+NH2                       3.83738537E-06    5.69583608E+00    5.28837976E+04 !Girhe et al. (2026), C&F
 HNO+O<=>NO+OH                          2.30000000E+13    0.00000000E+00    0.00000000E+00 !Inomata S Washida N JPCA 103:5023-5031 1999
