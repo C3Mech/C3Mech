@@ -1,11 +1,13 @@
 # C3MechV4.2.0
 
 C3MechV4.2.0 incorporates the optimized ammonia combustion chemistry of
-Girhe et al. into the C3MechV4.0.1 baseline. The update includes the adopted
-ammonia thermochemistry and excited-hydroxyl (OH*) chemistry.
+Girhe et al. into the C3MechV4.0.1 baseline.
 
-The ammonia model was optimized using elementary rate coefficient and global
-combustion data, with multicomponent transport for flame predictions.
+The model draws on direct rate determinations from **142 publications**
+and **11,232 combustion measurements from 113 publications**. It substantially
+improves agreement with combustion measurements across a broad range of
+conditions, while maintaining close overall agreement with the available
+direct rate determinations.
 
 > **Preliminary release:** The model and associated paper remain under review.
 
