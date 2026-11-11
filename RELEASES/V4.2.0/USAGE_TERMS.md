@@ -7,7 +7,7 @@ The compiler and species-dictionary tools retain their separate MIT licenses.
 
 When using the adopted ammonia chemistry, cite the work of Girhe et al. listed
 in the release notes in addition to the applicable C3Mech publications. The
-preprint citation will be added when the manuscript is archived.
+[preprint is available on ChemRxiv](https://doi.org/10.26434/chemrxiv.15011965/v1).
 
 This is a release candidate. Peer review of the associated ammonia manuscript has not
 been completed, and the model may change before the final release.

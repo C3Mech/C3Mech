@@ -47,6 +47,11 @@ def _publication_data(publication):
     else:
       data["start"] = publication.start_page
       data["end"] = publication.end_page
+  else:
+    for key in ("year", "doi", "url"):
+      value = getattr(publication, key)
+      if value is not None:
+        data[key] = value
   return data
 
 

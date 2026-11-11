@@ -57,8 +57,8 @@ The CSV in the same directory contains the corresponding source definitions.
 and file checksums.
 
 Read [RELEASE_NOTES.md](RELEASE_NOTES.md) for the model changes and citation
-requirements. The ammonia paper has been submitted to *Combustion and Flame*; its preprint
-citation will be added when available.
+requirements. The ammonia [preprint is available on ChemRxiv](https://doi.org/10.26434/chemrxiv.15011965/v1)
+and has been submitted to *Combustion and Flame*.
 The model files use the [CC BY 4.0 license](LICENSE); see
 [USAGE_TERMS.md](USAGE_TERMS.md) and [CITATION.cff](CITATION.cff).
 

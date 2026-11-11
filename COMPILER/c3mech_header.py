@@ -193,7 +193,12 @@ def _render_citations(configuration, content_width):
           locator + ". https://doi.org/" + citation.doi)
     else:
       authors = _format_publication_authors(citation.authors)
-      paragraph = authors + ", " + title
+      year = "" if citation.year is None else " (" + str(citation.year) + ")"
+      paragraph = authors + year + ", " + title
+      if citation.doi is not None or citation.url is not None:
+        link = ("https://doi.org/" + citation.doi
+                if citation.doi is not None else citation.url)
+        paragraph += " Preprint. " + link
     wrapped = _wrap_paragraph(
         paragraph, width=content_width - 6)
     lines.extend(

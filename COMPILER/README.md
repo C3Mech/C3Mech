@@ -153,3 +153,7 @@ publication introducing the model family.
 The adopted ammonia source pair is in `SUBMODULES/ITV_UOG/`, matching the
 internal source layout. `_IC.MECH` identifies the independent-collider
 mechanism; its unsuffixed counterpart uses LOWMX/LOWSP input.
+
+Archived preprints keep the citation type `unpublished` until journal
+publication. Optional `year`, `doi` and `url` fields add the permanent
+archive reference to generated model headers and citation metadata.

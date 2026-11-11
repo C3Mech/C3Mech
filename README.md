@@ -21,13 +21,13 @@ will supersede C3MechV4.0.1. See the
 
 ## What to cite
 
-When using the adopted ammonia chemistry, cite the submitted paper alongside
+When using the adopted ammonia chemistry, cite the ammonia preprint alongside
 the C3Mech publication and its corrigendum:
 
 - S. Girhe, F. Loffredo, R. Langer, H. Pitsch (2026).
   *Ammonia combustion kinetic model optimization using elementary rate
-  coefficient and global combustion data*. Submitted to *Combustion and Flame*.
-  The preprint link will be added when available.
+  coefficient and global combustion data*. [ChemRxiv preprint, version 1](https://doi.org/10.26434/chemrxiv.15011965/v1).
+  Submitted to *Combustion and Flame*.
 - L. Pratali Maffei et al. (2025).
   [Modeling combustion chemistry using C3MechV4.0: An extension to mixtures of
   hydrogen, ammonia, alkanes, and cycloalkanes](https://doi.org/10.1016/j.jaecs.2025.100385).

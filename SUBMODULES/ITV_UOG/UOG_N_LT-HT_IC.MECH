@@ -7,7 +7,9 @@
 ! Updated NH3/H2/NOx chemistry by Yuxiang Zhu, 17 November 2023
 ! When using this NH3 submodule, cite:
 ! S. Girhe, F. Loffredo, R. Langer, and H. Pitsch, "Ammonia combustion kinetic model
-! optimization using elementary rate coefficient and global combustion data", submitted to Combustion and Flame (C&F).
+! optimization using elementary rate coefficient and global combustion data", ChemRxiv preprint (2026).
+! https://doi.org/10.26434/chemrxiv.15011965/v1
+! Submitted to Combustion and Flame (C&F).
 ! Built on C3MechV4.0.1. Rate parameters of 70 reactions were optimized using experimental and
 ! theoretical rate determinations from 142 publications and 11,232 indirect combustion measurements
 ! from 113 publications. Optimized lines are marked "!Girhe et al. (2026), C&F".

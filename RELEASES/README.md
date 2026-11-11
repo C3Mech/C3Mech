@@ -71,4 +71,4 @@ Internal scientific checks and publication review are separate steps.
 
 The fixed public candidate is `V4.2.0-rc.3`. The public `main` branch remains
 the stable model until the ammonia paper is accepted and the model is
-finalized. The preprint citation will be added when the manuscript is archived.
+finalized. The ammonia [preprint is available on ChemRxiv](https://doi.org/10.26434/chemrxiv.15011965/v1).

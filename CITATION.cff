@@ -132,4 +132,6 @@ references:
   - family-names: Pitsch
     given-names: Heinz
   year: 2026
-  notes: Submitted to Combustion and Flame; preprint citation to be added when available.
+  doi: 10.26434/chemrxiv.15011965/v1
+  url: https://doi.org/10.26434/chemrxiv.15011965/v1
+  notes: ChemRxiv preprint, version 1; submitted to Combustion and Flame.

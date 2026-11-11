@@ -303,7 +303,8 @@ class C3MechPublication:
 
   ``publication_type`` is ``article`` or ``unpublished``. Published articles
   require complete journal metadata. The corresponding fields are ``None``
-  for unpublished work.
+  for unpublished work, except optional year, DOI and URL metadata
+  for an archived preprint.
   ``cff_title`` is ``None`` when Citation File Format output uses ``title``.
   ``issue`` is ``None`` for journals without an issue number. Exactly one of
   ``article_number`` or the ``start_page``/``end_page`` pair identifies an
@@ -458,6 +459,7 @@ _ARTICLE_CITATION_FIELDS_V4 = _ARTICLE_CITATION_FIELDS | {
     "issue", "start_page", "end_page"
 }
 _UNPUBLISHED_CITATION_FIELDS = {"type", "authors", "title"}
+_UNPUBLISHED_ARCHIVE_FIELDS = {"year", "doi", "url"}
 _CITATION_AUTHOR_FIELDS = {"given_names", "family_names", "citation_name"}
 _CITATION_CATALOG_FIELDS = {
     "cff_title", "major_versions", "minor_versions", "publications"
@@ -792,7 +794,8 @@ def _load_publications(data, schema_version):
         if "type" in raw_publication:
           fields.add("type")
       elif publication_type == "unpublished":
-        fields = _UNPUBLISHED_CITATION_FIELDS
+        fields = (_UNPUBLISHED_CITATION_FIELDS |
+                  (set(raw_publication) & _UNPUBLISHED_ARCHIVE_FIELDS))
       else:
         raise C3MechConfigurationError(
             location + ".type must be article or unpublished")
@@ -802,11 +805,24 @@ def _load_publications(data, schema_version):
     title = _configuration_string(
         publication["title"], location + ".title")
     if publication_type == "unpublished":
+      year = publication.get("year")
+      if "year" in publication and (isinstance(year, bool) or
+          not isinstance(year, int) or year < 1):
+        raise C3MechConfigurationError(
+            location + ".year must be a positive integer")
+      doi = None
+      if "doi" in publication:
+        doi = _configuration_string(publication["doi"], location + ".doi")
+        if _DOI_PATTERN.fullmatch(doi) is None:
+          raise C3MechConfigurationError(
+              location + ".doi must be a DOI without a URL prefix")
+      url = (None if "url" not in publication else
+             _configuration_https_url(publication["url"], location + ".url"))
       resolved[identifier] = C3MechPublication(
           identifier=identifier,
           publication_type=publication_type,
           authors=authors,
-          year=None,
+          year=year,
           title=title,
           cff_title=None,
           journal=None,
@@ -815,8 +831,8 @@ def _load_publications(data, schema_version):
           article_number=None,
           start_page=None,
           end_page=None,
-          doi=None,
-          url=None)
+          doi=doi,
+          url=url)
       continue
     year = publication["year"]
     if isinstance(year, bool) or not isinstance(year, int) or year < 1:

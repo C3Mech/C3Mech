@@ -13,10 +13,11 @@ C3MechV4.2.0.
 
 The optimization of the NH3/H2/NOx chemistry is part of the following work:
 
-1. Girhe, S., Loffredo, F., Langer, R.,
-   Pitsch, H. (2026). Ammonia combustion kinetic model optimization using
-   elementary rate coefficient and global combustion data. Submitted to *Combustion and Flame*.
-   The preprint citation will be added when available.
+1. Girhe, S., Loffredo, F., Langer, R., Pitsch, H. (2026).
+   Ammonia combustion kinetic model optimization using elementary rate
+   coefficient and global combustion data. *ChemRxiv*, preprint, version 1.
+   https://doi.org/10.26434/chemrxiv.15011965/v1.
+   Submitted to *Combustion and Flame*.
 
 This third release candidate applies the optimized ammonia chemistry described
 above to the C3MechV4.0.1 baseline. The C1/C2 and carbon-nitrogen chemistry
