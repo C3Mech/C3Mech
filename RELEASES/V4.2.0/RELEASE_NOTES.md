@@ -1,57 +1,19 @@
 # C3MechV4.2.0
 
-> **Release candidate:** The chemical kinetic model is considered complete but
-> remains under review and may change before the final release. Peer review of
-> the associated work has not been completed.
+C3MechV4.2.0 incorporates the optimized ammonia combustion chemistry of
+Girhe et al. into the C3MechV4.0.1 baseline. The update includes the adopted
+ammonia thermochemistry and excited-hydroxyl (OH*) chemistry.
 
-C3MechV4.2.0 incorporates the optimized NH3/H2/NOx chemistry of
-Girhe et al. [1]. Rate parameters for 70 reactions were optimized using
-elementary rate coefficient data from 142 publications and 11,232 global
-combustion measurements from 113 publications. When using an NH3 submodule,
-cite Girhe et al. [1] in addition to the other citations required for
-C3MechV4.2.0.
+The ammonia model was optimized using elementary rate coefficient and global
+combustion data, with multicomponent transport for flame predictions.
 
-The optimization of the NH3/H2/NOx chemistry is part of the following work:
+> **Preliminary release:** The model and associated paper remain under review.
 
-1. Girhe, S., Loffredo, F., Langer, R., Pitsch, H. (2026).
-   Ammonia combustion kinetic model optimization using elementary rate
-   coefficient and global combustion data. *ChemRxiv*, preprint, version 1.
-   https://doi.org/10.26434/chemrxiv.15011965/v1.
-   Submitted to *Combustion and Flame*.
+When using the ammonia chemistry, cite the following work alongside the
+C3Mech publication and its corrigendum:
 
-This third release candidate applies the optimized ammonia chemistry described
-above to the C3MechV4.0.1 baseline. The C1/C2 and carbon-nitrogen chemistry
-updates included in the earlier V4.2.0 release candidates have been reverted
-to the C3MechV4.0.1 baseline.
-
-Reviewed corrections across the repository are retained, including
-thermochemistry temperature-range extensions and repairs to incomplete
-reaction pathways. These include the replacement of inconsistent RFLUORENE
-pathways with the existing `0.5C12H9 + 0.5C14H9` treatment.
-
-Species-definition inconsistencies involving HNO2, H2NCHO, H2NCO and HNO3 have
-been corrected. Nitric acid is now represented consistently as HONO2, and the
-duplicate HNO3 entry has been removed.
-The original singlet CH2OO data are retained under the explicit label `CH2OO(S)`.
-
-The OH* subset based on [Kathrotia et al. (2010)](https://doi.org/10.1016/j.combustflame.2010.04.003),
-as used in the adopted ammonia chemistry, replaces the previous
-[Hall and Petersen (2006)](https://doi.org/10.1002/kin.20196) subset. The adopted
-subset includes the ammonia model's nitrogen-species reactions and retains
-C3Mech's CH + O2 formation channel and quenching by CO2, CO and CH4.
-
-Source submodules now use `_IC.MECH` to identify the independent-collider
-formulation. The paired `LOWMX/LOWSP` input is labelled for LMR-R (LMRR) or
-LMR-P (LMRP), as selected by the solver. This naming update does not change
-reaction parameters, thermochemistry or transport data.
-
-## LMRR and IC comparison
-
-The adopted ammonia chemistry was optimized using the linear mixture rule in
-reduced pressure (LMRR). In the ammonia-model comparison reported in [1], LMRR
-and independent-collider (IC) formulations gave comparable overall agreement
-with experiment. Across the 1,138 experimental curves, their mean absolute
-prediction difference was **0.18 ± 0.23%** (mean ± standard deviation across
-curve means). Each difference was normalized by that curve's peak LMRR
-prediction before averaging within the curve, and all curves received equal
-weight in the reported mean and standard deviation.
+Girhe, S., Loffredo, F., Langer, R., Pitsch, H. (2026).
+*Ammonia combustion kinetic model optimization using elementary rate
+coefficient and global combustion data*. ChemRxiv, version 1.
+https://doi.org/10.26434/chemrxiv.15011965/v1.
+Submitted to *Combustion and Flame*.

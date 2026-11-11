@@ -34,7 +34,7 @@ thermochemistry and transport data.
 The adopted ammonia chemistry was optimized using LMRR. Both formulations gave
 comparable overall agreement with the ammonia combustion database examined in
 [Girhe et al.](https://doi.org/10.26434/chemrxiv.15011965/v1). See the
-[release notes](RELEASE_NOTES.md#lmrr-and-ic-comparison) for the quantitative comparison.
+[comparison below](#lmrr-and-ic-comparison) for the quantitative details.
 
 Compiled models are organized in folders such as `C0/` and `C1-C2/`.
 Each submodel uses the following layout. Here,
@@ -73,3 +73,14 @@ The model files use the [CC BY 4.0 license](LICENSE); see
 Source and compilation instructions are available from the
 [public repository](https://github.com/C3Mech/C3Mech/tree/dev).
 The fixed release is [V4.2.0-rc.3](https://github.com/C3Mech/C3Mech/releases/tag/V4.2.0-rc.3).
+
+## LMRR and IC comparison
+
+The following comparison concerns the optimized ammonia model and database
+examined in [Girhe et al.](https://doi.org/10.26434/chemrxiv.15011965/v1).
+
+Across the 1,138 experimental curves, their mean absolute
+prediction difference was **0.18 ± 0.23%** (mean ± standard deviation across
+curve means). Each difference was normalized by that curve's peak LMRR
+prediction before averaging within the curve, and all curves received equal
+weight in the reported mean and standard deviation.
