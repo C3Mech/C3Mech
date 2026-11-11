@@ -44,3 +44,14 @@ Source submodules now use `_IC.MECH` to identify the independent-collider
 formulation. The paired `LOWMX/LOWSP` input is labelled for LMR-R (LMRR) or
 LMR-P (LMRP), as selected by the solver. This naming update does not change
 reaction parameters, thermochemistry or transport data.
+
+## LMRR and IC comparison
+
+The adopted ammonia chemistry was optimized using the linear mixture rule in
+reduced pressure (LMRR). In the ammonia-model comparison reported in [1], LMRR
+and independent-collider (IC) formulations gave comparable overall agreement
+with experiment. Across the 1,138 experimental curves, their mean absolute
+prediction difference was **0.18 ± 0.23%** (mean ± standard deviation across
+curve means). Each difference was normalized by that curve's peak LMRR
+prediction before averaging within the curve, and all curves received equal
+weight in the reported mean and standard deviation.

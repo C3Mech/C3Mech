@@ -7,7 +7,7 @@ For the complete model, use [FULL_MODEL/](FULL_MODEL/):
 
 ```text
 FULL_MODEL/
-├── C3MechV4.2.0.CKI       # CHEMKIN-format mechanism (LMRR; uses LOWMX/LOWSP keywords)
+├── C3MechV4.2.0.CKI       # CHEMKIN-format mechanism (LMRR; uses LOWMX/LOWSP and TROEMX/TROESP keywords)
 ├── C3MechV4.2.0.THERM     # Thermochemistry
 ├── C3MechV4.2.0.TRAN      # Transport
 ├── C3MechV4.2.0.yaml      # Cantera YAML mechanism (LMRR)
@@ -22,11 +22,19 @@ has a model identifier, abbreviated MID, which should be reported when the
 model is used. Each submodel provides a CHEMKIN-format mechanism, thermochemistry and
 transport files, together with a Cantera YAML mechanism.
 
-We recommend the [linear mixture rule in reduced pressure (LMRR)](https://doi.org/10.1016/j.proci.2016.06.068). The Cantera
-YAML models use LMRR. For simulation software that reads mechanisms in CHEMKIN
-format but does not support LMRR, `LEGACY/` provides an independent-collider
-(IC) mechanism file. It uses the same thermochemistry and transport data as
-the main model.
+We recommend the [linear mixture rule in reduced pressure (LMRR)](https://doi.org/10.1016/j.proci.2016.06.068).
+In the CHEMKIN-format LMRR mechanism, collider-dependent falloff is specified
+using `LOWMX`, `LOWSP`, `TROEMX` and `TROESP`. The Cantera YAML models implement
+LMRR using [native `linear-Burke` reactions](https://cantera.org/stable/reference/kinetics/rate-constants.html#linear-burke-rate-expressions).
+For simulation software that reads mechanisms in CHEMKIN format but does not
+support LMRR, `LEGACY/` provides an independent-collider (IC) mechanism file.
+The IC formulation does not use these keywords. Both variants use the same
+thermochemistry and transport data.
+
+The adopted ammonia chemistry was optimized using LMRR. Both formulations gave
+comparable overall agreement with the ammonia combustion database examined in
+[Girhe et al.](https://doi.org/10.26434/chemrxiv.15011965/v1). See the
+[release notes](RELEASE_NOTES.md#lmrr-and-ic-comparison) for the quantitative comparison.
 
 Compiled models are organized in folders such as `C0/` and `C1-C2/`.
 Each submodel uses the following layout. Here,
@@ -36,7 +44,7 @@ model identifier and temperature range where applicable.
 ```text
 <group>/
 └── <submodel>/
-    ├── <model>.CKI       # CHEMKIN-format mechanism (LMRR; uses LOWMX/LOWSP keywords)
+    ├── <model>.CKI       # CHEMKIN-format mechanism (LMRR; uses LOWMX/LOWSP and TROEMX/TROESP keywords)
     ├── <model>.THERM     # Thermochemistry
     ├── <model>.TRAN      # Transport
     ├── <model>.yaml      # Cantera YAML mechanism (LMRR)

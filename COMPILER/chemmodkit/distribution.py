@@ -453,7 +453,7 @@ def _file_layout(cantera_enabled, model_name):
       "Every submodel directory contains the following files:\n\n"
       "```text\n"
       "<model>.CKI       # CHEMKIN-format mechanism "
-      "(LMRR; uses LOWMX/LOWSP keywords)\n"
+      "(LMRR; uses LOWMX/LOWSP and TROEMX/TROESP keywords)\n"
       "<model>.THERM     # Thermochemistry\n"
       "<model>.TRAN      # Transport\n")
   if cantera_enabled:
